@@ -1,0 +1,6 @@
+.git
+.gitignore
+CODEX_HANDOFF_RCA.md
+README.md
+bin
+*.out
