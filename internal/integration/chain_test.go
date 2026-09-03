@@ -8,6 +8,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"vkr-rca/internal/fault"
 	"vkr-rca/internal/gateway"
 	"vkr-rca/internal/orders"
 	"vkr-rca/internal/payment"
@@ -16,12 +17,16 @@ import (
 
 func TestGatewayOrdersPaymentChain(t *testing.T) {
 	logger := slog.New(slog.NewTextHandler(io.Discard, nil))
-	paymentHandler := payment.NewHandler(logger)
+	paymentHandler, err := payment.NewHandler(payment.Config{Logger: logger, Fault: fault.New()})
+	if err != nil {
+		t.Fatalf("create payment handler: %v", err)
+	}
 
 	ordersHandler, err := orders.NewHandler(orders.Config{
 		PaymentURL: "http://payment",
 		Client:     clientFor(paymentHandler),
 		Logger:     logger,
+		Fault:      fault.New(),
 	})
 	if err != nil {
 		t.Fatalf("create orders handler: %v", err)

@@ -77,7 +77,7 @@ func InstrumentHandler(serviceName string, handler http.Handler) http.Handler {
 		handler,
 		serviceName,
 		otelhttp.WithFilter(func(request *http.Request) bool {
-			return request.URL.Path != "/health"
+			return request.URL.Path != "/health" && !strings.HasPrefix(request.URL.Path, "/debug/")
 		}),
 		otelhttp.WithSpanNameFormatter(func(_ string, request *http.Request) string {
 			return request.Method + " " + request.URL.Path

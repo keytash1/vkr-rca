@@ -13,6 +13,7 @@ import (
 	sdktrace "go.opentelemetry.io/otel/sdk/trace"
 	"go.opentelemetry.io/otel/sdk/trace/tracetest"
 	"go.opentelemetry.io/otel/trace"
+	"vkr-rca/internal/fault"
 	"vkr-rca/internal/gateway"
 	"vkr-rca/internal/orders"
 	"vkr-rca/internal/payment"
@@ -37,13 +38,22 @@ func TestDistributedTracePropagation(t *testing.T) {
 	})
 
 	logger := slog.New(slog.NewTextHandler(io.Discard, nil))
-	paymentHandler := telemetry.InstrumentHandler("payment", payment.NewHandler(logger))
+	paymentFault := fault.New()
+	if err := paymentFault.SetConfig(fault.Config{LatencyMS: 1}); err != nil {
+		t.Fatalf("set Payment fault: %v", err)
+	}
+	paymentApplication, err := payment.NewHandler(payment.Config{Logger: logger, Fault: paymentFault})
+	if err != nil {
+		t.Fatalf("create payment handler: %v", err)
+	}
+	paymentHandler := telemetry.InstrumentHandler("payment", paymentApplication)
 	paymentClient, paymentTraceparent := instrumentedClientFor(paymentHandler)
 
 	ordersApplication, err := orders.NewHandler(orders.Config{
 		PaymentURL: "http://payment",
 		Client:     paymentClient,
 		Logger:     logger,
+		Fault:      fault.New(),
 	})
 	if err != nil {
 		t.Fatalf("create orders handler: %v", err)
@@ -102,6 +112,14 @@ func TestDistributedTracePropagation(t *testing.T) {
 	assertParent(t, byName, "GET /orders/current", spanID(t, byName, "GET orders"))
 	assertParent(t, byName, "GET payment", spanID(t, byName, "GET /orders/current"))
 	assertParent(t, byName, "GET /payments/authorize", spanID(t, byName, "GET payment"))
+
+	debugResponse := httptest.NewRecorder()
+	paymentHandler.ServeHTTP(debugResponse, httptest.NewRequest(http.MethodGet, "/debug/fault", nil))
+	healthResponse := httptest.NewRecorder()
+	paymentHandler.ServeHTTP(healthResponse, httptest.NewRequest(http.MethodGet, "/health", nil))
+	if got := len(recorder.Ended()); got != 5 {
+		t.Fatalf("spans after debug and health requests = %d, want 5", got)
+	}
 }
 
 func instrumentedClientFor(handler http.Handler) (*http.Client, *string) {

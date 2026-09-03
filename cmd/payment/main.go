@@ -9,6 +9,7 @@ import (
 	"syscall"
 	"time"
 
+	"vkr-rca/internal/fault"
 	"vkr-rca/internal/payment"
 	"vkr-rca/internal/platform"
 	"vkr-rca/internal/telemetry"
@@ -29,7 +30,14 @@ func main() {
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer stop()
 
-	applicationHandler := payment.NewHandler(logger)
+	applicationHandler, err := payment.NewHandler(payment.Config{
+		Logger: logger,
+		Fault:  fault.New(),
+	})
+	if err != nil {
+		logger.Error("invalid configuration", slog.Any("error", err))
+		os.Exit(1)
+	}
 	handler := telemetry.InstrumentHandler("payment", applicationHandler)
 	address := platform.Env("HTTP_ADDR", ":8082")
 	serverErr := platform.Serve(ctx, address, handler, logger)

@@ -10,6 +10,7 @@ import (
 	"net/url"
 	"strings"
 
+	"vkr-rca/internal/fault"
 	"vkr-rca/internal/platform"
 )
 
@@ -19,11 +20,14 @@ type Config struct {
 	PaymentURL string
 	Client     *http.Client
 	Logger     *slog.Logger
+	Fault      *fault.Injector
 }
 
 type handler struct {
 	paymentURL string
 	client     *http.Client
+	logger     *slog.Logger
+	fault      *fault.Injector
 }
 
 type paymentResponse struct {
@@ -44,6 +48,9 @@ func NewHandler(config Config) (http.Handler, error) {
 	if config.Logger == nil {
 		return nil, errors.New("logger is required")
 	}
+	if config.Fault == nil {
+		return nil, errors.New("fault injector is required")
+	}
 	if err := validateURL(config.PaymentURL); err != nil {
 		return nil, fmt.Errorf("payment URL: %w", err)
 	}
@@ -51,17 +58,23 @@ func NewHandler(config Config) (http.Handler, error) {
 	handler := &handler{
 		paymentURL: strings.TrimRight(config.PaymentURL, "/"),
 		client:     config.Client,
+		logger:     config.Logger,
+		fault:      config.Fault,
 	}
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/health", platform.HealthHandler("orders"))
 	mux.HandleFunc("/orders/current", handler.currentOrder)
+	mux.Handle("/debug/", fault.NewHandler(config.Fault))
 	return platform.Middleware(config.Logger, mux), nil
 }
 
 func (handler *handler) currentOrder(writer http.ResponseWriter, request *http.Request) {
 	if request.Method != http.MethodGet {
 		platform.MethodNotAllowed(writer, http.MethodGet)
+		return
+	}
+	if !fault.ApplyHTTP(writer, request, handler.fault, handler.logger) {
 		return
 	}
 

@@ -1,6 +1,6 @@
 # RCA for distributed services
 
-Milestone 2 of the RCA graduation project: a synchronous Go service chain with end-to-end OpenTelemetry tracing.
+Milestone 3 of the RCA graduation project: a synchronous Go service chain with end-to-end OpenTelemetry tracing and controlled fault injection.
 
 ```text
 Client -> Gateway -> Orders -> Payment
@@ -10,7 +10,7 @@ Client -> Gateway -> Orders -> Payment
               OTel Collector -> Jaeger
 ```
 
-One request creates a single distributed trace containing the server and client spans for all three services. Fault injection, anomaly detection, service-graph reconstruction, and RCA logic are intentionally deferred to later milestones.
+One request creates a single distributed trace containing the server and client spans for all three services. Orders and Payment expose development-only controls for reproducible latency and HTTP error faults. Anomaly detection, service-graph reconstruction, and RCA logic are intentionally deferred to later milestones.
 
 ## Requirements
 
@@ -74,6 +74,71 @@ HTTP context propagation uses the standard W3C `traceparent` format and OpenTele
 
 For one application request, all three services log the same `request_id` and `trace_id`, while their server `span_id` values differ. Health checks are excluded from tracing to keep Jaeger clean.
 
+## Milestone 3: controlled fault injection
+
+Orders and Payment each own an independent, in-memory fault injector. Configuration changes take effect without restarting containers and are safe under concurrent requests. The debug API is intended only for this local experiment; it has no authentication and must not be exposed as a production control plane.
+
+Fault configuration:
+
+```json
+{
+  "latency_ms": 700,
+  "error_rate": 0.0
+}
+```
+
+- `latency_ms` must be non-negative. The delay respects request context cancellation.
+- `error_rate` must be between `0.0` and `1.0`. `0.0` never fails, `1.0` always fails, and intermediate values use a pseudo-random decision per request.
+- Updating the config replaces both fields; omitted JSON fields therefore become zero.
+
+Development endpoints on Orders (`:8081`) and Payment (`:8082`):
+
+| Endpoint | Purpose |
+| --- | --- |
+| `GET /debug/fault` | Read current configuration |
+| `POST /debug/fault` | Replace configuration with a strict JSON object |
+| `POST /debug/reset` | Restore `{ "latency_ms": 0, "error_rate": 0 }` |
+
+Unknown JSON fields and invalid values return `400`; a non-JSON update returns `415`. Faults affect only `/orders/current` and `/payments/authorize`. Health and debug endpoints are never delayed or failed and are excluded from tracing.
+
+Convenient demo commands:
+
+```bash
+make fault-status
+make fault-payment-latency
+make fault-orders-latency
+make fault-payment-errors
+make fault-reset
+```
+
+`fault-payment-errors` configures a 50% error rate for interactive demos. Use `error_rate: 1.0` for deterministic tests.
+
+### Reproducible scenarios
+
+Payment latency:
+
+```text
+Gateway slow -> Orders slow -> Payment slow
+```
+
+Payment waits locally before responding, so both upstream callers naturally include that wait in their spans.
+
+Orders latency with healthy Payment:
+
+```text
+Gateway slow -> Orders slow -> Payment normal
+```
+
+Orders waits before calling Payment. This distinction will later prevent RCA from blindly selecting the deepest downstream service.
+
+Payment error with `error_rate: 1.0`:
+
+```text
+Payment 500 -> Orders 502 -> Gateway 502
+```
+
+No special propagation logic is added: the existing downstream error handling produces this chain naturally. Reset both injectors afterwards with `make fault-reset`.
+
 ## Endpoints
 
 | Service | Endpoint | Purpose |
@@ -84,6 +149,8 @@ For one application request, all three services log the same `request_id` and `t
 | Orders | `GET /health` | Liveness check |
 | Payment | `GET /payments/authorize` | Returns the demo authorization result |
 | Payment | `GET /health` | Liveness check |
+| Orders / Payment | `GET/POST /debug/fault` | Read or replace local fault configuration |
+| Orders / Payment | `POST /debug/reset` | Reset local fault configuration |
 
 Unsupported methods on defined endpoints return `405 Method Not Allowed`. A downstream failure is exposed to the caller as `502 Bad Gateway`.
 
@@ -97,7 +164,7 @@ go vet ./...
 go test -race ./...
 ```
 
-The tests cover handlers, downstream failure mapping, configuration validation, request-ID propagation, W3C TraceContext and Baggage propagation, and the complete parent-child span hierarchy through the in-process service chain. Tests do not require an external Collector.
+The tests cover handlers, downstream failure mapping, fault validation and concurrency, cancellable latency, deterministic error decisions, strict debug JSON, request-ID propagation, the three fault scenarios, W3C TraceContext and Baggage propagation, and the complete parent-child span hierarchy through the in-process service chain. Tests do not require an external Collector.
 
 ## Configuration
 
