@@ -1,4 +1,18 @@
 services:
+  jaeger:
+    image: jaegertracing/jaeger:2.20.0
+    ports:
+      - "${JAEGER_UI_PORT:-16686}:16686"
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.158.0
+    command: ["--config=/etc/otelcol-contrib/config.yaml"]
+    volumes:
+      - ./deploy/otel-collector.yaml:/etc/otelcol-contrib/config.yaml:ro
+    depends_on:
+      jaeger:
+        condition: service_started
+
   payment:
     build:
       context: .
@@ -6,6 +20,8 @@ services:
         SERVICE: payment
     environment:
       HTTP_ADDR: ":8082"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "otel-collector:4317"
+      OTEL_EXPORTER_OTLP_INSECURE: "true"
     ports:
       - "${PAYMENT_PORT:-8082}:8082"
     healthcheck:
@@ -14,6 +30,9 @@ services:
       timeout: 1s
       retries: 10
       start_period: 2s
+    depends_on:
+      otel-collector:
+        condition: service_started
 
   orders:
     build:
@@ -23,12 +42,16 @@ services:
     environment:
       HTTP_ADDR: ":8081"
       HTTP_CLIENT_TIMEOUT: "2s"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "otel-collector:4317"
+      OTEL_EXPORTER_OTLP_INSECURE: "true"
       PAYMENT_URL: "http://payment:8082"
     ports:
       - "${ORDERS_PORT:-8081}:8081"
     depends_on:
       payment:
         condition: service_healthy
+      otel-collector:
+        condition: service_started
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--output-document=-", "http://127.0.0.1:8081/health"]
       interval: 2s
@@ -44,12 +67,16 @@ services:
     environment:
       HTTP_ADDR: ":8080"
       HTTP_CLIENT_TIMEOUT: "3s"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "otel-collector:4317"
+      OTEL_EXPORTER_OTLP_INSECURE: "true"
       ORDERS_URL: "http://orders:8081"
     ports:
       - "${GATEWAY_PORT:-18080}:8080"
     depends_on:
       orders:
         condition: service_healthy
+      otel-collector:
+        condition: service_started
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--output-document=-", "http://127.0.0.1:8080/health"]
       interval: 2s

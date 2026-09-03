@@ -1,32 +1,42 @@
 # RCA for distributed services
 
-Milestone 1 of the RCA graduation project: a minimal synchronous service chain written in Go.
+Milestone 2 of the RCA graduation project: a synchronous Go service chain with end-to-end OpenTelemetry tracing.
 
 ```text
-Client -> Gateway (:8080) -> Orders (:8081) -> Payment (:8082)
+Client -> Gateway -> Orders -> Payment
+              \         |         /
+               OTLP/gRPC spans
+                     |
+              OTel Collector -> Jaeger
 ```
 
-This milestone deliberately contains no OpenTelemetry, fault injection, anomaly detection, or RCA logic. Those belong to later milestones after the HTTP chain is proven.
+One request creates a single distributed trace containing the server and client spans for all three services. Fault injection, anomaly detection, service-graph reconstruction, and RCA logic are intentionally deferred to later milestones.
 
 ## Requirements
 
 - Docker with Docker Compose
-- `curl` for the manual smoke request
+- `curl` for smoke requests
 - Go 1.26 only for running outside Docker
 
 ## Run
 
-Build the images, start the services, and wait for their health checks:
+Build the images, start the stack, and wait for application health checks:
 
 ```bash
 docker compose up --build -d --wait
 ```
 
-Call the public Gateway endpoint:
+Generate a distributed trace:
+
+```bash
+make trace-smoke
+```
+
+Equivalent request:
 
 ```bash
 curl --fail --silent --show-error \
-  --header 'X-Request-ID: demo-request' \
+  --header 'X-Request-ID: milestone-2-smoke' \
   http://localhost:18080/api/order
 ```
 
@@ -36,7 +46,13 @@ Expected response:
 {"service":"gateway","order":{"order_id":"demo-order","status":"confirmed","payment":{"provider":"payment","status":"authorized"}}}
 ```
 
-The same `X-Request-ID` is returned by Gateway, propagated through Orders to Payment, and included in each service's structured JSON request log.
+Open [Jaeger UI](http://localhost:16686), select the `gateway` service, and find traces. A successful trace includes resources with all three service names:
+
+```text
+gateway -> orders -> payment
+```
+
+There are normally five spans rather than exactly three: a server span for each service plus client spans for Gateway -> Orders and Orders -> Payment.
 
 Stop the stack:
 
@@ -44,14 +60,19 @@ Stop the stack:
 docker compose down --remove-orphans
 ```
 
-Equivalent shortcuts are available as `make compose-up`, `make smoke`, `make logs`, and `make compose-down`.
+Shortcuts are available as `make compose-up`, `make smoke`, `make trace-smoke`, `make logs`, and `make compose-down`.
 
-The host ports default to `18080`, `8081`, and `8082`. They can be overridden without changing service-to-service addresses. For example, if `18080` is already occupied:
+## Trace and request correlation
 
-```bash
-GATEWAY_PORT=28080 docker compose up --build -d --wait
-GATEWAY_PORT=28080 make smoke
-```
+HTTP context propagation uses the standard W3C `traceparent` format and OpenTelemetry Baggage. Applications export spans over OTLP/gRPC to the Collector; the Collector batches and exports them over OTLP to Jaeger.
+
+`X-Request-ID` remains independent of OpenTelemetry identifiers. It is returned to the caller and propagated through the complete chain. Structured application logs include:
+
+- `request_id`;
+- `trace_id`;
+- the current server `span_id`.
+
+For one application request, all three services log the same `request_id` and `trace_id`, while their server `span_id` values differ. Health checks are excluded from tracing to keep Jaeger clean.
 
 ## Endpoints
 
@@ -64,7 +85,7 @@ GATEWAY_PORT=28080 make smoke
 | Payment | `GET /payments/authorize` | Returns the demo authorization result |
 | Payment | `GET /health` | Liveness check |
 
-All other methods on defined endpoints return `405 Method Not Allowed`. A downstream failure is exposed to the caller as `502 Bad Gateway`.
+Unsupported methods on defined endpoints return `405 Method Not Allowed`. A downstream failure is exposed to the caller as `502 Bad Gateway`.
 
 ## Local checks
 
@@ -72,17 +93,37 @@ All other methods on defined endpoints return `405 Method Not Allowed`. A downst
 make fmt
 make test
 make build
+go vet ./...
+go test -race ./...
 ```
 
-The test suite includes handler tests, downstream failure mapping, configuration validation, request-ID propagation, and an in-process end-to-end chain test.
+The tests cover handlers, downstream failure mapping, configuration validation, request-ID propagation, W3C TraceContext and Baggage propagation, and the complete parent-child span hierarchy through the in-process service chain. Tests do not require an external Collector.
 
 ## Configuration
 
-| Variable | Service | Default |
+| Variable | Service | Default outside Docker |
 | --- | --- | --- |
 | `HTTP_ADDR` | all | `:8080`, `:8081`, or `:8082` |
 | `ORDERS_URL` | Gateway | `http://orders:8081` |
 | `PAYMENT_URL` | Orders | `http://payment:8082` |
 | `HTTP_CLIENT_TIMEOUT` | Gateway / Orders | `3s` / `2s` |
+| `OTEL_EXPORTER_OTLP_ENDPOINT` | all | `localhost:4317` |
+| `OTEL_EXPORTER_OTLP_INSECURE` | all | `true` |
 
-Compose also accepts `GATEWAY_PORT`, `ORDERS_PORT`, and `PAYMENT_PORT` for overriding the corresponding host ports.
+Compose sets the OTLP endpoint to `otel-collector:4317`. The `service.name` resource attribute is fixed in each binary as `gateway`, `orders`, or `payment`.
+
+Host ports default to:
+
+- Gateway: `18080`;
+- Orders: `8081`;
+- Payment: `8082`;
+- Jaeger UI: `16686`.
+
+They can be overridden with `GATEWAY_PORT`, `ORDERS_PORT`, `PAYMENT_PORT`, and `JAEGER_UI_PORT` without changing container-to-container addresses.
+
+## Pinned observability components
+
+- OpenTelemetry Go API, SDK, and OTLP trace exporter: `v1.45.0`;
+- OpenTelemetry HTTP instrumentation: `v0.70.0`;
+- OpenTelemetry Collector Contrib: `0.158.0`;
+- Jaeger v2: `2.20.0`.

@@ -2,6 +2,7 @@ package platform
 
 import (
 	"os"
+	"strconv"
 	"time"
 )
 
@@ -25,4 +26,18 @@ func EnvDuration(key string, fallback time.Duration) time.Duration {
 	}
 
 	return duration
+}
+
+func EnvBool(key string, fallback bool) bool {
+	value := os.Getenv(key)
+	if value == "" {
+		return fallback
+	}
+
+	parsed, err := strconv.ParseBool(value)
+	if err != nil {
+		return fallback
+	}
+
+	return parsed
 }

@@ -8,6 +8,8 @@ import (
 	"log/slog"
 	"net/http"
 	"time"
+
+	"go.opentelemetry.io/otel/trace"
 )
 
 const RequestIDHeader = "X-Request-ID"
@@ -45,13 +47,21 @@ func Middleware(logger *slog.Logger, next http.Handler) http.Handler {
 		ctx := context.WithValue(request.Context(), requestIDKey{}, requestID)
 		next.ServeHTTP(response, request.WithContext(ctx))
 
-		logger.InfoContext(ctx, "request completed",
+		attributes := []any{
 			"request_id", requestID,
 			"method", request.Method,
 			"path", request.URL.Path,
 			"status", response.status,
 			"duration_ms", time.Since(startedAt).Milliseconds(),
-		)
+		}
+		if spanContext := trace.SpanContextFromContext(ctx); spanContext.IsValid() {
+			attributes = append(attributes,
+				"trace_id", spanContext.TraceID().String(),
+				"span_id", spanContext.SpanID().String(),
+			)
+		}
+
+		logger.InfoContext(ctx, "request completed", attributes...)
 	})
 }
 
