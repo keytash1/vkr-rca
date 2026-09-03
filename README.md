@@ -1,16 +1,18 @@
 # RCA for distributed services
 
-Milestone 3 of the RCA graduation project: a synchronous Go service chain with end-to-end OpenTelemetry tracing and controlled fault injection.
+Milestone 4 of the RCA graduation project: a synchronous Go service chain with controlled faults, end-to-end OpenTelemetry tracing, and topology reconstructed from real OTLP spans.
 
 ```text
 Client -> Gateway -> Orders -> Payment
               \         |         /
                OTLP/gRPC spans
                      |
-              OTel Collector -> Jaeger
+                         +-> Jaeger
+              OTel Collector
+                         +-> RCA OTLP receiver -> service graph
 ```
 
-One request creates a single distributed trace containing the server and client spans for all three services. Orders and Payment expose development-only controls for reproducible latency and HTTP error faults. Anomaly detection, service-graph reconstruction, and RCA logic are intentionally deferred to later milestones.
+One request creates a single distributed trace containing the server and client spans for all three services. Orders and Payment expose development-only controls for reproducible faults. The RCA service receives a second copy of those spans and derives service dependencies without knowing the topology in advance. Healthy baselines, anomaly detection, ranking, and RCA decisions remain deferred.
 
 ## Requirements
 
@@ -60,7 +62,7 @@ Stop the stack:
 docker compose down --remove-orphans
 ```
 
-Shortcuts are available as `make compose-up`, `make smoke`, `make trace-smoke`, `make logs`, and `make compose-down`.
+Shortcuts are available as `make compose-up`, `make smoke`, `make trace-smoke`, `make graph-smoke`, `make logs`, and `make compose-down`.
 
 ## Trace and request correlation
 
@@ -139,6 +141,57 @@ Payment 500 -> Orders 502 -> Gateway 502
 
 No special propagation logic is added: the existing downstream error handling produces this chain naturally. Reset both injectors afterwards with `make fault-reset`.
 
+## Milestone 4: service graph reconstruction
+
+The Collector fans each trace out over OTLP/gRPC to both Jaeger and the RCA service. Jaeger remains the visual verification tool; RCA implements the graph builder itself and does not use the Collector Service Graph Connector, Jaeger API, application logs, hostnames, URLs, or hardcoded service names.
+
+RCA separates three layers:
+
+1. the official OTLP `TraceServiceServer` transport converts protobuf messages into a small normalized `Span` model;
+2. the bounded trace store joins spans by `TraceID`, `SpanID`, and `ParentSpanID`;
+3. the graph snapshot aggregates cross-service parent-child relationships.
+
+`service.name` is read only from the OpenTelemetry Resource. Spans without a valid identity or `service.name` are ignored, counted, and reported as OTLP partial success instead of creating guessed nodes.
+
+For the normal five-span hierarchy:
+
+```text
+Gateway SERVER [gateway]
+└── Gateway CLIENT [gateway]
+    └── Orders SERVER [orders]
+        └── Orders CLIENT [orders]
+            └── Payment SERVER [payment]
+
+                         ↓
+
+gateway -> orders -> payment
+```
+
+A relation creates an edge only when its parent and child belong to different services. Same-service SERVER/CLIENT nesting therefore creates no self-edge. Missing parents create no synthetic `external` node. Span kind is retained as evidence but deliberately not used as a strict gate: the parent-child identity and differing service names are authoritative, so imperfect instrumentation cannot erase an otherwise observable dependency.
+
+Spans may arrive child-first or in different exports. Each retained trace keeps pending parent-child relationships and links them when both sides become available. `TraceID + SpanID` is the deduplication key, making Collector retries idempotent while that trace is retained. Edge observations count unique cross-service span relationships.
+
+Raw normalized spans are in memory for `TRACE_TTL` (default `10m`) with at most `MAX_TRACES` trace states (default `5000`). Cleanup happens during ingestion and reads; the oldest state is evicted at the limit. The aggregated graph remains until the RCA process exits or is explicitly reset. A duplicate arriving after its trace state has expired is outside the deduplication window and can be counted again.
+
+RCA HTTP API on host port `18090`:
+
+| Endpoint | Purpose |
+| --- | --- |
+| `GET /health` | RCA process health |
+| `GET /api/graph` | Deterministically sorted nodes and edges |
+| `GET /api/traces/{trace_id}` | Retained normalized spans for one trace |
+| `POST /debug/reset` | Clear retained spans and the aggregated graph |
+
+RCA is intentionally not instrumented into the same trace pipeline, preventing it from adding itself to the graph. The inspection and reset API is development-only and has no authentication.
+
+Run the deterministic healthy topology demo:
+
+```bash
+make graph-smoke
+```
+
+It resets RCA and both fault injectors, sends ten Gateway requests, waits for batching, and prints `/api/graph`. No `jq` dependency is required.
+
 ## Endpoints
 
 | Service | Endpoint | Purpose |
@@ -151,6 +204,10 @@ No special propagation logic is added: the existing downstream error handling pr
 | Payment | `GET /health` | Liveness check |
 | Orders / Payment | `GET/POST /debug/fault` | Read or replace local fault configuration |
 | Orders / Payment | `POST /debug/reset` | Reset local fault configuration |
+| RCA | `GET /api/graph` | Current service graph |
+| RCA | `GET /api/traces/{trace_id}` | Retained normalized trace |
+| RCA | `POST /debug/reset` | Reset trace and graph state |
+| RCA | `GET /health` | Liveness check |
 
 Unsupported methods on defined endpoints return `405 Method Not Allowed`. A downstream failure is exposed to the caller as `502 Bad Gateway`.
 
@@ -164,18 +221,21 @@ go vet ./...
 go test -race ./...
 ```
 
-The tests cover handlers, downstream failure mapping, fault validation and concurrency, cancellable latency, deterministic error decisions, strict debug JSON, request-ID propagation, the three fault scenarios, W3C TraceContext and Baggage propagation, and the complete parent-child span hierarchy through the in-process service chain. Tests do not require an external Collector.
+The tests cover handlers, fault behavior, trace propagation, the graph algorithm, out-of-order ingestion, duplicate exports, retention, concurrent ingestion, deterministic output, strict RCA HTTP behavior, and synthetic OTLP requests containing the real five-span hierarchy. Tests do not require an external Collector.
 
 ## Configuration
 
 | Variable | Service | Default outside Docker |
 | --- | --- | --- |
-| `HTTP_ADDR` | all | `:8080`, `:8081`, or `:8082` |
+| `HTTP_ADDR` | all | `:8080`, `:8081`, `:8082`, or RCA `:8090` |
 | `ORDERS_URL` | Gateway | `http://orders:8081` |
 | `PAYMENT_URL` | Orders | `http://payment:8082` |
 | `HTTP_CLIENT_TIMEOUT` | Gateway / Orders | `3s` / `2s` |
 | `OTEL_EXPORTER_OTLP_ENDPOINT` | all | `localhost:4317` |
 | `OTEL_EXPORTER_OTLP_INSECURE` | all | `true` |
+| `OTLP_ADDR` | RCA | `:4317` |
+| `TRACE_TTL` | RCA | `10m` |
+| `MAX_TRACES` | RCA | `5000` |
 
 Compose sets the OTLP endpoint to `otel-collector:4317`. The `service.name` resource attribute is fixed in each binary as `gateway`, `orders`, or `payment`.
 
@@ -184,13 +244,16 @@ Host ports default to:
 - Gateway: `18080`;
 - Orders: `8081`;
 - Payment: `8082`;
+- RCA HTTP: `18090`;
 - Jaeger UI: `16686`.
 
-They can be overridden with `GATEWAY_PORT`, `ORDERS_PORT`, `PAYMENT_PORT`, and `JAEGER_UI_PORT` without changing container-to-container addresses.
+They can be overridden with `GATEWAY_PORT`, `ORDERS_PORT`, `PAYMENT_PORT`, `RCA_HTTP_PORT`, and `JAEGER_UI_PORT` without changing container-to-container addresses.
 
 ## Pinned observability components
 
 - OpenTelemetry Go API, SDK, and OTLP trace exporter: `v1.45.0`;
 - OpenTelemetry HTTP instrumentation: `v0.70.0`;
+- OpenTelemetry OTLP protobuf: `v1.11.0`;
+- gRPC-Go: `v1.83.0`;
 - OpenTelemetry Collector Contrib: `0.158.0`;
 - Jaeger v2: `2.20.0`.

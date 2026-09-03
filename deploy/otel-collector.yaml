@@ -14,10 +14,21 @@ exporters:
     endpoint: jaeger:4317
     tls:
       insecure: true
+  otlp_grpc/rca:
+    endpoint: rca:4317
+    tls:
+      insecure: true
+    retry_on_failure:
+      enabled: true
+      initial_interval: 1s
+      max_interval: 5s
+      max_elapsed_time: 0s
+    sending_queue:
+      enabled: true
 
 service:
   pipelines:
     traces:
       receivers: [otlp]
       processors: [batch]
-      exporters: [otlp_grpc/jaeger]
+      exporters: [otlp_grpc/jaeger, otlp_grpc/rca]
