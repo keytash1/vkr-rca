@@ -1,15 +1,17 @@
 package rca
 
 import (
+	"errors"
 	"log/slog"
 	"net/http"
 	"strings"
 
+	"vkr-rca/internal/anomaly"
 	"vkr-rca/internal/graph"
 	"vkr-rca/internal/platform"
 )
 
-func NewHTTPHandler(store *graph.Store, logger *slog.Logger) http.Handler {
+func NewHTTPHandler(store *graph.Store, logger *slog.Logger, detectors ...*anomaly.Detector) http.Handler {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/health", platform.HealthHandler("rca"))
 	mux.HandleFunc("/api/graph", func(writer http.ResponseWriter, request *http.Request) {
@@ -47,6 +49,57 @@ func NewHTTPHandler(store *graph.Store, logger *slog.Logger) http.Handler {
 		store.Reset()
 		platform.WriteJSON(writer, http.StatusOK, store.Snapshot())
 	})
+	if len(detectors) > 0 && detectors[0] != nil {
+		mountAnomalyHandlers(mux, detectors[0])
+	}
 
 	return platform.Middleware(logger, mux)
+}
+
+func mountAnomalyHandlers(mux *http.ServeMux, detector *anomaly.Detector) {
+	mux.HandleFunc("/api/baseline", func(writer http.ResponseWriter, request *http.Request) {
+		if request.Method != http.MethodGet {
+			platform.MethodNotAllowed(writer, http.MethodGet)
+			return
+		}
+		platform.WriteJSON(writer, http.StatusOK, detector.Baseline())
+	})
+	mux.HandleFunc("/api/anomalies", func(writer http.ResponseWriter, request *http.Request) {
+		if request.Method != http.MethodGet {
+			platform.MethodNotAllowed(writer, http.MethodGet)
+			return
+		}
+		platform.WriteJSON(writer, http.StatusOK, detector.Anomalies())
+	})
+	mux.HandleFunc("/debug/baseline/start", func(writer http.ResponseWriter, request *http.Request) {
+		if request.Method != http.MethodPost {
+			platform.MethodNotAllowed(writer, http.MethodPost)
+			return
+		}
+		detector.StartBaseline()
+		platform.WriteJSON(writer, http.StatusOK, detector.Baseline())
+	})
+	mux.HandleFunc("/debug/baseline/freeze", func(writer http.ResponseWriter, request *http.Request) {
+		if request.Method != http.MethodPost {
+			platform.MethodNotAllowed(writer, http.MethodPost)
+			return
+		}
+		if err := detector.FreezeBaseline(); err != nil {
+			if errors.Is(err, anomaly.ErrBaselineNotCollecting) {
+				platform.WriteJSON(writer, http.StatusConflict, map[string]string{"error": err.Error()})
+				return
+			}
+			platform.WriteJSON(writer, http.StatusInternalServerError, map[string]string{"error": err.Error()})
+			return
+		}
+		platform.WriteJSON(writer, http.StatusOK, detector.Baseline())
+	})
+	mux.HandleFunc("/debug/anomaly/reset", func(writer http.ResponseWriter, request *http.Request) {
+		if request.Method != http.MethodPost {
+			platform.MethodNotAllowed(writer, http.MethodPost)
+			return
+		}
+		detector.ResetCurrent()
+		platform.WriteJSON(writer, http.StatusOK, detector.Anomalies())
+	})
 }

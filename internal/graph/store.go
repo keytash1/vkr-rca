@@ -104,6 +104,7 @@ func (store *Store) Ingest(spans []Span) IngestResult {
 		trace.spans[span.SpanID] = span
 		store.nodes[span.ServiceName] = struct{}{}
 		result.Accepted++
+		result.AcceptedSpans = append(result.AcceptedSpans, span)
 
 		if span.ParentSpanID != "" {
 			children := trace.childrenByParent[span.ParentSpanID]

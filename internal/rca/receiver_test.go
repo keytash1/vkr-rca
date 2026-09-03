@@ -84,7 +84,9 @@ func TestOTLPReceiverIgnoresMissingServiceAndInvalidIDs(t *testing.T) {
 
 func TestOTLPReceiverDeduplicatesRetries(t *testing.T) {
 	store := newReceiverTestStore(t)
-	receiver := NewReceiver(store, discardLogger())
+	detector := newRCATestDetector(t)
+	detector.StartBaseline()
+	receiver := NewReceiver(store, discardLogger(), NewAnomalyObserver(detector))
 	request := fiveSpanOTLPRequest()
 	if _, err := receiver.Export(context.Background(), request); err != nil {
 		t.Fatalf("first export: %v", err)
@@ -98,6 +100,15 @@ func TestOTLPReceiverDeduplicatesRetries(t *testing.T) {
 	for _, edge := range store.Snapshot().Edges {
 		if edge.Observations != 1 {
 			t.Fatalf("duplicate retry changed edge: %+v", edge)
+		}
+	}
+	operations := detector.Baseline().Operations
+	if len(operations) != 3 {
+		t.Fatalf("anomaly operations = %+v", operations)
+	}
+	for _, operation := range operations {
+		if operation.Samples != 1 {
+			t.Fatalf("duplicate retry changed anomaly samples: %+v", operation)
 		}
 	}
 }

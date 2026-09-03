@@ -20,8 +20,9 @@ const serviceNameAttribute = "service.name"
 type Receiver struct {
 	collecttracev1.UnimplementedTraceServiceServer
 
-	store  *graph.Store
-	logger *slog.Logger
+	store         *graph.Store
+	logger        *slog.Logger
+	spanObservers []SpanObserver
 
 	receivedSpans  atomic.Uint64
 	duplicateSpans atomic.Uint64
@@ -34,8 +35,8 @@ type ReceiverStats struct {
 	IgnoredSpans   uint64
 }
 
-func NewReceiver(store *graph.Store, logger *slog.Logger) *Receiver {
-	return &Receiver{store: store, logger: logger}
+func NewReceiver(store *graph.Store, logger *slog.Logger, observers ...SpanObserver) *Receiver {
+	return &Receiver{store: store, logger: logger, spanObservers: observers}
 }
 
 func (receiver *Receiver) Export(
@@ -44,6 +45,11 @@ func (receiver *Receiver) Export(
 ) (*collecttracev1.ExportTraceServiceResponse, error) {
 	spans, malformed := normalizeRequest(request)
 	result := receiver.store.Ingest(spans)
+	for _, span := range result.AcceptedSpans {
+		for _, observer := range receiver.spanObservers {
+			observer.ObserveSpan(span)
+		}
+	}
 	ignored := malformed + result.Ignored
 
 	receiver.receivedSpans.Add(result.Accepted)

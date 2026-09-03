@@ -14,6 +14,13 @@ services:
       OTLP_ADDR: ":4317"
       TRACE_TTL: "10m"
       MAX_TRACES: "5000"
+      MIN_BASELINE_SAMPLES: "30"
+      MAX_BASELINE_SAMPLES: "1000"
+      CURRENT_WINDOW_SIZE: "20"
+      MIN_CURRENT_SAMPLES: "10"
+      LATENCY_Z_THRESHOLD: "3.5"
+      ERROR_Z_THRESHOLD: "3.0"
+      ROBUST_SCALE_EPSILON: "0.1"
     ports:
       - "${RCA_HTTP_PORT:-18090}:8090"
     healthcheck:

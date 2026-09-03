@@ -55,3 +55,17 @@ func EnvInt(key string, fallback int) int {
 
 	return parsed
 }
+
+func EnvFloat64(key string, fallback float64) float64 {
+	value := os.Getenv(key)
+	if value == "" {
+		return fallback
+	}
+
+	parsed, err := strconv.ParseFloat(value, 64)
+	if err != nil {
+		return fallback
+	}
+
+	return parsed
+}

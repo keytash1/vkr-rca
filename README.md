@@ -1,6 +1,6 @@
 # RCA for distributed services
 
-Milestone 4 of the RCA graduation project: a synchronous Go service chain with controlled faults, end-to-end OpenTelemetry tracing, and topology reconstructed from real OTLP spans.
+Milestone 5 of the RCA graduation project: a synchronous Go service chain with controlled faults, end-to-end OpenTelemetry tracing, topology reconstruction, and statistical anomaly detection over real OTLP spans.
 
 ```text
 Client -> Gateway -> Orders -> Payment
@@ -10,9 +10,10 @@ Client -> Gateway -> Orders -> Payment
                          +-> Jaeger
               OTel Collector
                          +-> RCA OTLP receiver -> service graph
+                                               -> frozen baseline -> anomaly scores
 ```
 
-One request creates a single distributed trace containing the server and client spans for all three services. Orders and Payment expose development-only controls for reproducible faults. The RCA service receives a second copy of those spans and derives service dependencies without knowing the topology in advance. Healthy baselines, anomaly detection, ranking, and RCA decisions remain deferred.
+One request creates a single distributed trace containing the server and client spans for all three services. Orders and Payment expose development-only controls for reproducible faults. The RCA service receives a second copy of those spans, derives service dependencies without knowing the topology in advance, and compares operation-level latency and error rate with an explicitly collected healthy baseline. Ranking services as root-cause candidates and making an RCA decision remain deferred.
 
 ## Requirements
 
@@ -62,7 +63,7 @@ Stop the stack:
 docker compose down --remove-orphans
 ```
 
-Shortcuts are available as `make compose-up`, `make smoke`, `make trace-smoke`, `make graph-smoke`, `make logs`, and `make compose-down`.
+Shortcuts are available as `make compose-up`, `make smoke`, `make trace-smoke`, `make graph-smoke`, `make baseline-smoke`, `make anomaly-smoke`, `make logs`, and `make compose-down`.
 
 ## Trace and request correlation
 
@@ -192,6 +193,86 @@ make graph-smoke
 
 It resets RCA and both fault injectors, sends ten Gateway requests, waits for batching, and prints `/api/graph`. No `jq` dependency is required.
 
+## Milestone 5: healthy baseline and anomaly detection
+
+The detector consumes only deduplicated `SERVER` spans. `CLIENT` spans are ignored so one RPC is not counted twice, and `/health` plus `/debug/*` are excluded. An operation key is `service.name + HTTP method + http.route` when route metadata exists; the span name is the fallback. HTTP statuses `500` and above are failures, `4xx` responses are not, and OpenTelemetry `StatusError` is used only when an HTTP status is absent.
+
+Baseline lifecycle is explicit:
+
+```text
+EMPTY --POST /debug/baseline/start--> COLLECTING
+  ^                                      |
+  |                                  collect healthy spans
+  |                                      |
+  +--another start resets everything-----+
+                                         |
+                         POST /debug/baseline/freeze
+                                         |
+                                      FROZEN
+                                         |
+                         collect rolling current windows
+```
+
+Freezing makes the baseline immutable and clears the current windows. `POST /debug/anomaly/reset` clears only current observations and preserves the frozen baseline. Baseline samples are bounded by `MAX_BASELINE_SAMPLES` per operation; the current side retains only the latest `CURRENT_WINDOW_SIZE` observations.
+
+For every latency `latency_ms`, the detector uses the stabilising transform:
+
+```text
+x = ln(1 + latency_ms)
+baseline_location = median(x_baseline)
+MAD = median(abs(x_baseline - baseline_location))
+robust_scale = max(1.4826 * MAD, ROBUST_SCALE_EPSILON)
+latency_z = max(0, (median(x_current) - baseline_location) / robust_scale)
+```
+
+The non-negative score deliberately detects regressions, not unusually fast responses. The response also includes raw millisecond medians and nearest-rank p95 values for interpretation. A single latency spike cannot move the median of the default 20-request window enough to trigger a sustained anomaly.
+
+For failures, with baseline errors `e0` out of `n0` and current errors `e1` out of `n1`:
+
+```text
+p0 = (e0 + 0.5) / (n0 + 1)
+p1 = e1 / n1
+pooled = (e0 + 0.5 + e1) / (n0 + 1 + n1)
+error_z = max(0, (p1 - p0) /
+                    sqrt(pooled * (1 - pooled) * (1/(n0 + 1) + 1/n1)))
+```
+
+Degenerate zero-variance cases return a finite zero score. An operation is evaluated only after the configured minimum baseline and current sample counts. Before then its state is `insufficient_baseline` or `insufficient_current_data`, never an anomaly.
+
+Default thresholds are `latency_z >= 3.5` and `error_z >= 3.0`. Operation severity is intentionally unclamped:
+
+```text
+severity = max(latency_z / 3.5, error_z / 3.0)
+```
+
+Service severity is the maximum severity of its operations, and a service is anomalous when any operation is anomalous. Results are sorted lexically by service and operation for deterministic output.
+
+RCA baseline and anomaly API on host port `18090`:
+
+| Endpoint | Purpose |
+| --- | --- |
+| `POST /debug/baseline/start` | Clear all detector state and start healthy calibration |
+| `GET /api/baseline` | Inspect lifecycle state and per-operation baseline statistics |
+| `POST /debug/baseline/freeze` | Freeze calibration and clear current windows |
+| `POST /debug/anomaly/reset` | Clear current windows without changing the baseline |
+| `GET /api/anomalies` | Inspect deterministic operation and service anomaly results |
+
+Create a healthy 50-request baseline and freeze it:
+
+```bash
+make baseline-smoke
+```
+
+Run the same calibration followed by 20 requests with Payment latency of 700 ms:
+
+```bash
+make anomaly-smoke
+```
+
+Both targets wait for Collector batching and validate JSON with standard shell tools; `jq` is not required. `anomaly-smoke` resets fault injection after traffic generation.
+
+This milestone is a statistical detector, not a root-cause engine. It does not rank candidates, infer causality, use the service graph to suppress propagated symptoms, analyse logs or Prometheus metrics, or train an ML/GNN model.
+
 ## Endpoints
 
 | Service | Endpoint | Purpose |
@@ -207,6 +288,11 @@ It resets RCA and both fault injectors, sends ten Gateway requests, waits for ba
 | RCA | `GET /api/graph` | Current service graph |
 | RCA | `GET /api/traces/{trace_id}` | Retained normalized trace |
 | RCA | `POST /debug/reset` | Reset trace and graph state |
+| RCA | `GET /api/baseline` | Current healthy baseline statistics |
+| RCA | `GET /api/anomalies` | Current operation and service anomaly scores |
+| RCA | `POST /debug/baseline/start` | Start a new baseline calibration |
+| RCA | `POST /debug/baseline/freeze` | Freeze the collected baseline |
+| RCA | `POST /debug/anomaly/reset` | Reset current anomaly windows only |
 | RCA | `GET /health` | Liveness check |
 
 Unsupported methods on defined endpoints return `405 Method Not Allowed`. A downstream failure is exposed to the caller as `502 Bad Gateway`.
@@ -221,7 +307,7 @@ go vet ./...
 go test -race ./...
 ```
 
-The tests cover handlers, fault behavior, trace propagation, the graph algorithm, out-of-order ingestion, duplicate exports, retention, concurrent ingestion, deterministic output, strict RCA HTTP behavior, and synthetic OTLP requests containing the real five-span hierarchy. Tests do not require an external Collector.
+The tests cover handlers, fault behavior, trace propagation, the graph algorithm, out-of-order ingestion, duplicate exports, retention, concurrent ingestion, deterministic output, strict RCA HTTP behavior, robust statistics, detector lifecycle and bounds, latency and error anomalies, threshold boundaries, CLIENT-span exclusion, and synthetic OTLP requests containing the real five-span hierarchy. Tests do not require an external Collector.
 
 ## Configuration
 
@@ -236,6 +322,13 @@ The tests cover handlers, fault behavior, trace propagation, the graph algorithm
 | `OTLP_ADDR` | RCA | `:4317` |
 | `TRACE_TTL` | RCA | `10m` |
 | `MAX_TRACES` | RCA | `5000` |
+| `MIN_BASELINE_SAMPLES` | RCA | `30` |
+| `MAX_BASELINE_SAMPLES` | RCA | `1000` |
+| `CURRENT_WINDOW_SIZE` | RCA | `20` |
+| `MIN_CURRENT_SAMPLES` | RCA | `10` |
+| `LATENCY_Z_THRESHOLD` | RCA | `3.5` |
+| `ERROR_Z_THRESHOLD` | RCA | `3.0` |
+| `ROBUST_SCALE_EPSILON` | RCA | `0.1` |
 
 Compose sets the OTLP endpoint to `otel-collector:4317`. The `service.name` resource attribute is fixed in each binary as `gateway`, `orders`, or `payment`.
 

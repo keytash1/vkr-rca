@@ -7,6 +7,7 @@ import (
 	"testing"
 	"time"
 
+	"vkr-rca/internal/anomaly"
 	"vkr-rca/internal/graph"
 )
 
@@ -46,6 +47,60 @@ func TestHTTPGraphTraceAndReset(t *testing.T) {
 	}
 	if len(snapshot.Nodes) != 0 || len(snapshot.Edges) != 0 {
 		t.Fatalf("graph after reset = %+v", snapshot)
+	}
+}
+
+func TestHTTPBaselineAndAnomalyLifecycle(t *testing.T) {
+	detector := newRCATestDetector(t)
+	handler := NewHTTPHandler(newReceiverTestStore(t), discardLogger(), detector)
+
+	if response := serveHTTP(handler, http.MethodPost, "/debug/baseline/freeze"); response.Code != http.StatusConflict {
+		t.Fatalf("freeze empty status = %d: %s", response.Code, response.Body.String())
+	}
+	if response := serveHTTP(handler, http.MethodPost, "/debug/baseline/start"); response.Code != http.StatusOK {
+		t.Fatalf("start status = %d: %s", response.Code, response.Body.String())
+	}
+	detector.Observe(anomaly.Observation{
+		Key:     anomaly.OperationKey{Service: "payment", Operation: "GET /authorize"},
+		Latency: 10 * time.Millisecond,
+	})
+	if response := serveHTTP(handler, http.MethodPost, "/debug/baseline/freeze"); response.Code != http.StatusOK {
+		t.Fatalf("freeze status = %d: %s", response.Code, response.Body.String())
+	}
+	detector.Observe(anomaly.Observation{
+		Key:     anomaly.OperationKey{Service: "payment", Operation: "GET /authorize"},
+		Latency: time.Second,
+	})
+
+	anomaliesResponse := serveHTTP(handler, http.MethodGet, "/api/anomalies")
+	var snapshot anomaly.AnomalySnapshot
+	if err := json.NewDecoder(anomaliesResponse.Body).Decode(&snapshot); err != nil {
+		t.Fatalf("decode anomalies: %v", err)
+	}
+	if len(snapshot.Operations) != 1 || !snapshot.Operations[0].LatencyAnomalous {
+		t.Fatalf("anomalies = %+v", snapshot)
+	}
+	if response := serveHTTP(handler, http.MethodPost, "/debug/anomaly/reset"); response.Code != http.StatusOK {
+		t.Fatalf("reset current status = %d: %s", response.Code, response.Body.String())
+	}
+	if detector.Baseline().State != anomaly.StateFrozen || detector.Anomalies().Operations[0].CurrentSamples != 0 {
+		t.Fatalf("reset did not preserve baseline and clear current")
+	}
+
+	tests := []struct {
+		method string
+		path   string
+	}{
+		{http.MethodPost, "/api/baseline"},
+		{http.MethodPost, "/api/anomalies"},
+		{http.MethodGet, "/debug/baseline/start"},
+		{http.MethodGet, "/debug/baseline/freeze"},
+		{http.MethodGet, "/debug/anomaly/reset"},
+	}
+	for _, test := range tests {
+		if response := serveHTTP(handler, test.method, test.path); response.Code != http.StatusMethodNotAllowed {
+			t.Errorf("%s %s status = %d", test.method, test.path, response.Code)
+		}
 	}
 }
 

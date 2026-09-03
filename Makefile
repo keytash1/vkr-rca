@@ -4,7 +4,7 @@ PAYMENT_PORT ?= 8082
 JAEGER_UI_PORT ?= 16686
 RCA_HTTP_PORT ?= 18090
 
-.PHONY: fmt test build compose-up compose-down smoke trace-smoke graph-smoke fault-payment-latency fault-orders-latency fault-payment-errors fault-reset fault-status logs
+.PHONY: fmt test build compose-up compose-down smoke trace-smoke graph-smoke baseline-smoke anomaly-smoke fault-payment-latency fault-orders-latency fault-payment-errors fault-reset fault-status logs
 
 fmt:
 	gofmt -w cmd internal
@@ -37,6 +37,9 @@ graph-smoke:
 	curl --fail --silent --show-error --request POST http://localhost:$(RCA_HTTP_PORT)/debug/reset
 	@echo
 	@$(MAKE) --no-print-directory fault-reset
+	@sleep 2
+	@curl --fail --silent --show-error --request POST \
+		http://localhost:$(RCA_HTTP_PORT)/debug/reset >/dev/null
 	@for request in 1 2 3 4 5 6 7 8 9 10; do \
 		curl --fail --silent --show-error \
 			--header "X-Request-ID: graph-smoke-$$request" \
@@ -53,6 +56,54 @@ graph-smoke:
 		sleep 1; \
 	done; \
 	cat /tmp/vkr-rca-graph-smoke.json; echo; exit 1
+
+baseline-smoke:
+	@$(MAKE) --no-print-directory fault-reset
+	@sleep 2
+	@curl --fail --silent --show-error --request POST \
+		http://localhost:$(RCA_HTTP_PORT)/debug/baseline/start >/dev/null
+	@for request in $$(seq 1 50); do \
+		curl --fail --silent --show-error \
+			--header "X-Request-ID: baseline-smoke-$$request" \
+			http://localhost:$(GATEWAY_PORT)/api/order >/dev/null || exit 1; \
+	done
+	@for attempt in $$(seq 1 20); do \
+		curl --fail --silent --show-error \
+			http://localhost:$(RCA_HTTP_PORT)/api/baseline \
+			--output /tmp/vkr-rca-baseline-smoke.json || exit 1; \
+		if test "$$(grep -o '"samples":50' /tmp/vkr-rca-baseline-smoke.json | wc -l | tr -d ' ')" = "3"; then \
+			curl --fail --silent --show-error --request POST \
+				http://localhost:$(RCA_HTTP_PORT)/debug/baseline/freeze \
+				--output /tmp/vkr-rca-baseline-smoke.json || exit 1; \
+			cat /tmp/vkr-rca-baseline-smoke.json; echo; exit 0; \
+		fi; \
+		sleep 1; \
+	done; \
+	cat /tmp/vkr-rca-baseline-smoke.json; echo; exit 1
+
+anomaly-smoke: baseline-smoke
+	@curl --fail --silent --show-error --request POST \
+		http://localhost:$(RCA_HTTP_PORT)/debug/anomaly/reset >/dev/null
+	@$(MAKE) --no-print-directory fault-payment-latency >/dev/null
+	@status=0; \
+	for request in $$(seq 1 20); do \
+		curl --fail --silent --show-error \
+			--header "X-Request-ID: anomaly-smoke-$$request" \
+			http://localhost:$(GATEWAY_PORT)/api/order >/dev/null || status=1; \
+	done; \
+	$(MAKE) --no-print-directory fault-reset >/dev/null || status=1; \
+	test $$status -eq 0
+	@for attempt in $$(seq 1 20); do \
+		curl --fail --silent --show-error \
+			http://localhost:$(RCA_HTTP_PORT)/api/anomalies \
+			--output /tmp/vkr-rca-anomaly-smoke.json || exit 1; \
+		if test "$$(grep -o '"current_samples":20' /tmp/vkr-rca-anomaly-smoke.json | wc -l | tr -d ' ')" = "3" && \
+			test "$$(grep -o '"latency_anomalous":true' /tmp/vkr-rca-anomaly-smoke.json | wc -l | tr -d ' ')" = "3"; then \
+			cat /tmp/vkr-rca-anomaly-smoke.json; echo; exit 0; \
+		fi; \
+		sleep 1; \
+	done; \
+	cat /tmp/vkr-rca-anomaly-smoke.json; echo; exit 1
 
 fault-payment-latency:
 	curl --fail --silent --show-error \

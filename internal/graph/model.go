@@ -55,7 +55,8 @@ type Snapshot struct {
 }
 
 type IngestResult struct {
-	Accepted   uint64
-	Duplicates uint64
-	Ignored    uint64
+	Accepted      uint64
+	Duplicates    uint64
+	Ignored       uint64
+	AcceptedSpans []Span
 }
