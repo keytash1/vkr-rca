@@ -9,6 +9,7 @@ import (
 	"syscall"
 	"time"
 
+	"vkr-rca/internal/fault"
 	"vkr-rca/internal/gateway"
 	"vkr-rca/internal/platform"
 	"vkr-rca/internal/telemetry"
@@ -31,6 +32,7 @@ func main() {
 		OrdersURL: platform.Env("ORDERS_URL", "http://orders:8081"),
 		Client:    telemetry.NewHTTPClient(clientTimeout),
 		Logger:    logger,
+		Fault:     fault.New(),
 	})
 	if err != nil {
 		logger.Error("invalid configuration", slog.Any("error", err))

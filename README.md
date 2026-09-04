@@ -1,6 +1,6 @@
 # RCA for distributed services
 
-Milestone 5 of the RCA graduation project: a synchronous Go service chain with controlled faults, end-to-end OpenTelemetry tracing, topology reconstruction, and statistical anomaly detection over real OTLP spans.
+Milestone 6 of the RCA graduation project: a synchronous Go service chain with controlled faults, end-to-end OpenTelemetry tracing, topology reconstruction, statistical anomaly detection, and explainable root-cause ranking over real OTLP spans.
 
 ```text
 Client -> Gateway -> Orders -> Payment
@@ -11,9 +11,10 @@ Client -> Gateway -> Orders -> Payment
               OTel Collector
                          +-> RCA OTLP receiver -> service graph
                                                -> frozen baseline -> anomaly scores
+                                                                  -> RCA features -> rankings
 ```
 
-One request creates a single distributed trace containing the server and client spans for all three services. Orders and Payment expose development-only controls for reproducible faults. The RCA service receives a second copy of those spans, derives service dependencies without knowing the topology in advance, and compares operation-level latency and error rate with an explicitly collected healthy baseline. Ranking services as root-cause candidates and making an RCA decision remain deferred.
+One request creates a single distributed trace containing the server and client spans for all three services. Gateway, Orders, and Payment expose development-only controls for reproducible faults. The RCA service receives a second copy of those spans, derives service dependencies without knowing the topology in advance, compares operation-level latency and error rate with an explicitly collected healthy baseline, and ranks anomalous services using topology and trace-local evidence.
 
 ## Requirements
 
@@ -63,7 +64,7 @@ Stop the stack:
 docker compose down --remove-orphans
 ```
 
-Shortcuts are available as `make compose-up`, `make smoke`, `make trace-smoke`, `make graph-smoke`, `make baseline-smoke`, `make anomaly-smoke`, `make logs`, and `make compose-down`.
+Shortcuts are available as `make compose-up`, `make smoke`, `make trace-smoke`, `make graph-smoke`, `make baseline-smoke`, `make anomaly-smoke`, `make rca-smoke`, `make logs`, and `make compose-down`.
 
 ## Trace and request correlation
 
@@ -79,7 +80,7 @@ For one application request, all three services log the same `request_id` and `t
 
 ## Milestone 3: controlled fault injection
 
-Orders and Payment each own an independent, in-memory fault injector. Configuration changes take effect without restarting containers and are safe under concurrent requests. The debug API is intended only for this local experiment; it has no authentication and must not be exposed as a production control plane.
+Gateway, Orders, and Payment each own an independent, in-memory fault injector. Configuration changes take effect without restarting containers and are safe under concurrent requests. The debug API is intended only for this local experiment; it has no authentication and must not be exposed as a production control plane.
 
 Fault configuration:
 
@@ -94,7 +95,7 @@ Fault configuration:
 - `error_rate` must be between `0.0` and `1.0`. `0.0` never fails, `1.0` always fails, and intermediate values use a pseudo-random decision per request.
 - Updating the config replaces both fields; omitted JSON fields therefore become zero.
 
-Development endpoints on Orders (`:8081`) and Payment (`:8082`):
+Development endpoints on Gateway (`:8080`), Orders (`:8081`), and Payment (`:8082`):
 
 | Endpoint | Purpose |
 | --- | --- |
@@ -102,14 +103,16 @@ Development endpoints on Orders (`:8081`) and Payment (`:8082`):
 | `POST /debug/fault` | Replace configuration with a strict JSON object |
 | `POST /debug/reset` | Restore `{ "latency_ms": 0, "error_rate": 0 }` |
 
-Unknown JSON fields and invalid values return `400`; a non-JSON update returns `415`. Faults affect only `/orders/current` and `/payments/authorize`. Health and debug endpoints are never delayed or failed and are excluded from tracing.
+Unknown JSON fields and invalid values return `400`; a non-JSON update returns `415`. Faults affect only the service business endpoint: `/api/order`, `/orders/current`, or `/payments/authorize`. Health and debug endpoints are never delayed or failed and are excluded from tracing. A Gateway-local error stops the chain before Orders is called.
 
 Convenient demo commands:
 
 ```bash
 make fault-status
+make fault-gateway-latency
 make fault-payment-latency
 make fault-orders-latency
+make fault-gateway-errors
 make fault-payment-errors
 make fault-reset
 ```
@@ -191,7 +194,7 @@ Run the deterministic healthy topology demo:
 make graph-smoke
 ```
 
-It resets RCA and both fault injectors, sends ten Gateway requests, waits for batching, and prints `/api/graph`. No `jq` dependency is required.
+It resets RCA and all three fault injectors, sends ten Gateway requests, waits for batching, and prints `/api/graph`. No `jq` dependency is required.
 
 ## Milestone 5: healthy baseline and anomaly detection
 
@@ -271,7 +274,28 @@ make anomaly-smoke
 
 Both targets wait for Collector batching and validate JSON with standard shell tools; `jq` is not required. `anomaly-smoke` resets fault injection after traffic generation.
 
-This milestone is a statistical detector, not a root-cause engine. It does not rank candidates, infer causality, use the service graph to suppress propagated symptoms, analyse logs or Prometheus metrics, or train an ML/GNN model.
+Milestone 5 is a statistical detector. Its output remains independently inspectable and is the anomaly input for Milestone 6.
+
+## Milestone 6: explainable RCA baselines
+
+Milestone 6 ranks only currently anomalous services. It combines M5 anomaly evidence, M4 topology, and trace-local exclusive observed duration without using ground truth during feature extraction or ranking. The complete feature definitions, algorithms, equations, and limitations are documented in [RCA v0.1](docs/rca-v1.md).
+
+The preferred incident graph is rebuilt from the exact retained traces referenced by the current M5 window. When its trace coverage is below `MIN_ACTIVE_TOPOLOGY_COVERAGE`, the API reports `global_fallback` and uses the aggregated M4 graph explicitly. This prevents a historical branch from silently contaminating a well-covered current incident.
+
+Inspect the evidence and four deterministic rankings:
+
+```bash
+curl --fail --silent --show-error http://localhost:18090/api/features
+curl --fail --silent --show-error http://localhost:18090/api/rca
+```
+
+Run the end-to-end acceptance matrix for healthy traffic plus latency and error faults at Payment, Orders, and Gateway:
+
+```bash
+make rca-smoke
+```
+
+The smoke test checks the observed anomalies and the expected `hybrid_v1` Top-1 result using externally supplied scenario labels. It also validates the public schema, active-topology use, deterministic response shape, and absence of truth leakage. Scores are explainable heuristic evidence strengths, not probabilities or confidence estimates. A learned model remains future work and is not part of this milestone.
 
 ## Endpoints
 
@@ -283,13 +307,15 @@ This milestone is a statistical detector, not a root-cause engine. It does not r
 | Orders | `GET /health` | Liveness check |
 | Payment | `GET /payments/authorize` | Returns the demo authorization result |
 | Payment | `GET /health` | Liveness check |
-| Orders / Payment | `GET/POST /debug/fault` | Read or replace local fault configuration |
-| Orders / Payment | `POST /debug/reset` | Reset local fault configuration |
+| Gateway / Orders / Payment | `GET/POST /debug/fault` | Read or replace local fault configuration |
+| Gateway / Orders / Payment | `POST /debug/reset` | Reset local fault configuration |
 | RCA | `GET /api/graph` | Current service graph |
 | RCA | `GET /api/traces/{trace_id}` | Retained normalized trace |
 | RCA | `POST /debug/reset` | Reset trace and graph state |
 | RCA | `GET /api/baseline` | Current healthy baseline statistics |
 | RCA | `GET /api/anomalies` | Current operation and service anomaly scores |
+| RCA | `GET /api/features` | Explainable M6 feature snapshot and topology source |
+| RCA | `GET /api/rca` | Four deterministic root-cause candidate rankings |
 | RCA | `POST /debug/baseline/start` | Start a new baseline calibration |
 | RCA | `POST /debug/baseline/freeze` | Freeze the collected baseline |
 | RCA | `POST /debug/anomaly/reset` | Reset current anomaly windows only |
@@ -307,7 +333,7 @@ go vet ./...
 go test -race ./...
 ```
 
-The tests cover handlers, fault behavior, trace propagation, the graph algorithm, out-of-order ingestion, duplicate exports, retention, concurrent ingestion, deterministic output, strict RCA HTTP behavior, robust statistics, detector lifecycle and bounds, latency and error anomalies, threshold boundaries, CLIENT-span exclusion, and synthetic OTLP requests containing the real five-span hierarchy. Tests do not require an external Collector.
+The tests cover handlers, fault behavior, trace propagation, the graph algorithm, out-of-order ingestion, duplicate exports, retention, concurrent ingestion, deterministic output, strict RCA HTTP behavior, robust statistics, detector lifecycle and bounds, latency and error anomalies, threshold boundaries, CLIENT-span exclusion, active-incident topology and fallback, cycle-safe reverse reachability, exclusive-duration interval union, all four rankers, truth-free evaluation, and synthetic OTLP requests containing the real five-span hierarchy. Tests do not require an external Collector.
 
 ## Configuration
 
@@ -329,6 +355,7 @@ The tests cover handlers, fault behavior, trace propagation, the graph algorithm
 | `LATENCY_Z_THRESHOLD` | RCA | `3.5` |
 | `ERROR_Z_THRESHOLD` | RCA | `3.0` |
 | `ROBUST_SCALE_EPSILON` | RCA | `0.1` |
+| `MIN_ACTIVE_TOPOLOGY_COVERAGE` | RCA | `0.7` |
 
 Compose sets the OTLP endpoint to `otel-collector:4317`. The `service.name` resource attribute is fixed in each binary as `gateway`, `orders`, or `payment`.
 

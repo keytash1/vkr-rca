@@ -83,6 +83,7 @@ type faultChain struct {
 	orders           http.Handler
 	payment          http.Handler
 	paymentFault     *fault.Injector
+	gatewayFault     *fault.Injector
 	paymentStartedAt atomic.Int64
 }
 
@@ -97,12 +98,14 @@ func newFaultChain(t *testing.T, paymentConfig, ordersConfig fault.Config) *faul
 	if err := ordersFault.SetConfig(ordersConfig); err != nil {
 		t.Fatalf("set Orders fault: %v", err)
 	}
+	gatewayFault := fault.New()
 
 	paymentHandler, err := payment.NewHandler(payment.Config{Logger: logger, Fault: paymentFault})
 	if err != nil {
 		t.Fatalf("create Payment handler: %v", err)
 	}
 	chain := &faultChain{payment: paymentHandler, paymentFault: paymentFault}
+	chain.gatewayFault = gatewayFault
 	observedPayment := http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
 		chain.paymentStartedAt.Store(time.Now().UnixNano())
 		paymentHandler.ServeHTTP(writer, request)
@@ -123,6 +126,7 @@ func newFaultChain(t *testing.T, paymentConfig, ordersConfig fault.Config) *faul
 		OrdersURL: "http://orders",
 		Client:    clientFor(ordersHandler),
 		Logger:    logger,
+		Fault:     gatewayFault,
 	})
 	if err != nil {
 		t.Fatalf("create Gateway handler: %v", err)

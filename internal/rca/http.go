@@ -11,7 +11,12 @@ import (
 	"vkr-rca/internal/platform"
 )
 
-func NewHTTPHandler(store *graph.Store, logger *slog.Logger, detectors ...*anomaly.Detector) http.Handler {
+func NewHTTPHandler(
+	store *graph.Store,
+	logger *slog.Logger,
+	detector *anomaly.Detector,
+	diagnosisProvider *DiagnosisProvider,
+) http.Handler {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/health", platform.HealthHandler("rca"))
 	mux.HandleFunc("/api/graph", func(writer http.ResponseWriter, request *http.Request) {
@@ -49,11 +54,31 @@ func NewHTTPHandler(store *graph.Store, logger *slog.Logger, detectors ...*anoma
 		store.Reset()
 		platform.WriteJSON(writer, http.StatusOK, store.Snapshot())
 	})
-	if len(detectors) > 0 && detectors[0] != nil {
-		mountAnomalyHandlers(mux, detectors[0])
+	if detector != nil {
+		mountAnomalyHandlers(mux, detector)
+	}
+	if diagnosisProvider != nil {
+		mountDiagnosisHandlers(mux, diagnosisProvider)
 	}
 
 	return platform.Middleware(logger, mux)
+}
+
+func mountDiagnosisHandlers(mux *http.ServeMux, provider *DiagnosisProvider) {
+	mux.HandleFunc("/api/features", func(writer http.ResponseWriter, request *http.Request) {
+		if request.Method != http.MethodGet {
+			platform.MethodNotAllowed(writer, http.MethodGet)
+			return
+		}
+		platform.WriteJSON(writer, http.StatusOK, provider.Features())
+	})
+	mux.HandleFunc("/api/rca", func(writer http.ResponseWriter, request *http.Request) {
+		if request.Method != http.MethodGet {
+			platform.MethodNotAllowed(writer, http.MethodGet)
+			return
+		}
+		platform.WriteJSON(writer, http.StatusOK, provider.RCA())
+	})
 }
 
 func mountAnomalyHandlers(mux *http.ServeMux, detector *anomaly.Detector) {

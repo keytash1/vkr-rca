@@ -4,7 +4,7 @@ PAYMENT_PORT ?= 8082
 JAEGER_UI_PORT ?= 16686
 RCA_HTTP_PORT ?= 18090
 
-.PHONY: fmt test build compose-up compose-down smoke trace-smoke graph-smoke baseline-smoke anomaly-smoke fault-payment-latency fault-orders-latency fault-payment-errors fault-reset fault-status logs
+.PHONY: fmt test build compose-up compose-down smoke trace-smoke graph-smoke baseline-smoke anomaly-smoke rca-smoke fault-gateway-latency fault-gateway-errors fault-payment-latency fault-orders-latency fault-payment-errors fault-reset fault-status logs
 
 fmt:
 	gofmt -w cmd internal
@@ -105,6 +105,25 @@ anomaly-smoke: baseline-smoke
 	done; \
 	cat /tmp/vkr-rca-anomaly-smoke.json; echo; exit 1
 
+rca-smoke: baseline-smoke
+	@GATEWAY_PORT=$(GATEWAY_PORT) \
+		ORDERS_PORT=$(ORDERS_PORT) \
+		PAYMENT_PORT=$(PAYMENT_PORT) \
+		RCA_HTTP_PORT=$(RCA_HTTP_PORT) \
+		./scripts/rca-smoke.sh
+
+fault-gateway-latency:
+	curl --fail --silent --show-error \
+		--header 'Content-Type: application/json' \
+		--data '{"latency_ms":700,"error_rate":0}' \
+		http://localhost:$(GATEWAY_PORT)/debug/fault
+
+fault-gateway-errors:
+	curl --fail --silent --show-error \
+		--header 'Content-Type: application/json' \
+		--data '{"latency_ms":0,"error_rate":1}' \
+		http://localhost:$(GATEWAY_PORT)/debug/fault
+
 fault-payment-latency:
 	curl --fail --silent --show-error \
 		--header 'Content-Type: application/json' \
@@ -124,12 +143,16 @@ fault-payment-errors:
 		http://localhost:$(PAYMENT_PORT)/debug/fault
 
 fault-reset:
+	curl --fail --silent --show-error --request POST http://localhost:$(GATEWAY_PORT)/debug/reset
+	@echo
 	curl --fail --silent --show-error --request POST http://localhost:$(ORDERS_PORT)/debug/reset
 	@echo
 	curl --fail --silent --show-error --request POST http://localhost:$(PAYMENT_PORT)/debug/reset
 	@echo
 
 fault-status:
+	@echo "Gateway:"
+	@curl --fail --silent --show-error http://localhost:$(GATEWAY_PORT)/debug/fault
 	@echo "Orders:"
 	@curl --fail --silent --show-error http://localhost:$(ORDERS_PORT)/debug/fault
 	@echo "Payment:"

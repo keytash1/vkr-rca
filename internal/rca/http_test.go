@@ -18,7 +18,7 @@ func TestHTTPGraphTraceAndReset(t *testing.T) {
 		{TraceID: traceID, SpanID: "01", ServiceName: "gateway", StartTime: time.Unix(1, 0)},
 		{TraceID: traceID, SpanID: "02", ParentSpanID: "01", ServiceName: "orders", StartTime: time.Unix(2, 0)},
 	})
-	handler := NewHTTPHandler(store, discardLogger())
+	handler := NewHTTPHandler(store, discardLogger(), nil, nil)
 
 	graphResponse := serveHTTP(handler, http.MethodGet, "/api/graph")
 	if graphResponse.Code != http.StatusOK {
@@ -52,7 +52,7 @@ func TestHTTPGraphTraceAndReset(t *testing.T) {
 
 func TestHTTPBaselineAndAnomalyLifecycle(t *testing.T) {
 	detector := newRCATestDetector(t)
-	handler := NewHTTPHandler(newReceiverTestStore(t), discardLogger(), detector)
+	handler := NewHTTPHandler(newReceiverTestStore(t), discardLogger(), detector, nil)
 
 	if response := serveHTTP(handler, http.MethodPost, "/debug/baseline/freeze"); response.Code != http.StatusConflict {
 		t.Fatalf("freeze empty status = %d: %s", response.Code, response.Body.String())
@@ -105,7 +105,7 @@ func TestHTTPBaselineAndAnomalyLifecycle(t *testing.T) {
 }
 
 func TestHTTPMethodsHealthAndMissingTrace(t *testing.T) {
-	handler := NewHTTPHandler(newReceiverTestStore(t), discardLogger())
+	handler := NewHTTPHandler(newReceiverTestStore(t), discardLogger(), nil, nil)
 	tests := []struct {
 		method string
 		path   string

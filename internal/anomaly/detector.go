@@ -140,6 +140,47 @@ func (detector *Detector) Baseline() BaselineSnapshot {
 func (detector *Detector) Anomalies() AnomalySnapshot {
 	detector.mu.Lock()
 	defer detector.mu.Unlock()
+	return detector.anomaliesLocked()
+}
+
+func (detector *Detector) AnalysisSnapshot() AnalysisSnapshot {
+	detector.mu.Lock()
+	defer detector.mu.Unlock()
+
+	refs := make([]SampleRef, 0)
+	for key, observations := range detector.current {
+		for _, observation := range observations {
+			refs = append(refs, SampleRef{
+				Key:       key,
+				TraceID:   observation.TraceID,
+				SpanID:    observation.SpanID,
+				Timestamp: observation.Timestamp,
+			})
+		}
+	}
+	sort.Slice(refs, func(left, right int) bool {
+		if refs[left].Key.Service != refs[right].Key.Service {
+			return refs[left].Key.Service < refs[right].Key.Service
+		}
+		if refs[left].Key.Operation != refs[right].Key.Operation {
+			return refs[left].Key.Operation < refs[right].Key.Operation
+		}
+		if !refs[left].Timestamp.Equal(refs[right].Timestamp) {
+			return refs[left].Timestamp.Before(refs[right].Timestamp)
+		}
+		if refs[left].TraceID != refs[right].TraceID {
+			return refs[left].TraceID < refs[right].TraceID
+		}
+		return refs[left].SpanID < refs[right].SpanID
+	})
+	return AnalysisSnapshot{
+		Config:         detector.config,
+		Anomalies:      detector.anomaliesLocked(),
+		CurrentSamples: refs,
+	}
+}
+
+func (detector *Detector) anomaliesLocked() AnomalySnapshot {
 
 	keys := make(map[OperationKey]struct{}, len(detector.baseline)+len(detector.current))
 	for key := range detector.baseline {

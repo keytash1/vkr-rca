@@ -21,6 +21,7 @@ services:
       LATENCY_Z_THRESHOLD: "3.5"
       ERROR_Z_THRESHOLD: "3.0"
       ROBUST_SCALE_EPSILON: "0.1"
+      MIN_ACTIVE_TOPOLOGY_COVERAGE: "0.7"
     ports:
       - "${RCA_HTTP_PORT:-18090}:8090"
     healthcheck:

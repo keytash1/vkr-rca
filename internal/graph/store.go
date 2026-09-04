@@ -166,13 +166,47 @@ func (store *Store) Trace(traceID string) ([]Span, bool) {
 	for _, span := range trace.spans {
 		spans = append(spans, span)
 	}
+	sortSpans(spans)
+	return spans, true
+}
+
+// Traces returns copies of only the requested retained traces under one lock.
+func (store *Store) Traces(traceIDs []string) map[string][]Span {
+	store.mu.Lock()
+	defer store.mu.Unlock()
+
+	store.cleanupLocked(store.now())
+	requested := make(map[string]struct{}, len(traceIDs))
+	for _, traceID := range traceIDs {
+		traceID = strings.TrimSpace(traceID)
+		if traceID != "" {
+			requested[traceID] = struct{}{}
+		}
+	}
+
+	result := make(map[string][]Span, len(requested))
+	for traceID := range requested {
+		trace := store.traces[traceID]
+		if trace == nil {
+			continue
+		}
+		spans := make([]Span, 0, len(trace.spans))
+		for _, span := range trace.spans {
+			spans = append(spans, span)
+		}
+		sortSpans(spans)
+		result[traceID] = spans
+	}
+	return result
+}
+
+func sortSpans(spans []Span) {
 	sort.Slice(spans, func(left, right int) bool {
 		if !spans[left].StartTime.Equal(spans[right].StartTime) {
 			return spans[left].StartTime.Before(spans[right].StartTime)
 		}
 		return spans[left].SpanID < spans[right].SpanID
 	})
-	return spans, true
 }
 
 func (store *Store) Reset() {

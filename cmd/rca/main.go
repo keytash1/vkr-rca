@@ -13,6 +13,7 @@ import (
 	collecttracev1 "go.opentelemetry.io/proto/otlp/collector/trace/v1"
 	"google.golang.org/grpc"
 	"vkr-rca/internal/anomaly"
+	"vkr-rca/internal/diagnosis"
 	"vkr-rca/internal/graph"
 	"vkr-rca/internal/platform"
 	"vkr-rca/internal/rca"
@@ -43,6 +44,18 @@ func main() {
 		logger.Error("invalid anomaly detector configuration", slog.Any("error", err))
 		os.Exit(1)
 	}
+	diagnosisProvider, err := rca.NewDiagnosisProvider(
+		store,
+		detector,
+		platform.EnvFloat64(
+			"MIN_ACTIVE_TOPOLOGY_COVERAGE",
+			diagnosis.DefaultMinActiveTopologyTraceCoverage,
+		),
+	)
+	if err != nil {
+		logger.Error("invalid diagnosis configuration", slog.Any("error", err))
+		os.Exit(1)
+	}
 
 	otlpAddress := platform.Env("OTLP_ADDR", ":4317")
 	listener, err := net.Listen("tcp", otlpAddress)
@@ -70,7 +83,12 @@ func main() {
 	}()
 
 	httpAddress := platform.Env("HTTP_ADDR", ":8090")
-	httpErr := platform.Serve(runCtx, httpAddress, rca.NewHTTPHandler(store, logger, detector), logger)
+	httpErr := platform.Serve(
+		runCtx,
+		httpAddress,
+		rca.NewHTTPHandler(store, logger, detector, diagnosisProvider),
+		logger,
+	)
 	cancel()
 	stopGRPC(grpcServer)
 

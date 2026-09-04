@@ -38,6 +38,8 @@ func (observer *anomalyObserver) ObserveSpan(span graph.Span) {
 			Service:   span.ServiceName,
 			Operation: operation,
 		},
+		TraceID:   span.TraceID,
+		SpanID:    span.SpanID,
 		Timestamp: span.EndTime,
 		Latency:   span.Duration,
 		Failed:    failed,

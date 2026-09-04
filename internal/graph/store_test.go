@@ -189,6 +189,22 @@ func TestResetClearsTracesAndGraph(t *testing.T) {
 	}
 }
 
+func TestTracesReturnsOnlyRequestedCopies(t *testing.T) {
+	store := newTestStore(t)
+	store.Ingest(fiveSpanTrace("trace-1"))
+	store.Ingest(fiveSpanTrace("trace-2"))
+
+	traces := store.Traces([]string{"trace-2", "missing", "trace-2"})
+	if len(traces) != 1 || len(traces["trace-2"]) != 5 {
+		t.Fatalf("traces = %+v", traces)
+	}
+	traces["trace-2"][0].ServiceName = "mutated"
+	retained, found := store.Trace("trace-2")
+	if !found || retained[0].ServiceName == "mutated" {
+		t.Fatalf("store exposed mutable trace: %+v", retained)
+	}
+}
+
 func newTestStore(t *testing.T) *Store {
 	t.Helper()
 	store, err := NewStore(Config{TraceTTL: DefaultTraceTTL, MaxTraces: DefaultMaxTraces})

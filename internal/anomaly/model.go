@@ -25,9 +25,18 @@ type OperationKey struct {
 
 type Observation struct {
 	Key       OperationKey
+	TraceID   string
+	SpanID    string
 	Timestamp time.Time
 	Latency   time.Duration
 	Failed    bool
+}
+
+type SampleRef struct {
+	Key       OperationKey `json:"key"`
+	TraceID   string       `json:"trace_id"`
+	SpanID    string       `json:"span_id"`
+	Timestamp time.Time    `json:"timestamp"`
 }
 
 type BaselineOperation struct {
@@ -82,4 +91,11 @@ type AnomalySnapshot struct {
 	BaselineState BaselineState     `json:"baseline_state"`
 	Services      []ServiceResult   `json:"services"`
 	Operations    []OperationResult `json:"operations"`
+}
+
+// AnalysisSnapshot is an immutable point-in-time copy for downstream diagnosis.
+type AnalysisSnapshot struct {
+	Config         Config
+	Anomalies      AnomalySnapshot
+	CurrentSamples []SampleRef
 }

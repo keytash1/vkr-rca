@@ -260,10 +260,32 @@ func TestConcurrentObserveAndSnapshots(t *testing.T) {
 				detector.Observe(testObservation("service", "operation", time.Duration(worker+1)*time.Millisecond, index%3 == 0))
 				_ = detector.Anomalies()
 				_ = detector.Baseline()
+				_ = detector.AnalysisSnapshot()
 			}
 		}(worker)
 	}
 	waitGroup.Wait()
+}
+
+func TestAnalysisSnapshotCopiesCurrentCorrelationRefs(t *testing.T) {
+	detector := newTestDetector(t)
+	collectBaseline(t, detector, 50, 8*time.Millisecond, false)
+	observation := testObservation("payment", "GET /authorize", 10*time.Millisecond, false)
+	observation.TraceID = "trace-id"
+	observation.SpanID = "span-id"
+	detector.Observe(observation)
+
+	snapshot := detector.AnalysisSnapshot()
+	if snapshot.Config.LatencyZThreshold != testConfig().LatencyZThreshold || len(snapshot.CurrentSamples) != 1 {
+		t.Fatalf("analysis snapshot = %+v", snapshot)
+	}
+	if got := snapshot.CurrentSamples[0]; got.TraceID != "trace-id" || got.SpanID != "span-id" || got.Key != observation.Key {
+		t.Fatalf("sample ref = %+v", got)
+	}
+	snapshot.CurrentSamples[0].TraceID = "mutated"
+	if got := detector.AnalysisSnapshot().CurrentSamples[0].TraceID; got != "trace-id" {
+		t.Fatalf("detector exposed mutable refs: %q", got)
+	}
 }
 
 func TestInvalidConfigurationAndObservation(t *testing.T) {

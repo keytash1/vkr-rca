@@ -79,6 +79,7 @@ func TestRealInstrumentedChainBuildsServiceGraphThroughOTLP(t *testing.T) {
 		OrdersURL: "http://orders",
 		Client:    ordersClient,
 		Logger:    logger,
+		Fault:     fault.New(),
 	})
 	if err != nil {
 		t.Fatalf("create Gateway handler: %v", err)

@@ -35,6 +35,7 @@ func TestGatewayOrdersPaymentChain(t *testing.T) {
 		OrdersURL: "http://orders",
 		Client:    clientFor(ordersHandler),
 		Logger:    logger,
+		Fault:     fault.New(),
 	})
 	if err != nil {
 		t.Fatalf("create gateway handler: %v", err)
