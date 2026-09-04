@@ -1,6 +1,6 @@
 # RCA for distributed services
 
-Milestone 8B of the RCA graduation project: a synchronous Go telemetry/RCA pipeline plus leakage-resistant external validation of the frozen M7 Learning-to-Rank model on all 240 trace-capable RCAEval RE2/RE3 Online Boutique and Train Ticket cases.
+Milestone 9A of the RCA graduation project: a synchronous Go telemetry/RCA pipeline, leakage-resistant external validation of frozen M7, and a post-M8B temporal anomaly-detector study on all 240 trace-capable RCAEval RE2/RE3 cases.
 
 ```text
 Client -> Gateway -> Orders -> Payment
@@ -24,7 +24,7 @@ One request creates a single distributed trace containing the server and client 
 - Docker with Docker Compose
 - `curl` for smoke requests
 - Go 1.26 only for running outside Docker
-- Python 3.12 or newer for the M7/M8 research pipeline
+- Python 3.12 or newer for the M7–M9A research pipeline
 
 ## Run
 
@@ -68,7 +68,7 @@ Stop the stack:
 docker compose down --remove-orphans
 ```
 
-Shortcuts are available as `make compose-up`, `make smoke`, `make trace-smoke`, `make graph-smoke`, `make baseline-smoke`, `make anomaly-smoke`, `make rca-smoke`, `make ml-smoke`, `make m7-experiment`, `make m8a-smoke`, `make m8a-experiment`, `make m8b-smoke`, `make m8b-experiment`, `make logs`, and `make compose-down`.
+Shortcuts are available as `make compose-up`, `make smoke`, `make trace-smoke`, `make graph-smoke`, `make baseline-smoke`, `make anomaly-smoke`, `make rca-smoke`, `make ml-smoke`, `make m7-experiment`, `make m8a-smoke`, `make m8a-experiment`, `make m8b-smoke`, `make m8b-experiment`, `make m9a-smoke`, `make m9a-experiment`, `make logs`, and `make compose-down`.
 
 ## Trace and request correlation
 
@@ -380,6 +380,24 @@ make m8b-experiment
 ```
 
 The full command evaluates all 240 trace-capable RE2/RE3 Online Boutique and Train Ticket cases, plus non-overlapping pre-injection healthy controls. It persists and hashes truth-free predictions before reading labels, then reports detector recall/FPR, root observability, conditional and end-to-end ranking, M6 baselines, frozen M7, supported official RCAEval baselines, feature shift, and fixed-hyperparameter RE2 cross-system models with RE3 held out by fault family. Raw Parquet files stay under ignored `external-data/`; aggregate manifests and reports are committed. See `docs/m8b-protocol.md` for the locked windows and leakage rules.
+
+## Milestone 9A: temporal anomaly detector v2
+
+M9A keeps the production Go M5 detector, M8B results, RCA ranking, and frozen M7 model unchanged. It develops a separate trace-only temporal detector over timestamp-ordered operation sequences, comparing multi-scale robust location/tail scores and positive CUSUM against M5/v1. Its configuration is selected only on deterministic synthetic A/B/C scenarios and frozen before external labels are joined.
+
+Run the synthetic contract and configuration-freeze smoke:
+
+```bash
+make m9a-smoke
+```
+
+Run the complete post-M8B 240-case experiment and label-blind metrics schema audit:
+
+```bash
+make m9a-experiment
+```
+
+The selected CUSUM configuration reaches 100% synthetic validation recall with 0% healthy FPR, but fails external calibration: recall rises from 52.9% to 99.6% while healthy FPR rises from 7.1% to 99.6%. The pre-registered verdict is therefore `NOT_JUSTIFIED`, with recommendation `REDESIGN AGAIN`; detector-v2 must not replace M5/v1. The main result and protocol are in [M9A results](docs/m9a-results.md) and [M9A protocol](docs/m9a-protocol.md). Detailed false positives, the single detection miss, and the metrics audit are separate reports. M9A does not start M9B or retrain any ranker.
 
 ## Endpoints
 

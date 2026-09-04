@@ -1,0 +1,440 @@
+{
+  "config_sha256": "ad13f50171a21198bfda8ade4165ba0d03c1c5912a335346b22ad3ea456bf048",
+  "development": {
+    "v1": {
+      "by_profile": {
+        "burst": 0.0,
+        "constant": 1.0,
+        "healthy": 0.0,
+        "intermittent": 0.0,
+        "ramp": 1.0,
+        "step_early": 1.0,
+        "step_late": 1.0
+      },
+      "by_topology": {
+        "A": {
+          "healthy_fpr": 0.0,
+          "recall": 0.6521739130434783
+        },
+        "B": {
+          "healthy_fpr": 0.0,
+          "recall": 0.6666666666666666
+        },
+        "C": {
+          "healthy_fpr": 0.0,
+          "recall": 0.75
+        }
+      },
+      "cases": 425,
+      "faults": 390,
+      "healthy": 35,
+      "healthy_fpr": 0.0,
+      "recall": 0.6923076923076923,
+      "repeatability": {
+        "inconsistent_scenarios": 0,
+        "mean_detection_rate": 0.6352941176470588,
+        "variance": 0.2316955017301038
+      }
+    },
+    "v2": {
+      "by_profile": {
+        "burst": 1.0,
+        "constant": 1.0,
+        "healthy": 0.0,
+        "intermittent": 1.0,
+        "ramp": 1.0,
+        "step_early": 1.0,
+        "step_late": 1.0
+      },
+      "by_topology": {
+        "A": {
+          "healthy_fpr": 0.0,
+          "recall": 1.0
+        },
+        "B": {
+          "healthy_fpr": 0.0,
+          "recall": 1.0
+        },
+        "C": {
+          "healthy_fpr": 0.0,
+          "recall": 1.0
+        }
+      },
+      "cases": 425,
+      "faults": 390,
+      "healthy": 35,
+      "healthy_fpr": 0.0,
+      "recall": 1.0,
+      "repeatability": {
+        "inconsistent_scenarios": 0,
+        "mean_detection_rate": 0.9176470588235294,
+        "variance": 0.07557093425605536
+      }
+    }
+  },
+  "protocol": {
+    "profiles": [
+      "healthy",
+      "constant",
+      "step_early",
+      "step_late",
+      "ramp",
+      "intermittent",
+      "burst"
+    ],
+    "repeats": 5,
+    "seed": 20260904,
+    "split": "SHA256(scenario_id), complete scenario assigned once",
+    "topologies": [
+      "A",
+      "B",
+      "C"
+    ]
+  },
+  "selected_config": {
+    "cusum_k": 0.25,
+    "cusum_threshold": 20.0,
+    "epsilon": 0.1,
+    "error_threshold": 3.0,
+    "location_threshold": 2.5,
+    "tail_quantile": 0.9,
+    "tail_threshold": 4.0,
+    "variant": "cusum",
+    "windows": [
+      5,
+      10,
+      20
+    ]
+  },
+  "selection": {
+    "candidate_count": 91,
+    "fpr_passing_count": 82,
+    "scenario_overlap": [],
+    "selected_metrics": {
+      "by_profile": {
+        "burst": 1.0,
+        "constant": 1.0,
+        "healthy": 0.0,
+        "intermittent": 1.0,
+        "ramp": 1.0,
+        "step_early": 1.0,
+        "step_late": 1.0
+      },
+      "by_topology": {
+        "A": {
+          "healthy_fpr": 0.0,
+          "recall": 1.0
+        },
+        "B": {
+          "healthy_fpr": 0.0,
+          "recall": 1.0
+        },
+        "C": {
+          "healthy_fpr": 0.0,
+          "recall": 1.0
+        }
+      },
+      "cases": 205,
+      "faults": 150,
+      "healthy": 55,
+      "healthy_fpr": 0.0,
+      "recall": 1.0,
+      "repeatability": {
+        "inconsistent_scenarios": 0,
+        "mean_detection_rate": 0.7317073170731707,
+        "variance": 0.19631171921475313
+      }
+    },
+    "selection_order": "higher validation recall, lower FPR, simpler variant/config, config hash",
+    "split_counts": {
+      "development": 425,
+      "validation": 205
+    }
+  },
+  "validation": {
+    "v1": {
+      "by_profile": {
+        "burst": 0.0,
+        "constant": 1.0,
+        "healthy": 0.0,
+        "intermittent": 0.0,
+        "ramp": 1.0,
+        "step_early": 1.0,
+        "step_late": 0.95
+      },
+      "by_topology": {
+        "A": {
+          "healthy_fpr": 0.0,
+          "recall": 0.6923076923076923
+        },
+        "B": {
+          "healthy_fpr": 0.0,
+          "recall": 0.6444444444444445
+        },
+        "C": {
+          "healthy_fpr": 0.0,
+          "recall": 0.375
+        }
+      },
+      "cases": 205,
+      "faults": 150,
+      "healthy": 55,
+      "healthy_fpr": 0.0,
+      "recall": 0.5933333333333334,
+      "repeatability": {
+        "inconsistent_scenarios": 1,
+        "mean_detection_rate": 0.43414634146341463,
+        "variance": 0.24176085663295657
+      }
+    },
+    "v2": {
+      "by_profile": {
+        "burst": 1.0,
+        "constant": 1.0,
+        "healthy": 0.0,
+        "intermittent": 1.0,
+        "ramp": 1.0,
+        "step_early": 1.0,
+        "step_late": 1.0
+      },
+      "by_topology": {
+        "A": {
+          "healthy_fpr": 0.0,
+          "recall": 1.0
+        },
+        "B": {
+          "healthy_fpr": 0.0,
+          "recall": 1.0
+        },
+        "C": {
+          "healthy_fpr": 0.0,
+          "recall": 1.0
+        }
+      },
+      "cases": 205,
+      "faults": 150,
+      "healthy": 55,
+      "healthy_fpr": 0.0,
+      "recall": 1.0,
+      "repeatability": {
+        "inconsistent_scenarios": 0,
+        "mean_detection_rate": 0.7317073170731707,
+        "variance": 0.19631171921475313
+      }
+    }
+  },
+  "variant_validation": {
+    "combined_temporal_v2": {
+      "config": {
+        "cusum_k": 0.5,
+        "cusum_threshold": 12.0,
+        "epsilon": 0.1,
+        "error_threshold": 3.0,
+        "location_threshold": 2.5,
+        "tail_quantile": 0.9,
+        "tail_threshold": 5.0,
+        "variant": "combined_temporal_v2",
+        "windows": [
+          5,
+          10,
+          20
+        ]
+      },
+      "config_sha256": "0357df5e2fc48d7530d1f7119005fb6a8068c4d068e32652259817df644d4c5a",
+      "metrics": {
+        "by_profile": {
+          "burst": 1.0,
+          "constant": 1.0,
+          "healthy": 0.0,
+          "intermittent": 1.0,
+          "ramp": 1.0,
+          "step_early": 1.0,
+          "step_late": 1.0
+        },
+        "by_topology": {
+          "A": {
+            "healthy_fpr": 0.0,
+            "recall": 1.0
+          },
+          "B": {
+            "healthy_fpr": 0.0,
+            "recall": 1.0
+          },
+          "C": {
+            "healthy_fpr": 0.0,
+            "recall": 1.0
+          }
+        },
+        "cases": 205,
+        "faults": 150,
+        "healthy": 55,
+        "healthy_fpr": 0.0,
+        "recall": 1.0,
+        "repeatability": {
+          "inconsistent_scenarios": 0,
+          "mean_detection_rate": 0.7317073170731707,
+          "variance": 0.19631171921475313
+        }
+      }
+    },
+    "cusum": {
+      "config": {
+        "cusum_k": 0.5,
+        "cusum_threshold": 8.0,
+        "epsilon": 0.1,
+        "error_threshold": 3.0,
+        "location_threshold": 2.5,
+        "tail_quantile": 0.9,
+        "tail_threshold": 4.0,
+        "variant": "cusum",
+        "windows": [
+          5,
+          10,
+          20
+        ]
+      },
+      "config_sha256": "038cbe61141389478aa2d39c28c9bee3bd3a81fda9fe2251b6542535f155c31b",
+      "metrics": {
+        "by_profile": {
+          "burst": 1.0,
+          "constant": 1.0,
+          "healthy": 0.0,
+          "intermittent": 1.0,
+          "ramp": 1.0,
+          "step_early": 1.0,
+          "step_late": 1.0
+        },
+        "by_topology": {
+          "A": {
+            "healthy_fpr": 0.0,
+            "recall": 1.0
+          },
+          "B": {
+            "healthy_fpr": 0.0,
+            "recall": 1.0
+          },
+          "C": {
+            "healthy_fpr": 0.0,
+            "recall": 1.0
+          }
+        },
+        "cases": 205,
+        "faults": 150,
+        "healthy": 55,
+        "healthy_fpr": 0.0,
+        "recall": 1.0,
+        "repeatability": {
+          "inconsistent_scenarios": 0,
+          "mean_detection_rate": 0.7317073170731707,
+          "variance": 0.19631171921475313
+        }
+      }
+    },
+    "multiscale_location": {
+      "config": {
+        "cusum_k": 0.5,
+        "cusum_threshold": 10.0,
+        "epsilon": 0.1,
+        "error_threshold": 3.0,
+        "location_threshold": 2.5,
+        "tail_quantile": 0.9,
+        "tail_threshold": 4.0,
+        "variant": "multiscale_location",
+        "windows": [
+          5,
+          10,
+          20
+        ]
+      },
+      "config_sha256": "0d42b103670668b22762a90de9cbf13d8e46cb39c51b4bc76b7b687e51b4ace6",
+      "metrics": {
+        "by_profile": {
+          "burst": 1.0,
+          "constant": 1.0,
+          "healthy": 0.0,
+          "intermittent": 0.0,
+          "ramp": 1.0,
+          "step_early": 1.0,
+          "step_late": 1.0
+        },
+        "by_topology": {
+          "A": {
+            "healthy_fpr": 0.0,
+            "recall": 0.7692307692307693
+          },
+          "B": {
+            "healthy_fpr": 0.0,
+            "recall": 0.7777777777777778
+          },
+          "C": {
+            "healthy_fpr": 0.0,
+            "recall": 0.75
+          }
+        },
+        "cases": 205,
+        "faults": 150,
+        "healthy": 55,
+        "healthy_fpr": 0.0,
+        "recall": 0.7666666666666667,
+        "repeatability": {
+          "inconsistent_scenarios": 0,
+          "mean_detection_rate": 0.5609756097560976,
+          "variance": 0.2462819750148721
+        }
+      }
+    },
+    "multiscale_location_tail": {
+      "config": {
+        "cusum_k": 0.5,
+        "cusum_threshold": 10.0,
+        "epsilon": 0.1,
+        "error_threshold": 3.0,
+        "location_threshold": 2.5,
+        "tail_quantile": 0.95,
+        "tail_threshold": 4.0,
+        "variant": "multiscale_location_tail",
+        "windows": [
+          5,
+          10,
+          20
+        ]
+      },
+      "config_sha256": "41f2475f986f574818d41a71a0419b048a27824992ed2bd061b6d6f1bdb1c810",
+      "metrics": {
+        "by_profile": {
+          "burst": 1.0,
+          "constant": 1.0,
+          "healthy": 0.0,
+          "intermittent": 1.0,
+          "ramp": 1.0,
+          "step_early": 1.0,
+          "step_late": 1.0
+        },
+        "by_topology": {
+          "A": {
+            "healthy_fpr": 0.0,
+            "recall": 1.0
+          },
+          "B": {
+            "healthy_fpr": 0.0,
+            "recall": 1.0
+          },
+          "C": {
+            "healthy_fpr": 0.0,
+            "recall": 1.0
+          }
+        },
+        "cases": 205,
+        "faults": 150,
+        "healthy": 55,
+        "healthy_fpr": 0.0,
+        "recall": 1.0,
+        "repeatability": {
+          "inconsistent_scenarios": 0,
+          "mean_detection_rate": 0.7317073170731707,
+          "variance": 0.19631171921475313
+        }
+      }
+    }
+  }
+}

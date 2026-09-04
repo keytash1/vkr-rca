@@ -1,0 +1,11 @@
+{
+  "cases_index_sha256": "c49a288920dbba2e8e724679a14636d5c7eb2b45426bba14007ef79a6c0ab1bb",
+  "detector_config_sha256": "ad13f50171a21198bfda8ade4165ba0d03c1c5912a335346b22ad3ea456bf048",
+  "evaluation_sha256": "f8586a6814cde75d064c06ae8bfc4ee57faf90e45a35cfda10d784a387cd0bab",
+  "experiment_version": "m9a-v1",
+  "m7_model_sha256": "3728eb0454e46d14265d092d3d17088bc32fe44e8c9cb8d565aa8e934cee7699",
+  "m8b_commit": "86313f80d61594399e8f90849c64409ffc652449",
+  "m8b_truth_free_sha256": "93b4b52e3abd144bbd5dcccf475e353365cc3006fae513bf2c735998f2975d49",
+  "rcaeval_hf_revision": "afeacb11bcc94dadfd1c8f483ee4377b2b8b614e",
+  "truth_free_sha256": "691bc9c684fd09c1bb2faa95acfd1b346ae8a7b148b2e255f258ca1898a62fa3"
+}

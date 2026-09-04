@@ -1,0 +1,22 @@
+{
+  "config": {
+    "cusum_k": 0.25,
+    "cusum_threshold": 20.0,
+    "epsilon": 0.1,
+    "error_threshold": 3.0,
+    "location_threshold": 2.5,
+    "tail_quantile": 0.9,
+    "tail_threshold": 4.0,
+    "variant": "cusum",
+    "windows": [
+      5,
+      10,
+      20
+    ]
+  },
+  "config_sha256": "ad13f50171a21198bfda8ade4165ba0d03c1c5912a335346b22ad3ea456bf048",
+  "detector_version": "detector-v2",
+  "feature_schema_version": "m9a-temporal-v1",
+  "selected_before_external_evaluation": true,
+  "selection_source": "synthetic A/B/C only"
+}
