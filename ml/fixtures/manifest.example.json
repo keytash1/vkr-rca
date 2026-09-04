@@ -1,0 +1,22 @@
+{
+  "dataset_schema_version": "m7-v1",
+  "m6_feature_schema_version": "m6-v1",
+  "git_commit": "<source-commit>",
+  "generated_at": "<UTC timestamp>",
+  "random_seed": 20260904,
+  "number_of_fault_incidents": 600,
+  "number_of_healthy_controls": 60,
+  "baseline_configuration": {"requests": 100},
+  "m5_thresholds": {"latency_z": 3.5, "error_z": 3.0},
+  "window_sizes": {"current": 20, "minimum_current": 10},
+  "services": ["gateway", "orders", "payment"],
+  "fault_types": ["latency", "error"],
+  "sha256": {
+    "features.jsonl": "<sha256>",
+    "labels.jsonl": "<sha256>"
+  },
+  "python": {
+    "version": "<version>",
+    "packages": {"numpy": "2.4.4", "scipy": "1.18.1", "xgboost": "3.2.0"}
+  }
+}

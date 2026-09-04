@@ -1,0 +1,146 @@
+[
+  {
+    "best_iteration": 0,
+    "best_validation_ndcg_at_3": 1.0,
+    "hyperparameters": {
+      "colsample_bytree": 0.8,
+      "eta": 0.1,
+      "max_depth": 2,
+      "min_child_weight": 1,
+      "subsample": 0.8
+    },
+    "validation_metrics": {
+      "ac_at_1": 1.0,
+      "ac_at_3": 1.0,
+      "mrr": 1.0,
+      "ndcg_at_1": 1.0,
+      "ndcg_at_3": 1.0
+    }
+  },
+  {
+    "best_iteration": 0,
+    "best_validation_ndcg_at_3": 1.0,
+    "hyperparameters": {
+      "colsample_bytree": 0.8,
+      "eta": 0.1,
+      "max_depth": 2,
+      "min_child_weight": 5,
+      "subsample": 0.8
+    },
+    "validation_metrics": {
+      "ac_at_1": 1.0,
+      "ac_at_3": 1.0,
+      "mrr": 1.0,
+      "ndcg_at_1": 1.0,
+      "ndcg_at_3": 1.0
+    }
+  },
+  {
+    "best_iteration": 0,
+    "best_validation_ndcg_at_3": 1.0,
+    "hyperparameters": {
+      "colsample_bytree": 0.8,
+      "eta": 0.03,
+      "max_depth": 2,
+      "min_child_weight": 1,
+      "subsample": 0.8
+    },
+    "validation_metrics": {
+      "ac_at_1": 1.0,
+      "ac_at_3": 1.0,
+      "mrr": 1.0,
+      "ndcg_at_1": 1.0,
+      "ndcg_at_3": 1.0
+    }
+  },
+  {
+    "best_iteration": 0,
+    "best_validation_ndcg_at_3": 1.0,
+    "hyperparameters": {
+      "colsample_bytree": 0.8,
+      "eta": 0.03,
+      "max_depth": 2,
+      "min_child_weight": 5,
+      "subsample": 0.8
+    },
+    "validation_metrics": {
+      "ac_at_1": 1.0,
+      "ac_at_3": 1.0,
+      "mrr": 1.0,
+      "ndcg_at_1": 1.0,
+      "ndcg_at_3": 1.0
+    }
+  },
+  {
+    "best_iteration": 1,
+    "best_validation_ndcg_at_3": 1.0,
+    "hyperparameters": {
+      "colsample_bytree": 0.8,
+      "eta": 0.1,
+      "max_depth": 3,
+      "min_child_weight": 1,
+      "subsample": 0.8
+    },
+    "validation_metrics": {
+      "ac_at_1": 1.0,
+      "ac_at_3": 1.0,
+      "mrr": 1.0,
+      "ndcg_at_1": 1.0,
+      "ndcg_at_3": 1.0
+    }
+  },
+  {
+    "best_iteration": 1,
+    "best_validation_ndcg_at_3": 1.0,
+    "hyperparameters": {
+      "colsample_bytree": 0.8,
+      "eta": 0.03,
+      "max_depth": 3,
+      "min_child_weight": 1,
+      "subsample": 0.8
+    },
+    "validation_metrics": {
+      "ac_at_1": 1.0,
+      "ac_at_3": 1.0,
+      "mrr": 1.0,
+      "ndcg_at_1": 1.0,
+      "ndcg_at_3": 1.0
+    }
+  },
+  {
+    "best_iteration": 0,
+    "best_validation_ndcg_at_3": 0.993848829226191,
+    "hyperparameters": {
+      "colsample_bytree": 0.8,
+      "eta": 0.1,
+      "max_depth": 3,
+      "min_child_weight": 5,
+      "subsample": 0.8
+    },
+    "validation_metrics": {
+      "ac_at_1": 0.9833333333333333,
+      "ac_at_3": 1.0,
+      "mrr": 0.9916666666666667,
+      "ndcg_at_1": 0.9833333333333333,
+      "ndcg_at_3": 0.993848829226191
+    }
+  },
+  {
+    "best_iteration": 0,
+    "best_validation_ndcg_at_3": 0.993848829226191,
+    "hyperparameters": {
+      "colsample_bytree": 0.8,
+      "eta": 0.03,
+      "max_depth": 3,
+      "min_child_weight": 5,
+      "subsample": 0.8
+    },
+    "validation_metrics": {
+      "ac_at_1": 0.9833333333333333,
+      "ac_at_3": 1.0,
+      "mrr": 0.9916666666666667,
+      "ndcg_at_1": 0.9833333333333333,
+      "ndcg_at_3": 0.993848829226191
+    }
+  }
+]

@@ -1,0 +1,188 @@
+[
+  {
+    "fault_type": "latency",
+    "fault_value": 700,
+    "http_status_counts": {
+      "200": 20
+    },
+    "ranking": [
+      {
+        "ml_score": 0.07314126938581467,
+        "rank": 1,
+        "service": "gateway"
+      },
+      {
+        "ml_score": 0.07314126938581467,
+        "rank": 2,
+        "service": "payment"
+      },
+      {
+        "ml_score": -0.09550164639949799,
+        "rank": 3,
+        "service": "orders"
+      }
+    ],
+    "ready_universe": [
+      "gateway",
+      "orders",
+      "payment"
+    ],
+    "root_service": "gateway",
+    "scenario": "gateway-latency",
+    "state": "ready",
+    "top_up_cycles": 0,
+    "truth_rank": 1
+  },
+  {
+    "fault_type": "latency",
+    "fault_value": 700,
+    "http_status_counts": {
+      "200": 20
+    },
+    "ranking": [
+      {
+        "ml_score": 0.09467413276433945,
+        "rank": 1,
+        "service": "orders"
+      },
+      {
+        "ml_score": -0.09550164639949799,
+        "rank": 2,
+        "service": "gateway"
+      },
+      {
+        "ml_score": -0.09550164639949799,
+        "rank": 3,
+        "service": "payment"
+      }
+    ],
+    "ready_universe": [
+      "gateway",
+      "orders",
+      "payment"
+    ],
+    "root_service": "orders",
+    "scenario": "orders-latency",
+    "state": "ready",
+    "top_up_cycles": 0,
+    "truth_rank": 1
+  },
+  {
+    "fault_type": "latency",
+    "fault_value": 700,
+    "http_status_counts": {
+      "200": 20
+    },
+    "ranking": [
+      {
+        "ml_score": 0.09467413276433945,
+        "rank": 1,
+        "service": "payment"
+      },
+      {
+        "ml_score": -0.09550164639949799,
+        "rank": 2,
+        "service": "gateway"
+      },
+      {
+        "ml_score": -0.09550164639949799,
+        "rank": 3,
+        "service": "orders"
+      }
+    ],
+    "ready_universe": [
+      "gateway",
+      "orders",
+      "payment"
+    ],
+    "root_service": "payment",
+    "scenario": "payment-latency",
+    "state": "ready",
+    "top_up_cycles": 0,
+    "truth_rank": 1
+  },
+  {
+    "fault_type": "error",
+    "fault_value": 1.0,
+    "http_status_counts": {
+      "500": 20
+    },
+    "ranking": [
+      {
+        "ml_score": 0.09467413276433945,
+        "rank": 1,
+        "service": "gateway"
+      }
+    ],
+    "ready_universe": [
+      "gateway"
+    ],
+    "root_service": "gateway",
+    "scenario": "gateway-error",
+    "state": "ready",
+    "top_up_cycles": 0,
+    "truth_rank": 1
+  },
+  {
+    "fault_type": "error",
+    "fault_value": 1.0,
+    "http_status_counts": {
+      "502": 20
+    },
+    "ranking": [
+      {
+        "ml_score": 0.09467413276433945,
+        "rank": 1,
+        "service": "orders"
+      },
+      {
+        "ml_score": -0.09550164639949799,
+        "rank": 2,
+        "service": "gateway"
+      }
+    ],
+    "ready_universe": [
+      "gateway",
+      "orders"
+    ],
+    "root_service": "orders",
+    "scenario": "orders-error",
+    "state": "ready",
+    "top_up_cycles": 0,
+    "truth_rank": 1
+  },
+  {
+    "fault_type": "error",
+    "fault_value": 1.0,
+    "http_status_counts": {
+      "502": 20
+    },
+    "ranking": [
+      {
+        "ml_score": 0.09467413276433945,
+        "rank": 1,
+        "service": "payment"
+      },
+      {
+        "ml_score": -0.09550164639949799,
+        "rank": 2,
+        "service": "gateway"
+      },
+      {
+        "ml_score": -0.09550164639949799,
+        "rank": 3,
+        "service": "orders"
+      }
+    ],
+    "ready_universe": [
+      "gateway",
+      "orders",
+      "payment"
+    ],
+    "root_service": "payment",
+    "scenario": "payment-error",
+    "state": "ready",
+    "top_up_cycles": 0,
+    "truth_rank": 1
+  }
+]

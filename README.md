@@ -1,6 +1,6 @@
 # RCA for distributed services
 
-Milestone 6 of the RCA graduation project: a synchronous Go service chain with controlled faults, end-to-end OpenTelemetry tracing, topology reconstruction, statistical anomaly detection, and explainable root-cause ranking over real OTLP spans.
+Milestone 7 of the RCA graduation project: a synchronous Go telemetry/RCA pipeline plus a separate, reproducible Python Learning-to-Rank research layer.
 
 ```text
 Client -> Gateway -> Orders -> Payment
@@ -12,15 +12,19 @@ Client -> Gateway -> Orders -> Payment
                          +-> RCA OTLP receiver -> service graph
                                                -> frozen baseline -> anomaly scores
                                                                   -> RCA features -> rankings
+                                                                       |
+                                                                       +-> offline m7-v1 features
+                                                                           -> LambdaMART ranking
 ```
 
-One request creates a single distributed trace containing the server and client spans for all three services. Gateway, Orders, and Payment expose development-only controls for reproducible faults. The RCA service receives a second copy of those spans, derives service dependencies without knowing the topology in advance, compares operation-level latency and error rate with an explicitly collected healthy baseline, and ranks anomalous services using topology and trace-local evidence.
+One request creates a single distributed trace containing the server and client spans for all three services. Gateway, Orders, and Payment expose development-only controls for reproducible faults. The Go RCA service derives M4–M6 evidence. M7 keeps that runtime unchanged and trains an offline XGBoost LambdaMART model over all READY services in each incident query group.
 
 ## Requirements
 
 - Docker with Docker Compose
 - `curl` for smoke requests
 - Go 1.26 only for running outside Docker
+- Python 3.12 or newer for the M7 research pipeline
 
 ## Run
 
@@ -64,7 +68,7 @@ Stop the stack:
 docker compose down --remove-orphans
 ```
 
-Shortcuts are available as `make compose-up`, `make smoke`, `make trace-smoke`, `make graph-smoke`, `make baseline-smoke`, `make anomaly-smoke`, `make rca-smoke`, `make logs`, and `make compose-down`.
+Shortcuts are available as `make compose-up`, `make smoke`, `make trace-smoke`, `make graph-smoke`, `make baseline-smoke`, `make anomaly-smoke`, `make rca-smoke`, `make ml-smoke`, `make m7-experiment`, `make logs`, and `make compose-down`.
 
 ## Trace and request correlation
 
@@ -295,7 +299,38 @@ Run the end-to-end acceptance matrix for healthy traffic plus latency and error 
 make rca-smoke
 ```
 
-The smoke test checks the observed anomalies and the expected `hybrid_v1` Top-1 result using externally supplied scenario labels. It also validates the public schema, active-topology use, deterministic response shape, and absence of truth leakage. Scores are explainable heuristic evidence strengths, not probabilities or confidence estimates. A learned model remains future work and is not part of this milestone.
+The smoke test checks the observed anomalies and the expected `hybrid_v1` Top-1 result using externally supplied scenario labels. It also validates the public schema, active-topology use, deterministic response shape, and absence of truth leakage. Scores are explainable heuristic evidence strengths, not probabilities or confidence estimates.
+
+## Milestone 7: Dataset and Learning-to-Rank v1
+
+M7 is a separate Python research project under `ml/`; it does not add a Python sidecar or load XGBoost from Go. One incident is one ranking query, every READY service is a candidate item, and exactly one externally labelled injected root is relevant. Numeric features are selected through the explicit `m7-v1` whitelist; service names, identifiers, fault metadata, scenario names, M6 ranks, and ground truth cannot enter the model matrix.
+
+Create the isolated environment and run the deterministic fixture smoke:
+
+```bash
+make ml-setup
+make ml-smoke
+```
+
+Run the complete experiment manually:
+
+```bash
+make m7-experiment
+```
+
+The full command starts Compose, builds one 100-request healthy baseline, generates 600 fault incidents and 60 healthy controls, trains and evaluates LambdaMART, runs root-holdout and label-permutation checks, executes six live predictions, and stops Compose. Raw datasets are written under ignored `artifacts/`; the small model, schema, manifests, validation search, evaluation, and [full M7 report](docs/m7-results.md) are checked in.
+
+Offline prediction from a saved feature snapshot or the live M6 API:
+
+```bash
+PYTHONPATH=ml .venv/bin/python -m rca_ml.predict \
+  --features-file /path/to/features.json
+
+PYTHONPATH=ml .venv/bin/python -m rca_ml.predict \
+  --features-url http://localhost:18090/api/features
+```
+
+The output field is `ml_score`, an uncalibrated ranking score. M7 training data still comes from one three-service topology; cross-topology and external-benchmark validation are mandatory M8 work.
 
 ## Endpoints
 
@@ -331,9 +366,10 @@ make test
 make build
 go vet ./...
 go test -race ./...
+make ml-smoke
 ```
 
-The tests cover handlers, fault behavior, trace propagation, the graph algorithm, out-of-order ingestion, duplicate exports, retention, concurrent ingestion, deterministic output, strict RCA HTTP behavior, robust statistics, detector lifecycle and bounds, latency and error anomalies, threshold boundaries, CLIENT-span exclusion, active-incident topology and fallback, cycle-safe reverse reachability, exclusive-duration interval union, all four rankers, truth-free evaluation, and synthetic OTLP requests containing the real five-span hierarchy. Tests do not require an external Collector.
+The Go tests cover handlers, fault behavior, trace propagation, graph reconstruction, anomaly detection, active-incident topology, trace evidence, M6 ranking, and synthetic OTLP requests. The Python tests cover the feature whitelist, leakage guards, finite matrices, query groups, incident splits, duplicate fingerprints, rename invariance, metrics, bootstrap reproducibility, root holdout, label permutation, deterministic prediction, and the collector drain barrier.
 
 ## Configuration
 
@@ -377,3 +413,5 @@ They can be overridden with `GATEWAY_PORT`, `ORDERS_PORT`, `PAYMENT_PORT`, `RCA_
 - gRPC-Go: `v1.83.0`;
 - OpenTelemetry Collector Contrib: `0.158.0`;
 - Jaeger v2: `2.20.0`.
+
+Pinned M7 dependencies are Python `>=3.12`, NumPy `2.4.4`, SciPy `1.18.1`, and XGBoost `3.2.0`.

@@ -1,0 +1,322 @@
+{
+  "counts": {
+    "detected_fault_incidents": 471,
+    "fault_incidents": 600,
+    "healthy_controls": 60,
+    "localization_eligible": 471,
+    "root_ready_fault_incidents": 600,
+    "test_localization_incidents": 76,
+    "test_nontrivial_incidents": 68,
+    "training_eligible": 414,
+    "trivial_groups": 57
+  },
+  "detection": {
+    "healthy_false_positive_rate": 0.13333333333333333,
+    "recall": 0.785,
+    "root_ready_coverage": 1.0,
+    "training_eligibility_rate": 0.69
+  },
+  "end_to_end_ac_at_1": 0.74,
+  "feature_importance_gain": {
+    "active_topology_trace_coverage": 0.0,
+    "ancestor_count": 0.0,
+    "ancestor_ratio": 0.0,
+    "descendant_count": 0.0,
+    "descendant_ratio": 0.0,
+    "error_anomalous": 0.0,
+    "error_strength": 0.0,
+    "error_z_log1p": 0.0,
+    "expected_affected_count": 0.0,
+    "expected_affected_ratio": 0.0,
+    "in_degree": 0.0,
+    "is_observed_anomaly": 0.0,
+    "latency_anomalous": 0.0,
+    "latency_strength": 0.0,
+    "latency_z_log1p": 0.0,
+    "local_evidence": 0.0,
+    "log1p_median_exclusive_duration_ms": 53.28440856933594,
+    "m5_severity_log1p": 0.0,
+    "median_downstream_wait_ratio": 0.0,
+    "median_exclusive_ratio": 0.0,
+    "normalized_in_degree": 0.0,
+    "normalized_out_degree": 0.0,
+    "observed_anomaly_count": 0.0,
+    "observed_anomaly_ratio": 0.0,
+    "out_degree": 0.0,
+    "primary_signal_error": 0.0,
+    "primary_signal_latency": 0.0,
+    "ready_universe_size": 0.0,
+    "topology_f1": 109.25236511230469,
+    "topology_precision": 0.0,
+    "topology_recall": 0.0,
+    "topology_source_active": 0.0,
+    "trace_coverage": 0.0
+  },
+  "label_permutation": {
+    "chance_ac_at_1": 0.35294117647058826,
+    "leakage_sanity_passed": true,
+    "permuted_label_ac_at_1": 0.0,
+    "permuted_metrics": {
+      "ac_at_1": 0.0,
+      "ac_at_3": 1.0,
+      "mrr": 0.35539215686274506,
+      "ndcg_at_1": 0.0,
+      "ndcg_at_3": 0.517328937972693
+    },
+    "real_label_ac_at_1": 0.9264705882352942
+  },
+  "learned_model_candidate_status": "PROMISING",
+  "paired_bootstrap_95_ci": {
+    "hybrid_v1": {
+      "ac_at_1": {
+        "ci_high": 0.05882352941176472,
+        "ci_low": -0.05882352941176472,
+        "difference": 0.0
+      },
+      "mrr": {
+        "ci_high": 0.05882352941176472,
+        "ci_low": -0.022058823529411797,
+        "difference": 0.014705882352941235
+      }
+    },
+    "local_evidence": {
+      "ac_at_1": {
+        "ci_high": 0.5735294117647058,
+        "ci_low": 0.2941176470588235,
+        "difference": 0.44117647058823534
+      },
+      "mrr": {
+        "ci_high": 0.3480392156862745,
+        "ci_low": 0.18627450980392146,
+        "difference": 0.2720588235294118
+      }
+    },
+    "max_severity": {
+      "ac_at_1": {
+        "ci_high": 0.588235294117647,
+        "ci_low": 0.32352941176470595,
+        "difference": 0.4558823529411765
+      },
+      "mrr": {
+        "ci_high": 0.35539215686274506,
+        "ci_low": 0.20343137254901966,
+        "difference": 0.27941176470588236
+      }
+    },
+    "topology_consistency": {
+      "ac_at_1": {
+        "ci_high": 0.07352941176470595,
+        "ci_low": -0.044117647058823595,
+        "difference": 0.014705882352941235
+      },
+      "mrr": {
+        "ci_high": 0.06617647058823528,
+        "ci_low": -0.014705882352941235,
+        "difference": 0.022058823529411797
+      }
+    }
+  },
+  "prediction_examples": [
+    {
+      "fault_type": "latency",
+      "incident_id": "m7-00018",
+      "interpretation_warning": "TreeSHAP contributions explain model score, not causality.",
+      "ranking": [
+        {
+          "ml_score": 0.07314126938581467,
+          "rank": 1,
+          "service": "orders"
+        },
+        {
+          "ml_score": 0.07314126938581467,
+          "rank": 2,
+          "service": "payment"
+        },
+        {
+          "ml_score": -0.09550164639949799,
+          "rank": 3,
+          "service": "gateway"
+        }
+      ],
+      "root_service": "payment",
+      "root_top_pred_contributions": [
+        {
+          "contribution": 0.10690070688724518,
+          "feature": "log1p_median_exclusive_duration_ms"
+        },
+        {
+          "contribution": -0.03570494428277016,
+          "feature": "topology_f1"
+        },
+        {
+          "contribution": 0.0,
+          "feature": "active_topology_trace_coverage"
+        },
+        {
+          "contribution": 0.0,
+          "feature": "ancestor_count"
+        },
+        {
+          "contribution": 0.0,
+          "feature": "ancestor_ratio"
+        },
+        {
+          "contribution": 0.0,
+          "feature": "descendant_count"
+        },
+        {
+          "contribution": 0.0,
+          "feature": "descendant_ratio"
+        },
+        {
+          "contribution": 0.0,
+          "feature": "error_anomalous"
+        }
+      ]
+    },
+    {
+      "fault_type": "error",
+      "incident_id": "m7-00114",
+      "interpretation_warning": "TreeSHAP contributions explain model score, not causality.",
+      "ranking": [
+        {
+          "ml_score": 0.09467413276433945,
+          "rank": 1,
+          "service": "orders"
+        },
+        {
+          "ml_score": -0.09550164639949799,
+          "rank": 2,
+          "service": "gateway"
+        }
+      ],
+      "root_service": "orders",
+      "root_top_pred_contributions": [
+        {
+          "contribution": 0.10308577120304108,
+          "feature": "topology_f1"
+        },
+        {
+          "contribution": -0.010357140563428402,
+          "feature": "log1p_median_exclusive_duration_ms"
+        },
+        {
+          "contribution": 0.0,
+          "feature": "active_topology_trace_coverage"
+        },
+        {
+          "contribution": 0.0,
+          "feature": "ancestor_count"
+        },
+        {
+          "contribution": 0.0,
+          "feature": "ancestor_ratio"
+        },
+        {
+          "contribution": 0.0,
+          "feature": "descendant_count"
+        },
+        {
+          "contribution": 0.0,
+          "feature": "descendant_ratio"
+        },
+        {
+          "contribution": 0.0,
+          "feature": "error_anomalous"
+        }
+      ]
+    }
+  ],
+  "root_holdout": {
+    "gateway": {
+      "detection_coverage": 0.69,
+      "metrics": {
+        "ac_at_1": 0.8148148148148148,
+        "ac_at_3": 1.0,
+        "mrr": 0.9074074074074074,
+        "ndcg_at_1": 0.8148148148148148,
+        "ndcg_at_3": 0.9316536580687884
+      },
+      "root_ready_coverage": 1.0,
+      "test_incidents": 81,
+      "train_incidents": 333
+    },
+    "orders": {
+      "detection_coverage": 0.7,
+      "metrics": {
+        "ac_at_1": 0.9071428571428571,
+        "ac_at_3": 1.0,
+        "mrr": 0.9523809523809524,
+        "ndcg_at_1": 0.9071428571428571,
+        "ndcg_at_3": 0.9647939788775535
+      },
+      "root_ready_coverage": 1.0,
+      "test_incidents": 140,
+      "train_incidents": 274
+    },
+    "payment": {
+      "detection_coverage": 0.965,
+      "metrics": {
+        "ac_at_1": 0.8808290155440415,
+        "ac_at_3": 1.0,
+        "mrr": 0.92573402417962,
+        "ndcg_at_1": 0.8808290155440415,
+        "ndcg_at_3": 0.9444848628053302
+      },
+      "root_ready_coverage": 1.0,
+      "test_incidents": 193,
+      "train_incidents": 221
+    }
+  },
+  "test_all_localization_metrics": {
+    "ac_at_1": 0.9342105263157895,
+    "ac_at_3": 1.0,
+    "mrr": 0.9671052631578947,
+    "ndcg_at_1": 0.9342105263157895,
+    "ndcg_at_3": 0.9757190627349642
+  },
+  "test_nontrivial_metrics": {
+    "chance": {
+      "ac_at_1": 0.35294117647058826,
+      "ac_at_3": 1.0,
+      "mrr": 0.6274509803921569,
+      "ndcg_at_1": 0.35294117647058826,
+      "ndcg_at_3": 0.7226810894958087
+    },
+    "hybrid_v1": {
+      "ac_at_1": 0.9264705882352942,
+      "ac_at_3": 0.9705882352941176,
+      "mrr": 0.9485294117647058,
+      "ndcg_at_1": 0.9264705882352942,
+      "ndcg_at_3": 0.9543057244222701
+    },
+    "local_evidence": {
+      "ac_at_1": 0.4852941176470588,
+      "ac_at_3": 0.9705882352941176,
+      "mrr": 0.6911764705882353,
+      "ndcg_at_1": 0.4852941176470588,
+      "ndcg_at_3": 0.762599052415974
+    },
+    "m7_lambdamart": {
+      "ac_at_1": 0.9264705882352942,
+      "ac_at_3": 1.0,
+      "mrr": 0.9632352941176471,
+      "ndcg_at_1": 0.9264705882352942,
+      "ndcg_at_3": 0.9728624818802541
+    },
+    "max_severity": {
+      "ac_at_1": 0.47058823529411764,
+      "ac_at_3": 0.9705882352941176,
+      "mrr": 0.6838235294117647,
+      "ndcg_at_1": 0.47058823529411764,
+      "ndcg_at_3": 0.7571715487920249
+    },
+    "topology_consistency": {
+      "ac_at_1": 0.9117647058823529,
+      "ac_at_3": 0.9705882352941176,
+      "mrr": 0.9411764705882353,
+      "ndcg_at_1": 0.9117647058823529,
+      "ndcg_at_3": 0.9488782207983211
+    }
+  }
+}
