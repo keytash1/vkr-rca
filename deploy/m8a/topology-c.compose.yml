@@ -1,0 +1,116 @@
+x-rca-environment: &rca-environment
+  HTTP_ADDR: ":8090"
+  OTLP_ADDR: ":4317"
+  TRACE_TTL: "10m"
+  MAX_TRACES: "10000"
+  MIN_BASELINE_SAMPLES: "30"
+  MAX_BASELINE_SAMPLES: "1000"
+  CURRENT_WINDOW_SIZE: "20"
+  MIN_CURRENT_SAMPLES: "10"
+  LATENCY_Z_THRESHOLD: "3.5"
+  ERROR_Z_THRESHOLD: "3.0"
+  ROBUST_SCALE_EPSILON: "0.1"
+  MIN_ACTIVE_TOPOLOGY_COVERAGE: "0.7"
+
+x-benchmark: &benchmark
+  image: vkr-rca-m8a-benchmark:latest
+  environment: &benchmark-environment
+    HTTP_ADDR: ":8080"
+    HTTP_CLIENT_TIMEOUT: "8s"
+    OTEL_EXPORTER_OTLP_ENDPOINT: "otel-collector:4317"
+    OTEL_EXPORTER_OTLP_INSECURE: "true"
+    CALL_MODE: "sequential"
+    RESPONSE_POLICY: "propagate"
+  depends_on:
+    otel-collector:
+      condition: service_started
+  healthcheck:
+    test: ["CMD", "wget", "--quiet", "--output-document=-", "http://127.0.0.1:8080/health"]
+    interval: 2s
+    timeout: 1s
+    retries: 15
+    start_period: 2s
+
+services:
+  jaeger:
+    image: jaegertracing/jaeger:2.20.0
+    ports:
+      - "${M8A_C_JAEGER_PORT:-36686}:16686"
+
+  rca:
+    image: vkr-rca-m8a-rca:latest
+    environment: *rca-environment
+    ports:
+      - "${M8A_C_RCA_PORT:-38090}:8090"
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--output-document=-", "http://127.0.0.1:8090/health"]
+      interval: 2s
+      timeout: 1s
+      retries: 15
+      start_period: 2s
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.158.0
+    command: ["--config=/etc/otelcol-contrib/config.yaml"]
+    volumes:
+      - ../otel-collector.yaml:/etc/otelcol-contrib/config.yaml:ro
+    depends_on:
+      jaeger:
+        condition: service_started
+      rca:
+        condition: service_healthy
+
+  journal:
+    <<: *benchmark
+    environment:
+      <<: *benchmark-environment
+      SERVICE_NAME: "journal"
+      DOWNSTREAM_URLS: ""
+    ports:
+      - "${M8A_C_JOURNAL_PORT:-38104}:8080"
+
+  settlement:
+    <<: *benchmark
+    environment:
+      <<: *benchmark-environment
+      SERVICE_NAME: "settlement"
+      DOWNSTREAM_URLS: "http://journal:8080"
+    ports:
+      - "${M8A_C_SETTLEMENT_PORT:-38102}:8080"
+
+  warehouse:
+    <<: *benchmark
+    environment:
+      <<: *benchmark-environment
+      SERVICE_NAME: "warehouse"
+      DOWNSTREAM_URLS: "http://journal:8080"
+    ports:
+      - "${M8A_C_WAREHOUSE_PORT:-38103}:8080"
+
+  notifier:
+    <<: *benchmark
+    environment:
+      <<: *benchmark-environment
+      SERVICE_NAME: "notifier"
+      DOWNSTREAM_URLS: ""
+    ports:
+      - "${M8A_C_NOTIFIER_PORT:-38105}:8080"
+
+  checkout:
+    <<: *benchmark
+    environment:
+      <<: *benchmark-environment
+      SERVICE_NAME: "checkout"
+      DOWNSTREAM_URLS: "http://settlement:8080,http://warehouse:8080,http://notifier:8080"
+      CALL_MODE: "parallel"
+    ports:
+      - "${M8A_C_CHECKOUT_PORT:-38101}:8080"
+
+  entry:
+    <<: *benchmark
+    environment:
+      <<: *benchmark-environment
+      SERVICE_NAME: "entry"
+      DOWNSTREAM_URLS: "http://checkout:8080"
+    ports:
+      - "${M8A_C_ENTRY_PORT:-38080}:8080"

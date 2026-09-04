@@ -1,0 +1,25 @@
+{
+  "topology_id": "C",
+  "name": "parallel-shared",
+  "compose_file": "deploy/m8a/topology-c.compose.yml",
+  "compose_project": "vkr-rca-m8a-c",
+  "entry_service": "entry",
+  "entry_url": "http://localhost:38080",
+  "rca_url": "http://localhost:38090",
+  "services": {
+    "entry": "http://localhost:38080",
+    "checkout": "http://localhost:38101",
+    "settlement": "http://localhost:38102",
+    "warehouse": "http://localhost:38103",
+    "journal": "http://localhost:38104",
+    "notifier": "http://localhost:38105"
+  },
+  "edges": [
+    ["entry", "checkout"],
+    ["checkout", "settlement"],
+    ["checkout", "warehouse"],
+    ["checkout", "notifier"],
+    ["settlement", "journal"],
+    ["warehouse", "journal"]
+  ]
+}

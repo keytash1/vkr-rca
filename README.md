@@ -1,6 +1,6 @@
 # RCA for distributed services
 
-Milestone 7 of the RCA graduation project: a synchronous Go telemetry/RCA pipeline plus a separate, reproducible Python Learning-to-Rank research layer.
+Milestone 8A of the RCA graduation project: a synchronous Go telemetry/RCA pipeline plus reproducible cross-topology evaluation of the frozen M7 Learning-to-Rank model.
 
 ```text
 Client -> Gateway -> Orders -> Payment
@@ -68,7 +68,7 @@ Stop the stack:
 docker compose down --remove-orphans
 ```
 
-Shortcuts are available as `make compose-up`, `make smoke`, `make trace-smoke`, `make graph-smoke`, `make baseline-smoke`, `make anomaly-smoke`, `make rca-smoke`, `make ml-smoke`, `make m7-experiment`, `make logs`, and `make compose-down`.
+Shortcuts are available as `make compose-up`, `make smoke`, `make trace-smoke`, `make graph-smoke`, `make baseline-smoke`, `make anomaly-smoke`, `make rca-smoke`, `make ml-smoke`, `make m7-experiment`, `make m8a-smoke`, `make m8a-experiment`, `make logs`, and `make compose-down`.
 
 ## Trace and request correlation
 
@@ -332,6 +332,37 @@ PYTHONPATH=ml .venv/bin/python -m rca_ml.predict \
 
 The output field is `ml_score`, an uncalibrated ranking score. M7 training data still comes from one three-service topology; cross-topology and external-benchmark validation are mandatory M8 work.
 
+## Milestone 8A: controlled cross-topology evaluation
+
+M8A freezes `m7-lambdamart-v1` and evaluates it without retraining on two unseen systems built from one reusable `cmd/benchmark` runtime:
+
+```text
+Topology B (branch)
+portal -> fulfillment -> billing
+       -> catalog     -> inventory
+
+Topology C (parallel fan-out + shared dependency)
+entry -> checkout -> settlement -> journal
+                  -> warehouse  -> journal
+                  -> notifier
+```
+
+The generic service is configured with `SERVICE_NAME`, comma-separated `DOWNSTREAM_URLS`, `CALL_MODE=sequential|parallel`, and `RESPONSE_POLICY=propagate|always_ok`. It reuses the existing OpenTelemetry, fault injection, request-ID propagation, timeout, and structured-logging implementations. B/C are isolated Compose projects under `deploy/m8a/`; their service names never overlap Topology A.
+
+Run the deterministic synthetic M8A pipeline smoke:
+
+```bash
+make m8a-smoke
+```
+
+Run the complete controlled benchmark manually:
+
+```bash
+make m8a-experiment
+```
+
+The full command collects an independent frozen M5 baseline per topology; generates at least 500 zero-shot faults plus 50 healthy controls per system; evaluates constant, late, ramp, intermittent and burst profiles; repeats 20 fixed scenarios five times across B/C; compares M6 baselines with frozen M7 LambdaMART; and creates untuned A+B→C, A+C→B and B+C→A system-holdout folds. Raw data remain under ignored `artifacts/`. M8A does not change `m7-v1`, M5 thresholds, or the M7 model artifact, and it does not start RCAEval/GNN work.
+
 ## Endpoints
 
 | Service | Endpoint | Purpose |
@@ -355,6 +386,10 @@ The output field is `ml_score`, an uncalibrated ranking score. M7 training data 
 | RCA | `POST /debug/baseline/freeze` | Freeze the collected baseline |
 | RCA | `POST /debug/anomaly/reset` | Reset current anomaly windows only |
 | RCA | `GET /health` | Liveness check |
+| M8A benchmark service | `GET /work` | Execute configured sequential/parallel downstream calls |
+| M8A benchmark service | `GET /health` | Liveness check |
+| M8A benchmark service | `GET/POST /debug/fault` | Read or replace local fault configuration |
+| M8A benchmark service | `POST /debug/reset` | Reset local fault configuration |
 
 Unsupported methods on defined endpoints return `405 Method Not Allowed`. A downstream failure is exposed to the caller as `502 Bad Gateway`.
 
@@ -367,6 +402,7 @@ make build
 go vet ./...
 go test -race ./...
 make ml-smoke
+make m8a-smoke
 ```
 
 The Go tests cover handlers, fault behavior, trace propagation, graph reconstruction, anomaly detection, active-incident topology, trace evidence, M6 ranking, and synthetic OTLP requests. The Python tests cover the feature whitelist, leakage guards, finite matrices, query groups, incident splits, duplicate fingerprints, rename invariance, metrics, bootstrap reproducibility, root holdout, label permutation, deterministic prediction, and the collector drain barrier.
@@ -392,6 +428,10 @@ The Go tests cover handlers, fault behavior, trace propagation, graph reconstruc
 | `ERROR_Z_THRESHOLD` | RCA | `3.0` |
 | `ROBUST_SCALE_EPSILON` | RCA | `0.1` |
 | `MIN_ACTIVE_TOPOLOGY_COVERAGE` | RCA | `0.7` |
+| `SERVICE_NAME` | M8A benchmark | `benchmark` |
+| `DOWNSTREAM_URLS` | M8A benchmark | empty |
+| `CALL_MODE` | M8A benchmark | `sequential` |
+| `RESPONSE_POLICY` | M8A benchmark | `propagate` |
 
 Compose sets the OTLP endpoint to `otel-collector:4317`. The `service.name` resource attribute is fixed in each binary as `gateway`, `orders`, or `payment`.
 

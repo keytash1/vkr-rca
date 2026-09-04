@@ -1,0 +1,22 @@
+{
+  "topology_id": "B",
+  "name": "branch",
+  "compose_file": "deploy/m8a/topology-b.compose.yml",
+  "compose_project": "vkr-rca-m8a-b",
+  "entry_service": "portal",
+  "entry_url": "http://localhost:28080",
+  "rca_url": "http://localhost:28090",
+  "services": {
+    "portal": "http://localhost:28080",
+    "fulfillment": "http://localhost:28101",
+    "billing": "http://localhost:28102",
+    "catalog": "http://localhost:28103",
+    "inventory": "http://localhost:28104"
+  },
+  "edges": [
+    ["portal", "fulfillment"],
+    ["fulfillment", "billing"],
+    ["portal", "catalog"],
+    ["catalog", "inventory"]
+  ]
+}

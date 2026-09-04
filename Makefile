@@ -5,7 +5,7 @@ JAEGER_UI_PORT ?= 16686
 RCA_HTTP_PORT ?= 18090
 ML_PYTHON ?= .venv/bin/python
 
-.PHONY: fmt test build compose-up compose-down smoke trace-smoke graph-smoke baseline-smoke anomaly-smoke rca-smoke ml-setup ml-smoke m7-experiment fault-gateway-latency fault-gateway-errors fault-payment-latency fault-orders-latency fault-payment-errors fault-reset fault-status logs
+.PHONY: fmt test build compose-up compose-down smoke trace-smoke graph-smoke baseline-smoke anomaly-smoke rca-smoke ml-setup ml-smoke m7-experiment m8a-smoke m8a-experiment fault-gateway-latency fault-gateway-errors fault-payment-latency fault-orders-latency fault-payment-errors fault-reset fault-status logs
 
 fmt:
 	gofmt -w cmd internal
@@ -127,6 +127,15 @@ ml-smoke:
 m7-experiment:
 	@test -x "$(ML_PYTHON)" || (echo "run 'make ml-setup' first" >&2; exit 1)
 	ML_PYTHON=$(ML_PYTHON) JAEGER_UI_PORT=$(JAEGER_UI_PORT) ./scripts/m7-experiment.sh
+
+m8a-smoke: ml-smoke
+	PYTHONPATH=ml $(ML_PYTHON) -c 'from rca_ml.topology import BenchmarkTopology; [BenchmarkTopology.load(path) for path in ("deploy/m8a/topology-b.json", "deploy/m8a/topology-c.json")]; print("M8A topology contracts: OK")'
+	docker compose -f deploy/m8a/topology-b.compose.yml config --quiet
+	docker compose -f deploy/m8a/topology-c.compose.yml config --quiet
+
+m8a-experiment:
+	@test -x "$(ML_PYTHON)" || (echo "run 'make ml-setup' first" >&2; exit 1)
+	ML_PYTHON=$(ML_PYTHON) ./scripts/m8a-experiment.sh
 
 fault-gateway-latency:
 	curl --fail --silent --show-error \

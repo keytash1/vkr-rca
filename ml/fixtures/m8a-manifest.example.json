@@ -1,0 +1,22 @@
+{
+  "dataset_schema_version": "m8a-v1",
+  "run_id": "m8a-b-full-seed-20260904",
+  "topology": {
+    "id": "B",
+    "name": "branch",
+    "entry_service": "portal",
+    "services": ["billing", "catalog", "fulfillment", "inventory", "portal"],
+    "edges": [
+      ["portal", "fulfillment"],
+      ["fulfillment", "billing"],
+      ["portal", "catalog"],
+      ["catalog", "inventory"]
+    ]
+  },
+  "zero_shot_fault_incidents": 500,
+  "zero_shot_healthy_controls": 50,
+  "frozen_model": {
+    "version": "m7-lambdamart-v1",
+    "sha256": "3728eb0454e46d14265d092d3d17088bc32fe44e8c9cb8d565aa8e934cee7699"
+  }
+}

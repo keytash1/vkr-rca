@@ -43,14 +43,32 @@ class GenerationConfig:
 
 
 class RCAClient:
-    def __init__(self, gateway: str, orders: str, payment: str, rca: str) -> None:
+    def __init__(
+        self,
+        gateway: str,
+        orders: str | None = None,
+        payment: str | None = None,
+        rca: str | None = None,
+        *,
+        fault_urls: dict[str, str] | None = None,
+        work_path: str = "/api/order",
+    ) -> None:
+        if rca is None:
+            raise ValueError("RCA URL is required")
         self.gateway = gateway.rstrip("/")
         self.rca = rca.rstrip("/")
-        self.fault_urls = {
-            "gateway": gateway.rstrip("/"),
-            "orders": orders.rstrip("/"),
-            "payment": payment.rstrip("/"),
-        }
+        self.work_path = "/" + work_path.strip("/")
+        self.fault_urls = (
+            {service: url.rstrip("/") for service, url in fault_urls.items()}
+            if fault_urls is not None
+            else {
+                "gateway": gateway.rstrip("/"),
+                "orders": (orders or "").rstrip("/"),
+                "payment": (payment or "").rstrip("/"),
+            }
+        )
+        if not self.fault_urls or any(not value for value in self.fault_urls.values()):
+            raise ValueError("fault URLs are required")
 
     def get_json(self, url: str) -> dict:
         return self._json("GET", url)
@@ -66,7 +84,7 @@ class RCAClient:
             return json.load(response)
 
     def reset_faults(self) -> None:
-        for service in ("gateway", "orders", "payment"):
+        for service in sorted(self.fault_urls):
             self.post_json(f"{self.fault_urls[service]}/debug/reset")
 
     def set_fault(self, service: str, *, latency_ms: int = 0, error_rate: float = 0.0) -> None:
@@ -81,7 +99,7 @@ class RCAClient:
     def send_traffic(self, incident_id: str, count: int, concurrency: int) -> dict[str, int]:
         def request(index: int) -> int:
             call = urllib.request.Request(
-                f"{self.gateway}/api/order",
+                f"{self.gateway}{self.work_path}",
                 headers={"X-Request-ID": f"{incident_id}-{index:03d}"},
             )
             try:
@@ -146,7 +164,10 @@ def collect_baseline(client: RCAClient, config: GenerationConfig) -> dict:
     while time.monotonic() < deadline:
         baseline = client.get_json(f"{client.rca}/api/baseline")
         operations = baseline.get("operations", [])
-        if len(operations) == 3 and all(int(value.get("samples", 0)) >= config.baseline_requests for value in operations):
+        observed_services = {value.get("service") for value in operations}
+        if set(client.fault_urls) <= observed_services and all(
+            int(value.get("samples", 0)) >= config.baseline_requests for value in operations
+        ):
             frozen = client.post_json(f"{client.rca}/debug/baseline/freeze")
             if frozen.get("state") != "frozen":
                 raise RuntimeError("baseline did not freeze")

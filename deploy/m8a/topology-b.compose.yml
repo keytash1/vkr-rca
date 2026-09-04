@@ -1,0 +1,106 @@
+x-rca-environment: &rca-environment
+  HTTP_ADDR: ":8090"
+  OTLP_ADDR: ":4317"
+  TRACE_TTL: "10m"
+  MAX_TRACES: "10000"
+  MIN_BASELINE_SAMPLES: "30"
+  MAX_BASELINE_SAMPLES: "1000"
+  CURRENT_WINDOW_SIZE: "20"
+  MIN_CURRENT_SAMPLES: "10"
+  LATENCY_Z_THRESHOLD: "3.5"
+  ERROR_Z_THRESHOLD: "3.0"
+  ROBUST_SCALE_EPSILON: "0.1"
+  MIN_ACTIVE_TOPOLOGY_COVERAGE: "0.7"
+
+x-benchmark: &benchmark
+  image: vkr-rca-m8a-benchmark:latest
+  environment: &benchmark-environment
+    HTTP_ADDR: ":8080"
+    HTTP_CLIENT_TIMEOUT: "8s"
+    OTEL_EXPORTER_OTLP_ENDPOINT: "otel-collector:4317"
+    OTEL_EXPORTER_OTLP_INSECURE: "true"
+    CALL_MODE: "sequential"
+    RESPONSE_POLICY: "propagate"
+  depends_on:
+    otel-collector:
+      condition: service_started
+  healthcheck:
+    test: ["CMD", "wget", "--quiet", "--output-document=-", "http://127.0.0.1:8080/health"]
+    interval: 2s
+    timeout: 1s
+    retries: 15
+    start_period: 2s
+
+services:
+  jaeger:
+    image: jaegertracing/jaeger:2.20.0
+    ports:
+      - "${M8A_B_JAEGER_PORT:-26686}:16686"
+
+  rca:
+    image: vkr-rca-m8a-rca:latest
+    environment: *rca-environment
+    ports:
+      - "${M8A_B_RCA_PORT:-28090}:8090"
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--output-document=-", "http://127.0.0.1:8090/health"]
+      interval: 2s
+      timeout: 1s
+      retries: 15
+      start_period: 2s
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.158.0
+    command: ["--config=/etc/otelcol-contrib/config.yaml"]
+    volumes:
+      - ../otel-collector.yaml:/etc/otelcol-contrib/config.yaml:ro
+    depends_on:
+      jaeger:
+        condition: service_started
+      rca:
+        condition: service_healthy
+
+  billing:
+    <<: *benchmark
+    environment:
+      <<: *benchmark-environment
+      SERVICE_NAME: "billing"
+      DOWNSTREAM_URLS: ""
+    ports:
+      - "${M8A_B_BILLING_PORT:-28102}:8080"
+
+  fulfillment:
+    <<: *benchmark
+    environment:
+      <<: *benchmark-environment
+      SERVICE_NAME: "fulfillment"
+      DOWNSTREAM_URLS: "http://billing:8080"
+    ports:
+      - "${M8A_B_FULFILLMENT_PORT:-28101}:8080"
+
+  inventory:
+    <<: *benchmark
+    environment:
+      <<: *benchmark-environment
+      SERVICE_NAME: "inventory"
+      DOWNSTREAM_URLS: ""
+    ports:
+      - "${M8A_B_INVENTORY_PORT:-28104}:8080"
+
+  catalog:
+    <<: *benchmark
+    environment:
+      <<: *benchmark-environment
+      SERVICE_NAME: "catalog"
+      DOWNSTREAM_URLS: "http://inventory:8080"
+    ports:
+      - "${M8A_B_CATALOG_PORT:-28103}:8080"
+
+  portal:
+    <<: *benchmark
+    environment:
+      <<: *benchmark-environment
+      SERVICE_NAME: "portal"
+      DOWNSTREAM_URLS: "http://fulfillment:8080,http://catalog:8080"
+    ports:
+      - "${M8A_B_ENTRY_PORT:-28080}:8080"
