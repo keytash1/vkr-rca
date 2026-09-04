@@ -1,0 +1,4366 @@
+{
+  "coverage": {
+    "by_dataset": {
+      "RE1-OB": {
+        "cases": 125,
+        "mean_candidates": 12.208,
+        "metric_entity_match_ratio": 0.9255952380952381,
+        "root_observable": 123,
+        "triggered_eligible": 123,
+        "unmatched_infrastructure": 125
+      },
+      "RE1-SS": {
+        "cases": 125,
+        "mean_candidates": 9.0,
+        "metric_entity_match_ratio": 0.6002132196162047,
+        "root_observable": 125,
+        "triggered_eligible": 125,
+        "unmatched_infrastructure": 750
+      },
+      "RE1-TT": {
+        "cases": 125,
+        "mean_candidates": 42.0,
+        "metric_entity_match_ratio": 0.65625,
+        "root_observable": 125,
+        "triggered_eligible": 125,
+        "unmatched_infrastructure": 2750
+      },
+      "RE2-OB": {
+        "cases": 90,
+        "mean_candidates": 7.0,
+        "metric_entity_match_ratio": 0.5822550831792976,
+        "root_observable": 90,
+        "triggered_eligible": 90,
+        "unmatched_infrastructure": 90
+      },
+      "RE2-SS": {
+        "cases": 90,
+        "mean_candidates": 9.0,
+        "metric_entity_match_ratio": 0.6005917159763313,
+        "root_observable": 90,
+        "triggered_eligible": 90,
+        "unmatched_infrastructure": 540
+      },
+      "RE2-TT": {
+        "cases": 90,
+        "mean_candidates": 25.155555555555555,
+        "metric_entity_match_ratio": 0.3696326530612245,
+        "root_observable": 90,
+        "triggered_eligible": 90,
+        "unmatched_infrastructure": 2340
+      },
+      "RE3-OB": {
+        "cases": 30,
+        "mean_candidates": 6.4,
+        "metric_entity_match_ratio": 0.5,
+        "root_observable": 6,
+        "triggered_eligible": 6,
+        "unmatched_infrastructure": 42
+      },
+      "RE3-SS": {
+        "cases": 30,
+        "mean_candidates": 9.0,
+        "metric_entity_match_ratio": 0.6073752711496746,
+        "root_observable": 30,
+        "triggered_eligible": 30,
+        "unmatched_infrastructure": 181
+      },
+      "RE3-TT": {
+        "cases": 30,
+        "mean_candidates": 15.566666666666666,
+        "metric_entity_match_ratio": 0.22813873961895456,
+        "root_observable": 30,
+        "triggered_eligible": 30,
+        "unmatched_infrastructure": 780
+      }
+    },
+    "cases": 735,
+    "metric_adapter": {
+      "cadence_seconds": {
+        "1.0": 735
+      },
+      "duplicate_timestamps": 0,
+      "inf_values": 0,
+      "missing_timestamps": 0,
+      "nan_values": 1793140,
+      "unknown_columns": 1105
+    }
+  },
+  "experiment_version": "m9b-v1",
+  "metric_study": {
+    "external": {
+      "by_dataset": {
+        "RE2-OB": {
+          "ac_at_1": 0.8888888888888888,
+          "ac_at_3": 1.0,
+          "cases": 90,
+          "mrr": 0.9425925925925925,
+          "ndcg_at_1": 0.8888888888888888,
+          "ndcg_at_3": 0.9575374198015901
+        },
+        "RE2-SS": {
+          "ac_at_1": 0.9555555555555556,
+          "ac_at_3": 0.9888888888888889,
+          "cases": 90,
+          "mrr": 0.975,
+          "ndcg_at_1": 0.9555555555555556,
+          "ndcg_at_3": 0.9765865473412707
+        },
+        "RE2-TT": {
+          "ac_at_1": 0.7222222222222222,
+          "ac_at_3": 0.9444444444444444,
+          "cases": 90,
+          "mrr": 0.8414814814814815,
+          "ndcg_at_1": 0.7222222222222222,
+          "ndcg_at_3": 0.8595192840476249
+        },
+        "RE3-OB": {
+          "ac_at_1": 0.3333333333333333,
+          "ac_at_3": 0.6666666666666666,
+          "cases": 6,
+          "mrr": 0.5666666666666667,
+          "ndcg_at_1": 0.3333333333333333,
+          "ndcg_at_3": 0.5436432511904858
+        },
+        "RE3-SS": {
+          "ac_at_1": 0.5333333333333333,
+          "ac_at_3": 0.8333333333333334,
+          "cases": 30,
+          "mrr": 0.7066666666666667,
+          "ndcg_at_1": 0.5333333333333333,
+          "ndcg_at_3": 0.7095192840476249
+        },
+        "RE3-TT": {
+          "ac_at_1": 0.8666666666666667,
+          "ac_at_3": 1.0,
+          "cases": 30,
+          "mrr": 0.9333333333333333,
+          "ndcg_at_1": 0.8666666666666667,
+          "ndcg_at_3": 0.9507906338095277
+        }
+      },
+      "overall": {
+        "ac_at_1": 0.8184523809523809,
+        "ac_at_3": 0.9613095238095238,
+        "cases": 336,
+        "mrr": 0.8955853174603176,
+        "ndcg_at_1": 0.8184523809523809,
+        "ndcg_at_3": 0.9062471715773845
+      }
+    },
+    "feature_group_ablation": {
+      "without_cpu": {
+        "ac_at_1": 0.7648809523809523,
+        "ac_at_3": 0.9285714285714286,
+        "cases": 336,
+        "mrr": 0.8564909297052155,
+        "ndcg_at_1": 0.7648809523809523,
+        "ndcg_at_3": 0.8650407691007693
+      },
+      "without_disk_io": {
+        "ac_at_1": 0.8392857142857143,
+        "ac_at_3": 0.9613095238095238,
+        "cases": 336,
+        "mrr": 0.9034545068027212,
+        "ndcg_at_1": 0.8392857142857143,
+        "ndcg_at_3": 0.9127671193877579
+      },
+      "without_latency_p50": {
+        "ac_at_1": 0.8601190476190477,
+        "ac_at_3": 0.9583333333333334,
+        "cases": 336,
+        "mrr": 0.9143849206349207,
+        "ndcg_at_1": 0.8601190476190477,
+        "ndcg_at_3": 0.9201370032738119
+      },
+      "without_latency_p90": {
+        "ac_at_1": 0.8482142857142857,
+        "ac_at_3": 0.9494047619047619,
+        "cases": 336,
+        "mrr": 0.9017730008670135,
+        "ndcg_at_1": 0.8482142857142857,
+        "ndcg_at_3": 0.90699263340774
+      },
+      "without_memory": {
+        "ac_at_1": 0.8422619047619048,
+        "ac_at_3": 0.9672619047619048,
+        "cases": 336,
+        "mrr": 0.9052131648113791,
+        "ndcg_at_1": 0.8422619047619048,
+        "ndcg_at_3": 0.9168417332164142
+      },
+      "without_socket": {
+        "ac_at_1": 0.8392857142857143,
+        "ac_at_3": 0.9613095238095238,
+        "cases": 336,
+        "mrr": 0.9034545068027212,
+        "ndcg_at_1": 0.8392857142857143,
+        "ndcg_at_3": 0.9127671193877579
+      },
+      "without_workload": {
+        "ac_at_1": 0.8392857142857143,
+        "ac_at_3": 0.9642857142857143,
+        "cases": 336,
+        "mrr": 0.9046745086923658,
+        "ndcg_at_1": 0.8392857142857143,
+        "ndcg_at_3": 0.9146448865114823
+      }
+    },
+    "final_training_cases": 373,
+    "frozen_hyperparameters": {
+      "colsample_bytree": 0.8,
+      "eta": 0.1,
+      "max_depth": 3,
+      "min_child_weight": 1,
+      "subsample": 0.8
+    },
+    "model_sha256": "5d4d56f058286005fa1e4dadfeb62cea2b57373b3607abd1bcca41472795a615",
+    "system_holdout": {
+      "OB+SS": {
+        "model_sha256": "2cb60e90067167a930e770a86c7ff57d8cb4f324dc81675395b6c1d2a0475130",
+        "test": {
+          "ac_at_1": 0.512,
+          "ac_at_3": 0.776,
+          "cases": 125,
+          "mrr": 0.6607136454189085,
+          "ndcg_at_1": 0.512,
+          "ndcg_at_3": 0.6659961986000048
+        },
+        "test_dataset": "RE1-TT",
+        "train_cases": 248,
+        "training_datasets": [
+          "RE1-OB",
+          "RE1-SS"
+        ],
+        "tuning": {
+          "search": [
+            {
+              "best_iteration": 7,
+              "hyperparameters": {
+                "colsample_bytree": 0.8,
+                "eta": 0.1,
+                "max_depth": 3,
+                "min_child_weight": 1,
+                "subsample": 0.8
+              },
+              "training_rounds": 8,
+              "validation": {
+                "ac_at_1": 0.9555555555555556,
+                "ac_at_3": 1.0,
+                "cases": 45,
+                "mrr": 0.9740740740740741,
+                "ndcg_at_1": 0.9555555555555556,
+                "ndcg_at_3": 0.9806873278571435
+              }
+            },
+            {
+              "best_iteration": 7,
+              "hyperparameters": {
+                "colsample_bytree": 0.8,
+                "eta": 0.03,
+                "max_depth": 3,
+                "min_child_weight": 5,
+                "subsample": 0.8
+              },
+              "training_rounds": 8,
+              "validation": {
+                "ac_at_1": 0.9555555555555556,
+                "ac_at_3": 1.0,
+                "cases": 45,
+                "mrr": 0.9740740740740741,
+                "ndcg_at_1": 0.9555555555555556,
+                "ndcg_at_3": 0.9806873278571435
+              }
+            },
+            {
+              "best_iteration": 6,
+              "hyperparameters": {
+                "colsample_bytree": 0.8,
+                "eta": 0.1,
+                "max_depth": 2,
+                "min_child_weight": 1,
+                "subsample": 0.8
+              },
+              "training_rounds": 7,
+              "validation": {
+                "ac_at_1": 0.9333333333333333,
+                "ac_at_3": 1.0,
+                "cases": 45,
+                "mrr": 0.9592592592592593,
+                "ndcg_at_1": 0.9333333333333333,
+                "ndcg_at_3": 0.9695762167460324
+              }
+            },
+            {
+              "best_iteration": 7,
+              "hyperparameters": {
+                "colsample_bytree": 0.8,
+                "eta": 0.03,
+                "max_depth": 2,
+                "min_child_weight": 1,
+                "subsample": 0.8
+              },
+              "training_rounds": 8,
+              "validation": {
+                "ac_at_1": 0.9111111111111111,
+                "ac_at_3": 1.0,
+                "cases": 45,
+                "mrr": 0.9481481481481481,
+                "ndcg_at_1": 0.9111111111111111,
+                "ndcg_at_3": 0.961374655714287
+              }
+            }
+          ],
+          "selected": {
+            "best_iteration": 7,
+            "hyperparameters": {
+              "colsample_bytree": 0.8,
+              "eta": 0.1,
+              "max_depth": 3,
+              "min_child_weight": 1,
+              "subsample": 0.8
+            },
+            "training_rounds": 8,
+            "validation": {
+              "ac_at_1": 0.9555555555555556,
+              "ac_at_3": 1.0,
+              "cases": 45,
+              "mrr": 0.9740740740740741,
+              "ndcg_at_1": 0.9555555555555556,
+              "ndcg_at_3": 0.9806873278571435
+            }
+          },
+          "train_incidents": 203,
+          "validation_incidents": 45
+        }
+      },
+      "OB+TT": {
+        "model_sha256": "4be282f299eb6a5ceffa5e6f81b92f2848fccd8c546acd056496b064c9f44c7d",
+        "test": {
+          "ac_at_1": 0.936,
+          "ac_at_3": 1.0,
+          "cases": 125,
+          "mrr": 0.968,
+          "ndcg_at_1": 0.936,
+          "ndcg_at_3": 0.9763795042285733
+        },
+        "test_dataset": "RE1-SS",
+        "train_cases": 248,
+        "training_datasets": [
+          "RE1-OB",
+          "RE1-TT"
+        ],
+        "tuning": {
+          "search": [
+            {
+              "best_iteration": 70,
+              "hyperparameters": {
+                "colsample_bytree": 0.8,
+                "eta": 0.1,
+                "max_depth": 2,
+                "min_child_weight": 1,
+                "subsample": 0.8
+              },
+              "training_rounds": 71,
+              "validation": {
+                "ac_at_1": 0.9,
+                "ac_at_3": 0.96,
+                "cases": 50,
+                "mrr": 0.9323333333333333,
+                "ndcg_at_1": 0.9,
+                "ndcg_at_3": 0.9326185950714292
+              }
+            },
+            {
+              "best_iteration": 57,
+              "hyperparameters": {
+                "colsample_bytree": 0.8,
+                "eta": 0.1,
+                "max_depth": 3,
+                "min_child_weight": 1,
+                "subsample": 0.8
+              },
+              "training_rounds": 58,
+              "validation": {
+                "ac_at_1": 0.88,
+                "ac_at_3": 0.98,
+                "cases": 50,
+                "mrr": 0.92,
+                "ndcg_at_1": 0.88,
+                "ndcg_at_3": 0.9326185950714292
+              }
+            },
+            {
+              "best_iteration": 23,
+              "hyperparameters": {
+                "colsample_bytree": 0.8,
+                "eta": 0.03,
+                "max_depth": 3,
+                "min_child_weight": 5,
+                "subsample": 0.8
+              },
+              "training_rounds": 24,
+              "validation": {
+                "ac_at_1": 0.84,
+                "ac_at_3": 0.92,
+                "cases": 50,
+                "mrr": 0.8868888888888888,
+                "ndcg_at_1": 0.84,
+                "ndcg_at_3": 0.8852371901428583
+              }
+            },
+            {
+              "best_iteration": 2,
+              "hyperparameters": {
+                "colsample_bytree": 0.8,
+                "eta": 0.03,
+                "max_depth": 2,
+                "min_child_weight": 1,
+                "subsample": 0.8
+              },
+              "training_rounds": 3,
+              "validation": {
+                "ac_at_1": 0.72,
+                "ac_at_3": 0.9,
+                "cases": 50,
+                "mrr": 0.8123834586466165,
+                "ndcg_at_1": 0.72,
+                "ndcg_at_3": 0.8230929753571458
+              }
+            }
+          ],
+          "selected": {
+            "best_iteration": 70,
+            "hyperparameters": {
+              "colsample_bytree": 0.8,
+              "eta": 0.1,
+              "max_depth": 2,
+              "min_child_weight": 1,
+              "subsample": 0.8
+            },
+            "training_rounds": 71,
+            "validation": {
+              "ac_at_1": 0.9,
+              "ac_at_3": 0.96,
+              "cases": 50,
+              "mrr": 0.9323333333333333,
+              "ndcg_at_1": 0.9,
+              "ndcg_at_3": 0.9326185950714292
+            }
+          },
+          "train_incidents": 198,
+          "validation_incidents": 50
+        }
+      },
+      "SS+TT": {
+        "model_sha256": "d3de1386c0e09952de6ccdb355a7276bc9f939399c49901b1c713a419bf40886",
+        "test": {
+          "ac_at_1": 0.7886178861788617,
+          "ac_at_3": 0.967479674796748,
+          "cases": 123,
+          "mrr": 0.8712737127371274,
+          "ndcg_at_1": 0.7886178861788617,
+          "ndcg_at_3": 0.8897579454413498
+        },
+        "test_dataset": "RE1-OB",
+        "train_cases": 250,
+        "training_datasets": [
+          "RE1-SS",
+          "RE1-TT"
+        ],
+        "tuning": {
+          "search": [
+            {
+              "best_iteration": 28,
+              "hyperparameters": {
+                "colsample_bytree": 0.8,
+                "eta": 0.03,
+                "max_depth": 3,
+                "min_child_weight": 5,
+                "subsample": 0.8
+              },
+              "training_rounds": 29,
+              "validation": {
+                "ac_at_1": 0.9661016949152542,
+                "ac_at_3": 0.9830508474576272,
+                "cases": 59,
+                "mrr": 0.9779661016949153,
+                "ndcg_at_1": 0.9661016949152542,
+                "ndcg_at_3": 0.9767954195520586
+              }
+            },
+            {
+              "best_iteration": 22,
+              "hyperparameters": {
+                "colsample_bytree": 0.8,
+                "eta": 0.1,
+                "max_depth": 3,
+                "min_child_weight": 1,
+                "subsample": 0.8
+              },
+              "training_rounds": 23,
+              "validation": {
+                "ac_at_1": 0.9491525423728814,
+                "ac_at_3": 0.9830508474576272,
+                "cases": 59,
+                "mrr": 0.9694915254237289,
+                "ndcg_at_1": 0.9491525423728814,
+                "ndcg_at_3": 0.9705399916464901
+              }
+            },
+            {
+              "best_iteration": 23,
+              "hyperparameters": {
+                "colsample_bytree": 0.8,
+                "eta": 0.1,
+                "max_depth": 2,
+                "min_child_weight": 1,
+                "subsample": 0.8
+              },
+              "training_rounds": 24,
+              "validation": {
+                "ac_at_1": 0.9322033898305084,
+                "ac_at_3": 0.9830508474576272,
+                "cases": 59,
+                "mrr": 0.9610169491525424,
+                "ndcg_at_1": 0.9322033898305084,
+                "ndcg_at_3": 0.9642845637409215
+              }
+            },
+            {
+              "best_iteration": 19,
+              "hyperparameters": {
+                "colsample_bytree": 0.8,
+                "eta": 0.03,
+                "max_depth": 2,
+                "min_child_weight": 1,
+                "subsample": 0.8
+              },
+              "training_rounds": 20,
+              "validation": {
+                "ac_at_1": 0.9322033898305084,
+                "ac_at_3": 0.9830508474576272,
+                "cases": 59,
+                "mrr": 0.9604519774011299,
+                "ndcg_at_1": 0.9322033898305084,
+                "ndcg_at_3": 0.9642845637409215
+              }
+            }
+          ],
+          "selected": {
+            "best_iteration": 28,
+            "hyperparameters": {
+              "colsample_bytree": 0.8,
+              "eta": 0.03,
+              "max_depth": 3,
+              "min_child_weight": 5,
+              "subsample": 0.8
+            },
+            "training_rounds": 29,
+            "validation": {
+              "ac_at_1": 0.9661016949152542,
+              "ac_at_3": 0.9830508474576272,
+              "cases": 59,
+              "mrr": 0.9779661016949153,
+              "ndcg_at_1": 0.9661016949152542,
+              "ndcg_at_3": 0.9767954195520586
+            }
+          },
+          "train_incidents": 191,
+          "validation_incidents": 59
+        }
+      }
+    },
+    "training_rounds": 23,
+    "version": "m9b-metric-lambdamart-v1"
+  },
+  "multisource_study": {
+    "autonomous_m5_trigger": {
+      "cases": 240,
+      "detection_recall": 0.5291666666666667,
+      "detector": "frozen M5/v1",
+      "end_to_end_ac_at_1": 0.3458333333333333,
+      "healthy_fpr": 0.07083333333333333,
+      "historical_localization_eligible": 127,
+      "historical_m6_m7_methods": {
+        "chance": {
+          "ac_at_1": 0.08601281191832372,
+          "ac_at_3": 0.25803843575497115,
+          "mrr": 0.249224631256548,
+          "ndcg_at_1": 0.08601281191832372,
+          "ndcg_at_3": 0.1832872601051017
+        },
+        "frozen_m7": {
+          "ac_at_1": 0.1732283464566929,
+          "ac_at_3": 0.4094488188976378,
+          "mrr": 0.30291373016626144,
+          "ndcg_at_1": 0.1732283464566929,
+          "ndcg_at_3": 0.29133858267716534
+        },
+        "hybrid_v1": {
+          "ac_at_1": 0.5511811023622047,
+          "ac_at_3": 0.5905511811023622,
+          "mrr": 0.5708661417322834,
+          "ndcg_at_1": 0.5511811023622047,
+          "ndcg_at_3": 0.5760208564398211
+        },
+        "local_evidence": {
+          "ac_at_1": 0.5511811023622047,
+          "ac_at_3": 0.5905511811023622,
+          "mrr": 0.5708661417322834,
+          "ndcg_at_1": 0.5511811023622047,
+          "ndcg_at_3": 0.5760208564398211
+        },
+        "max_severity": {
+          "ac_at_1": 0.48031496062992124,
+          "ac_at_3": 0.5590551181102362,
+          "mrr": 0.5264654418197725,
+          "ndcg_at_1": 0.48031496062992124,
+          "ndcg_at_3": 0.5299944687851541
+        },
+        "topology_consistency": {
+          "ac_at_1": 0.5590551181102362,
+          "ac_at_3": 0.5905511811023622,
+          "mrr": 0.5734908136482939,
+          "ndcg_at_1": 0.5590551181102362,
+          "ndcg_at_3": 0.5778959784308217
+        }
+      }
+    },
+    "baseline_by_dataset": {
+      "RE2-OB": {
+        "chance": {
+          "ac_at_1": 0.1428571428571428,
+          "ac_at_3": 0.42857142857142855,
+          "cases": 90,
+          "mrr": 0.37040816326530596,
+          "ndcg_at_1": 0.1428571428571428,
+          "ndcg_at_3": 0.3044185362244939
+        },
+        "m9b_metric_lambdamart": {
+          "ac_at_1": 0.8888888888888888,
+          "ac_at_3": 1.0,
+          "cases": 90,
+          "mrr": 0.9425925925925925,
+          "ndcg_at_1": 0.8888888888888888,
+          "ndcg_at_3": 0.9575374198015901
+        },
+        "metric_max_shift": {
+          "ac_at_1": 0.7666666666666667,
+          "ac_at_3": 0.9555555555555556,
+          "cases": 90,
+          "mrr": 0.8638888888888889,
+          "ndcg_at_1": 0.7666666666666667,
+          "ndcg_at_3": 0.8800231866269883
+        },
+        "metric_top2": {
+          "ac_at_1": 0.7666666666666667,
+          "ac_at_3": 0.9555555555555556,
+          "cases": 90,
+          "mrr": 0.8638888888888889,
+          "ndcg_at_1": 0.7666666666666667,
+          "ndcg_at_3": 0.8800231866269883
+        },
+        "rank_fusion_v1": {
+          "ac_at_1": 0.6777777777777778,
+          "ac_at_3": 1.0,
+          "cases": 90,
+          "mrr": 0.8259259259259258,
+          "ndcg_at_1": 0.6777777777777778,
+          "ndcg_at_3": 0.8708939397619119
+        },
+        "soft_hybrid_v1": {
+          "ac_at_1": 0.35555555555555557,
+          "ac_at_3": 0.8333333333333334,
+          "cases": 90,
+          "mrr": 0.5909259259259259,
+          "ndcg_at_1": 0.35555555555555557,
+          "ndcg_at_3": 0.6264494953174674
+        },
+        "soft_topology_v1": {
+          "ac_at_1": 0.2,
+          "ac_at_3": 0.7,
+          "cases": 90,
+          "mrr": 0.46944444444444444,
+          "ndcg_at_1": 0.2,
+          "ndcg_at_3": 0.4776407257539743
+        },
+        "soft_trace_v1": {
+          "ac_at_1": 0.3,
+          "ac_at_3": 0.6111111111111112,
+          "cases": 90,
+          "mrr": 0.5235714285714286,
+          "ndcg_at_1": 0.3,
+          "ndcg_at_3": 0.48465105634921274
+        }
+      },
+      "RE2-TT": {
+        "chance": {
+          "ac_at_1": 0.040234621345732455,
+          "ac_at_3": 0.12070386403719736,
+          "cases": 90,
+          "mrr": 0.15306849322491328,
+          "ndcg_at_1": 0.040234621345732455,
+          "ndcg_at_3": 0.08573715174930258
+        },
+        "m9b_metric_lambdamart": {
+          "ac_at_1": 0.7222222222222222,
+          "ac_at_3": 0.9444444444444444,
+          "cases": 90,
+          "mrr": 0.8414814814814815,
+          "ndcg_at_1": 0.7222222222222222,
+          "ndcg_at_3": 0.8595192840476249
+        },
+        "metric_max_shift": {
+          "ac_at_1": 0.14444444444444443,
+          "ac_at_3": 0.32222222222222224,
+          "cases": 90,
+          "mrr": 0.28840919247781993,
+          "ndcg_at_1": 0.14444444444444443,
+          "ndcg_at_3": 0.24788108373016193
+        },
+        "metric_top2": {
+          "ac_at_1": 0.13333333333333333,
+          "ac_at_3": 0.32222222222222224,
+          "cases": 90,
+          "mrr": 0.2827150506871869,
+          "ndcg_at_1": 0.13333333333333333,
+          "ndcg_at_3": 0.24378030321428923
+        },
+        "rank_fusion_v1": {
+          "ac_at_1": 0.18888888888888888,
+          "ac_at_3": 0.5888888888888889,
+          "cases": 90,
+          "mrr": 0.41971052096052097,
+          "ndcg_at_1": 0.18888888888888888,
+          "ndcg_at_3": 0.4179843896825461
+        },
+        "soft_hybrid_v1": {
+          "ac_at_1": 0.37777777777777777,
+          "ac_at_3": 0.45555555555555555,
+          "cases": 90,
+          "mrr": 0.462692964929807,
+          "ndcg_at_1": 0.37777777777777777,
+          "ndcg_at_3": 0.423940541865081
+        },
+        "soft_topology_v1": {
+          "ac_at_1": 0.24444444444444444,
+          "ac_at_3": 0.3,
+          "cases": 90,
+          "mrr": 0.3470232836585494,
+          "ndcg_at_1": 0.24444444444444444,
+          "ndcg_at_3": 0.2780413223809537
+        },
+        "soft_trace_v1": {
+          "ac_at_1": 0.3111111111111111,
+          "ac_at_3": 0.5555555555555556,
+          "cases": 90,
+          "mrr": 0.46440478705829585,
+          "ndcg_at_1": 0.3111111111111111,
+          "ndcg_at_3": 0.45224540884921055
+        }
+      },
+      "RE3-OB": {
+        "chance": {
+          "ac_at_1": 0.1714285714285714,
+          "ac_at_3": 0.5142857142857141,
+          "cases": 6,
+          "mrr": 0.41353741496598634,
+          "ndcg_at_1": 0.1714285714285714,
+          "ndcg_at_3": 0.3653022434693927
+        },
+        "m9b_metric_lambdamart": {
+          "ac_at_1": 0.3333333333333333,
+          "ac_at_3": 0.6666666666666666,
+          "cases": 6,
+          "mrr": 0.5666666666666667,
+          "ndcg_at_1": 0.3333333333333333,
+          "ndcg_at_3": 0.5436432511904858
+        },
+        "metric_max_shift": {
+          "ac_at_1": 0.5,
+          "ac_at_3": 1.0,
+          "cases": 6,
+          "mrr": 0.75,
+          "ndcg_at_1": 0.5,
+          "ndcg_at_3": 0.8154648767857288
+        },
+        "metric_top2": {
+          "ac_at_1": 0.5,
+          "ac_at_3": 1.0,
+          "cases": 6,
+          "mrr": 0.75,
+          "ndcg_at_1": 0.5,
+          "ndcg_at_3": 0.8154648767857288
+        },
+        "rank_fusion_v1": {
+          "ac_at_1": 0.5,
+          "ac_at_3": 0.8333333333333334,
+          "cases": 6,
+          "mrr": 0.6722222222222222,
+          "ndcg_at_1": 0.5,
+          "ndcg_at_3": 0.6884882922619097
+        },
+        "soft_hybrid_v1": {
+          "ac_at_1": 0.0,
+          "ac_at_3": 0.6666666666666666,
+          "cases": 6,
+          "mrr": 0.35714285714285715,
+          "ndcg_at_1": 0.0,
+          "ndcg_at_3": 0.3987982101190621
+        },
+        "soft_topology_v1": {
+          "ac_at_1": 0.0,
+          "ac_at_3": 0.5,
+          "cases": 6,
+          "mrr": 0.2916666666666667,
+          "ndcg_at_1": 0.0,
+          "ndcg_at_3": 0.25
+        },
+        "soft_trace_v1": {
+          "ac_at_1": 0.0,
+          "ac_at_3": 0.5,
+          "cases": 6,
+          "mrr": 0.2654761904761905,
+          "ndcg_at_1": 0.0,
+          "ndcg_at_3": 0.25
+        }
+      },
+      "RE3-TT": {
+        "chance": {
+          "ac_at_1": 0.06516191325014856,
+          "ac_at_3": 0.19548573975044573,
+          "cases": 30,
+          "mrr": 0.2171696621157504,
+          "ndcg_at_1": 0.06516191325014856,
+          "ndcg_at_3": 0.13885545974438374
+        },
+        "m9b_metric_lambdamart": {
+          "ac_at_1": 0.8666666666666667,
+          "ac_at_3": 1.0,
+          "cases": 30,
+          "mrr": 0.9333333333333333,
+          "ndcg_at_1": 0.8666666666666667,
+          "ndcg_at_3": 0.9507906338095277
+        },
+        "metric_max_shift": {
+          "ac_at_1": 0.7666666666666667,
+          "ac_at_3": 0.8,
+          "cases": 30,
+          "mrr": 0.8037710437710437,
+          "ndcg_at_1": 0.7666666666666667,
+          "ndcg_at_3": 0.7876976584523819
+        },
+        "metric_top2": {
+          "ac_at_1": 0.7666666666666667,
+          "ac_at_3": 0.8,
+          "cases": 30,
+          "mrr": 0.8037710437710437,
+          "ndcg_at_1": 0.7666666666666667,
+          "ndcg_at_3": 0.7876976584523819
+        },
+        "rank_fusion_v1": {
+          "ac_at_1": 0.2,
+          "ac_at_3": 0.6666666666666666,
+          "cases": 30,
+          "mrr": 0.4575420875420875,
+          "ndcg_at_1": 0.2,
+          "ndcg_at_3": 0.4726122594047706
+        },
+        "soft_hybrid_v1": {
+          "ac_at_1": 0.0,
+          "ac_at_3": 0.16666666666666666,
+          "cases": 30,
+          "mrr": 0.18259620009620012,
+          "ndcg_at_1": 0.0,
+          "ndcg_at_3": 0.09642630869047908
+        },
+        "soft_topology_v1": {
+          "ac_at_1": 0.0,
+          "ac_at_3": 0.5,
+          "cases": 30,
+          "mrr": 0.2130050505050505,
+          "ndcg_at_1": 0.0,
+          "ndcg_at_3": 0.25872865023809716
+        },
+        "soft_trace_v1": {
+          "ac_at_1": 0.26666666666666666,
+          "ac_at_3": 0.43333333333333335,
+          "cases": 30,
+          "mrr": 0.41804651775240015,
+          "ndcg_at_1": 0.26666666666666666,
+          "ndcg_at_3": 0.3718216255952429
+        }
+      }
+    },
+    "baselines": {
+      "chance": {
+        "ac_at_1": 0.09010040557562343,
+        "ac_at_3": 0.2703012167268703,
+        "cases": 216,
+        "mrr": 0.2597648770249452,
+        "ndcg_at_1": 0.09010040557562343,
+        "ndcg_at_3": 0.19199763504995163
+      },
+      "m9b_metric_lambdamart": {
+        "ac_at_1": 0.8009259259259259,
+        "ac_at_3": 0.9675925925925926,
+        "cases": 216,
+        "mrr": 0.8887345679012346,
+        "ndcg_at_1": 0.8009259259259259,
+        "ndcg_at_3": 0.9042624160548987
+      },
+      "metric_max_shift": {
+        "ac_at_1": 0.5,
+        "ac_at_3": 0.6712962962962963,
+        "cases": 216,
+        "mrr": 0.6125924010932181,
+        "ndcg_at_1": 0.5,
+        "ndcg_at_3": 0.6020143673445804
+      },
+      "metric_top2": {
+        "ac_at_1": 0.49537037037037035,
+        "ac_at_3": 0.6712962962962963,
+        "cases": 216,
+        "mrr": 0.6102198420137877,
+        "ndcg_at_1": 0.49537037037037035,
+        "ndcg_at_3": 0.6003057087963001
+      },
+      "rank_fusion_v1": {
+        "ac_at_1": 0.4027777777777778,
+        "ac_at_3": 0.7777777777777778,
+        "cases": 216,
+        "mrr": 0.6012355378674824,
+        "ndcg_at_1": 0.4027777777777778,
+        "ndcg_at_3": 0.6217979036375731
+      },
+      "soft_hybrid_v1": {
+        "ac_at_1": 0.3055555555555556,
+        "ac_at_3": 0.5787037037037037,
+        "cases": 216,
+        "mrr": 0.4742890894572181,
+        "ndcg_at_1": 0.3055555555555556,
+        "ndcg_at_3": 0.46213278642526895
+      },
+      "soft_topology_v1": {
+        "ac_at_1": 0.18518518518518517,
+        "ac_at_3": 0.5,
+        "cases": 216,
+        "mrr": 0.3778807733538007,
+        "ndcg_at_1": 0.18518518518518517,
+        "ndcg_at_3": 0.35774649925595575
+      },
+      "soft_trace_v1": {
+        "ac_at_1": 0.2916666666666667,
+        "ac_at_3": 0.5601851851851852,
+        "cases": 216,
+        "mrr": 0.4770931114912238,
+        "ndcg_at_1": 0.2916666666666667,
+        "ndcg_at_3": 0.4489598640542379
+      }
+    },
+    "best_m9b": "m9b_metric_lambdamart",
+    "best_trace_only": "soft_hybrid_v1",
+    "folds": {
+      "train_RE2-OB_test_TT": {
+        "model_path": "ml/models/m9b-v1/multisource-folds/train_RE2-OB_test_TT.json",
+        "model_sha256": "54378ca63f1a6a29a43f24bdda7596010944714dd31dfac5cc2c0569800bca83",
+        "tests": {
+          "RE2-TT": {
+            "ac_at_1": 0.6,
+            "ac_at_3": 0.7666666666666667,
+            "cases": 90,
+            "mrr": 0.7123383838383839,
+            "ndcg_at_1": 0.6,
+            "ndcg_at_3": 0.7007906338095277
+          },
+          "RE3-TT": {
+            "ac_at_1": 0.9666666666666667,
+            "ac_at_3": 1.0,
+            "cases": 30,
+            "mrr": 0.9833333333333333,
+            "ndcg_at_1": 0.9666666666666667,
+            "ndcg_at_3": 0.9876976584523819
+          }
+        },
+        "train_cases": 90,
+        "train_dataset": "RE2-OB",
+        "tuning": {
+          "search": [
+            {
+              "best_iteration": 9,
+              "hyperparameters": {
+                "colsample_bytree": 0.8,
+                "eta": 0.1,
+                "max_depth": 2,
+                "min_child_weight": 1,
+                "subsample": 0.8
+              },
+              "training_rounds": 10,
+              "validation": {
+                "ac_at_1": 1.0,
+                "ac_at_3": 1.0,
+                "cases": 17,
+                "mrr": 1.0,
+                "ndcg_at_1": 1.0,
+                "ndcg_at_3": 1.0
+              }
+            },
+            {
+              "best_iteration": 1,
+              "hyperparameters": {
+                "colsample_bytree": 0.8,
+                "eta": 0.03,
+                "max_depth": 2,
+                "min_child_weight": 1,
+                "subsample": 0.8
+              },
+              "training_rounds": 2,
+              "validation": {
+                "ac_at_1": 0.9411764705882353,
+                "ac_at_3": 1.0,
+                "cases": 17,
+                "mrr": 0.9705882352941176,
+                "ndcg_at_1": 0.9411764705882353,
+                "ndcg_at_3": 0.9782899855042034
+              }
+            },
+            {
+              "best_iteration": 1,
+              "hyperparameters": {
+                "colsample_bytree": 0.8,
+                "eta": 0.1,
+                "max_depth": 3,
+                "min_child_weight": 1,
+                "subsample": 0.8
+              },
+              "training_rounds": 2,
+              "validation": {
+                "ac_at_1": 0.9411764705882353,
+                "ac_at_3": 1.0,
+                "cases": 17,
+                "mrr": 0.9705882352941176,
+                "ndcg_at_1": 0.9411764705882353,
+                "ndcg_at_3": 0.9782899855042034
+              }
+            },
+            {
+              "best_iteration": 0,
+              "hyperparameters": {
+                "colsample_bytree": 0.8,
+                "eta": 0.03,
+                "max_depth": 3,
+                "min_child_weight": 5,
+                "subsample": 0.8
+              },
+              "training_rounds": 1,
+              "validation": {
+                "ac_at_1": 0.9411764705882353,
+                "ac_at_3": 1.0,
+                "cases": 17,
+                "mrr": 0.9705882352941176,
+                "ndcg_at_1": 0.9411764705882353,
+                "ndcg_at_3": 0.9782899855042034
+              }
+            }
+          ],
+          "selected": {
+            "best_iteration": 9,
+            "hyperparameters": {
+              "colsample_bytree": 0.8,
+              "eta": 0.1,
+              "max_depth": 2,
+              "min_child_weight": 1,
+              "subsample": 0.8
+            },
+            "training_rounds": 10,
+            "validation": {
+              "ac_at_1": 1.0,
+              "ac_at_3": 1.0,
+              "cases": 17,
+              "mrr": 1.0,
+              "ndcg_at_1": 1.0,
+              "ndcg_at_3": 1.0
+            }
+          },
+          "train_incidents": 73,
+          "validation_incidents": 17
+        }
+      },
+      "train_RE2-TT_test_OB": {
+        "model_path": "ml/models/m9b-v1/multisource-folds/train_RE2-TT_test_OB.json",
+        "model_sha256": "1e3e3525815a0c682d4b8a591300a2ed524a0e21a0c7df94e9bc207fae2c59ff",
+        "tests": {
+          "RE2-OB": {
+            "ac_at_1": 0.7333333333333333,
+            "ac_at_3": 0.9777777777777777,
+            "cases": 90,
+            "mrr": 0.8481481481481481,
+            "ndcg_at_1": 0.7333333333333333,
+            "ndcg_at_3": 0.8773771811507984
+          },
+          "RE3-OB": {
+            "ac_at_1": 0.5,
+            "ac_at_3": 1.0,
+            "cases": 6,
+            "mrr": 0.6944444444444445,
+            "ndcg_at_1": 0.5,
+            "ndcg_at_3": 0.7718216255952429
+          }
+        },
+        "train_cases": 90,
+        "train_dataset": "RE2-TT",
+        "tuning": {
+          "search": [
+            {
+              "best_iteration": 14,
+              "hyperparameters": {
+                "colsample_bytree": 0.8,
+                "eta": 0.1,
+                "max_depth": 2,
+                "min_child_weight": 1,
+                "subsample": 0.8
+              },
+              "training_rounds": 15,
+              "validation": {
+                "ac_at_1": 0.9545454545454546,
+                "ac_at_3": 0.9545454545454546,
+                "cases": 22,
+                "mrr": 0.9602272727272727,
+                "ndcg_at_1": 0.9545454545454546,
+                "ndcg_at_3": 0.9545454545454546
+              }
+            },
+            {
+              "best_iteration": 3,
+              "hyperparameters": {
+                "colsample_bytree": 0.8,
+                "eta": 0.03,
+                "max_depth": 3,
+                "min_child_weight": 5,
+                "subsample": 0.8
+              },
+              "training_rounds": 4,
+              "validation": {
+                "ac_at_1": 0.9090909090909091,
+                "ac_at_3": 0.9545454545454546,
+                "cases": 22,
+                "mrr": 0.9383116883116883,
+                "ndcg_at_1": 0.9090909090909091,
+                "ndcg_at_3": 0.937769534253248
+              }
+            },
+            {
+              "best_iteration": 13,
+              "hyperparameters": {
+                "colsample_bytree": 0.8,
+                "eta": 0.03,
+                "max_depth": 2,
+                "min_child_weight": 1,
+                "subsample": 0.8
+              },
+              "training_rounds": 14,
+              "validation": {
+                "ac_at_1": 0.9090909090909091,
+                "ac_at_3": 0.9545454545454546,
+                "cases": 22,
+                "mrr": 0.9375,
+                "ndcg_at_1": 0.9090909090909091,
+                "ndcg_at_3": 0.937769534253248
+              }
+            },
+            {
+              "best_iteration": 2,
+              "hyperparameters": {
+                "colsample_bytree": 0.8,
+                "eta": 0.1,
+                "max_depth": 3,
+                "min_child_weight": 1,
+                "subsample": 0.8
+              },
+              "training_rounds": 3,
+              "validation": {
+                "ac_at_1": 0.8636363636363636,
+                "ac_at_3": 1.0,
+                "cases": 22,
+                "mrr": 0.9242424242424242,
+                "ndcg_at_1": 0.8636363636363636,
+                "ndcg_at_3": 0.9437208866883143
+              }
+            }
+          ],
+          "selected": {
+            "best_iteration": 14,
+            "hyperparameters": {
+              "colsample_bytree": 0.8,
+              "eta": 0.1,
+              "max_depth": 2,
+              "min_child_weight": 1,
+              "subsample": 0.8
+            },
+            "training_rounds": 15,
+            "validation": {
+              "ac_at_1": 0.9545454545454546,
+              "ac_at_3": 0.9545454545454546,
+              "cases": 22,
+              "mrr": 0.9602272727272727,
+              "ndcg_at_1": 0.9545454545454546,
+              "ndcg_at_3": 0.9545454545454546
+            }
+          },
+          "train_incidents": 68,
+          "validation_incidents": 22
+        }
+      }
+    },
+    "modality_ablation": {
+      "all": {
+        "ac_at_1": 0.7037037037037037,
+        "ac_at_3": 0.8935185185185185,
+        "cases": 216,
+        "columns": 253,
+        "mrr": 0.8060669191919193,
+        "ndcg_at_1": 0.7037037037037037,
+        "ndcg_at_3": 0.8161896428406124
+      },
+      "metrics_only": {
+        "ac_at_1": 0.6435185185185185,
+        "ac_at_3": 0.8657407407407407,
+        "cases": 216,
+        "columns": 206,
+        "mrr": 0.7679006692895582,
+        "ndcg_at_1": 0.6435185185185185,
+        "ndcg_at_3": 0.775845098958338
+      },
+      "metrics_topology": {
+        "ac_at_1": 0.6666666666666666,
+        "ac_at_3": 0.8657407407407407,
+        "cases": 216,
+        "columns": 226,
+        "mrr": 0.775270413742636,
+        "ndcg_at_1": 0.6666666666666666,
+        "ndcg_at_3": 0.7825699229001359
+      },
+      "metrics_traces": {
+        "ac_at_1": 0.6157407407407407,
+        "ac_at_3": 0.8657407407407407,
+        "cases": 216,
+        "columns": 232,
+        "mrr": 0.7501143069893069,
+        "ndcg_at_1": 0.6157407407407407,
+        "ndcg_at_3": 0.7631685226025182
+      },
+      "topology_only": {
+        "ac_at_1": 0.27314814814814814,
+        "ac_at_3": 0.5324074074074074,
+        "cases": 216,
+        "columns": 20,
+        "mrr": 0.4474136986778418,
+        "ndcg_at_1": 0.27314814814814814,
+        "ndcg_at_3": 0.4221747783068826
+      },
+      "traces_only": {
+        "ac_at_1": 0.4722222222222222,
+        "ac_at_3": 0.6990740740740741,
+        "cases": 216,
+        "columns": 26,
+        "mrr": 0.6147242662173218,
+        "ndcg_at_1": 0.4722222222222222,
+        "ndcg_at_3": 0.6044389924107185
+      },
+      "traces_topology": {
+        "ac_at_1": 0.30092592592592593,
+        "ac_at_3": 0.625,
+        "cases": 216,
+        "columns": 46,
+        "mrr": 0.5137428415206193,
+        "ndcg_at_1": 0.30092592592592593,
+        "ndcg_at_3": 0.4963015576223619
+      }
+    },
+    "paired_vs_best_trace": {
+      "ac_at_1": {
+        "ci_high": 0.5787037037037037,
+        "ci_low": 0.4027777777777778,
+        "difference": 0.49537037037037035
+      },
+      "mrr": {
+        "ci_high": 0.47352904770667925,
+        "ci_low": 0.3508392287266556,
+        "difference": 0.4144454784440165
+      }
+    },
+    "triggered": {
+      "by_dataset": {
+        "RE2-OB": {
+          "ac_at_1": 0.7333333333333333,
+          "ac_at_3": 0.9777777777777777,
+          "cases": 90,
+          "mrr": 0.8481481481481481,
+          "ndcg_at_1": 0.7333333333333333,
+          "ndcg_at_3": 0.8773771811507984
+        },
+        "RE2-TT": {
+          "ac_at_1": 0.6,
+          "ac_at_3": 0.7666666666666667,
+          "cases": 90,
+          "mrr": 0.7123383838383839,
+          "ndcg_at_1": 0.6,
+          "ndcg_at_3": 0.7007906338095277
+        },
+        "RE3-OB": {
+          "ac_at_1": 0.5,
+          "ac_at_3": 1.0,
+          "cases": 6,
+          "mrr": 0.6944444444444445,
+          "ndcg_at_1": 0.5,
+          "ndcg_at_3": 0.7718216255952429
+        },
+        "RE3-TT": {
+          "ac_at_1": 0.9666666666666667,
+          "ac_at_3": 1.0,
+          "cases": 30,
+          "mrr": 0.9833333333333333,
+          "ndcg_at_1": 0.9666666666666667,
+          "ndcg_at_3": 0.9876976584523819
+        }
+      },
+      "overall": {
+        "ac_at_1": 0.7037037037037037,
+        "ac_at_3": 0.8935185185185185,
+        "cases": 216,
+        "mrr": 0.8060669191919193,
+        "ndcg_at_1": 0.7037037037037037,
+        "ndcg_at_3": 0.8161896428406124
+      }
+    },
+    "version": "m9b-multisource-lambdamart-v1"
+  },
+  "official_baselines": {
+    "methods": {
+      "baro": {
+        "cases": [
+          {
+            "case": "re2ob_checkoutservice_cpu_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 56,
+            "rank": 2,
+            "root": "checkoutservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_checkoutservice_cpu_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 58,
+            "rank": 2,
+            "root": "checkoutservice",
+            "service_candidates": 14
+          },
+          {
+            "case": "re2ob_checkoutservice_cpu_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 3,
+            "root": "checkoutservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_checkoutservice_delay_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 5,
+            "root": "checkoutservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_checkoutservice_delay_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 5,
+            "root": "checkoutservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_checkoutservice_delay_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 54,
+            "rank": 4,
+            "root": "checkoutservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_checkoutservice_disk_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 56,
+            "rank": 1,
+            "root": "checkoutservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_checkoutservice_disk_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 56,
+            "rank": 1,
+            "root": "checkoutservice",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ob_checkoutservice_disk_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 54,
+            "rank": 2,
+            "root": "checkoutservice",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ob_checkoutservice_loss_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "checkoutservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_checkoutservice_loss_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 3,
+            "root": "checkoutservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_checkoutservice_loss_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 61,
+            "rank": 5,
+            "root": "checkoutservice",
+            "service_candidates": 13
+          },
+          {
+            "case": "re2ob_checkoutservice_mem_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "checkoutservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_checkoutservice_mem_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 58,
+            "rank": 2,
+            "root": "checkoutservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_checkoutservice_mem_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 56,
+            "rank": 1,
+            "root": "checkoutservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_checkoutservice_socket_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 60,
+            "rank": 1,
+            "root": "checkoutservice",
+            "service_candidates": 13
+          },
+          {
+            "case": "re2ob_checkoutservice_socket_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "checkoutservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_checkoutservice_socket_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "checkoutservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_currencyservice_cpu_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "currencyservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_currencyservice_cpu_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 3,
+            "root": "currencyservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_currencyservice_cpu_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "currencyservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_currencyservice_delay_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "currencyservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_currencyservice_delay_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 56,
+            "rank": 2,
+            "root": "currencyservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_currencyservice_delay_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "currencyservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_currencyservice_disk_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 56,
+            "rank": 1,
+            "root": "currencyservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_currencyservice_disk_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 56,
+            "rank": 3,
+            "root": "currencyservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_currencyservice_disk_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 3,
+            "root": "currencyservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_currencyservice_loss_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "currencyservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_currencyservice_loss_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 57,
+            "rank": 4,
+            "root": "currencyservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_currencyservice_loss_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 56,
+            "rank": 5,
+            "root": "currencyservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_currencyservice_mem_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "currencyservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_currencyservice_mem_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 56,
+            "rank": 2,
+            "root": "currencyservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_currencyservice_mem_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 57,
+            "rank": 2,
+            "root": "currencyservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_currencyservice_socket_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 4,
+            "root": "currencyservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_currencyservice_socket_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 3,
+            "root": "currencyservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_currencyservice_socket_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 56,
+            "rank": 3,
+            "root": "currencyservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_emailservice_cpu_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 3,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_emailservice_cpu_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 56,
+            "rank": 2,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_emailservice_cpu_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_emailservice_delay_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 3,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_emailservice_delay_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_emailservice_delay_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_emailservice_disk_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_emailservice_disk_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 56,
+            "rank": 1,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_emailservice_disk_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 57,
+            "rank": 2,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_emailservice_loss_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 56,
+            "rank": 2,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_emailservice_loss_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_emailservice_loss_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_emailservice_mem_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 1,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_emailservice_mem_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 56,
+            "rank": 1,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_emailservice_mem_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 1,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_emailservice_socket_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 56,
+            "rank": 2,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_emailservice_socket_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_emailservice_socket_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 56,
+            "rank": 2,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_productcatalogservice_cpu_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "productcatalogservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_productcatalogservice_cpu_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 56,
+            "rank": 2,
+            "root": "productcatalogservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_productcatalogservice_cpu_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "productcatalogservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_productcatalogservice_delay_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "productcatalogservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_productcatalogservice_delay_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "productcatalogservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_productcatalogservice_delay_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 58,
+            "rank": 3,
+            "root": "productcatalogservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_productcatalogservice_disk_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 56,
+            "rank": 1,
+            "root": "productcatalogservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_productcatalogservice_disk_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 56,
+            "rank": 1,
+            "root": "productcatalogservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_productcatalogservice_disk_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 59,
+            "rank": 1,
+            "root": "productcatalogservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_productcatalogservice_loss_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 57,
+            "rank": 1,
+            "root": "productcatalogservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_productcatalogservice_loss_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 56,
+            "rank": 1,
+            "root": "productcatalogservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_productcatalogservice_loss_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 59,
+            "rank": 1,
+            "root": "productcatalogservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_productcatalogservice_mem_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 1,
+            "root": "productcatalogservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_productcatalogservice_mem_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 57,
+            "rank": 2,
+            "root": "productcatalogservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_productcatalogservice_mem_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "productcatalogservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_productcatalogservice_socket_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 56,
+            "rank": 2,
+            "root": "productcatalogservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_productcatalogservice_socket_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 56,
+            "rank": 2,
+            "root": "productcatalogservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_productcatalogservice_socket_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "productcatalogservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_recommendationservice_cpu_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 56,
+            "rank": 2,
+            "root": "recommendationservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_recommendationservice_cpu_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "recommendationservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_recommendationservice_cpu_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "recommendationservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_recommendationservice_delay_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "recommendationservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_recommendationservice_delay_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "recommendationservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_recommendationservice_delay_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "recommendationservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_recommendationservice_disk_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "recommendationservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_recommendationservice_disk_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "recommendationservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_recommendationservice_disk_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "recommendationservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_recommendationservice_loss_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 57,
+            "rank": 2,
+            "root": "recommendationservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_recommendationservice_loss_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 57,
+            "rank": 2,
+            "root": "recommendationservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_recommendationservice_loss_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 57,
+            "rank": 2,
+            "root": "recommendationservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_recommendationservice_mem_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 57,
+            "rank": 2,
+            "root": "recommendationservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_recommendationservice_mem_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 56,
+            "rank": 2,
+            "root": "recommendationservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_recommendationservice_mem_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "recommendationservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_recommendationservice_socket_1",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "recommendationservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_recommendationservice_socket_2",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "recommendationservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ob_recommendationservice_socket_3",
+            "dataset": "RE2-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "recommendationservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ss_carts_cpu_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 2,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_carts_cpu_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 61,
+            "rank": 2,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_carts_cpu_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 2,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_carts_delay_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 58,
+            "rank": 2,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_carts_delay_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 3,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_carts_delay_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 3,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_carts_disk_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 2,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_carts_disk_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 2,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_carts_disk_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 2,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_carts_loss_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 3,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_carts_loss_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 61,
+            "rank": 3,
+            "root": "carts",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2ss_carts_loss_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 61,
+            "rank": 4,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_carts_mem_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 63,
+            "rank": 3,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_carts_mem_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 1,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_carts_mem_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 61,
+            "rank": 2,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_carts_socket_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 4,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_carts_socket_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 3,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_carts_socket_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 3,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_catalogue_cpu_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 2,
+            "root": "catalogue",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_catalogue_cpu_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 2,
+            "root": "catalogue",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_catalogue_cpu_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 2,
+            "root": "catalogue",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_catalogue_delay_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 2,
+            "root": "catalogue",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_catalogue_delay_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 2,
+            "root": "catalogue",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_catalogue_delay_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 64,
+            "rank": 2,
+            "root": "catalogue",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_catalogue_disk_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 62,
+            "rank": 1,
+            "root": "catalogue",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_catalogue_disk_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 63,
+            "rank": 1,
+            "root": "catalogue",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_catalogue_disk_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 61,
+            "rank": 1,
+            "root": "catalogue",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_catalogue_loss_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 1,
+            "root": "catalogue",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_catalogue_loss_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 62,
+            "rank": 1,
+            "root": "catalogue",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_catalogue_loss_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 2,
+            "root": "catalogue",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_catalogue_mem_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 2,
+            "root": "catalogue",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_catalogue_mem_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 61,
+            "rank": 2,
+            "root": "catalogue",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_catalogue_mem_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 2,
+            "root": "catalogue",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_catalogue_socket_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 2,
+            "root": "catalogue",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_catalogue_socket_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 2,
+            "root": "catalogue",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_catalogue_socket_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 2,
+            "root": "catalogue",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_orders_cpu_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 2,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_orders_cpu_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 2,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_orders_cpu_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 2,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_orders_delay_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 6,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_orders_delay_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 61,
+            "rank": 4,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_orders_delay_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 2,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_orders_disk_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 61,
+            "rank": 5,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_orders_disk_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 64,
+            "rank": 2,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_orders_disk_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 1,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_orders_loss_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 2,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_orders_loss_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 61,
+            "rank": 3,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_orders_loss_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 2,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_orders_mem_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 2,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_orders_mem_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 2,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_orders_mem_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 62,
+            "rank": 2,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_orders_socket_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 6,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_orders_socket_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 2,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_orders_socket_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 2,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_payment_cpu_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 2,
+            "root": "payment",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_payment_cpu_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 2,
+            "root": "payment",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_payment_cpu_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 2,
+            "root": "payment",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_payment_delay_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 2,
+            "root": "payment",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_payment_delay_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 2,
+            "root": "payment",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_payment_delay_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 61,
+            "rank": 2,
+            "root": "payment",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_payment_disk_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 61,
+            "rank": 1,
+            "root": "payment",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_payment_disk_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 62,
+            "rank": 1,
+            "root": "payment",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_payment_disk_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 1,
+            "root": "payment",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_payment_loss_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 61,
+            "rank": 2,
+            "root": "payment",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_payment_loss_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 63,
+            "rank": 4,
+            "root": "payment",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_payment_loss_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 62,
+            "rank": 2,
+            "root": "payment",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_payment_mem_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 61,
+            "rank": 3,
+            "root": "payment",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_payment_mem_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 1,
+            "root": "payment",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_payment_mem_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 61,
+            "rank": 1,
+            "root": "payment",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_payment_socket_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 2,
+            "root": "payment",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_payment_socket_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 2,
+            "root": "payment",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_payment_socket_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 2,
+            "root": "payment",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_user_cpu_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 2,
+            "root": "user",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_user_cpu_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 2,
+            "root": "user",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_user_cpu_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 2,
+            "root": "user",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_user_delay_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 59,
+            "rank": 2,
+            "root": "user",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_user_delay_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 2,
+            "root": "user",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_user_delay_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 2,
+            "root": "user",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_user_disk_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 62,
+            "rank": 2,
+            "root": "user",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_user_disk_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 1,
+            "root": "user",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_user_disk_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 61,
+            "rank": 1,
+            "root": "user",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_user_loss_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 2,
+            "root": "user",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_user_loss_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 63,
+            "rank": 4,
+            "root": "user",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_user_loss_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 3,
+            "root": "user",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_user_mem_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 60,
+            "rank": 2,
+            "root": "user",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_user_mem_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 63,
+            "rank": 2,
+            "root": "user",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_user_mem_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 58,
+            "rank": 2,
+            "root": "user",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_user_socket_1",
+            "dataset": "RE2-SS",
+            "native_candidates": 62,
+            "rank": 2,
+            "root": "user",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_user_socket_2",
+            "dataset": "RE2-SS",
+            "native_candidates": 63,
+            "rank": 2,
+            "root": "user",
+            "service_candidates": 11
+          },
+          {
+            "case": "re2ss_user_socket_3",
+            "dataset": "RE2-SS",
+            "native_candidates": 64,
+            "rank": 2,
+            "root": "user",
+            "service_candidates": 12
+          },
+          {
+            "case": "re2tt_ts-auth-service_cpu_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 316,
+            "rank": 2,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-auth-service_cpu_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 325,
+            "rank": 6,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-auth-service_cpu_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 316,
+            "rank": 4,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-auth-service_delay_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 316,
+            "rank": 1,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-auth-service_delay_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 317,
+            "rank": 5,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-auth-service_delay_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 316,
+            "rank": 7,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-auth-service_disk_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 315,
+            "rank": 1,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-auth-service_disk_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 314,
+            "rank": 1,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-auth-service_disk_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 317,
+            "rank": 1,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-auth-service_loss_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 316,
+            "rank": 4,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-auth-service_loss_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 317,
+            "rank": 27,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-auth-service_loss_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 317,
+            "rank": 22,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-auth-service_mem_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 314,
+            "rank": 1,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-auth-service_mem_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 321,
+            "rank": 1,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-auth-service_mem_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 317,
+            "rank": 1,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-auth-service_socket_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 315,
+            "rank": 3,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-auth-service_socket_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 314,
+            "rank": 4,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-auth-service_socket_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 317,
+            "rank": 2,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-order-service_cpu_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 318,
+            "rank": 4,
+            "root": "ts-order-service",
+            "service_candidates": 69
+          },
+          {
+            "case": "re2tt_ts-order-service_cpu_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 316,
+            "rank": 1,
+            "root": "ts-order-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-order-service_cpu_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 316,
+            "rank": 1,
+            "root": "ts-order-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-order-service_delay_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 315,
+            "rank": 1,
+            "root": "ts-order-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-order-service_delay_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 298,
+            "rank": 2,
+            "root": "ts-order-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-order-service_delay_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 297,
+            "rank": 30,
+            "root": "ts-order-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-order-service_disk_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 318,
+            "rank": 1,
+            "root": "ts-order-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-order-service_disk_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 298,
+            "rank": 1,
+            "root": "ts-order-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-order-service_disk_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 300,
+            "rank": 1,
+            "root": "ts-order-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-order-service_loss_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 318,
+            "rank": 3,
+            "root": "ts-order-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-order-service_loss_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 298,
+            "rank": 56,
+            "root": "ts-order-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-order-service_loss_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 296,
+            "rank": 1,
+            "root": "ts-order-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-order-service_mem_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 320,
+            "rank": 1,
+            "root": "ts-order-service",
+            "service_candidates": 69
+          },
+          {
+            "case": "re2tt_ts-order-service_mem_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 317,
+            "rank": 1,
+            "root": "ts-order-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-order-service_mem_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 317,
+            "rank": 2,
+            "root": "ts-order-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-order-service_socket_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 315,
+            "rank": 4,
+            "root": "ts-order-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-order-service_socket_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 298,
+            "rank": 1,
+            "root": "ts-order-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-order-service_socket_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 315,
+            "rank": 1,
+            "root": "ts-order-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-route-service_cpu_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 320,
+            "rank": 2,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-route-service_cpu_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 296,
+            "rank": 13,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-route-service_cpu_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 298,
+            "rank": 1,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-route-service_delay_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 316,
+            "rank": 32,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-route-service_delay_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 315,
+            "rank": 5,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-route-service_delay_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 316,
+            "rank": 55,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-route-service_disk_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 317,
+            "rank": 1,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-route-service_disk_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 316,
+            "rank": 1,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-route-service_disk_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 317,
+            "rank": 1,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-route-service_loss_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 315,
+            "rank": 1,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-route-service_loss_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 315,
+            "rank": 3,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-route-service_loss_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 317,
+            "rank": 1,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-route-service_mem_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 327,
+            "rank": 1,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-route-service_mem_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 320,
+            "rank": 1,
+            "root": "ts-route-service",
+            "service_candidates": 69
+          },
+          {
+            "case": "re2tt_ts-route-service_mem_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 317,
+            "rank": 1,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-route-service_socket_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 316,
+            "rank": 1,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-route-service_socket_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 316,
+            "rank": 1,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-route-service_socket_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 316,
+            "rank": 1,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-train-service_cpu_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 319,
+            "rank": 2,
+            "root": "ts-train-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-train-service_cpu_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 319,
+            "rank": 2,
+            "root": "ts-train-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-train-service_cpu_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 318,
+            "rank": 1,
+            "root": "ts-train-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-train-service_delay_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 317,
+            "rank": 1,
+            "root": "ts-train-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-train-service_delay_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 318,
+            "rank": 1,
+            "root": "ts-train-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-train-service_delay_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 317,
+            "rank": 1,
+            "root": "ts-train-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-train-service_disk_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 316,
+            "rank": 1,
+            "root": "ts-train-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-train-service_disk_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 317,
+            "rank": 1,
+            "root": "ts-train-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-train-service_disk_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 320,
+            "rank": 1,
+            "root": "ts-train-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-train-service_loss_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 320,
+            "rank": 1,
+            "root": "ts-train-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-train-service_loss_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 320,
+            "rank": 1,
+            "root": "ts-train-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-train-service_loss_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 316,
+            "rank": 1,
+            "root": "ts-train-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-train-service_mem_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 317,
+            "rank": 1,
+            "root": "ts-train-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-train-service_mem_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 320,
+            "rank": 1,
+            "root": "ts-train-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-train-service_mem_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 316,
+            "rank": 1,
+            "root": "ts-train-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-train-service_socket_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 315,
+            "rank": 1,
+            "root": "ts-train-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-train-service_socket_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 321,
+            "rank": 3,
+            "root": "ts-train-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-train-service_socket_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 316,
+            "rank": 21,
+            "root": "ts-train-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-travel-service_cpu_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 319,
+            "rank": 4,
+            "root": "ts-travel-service",
+            "service_candidates": 69
+          },
+          {
+            "case": "re2tt_ts-travel-service_cpu_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 317,
+            "rank": 2,
+            "root": "ts-travel-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-travel-service_cpu_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 316,
+            "rank": 2,
+            "root": "ts-travel-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-travel-service_delay_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 320,
+            "rank": 3,
+            "root": "ts-travel-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-travel-service_delay_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 319,
+            "rank": 1,
+            "root": "ts-travel-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-travel-service_delay_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 319,
+            "rank": 8,
+            "root": "ts-travel-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-travel-service_disk_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 316,
+            "rank": 1,
+            "root": "ts-travel-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-travel-service_disk_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 310,
+            "rank": 1,
+            "root": "ts-travel-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-travel-service_disk_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 308,
+            "rank": 1,
+            "root": "ts-travel-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-travel-service_loss_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 316,
+            "rank": 7,
+            "root": "ts-travel-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-travel-service_loss_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 317,
+            "rank": 22,
+            "root": "ts-travel-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-travel-service_loss_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 319,
+            "rank": 1,
+            "root": "ts-travel-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-travel-service_mem_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 320,
+            "rank": 1,
+            "root": "ts-travel-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-travel-service_mem_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 326,
+            "rank": 1,
+            "root": "ts-travel-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-travel-service_mem_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 317,
+            "rank": 1,
+            "root": "ts-travel-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-travel-service_socket_1",
+            "dataset": "RE2-TT",
+            "native_candidates": 308,
+            "rank": 1,
+            "root": "ts-travel-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re2tt_ts-travel-service_socket_2",
+            "dataset": "RE2-TT",
+            "native_candidates": 319,
+            "rank": 4,
+            "root": "ts-travel-service",
+            "service_candidates": 69
+          },
+          {
+            "case": "re2tt_ts-travel-service_socket_3",
+            "dataset": "RE2-TT",
+            "native_candidates": 317,
+            "rank": 11,
+            "root": "ts-travel-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re3ob_adservice_f3_1",
+            "dataset": "RE3-OB",
+            "native_candidates": 54,
+            "rank": 2,
+            "root": "adservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_adservice_f3_2",
+            "dataset": "RE3-OB",
+            "native_candidates": 87,
+            "rank": 1,
+            "root": "adservice",
+            "service_candidates": 24
+          },
+          {
+            "case": "re3ob_adservice_f3_3",
+            "dataset": "RE3-OB",
+            "native_candidates": 87,
+            "rank": 1,
+            "root": "adservice",
+            "service_candidates": 24
+          },
+          {
+            "case": "re3ob_adservice_f4_1",
+            "dataset": "RE3-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "adservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_adservice_f4_2",
+            "dataset": "RE3-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "adservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_adservice_f4_3",
+            "dataset": "RE3-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "adservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_adservice_f5_1",
+            "dataset": "RE3-OB",
+            "native_candidates": 56,
+            "rank": 2,
+            "root": "adservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_adservice_f5_2",
+            "dataset": "RE3-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "adservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_adservice_f5_3",
+            "dataset": "RE3-OB",
+            "native_candidates": 56,
+            "rank": 2,
+            "root": "adservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_cartservice_f1_1",
+            "dataset": "RE3-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "cartservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_cartservice_f1_2",
+            "dataset": "RE3-OB",
+            "native_candidates": 56,
+            "rank": 2,
+            "root": "cartservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_cartservice_f1_3",
+            "dataset": "RE3-OB",
+            "native_candidates": 54,
+            "rank": 2,
+            "root": "cartservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_currencyservice_f1_1",
+            "dataset": "RE3-OB",
+            "native_candidates": 54,
+            "rank": 2,
+            "root": "currencyservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_currencyservice_f1_2",
+            "dataset": "RE3-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "currencyservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_currencyservice_f1_3",
+            "dataset": "RE3-OB",
+            "native_candidates": 55,
+            "rank": 1,
+            "root": "currencyservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_emailservice_f1_1",
+            "dataset": "RE3-OB",
+            "native_candidates": 53,
+            "rank": 2,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_emailservice_f1_2",
+            "dataset": "RE3-OB",
+            "native_candidates": 56,
+            "rank": 2,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_emailservice_f1_3",
+            "dataset": "RE3-OB",
+            "native_candidates": 54,
+            "rank": 2,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_emailservice_f2_1",
+            "dataset": "RE3-OB",
+            "native_candidates": 56,
+            "rank": 2,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_emailservice_f2_2",
+            "dataset": "RE3-OB",
+            "native_candidates": 56,
+            "rank": 2,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_emailservice_f2_3",
+            "dataset": "RE3-OB",
+            "native_candidates": 53,
+            "rank": 3,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_emailservice_f3_1",
+            "dataset": "RE3-OB",
+            "native_candidates": 56,
+            "rank": 2,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_emailservice_f3_2",
+            "dataset": "RE3-OB",
+            "native_candidates": 56,
+            "rank": 2,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_emailservice_f3_3",
+            "dataset": "RE3-OB",
+            "native_candidates": 56,
+            "rank": 2,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_emailservice_f4_1",
+            "dataset": "RE3-OB",
+            "native_candidates": 56,
+            "rank": 2,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_emailservice_f4_2",
+            "dataset": "RE3-OB",
+            "native_candidates": 55,
+            "rank": 2,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_emailservice_f4_3",
+            "dataset": "RE3-OB",
+            "native_candidates": 57,
+            "rank": 2,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_emailservice_f5_1",
+            "dataset": "RE3-OB",
+            "native_candidates": 57,
+            "rank": 6,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_emailservice_f5_2",
+            "dataset": "RE3-OB",
+            "native_candidates": 57,
+            "rank": 12,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ob_emailservice_f5_3",
+            "dataset": "RE3-OB",
+            "native_candidates": 56,
+            "rank": 12,
+            "root": "emailservice",
+            "service_candidates": 12
+          },
+          {
+            "case": "re3ss_carts_f1_1",
+            "dataset": "RE3-SS",
+            "native_candidates": 65,
+            "rank": 2,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_carts_f1_2",
+            "dataset": "RE3-SS",
+            "native_candidates": 63,
+            "rank": 2,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_carts_f1_3",
+            "dataset": "RE3-SS",
+            "native_candidates": 83,
+            "rank": 1,
+            "root": "carts",
+            "service_candidates": 22
+          },
+          {
+            "case": "re3ss_carts_f1_4",
+            "dataset": "RE3-SS",
+            "native_candidates": 64,
+            "rank": 2,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_carts_f3_1",
+            "dataset": "RE3-SS",
+            "native_candidates": 62,
+            "rank": 7,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_carts_f3_2",
+            "dataset": "RE3-SS",
+            "native_candidates": 62,
+            "rank": 2,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_carts_f3_3",
+            "dataset": "RE3-SS",
+            "native_candidates": 64,
+            "rank": 4,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_carts_f3_4",
+            "dataset": "RE3-SS",
+            "native_candidates": 65,
+            "rank": 3,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_carts_f4_1",
+            "dataset": "RE3-SS",
+            "native_candidates": 64,
+            "rank": 4,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_carts_f4_2",
+            "dataset": "RE3-SS",
+            "native_candidates": 62,
+            "rank": 3,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_carts_f4_3",
+            "dataset": "RE3-SS",
+            "native_candidates": 63,
+            "rank": 1,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_carts_f4_4",
+            "dataset": "RE3-SS",
+            "native_candidates": 65,
+            "rank": 2,
+            "root": "carts",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_front-end_f1_1",
+            "dataset": "RE3-SS",
+            "native_candidates": 61,
+            "rank": 2,
+            "root": "front-end",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_front-end_f1_2",
+            "dataset": "RE3-SS",
+            "native_candidates": 60,
+            "rank": 2,
+            "root": "front-end",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_front-end_f1_3",
+            "dataset": "RE3-SS",
+            "native_candidates": 60,
+            "rank": 2,
+            "root": "front-end",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_front-end_f2_1",
+            "dataset": "RE3-SS",
+            "native_candidates": 60,
+            "rank": 3,
+            "root": "front-end",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_front-end_f2_2",
+            "dataset": "RE3-SS",
+            "native_candidates": 59,
+            "rank": 3,
+            "root": "front-end",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_front-end_f2_3",
+            "dataset": "RE3-SS",
+            "native_candidates": 60,
+            "rank": 2,
+            "root": "front-end",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_front-end_f3_1",
+            "dataset": "RE3-SS",
+            "native_candidates": 61,
+            "rank": 1,
+            "root": "front-end",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_front-end_f3_2",
+            "dataset": "RE3-SS",
+            "native_candidates": 58,
+            "rank": 6,
+            "root": "front-end",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_front-end_f3_3",
+            "dataset": "RE3-SS",
+            "native_candidates": 59,
+            "rank": 3,
+            "root": "front-end",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_orders_f1_1",
+            "dataset": "RE3-SS",
+            "native_candidates": 62,
+            "rank": 1,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_orders_f1_2",
+            "dataset": "RE3-SS",
+            "native_candidates": 61,
+            "rank": 2,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_orders_f1_3",
+            "dataset": "RE3-SS",
+            "native_candidates": 59,
+            "rank": 2,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_orders_f3_1",
+            "dataset": "RE3-SS",
+            "native_candidates": 60,
+            "rank": 2,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_orders_f3_2",
+            "dataset": "RE3-SS",
+            "native_candidates": 61,
+            "rank": 2,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_orders_f3_3",
+            "dataset": "RE3-SS",
+            "native_candidates": 61,
+            "rank": 3,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_orders_f4_1",
+            "dataset": "RE3-SS",
+            "native_candidates": 60,
+            "rank": 2,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_orders_f4_2",
+            "dataset": "RE3-SS",
+            "native_candidates": 62,
+            "rank": 2,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3ss_orders_f4_3",
+            "dataset": "RE3-SS",
+            "native_candidates": 61,
+            "rank": 1,
+            "root": "orders",
+            "service_candidates": 11
+          },
+          {
+            "case": "re3tt_ts-auth-service_f1_1",
+            "dataset": "RE3-TT",
+            "native_candidates": 278,
+            "rank": 1,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re3tt_ts-auth-service_f1_2",
+            "dataset": "RE3-TT",
+            "native_candidates": 281,
+            "rank": 1,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re3tt_ts-auth-service_f1_3",
+            "dataset": "RE3-TT",
+            "native_candidates": 278,
+            "rank": 1,
+            "root": "ts-auth-service",
+            "service_candidates": 69
+          },
+          {
+            "case": "re3tt_ts-auth-service_f1_4",
+            "dataset": "RE3-TT",
+            "native_candidates": 263,
+            "rank": 2,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re3tt_ts-auth-service_f2_1",
+            "dataset": "RE3-TT",
+            "native_candidates": 278,
+            "rank": 1,
+            "root": "ts-auth-service",
+            "service_candidates": 69
+          },
+          {
+            "case": "re3tt_ts-auth-service_f2_2",
+            "dataset": "RE3-TT",
+            "native_candidates": 278,
+            "rank": 1,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re3tt_ts-auth-service_f2_3",
+            "dataset": "RE3-TT",
+            "native_candidates": 276,
+            "rank": 1,
+            "root": "ts-auth-service",
+            "service_candidates": 69
+          },
+          {
+            "case": "re3tt_ts-auth-service_f2_4",
+            "dataset": "RE3-TT",
+            "native_candidates": 253,
+            "rank": 1,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re3tt_ts-auth-service_f3_1",
+            "dataset": "RE3-TT",
+            "native_candidates": 281,
+            "rank": 1,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re3tt_ts-auth-service_f3_2",
+            "dataset": "RE3-TT",
+            "native_candidates": 282,
+            "rank": 1,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re3tt_ts-auth-service_f3_3",
+            "dataset": "RE3-TT",
+            "native_candidates": 286,
+            "rank": 1,
+            "root": "ts-auth-service",
+            "service_candidates": 69
+          },
+          {
+            "case": "re3tt_ts-auth-service_f3_4",
+            "dataset": "RE3-TT",
+            "native_candidates": 263,
+            "rank": 1,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re3tt_ts-auth-service_f4_1",
+            "dataset": "RE3-TT",
+            "native_candidates": 274,
+            "rank": 1,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re3tt_ts-auth-service_f4_2",
+            "dataset": "RE3-TT",
+            "native_candidates": 274,
+            "rank": 1,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re3tt_ts-auth-service_f4_3",
+            "dataset": "RE3-TT",
+            "native_candidates": 277,
+            "rank": 1,
+            "root": "ts-auth-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re3tt_ts-route-service_f1_1",
+            "dataset": "RE3-TT",
+            "native_candidates": 281,
+            "rank": 1,
+            "root": "ts-route-service",
+            "service_candidates": 69
+          },
+          {
+            "case": "re3tt_ts-route-service_f1_2",
+            "dataset": "RE3-TT",
+            "native_candidates": 278,
+            "rank": 10,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re3tt_ts-route-service_f1_3",
+            "dataset": "RE3-TT",
+            "native_candidates": 280,
+            "rank": 1,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re3tt_ts-route-service_f2_1",
+            "dataset": "RE3-TT",
+            "native_candidates": 280,
+            "rank": 1,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re3tt_ts-route-service_f2_2",
+            "dataset": "RE3-TT",
+            "native_candidates": 280,
+            "rank": 1,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re3tt_ts-route-service_f2_3",
+            "dataset": "RE3-TT",
+            "native_candidates": 280,
+            "rank": 2,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re3tt_ts-route-service_f3_1",
+            "dataset": "RE3-TT",
+            "native_candidates": 279,
+            "rank": 1,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re3tt_ts-route-service_f3_2",
+            "dataset": "RE3-TT",
+            "native_candidates": 277,
+            "rank": 2,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re3tt_ts-route-service_f3_3",
+            "dataset": "RE3-TT",
+            "native_candidates": 282,
+            "rank": 1,
+            "root": "ts-route-service",
+            "service_candidates": 69
+          },
+          {
+            "case": "re3tt_ts-route-service_f3_4",
+            "dataset": "RE3-TT",
+            "native_candidates": 281,
+            "rank": 1,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re3tt_ts-route-service_f3_5",
+            "dataset": "RE3-TT",
+            "native_candidates": 280,
+            "rank": 1,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re3tt_ts-route-service_f3_6",
+            "dataset": "RE3-TT",
+            "native_candidates": 279,
+            "rank": 2,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re3tt_ts-route-service_f4_1",
+            "dataset": "RE3-TT",
+            "native_candidates": 281,
+            "rank": 1,
+            "root": "ts-route-service",
+            "service_candidates": 69
+          },
+          {
+            "case": "re3tt_ts-route-service_f4_2",
+            "dataset": "RE3-TT",
+            "native_candidates": 279,
+            "rank": 1,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          },
+          {
+            "case": "re3tt_ts-route-service_f4_3",
+            "dataset": "RE3-TT",
+            "native_candidates": 283,
+            "rank": 1,
+            "root": "ts-route-service",
+            "service_candidates": 68
+          }
+        ],
+        "cases_expected": 360,
+        "cases_succeeded": 360,
+        "failure_summary": {},
+        "failures": [],
+        "metrics": {
+          "by_dataset": {
+            "RE2-OB": {
+              "ac_at_1": 0.17777777777777778,
+              "ac_at_3": 0.9222222222222223,
+              "cases": 90,
+              "mrr": 0.5487037037037037,
+              "ndcg_at_1": 0.17777777777777778,
+              "ndcg_at_3": 0.6329221772619231
+            },
+            "RE2-SS": {
+              "ac_at_1": 0.15555555555555556,
+              "ac_at_3": 0.9111111111111111,
+              "cases": 90,
+              "mrr": 0.5346296296296297,
+              "ndcg_at_1": 0.15555555555555556,
+              "ndcg_at_3": 0.6177102856349392
+            },
+            "RE2-TT": {
+              "ac_at_1": 0.5888888888888889,
+              "ac_at_3": 0.7444444444444445,
+              "cases": 90,
+              "mrr": 0.6926451917424139,
+              "ndcg_at_1": 0.5888888888888889,
+              "ndcg_at_3": 0.6797596420238124
+            },
+            "RE3-OB": {
+              "ac_at_1": 0.1,
+              "ac_at_3": 0.9,
+              "cases": 30,
+              "mrr": 0.5055555555555555,
+              "ndcg_at_1": 0.1,
+              "ndcg_at_3": 0.6003794777381175
+            },
+            "RE3-SS": {
+              "ac_at_1": 0.16666666666666666,
+              "ac_at_3": 0.8666666666666667,
+              "cases": 30,
+              "mrr": 0.5103174603174604,
+              "ndcg_at_1": 0.16666666666666666,
+              "ndcg_at_3": 0.5821315434523954
+            },
+            "RE3-TT": {
+              "ac_at_1": 0.8333333333333334,
+              "ac_at_3": 0.9666666666666667,
+              "cases": 30,
+              "mrr": 0.9033333333333334,
+              "ndcg_at_1": 0.8333333333333334,
+              "ndcg_at_3": 0.9174573004761943
+            }
+          },
+          "overall": {
+            "ac_at_1": 0.32222222222222224,
+            "ac_at_3": 0.8722222222222222,
+            "cases": 360,
+            "mrr": 0.6039284937027992,
+            "ndcg_at_1": 0.32222222222222224,
+            "ndcg_at_3": 0.657595386369061
+          }
+        },
+        "note": "Unmodified pinned RCAEval BARO; unavailable projected roots count as misses.",
+        "runtime_seconds": {
+          "mean": 0.10573451709981074,
+          "total": 38.06442615593187
+        },
+        "status": "success"
+      },
+      "mmbaro": {
+        "cases_expected": 240,
+        "cases_succeeded": 0,
+        "documented_smoke_case": "re2ob_checkoutservice_cpu_1",
+        "entrypoint_import_error": null,
+        "entrypoint_importable": true,
+        "failure_summary": {
+          "missing_logts.csv": 240,
+          "missing_tracets_err.csv": 240,
+          "missing_tracets_lat.csv": 240
+        },
+        "note": "Pinned Hugging Face cases expose raw metrics/logs/traces Parquet, but the pinned upstream multi-source entrypoints require pre-derived logts.csv, tracets_err.csv, and tracets_lat.csv. No upstream patch or locally invented conversion was used.",
+        "smoke_stage": "blocked before invocation because required upstream-derived CSV inputs are absent",
+        "status": "compatibility_failed_missing_upstream_inputs"
+      },
+      "mmcirca": {
+        "cases_expected": 240,
+        "cases_succeeded": 0,
+        "documented_smoke_case": "re2ob_checkoutservice_cpu_1",
+        "entrypoint_import_error": "ModuleNotFoundError: No module named 'causallearn'",
+        "entrypoint_importable": false,
+        "failure_summary": {
+          "missing_logts.csv": 240,
+          "missing_tracets_err.csv": 240,
+          "missing_tracets_lat.csv": 240
+        },
+        "note": "Pinned Hugging Face cases expose raw metrics/logs/traces Parquet, but the pinned upstream multi-source entrypoints require pre-derived logts.csv, tracets_err.csv, and tracets_lat.csv. No upstream patch or locally invented conversion was used.",
+        "smoke_stage": "blocked before invocation because required upstream-derived CSV inputs are absent",
+        "status": "compatibility_failed_dependency_and_inputs"
+      },
+      "mmrcd": {
+        "cases_expected": 240,
+        "cases_succeeded": 0,
+        "documented_smoke_case": "re2ob_checkoutservice_cpu_1",
+        "entrypoint_import_error": "ModuleNotFoundError: No module named 'matplotlib'",
+        "entrypoint_importable": false,
+        "failure_summary": {
+          "missing_logts.csv": 240,
+          "missing_tracets_err.csv": 240,
+          "missing_tracets_lat.csv": 240
+        },
+        "note": "Pinned Hugging Face cases expose raw metrics/logs/traces Parquet, but the pinned upstream multi-source entrypoints require pre-derived logts.csv, tracets_err.csv, and tracets_lat.csv. No upstream patch or locally invented conversion was used.",
+        "smoke_stage": "blocked before invocation because required upstream-derived CSV inputs are absent",
+        "status": "compatibility_failed_dependency_and_inputs"
+      }
+    },
+    "rcaeval_revision": "405c8fd24071af41ceb4b3aabb451e5e3e15d6c6",
+    "service_projection": "exact pinned RCAEval main.py split('_')[0], strip '-db', stable dedupe",
+    "status": "completed_with_explicit_compatibility_failures"
+  },
+  "source": {
+    "hf_revision": "afeacb11bcc94dadfd1c8f483ee4377b2b8b614e",
+    "index_sha256": "c49a288920dbba2e8e724679a14636d5c7eb2b45426bba14007ef79a6c0ab1bb",
+    "rcaeval_commit": "405c8fd24071af41ceb4b3aabb451e5e3e15d6c6"
+  },
+  "truth_free_seal": {
+    "m9a_base_commit": "ace15453ca572905f10e66c03e9cdc2243b05386",
+    "records": 735,
+    "schema": "m9b-v1",
+    "sealed_before_label_join": true,
+    "sha256": "a6f6b1430008e22a30a35f1a4de620abd134182b723ec0cd90c156e236a8be0d"
+  },
+  "verdict": {
+    "best_m9b": "m9b_metric_lambdamart",
+    "code_fault_coverage": "IMPROVED",
+    "delta_ac_at_1": 0.49537037037037035,
+    "delta_mrr": 0.4144454784440165,
+    "gate": "STRONG_MULTISOURCE_GAIN",
+    "locked_rule": "strong delta AC@1 >=0.10 and bootstrap lower >0; partial delta AC@1 >=0.05 or delta MRR >=0.05",
+    "recommendation": "KEEP MULTISOURCE LAMBDAMART"
+  }
+}

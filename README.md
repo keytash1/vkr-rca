@@ -1,6 +1,6 @@
 # RCA for distributed services
 
-Milestone 9A of the RCA graduation project: a synchronous Go telemetry/RCA pipeline, leakage-resistant external validation of frozen M7, and a post-M8B temporal anomaly-detector study on all 240 trace-capable RCAEval RE2/RE3 cases.
+Milestone 9B of the RCA graduation project: a synchronous Go telemetry/RCA pipeline plus leakage-resistant, externally triggered multi-source localization over service metrics, traces, and topology.
 
 ```text
 Client -> Gateway -> Orders -> Payment
@@ -24,7 +24,7 @@ One request creates a single distributed trace containing the server and client 
 - Docker with Docker Compose
 - `curl` for smoke requests
 - Go 1.26 only for running outside Docker
-- Python 3.12 or newer for the M7–M9A research pipeline
+- Python 3.12 or newer for the M7–M9B research pipeline
 
 ## Run
 
@@ -399,6 +399,24 @@ make m9a-experiment
 
 The selected CUSUM configuration reaches 100% synthetic validation recall with 0% healthy FPR, but fails external calibration: recall rises from 52.9% to 99.6% while healthy FPR rises from 7.1% to 99.6%. The pre-registered verdict is therefore `NOT_JUSTIFIED`, with recommendation `REDESIGN AGAIN`; detector-v2 must not replace M5/v1. The main result and protocol are in [M9A results](docs/m9a-results.md) and [M9A protocol](docs/m9a-protocol.md). Detailed false positives, the single detection miss, and the metrics audit are separate reports. M9A does not start M9B or retrain any ranker.
 
+## Milestone 9B: multi-source soft-evidence RCA
+
+M9B separates incident detection from root-cause localization. Its primary mode receives an external incident timestamp and ranks every observable feature-ready service without requiring an M5 anomaly flag. The versioned `m9b-v1` vector combines robust fixed-time metric evidence, unchanged soft M7 trace evidence, topology, availability masks, and incident-relative percentiles; service/system/case/root/fault identity is excluded from the model.
+
+Run the small local contract, tiny metric model, and fusion smoke:
+
+```bash
+make m9b-smoke
+```
+
+Run the complete pinned 735-case experiment:
+
+```bash
+make m9b-experiment
+```
+
+The full run seals truth-free features before joining labels, performs RE1 system holdouts, freezes a metric model for 360 RE2/RE3 metric cases, trains cross-system RE2-OB/TT multi-source folds with RE3 evaluation only, runs modality and metric-group ablations, evaluates unmodified BARO, and reports paired bootstrap confidence intervals. On 216 root-observable trace-capable cases, the RE1-trained metric ranker reaches 80.1% AC@1 and 88.9% MRR; the all-modality cross-system ranker reaches 70.4%/80.6%. The best M9B result improves over the best unchanged soft trace-only baseline by 49.5 AC@1 points (95% CI 40.3–57.9). Within matched RE2 folds, all modalities outperform the metrics-only ablation by 6.0 points, so the recommendation remains `KEEP MULTISOURCE LAMBDAMART`. The pre-registered verdict is `STRONG_MULTISOURCE_GAIN`; M9A remains `NOT_JUSTIFIED`. See [M9B results](docs/m9b-results.md), [protocol](docs/m9b-protocol.md), and [ablations](docs/m9b-ablation.md). Raw benchmark data and truth-free working artifacts remain ignored.
+
 ## Endpoints
 
 | Service | Endpoint | Purpose |
@@ -440,6 +458,8 @@ go test -race ./...
 make ml-smoke
 make m8a-smoke
 make m8b-smoke
+make m9a-smoke
+make m9b-smoke
 ```
 
 The Go tests cover handlers, fault behavior, trace propagation, graph reconstruction, anomaly detection, active-incident topology, trace evidence, M6 ranking, and synthetic OTLP requests. The Python tests cover the feature whitelist, leakage guards, finite matrices, query groups, incident splits, duplicate fingerprints, rename invariance, metrics, bootstrap reproducibility, root holdout, label permutation, deterministic prediction, and the collector drain barrier.
