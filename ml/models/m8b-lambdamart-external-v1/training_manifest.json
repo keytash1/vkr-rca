@@ -1,0 +1,21 @@
+{
+  "eligible_counts": {
+    "RE2-OB": 52,
+    "RE2-TT": 72,
+    "RE3-OB": 3,
+    "RE3-TT": 0
+  },
+  "hyperparameters": {
+    "colsample_bytree": 0.8,
+    "eta": 0.1,
+    "max_depth": 2,
+    "min_child_weight": 1,
+    "subsample": 0.8
+  },
+  "model_version": "m8b-lambdamart-external-v1",
+  "seed": 20260904,
+  "source_feature_schema": "m7-v1",
+  "source_m7_sha256": "3728eb0454e46d14265d092d3d17088bc32fe44e8c9cb8d565aa8e934cee7699",
+  "training_rounds": 1,
+  "training_scope": "RE2 cross-system only; RE3 evaluation only"
+}

@@ -1,6 +1,6 @@
 # RCA for distributed services
 
-Milestone 8A of the RCA graduation project: a synchronous Go telemetry/RCA pipeline plus reproducible cross-topology evaluation of the frozen M7 Learning-to-Rank model.
+Milestone 8B of the RCA graduation project: a synchronous Go telemetry/RCA pipeline plus leakage-resistant external validation of the frozen M7 Learning-to-Rank model on all 240 trace-capable RCAEval RE2/RE3 Online Boutique and Train Ticket cases.
 
 ```text
 Client -> Gateway -> Orders -> Payment
@@ -24,7 +24,7 @@ One request creates a single distributed trace containing the server and client 
 - Docker with Docker Compose
 - `curl` for smoke requests
 - Go 1.26 only for running outside Docker
-- Python 3.12 or newer for the M7 research pipeline
+- Python 3.12 or newer for the M7/M8 research pipeline
 
 ## Run
 
@@ -68,7 +68,7 @@ Stop the stack:
 docker compose down --remove-orphans
 ```
 
-Shortcuts are available as `make compose-up`, `make smoke`, `make trace-smoke`, `make graph-smoke`, `make baseline-smoke`, `make anomaly-smoke`, `make rca-smoke`, `make ml-smoke`, `make m7-experiment`, `make m8a-smoke`, `make m8a-experiment`, `make logs`, and `make compose-down`.
+Shortcuts are available as `make compose-up`, `make smoke`, `make trace-smoke`, `make graph-smoke`, `make baseline-smoke`, `make anomaly-smoke`, `make rca-smoke`, `make ml-smoke`, `make m7-experiment`, `make m8a-smoke`, `make m8a-experiment`, `make m8b-smoke`, `make m8b-experiment`, `make logs`, and `make compose-down`.
 
 ## Trace and request correlation
 
@@ -363,6 +363,24 @@ make m8a-experiment
 
 The full command collects an independent frozen M5 baseline per topology; generates at least 500 zero-shot faults plus 50 healthy controls per system; evaluates constant, late, ramp, intermittent and burst profiles; repeats 20 fixed scenarios five times across B/C; compares M6 baselines with frozen M7 LambdaMART; and creates untuned A+B→C, A+C→B and B+C→A system-holdout folds. Raw data remain under ignored `artifacts/`. M8A does not change `m7-v1`, M5 thresholds, or the M7 model artifact, and it does not start RCAEval/GNN work.
 
+## Milestone 8B: external RCAEval validation
+
+M8B pins RCAEval source and dataset revisions, audits their raw span schema, and converts traces through `cmd/offline-rca` into the same Go M5 anomaly detector and M6 diagnosis implementation used by the live service. The adapter reconstructs topology only from parent-child telemetry and marks inferred span kinds and evidence coverage explicitly.
+
+Run the one-case pinned smoke (it does not download the full corpus):
+
+```bash
+make m8b-smoke
+```
+
+Run the complete external experiment:
+
+```bash
+make m8b-experiment
+```
+
+The full command evaluates all 240 trace-capable RE2/RE3 Online Boutique and Train Ticket cases, plus non-overlapping pre-injection healthy controls. It persists and hashes truth-free predictions before reading labels, then reports detector recall/FPR, root observability, conditional and end-to-end ranking, M6 baselines, frozen M7, supported official RCAEval baselines, feature shift, and fixed-hyperparameter RE2 cross-system models with RE3 held out by fault family. Raw Parquet files stay under ignored `external-data/`; aggregate manifests and reports are committed. See `docs/m8b-protocol.md` for the locked windows and leakage rules.
+
 ## Endpoints
 
 | Service | Endpoint | Purpose |
@@ -403,6 +421,7 @@ go vet ./...
 go test -race ./...
 make ml-smoke
 make m8a-smoke
+make m8b-smoke
 ```
 
 The Go tests cover handlers, fault behavior, trace propagation, graph reconstruction, anomaly detection, active-incident topology, trace evidence, M6 ranking, and synthetic OTLP requests. The Python tests cover the feature whitelist, leakage guards, finite matrices, query groups, incident splits, duplicate fingerprints, rename invariance, metrics, bootstrap reproducibility, root holdout, label permutation, deterministic prediction, and the collector drain barrier.
@@ -455,3 +474,4 @@ They can be overridden with `GATEWAY_PORT`, `ORDERS_PORT`, `PAYMENT_PORT`, `RCA_
 - Jaeger v2: `2.20.0`.
 
 Pinned M7 dependencies are Python `>=3.12`, NumPy `2.4.4`, SciPy `1.18.1`, and XGBoost `3.2.0`.
+M8B additionally pins pandas `3.0.2`, PyArrow `24.0.0`, scikit-learn `1.8.0`, requests `2.30.0`, and tqdm `4.65.0` for the external schema adapter and unmodified RCAEval baseline runtime.

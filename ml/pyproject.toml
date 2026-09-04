@@ -9,7 +9,12 @@ description = "Reproducible learning-to-rank research pipeline for vkr-rca"
 requires-python = ">=3.12"
 dependencies = [
   "numpy==2.4.4",
+  "pandas==3.0.2",
+  "pyarrow==24.0.0",
+  "requests==2.30.0",
+  "scikit-learn==1.8.0",
   "scipy==1.18.1",
+  "tqdm==4.65.0",
   "xgboost==3.2.0",
 ]
 

@@ -5,7 +5,7 @@ JAEGER_UI_PORT ?= 16686
 RCA_HTTP_PORT ?= 18090
 ML_PYTHON ?= .venv/bin/python
 
-.PHONY: fmt test build compose-up compose-down smoke trace-smoke graph-smoke baseline-smoke anomaly-smoke rca-smoke ml-setup ml-smoke m7-experiment m8a-smoke m8a-experiment fault-gateway-latency fault-gateway-errors fault-payment-latency fault-orders-latency fault-payment-errors fault-reset fault-status logs
+.PHONY: fmt test build compose-up compose-down smoke trace-smoke graph-smoke baseline-smoke anomaly-smoke rca-smoke ml-setup ml-smoke m7-experiment m8a-smoke m8a-experiment m8b-smoke m8b-experiment fault-gateway-latency fault-gateway-errors fault-payment-latency fault-orders-latency fault-payment-errors fault-reset fault-status logs
 
 fmt:
 	gofmt -w cmd internal
@@ -136,6 +136,12 @@ m8a-smoke: ml-smoke
 m8a-experiment:
 	@test -x "$(ML_PYTHON)" || (echo "run 'make ml-setup' first" >&2; exit 1)
 	ML_PYTHON=$(ML_PYTHON) ./scripts/m8a-experiment.sh
+
+m8b-smoke:
+	ML_PYTHON=$(ML_PYTHON) M8B_LIMIT=1 ./scripts/m8b-experiment.sh
+
+m8b-experiment:
+	ML_PYTHON=$(ML_PYTHON) ./scripts/m8b-experiment.sh
 
 fault-gateway-latency:
 	curl --fail --silent --show-error \
