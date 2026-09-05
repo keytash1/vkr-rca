@@ -12,6 +12,17 @@ hash, Python 3.8 environment, runtime, command and result. Upstream files remain
 untouched. Comparison uses identical incident IDs and service-level targets or
 is marked non-comparable.
 
+Audit result: the local official RCAEval checkout is pinned at
+`405c8fd24071af41ceb4b3aabb451e5e3e15d6c6`. The TORAI implementation SHA-256
+is `549b75a43c39b7f2f148b4de0e864892ec8294fca09eebf5783ba48f6ceeec5f` and
+its dependency lock SHA-256 is
+`0345a13eaf3f82901c6b416d42c29ad6122997510a7d09d7abee30249d9f1aeb`.
+The required Figshare corpus and Python 3.8 runtime are not present locally.
+The official documentation reports fault-wise Avg@5 examples rather than the
+locked service-level AC@1/MRR denominator. Runtime result is therefore
+`NOT_RUN_INCOMPARABLE_ENVIRONMENT`, not an invented baseline number. TORAI
+remains a design/baseline comparison only.
+
 ## Cloud-OpsBench
 
 Cloud-OpsBench is considered only after the M10C core is frozen. Its present
@@ -34,10 +45,19 @@ opened after that subset is sealed, and no model, feature, threshold or mapping
 may be tuned on Cloud-OpsBench outcomes. If the mapping is not defensible, M10C
 publishes only this compatibility report and makes no accuracy claim.
 
+Audit result: current Cloud-OpsBench is an agentic interactive troubleshooting
+benchmark with Kubernetes state/tool caches and natural-language diagnoses,
+not a time-aligned service-ranking corpus. Its 754 cases and 57 fault types are
+valuable for a future planner evaluation, but there is no defensible automatic
+mapping to the locked M10C candidate/incident windows. Status is
+`COMPATIBILITY_ONLY`; no labels were used for model tuning and no accuracy
+result is reported. Since M10C did not replace the frozen core, the protocol's
+"only after core freeze" condition also prevents a post-hoc external run.
+
+
 Official sources checked during protocol preparation:
 
 - RCAEval repository and baseline/data instructions: <https://github.com/phamquiluan/RCAEval>
 - TORAI processed RE2 data: <https://doi.org/10.6084/m9.figshare.31925976>
 - Cloud-OpsBench repository: <https://github.com/LLM4Ops/Cloud-OpsBench>
 - Cloud-OpsBench paper: <https://arxiv.org/abs/2603.00468>
-

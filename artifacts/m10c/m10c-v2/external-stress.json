@@ -1,0 +1,21 @@
+{
+  "cloud_ops_bench": {
+    "cases": 754,
+    "fault_types": 57,
+    "label_used_for_tuning": false,
+    "reason": "agentic Kubernetes state/tool-cache task has incompatible temporal and target granularity",
+    "result": "COMPATIBILITY_ONLY",
+    "source": "https://github.com/LLM4Ops/Cloud-OpsBench"
+  },
+  "torai": {
+    "data_available": false,
+    "dependency_lock_sha256": "0345a13eaf3f82901c6b416d42c29ad6122997510a7d09d7abee30249d9f1aeb",
+    "implementation_sha256": "549b75a43c39b7f2f148b4de0e864892ec8294fca09eebf5783ba48f6ceeec5f",
+    "python_3_8_available": false,
+    "result": "NOT_RUN_INCOMPARABLE_ENVIRONMENT",
+    "runtime_seconds": null,
+    "source_revision": "405c8fd24071af41ceb4b3aabb451e5e3e15d6c6",
+    "upstream_mutated": false
+  },
+  "version": "m10c-external-stress-v1"
+}
