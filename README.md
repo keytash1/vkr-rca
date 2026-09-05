@@ -1,6 +1,6 @@
 # RCA for distributed services
 
-Milestone 9B of the RCA graduation project: a synchronous Go telemetry/RCA pipeline plus leakage-resistant, externally triggered multi-source localization over service metrics, traces, and topology.
+Milestone 10A of the RCA graduation project: a synchronous Go telemetry/RCA pipeline plus a frozen, leakage-resistant research core for externally triggered service-level localization over metrics, traces, and topology.
 
 ```text
 Client -> Gateway -> Orders -> Payment
@@ -68,7 +68,7 @@ Stop the stack:
 docker compose down --remove-orphans
 ```
 
-Shortcuts are available as `make compose-up`, `make smoke`, `make trace-smoke`, `make graph-smoke`, `make baseline-smoke`, `make anomaly-smoke`, `make rca-smoke`, `make ml-smoke`, `make m7-experiment`, `make m8a-smoke`, `make m8a-experiment`, `make m8b-smoke`, `make m8b-experiment`, `make m9a-smoke`, `make m9a-experiment`, `make logs`, and `make compose-down`.
+Shortcuts are available as `make compose-up`, `make smoke`, `make trace-smoke`, `make graph-smoke`, `make baseline-smoke`, `make anomaly-smoke`, `make rca-smoke`, `make ml-smoke`, `make m7-experiment`, `make m8a-smoke`, `make m8a-experiment`, `make m8b-smoke`, `make m8b-experiment`, `make m9a-smoke`, `make m9a-experiment`, `make m9b-smoke`, `make m9b-experiment`, `make m10a-smoke`, `make m10a-analysis`, `make logs`, and `make compose-down`.
 
 ## Trace and request correlation
 
@@ -417,6 +417,24 @@ make m9b-experiment
 
 The full run seals truth-free features before joining labels, performs RE1 system holdouts, freezes a metric model for 360 RE2/RE3 metric cases, trains cross-system RE2-OB/TT multi-source folds with RE3 evaluation only, runs modality and metric-group ablations, evaluates unmodified BARO, and reports paired bootstrap confidence intervals. On 216 root-observable trace-capable cases, the RE1-trained metric ranker reaches 80.1% AC@1 and 88.9% MRR; the all-modality cross-system ranker reaches 70.4%/80.6%. The best M9B result improves over the best unchanged soft trace-only baseline by 49.5 AC@1 points (95% CI 40.3–57.9). Within matched RE2 folds, all modalities outperform the metrics-only ablation by 6.0 points, so the recommendation remains `KEEP MULTISOURCE LAMBDAMART`. The pre-registered verdict is `STRONG_MULTISOURCE_GAIN`; M9A remains `NOT_JUSTIFIED`. See [M9B results](docs/m9b-results.md), [protocol](docs/m9b-protocol.md), and [ablations](docs/m9b-ablation.md). Raw benchmark data and truth-free working artifacts remain ignored.
 
+## Milestone 10A: research freeze and claim validation
+
+M10A freezes the M9B implementation and validates the wording permitted in the thesis. It adds no model, feature, telemetry source, threshold, or runtime behavior. The deterministic analysis hashes every frozen M7–M9B input before and after execution; evaluates matched fusion with 10,000-resample paired bootstrap intervals; reports metric ranking on both the 336 observable cases and the full 360-case denominator; audits a service-level BARO comparison; repeats the frozen folds over five learner seeds; and summarizes feature-group stability without causal interpretation.
+
+Run the local statistical-contract smoke:
+
+```bash
+make m10a-smoke
+```
+
+Regenerate the complete freeze artifacts from the sealed M9B truth-free data:
+
+```bash
+make m10a-analysis
+```
+
+The matched 216-case fusion point gain is +6.0 AC@1 points, but its 95% CI touches zero; the MRR gain is +3.8 points with a strictly positive interval. The fusion claim is therefore retained only as partially supported and domain-dependent. Full-denominator metric AC@1 is 76.4% on all 360 cases, versus 81.8% conditional on 336 observable roots. See the [locked protocol](docs/m10a-protocol.md), [validation results](docs/m10a-results.md), [claim registry](docs/thesis-claims.md), and [final research summary](docs/final-research-summary.md). The research method is frozen after M10A; subsequent work is demo/productization only.
+
 ## Endpoints
 
 | Service | Endpoint | Purpose |
@@ -460,6 +478,7 @@ make m8a-smoke
 make m8b-smoke
 make m9a-smoke
 make m9b-smoke
+make m10a-smoke
 ```
 
 The Go tests cover handlers, fault behavior, trace propagation, graph reconstruction, anomaly detection, active-incident topology, trace evidence, M6 ranking, and synthetic OTLP requests. The Python tests cover the feature whitelist, leakage guards, finite matrices, query groups, incident splits, duplicate fingerprints, rename invariance, metrics, bootstrap reproducibility, root holdout, label permutation, deterministic prediction, and the collector drain barrier.
