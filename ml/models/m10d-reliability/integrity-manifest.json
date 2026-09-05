@@ -1,0 +1,12 @@
+{
+  "artifacts": {
+    "frozen-policy.json": "b30178a25d335dc7c893bfd3681a1d22d289f13383b0ae9ac8a390192ae3a6f9",
+    "protocol.json": "83a63869c618b4e8b3a83c4f80fb1512ef1dd463be77f1af3e123f310f6c381d",
+    "reliability-table-development.jsonl": "81c27c56d4aaf77aa465284c9fe99538cf294e76884ff6c8e84b632db6c15590",
+    "reliability-table-external-evaluation.jsonl": "f2f852aa083d3d474a0b80f6480bfb7231ff1b2cda477c48e27fd75bee3c3209",
+    "reliability-table-external-inference.jsonl": "f8b80e39f96bef716fd45e49ab0cc376f6b3b9fa4d66b6c6de439d218039202b"
+  },
+  "frozen_m10c_evaluation_sha256": "6615b14779645f8f43c94b3732f82299d3914a67acf068b5fe934195aa060f64",
+  "frozen_m10c_model_sha256": "8452b88958d2fa2972cfcc89c8021f9108e08be690fcc20add1292bcfe8caace",
+  "truth_free_sha256": "f6bdb4e27f6901b1a9c5f3d655d792b9effd071b2fa84911d1b50bf6da560b8a"
+}

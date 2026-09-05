@@ -1,0 +1,24 @@
+{
+  "bootstrap": {"resamples": 10000, "seed": 20260906},
+  "external_360": "post-M10C locked evaluation; not pristine external model selection",
+  "external_used_for_selection": false,
+  "feature_identity_fields_allowed": false,
+  "frozen_base": {
+    "branch_base": "b18c70c4deddb86c637a5fad4c9f68a2ff465423",
+    "m10c": "dcf3fd211f10edba5808e3c26a0400ea057d405e",
+    "ranker": "compact_stability",
+    "ranker_features": 32
+  },
+  "methods": ["margin", "isotonic", "logistic", "monotonic_boosting", "risk_control", "mondrian"],
+  "outer_systems": ["RE1-OB", "RE1-SS", "RE1-TT"],
+  "promotion": {
+    "external_coverage_min": 0.5,
+    "external_selective_ac_at_1_min": 0.9,
+    "mean_development_coverage_min": 0.5,
+    "mean_development_selective_ac_at_1_min": 0.9,
+    "minimum_system_selective_ac_at_1": 0.8
+  },
+  "seeds": [20260906, 20260907, 20260908, 20260909, 20260910],
+  "targets": [0.9, 0.95],
+  "version": "m10d-reliability-v2"
+}

@@ -1,0 +1,591 @@
+{
+  "calibration_incidents": 80,
+  "external_evaluation_locked_after_this_file": true,
+  "feature_columns": [
+    "margin_top1_top2",
+    "margin_top1_top3",
+    "normalized_rank_gap",
+    "inverse_candidate_count",
+    "metric_coverage",
+    "trace_coverage",
+    "topology_coverage",
+    "available_metric_family_ratio",
+    "candidate_observability",
+    "ood_metric",
+    "ood_trace",
+    "ood_topology",
+    "ood_coverage",
+    "incident_ood",
+    "expert_agreement",
+    "inverse_conformal_set_size",
+    "ranking_concentration",
+    "metrics_present",
+    "traces_present",
+    "topology_present"
+  ],
+  "fit_incidents": 295,
+  "m10c_conformal_quantile_90_unchanged": 0.1111111111111111,
+  "method": "isotonic",
+  "model": {
+    "kind": "isotonic",
+    "upper": [
+      0.0,
+      0.0,
+      0.05058820673872271,
+      0.13643190606999298,
+      0.5735684956922484,
+      0.6406029944571769,
+      0.6431216301892583,
+      0.6446822793756903,
+      0.6467361046665409,
+      0.6487390094340483,
+      0.6487390094340483,
+      0.6558884966676279,
+      0.6562221387794307,
+      0.660546231702629,
+      0.66112024647049,
+      0.6614577180919087,
+      0.6632056782488238,
+      0.6682694964615399,
+      0.6682694964615399,
+      0.6706940330331858,
+      0.6706940330331858,
+      0.6706940330331858,
+      0.6706940330331858,
+      0.67196379440299,
+      0.6795466544599265,
+      0.6911172168589531,
+      0.6949896501176414,
+      0.6950381524558308,
+      0.696173029884026,
+      0.6978193745091511,
+      0.6978193745091511,
+      0.6998383362810469,
+      0.7014011492941935,
+      0.7031155401886403,
+      0.7059873590395918,
+      0.7063178382909274,
+      0.7090898515370324,
+      0.7114141385688285,
+      0.7114141385688285,
+      0.7183294905256139,
+      0.7204378528575507,
+      0.7208982978666917,
+      0.7208982978666917,
+      0.7212930087944412,
+      0.7226601170137003,
+      0.723937420450438,
+      0.7360367103617972,
+      0.7378946268103644,
+      0.7402984191438964,
+      0.7428653306681487,
+      0.7449544143259956,
+      0.7498597143055742,
+      0.7541614810532216,
+      0.7644378454369902,
+      0.7652378194293677,
+      0.7655244155198848,
+      0.7715686020207608,
+      0.7763609663826938,
+      0.7810293647151914,
+      0.7810293647151914,
+      0.7812793190684043,
+      0.7848635353658455,
+      0.7848635353658455,
+      0.7863684610967365,
+      0.8020285437365348,
+      0.8069842229409675,
+      0.8116397503996545,
+      0.816335172263132,
+      0.8219402833907897,
+      0.823007817995458,
+      0.8235848561919046,
+      0.8235848561919046,
+      0.8258038340870407,
+      0.8304469689327906,
+      0.8358642797554466,
+      0.8404463022672393,
+      0.8506327308818036,
+      0.8506327308818036,
+      0.8582305905698426,
+      0.8667461744872742,
+      0.8680894870553492,
+      0.8684391140342128,
+      0.8697486785852931,
+      0.8788451131735658,
+      0.8802626629679983,
+      0.9842098062429161,
+      0.9876331751501093,
+      1.0
+    ],
+    "values": [
+      0.0,
+      0.0,
+      0.5882352941176471,
+      0.6,
+      0.7226277372262774,
+      0.918918918918919,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "ood_bounds": {
+    "coverage_candidate_metric_ratio": {
+      "high": 1.0,
+      "low": 1.0
+    },
+    "coverage_candidate_trace_ratio": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "coverage_has_metrics": {
+      "high": 1.0,
+      "low": 1.0
+    },
+    "coverage_has_topology": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "coverage_has_traces": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "coverage_metric_family_ratio": {
+      "high": 0.38461538461538464,
+      "low": 0.15384615384615385
+    },
+    "coverage_trace_fraction": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_available_family_count": {
+      "high": 5.0,
+      "low": 2.0
+    },
+    "metric_available_family_ratio": {
+      "high": 0.38461538461538464,
+      "low": 0.15384615384615385
+    },
+    "metric_cache_has": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_cache_max_shift": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_cache_max_shift_percentile": {
+      "high": 0.5,
+      "low": 0.5
+    },
+    "metric_cache_persistence": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_cpu_has": {
+      "high": 1.0,
+      "low": 0.0
+    },
+    "metric_cpu_max_shift": {
+      "high": 245.49767680710966,
+      "low": 0.0
+    },
+    "metric_cpu_max_shift_percentile": {
+      "high": 1.0,
+      "low": 0.0
+    },
+    "metric_cpu_persistence": {
+      "high": 0.9804204986149582,
+      "low": 0.0
+    },
+    "metric_database_has": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_database_max_shift": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_database_max_shift_percentile": {
+      "high": 0.5,
+      "low": 0.5
+    },
+    "metric_database_persistence": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_dependency_has": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_dependency_max_shift": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_dependency_max_shift_percentile": {
+      "high": 0.5,
+      "low": 0.5
+    },
+    "metric_dependency_persistence": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_disk_has": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_disk_max_shift": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_disk_max_shift_percentile": {
+      "high": 0.5,
+      "low": 0.5
+    },
+    "metric_disk_persistence": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_error_rate_has": {
+      "high": 1.0,
+      "low": 0.0
+    },
+    "metric_error_rate_max_shift": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_error_rate_max_shift_percentile": {
+      "high": 0.5,
+      "low": 0.4375
+    },
+    "metric_error_rate_persistence": {
+      "high": 0.004158004158004158,
+      "low": 0.0
+    },
+    "metric_latency_has": {
+      "high": 1.0,
+      "low": 0.0
+    },
+    "metric_latency_max_shift": {
+      "high": 894736.8421052633,
+      "low": 0.0
+    },
+    "metric_latency_max_shift_percentile": {
+      "high": 1.0,
+      "low": 0.0
+    },
+    "metric_latency_persistence": {
+      "high": 0.9948325484764541,
+      "low": 0.0
+    },
+    "metric_max_shift_score": {
+      "high": 4000000.0,
+      "low": 0.0
+    },
+    "metric_memory_has": {
+      "high": 1.0,
+      "low": 0.0
+    },
+    "metric_memory_max_shift": {
+      "high": 19492.864624157763,
+      "low": 0.0
+    },
+    "metric_memory_max_shift_percentile": {
+      "high": 1.0,
+      "low": 0.0
+    },
+    "metric_memory_persistence": {
+      "high": 1.0,
+      "low": 0.0
+    },
+    "metric_network_has": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_network_max_shift": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_network_max_shift_percentile": {
+      "high": 0.5,
+      "low": 0.5
+    },
+    "metric_network_persistence": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_queue_has": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_queue_max_shift": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_queue_max_shift_percentile": {
+      "high": 0.5,
+      "low": 0.5
+    },
+    "metric_queue_persistence": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_runtime_has": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_runtime_max_shift": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_runtime_max_shift_percentile": {
+      "high": 0.5,
+      "low": 0.5
+    },
+    "metric_runtime_persistence": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_saturation_has": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_saturation_max_shift": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_saturation_max_shift_percentile": {
+      "high": 0.5,
+      "low": 0.5
+    },
+    "metric_saturation_persistence": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "metric_top2_score": {
+      "high": 2015117.0723523612,
+      "low": 0.0
+    },
+    "metric_traffic_rate_has": {
+      "high": 1.0,
+      "low": 0.0
+    },
+    "metric_traffic_rate_max_shift": {
+      "high": 4000000.0,
+      "low": 0.0
+    },
+    "metric_traffic_rate_max_shift_percentile": {
+      "high": 1.0,
+      "low": 0.0
+    },
+    "metric_traffic_rate_persistence": {
+      "high": 0.4258248440748436,
+      "low": 0.0
+    },
+    "topology_active_trace_coverage": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "topology_ancestor_ratio": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "topology_descendant_ratio": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "topology_in_degree": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "topology_normalized_in_degree": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "topology_normalized_out_degree": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "topology_out_degree": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "trace_error_anomalous": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "trace_error_strength": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "trace_error_z_log1p": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "trace_error_z_log1p_percentile": {
+      "high": 0.5,
+      "low": 0.5
+    },
+    "trace_latency_anomalous": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "trace_latency_strength": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "trace_latency_z_log1p": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "trace_latency_z_log1p_percentile": {
+      "high": 0.5,
+      "low": 0.5
+    },
+    "trace_local_evidence": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "trace_log1p_median_exclusive_duration_ms": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "trace_m5_severity_log1p": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "trace_median_downstream_wait_ratio": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "trace_median_downstream_wait_ratio_percentile": {
+      "high": 0.5,
+      "low": 0.5
+    },
+    "trace_median_exclusive_ratio": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "trace_median_exclusive_ratio_percentile": {
+      "high": 0.5,
+      "low": 0.5
+    },
+    "trace_trace_coverage": {
+      "high": 0.0,
+      "low": 0.0
+    },
+    "workload_residual_location": {
+      "high": 22036479999.99903,
+      "low": 0.0
+    },
+    "workload_residual_p90": {
+      "high": 94208000000.01491,
+      "low": 0.0
+    },
+    "workload_residual_peak": {
+      "high": 488284159999.9852,
+      "low": 0.0
+    },
+    "workload_residual_persistence": {
+      "high": 1.0,
+      "low": 0.0
+    }
+  },
+  "policies": {
+    "0.9": {
+      "calibration_accuracy": 0.9041095890410958,
+      "calibration_coverage": 0.9125,
+      "method": "isotonic",
+      "target_accuracy": 0.9,
+      "threshold": 0.6
+    },
+    "0.95": {
+      "calibration_accuracy": 0.975,
+      "calibration_coverage": 0.5,
+      "method": "isotonic",
+      "target_accuracy": 0.95,
+      "threshold": 0.918918918918919
+    }
+  },
+  "version": "m10d-reliability-v2"
+}
