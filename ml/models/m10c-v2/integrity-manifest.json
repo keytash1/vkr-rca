@@ -1,0 +1,30 @@
+{
+  "frozen": {
+    "checked_files": 8,
+    "m10a_commit": "c83c4e5df98aef2dffadcd7d8943f5624caae002",
+    "m10b_commit": "5e8bd3523c1e192296a58e69fdcc10f328b5f233",
+    "mismatches": {},
+    "ok": true,
+    "sha256": {
+      "docs/defense-demo-script.md": "eea52dad938aecbe944f680baf357ee62093e361d36056558f2fb56c96e8d3b7",
+      "docs/demo-guide.md": "33dc8d623ddd642860d405ee92ba6b23c02208af4e69052a22f8c6b5200bf631",
+      "docs/m10a-protocol.md": "b5e4a15ec9dd68806da9a11b670fed2665b9458dda85c5f3ed4da4c6e8e8af7d",
+      "docs/m10a-results.md": "7661f11ac41e1c93b63a17f69fc7121714336afa000baa7c91aa7a20643cf2be",
+      "docs/m10b-demo-cases.md": "d492ea4d9be69f3ad496a19349829e4ddee933e4ea19f2a13114ba295559ba49",
+      "docs/thesis-claims.md": "5f648c02c69a553dc40c2b748627a819a494b4210a742f0f6960744ab71e2dd8",
+      "ml/models/m10a-freeze/evaluation.json": "eb14e3fd02ebb9fe55d97c3852075114d103493586dd02e8ca40988caeac6db4",
+      "ml/models/m10a-freeze/integrity-manifest.json": "7e152bdb19301bdd9cd0e38377cdd22a990b507e4c9b86f95610d768d62928c7"
+    }
+  },
+  "model_artifacts": {
+    "compact-stability.json": "8452b88958d2fa2972cfcc89c8021f9108e08be690fcc20add1292bcfe8caace",
+    "early-fusion.json": "b6aa884b1d297dcad8fc529b594664624bb4acd3035558a36759841fc07af024",
+    "feature-schema.json": "83a5a62700d2e1c803af1408d2af9488b997951412b54663c3d82145b2cd2bfe",
+    "m10c-core-v2.json": "8452b88958d2fa2972cfcc89c8021f9108e08be690fcc20add1292bcfe8caace",
+    "metric-expert.json": "1dfeb32c9e29322ce081c711002949b93cd81c80663e89de262a092b4b8b6a9c",
+    "stacked-meta-ranker.json": "073c833e6f086042f6904821271e28f89f23a4a8e533f024b34c9b6ac259f1f1",
+    "trace-topology-expert.json": "c161d6cb177bf7c0cb4a4dea46d78b0e15d168bb6f100d66db076782e0f3b48c"
+  },
+  "selected_model_sha256": "8452b88958d2fa2972cfcc89c8021f9108e08be690fcc20add1292bcfe8caace",
+  "truth_free_sha256": "f6bdb4e27f6901b1a9c5f3d655d792b9effd071b2fa84911d1b50bf6da560b8a"
+}
