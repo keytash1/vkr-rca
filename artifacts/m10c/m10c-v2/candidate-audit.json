@@ -1,0 +1,355 @@
+{
+  "frozen_external_reference": {
+    "cases": 360,
+    "observable": 336
+  },
+  "frozen_missing_cases": [
+    {
+      "candidate_count": 11,
+      "case_id": "re3ob_adservice_f3_1",
+      "classification": "B_metrics_entity_mapping_rejected",
+      "dataset": "RE3-OB",
+      "evidence": "root is a non-infrastructure metric entity excluded by the trace-constrained M9B mapper",
+      "frozen_root_observable": false,
+      "m10c_root_observable": true,
+      "root": "adservice",
+      "system": "ob"
+    },
+    {
+      "candidate_count": 19,
+      "case_id": "re3ob_adservice_f3_2",
+      "classification": "B_metrics_entity_mapping_rejected",
+      "dataset": "RE3-OB",
+      "evidence": "root is a non-infrastructure metric entity excluded by the trace-constrained M9B mapper",
+      "frozen_root_observable": false,
+      "m10c_root_observable": true,
+      "root": "adservice",
+      "system": "ob"
+    },
+    {
+      "candidate_count": 19,
+      "case_id": "re3ob_adservice_f3_3",
+      "classification": "B_metrics_entity_mapping_rejected",
+      "dataset": "RE3-OB",
+      "evidence": "root is a non-infrastructure metric entity excluded by the trace-constrained M9B mapper",
+      "frozen_root_observable": false,
+      "m10c_root_observable": true,
+      "root": "adservice",
+      "system": "ob"
+    },
+    {
+      "candidate_count": 11,
+      "case_id": "re3ob_adservice_f4_1",
+      "classification": "B_metrics_entity_mapping_rejected",
+      "dataset": "RE3-OB",
+      "evidence": "root is a non-infrastructure metric entity excluded by the trace-constrained M9B mapper",
+      "frozen_root_observable": false,
+      "m10c_root_observable": true,
+      "root": "adservice",
+      "system": "ob"
+    },
+    {
+      "candidate_count": 11,
+      "case_id": "re3ob_adservice_f4_2",
+      "classification": "B_metrics_entity_mapping_rejected",
+      "dataset": "RE3-OB",
+      "evidence": "root is a non-infrastructure metric entity excluded by the trace-constrained M9B mapper",
+      "frozen_root_observable": false,
+      "m10c_root_observable": true,
+      "root": "adservice",
+      "system": "ob"
+    },
+    {
+      "candidate_count": 11,
+      "case_id": "re3ob_adservice_f4_3",
+      "classification": "B_metrics_entity_mapping_rejected",
+      "dataset": "RE3-OB",
+      "evidence": "root is a non-infrastructure metric entity excluded by the trace-constrained M9B mapper",
+      "frozen_root_observable": false,
+      "m10c_root_observable": true,
+      "root": "adservice",
+      "system": "ob"
+    },
+    {
+      "candidate_count": 11,
+      "case_id": "re3ob_adservice_f5_1",
+      "classification": "B_metrics_entity_mapping_rejected",
+      "dataset": "RE3-OB",
+      "evidence": "root is a non-infrastructure metric entity excluded by the trace-constrained M9B mapper",
+      "frozen_root_observable": false,
+      "m10c_root_observable": true,
+      "root": "adservice",
+      "system": "ob"
+    },
+    {
+      "candidate_count": 11,
+      "case_id": "re3ob_adservice_f5_2",
+      "classification": "B_metrics_entity_mapping_rejected",
+      "dataset": "RE3-OB",
+      "evidence": "root is a non-infrastructure metric entity excluded by the trace-constrained M9B mapper",
+      "frozen_root_observable": false,
+      "m10c_root_observable": true,
+      "root": "adservice",
+      "system": "ob"
+    },
+    {
+      "candidate_count": 11,
+      "case_id": "re3ob_adservice_f5_3",
+      "classification": "B_metrics_entity_mapping_rejected",
+      "dataset": "RE3-OB",
+      "evidence": "root is a non-infrastructure metric entity excluded by the trace-constrained M9B mapper",
+      "frozen_root_observable": false,
+      "m10c_root_observable": true,
+      "root": "adservice",
+      "system": "ob"
+    },
+    {
+      "candidate_count": 11,
+      "case_id": "re3ob_cartservice_f1_1",
+      "classification": "B_metrics_entity_mapping_rejected",
+      "dataset": "RE3-OB",
+      "evidence": "root is a non-infrastructure metric entity excluded by the trace-constrained M9B mapper",
+      "frozen_root_observable": false,
+      "m10c_root_observable": true,
+      "root": "cartservice",
+      "system": "ob"
+    },
+    {
+      "candidate_count": 11,
+      "case_id": "re3ob_cartservice_f1_2",
+      "classification": "B_metrics_entity_mapping_rejected",
+      "dataset": "RE3-OB",
+      "evidence": "root is a non-infrastructure metric entity excluded by the trace-constrained M9B mapper",
+      "frozen_root_observable": false,
+      "m10c_root_observable": true,
+      "root": "cartservice",
+      "system": "ob"
+    },
+    {
+      "candidate_count": 11,
+      "case_id": "re3ob_cartservice_f1_3",
+      "classification": "B_metrics_entity_mapping_rejected",
+      "dataset": "RE3-OB",
+      "evidence": "root is a non-infrastructure metric entity excluded by the trace-constrained M9B mapper",
+      "frozen_root_observable": false,
+      "m10c_root_observable": true,
+      "root": "cartservice",
+      "system": "ob"
+    },
+    {
+      "candidate_count": 11,
+      "case_id": "re3ob_emailservice_f1_1",
+      "classification": "B_metrics_entity_mapping_rejected",
+      "dataset": "RE3-OB",
+      "evidence": "root is a non-infrastructure metric entity excluded by the trace-constrained M9B mapper",
+      "frozen_root_observable": false,
+      "m10c_root_observable": true,
+      "root": "emailservice",
+      "system": "ob"
+    },
+    {
+      "candidate_count": 11,
+      "case_id": "re3ob_emailservice_f1_2",
+      "classification": "B_metrics_entity_mapping_rejected",
+      "dataset": "RE3-OB",
+      "evidence": "root is a non-infrastructure metric entity excluded by the trace-constrained M9B mapper",
+      "frozen_root_observable": false,
+      "m10c_root_observable": true,
+      "root": "emailservice",
+      "system": "ob"
+    },
+    {
+      "candidate_count": 11,
+      "case_id": "re3ob_emailservice_f1_3",
+      "classification": "B_metrics_entity_mapping_rejected",
+      "dataset": "RE3-OB",
+      "evidence": "root is a non-infrastructure metric entity excluded by the trace-constrained M9B mapper",
+      "frozen_root_observable": false,
+      "m10c_root_observable": true,
+      "root": "emailservice",
+      "system": "ob"
+    },
+    {
+      "candidate_count": 11,
+      "case_id": "re3ob_emailservice_f2_1",
+      "classification": "B_metrics_entity_mapping_rejected",
+      "dataset": "RE3-OB",
+      "evidence": "root is a non-infrastructure metric entity excluded by the trace-constrained M9B mapper",
+      "frozen_root_observable": false,
+      "m10c_root_observable": true,
+      "root": "emailservice",
+      "system": "ob"
+    },
+    {
+      "candidate_count": 11,
+      "case_id": "re3ob_emailservice_f2_2",
+      "classification": "B_metrics_entity_mapping_rejected",
+      "dataset": "RE3-OB",
+      "evidence": "root is a non-infrastructure metric entity excluded by the trace-constrained M9B mapper",
+      "frozen_root_observable": false,
+      "m10c_root_observable": true,
+      "root": "emailservice",
+      "system": "ob"
+    },
+    {
+      "candidate_count": 11,
+      "case_id": "re3ob_emailservice_f2_3",
+      "classification": "B_metrics_entity_mapping_rejected",
+      "dataset": "RE3-OB",
+      "evidence": "root is a non-infrastructure metric entity excluded by the trace-constrained M9B mapper",
+      "frozen_root_observable": false,
+      "m10c_root_observable": true,
+      "root": "emailservice",
+      "system": "ob"
+    },
+    {
+      "candidate_count": 11,
+      "case_id": "re3ob_emailservice_f3_1",
+      "classification": "B_metrics_entity_mapping_rejected",
+      "dataset": "RE3-OB",
+      "evidence": "root is a non-infrastructure metric entity excluded by the trace-constrained M9B mapper",
+      "frozen_root_observable": false,
+      "m10c_root_observable": true,
+      "root": "emailservice",
+      "system": "ob"
+    },
+    {
+      "candidate_count": 11,
+      "case_id": "re3ob_emailservice_f3_2",
+      "classification": "B_metrics_entity_mapping_rejected",
+      "dataset": "RE3-OB",
+      "evidence": "root is a non-infrastructure metric entity excluded by the trace-constrained M9B mapper",
+      "frozen_root_observable": false,
+      "m10c_root_observable": true,
+      "root": "emailservice",
+      "system": "ob"
+    },
+    {
+      "candidate_count": 11,
+      "case_id": "re3ob_emailservice_f3_3",
+      "classification": "B_metrics_entity_mapping_rejected",
+      "dataset": "RE3-OB",
+      "evidence": "root is a non-infrastructure metric entity excluded by the trace-constrained M9B mapper",
+      "frozen_root_observable": false,
+      "m10c_root_observable": true,
+      "root": "emailservice",
+      "system": "ob"
+    },
+    {
+      "candidate_count": 11,
+      "case_id": "re3ob_emailservice_f5_1",
+      "classification": "B_metrics_entity_mapping_rejected",
+      "dataset": "RE3-OB",
+      "evidence": "root is a non-infrastructure metric entity excluded by the trace-constrained M9B mapper",
+      "frozen_root_observable": false,
+      "m10c_root_observable": true,
+      "root": "emailservice",
+      "system": "ob"
+    },
+    {
+      "candidate_count": 11,
+      "case_id": "re3ob_emailservice_f5_2",
+      "classification": "B_metrics_entity_mapping_rejected",
+      "dataset": "RE3-OB",
+      "evidence": "root is a non-infrastructure metric entity excluded by the trace-constrained M9B mapper",
+      "frozen_root_observable": false,
+      "m10c_root_observable": true,
+      "root": "emailservice",
+      "system": "ob"
+    },
+    {
+      "candidate_count": 11,
+      "case_id": "re3ob_emailservice_f5_3",
+      "classification": "B_metrics_entity_mapping_rejected",
+      "dataset": "RE3-OB",
+      "evidence": "root is a non-infrastructure metric entity excluded by the trace-constrained M9B mapper",
+      "frozen_root_observable": false,
+      "m10c_root_observable": true,
+      "root": "emailservice",
+      "system": "ob"
+    }
+  ],
+  "label_isolation": "all candidate universes materialized before root labels were read",
+  "source_truth_free_sha256": "a6f6b1430008e22a30a35f1a4de620abd134182b723ec0cd90c156e236a8be0d",
+  "summary": {
+    "RE1": {
+      "candidate_recall": 1.0,
+      "cases": 375,
+      "mean_candidates": 21.149333333333335,
+      "root_observable": 375
+    },
+    "RE1-OB": {
+      "candidate_recall": 1.0,
+      "cases": 125,
+      "mean_candidates": 12.44,
+      "root_observable": 125
+    },
+    "RE1-SS": {
+      "candidate_recall": 1.0,
+      "cases": 125,
+      "mean_candidates": 9.008,
+      "root_observable": 125
+    },
+    "RE1-TT": {
+      "candidate_recall": 1.0,
+      "cases": 125,
+      "mean_candidates": 42.0,
+      "root_observable": 125
+    },
+    "RE2": {
+      "candidate_recall": 1.0,
+      "cases": 270,
+      "mean_candidates": 20.7,
+      "root_observable": 270
+    },
+    "RE2-OB": {
+      "candidate_recall": 1.0,
+      "cases": 90,
+      "mean_candidates": 11.022222222222222,
+      "root_observable": 90
+    },
+    "RE2-SS": {
+      "candidate_recall": 1.0,
+      "cases": 90,
+      "mean_candidates": 9.022222222222222,
+      "root_observable": 90
+    },
+    "RE2-TT": {
+      "candidate_recall": 1.0,
+      "cases": 90,
+      "mean_candidates": 42.05555555555556,
+      "root_observable": 90
+    },
+    "RE3": {
+      "candidate_recall": 1.0,
+      "cases": 90,
+      "mean_candidates": 21.033333333333335,
+      "root_observable": 90
+    },
+    "RE3-OB": {
+      "candidate_recall": 1.0,
+      "cases": 30,
+      "mean_candidates": 11.533333333333333,
+      "root_observable": 30
+    },
+    "RE3-SS": {
+      "candidate_recall": 1.0,
+      "cases": 30,
+      "mean_candidates": 9.333333333333334,
+      "root_observable": 30
+    },
+    "RE3-TT": {
+      "candidate_recall": 1.0,
+      "cases": 30,
+      "mean_candidates": 42.233333333333334,
+      "root_observable": 30
+    },
+    "external_360": {
+      "candidate_recall": 1.0,
+      "cases": 360,
+      "mean_candidates": 20.783333333333335,
+      "root_observable": 360
+    }
+  },
+  "version": "m10c-candidate-audit-v1"
+}
