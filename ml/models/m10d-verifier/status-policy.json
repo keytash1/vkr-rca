@@ -1,0 +1,49 @@
+{
+  "accepted_statuses": [
+    "VERIFIED"
+  ],
+  "external_used_for_selection": false,
+  "fit_partition": "RE1 only",
+  "learned_columns": [
+    "component_MetricSupport",
+    "component_TraceLocalSupport",
+    "component_PropagationSupport",
+    "component_TopologySupport",
+    "component_DependencyWaitSupport",
+    "component_CoverageSupport",
+    "component_ContradictionEvidence",
+    "component_OODPenalty",
+    "component_ExpertAgreement",
+    "support_score",
+    "base_rank_percentile",
+    "base_relative_score",
+    "base_margin"
+  ],
+  "status_policy": {
+    "calibration_summary": {
+      "base_accuracy": 0.72,
+      "cases": 375,
+      "contradicted_cases": 2,
+      "contradicted_coverage": 0.005333333333333333,
+      "contradicted_error_precision": 1.0,
+      "decisive_coverage": 0.005333333333333333,
+      "status_counts": {
+        "CONTRADICTED": 2,
+        "INSUFFICIENT_EVIDENCE": 15,
+        "PARTIALLY_SUPPORTED": 358,
+        "VERIFIED": 0
+      },
+      "verified_cases": 0,
+      "verified_coverage": 0.0,
+      "verified_precision": 0.0
+    },
+    "contradiction": 0.4,
+    "feasible_precision_constraints": false,
+    "minimum_coverage": 0.2,
+    "partial_support": 0.3,
+    "selection": "development_only_grid",
+    "verified_support": 0.55
+  },
+  "top_k": 3,
+  "version": "m10d-verifier-v1"
+}

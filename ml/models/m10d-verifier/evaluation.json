@@ -1,0 +1,1100 @@
+{
+  "case_studies": [
+    {
+      "case_study": "correct strongly verified",
+      "claim_scope": "post-hoc evidence audit; not causal proof",
+      "components": {
+        "ContradictionEvidence": 0.0,
+        "CoverageSupport": 0.8351648351648352,
+        "DependencyWaitSupport": 0.9975313424422114,
+        "ExpertAgreement": 0.24390243902439024,
+        "MetricSupport": 0.9886788617886179,
+        "OODPenalty": 0.3333333333333333,
+        "PropagationSupport": 1.0,
+        "TopologySupport": 1.0,
+        "TraceLocalSupport": 0.9876567122110568
+      },
+      "contradictions": [],
+      "dataset": "RE2-TT",
+      "dominant_metric_families": [
+        {
+          "family": "cpu",
+          "support": 0.9941666666666666
+        },
+        {
+          "family": "memory",
+          "support": 0.9831910569105691
+        },
+        {
+          "family": "latency",
+          "support": 0.9514308943089431
+        }
+      ],
+      "incident_id": "re2tt_ts-route-service_socket_3",
+      "observed": true,
+      "predicted_service": "ts-route-service",
+      "status": "VERIFIED",
+      "support_score": 0.9062664073573876,
+      "truth_rank": 1,
+      "truth_service": "ts-route-service"
+    },
+    {
+      "case_study": "correct weakly supported",
+      "claim_scope": "post-hoc evidence audit; not causal proof",
+      "components": {
+        "ContradictionEvidence": 0.0,
+        "CoverageSupport": 0.6423076923076924,
+        "DependencyWaitSupport": 0.0,
+        "ExpertAgreement": 0.5,
+        "MetricSupport": 0.7911980304247754,
+        "OODPenalty": 0.13333333333333333,
+        "PropagationSupport": 0.0,
+        "TopologySupport": 0.0,
+        "TraceLocalSupport": 0.0
+      },
+      "contradictions": [],
+      "dataset": "RE3-SS",
+      "dominant_metric_families": [
+        {
+          "family": "memory",
+          "support": 0.8285
+        },
+        {
+          "family": "cpu",
+          "support": 0.7538960608495509
+        },
+        {
+          "family": "error_rate",
+          "support": 0.7404166666666667
+        }
+      ],
+      "incident_id": "re3ss_carts_f4_1",
+      "observed": true,
+      "predicted_service": "carts",
+      "status": "PARTIALLY_SUPPORTED",
+      "support_score": 0.31325684502486856,
+      "truth_rank": 1,
+      "truth_service": "carts"
+    },
+    {
+      "case_study": "wrong but contradicted",
+      "claim_scope": "post-hoc evidence audit; not causal proof",
+      "components": {
+        "ContradictionEvidence": 0.561174449093826,
+        "CoverageSupport": 0.8315934065934066,
+        "DependencyWaitSupport": 0.8877648823818136,
+        "ExpertAgreement": 0.7317073170731707,
+        "MetricSupport": 0.8014149285612371,
+        "OODPenalty": 0.3111111111111111,
+        "PropagationSupport": 0.8514297385620916,
+        "TopologySupport": 0.903764705882353,
+        "TraceLocalSupport": 0.4388244119090677
+      },
+      "contradictions": [
+        "another service has substantially stronger local trace evidence"
+      ],
+      "dataset": "RE2-TT",
+      "dominant_metric_families": [
+        {
+          "family": "cpu",
+          "support": 0.9005254475857872
+        },
+        {
+          "family": "traffic_rate",
+          "support": 0.702304409536687
+        },
+        {
+          "family": "disk",
+          "support": 0.3743466968922025
+        }
+      ],
+      "incident_id": "re2tt_ts-train-service_delay_3",
+      "observed": true,
+      "predicted_service": "ts-route-service",
+      "status": "CONTRADICTED",
+      "support_score": 0.5272793187799643,
+      "truth_rank": 3,
+      "truth_service": "ts-train-service"
+    },
+    {
+      "case_study": "wrong but falsely verified",
+      "claim_scope": "post-hoc evidence audit; not causal proof",
+      "components": {
+        "ContradictionEvidence": 0.0,
+        "CoverageSupport": 0.795104895104895,
+        "DependencyWaitSupport": 0.9924004681278571,
+        "ExpertAgreement": 0.8,
+        "MetricSupport": 0.8753820302861289,
+        "OODPenalty": 0.32222222222222224,
+        "PropagationSupport": 0.7583333333333333,
+        "TopologySupport": 0.7933333333333333,
+        "TraceLocalSupport": 0.9620023406392855
+      },
+      "contradictions": [],
+      "dataset": "RE3-OB",
+      "dominant_metric_families": [
+        {
+          "family": "latency",
+          "support": 1.0
+        },
+        {
+          "family": "memory",
+          "support": 0.7507640605722579
+        },
+        {
+          "family": "traffic_rate",
+          "support": 0.487968953598194
+        }
+      ],
+      "incident_id": "re3ob_currencyservice_f1_3",
+      "observed": true,
+      "predicted_service": "checkoutservice",
+      "status": "VERIFIED",
+      "support_score": 0.8346267246480822,
+      "truth_rank": 8,
+      "truth_service": "currencyservice"
+    },
+    {
+      "case_study": "trace-missing correct",
+      "claim_scope": "post-hoc evidence audit; not causal proof",
+      "components": {
+        "ContradictionEvidence": 0.0,
+        "CoverageSupport": 0.7223776223776224,
+        "DependencyWaitSupport": 0.0,
+        "ExpertAgreement": 0.5,
+        "MetricSupport": 0.9909583333333334,
+        "OODPenalty": 0.1111111111111111,
+        "PropagationSupport": 0.0,
+        "TopologySupport": 0.0,
+        "TraceLocalSupport": 0.0
+      },
+      "contradictions": [],
+      "dataset": "RE3-OB",
+      "dominant_metric_families": [
+        {
+          "family": "memory",
+          "support": 0.9953333333333334
+        },
+        {
+          "family": "network",
+          "support": 0.9865833333333334
+        },
+        {
+          "family": "latency",
+          "support": 0.7841352186935767
+        }
+      ],
+      "incident_id": "re3ob_cartservice_f1_3",
+      "observed": true,
+      "predicted_service": "cartservice",
+      "status": "PARTIALLY_SUPPORTED",
+      "support_score": 0.3834141511266511,
+      "truth_rank": 1,
+      "truth_service": "cartservice"
+    },
+    {
+      "case_study": "metric-only candidate correct",
+      "claim_scope": "post-hoc evidence audit; not causal proof",
+      "components": {
+        "ContradictionEvidence": 0.0,
+        "CoverageSupport": 0.7223776223776224,
+        "DependencyWaitSupport": 0.0,
+        "ExpertAgreement": 0.5,
+        "MetricSupport": 0.9909583333333334,
+        "OODPenalty": 0.1111111111111111,
+        "PropagationSupport": 0.0,
+        "TopologySupport": 0.0,
+        "TraceLocalSupport": 0.0
+      },
+      "contradictions": [],
+      "dataset": "RE3-OB",
+      "dominant_metric_families": [
+        {
+          "family": "memory",
+          "support": 0.9953333333333334
+        },
+        {
+          "family": "network",
+          "support": 0.9865833333333334
+        },
+        {
+          "family": "latency",
+          "support": 0.7841352186935767
+        }
+      ],
+      "incident_id": "re3ob_cartservice_f1_3",
+      "observed": true,
+      "predicted_service": "cartservice",
+      "status": "PARTIALLY_SUPPORTED",
+      "support_score": 0.3834141511266511,
+      "truth_rank": 1,
+      "truth_service": "cartservice"
+    }
+  ],
+  "data_protocol": {
+    "development": "RE1 nested system holdout plus synthetic semantic stress",
+    "external": "post-M10C external evaluation, not pristine external model selection",
+    "external_cases": 360,
+    "external_used_for_selection": false,
+    "forbidden_model_features": [
+      "service",
+      "system",
+      "dataset",
+      "fault",
+      "root",
+      "case semantics"
+    ]
+  },
+  "deterministic_verifier": {
+    "claim_scope": "evidence support only; no causal proof or conditional guarantee",
+    "components": [
+      "MetricSupport",
+      "TraceLocalSupport",
+      "PropagationSupport",
+      "TopologySupport",
+      "DependencyWaitSupport",
+      "CoverageSupport",
+      "ContradictionEvidence",
+      "OODPenalty",
+      "ExpertAgreement"
+    ],
+    "development_trace_candidate_rate": 0.0,
+    "external_by_dataset": {
+      "RE2-OB": {
+        "base_accuracy": 0.8666666666666667,
+        "cases": 90,
+        "contradicted_cases": 65,
+        "contradicted_coverage": 0.7222222222222222,
+        "contradicted_error_precision": 0.18461538461538463,
+        "decisive_coverage": 1.0,
+        "status_counts": {
+          "CONTRADICTED": 65,
+          "INSUFFICIENT_EVIDENCE": 0,
+          "PARTIALLY_SUPPORTED": 0,
+          "VERIFIED": 25
+        },
+        "verified_cases": 25,
+        "verified_coverage": 0.2777777777777778,
+        "verified_precision": 1.0
+      },
+      "RE2-SS": {
+        "base_accuracy": 0.9111111111111111,
+        "cases": 90,
+        "contradicted_cases": 0,
+        "contradicted_coverage": 0.0,
+        "contradicted_error_precision": 0.0,
+        "decisive_coverage": 0.0,
+        "status_counts": {
+          "CONTRADICTED": 0,
+          "INSUFFICIENT_EVIDENCE": 0,
+          "PARTIALLY_SUPPORTED": 90,
+          "VERIFIED": 0
+        },
+        "verified_cases": 0,
+        "verified_coverage": 0.0,
+        "verified_precision": 0.0
+      },
+      "RE2-TT": {
+        "base_accuracy": 0.6888888888888889,
+        "cases": 90,
+        "contradicted_cases": 33,
+        "contradicted_coverage": 0.36666666666666664,
+        "contradicted_error_precision": 0.7272727272727273,
+        "decisive_coverage": 0.9333333333333333,
+        "status_counts": {
+          "CONTRADICTED": 33,
+          "INSUFFICIENT_EVIDENCE": 1,
+          "PARTIALLY_SUPPORTED": 5,
+          "VERIFIED": 51
+        },
+        "verified_cases": 51,
+        "verified_coverage": 0.5666666666666667,
+        "verified_precision": 1.0
+      },
+      "RE3-OB": {
+        "base_accuracy": 0.8666666666666667,
+        "cases": 30,
+        "contradicted_cases": 6,
+        "contradicted_coverage": 0.2,
+        "contradicted_error_precision": 0.5,
+        "decisive_coverage": 0.23333333333333334,
+        "status_counts": {
+          "CONTRADICTED": 6,
+          "INSUFFICIENT_EVIDENCE": 0,
+          "PARTIALLY_SUPPORTED": 23,
+          "VERIFIED": 1
+        },
+        "verified_cases": 1,
+        "verified_coverage": 0.03333333333333333,
+        "verified_precision": 0.0
+      },
+      "RE3-SS": {
+        "base_accuracy": 0.6666666666666666,
+        "cases": 30,
+        "contradicted_cases": 0,
+        "contradicted_coverage": 0.0,
+        "contradicted_error_precision": 0.0,
+        "decisive_coverage": 0.0,
+        "status_counts": {
+          "CONTRADICTED": 0,
+          "INSUFFICIENT_EVIDENCE": 3,
+          "PARTIALLY_SUPPORTED": 27,
+          "VERIFIED": 0
+        },
+        "verified_cases": 0,
+        "verified_coverage": 0.0,
+        "verified_precision": 0.0
+      },
+      "RE3-TT": {
+        "base_accuracy": 0.5333333333333333,
+        "cases": 30,
+        "contradicted_cases": 14,
+        "contradicted_coverage": 0.4666666666666667,
+        "contradicted_error_precision": 0.2857142857142857,
+        "decisive_coverage": 0.6666666666666666,
+        "status_counts": {
+          "CONTRADICTED": 14,
+          "INSUFFICIENT_EVIDENCE": 0,
+          "PARTIALLY_SUPPORTED": 10,
+          "VERIFIED": 6
+        },
+        "verified_cases": 6,
+        "verified_coverage": 0.2,
+        "verified_precision": 1.0
+      }
+    },
+    "external_overall": {
+      "base_accuracy": 0.7888888888888889,
+      "cases": 360,
+      "contradicted_cases": 118,
+      "contradicted_coverage": 0.3277777777777778,
+      "contradicted_error_precision": 0.3644067796610169,
+      "decisive_coverage": 0.5583333333333333,
+      "status_counts": {
+        "CONTRADICTED": 118,
+        "INSUFFICIENT_EVIDENCE": 4,
+        "PARTIALLY_SUPPORTED": 155,
+        "VERIFIED": 83
+      },
+      "verified_cases": 83,
+      "verified_coverage": 0.23055555555555557,
+      "verified_precision": 0.9879518072289156
+    },
+    "nested_development": {
+      "folds": [
+        {
+          "abstention": {
+            "accepted": 0,
+            "cases": 125,
+            "coverage": 0.0,
+            "selective_ac_at_1": null,
+            "selective_mrr": null
+          },
+          "held_out": "RE1-OB",
+          "policy": {
+            "calibration_summary": {
+              "base_accuracy": 0.732,
+              "cases": 250,
+              "contradicted_cases": 0,
+              "contradicted_coverage": 0.0,
+              "contradicted_error_precision": 0.0,
+              "decisive_coverage": 0.0,
+              "status_counts": {
+                "CONTRADICTED": 0,
+                "INSUFFICIENT_EVIDENCE": 6,
+                "PARTIALLY_SUPPORTED": 244,
+                "VERIFIED": 0
+              },
+              "verified_cases": 0,
+              "verified_coverage": 0.0,
+              "verified_precision": 0.0
+            },
+            "contradiction": 0.4,
+            "feasible_precision_constraints": false,
+            "minimum_coverage": 0.2,
+            "partial_support": 0.3,
+            "selection": "development_only_grid",
+            "verified_support": 0.55
+          },
+          "policy_fit_cases": 250,
+          "status": {
+            "base_accuracy": 0.696,
+            "cases": 125,
+            "contradicted_cases": 2,
+            "contradicted_coverage": 0.016,
+            "contradicted_error_precision": 1.0,
+            "status_counts": {
+              "CONTRADICTED": 2,
+              "INSUFFICIENT_EVIDENCE": 9,
+              "PARTIALLY_SUPPORTED": 114,
+              "VERIFIED": 0
+            },
+            "verified_cases": 0,
+            "verified_coverage": 0.0,
+            "verified_precision": 0.0
+          }
+        },
+        {
+          "abstention": {
+            "accepted": 0,
+            "cases": 125,
+            "coverage": 0.0,
+            "selective_ac_at_1": null,
+            "selective_mrr": null
+          },
+          "held_out": "RE1-SS",
+          "policy": {
+            "calibration_summary": {
+              "base_accuracy": 0.656,
+              "cases": 250,
+              "contradicted_cases": 2,
+              "contradicted_coverage": 0.008,
+              "contradicted_error_precision": 1.0,
+              "decisive_coverage": 0.008,
+              "status_counts": {
+                "CONTRADICTED": 2,
+                "INSUFFICIENT_EVIDENCE": 14,
+                "PARTIALLY_SUPPORTED": 234,
+                "VERIFIED": 0
+              },
+              "verified_cases": 0,
+              "verified_coverage": 0.0,
+              "verified_precision": 0.0
+            },
+            "contradiction": 0.4,
+            "feasible_precision_constraints": false,
+            "minimum_coverage": 0.2,
+            "partial_support": 0.3,
+            "selection": "development_only_grid",
+            "verified_support": 0.55
+          },
+          "policy_fit_cases": 250,
+          "status": {
+            "base_accuracy": 0.848,
+            "cases": 125,
+            "contradicted_cases": 0,
+            "contradicted_coverage": 0.0,
+            "contradicted_error_precision": 0.0,
+            "status_counts": {
+              "CONTRADICTED": 0,
+              "INSUFFICIENT_EVIDENCE": 1,
+              "PARTIALLY_SUPPORTED": 124,
+              "VERIFIED": 0
+            },
+            "verified_cases": 0,
+            "verified_coverage": 0.0,
+            "verified_precision": 0.0
+          }
+        },
+        {
+          "abstention": {
+            "accepted": 0,
+            "cases": 125,
+            "coverage": 0.0,
+            "selective_ac_at_1": null,
+            "selective_mrr": null
+          },
+          "held_out": "RE1-TT",
+          "policy": {
+            "calibration_summary": {
+              "base_accuracy": 0.772,
+              "cases": 250,
+              "contradicted_cases": 2,
+              "contradicted_coverage": 0.008,
+              "contradicted_error_precision": 1.0,
+              "decisive_coverage": 0.008,
+              "status_counts": {
+                "CONTRADICTED": 2,
+                "INSUFFICIENT_EVIDENCE": 10,
+                "PARTIALLY_SUPPORTED": 238,
+                "VERIFIED": 0
+              },
+              "verified_cases": 0,
+              "verified_coverage": 0.0,
+              "verified_precision": 0.0
+            },
+            "contradiction": 0.4,
+            "feasible_precision_constraints": false,
+            "minimum_coverage": 0.2,
+            "partial_support": 0.3,
+            "selection": "development_only_grid",
+            "verified_support": 0.55
+          },
+          "policy_fit_cases": 250,
+          "status": {
+            "base_accuracy": 0.616,
+            "cases": 125,
+            "contradicted_cases": 0,
+            "contradicted_coverage": 0.0,
+            "contradicted_error_precision": 0.0,
+            "status_counts": {
+              "CONTRADICTED": 0,
+              "INSUFFICIENT_EVIDENCE": 5,
+              "PARTIALLY_SUPPORTED": 120,
+              "VERIFIED": 0
+            },
+            "verified_cases": 0,
+            "verified_coverage": 0.0,
+            "verified_precision": 0.0
+          }
+        }
+      ],
+      "overall_abstention": {
+        "accepted": 0,
+        "cases": 375,
+        "coverage": 0.0,
+        "selective_ac_at_1": null,
+        "selective_mrr": null
+      },
+      "overall_status": {
+        "base_accuracy": 0.72,
+        "cases": 375,
+        "contradicted_cases": 2,
+        "contradicted_coverage": 0.005333333333333333,
+        "contradicted_error_precision": 1.0,
+        "status_counts": {
+          "CONTRADICTED": 2,
+          "INSUFFICIENT_EVIDENCE": 15,
+          "PARTIALLY_SUPPORTED": 358,
+          "VERIFIED": 0
+        },
+        "verified_cases": 0,
+        "verified_coverage": 0.0,
+        "verified_precision": 0.0
+      },
+      "protocol": "nested RE1 system holdout; status and acceptance policies fit on the other two systems"
+    },
+    "promotion_gates": {
+      "both_decisive_statuses_nonempty": false,
+      "contradicted_enriches_errors": true,
+      "synthetic_semantics": true,
+      "verified_more_precise_than_base": false
+    },
+    "status_policy": {
+      "calibration_summary": {
+        "base_accuracy": 0.72,
+        "cases": 375,
+        "contradicted_cases": 2,
+        "contradicted_coverage": 0.005333333333333333,
+        "contradicted_error_precision": 1.0,
+        "decisive_coverage": 0.005333333333333333,
+        "status_counts": {
+          "CONTRADICTED": 2,
+          "INSUFFICIENT_EVIDENCE": 15,
+          "PARTIALLY_SUPPORTED": 358,
+          "VERIFIED": 0
+        },
+        "verified_cases": 0,
+        "verified_coverage": 0.0,
+        "verified_precision": 0.0
+      },
+      "contradiction": 0.4,
+      "feasible_precision_constraints": false,
+      "minimum_coverage": 0.2,
+      "partial_support": 0.3,
+      "selection": "development_only_grid",
+      "verified_support": 0.55
+    },
+    "synthetic": {
+      "Synthetic-A-local-vs-propagated": {
+        "pass": true
+      },
+      "Synthetic-B-metric-only": {
+        "pass": true
+      },
+      "Synthetic-C-topology-contradiction": {
+        "pass": true
+      }
+    },
+    "verdict_reason": "RE1 has no trace-bearing candidates, so multi-source status transfer cannot be validated without using the already-known external 360 for selection."
+  },
+  "environment": {
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 20260906,
+    "learned_seeds": [
+      20260906,
+      20260907,
+      20260908,
+      20260909,
+      20260910
+    ],
+    "numpy": "2.4.4",
+    "python": "3.14.5",
+    "xgboost": "3.2.0"
+  },
+  "failure_taxonomy": {
+    "candidate_ambiguity": 13,
+    "confidence_error": 1,
+    "domain_shift": 58,
+    "metric_ambiguity": 44,
+    "missing_modality": 32,
+    "planner_bad_action": 0,
+    "ranking_error": 76,
+    "verifier_contradiction_miss": 33
+  },
+  "integrity": {
+    "m10a_m10b": {
+      "checked_files": 8,
+      "m10a_commit": "c83c4e5df98aef2dffadcd7d8943f5624caae002",
+      "m10b_commit": "5e8bd3523c1e192296a58e69fdcc10f328b5f233",
+      "mismatches": {},
+      "ok": true,
+      "sha256": {
+        "docs/defense-demo-script.md": "eea52dad938aecbe944f680baf357ee62093e361d36056558f2fb56c96e8d3b7",
+        "docs/demo-guide.md": "33dc8d623ddd642860d405ee92ba6b23c02208af4e69052a22f8c6b5200bf631",
+        "docs/m10a-protocol.md": "b5e4a15ec9dd68806da9a11b670fed2665b9458dda85c5f3ed4da4c6e8e8af7d",
+        "docs/m10a-results.md": "7661f11ac41e1c93b63a17f69fc7121714336afa000baa7c91aa7a20643cf2be",
+        "docs/m10b-demo-cases.md": "d492ea4d9be69f3ad496a19349829e4ddee933e4ea19f2a13114ba295559ba49",
+        "docs/thesis-claims.md": "5f648c02c69a553dc40c2b748627a819a494b4210a742f0f6960744ab71e2dd8",
+        "ml/models/m10a-freeze/evaluation.json": "eb14e3fd02ebb9fe55d97c3852075114d103493586dd02e8ca40988caeac6db4",
+        "ml/models/m10a-freeze/integrity-manifest.json": "7e152bdb19301bdd9cd0e38377cdd22a990b507e4c9b86f95610d768d62928c7"
+      }
+    },
+    "m10c": {
+      "checked_files": 7,
+      "mismatches": {},
+      "ok": true,
+      "selected_model_sha256": "8452b88958d2fa2972cfcc89c8021f9108e08be690fcc20add1292bcfe8caace"
+    }
+  },
+  "learned_reranker": {
+    "development_base": {
+      "ac_at_1": 0.72,
+      "ac_at_2": 0.8906666666666667,
+      "ac_at_3": 0.9306666666666666,
+      "cases": 375,
+      "mrr": 0.8326417261101472,
+      "ndcg_at_1": 0.72,
+      "ndcg_at_3": 0.8476786779428621
+    },
+    "development_by_dataset_base": {
+      "RE1-OB": {
+        "ac_at_1": 0.696,
+        "ac_at_2": 0.896,
+        "ac_at_3": 0.944,
+        "cases": 125,
+        "mrr": 0.8234333333333332,
+        "ndcg_at_1": 0.696,
+        "ndcg_at_3": 0.8461859507142915
+      },
+      "RE1-SS": {
+        "ac_at_1": 0.848,
+        "ac_at_2": 0.992,
+        "ac_at_3": 1.0,
+        "cases": 125,
+        "mrr": 0.9226666666666666,
+        "ndcg_at_1": 0.848,
+        "ndcg_at_3": 0.9428538845142899
+      },
+      "RE1-TT": {
+        "ac_at_1": 0.616,
+        "ac_at_2": 0.784,
+        "ac_at_3": 0.848,
+        "cases": 125,
+        "mrr": 0.7518251783304415,
+        "ndcg_at_1": 0.616,
+        "ndcg_at_3": 0.7539961986000049
+      }
+    },
+    "development_by_dataset_reranked": {
+      "RE1-OB": {
+        "ac_at_1": 0.776,
+        "ac_at_2": 0.904,
+        "ac_at_3": 0.944,
+        "cases": 125,
+        "mrr": 0.8647666666666667,
+        "ndcg_at_1": 0.776,
+        "ndcg_at_3": 0.8767590084571466
+      },
+      "RE1-SS": {
+        "ac_at_1": 0.92,
+        "ac_at_2": 0.992,
+        "ac_at_3": 1.0,
+        "cases": 125,
+        "mrr": 0.9586666666666667,
+        "ndcg_at_1": 0.92,
+        "ndcg_at_3": 0.9694269422571449
+      },
+      "RE1-TT": {
+        "ac_at_1": 0.648,
+        "ac_at_2": 0.816,
+        "ac_at_3": 0.848,
+        "cases": 125,
+        "mrr": 0.7731585116637748,
+        "ndcg_at_1": 0.648,
+        "ndcg_at_3": 0.7699961986000049
+      }
+    },
+    "development_paired_bootstrap": {
+      "ac_at_1": {
+        "ci_high": 0.09066666666666667,
+        "ci_low": 0.03200000000000003,
+        "difference": 0.06133333333333335
+      },
+      "mrr": {
+        "ci_high": 0.04888888888888887,
+        "ci_low": 0.01733333333333331,
+        "difference": 0.032888888888888856
+      }
+    },
+    "development_reranked": {
+      "ac_at_1": 0.7813333333333333,
+      "ac_at_2": 0.904,
+      "ac_at_3": 0.9306666666666666,
+      "cases": 375,
+      "mrr": 0.865530614999036,
+      "ndcg_at_1": 0.7813333333333333,
+      "ndcg_at_3": 0.8720607164380989
+    },
+    "development_seed_robustness": {
+      "ac_at_1": {
+        "max": 0.7866666666666666,
+        "mean": 0.7813333333333333,
+        "min": 0.7786666666666666,
+        "std": 0.0029211869733608885
+      },
+      "mrr": {
+        "max": 0.8690861705545916,
+        "mean": 0.865530614999036,
+        "min": 0.8641972816657028,
+        "std": 0.00179986282056145
+      },
+      "runs": [
+        {
+          "ac_at_1": 0.7813333333333333,
+          "ac_at_2": 0.896,
+          "ac_at_3": 0.9306666666666666,
+          "cases": 375,
+          "mrr": 0.8641972816657028,
+          "ndcg_at_1": 0.7813333333333333,
+          "ndcg_at_3": 0.8710132784095271,
+          "seed": 20260906
+        },
+        {
+          "ac_at_1": 0.7786666666666666,
+          "ac_at_2": 0.9066666666666666,
+          "ac_at_3": 0.9306666666666666,
+          "cases": 375,
+          "mrr": 0.8646417261101472,
+          "ndcg_at_1": 0.7786666666666666,
+          "ndcg_at_3": 0.8714256751238133,
+          "seed": 20260907
+        },
+        {
+          "ac_at_1": 0.7813333333333333,
+          "ac_at_2": 0.8986666666666666,
+          "ac_at_3": 0.9306666666666666,
+          "cases": 375,
+          "mrr": 0.8646417261101472,
+          "ndcg_at_1": 0.7813333333333333,
+          "ndcg_at_3": 0.871362424419051,
+          "seed": 20260908
+        },
+        {
+          "ac_at_1": 0.7866666666666666,
+          "ac_at_2": 0.9093333333333333,
+          "ac_at_3": 0.9306666666666666,
+          "cases": 375,
+          "mrr": 0.8690861705545916,
+          "ndcg_at_1": 0.7866666666666666,
+          "ndcg_at_3": 0.8747273831047655,
+          "seed": 20260909
+        },
+        {
+          "ac_at_1": 0.7786666666666666,
+          "ac_at_2": 0.9093333333333333,
+          "ac_at_3": 0.9306666666666666,
+          "cases": 375,
+          "mrr": 0.8650861705545916,
+          "ndcg_at_1": 0.7786666666666666,
+          "ndcg_at_3": 0.871774821133337,
+          "seed": 20260910
+        }
+      ],
+      "seeds": [
+        20260906,
+        20260907,
+        20260908,
+        20260909,
+        20260910
+      ]
+    },
+    "external_base": {
+      "ac_at_1": 0.7888888888888889,
+      "ac_at_2": 0.9,
+      "ac_at_3": 0.9416666666666667,
+      "cases": 360,
+      "mrr": 0.8690174062049062,
+      "ndcg_at_1": 0.7888888888888889,
+      "ndcg_at_3": 0.8798255281746065
+    },
+    "external_by_dataset_base": {
+      "RE2-OB": {
+        "ac_at_1": 0.8666666666666667,
+        "ac_at_2": 0.9333333333333333,
+        "ac_at_3": 0.9777777777777777,
+        "cases": 90,
+        "mrr": 0.9192592592592592,
+        "ndcg_at_1": 0.8666666666666667,
+        "ndcg_at_3": 0.9309508724603194
+      },
+      "RE2-SS": {
+        "ac_at_1": 0.9111111111111111,
+        "ac_at_2": 0.9777777777777777,
+        "ac_at_3": 1.0,
+        "cases": 90,
+        "mrr": 0.951851851851852,
+        "ndcg_at_1": 0.9111111111111111,
+        "ndcg_at_3": 0.9642842057936527
+      },
+      "RE2-TT": {
+        "ac_at_1": 0.6888888888888889,
+        "ac_at_2": 0.8444444444444444,
+        "ac_at_3": 0.9,
+        "cases": 90,
+        "mrr": 0.8030092592592593,
+        "ndcg_at_1": 0.6888888888888889,
+        "ndcg_at_3": 0.8148112950000045
+      },
+      "RE3-OB": {
+        "ac_at_1": 0.8666666666666667,
+        "ac_at_2": 0.9333333333333333,
+        "ac_at_3": 0.9333333333333333,
+        "cases": 30,
+        "mrr": 0.9071969696969696,
+        "ndcg_at_1": 0.8666666666666667,
+        "ndcg_at_3": 0.9087286502380972
+      },
+      "RE3-SS": {
+        "ac_at_1": 0.6666666666666666,
+        "ac_at_2": 0.8666666666666667,
+        "ac_at_3": 0.8666666666666667,
+        "cases": 30,
+        "mrr": 0.7964285714285714,
+        "ndcg_at_1": 0.6666666666666666,
+        "ndcg_at_3": 0.7928526173809582
+      },
+      "RE3-TT": {
+        "ac_at_1": 0.5333333333333333,
+        "ac_at_2": 0.7333333333333333,
+        "ac_at_3": 0.8666666666666667,
+        "cases": 30,
+        "mrr": 0.7022222222222222,
+        "ndcg_at_1": 0.5333333333333333,
+        "ndcg_at_3": 0.7261859507142916
+      }
+    },
+    "external_by_dataset_reranked": {
+      "RE2-OB": {
+        "ac_at_1": 0.9111111111111111,
+        "ac_at_2": 0.9555555555555556,
+        "ac_at_3": 0.9777777777777777,
+        "cases": 90,
+        "mrr": 0.9451851851851851,
+        "ndcg_at_1": 0.9111111111111111,
+        "ndcg_at_3": 0.9502635446031759
+      },
+      "RE2-SS": {
+        "ac_at_1": 0.9222222222222223,
+        "ac_at_2": 0.9888888888888889,
+        "ac_at_3": 1.0,
+        "cases": 90,
+        "mrr": 0.9592592592592593,
+        "ndcg_at_1": 0.9222222222222223,
+        "ndcg_at_3": 0.9698397613492082
+      },
+      "RE2-TT": {
+        "ac_at_1": 0.7666666666666667,
+        "ac_at_2": 0.9,
+        "ac_at_3": 0.9,
+        "cases": 90,
+        "mrr": 0.8511574074074074,
+        "ndcg_at_1": 0.7666666666666667,
+        "ndcg_at_3": 0.8507906338095277
+      },
+      "RE3-OB": {
+        "ac_at_1": 0.9,
+        "ac_at_2": 0.9333333333333333,
+        "ac_at_3": 0.9333333333333333,
+        "cases": 30,
+        "mrr": 0.9238636363636363,
+        "ndcg_at_1": 0.9,
+        "ndcg_at_3": 0.9210309917857152
+      },
+      "RE3-SS": {
+        "ac_at_1": 0.7666666666666667,
+        "ac_at_2": 0.8666666666666667,
+        "ac_at_3": 0.8666666666666667,
+        "cases": 30,
+        "mrr": 0.8464285714285714,
+        "ndcg_at_1": 0.7666666666666667,
+        "ndcg_at_3": 0.8297596420238125
+      },
+      "RE3-TT": {
+        "ac_at_1": 0.5666666666666667,
+        "ac_at_2": 0.8333333333333334,
+        "ac_at_3": 0.8666666666666667,
+        "cases": 30,
+        "mrr": 0.7355555555555555,
+        "ndcg_at_1": 0.5666666666666667,
+        "ndcg_at_3": 0.7515812676190554
+      }
+    },
+    "external_paired_bootstrap": {
+      "ac_at_1": {
+        "ci_high": 0.07222222222222219,
+        "ci_low": 0.025000000000000022,
+        "difference": 0.047222222222222276
+      },
+      "mrr": {
+        "ci_high": 0.04166666666666663,
+        "ci_low": 0.016666666666666607,
+        "difference": 0.028703703703703676
+      }
+    },
+    "external_reranked": {
+      "ac_at_1": 0.8361111111111111,
+      "ac_at_2": 0.9305555555555556,
+      "ac_at_3": 0.9416666666666667,
+      "cases": 360,
+      "mrr": 0.8977211099086099,
+      "ndcg_at_1": 0.8361111111111111,
+      "ndcg_at_3": 0.9012544767261932
+    },
+    "external_seed_robustness": {
+      "ac_at_1": {
+        "max": 0.8416666666666667,
+        "mean": 0.8344444444444445,
+        "min": 0.8277777777777777,
+        "std": 0.004513354669242217
+      },
+      "mrr": {
+        "max": 0.9009618506493506,
+        "mean": 0.8972581469456469,
+        "min": 0.8940174062049062,
+        "std": 0.0022299249219985637
+      },
+      "runs": [
+        {
+          "ac_at_1": 0.8361111111111111,
+          "ac_at_2": 0.9305555555555556,
+          "ac_at_3": 0.9416666666666667,
+          "cases": 360,
+          "mrr": 0.8977211099086099,
+          "ndcg_at_1": 0.8361111111111111,
+          "ndcg_at_3": 0.9012544767261932,
+          "seed": 20260906
+        },
+        {
+          "ac_at_1": 0.8333333333333334,
+          "ac_at_2": 0.9333333333333333,
+          "ac_at_3": 0.9416666666666667,
+          "cases": 360,
+          "mrr": 0.896795183982684,
+          "ndcg_at_1": 0.8333333333333334,
+          "ndcg_at_3": 0.9005929753571457,
+          "seed": 20260907
+        },
+        {
+          "ac_at_1": 0.8333333333333334,
+          "ac_at_2": 0.9333333333333333,
+          "ac_at_3": 0.9416666666666667,
+          "cases": 360,
+          "mrr": 0.896795183982684,
+          "ndcg_at_1": 0.8333333333333334,
+          "ndcg_at_3": 0.9005929753571457,
+          "seed": 20260908
+        },
+        {
+          "ac_at_1": 0.8416666666666667,
+          "ac_at_2": 0.9333333333333333,
+          "ac_at_3": 0.9416666666666667,
+          "cases": 360,
+          "mrr": 0.9009618506493506,
+          "ndcg_at_1": 0.8416666666666667,
+          "ndcg_at_3": 0.9036685607440502,
+          "seed": 20260909
+        },
+        {
+          "ac_at_1": 0.8277777777777777,
+          "ac_at_2": 0.9333333333333333,
+          "ac_at_3": 0.9416666666666667,
+          "cases": 360,
+          "mrr": 0.8940174062049062,
+          "ndcg_at_1": 0.8277777777777777,
+          "ndcg_at_3": 0.8985425850992095,
+          "seed": 20260910
+        }
+      ],
+      "seeds": [
+        20260906,
+        20260907,
+        20260908,
+        20260909,
+        20260910
+      ]
+    },
+    "model": "five-seed shallow XGBoost binary ensemble; Top-3 only",
+    "oof_provenance": [
+      {
+        "disjoint": true,
+        "held_out": "RE1-OB",
+        "test_incidents": 125,
+        "train_incidents": 250
+      },
+      {
+        "disjoint": true,
+        "held_out": "RE1-SS",
+        "test_incidents": 125,
+        "train_incidents": 250
+      },
+      {
+        "disjoint": true,
+        "held_out": "RE1-TT",
+        "test_incidents": 125,
+        "train_incidents": 250
+      }
+    ],
+    "promotion_gate": {
+      "development_ci_lower_positive": true,
+      "external_ac_at_1_drop_at_most_1pp": true
+    }
+  },
+  "performance": {
+    "deterministic_verifier_ms_per_incident": 0.4344017361088643,
+    "learned_model_count": 5,
+    "learned_models_bytes": 97002,
+    "learned_verifier_ms_per_incident": 0.05570648333256637,
+    "rank_inference_ms_per_incident": 2.6502109972271786
+  },
+  "runtime_seconds": 24.83596458300235,
+  "verdicts": {
+    "VERIFIER": "INCONCLUSIVE",
+    "VERIFIER_RERANK": "PROMOTED"
+  },
+  "verifier_abstention": {
+    "external": {
+      "accepted": 83,
+      "cases": 360,
+      "coverage": 0.23055555555555557,
+      "rule": {
+        "accepted_statuses": [
+          "VERIFIED"
+        ]
+      },
+      "selective_ac_at_1": 0.9879518072289156,
+      "selective_mrr": 0.9894578313253012
+    },
+    "frozen_accepted_statuses": [
+      "VERIFIED"
+    ],
+    "nested_development": {
+      "accepted": 0,
+      "cases": 375,
+      "coverage": 0.0,
+      "selective_ac_at_1": null,
+      "selective_mrr": null
+    }
+  },
+  "version": "m10d-verifier-v1"
+}

@@ -1,0 +1,39 @@
+{
+  "case_studies_sha256": "cfcf4ae355601ba8106ece1a96c3220f97b4f87b48d1ab12f05fd940c124204b",
+  "external_topk_evidence_sha256": "7cff8c7553aff74bb93b12aaba6c4ac92f46e87d671a52d41f0a1d410476cbfc",
+  "frozen_inputs": {
+    "m10a_m10b": {
+      "checked_files": 8,
+      "m10a_commit": "c83c4e5df98aef2dffadcd7d8943f5624caae002",
+      "m10b_commit": "5e8bd3523c1e192296a58e69fdcc10f328b5f233",
+      "mismatches": {},
+      "ok": true,
+      "sha256": {
+        "docs/defense-demo-script.md": "eea52dad938aecbe944f680baf357ee62093e361d36056558f2fb56c96e8d3b7",
+        "docs/demo-guide.md": "33dc8d623ddd642860d405ee92ba6b23c02208af4e69052a22f8c6b5200bf631",
+        "docs/m10a-protocol.md": "b5e4a15ec9dd68806da9a11b670fed2665b9458dda85c5f3ed4da4c6e8e8af7d",
+        "docs/m10a-results.md": "7661f11ac41e1c93b63a17f69fc7121714336afa000baa7c91aa7a20643cf2be",
+        "docs/m10b-demo-cases.md": "d492ea4d9be69f3ad496a19349829e4ddee933e4ea19f2a13114ba295559ba49",
+        "docs/thesis-claims.md": "5f648c02c69a553dc40c2b748627a819a494b4210a742f0f6960744ab71e2dd8",
+        "ml/models/m10a-freeze/evaluation.json": "eb14e3fd02ebb9fe55d97c3852075114d103493586dd02e8ca40988caeac6db4",
+        "ml/models/m10a-freeze/integrity-manifest.json": "7e152bdb19301bdd9cd0e38377cdd22a990b507e4c9b86f95610d768d62928c7"
+      }
+    },
+    "m10c": {
+      "checked_files": 7,
+      "mismatches": {},
+      "ok": true,
+      "selected_model_sha256": "8452b88958d2fa2972cfcc89c8021f9108e08be690fcc20add1292bcfe8caace"
+    }
+  },
+  "m10c_truth_free_sha256": "f6bdb4e27f6901b1a9c5f3d655d792b9effd071b2fa84911d1b50bf6da560b8a",
+  "m9b_truth_free_sha256": "a6f6b1430008e22a30a35f1a4de620abd134182b723ec0cd90c156e236a8be0d",
+  "reranker_models": {
+    "reranker-seed-20260906.json": "880f7870eab35a73cfa37adaeddd8f80d7ddba92abd4cf6223b4828446b3a5da",
+    "reranker-seed-20260907.json": "06c0d4343bb48c679084b89e8896e2b76d0e207ffba31801dcb3ced596785b44",
+    "reranker-seed-20260908.json": "22b32193cd7c7d7b5e84833315761166a88415be55073cc71d73c5f6647bdc07",
+    "reranker-seed-20260909.json": "0b63c093f9d9d29b2f5412f8194a57cf04c9cc0bc6fcd2664f5bbba63fe27a0b",
+    "reranker-seed-20260910.json": "88648e01f8e67d6fc06d5eaf5b2d16cf6d386ef498df93724249b15bd87f156c"
+  },
+  "status_policy_sha256": "a9cacc47baa8729cfe27384eaf4da6c67d65939c194d69cba139174b3be25482"
+}
