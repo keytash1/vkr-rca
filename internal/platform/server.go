@@ -16,12 +16,23 @@ func NewLogger(service string) *slog.Logger {
 }
 
 func Serve(ctx context.Context, address string, handler http.Handler, logger *slog.Logger) error {
+	return serve(ctx, address, handler, logger, 5*time.Second)
+}
+
+func ServeWithWriteTimeout(ctx context.Context, address string, handler http.Handler, logger *slog.Logger, writeTimeout time.Duration) error {
+	if writeTimeout <= 0 {
+		return errors.New("write timeout must be positive")
+	}
+	return serve(ctx, address, handler, logger, writeTimeout)
+}
+
+func serve(ctx context.Context, address string, handler http.Handler, logger *slog.Logger, writeTimeout time.Duration) error {
 	server := &http.Server{
 		Addr:              address,
 		Handler:           handler,
 		ReadHeaderTimeout: 2 * time.Second,
 		ReadTimeout:       5 * time.Second,
-		WriteTimeout:      5 * time.Second,
+		WriteTimeout:      writeTimeout,
 		IdleTimeout:       30 * time.Second,
 	}
 

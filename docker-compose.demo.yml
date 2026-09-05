@@ -1,0 +1,36 @@
+services:
+  demo:
+    build:
+      context: .
+      args:
+        SERVICE: demo
+    environment:
+      DEMO_ADDR: ":8000"
+      DEMO_ROOT: "/workspace"
+      DEMO_OPERATION_TIMEOUT: "60s"
+      DEMO_REQUEST_TIMEOUT: "5s"
+      DEMO_COLLECTOR_DRAIN: "3s"
+      DEMO_BASELINE_REQUESTS: "50"
+      GATEWAY_URL: "http://gateway:8080"
+      ORDERS_URL: "http://orders:8081"
+      PAYMENT_URL: "http://payment:8082"
+      RCA_URL: "http://rca:8090"
+    volumes:
+      - ./demo:/workspace/demo:ro
+      - ./demo-data:/workspace/demo-data:ro
+      - ./docs:/workspace/docs:ro
+      - ./ml/models:/workspace/ml/models:ro
+    ports:
+      - "127.0.0.1:${DEMO_PORT:-18000}:8000"
+    depends_on:
+      gateway:
+        condition: service_healthy
+      rca:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--output-document=-", "http://127.0.0.1:8000/api/demo/health"]
+      interval: 2s
+      timeout: 1s
+      retries: 20
+      start_period: 2s
+    read_only: true

@@ -2,6 +2,8 @@
 .gitignore
 .venv
 artifacts
+demo-data
+external-data
 ml
 CODEX_HANDOFF_RCA.md
 README.md

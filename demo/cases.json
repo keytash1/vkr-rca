@@ -1,0 +1,88 @@
+{
+  "version": "m10b-showcase-v1",
+  "rcaeval_commit": "405c8fd24071af41ceb4b3aabb451e5e3e15d6c6",
+  "hf_revision": "afeacb11bcc94dadfd1c8f483ee4377b2b8b614e",
+  "cases_index_sha256": "c49a288920dbba2e8e724679a14636d5c7eb2b45426bba14007ef79a6c0ab1bb",
+  "cases": [
+    {
+      "id": "re2ob_currencyservice_cpu_1",
+      "title": "Внешний CPU-инцидент A",
+      "category": "cpu_success",
+      "dataset": "RE2-OB",
+      "system": "Online Boutique",
+      "model_route": "train_RE2-TT_test_OB",
+      "expected_top1": "currencyservice",
+      "expected_actual_rank": 1
+    },
+    {
+      "id": "re2ob_checkoutservice_cpu_1",
+      "title": "Внешний CPU-инцидент B",
+      "category": "cpu_failure",
+      "dataset": "RE2-OB",
+      "system": "Online Boutique",
+      "model_route": "train_RE2-TT_test_OB",
+      "expected_top1": "emailservice",
+      "expected_actual_rank": 2
+    },
+    {
+      "id": "re2ob_checkoutservice_disk_2",
+      "title": "Внешний ресурсный инцидент",
+      "category": "disk_success",
+      "dataset": "RE2-OB",
+      "system": "Online Boutique",
+      "model_route": "train_RE2-TT_test_OB",
+      "expected_top1": "checkoutservice",
+      "expected_actual_rank": 1
+    },
+    {
+      "id": "re2ob_currencyservice_delay_1",
+      "title": "Внешний инцидент задержки",
+      "category": "delay_success",
+      "dataset": "RE2-OB",
+      "system": "Online Boutique",
+      "model_route": "train_RE2-TT_test_OB",
+      "expected_top1": "currencyservice",
+      "expected_actual_rank": 1
+    },
+    {
+      "id": "re2ob_checkoutservice_socket_2",
+      "title": "Внешний сетевой инцидент",
+      "category": "socket_failure",
+      "dataset": "RE2-OB",
+      "system": "Online Boutique",
+      "model_route": "train_RE2-TT_test_OB",
+      "expected_top1": "paymentservice",
+      "expected_actual_rank": 3
+    },
+    {
+      "id": "re3ob_currencyservice_f1_1",
+      "title": "Внешний инцидент уровня кода A",
+      "category": "code_success",
+      "dataset": "RE3-OB",
+      "system": "Online Boutique",
+      "model_route": "train_RE2-TT_test_OB",
+      "expected_top1": "currencyservice",
+      "expected_actual_rank": 1
+    },
+    {
+      "id": "re3ob_currencyservice_f1_2",
+      "title": "Внешний инцидент уровня кода B",
+      "category": "code_failure",
+      "dataset": "RE3-OB",
+      "system": "Online Boutique",
+      "model_route": "train_RE2-TT_test_OB",
+      "expected_top1": "frontend",
+      "expected_actual_rank": 3
+    },
+    {
+      "id": "re2tt_ts-order-service_loss_1",
+      "title": "Внешний инцидент большой топологии",
+      "category": "large_topology_failure",
+      "dataset": "RE2-TT",
+      "system": "Train Ticket",
+      "model_route": "train_RE2-OB_test_TT",
+      "expected_top1": "ts-preserve-service",
+      "expected_actual_rank": 22
+    }
+  ]
+}

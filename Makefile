@@ -3,9 +3,11 @@ ORDERS_PORT ?= 8081
 PAYMENT_PORT ?= 8082
 JAEGER_UI_PORT ?= 16686
 RCA_HTTP_PORT ?= 18090
+DEMO_PORT ?= 18000
 ML_PYTHON ?= .venv/bin/python
+DEMO_COMPOSE = docker compose -f docker-compose.yml -f docker-compose.demo.yml
 
-.PHONY: fmt test build compose-up compose-down smoke trace-smoke graph-smoke baseline-smoke anomaly-smoke rca-smoke ml-setup ml-smoke m7-experiment m8a-smoke m8a-experiment m8b-smoke m8b-experiment m9a-smoke m9a-experiment m9b-smoke m9b-experiment m10a-smoke m10a-analysis fault-gateway-latency fault-gateway-errors fault-payment-latency fault-orders-latency fault-payment-errors fault-reset fault-status logs
+.PHONY: fmt test build compose-up compose-down smoke trace-smoke graph-smoke baseline-smoke anomaly-smoke rca-smoke ml-setup ml-smoke m7-experiment m8a-smoke m8a-experiment m8b-smoke m8b-experiment m9a-smoke m9a-experiment m9b-smoke m9b-experiment m10a-smoke m10a-analysis demo-prepare demo-up demo-down demo-smoke demo fault-gateway-latency fault-gateway-errors fault-payment-latency fault-orders-latency fault-payment-errors fault-reset fault-status logs
 
 fmt:
 	gofmt -w cmd internal
@@ -164,6 +166,23 @@ m10a-smoke:
 m10a-analysis:
 	@test -x "$(ML_PYTHON)" || (echo "run 'make ml-setup' first" >&2; exit 1)
 	ML_PYTHON=$(ML_PYTHON) ./scripts/m10a-analysis.sh
+
+demo-prepare:
+	@test -x "$(ML_PYTHON)" || (echo "run 'make ml-setup' first" >&2; exit 1)
+	ML_PYTHON=$(ML_PYTHON) ./scripts/demo-prepare.sh
+
+demo-up:
+	@test -f demo-data/manifest.json || (echo "run 'make demo-prepare' first" >&2; exit 1)
+	DEMO_PORT=$(DEMO_PORT) $(DEMO_COMPOSE) up --build -d --wait
+	@echo "RCA defense demo: http://127.0.0.1:$(DEMO_PORT)"
+
+demo-down:
+	DEMO_PORT=$(DEMO_PORT) $(DEMO_COMPOSE) down --remove-orphans
+
+demo-smoke: demo-prepare
+	DEMO_PORT=$(DEMO_PORT) ./scripts/demo-smoke.sh
+
+demo: demo-prepare demo-up
 
 fault-gateway-latency:
 	curl --fail --silent --show-error \

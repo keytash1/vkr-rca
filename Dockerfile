@@ -7,9 +7,10 @@ RUN go mod download
 COPY cmd ./cmd
 COPY internal ./internal
 
+RUN CGO_ENABLED=0 GOOS=linux go build -trimpath -ldflags="-s -w" -o /out/ ./cmd/...
+
 ARG SERVICE
-RUN test -n "${SERVICE}" && \
-    CGO_ENABLED=0 GOOS=linux go build -trimpath -ldflags="-s -w" -o /out/service "./cmd/${SERVICE}"
+RUN test -n "${SERVICE}" && test -x "/out/${SERVICE}" && cp "/out/${SERVICE}" /out/service
 
 FROM alpine:3.23
 

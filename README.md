@@ -1,6 +1,6 @@
 # RCA for distributed services
 
-Milestone 10A of the RCA graduation project: a synchronous Go telemetry/RCA pipeline plus a frozen, leakage-resistant research core for externally triggered service-level localization over metrics, traces, and topology.
+Milestone 10B of the RCA graduation project: a synchronous Go telemetry/RCA pipeline, a research core frozen at M10A, and an offline defense demo that keeps controlled live behavior separate from frozen external benchmark evidence.
 
 ```text
 Client -> Gateway -> Orders -> Payment
@@ -68,7 +68,7 @@ Stop the stack:
 docker compose down --remove-orphans
 ```
 
-Shortcuts are available as `make compose-up`, `make smoke`, `make trace-smoke`, `make graph-smoke`, `make baseline-smoke`, `make anomaly-smoke`, `make rca-smoke`, `make ml-smoke`, `make m7-experiment`, `make m8a-smoke`, `make m8a-experiment`, `make m8b-smoke`, `make m8b-experiment`, `make m9a-smoke`, `make m9a-experiment`, `make m9b-smoke`, `make m9b-experiment`, `make m10a-smoke`, `make m10a-analysis`, `make logs`, and `make compose-down`.
+Shortcuts are available as `make compose-up`, `make smoke`, `make trace-smoke`, `make graph-smoke`, `make baseline-smoke`, `make anomaly-smoke`, `make rca-smoke`, `make ml-smoke`, the M7–M10A research targets, `make demo-prepare`, `make demo-up`, `make demo-smoke`, `make demo-down`, `make logs`, and `make compose-down`.
 
 ## Trace and request correlation
 
@@ -435,6 +435,38 @@ make m10a-analysis
 
 The matched 216-case fusion point gain is +6.0 AC@1 points, but its 95% CI touches zero; the MRR gain is +3.8 points with a strictly positive interval. The fusion claim is therefore retained only as partially supported and domain-dependent. Full-denominator metric AC@1 is 76.4% on all 360 cases, versus 81.8% conditional on 336 observable roots. See the [locked protocol](docs/m10a-protocol.md), [validation results](docs/m10a-results.md), [claim registry](docs/thesis-claims.md), and [final research summary](docs/final-research-summary.md). The research method is frozen after M10A; subsequent work is demo/productization only.
 
+## Milestone 10B: offline defense demo
+
+Research status: **FROZEN AT M10A**. M10B adds no model, feature, threshold, training protocol, or claim. It provides one local UI with four pages while preserving two explicit data paths:
+
+- **Live Lab** runs Gateway → Orders → Payment, controlled fault injection, OpenTelemetry, graph reconstruction, anomaly/trace evidence, and the existing explainable M6 ranking. It is never labeled as M9B.
+- **Benchmark Replay** prepares eight pinned RCAEval cases with the existing Python feature pipeline and exact frozen M9B fold routing. Prediction files contain no root/fault label; a separate endpoint reveals truth only after analysis.
+- **Research Results** reads frozen M10A/M9B/M9A artifacts and the thesis claim registry instead of hardcoding figures in JavaScript.
+- **Architecture** displays the separate live and benchmark paths plus the final frozen research architecture.
+
+Prepare the pinned offline cache while network access is available:
+
+```bash
+make demo-prepare
+```
+
+Start the full defense stack and open `http://127.0.0.1:18000`:
+
+```bash
+make demo-up
+```
+
+Run the end-to-end acceptance, or stop the stack:
+
+```bash
+make demo-smoke
+make demo-down
+```
+
+`demo-data/` and raw `external-data/` are ignored. The demo server mounts research artifacts read-only and refuses to start if any frozen SHA256 differs from `demo/frozen-research.json`. See the [demo guide](docs/demo-guide.md), [five-minute defense script](docs/defense-demo-script.md), and [fixed success/miss case set](docs/m10b-demo-cases.md).
+
+All debug, fault, and demo endpoints are development-only. The demo server binds to loopback by default and must not be exposed as a production control plane. Demo outputs are demonstrations of frozen behavior, not new experimental results.
+
 ## Endpoints
 
 | Service | Endpoint | Purpose |
@@ -479,6 +511,7 @@ make m8b-smoke
 make m9a-smoke
 make m9b-smoke
 make m10a-smoke
+make demo-smoke
 ```
 
 The Go tests cover handlers, fault behavior, trace propagation, graph reconstruction, anomaly detection, active-incident topology, trace evidence, M6 ranking, and synthetic OTLP requests. The Python tests cover the feature whitelist, leakage guards, finite matrices, query groups, incident splits, duplicate fingerprints, rename invariance, metrics, bootstrap reproducibility, root holdout, label permutation, deterministic prediction, and the collector drain barrier.

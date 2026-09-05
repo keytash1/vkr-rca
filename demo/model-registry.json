@@ -1,0 +1,44 @@
+{
+  "models": [
+    {
+      "version": "m9b-metric-lambdamart-v1",
+      "artifact": "ml/models/m9b-v1/m9b-metric-lambdamart-v1.json",
+      "schema": "m9b-v1",
+      "training_systems": ["RE1-OB", "RE1-SS", "RE1-TT"],
+      "feature_count": 206,
+      "sha256": "5d4d56f058286005fa1e4dadfeb62cea2b57373b3607abd1bcca41472795a615",
+      "status": "final"
+    },
+    {
+      "version": "m9b-multisource-lambdamart-v1",
+      "fold": "train_RE2-OB_test_TT",
+      "artifact": "ml/models/m9b-v1/multisource-folds/train_RE2-OB_test_TT.json",
+      "schema": "m9b-v1",
+      "training_systems": ["RE2-OB"],
+      "evaluation_systems": ["RE2-TT", "RE3-TT"],
+      "feature_count": 253,
+      "sha256": "54378ca63f1a6a29a43f24bdda7596010944714dd31dfac5cc2c0569800bca83",
+      "status": "research fold"
+    },
+    {
+      "version": "m9b-multisource-lambdamart-v1",
+      "fold": "train_RE2-TT_test_OB",
+      "artifact": "ml/models/m9b-v1/multisource-folds/train_RE2-TT_test_OB.json",
+      "schema": "m9b-v1",
+      "training_systems": ["RE2-TT"],
+      "evaluation_systems": ["RE2-OB", "RE3-OB"],
+      "feature_count": 253,
+      "sha256": "1e3e3525815a0c682d4b8a591300a2ed524a0e21a0c7df94e9bc207fae2c59ff",
+      "status": "research fold"
+    },
+    {
+      "version": "m7-lambdamart-v1",
+      "artifact": "ml/models/m7-lambdamart-v1/model.json",
+      "schema": "m7-v1",
+      "training_systems": ["Topology A"],
+      "feature_count": 33,
+      "sha256": "3728eb0454e46d14265d092d3d17088bc32fe44e8c9cb8d565aa8e934cee7699",
+      "status": "historical"
+    }
+  ]
+}

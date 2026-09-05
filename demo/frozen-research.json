@@ -1,0 +1,16 @@
+{
+  "freeze_commit": "c83c4e5df98aef2dffadcd7d8943f5624caae002",
+  "files": {
+    "docs/final-research-summary.md": "32de7600dcbef80acc9133ad766f5c62ce213d5635dbc35c3f1ad5791befd75d",
+    "docs/thesis-claims.md": "5f648c02c69a553dc40c2b748627a819a494b4210a742f0f6960744ab71e2dd8",
+    "ml/models/m10a-freeze/evaluation.json": "eb14e3fd02ebb9fe55d97c3852075114d103493586dd02e8ca40988caeac6db4",
+    "ml/models/m10a-freeze/integrity-manifest.json": "7e152bdb19301bdd9cd0e38377cdd22a990b507e4c9b86f95610d768d62928c7",
+    "ml/models/m7-lambdamart-v1/model.json": "3728eb0454e46d14265d092d3d17088bc32fe44e8c9cb8d565aa8e934cee7699",
+    "ml/models/m9b-v1/integrity_manifest.json": "39dc0e65a032e20e09ee8ea4e2c332df986eb0bf93daf70c71cd32227f978ae2",
+    "ml/models/m9b-v1/m9b-metric-lambdamart-v1.json": "5d4d56f058286005fa1e4dadfeb62cea2b57373b3607abd1bcca41472795a615",
+    "ml/models/m9b-v1/models-manifest.json": "18ca4e3ed6423c00a2727e35c910d86549b5accbd73bee81f927cd0bf5dfe888",
+    "ml/models/m9b-v1/multisource-folds/train_RE2-OB_test_TT.json": "54378ca63f1a6a29a43f24bdda7596010944714dd31dfac5cc2c0569800bca83",
+    "ml/models/m9b-v1/multisource-folds/train_RE2-TT_test_OB.json": "1e3e3525815a0c682d4b8a591300a2ed524a0e21a0c7df94e9bc207fae2c59ff"
+  },
+  "status": "FROZEN_AT_M10A"
+}
