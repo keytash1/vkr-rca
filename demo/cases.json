@@ -6,7 +6,7 @@
   "cases": [
     {
       "id": "re2ob_currencyservice_cpu_1",
-      "title": "Внешний CPU-инцидент A",
+      "title": "Внешний инцидент A",
       "category": "cpu_success",
       "dataset": "RE2-OB",
       "system": "Online Boutique",
@@ -16,7 +16,7 @@
     },
     {
       "id": "re2ob_checkoutservice_cpu_1",
-      "title": "Внешний CPU-инцидент B",
+      "title": "Внешний инцидент B",
       "category": "cpu_failure",
       "dataset": "RE2-OB",
       "system": "Online Boutique",
@@ -26,7 +26,7 @@
     },
     {
       "id": "re2ob_checkoutservice_disk_2",
-      "title": "Внешний ресурсный инцидент",
+      "title": "Внешний инцидент C",
       "category": "disk_success",
       "dataset": "RE2-OB",
       "system": "Online Boutique",
@@ -36,7 +36,7 @@
     },
     {
       "id": "re2ob_currencyservice_delay_1",
-      "title": "Внешний инцидент задержки",
+      "title": "Внешний инцидент D",
       "category": "delay_success",
       "dataset": "RE2-OB",
       "system": "Online Boutique",
@@ -46,7 +46,7 @@
     },
     {
       "id": "re2ob_checkoutservice_socket_2",
-      "title": "Внешний сетевой инцидент",
+      "title": "Внешний инцидент E",
       "category": "socket_failure",
       "dataset": "RE2-OB",
       "system": "Online Boutique",
@@ -56,7 +56,7 @@
     },
     {
       "id": "re3ob_currencyservice_f1_1",
-      "title": "Внешний инцидент уровня кода A",
+      "title": "Внешний инцидент F",
       "category": "code_success",
       "dataset": "RE3-OB",
       "system": "Online Boutique",
@@ -66,7 +66,7 @@
     },
     {
       "id": "re3ob_currencyservice_f1_2",
-      "title": "Внешний инцидент уровня кода B",
+      "title": "Внешний инцидент G",
       "category": "code_failure",
       "dataset": "RE3-OB",
       "system": "Online Boutique",
@@ -76,7 +76,7 @@
     },
     {
       "id": "re2tt_ts-order-service_loss_1",
-      "title": "Внешний инцидент большой топологии",
+      "title": "Внешний инцидент H",
       "category": "large_topology_failure",
       "dataset": "RE2-TT",
       "system": "Train Ticket",

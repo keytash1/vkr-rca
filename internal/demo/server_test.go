@@ -9,6 +9,7 @@ import (
 	"net/http/httptest"
 	"os"
 	"path/filepath"
+	"regexp"
 	"runtime"
 	"slices"
 	"strings"
@@ -123,8 +124,10 @@ func TestRussianGuidanceWelcomeAndTooltips(t *testing.T) {
 	markup, script := string(index), string(app)
 	for _, text := range []string{
 		"Быстрый старт", "Почему недостаточно найти самый медленный сервис", "Локальное время сервиса",
-		"Где здесь машинное обучение", "Почему показан неудачный эксперимент", "Ограничения системы",
-		"welcome-guide", "welcome-demo",
+		"Где используется машинное обучение", "Почему показан неудачный эксперимент", "Ограничения системы",
+		"Как это работает", "Начать демонстрацию", "Слепой анализ", "Показать фактическую первопричину",
+		"Технические сведения о модели", "Навигация по инструкции",
+		"Название сервиса, идентификатор системы и фактическая первопричина не используются как признаки модели.",
 	} {
 		if !strings.Contains(markup, text) {
 			t.Fatalf("guidance missing %q", text)
@@ -141,9 +144,46 @@ func TestRussianGuidanceWelcomeAndTooltips(t *testing.T) {
 	if !strings.Contains(script, "sessionStorage") || !strings.Contains(script, "m10b-welcome-seen") {
 		t.Fatal("first-session welcome behavior is missing")
 	}
+	for _, behavior := range []string{
+		"Прогноз зафиксирован", "Сбрасываем стенд", "Ждём телеметрию", "Строим диагностические признаки",
+		"Выполняем ранжирование", "Подробности", "Оценка ранжирования", "Зафиксированная модель M9B",
+		"Latency Z:", "Error Z:", "Доля локального времени:", "Согласованность с графом (F1)",
+	} {
+		if !strings.Contains(script, behavior) {
+			t.Fatalf("frontend behavior missing %q", behavior)
+		}
+	}
+	if !strings.Contains(script, `value="incident-${String(index+1).padStart(2,"0")}"`) {
+		t.Fatal("replay selector does not use opaque option values")
+	}
 	for _, frozenDisplay := range []string{"76.4%", "32.2%", "70.4%", "64.4%", "+0.038"} {
 		if strings.Contains(markup, frozenDisplay) || strings.Contains(script, frozenDisplay) {
 			t.Fatalf("frozen research result %q was hard-coded into frontend", frozenDisplay)
+		}
+	}
+}
+
+func TestReplaySelectorTitlesAreNeutral(t *testing.T) {
+	root := testRoot(t)
+	data, err := os.ReadFile(filepath.Join(root, "demo/cases.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	var manifest struct {
+		Cases []struct {
+			Title string `json:"title"`
+		} `json:"cases"`
+	}
+	if err := json.Unmarshal(data, &manifest); err != nil {
+		t.Fatal(err)
+	}
+	if len(manifest.Cases) != 8 {
+		t.Fatalf("unexpected showcase size: %d", len(manifest.Cases))
+	}
+	neutral := regexp.MustCompile(`^Внешний инцидент [A-H]$`)
+	for _, replayCase := range manifest.Cases {
+		if !neutral.MatchString(replayCase.Title) {
+			t.Fatalf("truth-revealing selector title: %q", replayCase.Title)
 		}
 	}
 }

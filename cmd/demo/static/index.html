@@ -18,7 +18,7 @@
         <span><small>РЕЖИМ</small><b id="header-mode">Живая демонстрация</b></span>
         <span><small>СИСТЕМА</small><b id="header-system">Топология A</b></span>
         <span><small>СОСТОЯНИЕ</small><b id="header-state" class="state-idle">ожидание</b></span>
-        <span><small>МЕТОД</small><b id="header-model">объяснимый метод M6</b></span>
+        <span><small>МЕТОД</small><b id="header-model">Объяснимый онлайн-метод M6</b></span>
       </div>
     </header>
 
@@ -30,11 +30,13 @@
       <button class="tab guide-tab" data-tab="guide">05 · Как пользоваться</button>
     </nav>
 
+    <div id="global-error" class="error-panel hidden" role="alert"></div>
+
     <main>
       <section id="tab-live" class="panel active">
         <div class="section-heading">
           <div><span class="eyebrow">УПРАВЛЯЕМЫЙ СТЕНД</span><h2>Живая демонстрация RCA</h2></div>
-          <p class="honesty">Объяснимый онлайновый базовый метод M6 — это не финальная модель M9B для внешнего набора данных.</p>
+          <p class="honesty"><b>Объяснимый онлайн-метод M6.</b><br>Живой стенд показывает трассировки, граф и диагностические признаки. Это не финальная офлайн-модель M9B.</p>
         </div>
         <div class="lab-grid">
           <aside class="card controls-card">
@@ -52,21 +54,24 @@
             </div>
             <div class="fixed-values"><span>Задержка <button class="term-help" data-term="Latency">?</button></span><b>700 мс</b><span>Доля ошибок <button class="term-help" data-term="Error rate">?</button></span><b>100%</b></div>
             <button id="live-traffic" class="accent wide">Сгенерировать 20 запросов</button>
+            <div id="live-progress" class="operation-progress hidden" role="status" aria-live="polite"></div>
+            <div id="live-error" class="error-panel hidden" role="alert"></div>
           </aside>
 
           <section class="card graph-card">
             <div class="card-title"><span>Наблюдаемый граф сервисов <button class="term-help" data-term="Topology">?</button></span><em id="graph-source">RCA API</em></div>
             <svg id="live-graph" viewBox="0 0 720 330" role="img" aria-label="Наблюдаемый граф зависимостей сервисов"></svg>
-            <div class="legend"><span><i class="node-key healthy"></i>норма</span><span><i class="node-key anomalous"></i>аномалия</span><span><i class="node-key unknown"></i>нет данных</span></div>
+            <div class="legend"><span><i class="node-key healthy"></i>Норма</span><span><i class="node-key anomalous"></i>Обнаружена аномалия</span><span><i class="node-key unknown"></i>Недостаточно данных</span></div>
           </section>
 
           <aside class="card ranking-card">
-            <div class="card-title"><span>Рейтинг возможных первопричин <button class="term-help" data-term="Ranking score">?</button></span><em>hybrid_v1</em></div>
+            <div class="card-title"><span>Рейтинг возможных первопричин <button class="term-help" data-term="Ranking score">?</button></span><em title="Техническое имя: hybrid_v1">Гибридный метод M6</em></div>
+            <p class="card-explanation">Сервис №1 — наиболее сильный кандидат среди наблюдаемых компонентов.</p>
             <div id="live-ranking" class="ranking empty">Запустите сценарий, чтобы получить рейтинг и доказательства.</div>
           </aside>
         </div>
         <section class="card evidence-card">
-          <div class="card-title"><span>Трассировка и диагностические признаки <button class="term-help" data-term="Trace">?</button></span><em id="trace-id">Нет активной трассировки</em></div>
+          <div class="card-title"><span>Трассировка и диагностические признаки <button class="term-help" data-term="Trace">?</button></span><em><span class="technical-label">Идентификатор распределённой трассировки:</span> <span id="trace-id">нет</span></em></div>
           <div id="live-evidence" class="evidence-grid empty">Здесь появятся задержки, ошибки, локальное время и признаки топологии.</div>
         </section>
       </section>
@@ -74,18 +79,21 @@
       <section id="tab-replay" class="panel">
         <div class="section-heading">
           <div><span class="eyebrow">ЗАФИКСИРОВАННЫЙ RCAEVAL</span><h2>Проверка на внешнем наборе данных</h2></div>
-          <p class="honesty">Подготовлено для автономного режима · замороженная M9B · фактическая причина скрыта до проверки.</p>
+          <p class="honesty">Подготовлено для автономного режима · зафиксированная модель M9B · фактическая причина скрыта до проверки.</p>
         </div>
         <div class="replay-grid">
           <aside class="card replay-select">
             <div class="card-title"><span>Скрытый внешний инцидент</span><i id="replay-state-dot" class="dot idle"></i></div>
             <select id="case-select" aria-label="Подготовленный внешний инцидент"></select>
             <div id="case-metadata" class="metadata"></div>
+            <div id="blind-notice" class="blind-notice"><b>Слепой анализ</b><p>Модель получает только телеметрию. Фактическая первопричина и тип неисправности не передаются модели и остаются скрытыми до завершения анализа.</p></div>
             <button id="replay-analyze" class="primary wide">Проанализировать инцидент</button>
             <button id="replay-reveal" class="ghost wide" disabled>Показать фактическую первопричину</button>
+            <div id="replay-progress" class="operation-progress hidden" role="status" aria-live="polite"></div>
+            <div id="replay-error" class="error-panel hidden" role="alert"></div>
           </aside>
           <section class="card replay-ranking">
-            <div class="card-title"><span>Рейтинг замороженной LambdaMART <button class="term-help" data-term="LambdaMART">?</button></span><em id="replay-model">Случай не выбран</em></div>
+            <div class="card-title"><span>Рейтинг зафиксированной LambdaMART <button class="term-help" data-term="LambdaMART">?</button></span><em id="replay-model">Случай не выбран</em></div>
             <div id="replay-ranking" class="ranking empty">Предсказание не содержит фактическую причину или тип неисправности.</div>
           </section>
           <aside class="card reveal-card">
@@ -97,6 +105,10 @@
           <div class="card-title"><span>Вклад признаков в предсказание <button class="term-help" data-term="SHAP">?</button></span><em>не доказательство причинности</em></div>
           <div id="replay-evidence" class="evidence-grid empty">Выберите сервис в рейтинге, чтобы увидеть вклад метрик, трассировок и топологии.</div>
         </section>
+        <details id="model-details" class="card model-details">
+          <summary>Технические сведения о модели</summary>
+          <div id="model-details-content" class="model-details-content">Сначала проанализируйте внешний инцидент.</div>
+        </details>
       </section>
 
       <section id="tab-research" class="panel">
@@ -107,7 +119,7 @@
         <div id="research-metrics" class="metric-grid"></div>
         <div class="research-columns">
           <section class="card"><div class="card-title"><span>Проверенные утверждения ВКР</span><em>7 утверждений</em></div><div id="claim-list" class="claim-list"></div></section>
-          <section class="card negative-card"><div class="card-title"><span>Отрицательный результат</span><em>M9A</em></div><div id="negative-result"></div></section>
+          <section class="card negative-card"><div class="card-title"><span>Отвергнутый эксперимент</span><em>M9A</em></div><div id="negative-result"></div></section>
         </div>
       </section>
 
@@ -129,7 +141,18 @@
           <p class="honesty">Здесь достаточно информации, чтобы самостоятельно провести демонстрацию и корректно прочитать результат.</p>
         </div>
 
-        <section class="guide-hero card">
+        <nav class="guide-nav card" aria-label="Навигация по инструкции">
+          <a href="#guide-start">Быстрый старт</a>
+          <a href="#guide-complexity">Почему RCA сложен</a>
+          <a href="#guide-data">Какие данные анализируются</a>
+          <a href="#guide-ml">Где ML</a>
+          <a href="#guide-live">Живая демонстрация</a>
+          <a href="#guide-external">Внешняя проверка</a>
+          <a href="#guide-results">Как читать результаты</a>
+          <a href="#guide-limits">Ограничения</a>
+        </nav>
+
+        <section id="guide-start" class="guide-hero card">
           <div>
             <span class="guide-kicker">Если хотите просто посмотреть демо</span>
             <h3>Быстрый старт</h3>
@@ -150,7 +173,7 @@
           </div>
         </section>
 
-        <section class="guide-section">
+        <section id="guide-complexity" class="guide-section">
           <div class="guide-heading"><span>01</span><div><h3>Почему недостаточно найти самый медленный сервис</h3><p>Одна неисправность часто создаёт симптомы сразу в нескольких местах.</p></div></div>
           <div class="story-grid">
             <article class="card guide-card">
@@ -180,7 +203,7 @@
           </div>
         </section>
 
-        <section class="guide-section">
+        <section id="guide-data" class="guide-section">
           <div class="guide-heading"><span>03</span><div><h3>Какие данные анализируются</h3><p>Три источника дополняют друг друга.</p></div></div>
           <div class="telemetry-grid">
             <article class="card guide-card"><span class="card-icon">M</span><h4>Метрики</h4><p>Численные показатели работы сервиса: CPU, память, дисковые и сетевые показатели, ошибки, медианная и хвостовая задержка <button class="term-help" data-term="Latency">?</button>.</p></article>
@@ -190,7 +213,7 @@
         </section>
 
         <section class="guide-section two-column-guide">
-          <article class="card guide-card">
+          <article id="guide-live" class="card guide-card">
             <div class="guide-heading small"><span>04</span><div><h3>Живая демонстрация</h3><p>Реальные HTTP-запросы на локальном стенде.</p></div></div>
             <ol class="guide-steps">
               <li>Нажмите «Сбросить и откалибровать»: сервисы вернутся в норму, а система построит базовый профиль.</li>
@@ -210,17 +233,18 @@
           </article>
         </section>
 
-        <section class="guide-section">
-          <div class="guide-heading"><span>06</span><div><h3>Где здесь машинное обучение</h3><p>Модель учится не классифицировать имя сервиса, а правильно упорядочивать кандидатов.</p></div></div>
+        <section id="guide-ml" class="guide-section">
+          <div class="guide-heading"><span>06</span><div><h3>Где используется машинное обучение</h3><p>Модель учится не классифицировать имя сервиса, а правильно <b>упорядочивать</b> кандидатов внутри одного инцидента.</p></div></div>
           <div class="card guide-card ml-card">
-            <p>Для каждого сервиса формируется числовой набор признаков: изменение CPU и задержки, устойчивость отклонения, локальное время, положение в графе и поведение связанных сервисов.</p>
-            <p>Модель Learning-to-Rank <span class="term">LambdaMART <button class="term-help" data-term="LambdaMART">?</button></span> получает признаки всех сервисов одного инцидента и учится ставить истинную первопричину выше остальных. <b>Названия сервисов не используются моделью как признаки.</b></p>
+            <p>До LambdaMART данные преобразуются в числовые диагностические признаки: изменение CPU и задержки, устойчивость отклонения, локальное время, положение в графе и поведение связанных сервисов.</p>
+            <p>Модель Learning-to-Rank <span class="term">LambdaMART <button class="term-help" data-term="LambdaMART">?</button></span> получает признаки всех сервисов одного инцидента и учится ставить истинную первопричину выше остальных.</p>
+            <p class="identity-warning"><b>Название сервиса, идентификатор системы и фактическая первопричина не используются как признаки модели.</b></p>
             <p><span class="term">SHAP <button class="term-help" data-term="SHAP">?</button></span> показывает вклад признаков в оценку модели. Это объяснение предсказания, а не доказательство причинности.</p>
           </div>
         </section>
 
         <section class="guide-section two-column-guide">
-          <article class="card guide-card">
+          <article id="guide-external" class="card guide-card">
             <div class="guide-heading small"><span>07</span><div><h3>Внешний набор данных</h3><p>Это не искусственные Gateway / Orders / Payment.</p></div></div>
             <ol class="guide-steps">
               <li>Выберите публичный инцидент RCAEval.</li>
@@ -233,7 +257,7 @@
             <div class="mode-note"><b>Защита от утечки:</b> фактическая причина <button class="term-help" data-term="Ground truth">?</button> не передаётся модели и используется только после предсказания для проверки.</div>
             <button class="ghost guide-action" data-open-tab="replay">Открыть внешний набор данных</button>
           </article>
-          <article class="card guide-card">
+          <article id="guide-results" class="card guide-card">
             <div class="guide-heading small"><span>08</span><div><h3>Как читать метрики исследования</h3><p>Это агрегированные результаты ВКР, а не текущего нажатия кнопки.</p></div></div>
             <dl class="term-list">
               <div><dt>AC@1 <button class="term-help" data-term="AC@1">?</button></dt><dd>Доля инцидентов, где настоящая причина заняла первое место.</dd></div>
@@ -247,12 +271,12 @@
         <section class="guide-section">
           <div class="guide-heading"><span>09</span><div><h3>Что показало исследование</h3><p>Значения ниже загружаются из замороженных артефактов M10A/M9B/M9A.</p></div></div>
           <div class="guide-results">
-            <article class="card"><small>Metric LambdaMART · 360 случаев</small><strong id="guide-metric-ac1">—</strong><p>AC@1 на полном denominator.</p></article>
+            <article class="card"><small>LambdaMART по метрикам · 360 случаев</small><strong id="guide-metric-ac1">—</strong><p>AC@1 на полном наборе случаев.</p></article>
             <article class="card"><small>BARO · те же 360 случаев</small><strong id="guide-baro-ac1">—</strong><p>AC@1 при одинаковой цели сравнения.</p></article>
-            <article class="card"><small>Multimodal / metrics-only · 216 случаев</small><strong><span id="guide-fusion-ac1">—</span> / <span id="guide-metrics-ac1">—</span></strong><p>Выигрыш AC@1: <span id="guide-fusion-delta">—</span> п.п.; 95% CI <span id="guide-fusion-ci">—</span> касается нуля.</p></article>
+            <article class="card"><small>Метрики, трассировки и топология / только метрики · 216 случаев</small><strong><span id="guide-fusion-ac1">—</span> / <span id="guide-metrics-ac1">—</span></strong><p>Прирост AC@1: <span id="guide-fusion-delta">—</span> п.п.; 95% CI <span id="guide-fusion-ci">—</span> касается нуля.</p></article>
             <article class="card"><small>Улучшение MRR</small><strong id="guide-mrr-delta">—</strong><p>95% CI <span id="guide-mrr-ci">—</span> полностью выше нуля.</p></article>
           </div>
-          <div class="callout caution"><strong>Корректный вывод</strong><p>Нельзя утверждать, что multimodal-модель доказанно лучше всегда. AC@1 вырос на выбранном matched cross-system protocol, но интервал его эффекта касается нуля; для MRR интервал полностью положительный.</p></div>
+          <div class="callout caution"><strong>Корректный вывод</strong><p>Нельзя утверждать, что объединение метрик, трассировок и топологии доказанно лучше всегда. AC@1 вырос в выбранном сопоставимом межсистемном протоколе, но интервал эффекта касается нуля; для MRR интервал полностью положительный.</p></div>
         </section>
 
         <section class="guide-section two-column-guide">
@@ -261,14 +285,14 @@
             <p>Гипотеза: temporal CUSUM улучшит детектор. На синтетической проверке он дал recall <b id="guide-m9a-synthetic-recall">—</b> при FPR <b id="guide-m9a-synthetic-fpr">—</b>. На внешнем RCAEval — recall <b id="guide-m9a-external-recall">—</b> при FPR <b id="guide-m9a-external-fpr">—</b>.</p>
             <p>Детектор стал объявлять проблемой почти любое состояние, поэтому метод отвергнут и не используется в финальной системе. Результат не подгонялся под желаемый вывод.</p>
           </article>
-          <article class="card guide-card limits-card">
+          <article id="guide-limits" class="card guide-card limits-card">
             <div class="guide-heading small"><span>11</span><div><h3>Ограничения системы</h3><p>Что нельзя заключать из демонстрации.</p></div></div>
             <ul>
               <li>Основной RCA-режим предполагает, что факт инцидента уже известен.</li>
               <li>Причины ранжируются на уровне сервисов.</li>
               <li>Ненаблюдаемый компонент нельзя локализовать.</li>
               <li>Несколько независимых первопричин одновременно не исследованы.</li>
-              <li>Ranking score не является вероятностью.</li>
+              <li>Оценка ранжирования не является вероятностью.</li>
               <li>SHAP не доказывает причинность.</li>
               <li>Проверка выполнена на синтетических стендах и публичном RCAEval, а не на всех промышленных системах.</li>
             </ul>
@@ -285,10 +309,10 @@
       <span class="brand-mark" aria-hidden="true">R</span>
       <span class="eyebrow">ЧТО ЭТО?</span>
       <h2 id="welcome-title">Система диагностики RCA</h2>
-      <p>Система локализует наиболее вероятную первопричину сбоя в распределённой системе по метрикам, трассировкам и зависимостям между сервисами.</p>
+      <p>Система анализирует телеметрию распределённой системы и ранжирует сервисы по вероятности быть первопричиной известного инцидента.</p>
       <div class="welcome-actions">
-        <button id="welcome-guide" class="primary">Показать инструкцию</button>
-        <button id="welcome-demo" class="ghost">Перейти к демонстрации</button>
+        <button id="welcome-guide" class="primary">Как это работает</button>
+        <button id="welcome-demo" class="ghost">Начать демонстрацию</button>
       </div>
     </div>
   </div>

@@ -4,9 +4,9 @@ M10B is a presentation layer over the research method frozen at M10A. It does no
 
 ## Russian interface and first-run guidance
 
-All primary controls, headings, status labels, scenario names, explanations, and outcomes in the defense UI are in Russian. Technical names such as RCA, trace/span, LambdaMART, AC@1, MRR, SHAP, service IDs, dataset IDs, and model versions remain visible where they are part of the method. Every required term has a short Russian tooltip available by hover, keyboard focus, or click.
+All primary controls, headings, status labels, scenario names, explanations, and outcomes in the defense UI are in Russian. Internal labels are translated in the main interface; exact technical names remain only in tooltips, expandable details, and secondary labels where reproducibility requires them. Every required term has a short Russian tooltip available by hover, keyboard focus, or click.
 
-On the first visit in each browser-tab session, a welcome dialog offers two paths: **Показать инструкцию** opens the self-contained **Как пользоваться** tab, while **Перейти к демонстрации** opens the live lab. The choice is stored only in `sessionStorage`, so a newly opened tab shows the introduction again.
+On the first visit in each browser-tab session, a welcome dialog offers two paths: **Как это работает** opens the self-contained **Как пользоваться** tab, while **Начать демонстрацию** opens the live lab. The choice is stored only in `sessionStorage`, so a newly opened tab shows the introduction again.
 
 The instruction tab contains:
 
@@ -17,6 +17,10 @@ The instruction tab contains:
 - separate instructions for the live M6 path and frozen M9B RCAEval replay;
 - Learning-to-Rank, identity-free features, prediction contributions, and truth isolation;
 - AC@1, AC@3, MRR, confidence-interval definitions, frozen research results, the rejected M9A result, and limitations.
+
+The instruction tab has an in-page navigation bar for quick access to the start, RCA difficulty, data, ML, live mode, external replay, results, and limitations.
+
+Long-running actions expose concrete stages such as resetting, waiting for telemetry, building diagnostic features, and ranking. Controls are disabled while an operation runs. Failures are shown in Russian in the relevant panel, with the original technical message available under **Подробности**; no operation can leave an endless spinner.
 
 Research values in both **Результаты исследования** and **Как пользоваться** are loaded from the same verified frozen API response. They are not copied into the HTML or JavaScript as presentation constants.
 
@@ -77,8 +81,8 @@ The smoke calibrates the live baseline, verifies the Orders latency acceptance c
 2. Open **Живая демонстрация**, click **Сбросить и откалибровать**, and wait for the known healthy state.
 3. Select **Задержка Payment**, click **Сгенерировать 20 запросов**, and show the graph `gateway → orders → payment`. All services inherit latency, while Payment has the strongest local/exclusive evidence and should rank first.
 4. Select **Задержка Orders**, generate traffic again, and show that Orders ranks first despite Gateway also being slow. Use the evidence table to contrast local exclusive time with propagated wait.
-5. Open **Внешний набор данных** and select a blind external case. Before analysis, show only dataset/system/time/coverage. Click **Проанализировать инцидент** and inspect the frozen model route, Top-K ranking, and grouped predictive contributions.
-6. Click **Показать фактическую первопричину**. For a miss, keep the original ranking visible and point out the actual rank; do not replace it with the label.
+5. Open **Внешний набор данных** and select a neutral case **Внешний инцидент A–H**. Before analysis, show only dataset/system/time/coverage and the explicit blind-analysis notice. The selector never exposes the root, fault family, or internal case identifier. Click **Проанализировать инцидент** and inspect the frozen Top-K ranking and grouped predictive contributions. The interface confirms that the prediction has been fixed before truth can be revealed.
+6. Expand **Технические сведения о модели** if the committee asks for the model type, Learning-to-Rank task, schema, 253 features, version, SHA, training systems, or frozen artifact. Then click **Показать фактическую первопричину**. Only now are the root, fault family, internal Case ID, and actual rank displayed. For a miss, keep the original ranking visible; do not replace or reorder it with the label.
 7. Open **Результаты исследования**. Show the 360-case metric result and BARO comparison, the qualified fusion claim, and the rejected M9A CUSUM result.
 8. End with limitations: external trigger, service granularity, unobservable roots, no logs, no calibrated probabilities, predictive—not causal—explanations, and a limiting autonomous detector.
 
@@ -103,7 +107,7 @@ DEMO_PORT=18100 GATEWAY_PORT=18180 RCA_HTTP_PORT=18190 make demo-up
 
 Open the corresponding `DEMO_PORT`. If startup fails, run the same variables with `make demo-down`, inspect `docker compose -f docker-compose.yml -f docker-compose.demo.yml logs`, then retry.
 
-If a live operation times out, confirm all containers are healthy, click Reset again, and wait for calibration to finish. The UI aborts frontend operations and the backend maps upstream timeouts to a visible error instead of leaving an infinite spinner.
+If a live operation times out, confirm all containers are healthy, click Reset again, and wait for calibration to finish. The UI aborts frontend operations and the backend maps upstream timeouts to a visible Russian error with expandable technical details instead of leaving an infinite spinner.
 
 ## Known limitations
 
@@ -113,3 +117,7 @@ If a live operation times out, confirm all containers are healthy, click Reset a
 - Ground truth is physically separate from prediction input/output, but the case list is public in the repository for reproducibility.
 - The demo server intentionally has no authentication and binds locally.
 - Scores are ranking/diagnostic scores, not probabilities or calibrated confidence.
+
+## Visual and accessibility checks
+
+The interface is designed without horizontal scrolling at 1440×900, 1920×1080, and common MacBook widths. Controls, links, selectors, and expandable sections have a visible keyboard focus. Graph state is communicated by text labels and hover/focus details as well as color: green means normal, red means an anomaly was detected, and gray means insufficient data. A graph-node tooltip reports the service, status, latency Z-score, error Z-score, and local-time ratio. The ranking remains immutable when ground truth is revealed.
