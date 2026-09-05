@@ -1,0 +1,14 @@
+{
+  "base_commit": "b18c70c4deddb86c637a5fad4c9f68a2ff465423",
+  "configuration_sha256": "043426ec489205e4fec2080a82b66eff49746dfefad60bab5dcdf2dd8d528e8c",
+  "frozen_before_external": true,
+  "m10c_ranker_sha256": "8452b88958d2fa2972cfcc89c8021f9108e08be690fcc20add1292bcfe8caace",
+  "models": {
+    "planner-seed-20260906.json": "69749195435161302caf4bb180bfdff48db3a905cedd631c2a02b61884a5e68c",
+    "planner-seed-20260907.json": "ac681f37ca7d43c5fed814e22f92e08b326fed575f4b9008ef00f9dadadc27f5",
+    "planner-seed-20260908.json": "05725611b7cd84f443004999e7c7536a737af141676dd6083e2bcf64a890058b",
+    "planner-seed-20260909.json": "83281c31650b95f6a5411002bdb6430b93d1604875f32d3059f5a480b20c1e41",
+    "planner-seed-20260910.json": "8475f1a1719115b02259ffceed0fdada64aa23ec39f61444dadde5236281a051"
+  },
+  "truth_free_sha256": "f6bdb4e27f6901b1a9c5f3d655d792b9effd071b2fa84911d1b50bf6da560b8a"
+}
