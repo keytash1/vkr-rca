@@ -11,7 +11,7 @@ result rather than silently merged into the demo.
 
 ## Champion versus selected challenger
 
-| Metric | Frozen M10A | M10C stacked challenger | Delta |
+| Metric | Frozen M10A | M10C compact stability challenger | Delta |
 |---|---:|---:|---:|
 | Root-observable coverage | 336/360 | **360/360** | +24 cases |
 | Telemetry features | 253 | **32** | -87.4% |
