@@ -58,7 +58,7 @@ guarantee, and M10C replacement of M10A. Workload residuals and the strict
 subset pass their training-side component gates but do not change the final
 verdict.
 
-The selected compact model artifact is 15,508 bytes. A complete cached experiment run
-took about 28 seconds on this machine; full truth-free regeneration over 735
+The selected compact model artifact is 15,508 bytes. Repeated complete cached
+experiment runs took about 20-28 seconds on this machine; full truth-free regeneration over 735
 local cases is a separate preprocessing step. Machine-readable details and the
 full risk-coverage curve are in `ml/models/m10c-v2/evaluation.json`.
