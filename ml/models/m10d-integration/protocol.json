@@ -1,0 +1,57 @@
+{
+  "architecture": [
+    "M10C compact LambdaMART",
+    "initial full ranking",
+    "initial Top-3",
+    "truth-free diagnostic evidence feature extraction",
+    "frozen five-seed shallow XGBoost reranker",
+    "reordered Top-3",
+    "unchanged tail",
+    "final ranking"
+  ],
+  "claims": {
+    "not_claimed": [
+      "candidate discovery improvement",
+      "causal verification or causal proof",
+      "calibrated probability"
+    ],
+    "supported": "Evidence-aware Top-3 reranking improves the ordering of candidates already present in the initial Top-3."
+  },
+  "component": "Evidence-Aware Top-3 Reranker",
+  "data_protocol": {
+    "development": "RE1 system-OOF; each held-out system is predicted by models fit on the other two",
+    "external": "360 known external cases opened only after method freeze",
+    "external_role": "post-hoc evaluation and pre-specified non-degradation guard",
+    "external_used_for_feature_selection": false,
+    "external_used_for_final_non_degradation_guard": true,
+    "external_used_for_hyperparameter_selection": false,
+    "external_used_for_model_selection": false,
+    "external_used_for_training": false,
+    "promotion_basis": "positive system-OOF development result"
+  },
+  "feature_schema": {
+    "columns": [
+      "component_MetricSupport",
+      "component_TraceLocalSupport",
+      "component_PropagationSupport",
+      "component_TopologySupport",
+      "component_DependencyWaitSupport",
+      "component_CoverageSupport",
+      "component_ContradictionEvidence",
+      "component_OODPenalty",
+      "component_ExpertAgreement",
+      "support_score",
+      "base_rank_percentile",
+      "base_relative_score",
+      "base_margin"
+    ],
+    "count": 13,
+    "service_identifier_use": "candidate matching key only; never a numeric model feature"
+  },
+  "limitations": [
+    "The reranker cannot recover a true root cause ranked below Top-3 by the base M10C ranker.",
+    "RE1 has insufficient trace evidence, so trace-modality cross-domain transfer is not established.",
+    "Feature total_gain is predictive importance and must not be interpreted causally."
+  ],
+  "version": "m10d-integration-v1"
+}
