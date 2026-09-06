@@ -7,7 +7,7 @@ DEMO_PORT ?= 18000
 ML_PYTHON ?= .venv/bin/python
 DEMO_COMPOSE = docker compose -f docker-compose.yml -f docker-compose.demo.yml
 
-.PHONY: fmt test build compose-up compose-down smoke trace-smoke graph-smoke baseline-smoke anomaly-smoke rca-smoke ml-setup ml-smoke m7-experiment m8a-smoke m8a-experiment m8b-smoke m8b-experiment m9a-smoke m9a-experiment m9b-smoke m9b-experiment m10a-smoke m10a-analysis demo-prepare demo-up demo-down demo-smoke demo fault-gateway-latency fault-gateway-errors fault-payment-latency fault-orders-latency fault-payment-errors fault-reset fault-status logs
+.PHONY: fmt test build compose-up compose-down smoke trace-smoke graph-smoke baseline-smoke anomaly-smoke rca-smoke ml-setup ml-smoke m7-experiment m8a-smoke m8a-experiment m8b-smoke m8b-experiment m9a-smoke m9a-experiment m9b-smoke m9b-experiment m10a-smoke m10a-analysis m11-experiment demo-prepare demo-up demo-down demo-smoke demo fault-gateway-latency fault-gateway-errors fault-payment-latency fault-orders-latency fault-payment-errors fault-reset fault-status logs
 
 fmt:
 	gofmt -w cmd internal
@@ -166,6 +166,10 @@ m10a-smoke:
 m10a-analysis:
 	@test -x "$(ML_PYTHON)" || (echo "run 'make ml-setup' first" >&2; exit 1)
 	ML_PYTHON=$(ML_PYTHON) ./scripts/m10a-analysis.sh
+
+m11-experiment:
+	@test -x "$(ML_PYTHON)" || (echo "run 'make ml-setup' first" >&2; exit 1)
+	PYTHONPATH=ml $(ML_PYTHON) -m rca_ml.m11_experiment --root .
 
 demo-prepare:
 	@test -x "$(ML_PYTHON)" || (echo "run 'make ml-setup' first" >&2; exit 1)

@@ -1,0 +1,68 @@
+{
+  "adapters": {
+    "artifacts": [],
+    "status": "BLOCKED"
+  },
+  "architecture_decision": "PROMOTE_TOP5",
+  "data_ledger_sha256": "4d228bbead461bc90772d51c337703dbd664e925c55b091d56ccf72c30765523",
+  "feature_schema": [
+    "component_MetricSupport",
+    "component_TraceLocalSupport",
+    "component_PropagationSupport",
+    "component_TopologySupport",
+    "component_DependencyWaitSupport",
+    "component_CoverageSupport",
+    "component_ContradictionEvidence",
+    "component_OODPenalty",
+    "component_ExpertAgreement",
+    "support_score",
+    "base_rank_percentile",
+    "base_relative_score",
+    "base_margin"
+  ],
+  "frozen_before_historical_test_access": true,
+  "hyperparameters": {
+    "colsample_bytree": 0.8,
+    "eta": 0.08,
+    "eval_metric": "logloss",
+    "max_depth": 2,
+    "min_child_weight": 3,
+    "num_boost_round": 24,
+    "objective": "binary:logistic",
+    "subsample": 0.8,
+    "tree_method": "hist"
+  },
+  "locked_new_test": "BLOCKED",
+  "model_seeds": [
+    20260906,
+    20260907,
+    20260908,
+    20260909,
+    20260910
+  ],
+  "models": {
+    "ml/models/m11/candidate-recovery-k5-seed-20260906.json": "a84482b6446e9c25498cb5250b8fe0bf1e0e887147d420d8905ce39696095749",
+    "ml/models/m11/candidate-recovery-k5-seed-20260907.json": "422de5139fe0c20084077ebb255cf55ce2530bb63bd502b4e3a2b4cdf3b1f0a9",
+    "ml/models/m11/candidate-recovery-k5-seed-20260908.json": "e999bbc8ff50471b29fda682d8dbe7bbe12ff80e106773886b67f2fab1c27820",
+    "ml/models/m11/candidate-recovery-k5-seed-20260909.json": "1d4a0dc26e3ee86ee6b35c1b5c7c9ec254dc9a6e82ca7e5dc7897dbc39b1027f",
+    "ml/models/m11/candidate-recovery-k5-seed-20260910.json": "f8b771177c60a9b3bd62c8a0fb3b83b69973a002331943e181906af7eb8e5fec"
+  },
+  "new_development": "BLOCKED",
+  "preflight_sha256": "7e60146f48a8a4ece7ebeaf6971d2151bb8f7e6c5666e54fb22b8e29af497e43",
+  "preprocessing": {
+    "candidate_identity": "join key only; never a numeric feature",
+    "candidate_scope": "initial Top-5",
+    "canonical_features": "M10D 13-feature truth-free evidence representation",
+    "ood_fit": "development-only robust 1st/99th percentile bounds"
+  },
+  "protocol_sha256": "651c111c6455103ca78c0720fe215528aecc8a053bd6e01d75475aaf8daefc9b",
+  "reliability_thresholds": null,
+  "selected_top_k": 5,
+  "selection_data": [
+    "RE1-OB",
+    "RE1-SS",
+    "RE1-TT"
+  ],
+  "used_test_cases_seen_during_selection": 0,
+  "version": "m11-freeze-v1"
+}

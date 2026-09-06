@@ -1,0 +1,2133 @@
+{
+  "base_commit": "2fd38885ef8c0f0930d1830d8fd429fb6594f8a4",
+  "candidate_recovery": {
+    "control": "M10D Evidence-Aware Top-3 Reranker",
+    "selected": {
+      "decision": "PROMOTE_TOP5",
+      "top_k": 5
+    },
+    "variants": {
+      "10": {
+        "by_dataset": {
+          "RE1-OB": {
+            "ac_at_1": 0.776,
+            "ac_at_10": 0.992,
+            "ac_at_2": 0.888,
+            "ac_at_3": 0.952,
+            "ac_at_5": 0.984,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 125,
+            "mrr": 0.8627666666666667,
+            "root_observable": 125
+          },
+          "RE1-SS": {
+            "ac_at_1": 0.904,
+            "ac_at_10": 1.0,
+            "ac_at_2": 0.992,
+            "ac_at_3": 1.0,
+            "ac_at_5": 1.0,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 125,
+            "mrr": 0.9506666666666667,
+            "root_observable": 125
+          },
+          "RE1-TT": {
+            "ac_at_1": 0.68,
+            "ac_at_10": 0.984,
+            "ac_at_2": 0.856,
+            "ac_at_3": 0.904,
+            "ac_at_5": 0.96,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 125,
+            "mrr": 0.8012156545209177,
+            "root_observable": 125
+          }
+        },
+        "by_fault_family": {
+          "cpu": {
+            "ac_at_1": 0.96,
+            "ac_at_10": 0.9866666666666667,
+            "ac_at_2": 0.9733333333333334,
+            "ac_at_3": 0.9733333333333334,
+            "ac_at_5": 0.9866666666666667,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 75,
+            "mrr": 0.9708333333333333,
+            "root_observable": 75
+          },
+          "delay": {
+            "ac_at_1": 0.6666666666666666,
+            "ac_at_10": 0.9866666666666667,
+            "ac_at_2": 0.9066666666666666,
+            "ac_at_3": 0.96,
+            "ac_at_5": 0.9866666666666667,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 75,
+            "mrr": 0.8107863247863248,
+            "root_observable": 75
+          },
+          "disk": {
+            "ac_at_1": 0.9066666666666666,
+            "ac_at_10": 1.0,
+            "ac_at_2": 0.9866666666666667,
+            "ac_at_3": 1.0,
+            "ac_at_5": 1.0,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 75,
+            "mrr": 0.951111111111111,
+            "root_observable": 75
+          },
+          "loss": {
+            "ac_at_1": 0.44,
+            "ac_at_10": 0.9866666666666667,
+            "ac_at_2": 0.6933333333333334,
+            "ac_at_3": 0.8266666666666667,
+            "ac_at_5": 0.9333333333333333,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 75,
+            "mrr": 0.6450175438596492,
+            "root_observable": 75
+          },
+          "mem": {
+            "ac_at_1": 0.96,
+            "ac_at_10": 1.0,
+            "ac_at_2": 1.0,
+            "ac_at_3": 1.0,
+            "ac_at_5": 1.0,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 75,
+            "mrr": 0.98,
+            "root_observable": 75
+          }
+        },
+        "by_system": {
+          "ob": {
+            "ac_at_1": 0.776,
+            "ac_at_10": 0.992,
+            "ac_at_2": 0.888,
+            "ac_at_3": 0.952,
+            "ac_at_5": 0.984,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 125,
+            "mrr": 0.8627666666666667,
+            "root_observable": 125
+          },
+          "ss": {
+            "ac_at_1": 0.904,
+            "ac_at_10": 1.0,
+            "ac_at_2": 0.992,
+            "ac_at_3": 1.0,
+            "ac_at_5": 1.0,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 125,
+            "mrr": 0.9506666666666667,
+            "root_observable": 125
+          },
+          "tt": {
+            "ac_at_1": 0.68,
+            "ac_at_10": 0.984,
+            "ac_at_2": 0.856,
+            "ac_at_3": 0.904,
+            "ac_at_5": 0.96,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 125,
+            "mrr": 0.8012156545209177,
+            "root_observable": 125
+          }
+        },
+        "cluster_bootstrap_vs_top3": {
+          "ac_at_1": {
+            "ci95": [
+              -0.010666666666666602,
+              0.01866666666666672
+            ],
+            "clusters": 75,
+            "evidence_label": "WEAK_CLUSTER_NOT_SUPPORTED",
+            "metric": "ac_at_1",
+            "observed_delta": 0.005333333333333301,
+            "resamples": 10000,
+            "seed": 20260906,
+            "supported_positive": false
+          },
+          "mrr": {
+            "ci95": [
+              -0.004577777777777792,
+              0.018349841269841356
+            ],
+            "clusters": 75,
+            "evidence_label": "WEAK_CLUSTER_NOT_SUPPORTED",
+            "metric": "mrr",
+            "observed_delta": 0.006019047619047702,
+            "resamples": 10000,
+            "seed": 20260906,
+            "supported_positive": false
+          }
+        },
+        "incident_bootstrap_vs_top3": {
+          "ac_at_1": {
+            "ci_high": 0.01866666666666672,
+            "ci_low": -0.008000000000000007,
+            "difference": 0.005333333333333301
+          },
+          "mrr": {
+            "ci_high": 0.01460952380952385,
+            "ci_low": -0.0021333333333332094,
+            "difference": 0.006019047619047702
+          }
+        },
+        "invariants": {
+          "membership_equal": true,
+          "membership_mismatches": [],
+          "tail_mismatches": [],
+          "tail_relative_order_identical": true,
+          "top_k": 10
+        },
+        "macro_system_average": {
+          "ac_at_1": 0.7866666666666667,
+          "ac_at_10": 0.992,
+          "ac_at_2": 0.9119999999999999,
+          "ac_at_3": 0.952,
+          "ac_at_5": 0.9813333333333333,
+          "mrr": 0.8715496626180835
+        },
+        "metrics": {
+          "ac_at_1": 0.7866666666666666,
+          "ac_at_10": 0.992,
+          "ac_at_2": 0.912,
+          "ac_at_3": 0.952,
+          "ac_at_5": 0.9813333333333333,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 375,
+          "mrr": 0.8715496626180838,
+          "root_observable": 375
+        },
+        "oof_provenance": {
+          "five_seed_robustness": {
+            "20260906": {
+              "ac_at_1": 0.784,
+              "ac_at_10": 0.992,
+              "ac_at_2": 0.9146666666666666,
+              "ac_at_3": 0.952,
+              "ac_at_5": 0.9813333333333333,
+              "candidate_universe_coverage": 1.0,
+              "incidents": 375,
+              "mrr": 0.8706607737291947,
+              "root_observable": 375
+            },
+            "20260907": {
+              "ac_at_1": 0.7893333333333333,
+              "ac_at_10": 0.992,
+              "ac_at_2": 0.9093333333333333,
+              "ac_at_3": 0.952,
+              "ac_at_5": 0.976,
+              "candidate_universe_coverage": 1.0,
+              "incidents": 375,
+              "mrr": 0.871930614999036,
+              "root_observable": 375
+            },
+            "20260908": {
+              "ac_at_1": 0.784,
+              "ac_at_10": 0.992,
+              "ac_at_2": 0.912,
+              "ac_at_3": 0.952,
+              "ac_at_5": 0.9813333333333333,
+              "candidate_universe_coverage": 1.0,
+              "incidents": 375,
+              "mrr": 0.8703496626180838,
+              "root_observable": 375
+            },
+            "20260909": {
+              "ac_at_1": 0.7893333333333333,
+              "ac_at_10": 0.992,
+              "ac_at_2": 0.9093333333333333,
+              "ac_at_3": 0.9573333333333334,
+              "ac_at_5": 0.9813333333333333,
+              "candidate_universe_coverage": 1.0,
+              "incidents": 375,
+              "mrr": 0.872882995951417,
+              "root_observable": 375
+            },
+            "20260910": {
+              "ac_at_1": 0.7893333333333333,
+              "ac_at_10": 0.992,
+              "ac_at_2": 0.904,
+              "ac_at_3": 0.952,
+              "ac_at_5": 0.976,
+              "candidate_universe_coverage": 1.0,
+              "incidents": 375,
+              "mrr": 0.8714417261101471,
+              "root_observable": 375
+            }
+          },
+          "folds": [
+            {
+              "held_out": "RE1-OB",
+              "incident_ids_disjoint": true,
+              "test_incidents": 125,
+              "train_datasets": [
+                "RE1-SS",
+                "RE1-TT"
+              ],
+              "train_incidents": 250,
+              "used_test_cases": 0
+            },
+            {
+              "held_out": "RE1-SS",
+              "incident_ids_disjoint": true,
+              "test_incidents": 125,
+              "train_datasets": [
+                "RE1-OB",
+                "RE1-TT"
+              ],
+              "train_incidents": 250,
+              "used_test_cases": 0
+            },
+            {
+              "held_out": "RE1-TT",
+              "incident_ids_disjoint": true,
+              "test_incidents": 125,
+              "train_datasets": [
+                "RE1-OB",
+                "RE1-SS"
+              ],
+              "train_incidents": 250,
+              "used_test_cases": 0
+            }
+          ],
+          "seeds": [
+            20260906,
+            20260907,
+            20260908,
+            20260909,
+            20260910
+          ]
+        },
+        "pooled": {
+          "ac_at_1": 0.7866666666666666,
+          "ac_at_10": 0.992,
+          "ac_at_2": 0.912,
+          "ac_at_3": 0.952,
+          "ac_at_5": 0.9813333333333333,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 375,
+          "mrr": 0.8715496626180838,
+          "root_observable": 375
+        },
+        "promotion_gate": {
+          "failed": [
+            "cluster_supported_ac1_or_mrr"
+          ],
+          "passes": false
+        },
+        "promotion_gate_components": {
+          "ac_at_3_loss_within_1pp": true,
+          "cluster_supported_ac1_or_mrr": false,
+          "coverage_nondecrease": true,
+          "no_system_ac1_loss_over_5pp": true
+        },
+        "system_ac_at_1_deltas_vs_top3": {
+          "RE1-OB": 0.0,
+          "RE1-SS": -0.016000000000000014,
+          "RE1-TT": 0.03200000000000003
+        }
+      },
+      "3": {
+        "by_dataset": {
+          "RE1-OB": {
+            "ac_at_1": 0.776,
+            "ac_at_10": 0.992,
+            "ac_at_2": 0.904,
+            "ac_at_3": 0.944,
+            "ac_at_5": 0.984,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 125,
+            "mrr": 0.8647666666666667,
+            "root_observable": 125
+          },
+          "RE1-SS": {
+            "ac_at_1": 0.92,
+            "ac_at_10": 1.0,
+            "ac_at_2": 0.992,
+            "ac_at_3": 1.0,
+            "ac_at_5": 1.0,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 125,
+            "mrr": 0.9586666666666667,
+            "root_observable": 125
+          },
+          "RE1-TT": {
+            "ac_at_1": 0.648,
+            "ac_at_10": 0.984,
+            "ac_at_2": 0.816,
+            "ac_at_3": 0.848,
+            "ac_at_5": 0.968,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 125,
+            "mrr": 0.7731585116637748,
+            "root_observable": 125
+          }
+        },
+        "by_fault_family": {
+          "cpu": {
+            "ac_at_1": 0.9466666666666667,
+            "ac_at_10": 0.9866666666666667,
+            "ac_at_2": 0.9733333333333334,
+            "ac_at_3": 0.9733333333333334,
+            "ac_at_5": 0.9866666666666667,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 75,
+            "mrr": 0.9635,
+            "root_observable": 75
+          },
+          "delay": {
+            "ac_at_1": 0.64,
+            "ac_at_10": 0.9866666666666667,
+            "ac_at_2": 0.84,
+            "ac_at_3": 0.8666666666666667,
+            "ac_at_5": 0.9733333333333334,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 75,
+            "mrr": 0.7764688644688645,
+            "root_observable": 75
+          },
+          "disk": {
+            "ac_at_1": 0.8933333333333333,
+            "ac_at_10": 1.0,
+            "ac_at_2": 0.9866666666666667,
+            "ac_at_3": 1.0,
+            "ac_at_5": 1.0,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 75,
+            "mrr": 0.9444444444444444,
+            "root_observable": 75
+          },
+          "loss": {
+            "ac_at_1": 0.44,
+            "ac_at_10": 0.9866666666666667,
+            "ac_at_2": 0.72,
+            "ac_at_3": 0.8133333333333334,
+            "ac_at_5": 0.96,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 75,
+            "mrr": 0.6499064327485381,
+            "root_observable": 75
+          },
+          "mem": {
+            "ac_at_1": 0.9866666666666667,
+            "ac_at_10": 1.0,
+            "ac_at_2": 1.0,
+            "ac_at_3": 1.0,
+            "ac_at_5": 1.0,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 75,
+            "mrr": 0.9933333333333333,
+            "root_observable": 75
+          }
+        },
+        "by_system": {
+          "ob": {
+            "ac_at_1": 0.776,
+            "ac_at_10": 0.992,
+            "ac_at_2": 0.904,
+            "ac_at_3": 0.944,
+            "ac_at_5": 0.984,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 125,
+            "mrr": 0.8647666666666667,
+            "root_observable": 125
+          },
+          "ss": {
+            "ac_at_1": 0.92,
+            "ac_at_10": 1.0,
+            "ac_at_2": 0.992,
+            "ac_at_3": 1.0,
+            "ac_at_5": 1.0,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 125,
+            "mrr": 0.9586666666666667,
+            "root_observable": 125
+          },
+          "tt": {
+            "ac_at_1": 0.648,
+            "ac_at_10": 0.984,
+            "ac_at_2": 0.816,
+            "ac_at_3": 0.848,
+            "ac_at_5": 0.968,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 125,
+            "mrr": 0.7731585116637748,
+            "root_observable": 125
+          }
+        },
+        "cluster_bootstrap_vs_top3": {
+          "ac_at_1": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "clusters": 75,
+            "evidence_label": "WEAK_CLUSTER_NOT_SUPPORTED",
+            "metric": "ac_at_1",
+            "observed_delta": 0.0,
+            "resamples": 10000,
+            "seed": 20260906,
+            "supported_positive": false
+          },
+          "mrr": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "clusters": 75,
+            "evidence_label": "WEAK_CLUSTER_NOT_SUPPORTED",
+            "metric": "mrr",
+            "observed_delta": 0.0,
+            "resamples": 10000,
+            "seed": 20260906,
+            "supported_positive": false
+          }
+        },
+        "incident_bootstrap_vs_top3": {
+          "ac_at_1": {
+            "ci_high": 0.0,
+            "ci_low": 0.0,
+            "difference": 0.0
+          },
+          "mrr": {
+            "ci_high": 0.0,
+            "ci_low": 0.0,
+            "difference": 0.0
+          }
+        },
+        "invariants": {
+          "membership_equal": true,
+          "membership_mismatches": [],
+          "tail_mismatches": [],
+          "tail_relative_order_identical": true,
+          "top_k": 3
+        },
+        "macro_system_average": {
+          "ac_at_1": 0.7813333333333334,
+          "ac_at_10": 0.992,
+          "ac_at_2": 0.9039999999999999,
+          "ac_at_3": 0.9306666666666666,
+          "ac_at_5": 0.984,
+          "mrr": 0.8655306149990362
+        },
+        "metrics": {
+          "ac_at_1": 0.7813333333333333,
+          "ac_at_10": 0.992,
+          "ac_at_2": 0.904,
+          "ac_at_3": 0.9306666666666666,
+          "ac_at_5": 0.984,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 375,
+          "mrr": 0.865530614999036,
+          "root_observable": 375
+        },
+        "oof_provenance": {
+          "five_seed_robustness": {
+            "20260906": {
+              "ac_at_1": 0.7813333333333333,
+              "ac_at_10": 0.992,
+              "ac_at_2": 0.896,
+              "ac_at_3": 0.9306666666666666,
+              "ac_at_5": 0.984,
+              "candidate_universe_coverage": 1.0,
+              "incidents": 375,
+              "mrr": 0.8641972816657028,
+              "root_observable": 375
+            },
+            "20260907": {
+              "ac_at_1": 0.7786666666666666,
+              "ac_at_10": 0.992,
+              "ac_at_2": 0.9066666666666666,
+              "ac_at_3": 0.9306666666666666,
+              "ac_at_5": 0.984,
+              "candidate_universe_coverage": 1.0,
+              "incidents": 375,
+              "mrr": 0.8646417261101472,
+              "root_observable": 375
+            },
+            "20260908": {
+              "ac_at_1": 0.7813333333333333,
+              "ac_at_10": 0.992,
+              "ac_at_2": 0.8986666666666666,
+              "ac_at_3": 0.9306666666666666,
+              "ac_at_5": 0.984,
+              "candidate_universe_coverage": 1.0,
+              "incidents": 375,
+              "mrr": 0.8646417261101472,
+              "root_observable": 375
+            },
+            "20260909": {
+              "ac_at_1": 0.7866666666666666,
+              "ac_at_10": 0.992,
+              "ac_at_2": 0.9093333333333333,
+              "ac_at_3": 0.9306666666666666,
+              "ac_at_5": 0.984,
+              "candidate_universe_coverage": 1.0,
+              "incidents": 375,
+              "mrr": 0.8690861705545916,
+              "root_observable": 375
+            },
+            "20260910": {
+              "ac_at_1": 0.7786666666666666,
+              "ac_at_10": 0.992,
+              "ac_at_2": 0.9093333333333333,
+              "ac_at_3": 0.9306666666666666,
+              "ac_at_5": 0.984,
+              "candidate_universe_coverage": 1.0,
+              "incidents": 375,
+              "mrr": 0.8650861705545916,
+              "root_observable": 375
+            }
+          },
+          "folds": [
+            {
+              "held_out": "RE1-OB",
+              "incident_ids_disjoint": true,
+              "test_incidents": 125,
+              "train_datasets": [
+                "RE1-SS",
+                "RE1-TT"
+              ],
+              "train_incidents": 250,
+              "used_test_cases": 0
+            },
+            {
+              "held_out": "RE1-SS",
+              "incident_ids_disjoint": true,
+              "test_incidents": 125,
+              "train_datasets": [
+                "RE1-OB",
+                "RE1-TT"
+              ],
+              "train_incidents": 250,
+              "used_test_cases": 0
+            },
+            {
+              "held_out": "RE1-TT",
+              "incident_ids_disjoint": true,
+              "test_incidents": 125,
+              "train_datasets": [
+                "RE1-OB",
+                "RE1-SS"
+              ],
+              "train_incidents": 250,
+              "used_test_cases": 0
+            }
+          ],
+          "seeds": [
+            20260906,
+            20260907,
+            20260908,
+            20260909,
+            20260910
+          ]
+        },
+        "pooled": {
+          "ac_at_1": 0.7813333333333333,
+          "ac_at_10": 0.992,
+          "ac_at_2": 0.904,
+          "ac_at_3": 0.9306666666666666,
+          "ac_at_5": 0.984,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 375,
+          "mrr": 0.865530614999036,
+          "root_observable": 375
+        },
+        "promotion_gate": {
+          "failed": [
+            "control architecture"
+          ],
+          "passes": false
+        }
+      },
+      "5": {
+        "by_dataset": {
+          "RE1-OB": {
+            "ac_at_1": 0.784,
+            "ac_at_10": 0.992,
+            "ac_at_2": 0.896,
+            "ac_at_3": 0.952,
+            "ac_at_5": 0.984,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 125,
+            "mrr": 0.8681,
+            "root_observable": 125
+          },
+          "RE1-SS": {
+            "ac_at_1": 0.92,
+            "ac_at_10": 1.0,
+            "ac_at_2": 1.0,
+            "ac_at_3": 1.0,
+            "ac_at_5": 1.0,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 125,
+            "mrr": 0.96,
+            "root_observable": 125
+          },
+          "RE1-TT": {
+            "ac_at_1": 0.68,
+            "ac_at_10": 0.984,
+            "ac_at_2": 0.864,
+            "ac_at_3": 0.92,
+            "ac_at_5": 0.968,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 125,
+            "mrr": 0.8043585116637748,
+            "root_observable": 125
+          }
+        },
+        "by_fault_family": {
+          "cpu": {
+            "ac_at_1": 0.9733333333333334,
+            "ac_at_10": 0.9866666666666667,
+            "ac_at_2": 0.9733333333333334,
+            "ac_at_3": 0.9866666666666667,
+            "ac_at_5": 0.9866666666666667,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 75,
+            "mrr": 0.9786111111111111,
+            "root_observable": 75
+          },
+          "delay": {
+            "ac_at_1": 0.6533333333333333,
+            "ac_at_10": 0.9866666666666667,
+            "ac_at_2": 0.92,
+            "ac_at_3": 0.96,
+            "ac_at_5": 0.9733333333333334,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 75,
+            "mrr": 0.8055799755799756,
+            "root_observable": 75
+          },
+          "disk": {
+            "ac_at_1": 0.9066666666666666,
+            "ac_at_10": 1.0,
+            "ac_at_2": 0.9866666666666667,
+            "ac_at_3": 1.0,
+            "ac_at_5": 1.0,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 75,
+            "mrr": 0.951111111111111,
+            "root_observable": 75
+          },
+          "loss": {
+            "ac_at_1": 0.4533333333333333,
+            "ac_at_10": 0.9866666666666667,
+            "ac_at_2": 0.72,
+            "ac_at_3": 0.84,
+            "ac_at_5": 0.96,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 75,
+            "mrr": 0.6587953216374269,
+            "root_observable": 75
+          },
+          "mem": {
+            "ac_at_1": 0.9866666666666667,
+            "ac_at_10": 1.0,
+            "ac_at_2": 1.0,
+            "ac_at_3": 1.0,
+            "ac_at_5": 1.0,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 75,
+            "mrr": 0.9933333333333333,
+            "root_observable": 75
+          }
+        },
+        "by_system": {
+          "ob": {
+            "ac_at_1": 0.784,
+            "ac_at_10": 0.992,
+            "ac_at_2": 0.896,
+            "ac_at_3": 0.952,
+            "ac_at_5": 0.984,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 125,
+            "mrr": 0.8681,
+            "root_observable": 125
+          },
+          "ss": {
+            "ac_at_1": 0.92,
+            "ac_at_10": 1.0,
+            "ac_at_2": 1.0,
+            "ac_at_3": 1.0,
+            "ac_at_5": 1.0,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 125,
+            "mrr": 0.96,
+            "root_observable": 125
+          },
+          "tt": {
+            "ac_at_1": 0.68,
+            "ac_at_10": 0.984,
+            "ac_at_2": 0.864,
+            "ac_at_3": 0.92,
+            "ac_at_5": 0.968,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 125,
+            "mrr": 0.8043585116637748,
+            "root_observable": 125
+          }
+        },
+        "cluster_bootstrap_vs_top3": {
+          "ac_at_1": {
+            "ci95": [
+              0.002666666666666706,
+              0.026666666666666616
+            ],
+            "clusters": 75,
+            "evidence_label": "SUPPORTED",
+            "metric": "ac_at_1",
+            "observed_delta": 0.013333333333333308,
+            "resamples": 10000,
+            "seed": 20260906,
+            "supported_positive": true
+          },
+          "mrr": {
+            "ci95": [
+              0.0028444444444444272,
+              0.023512222222222354
+            ],
+            "clusters": 75,
+            "evidence_label": "SUPPORTED",
+            "metric": "mrr",
+            "observed_delta": 0.011955555555555608,
+            "resamples": 10000,
+            "seed": 20260906,
+            "supported_positive": true
+          }
+        },
+        "incident_bootstrap_vs_top3": {
+          "ac_at_1": {
+            "ci_high": 0.026666666666666616,
+            "ci_low": 0.002666666666666706,
+            "difference": 0.013333333333333308
+          },
+          "mrr": {
+            "ci_high": 0.020666666666666722,
+            "ci_low": 0.0043999999999999595,
+            "difference": 0.011955555555555608
+          }
+        },
+        "invariants": {
+          "membership_equal": true,
+          "membership_mismatches": [],
+          "tail_mismatches": [],
+          "tail_relative_order_identical": true,
+          "top_k": 5
+        },
+        "macro_system_average": {
+          "ac_at_1": 0.7946666666666667,
+          "ac_at_10": 0.992,
+          "ac_at_2": 0.9199999999999999,
+          "ac_at_3": 0.9573333333333333,
+          "ac_at_5": 0.984,
+          "mrr": 0.8774861705545917
+        },
+        "metrics": {
+          "ac_at_1": 0.7946666666666666,
+          "ac_at_10": 0.992,
+          "ac_at_2": 0.92,
+          "ac_at_3": 0.9573333333333334,
+          "ac_at_5": 0.984,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 375,
+          "mrr": 0.8774861705545917,
+          "root_observable": 375
+        },
+        "oof_provenance": {
+          "five_seed_robustness": {
+            "20260906": {
+              "ac_at_1": 0.8,
+              "ac_at_10": 0.992,
+              "ac_at_2": 0.928,
+              "ac_at_3": 0.96,
+              "ac_at_5": 0.984,
+              "candidate_universe_coverage": 1.0,
+              "incidents": 375,
+              "mrr": 0.8818417261101472,
+              "root_observable": 375
+            },
+            "20260907": {
+              "ac_at_1": 0.792,
+              "ac_at_10": 0.992,
+              "ac_at_2": 0.9173333333333333,
+              "ac_at_3": 0.9546666666666667,
+              "ac_at_5": 0.984,
+              "candidate_universe_coverage": 1.0,
+              "incidents": 375,
+              "mrr": 0.8754861705545917,
+              "root_observable": 375
+            },
+            "20260908": {
+              "ac_at_1": 0.7946666666666666,
+              "ac_at_10": 0.992,
+              "ac_at_2": 0.9173333333333333,
+              "ac_at_3": 0.9626666666666667,
+              "ac_at_5": 0.984,
+              "candidate_universe_coverage": 1.0,
+              "incidents": 375,
+              "mrr": 0.8774861705545917,
+              "root_observable": 375
+            },
+            "20260909": {
+              "ac_at_1": 0.792,
+              "ac_at_10": 0.992,
+              "ac_at_2": 0.9253333333333333,
+              "ac_at_3": 0.9573333333333334,
+              "ac_at_5": 0.984,
+              "candidate_universe_coverage": 1.0,
+              "incidents": 375,
+              "mrr": 0.8773083927768139,
+              "root_observable": 375
+            },
+            "20260910": {
+              "ac_at_1": 0.7946666666666666,
+              "ac_at_10": 0.992,
+              "ac_at_2": 0.9146666666666666,
+              "ac_at_3": 0.9546666666666667,
+              "ac_at_5": 0.984,
+              "candidate_universe_coverage": 1.0,
+              "incidents": 375,
+              "mrr": 0.8763750594434805,
+              "root_observable": 375
+            }
+          },
+          "folds": [
+            {
+              "held_out": "RE1-OB",
+              "incident_ids_disjoint": true,
+              "test_incidents": 125,
+              "train_datasets": [
+                "RE1-SS",
+                "RE1-TT"
+              ],
+              "train_incidents": 250,
+              "used_test_cases": 0
+            },
+            {
+              "held_out": "RE1-SS",
+              "incident_ids_disjoint": true,
+              "test_incidents": 125,
+              "train_datasets": [
+                "RE1-OB",
+                "RE1-TT"
+              ],
+              "train_incidents": 250,
+              "used_test_cases": 0
+            },
+            {
+              "held_out": "RE1-TT",
+              "incident_ids_disjoint": true,
+              "test_incidents": 125,
+              "train_datasets": [
+                "RE1-OB",
+                "RE1-SS"
+              ],
+              "train_incidents": 250,
+              "used_test_cases": 0
+            }
+          ],
+          "seeds": [
+            20260906,
+            20260907,
+            20260908,
+            20260909,
+            20260910
+          ]
+        },
+        "pooled": {
+          "ac_at_1": 0.7946666666666666,
+          "ac_at_10": 0.992,
+          "ac_at_2": 0.92,
+          "ac_at_3": 0.9573333333333334,
+          "ac_at_5": 0.984,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 375,
+          "mrr": 0.8774861705545917,
+          "root_observable": 375
+        },
+        "promotion_gate": {
+          "failed": [],
+          "passes": true
+        },
+        "promotion_gate_components": {
+          "ac_at_3_loss_within_1pp": true,
+          "cluster_supported_ac1_or_mrr": true,
+          "coverage_nondecrease": true,
+          "no_system_ac1_loss_over_5pp": true
+        },
+        "system_ac_at_1_deltas_vs_top3": {
+          "RE1-OB": 0.008000000000000007,
+          "RE1-SS": 0.0,
+          "RE1-TT": 0.03200000000000003
+        }
+      }
+    }
+  },
+  "data_roles": {
+    "base_commit": "2fd38885ef8c0f0930d1830d8fd429fb6594f8a4",
+    "forbidden_for_training_calibration_selection": [
+      "USED_TEST_READONLY",
+      "USED_TEST",
+      "LOCKED_NEW_TEST"
+    ],
+    "frozen_before_model_scoring": true,
+    "locked_test_transition": {
+      "allowed": "LOCKED_NEW_TEST -> USED_TEST",
+      "maximum_transitions": 1,
+      "reversible": false,
+      "transitions": []
+    },
+    "new_roles": {
+      "LOCKED_NEW_TEST": {
+        "dataset": null,
+        "reason": "No second independent compatible corpus is available for one-time locked evaluation.",
+        "status": "BLOCKED"
+      },
+      "NEW_DEVELOPMENT": {
+        "dataset": null,
+        "reason": "No audited corpus has a validated service-level truth-free adapter contract.",
+        "status": "BLOCKED"
+      }
+    },
+    "roles": {
+      "RE1-OB": "DEVELOPMENT_EXISTING",
+      "RE1-SS": "DEVELOPMENT_EXISTING",
+      "RE1-TT": "DEVELOPMENT_EXISTING",
+      "RE2-OB": "USED_TEST_READONLY",
+      "RE2-SS": "USED_TEST_READONLY",
+      "RE2-TT": "USED_TEST_READONLY",
+      "RE3-OB": "USED_TEST_READONLY",
+      "RE3-SS": "USED_TEST_READONLY",
+      "RE3-TT": "USED_TEST_READONLY",
+      "Synthetic-A": "DEVELOPMENT_AUXILIARY",
+      "Synthetic-B": "DEVELOPMENT_AUXILIARY",
+      "Synthetic-C": "DEVELOPMENT_AUXILIARY"
+    },
+    "version": "m11-ledger-v1"
+  },
+  "environment": {
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 20260906,
+    "model_seeds": [
+      20260906,
+      20260907,
+      20260908,
+      20260909,
+      20260910
+    ],
+    "numpy": "2.4.4",
+    "python": "3.14.5",
+    "xgboost": "3.2.0"
+  },
+  "error_analysis": {
+    "development_re1_oof": {
+      "by_dataset": {
+        "RE1-OB": {
+          "ac_at_1": 0.776,
+          "ac_at_10": 0.992,
+          "ac_at_2": 0.904,
+          "ac_at_3": 0.944,
+          "ac_at_5": 0.984,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 125,
+          "mrr": 0.8647666666666667,
+          "root_observable": 125
+        },
+        "RE1-SS": {
+          "ac_at_1": 0.92,
+          "ac_at_10": 1.0,
+          "ac_at_2": 0.992,
+          "ac_at_3": 1.0,
+          "ac_at_5": 1.0,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 125,
+          "mrr": 0.9586666666666667,
+          "root_observable": 125
+        },
+        "RE1-TT": {
+          "ac_at_1": 0.648,
+          "ac_at_10": 0.984,
+          "ac_at_2": 0.816,
+          "ac_at_3": 0.848,
+          "ac_at_5": 0.968,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 125,
+          "mrr": 0.7731585116637748,
+          "root_observable": 125
+        }
+      },
+      "failure_taxonomy": {
+        "errors": 82,
+        "examples": {
+          "BELOW_TOP3": [
+            "re1ob_checkoutservice_loss_2",
+            "re1ob_checkoutservice_loss_5",
+            "re1ob_currencyservice_cpu_1",
+            "re1ob_currencyservice_loss_1",
+            "re1ob_productcatalogservice_cpu_3",
+            "re1ob_productcatalogservice_loss_3",
+            "re1ob_productcatalogservice_loss_4",
+            "re1tt_ts-order-service_delay_3",
+            "re1tt_ts-order-service_loss_1",
+            "re1tt_ts-route-service_delay_3"
+          ],
+          "IN_TOP3_RERANK_ERROR": [
+            "re1ob_adservice_delay_4",
+            "re1ob_cartservice_delay_5",
+            "re1ob_cartservice_loss_3",
+            "re1ob_cartservice_loss_4",
+            "re1ob_cartservice_loss_5",
+            "re1ob_checkoutservice_loss_1",
+            "re1ob_checkoutservice_loss_3",
+            "re1ob_checkoutservice_loss_4",
+            "re1ob_currencyservice_cpu_4",
+            "re1ob_currencyservice_delay_1"
+          ]
+        },
+        "heuristic_limit": "Diagnostic overlap flags are descriptive thresholds, not causal labels.",
+        "overlapping_diagnostics": {
+          "AMBIGUOUS_METRIC_EVIDENCE": 31,
+          "MISSING_DOMINANT_MODALITY": 56,
+          "OOD_DOMAIN_SHIFT": 5,
+          "OTHER": 14
+        },
+        "primary_mutually_exclusive": {
+          "BELOW_TOP3": 26,
+          "CANDIDATE_UNIVERSE_MISS": 0,
+          "IN_TOP3_RERANK_ERROR": 56,
+          "OTHER": 0
+        }
+      },
+      "metrics": {
+        "ac_at_1": 0.7813333333333333,
+        "ac_at_10": 0.992,
+        "ac_at_2": 0.904,
+        "ac_at_3": 0.9306666666666666,
+        "ac_at_5": 0.984,
+        "candidate_universe_coverage": 1.0,
+        "incidents": 375,
+        "mrr": 0.865530614999036,
+        "root_observable": 375
+      },
+      "oracle_ac_at_1": {
+        "1": 0.72,
+        "10": 0.992,
+        "2": 0.8906666666666667,
+        "3": 0.9306666666666666,
+        "5": 0.984
+      },
+      "rank_histogram": {
+        "not_in_candidate_universe": 0,
+        "rank_1": 293,
+        "rank_2": 46,
+        "rank_3": 10,
+        "rank_4_5": 20,
+        "rank_6_10": 3,
+        "rank_gt_10": 3
+      },
+      "top3_error_decomposition": {
+        "ROOT_BELOW_K": {
+          "count": 26,
+          "fraction": 0.06933333333333333
+        },
+        "ROOT_UNOBSERVABLE": {
+          "count": 0,
+          "fraction": 0.0
+        },
+        "SUCCESS_AT_1": {
+          "count": 293,
+          "fraction": 0.7813333333333333
+        },
+        "WITHIN_K_ORDERING_FAILURE": {
+          "count": 56,
+          "fraction": 0.14933333333333335
+        }
+      }
+    },
+    "historical_re2_re3_post_freeze": {
+      "frozen_m10d_baseline": {
+        "by_dataset": {
+          "RE2-OB": {
+            "ac_at_1": 0.9111111111111111,
+            "ac_at_10": 1.0,
+            "ac_at_2": 0.9555555555555556,
+            "ac_at_3": 0.9777777777777777,
+            "ac_at_5": 1.0,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 90,
+            "mrr": 0.9451851851851851,
+            "root_observable": 90
+          },
+          "RE2-SS": {
+            "ac_at_1": 0.9222222222222223,
+            "ac_at_10": 1.0,
+            "ac_at_2": 0.9888888888888889,
+            "ac_at_3": 1.0,
+            "ac_at_5": 1.0,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 90,
+            "mrr": 0.9592592592592593,
+            "root_observable": 90
+          },
+          "RE2-TT": {
+            "ac_at_1": 0.7666666666666667,
+            "ac_at_10": 0.9777777777777777,
+            "ac_at_2": 0.9,
+            "ac_at_3": 0.9,
+            "ac_at_5": 0.9555555555555556,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 90,
+            "mrr": 0.8511574074074074,
+            "root_observable": 90
+          },
+          "RE3-OB": {
+            "ac_at_1": 0.9,
+            "ac_at_10": 0.9666666666666667,
+            "ac_at_2": 0.9333333333333333,
+            "ac_at_3": 0.9333333333333333,
+            "ac_at_5": 0.9333333333333333,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 30,
+            "mrr": 0.9238636363636363,
+            "root_observable": 30
+          },
+          "RE3-SS": {
+            "ac_at_1": 0.7666666666666667,
+            "ac_at_10": 1.0,
+            "ac_at_2": 0.8666666666666667,
+            "ac_at_3": 0.8666666666666667,
+            "ac_at_5": 0.9666666666666667,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 30,
+            "mrr": 0.8464285714285714,
+            "root_observable": 30
+          },
+          "RE3-TT": {
+            "ac_at_1": 0.5666666666666667,
+            "ac_at_10": 1.0,
+            "ac_at_2": 0.8333333333333334,
+            "ac_at_3": 0.8666666666666667,
+            "ac_at_5": 0.9333333333333333,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 30,
+            "mrr": 0.7355555555555555,
+            "root_observable": 30
+          }
+        },
+        "failure_taxonomy": {
+          "errors": 59,
+          "examples": {
+            "BELOW_TOP3": [
+              "re2ob_checkoutservice_delay_1",
+              "re2ob_checkoutservice_delay_2",
+              "re2tt_ts-auth-service_delay_2",
+              "re2tt_ts-auth-service_loss_1",
+              "re2tt_ts-auth-service_loss_2",
+              "re2tt_ts-auth-service_loss_3",
+              "re2tt_ts-order-service_delay_1",
+              "re2tt_ts-order-service_loss_1",
+              "re2tt_ts-train-service_delay_1",
+              "re2tt_ts-travel-service_delay_1"
+            ],
+            "IN_TOP3_RERANK_ERROR": [
+              "re2ob_checkoutservice_delay_3",
+              "re2ob_currencyservice_loss_2",
+              "re2ob_currencyservice_loss_3",
+              "re2ob_currencyservice_socket_1",
+              "re2ob_productcatalogservice_delay_1",
+              "re2ob_productcatalogservice_loss_3",
+              "re2ss_carts_delay_3",
+              "re2ss_carts_loss_1",
+              "re2ss_orders_delay_1",
+              "re2ss_orders_delay_2"
+            ]
+          },
+          "heuristic_limit": "Diagnostic overlap flags are descriptive thresholds, not causal labels.",
+          "overlapping_diagnostics": {
+            "AMBIGUOUS_METRIC_EVIDENCE": 29,
+            "MISSING_DOMINANT_MODALITY": 10,
+            "OOD_DOMAIN_SHIFT": 38,
+            "OTHER": 10
+          },
+          "primary_mutually_exclusive": {
+            "BELOW_TOP3": 21,
+            "CANDIDATE_UNIVERSE_MISS": 0,
+            "IN_TOP3_RERANK_ERROR": 38,
+            "OTHER": 0
+          }
+        },
+        "metrics": {
+          "ac_at_1": 0.8361111111111111,
+          "ac_at_10": 0.9916666666666667,
+          "ac_at_2": 0.9305555555555556,
+          "ac_at_3": 0.9416666666666667,
+          "ac_at_5": 0.975,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 360,
+          "mrr": 0.8977211099086099,
+          "root_observable": 360
+        },
+        "rank_histogram": {
+          "not_in_candidate_universe": 0,
+          "rank_1": 301,
+          "rank_2": 34,
+          "rank_3": 4,
+          "rank_4_5": 12,
+          "rank_6_10": 6,
+          "rank_gt_10": 3
+        },
+        "top3_error_decomposition": {
+          "ROOT_BELOW_K": {
+            "count": 21,
+            "fraction": 0.058333333333333334
+          },
+          "ROOT_UNOBSERVABLE": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "SUCCESS_AT_1": {
+            "count": 301,
+            "fraction": 0.8361111111111111
+          },
+          "WITHIN_K_ORDERING_FAILURE": {
+            "count": 38,
+            "fraction": 0.10555555555555556
+          }
+        }
+      },
+      "selected_architecture": {
+        "by_dataset": {
+          "RE2-OB": {
+            "ac_at_1": 0.9,
+            "ac_at_10": 1.0,
+            "ac_at_2": 0.9666666666666667,
+            "ac_at_3": 0.9888888888888889,
+            "ac_at_5": 1.0,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 90,
+            "mrr": 0.9435185185185185,
+            "root_observable": 90
+          },
+          "RE2-SS": {
+            "ac_at_1": 0.9222222222222223,
+            "ac_at_10": 1.0,
+            "ac_at_2": 0.9777777777777777,
+            "ac_at_3": 0.9888888888888889,
+            "ac_at_5": 1.0,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 90,
+            "mrr": 0.9564814814814814,
+            "root_observable": 90
+          },
+          "RE2-TT": {
+            "ac_at_1": 0.7888888888888889,
+            "ac_at_10": 0.9777777777777777,
+            "ac_at_2": 0.9444444444444444,
+            "ac_at_3": 0.9555555555555556,
+            "ac_at_5": 0.9555555555555556,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 90,
+            "mrr": 0.8743055555555556,
+            "root_observable": 90
+          },
+          "RE3-OB": {
+            "ac_at_1": 0.9,
+            "ac_at_10": 0.9666666666666667,
+            "ac_at_2": 0.9333333333333333,
+            "ac_at_3": 0.9333333333333333,
+            "ac_at_5": 0.9333333333333333,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 30,
+            "mrr": 0.9238636363636363,
+            "root_observable": 30
+          },
+          "RE3-SS": {
+            "ac_at_1": 0.7666666666666667,
+            "ac_at_10": 1.0,
+            "ac_at_2": 0.8666666666666667,
+            "ac_at_3": 0.9333333333333333,
+            "ac_at_5": 0.9666666666666667,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 30,
+            "mrr": 0.851984126984127,
+            "root_observable": 30
+          },
+          "RE3-TT": {
+            "ac_at_1": 0.6,
+            "ac_at_10": 1.0,
+            "ac_at_2": 0.8,
+            "ac_at_3": 0.8666666666666667,
+            "ac_at_5": 0.9333333333333333,
+            "candidate_universe_coverage": 1.0,
+            "incidents": 30,
+            "mrr": 0.7483333333333333,
+            "root_observable": 30
+          }
+        },
+        "failure_taxonomy": {
+          "errors": 57,
+          "examples": {
+            "BELOW_TOP3": [
+              "re2ob_checkoutservice_delay_1",
+              "re2ob_checkoutservice_delay_2",
+              "re2tt_ts-auth-service_delay_2",
+              "re2tt_ts-auth-service_loss_1",
+              "re2tt_ts-auth-service_loss_2",
+              "re2tt_ts-auth-service_loss_3",
+              "re2tt_ts-order-service_delay_1",
+              "re2tt_ts-order-service_loss_1",
+              "re2tt_ts-travel-service_delay_1",
+              "re2tt_ts-travel-service_loss_2"
+            ],
+            "IN_TOP3_RERANK_ERROR": [
+              "re2ob_checkoutservice_delay_3",
+              "re2ob_currencyservice_loss_2",
+              "re2ob_currencyservice_loss_3",
+              "re2ob_currencyservice_socket_1",
+              "re2ob_productcatalogservice_delay_1",
+              "re2ob_productcatalogservice_loss_3",
+              "re2ob_recommendationservice_loss_3",
+              "re2ss_carts_delay_3",
+              "re2ss_carts_loss_1",
+              "re2ss_orders_delay_1"
+            ]
+          },
+          "heuristic_limit": "Diagnostic overlap flags are descriptive thresholds, not causal labels.",
+          "overlapping_diagnostics": {
+            "AMBIGUOUS_METRIC_EVIDENCE": 34,
+            "MISSING_DOMINANT_MODALITY": 13,
+            "OOD_DOMAIN_SHIFT": 48,
+            "OTHER": 3
+          },
+          "primary_mutually_exclusive": {
+            "BELOW_TOP3": 20,
+            "CANDIDATE_UNIVERSE_MISS": 0,
+            "IN_TOP3_RERANK_ERROR": 37,
+            "OTHER": 0
+          }
+        },
+        "metrics": {
+          "ac_at_1": 0.8416666666666667,
+          "ac_at_10": 0.9916666666666667,
+          "ac_at_2": 0.9388888888888889,
+          "ac_at_3": 0.9611111111111111,
+          "ac_at_5": 0.975,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 360,
+          "mrr": 0.9039248136123136,
+          "root_observable": 360
+        },
+        "oracle_ac_at_1": {
+          "1": 0.7888888888888889,
+          "10": 0.9916666666666667,
+          "2": 0.9,
+          "3": 0.9416666666666667,
+          "5": 0.975
+        },
+        "rank_histogram": {
+          "not_in_candidate_universe": 0,
+          "rank_1": 303,
+          "rank_2": 35,
+          "rank_3": 8,
+          "rank_4_5": 5,
+          "rank_6_10": 6,
+          "rank_gt_10": 3
+        },
+        "top3_error_decomposition": {
+          "ROOT_BELOW_K": {
+            "count": 14,
+            "fraction": 0.03888888888888889
+          },
+          "ROOT_UNOBSERVABLE": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "SUCCESS_AT_1": {
+            "count": 303,
+            "fraction": 0.8416666666666667
+          },
+          "WITHIN_K_ORDERING_FAILURE": {
+            "count": 43,
+            "fraction": 0.11944444444444445
+          }
+        }
+      }
+    }
+  },
+  "freeze": {
+    "adapters": {
+      "artifacts": [],
+      "status": "BLOCKED"
+    },
+    "architecture_decision": "PROMOTE_TOP5",
+    "data_ledger_sha256": "4d228bbead461bc90772d51c337703dbd664e925c55b091d56ccf72c30765523",
+    "feature_schema": [
+      "component_MetricSupport",
+      "component_TraceLocalSupport",
+      "component_PropagationSupport",
+      "component_TopologySupport",
+      "component_DependencyWaitSupport",
+      "component_CoverageSupport",
+      "component_ContradictionEvidence",
+      "component_OODPenalty",
+      "component_ExpertAgreement",
+      "support_score",
+      "base_rank_percentile",
+      "base_relative_score",
+      "base_margin"
+    ],
+    "frozen_before_historical_test_access": true,
+    "hyperparameters": {
+      "colsample_bytree": 0.8,
+      "eta": 0.08,
+      "eval_metric": "logloss",
+      "max_depth": 2,
+      "min_child_weight": 3,
+      "num_boost_round": 24,
+      "objective": "binary:logistic",
+      "subsample": 0.8,
+      "tree_method": "hist"
+    },
+    "locked_new_test": "BLOCKED",
+    "model_seeds": [
+      20260906,
+      20260907,
+      20260908,
+      20260909,
+      20260910
+    ],
+    "models": {
+      "ml/models/m11/candidate-recovery-k5-seed-20260906.json": "a84482b6446e9c25498cb5250b8fe0bf1e0e887147d420d8905ce39696095749",
+      "ml/models/m11/candidate-recovery-k5-seed-20260907.json": "422de5139fe0c20084077ebb255cf55ce2530bb63bd502b4e3a2b4cdf3b1f0a9",
+      "ml/models/m11/candidate-recovery-k5-seed-20260908.json": "e999bbc8ff50471b29fda682d8dbe7bbe12ff80e106773886b67f2fab1c27820",
+      "ml/models/m11/candidate-recovery-k5-seed-20260909.json": "1d4a0dc26e3ee86ee6b35c1b5c7c9ec254dc9a6e82ca7e5dc7897dbc39b1027f",
+      "ml/models/m11/candidate-recovery-k5-seed-20260910.json": "f8b771177c60a9b3bd62c8a0fb3b83b69973a002331943e181906af7eb8e5fec"
+    },
+    "new_development": "BLOCKED",
+    "preflight_sha256": "7e60146f48a8a4ece7ebeaf6971d2151bb8f7e6c5666e54fb22b8e29af497e43",
+    "preprocessing": {
+      "candidate_identity": "join key only; never a numeric feature",
+      "candidate_scope": "initial Top-5",
+      "canonical_features": "M10D 13-feature truth-free evidence representation",
+      "ood_fit": "development-only robust 1st/99th percentile bounds"
+    },
+    "protocol_sha256": "68337a7ed12d124898b00c80f64a14bc1fd36cb32c6f6b763b575ab8689211bf",
+    "reliability_thresholds": null,
+    "selected_top_k": 5,
+    "selection_data": [
+      "RE1-OB",
+      "RE1-SS",
+      "RE1-TT"
+    ],
+    "used_test_cases_seen_during_selection": 0,
+    "version": "m11-freeze-v1"
+  },
+  "historical_post_freeze": {
+    "frozen_m10d_baseline": {
+      "by_dataset": {
+        "RE2-OB": {
+          "ac_at_1": 0.9111111111111111,
+          "ac_at_10": 1.0,
+          "ac_at_2": 0.9555555555555556,
+          "ac_at_3": 0.9777777777777777,
+          "ac_at_5": 1.0,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 90,
+          "mrr": 0.9451851851851851,
+          "root_observable": 90
+        },
+        "RE2-SS": {
+          "ac_at_1": 0.9222222222222223,
+          "ac_at_10": 1.0,
+          "ac_at_2": 0.9888888888888889,
+          "ac_at_3": 1.0,
+          "ac_at_5": 1.0,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 90,
+          "mrr": 0.9592592592592593,
+          "root_observable": 90
+        },
+        "RE2-TT": {
+          "ac_at_1": 0.7666666666666667,
+          "ac_at_10": 0.9777777777777777,
+          "ac_at_2": 0.9,
+          "ac_at_3": 0.9,
+          "ac_at_5": 0.9555555555555556,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 90,
+          "mrr": 0.8511574074074074,
+          "root_observable": 90
+        },
+        "RE3-OB": {
+          "ac_at_1": 0.9,
+          "ac_at_10": 0.9666666666666667,
+          "ac_at_2": 0.9333333333333333,
+          "ac_at_3": 0.9333333333333333,
+          "ac_at_5": 0.9333333333333333,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 30,
+          "mrr": 0.9238636363636363,
+          "root_observable": 30
+        },
+        "RE3-SS": {
+          "ac_at_1": 0.7666666666666667,
+          "ac_at_10": 1.0,
+          "ac_at_2": 0.8666666666666667,
+          "ac_at_3": 0.8666666666666667,
+          "ac_at_5": 0.9666666666666667,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 30,
+          "mrr": 0.8464285714285714,
+          "root_observable": 30
+        },
+        "RE3-TT": {
+          "ac_at_1": 0.5666666666666667,
+          "ac_at_10": 1.0,
+          "ac_at_2": 0.8333333333333334,
+          "ac_at_3": 0.8666666666666667,
+          "ac_at_5": 0.9333333333333333,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 30,
+          "mrr": 0.7355555555555555,
+          "root_observable": 30
+        }
+      },
+      "by_fault_family": {
+        "cpu": {
+          "ac_at_1": 1.0,
+          "ac_at_10": 1.0,
+          "ac_at_2": 1.0,
+          "ac_at_3": 1.0,
+          "ac_at_5": 1.0,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 45,
+          "mrr": 1.0,
+          "root_observable": 45
+        },
+        "delay": {
+          "ac_at_1": 0.6222222222222222,
+          "ac_at_10": 1.0,
+          "ac_at_2": 0.8444444444444444,
+          "ac_at_3": 0.8666666666666667,
+          "ac_at_5": 0.9777777777777777,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 45,
+          "mrr": 0.7690740740740741,
+          "root_observable": 45
+        },
+        "disk": {
+          "ac_at_1": 1.0,
+          "ac_at_10": 1.0,
+          "ac_at_2": 1.0,
+          "ac_at_3": 1.0,
+          "ac_at_5": 1.0,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 45,
+          "mrr": 1.0,
+          "root_observable": 45
+        },
+        "f1": {
+          "ac_at_1": 0.7307692307692307,
+          "ac_at_10": 0.9615384615384616,
+          "ac_at_2": 0.8846153846153846,
+          "ac_at_3": 0.8846153846153846,
+          "ac_at_5": 0.8846153846153846,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 26,
+          "mrr": 0.8214910089910089,
+          "root_observable": 26
+        },
+        "f2": {
+          "ac_at_1": 0.7692307692307693,
+          "ac_at_10": 1.0,
+          "ac_at_2": 0.8461538461538461,
+          "ac_at_3": 0.8461538461538461,
+          "ac_at_5": 0.9230769230769231,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 13,
+          "mrr": 0.8397435897435896,
+          "root_observable": 13
+        },
+        "f3": {
+          "ac_at_1": 0.6923076923076923,
+          "ac_at_10": 1.0,
+          "ac_at_2": 0.8076923076923077,
+          "ac_at_3": 0.8076923076923077,
+          "ac_at_5": 0.9615384615384616,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 26,
+          "mrr": 0.791025641025641,
+          "root_observable": 26
+        },
+        "f4": {
+          "ac_at_1": 0.7368421052631579,
+          "ac_at_10": 1.0,
+          "ac_at_2": 0.9473684210526315,
+          "ac_at_3": 1.0,
+          "ac_at_5": 1.0,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 19,
+          "mrr": 0.8596491228070174,
+          "root_observable": 19
+        },
+        "f5": {
+          "ac_at_1": 1.0,
+          "ac_at_10": 1.0,
+          "ac_at_2": 1.0,
+          "ac_at_3": 1.0,
+          "ac_at_5": 1.0,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 6,
+          "mrr": 1.0,
+          "root_observable": 6
+        },
+        "loss": {
+          "ac_at_1": 0.6,
+          "ac_at_10": 0.9555555555555556,
+          "ac_at_2": 0.8444444444444444,
+          "ac_at_3": 0.8888888888888888,
+          "ac_at_5": 0.9333333333333333,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 45,
+          "mrr": 0.7532407407407408,
+          "root_observable": 45
+        },
+        "mem": {
+          "ac_at_1": 1.0,
+          "ac_at_10": 1.0,
+          "ac_at_2": 1.0,
+          "ac_at_3": 1.0,
+          "ac_at_5": 1.0,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 45,
+          "mrr": 1.0,
+          "root_observable": 45
+        },
+        "socket": {
+          "ac_at_1": 0.9777777777777777,
+          "ac_at_10": 1.0,
+          "ac_at_2": 1.0,
+          "ac_at_3": 1.0,
+          "ac_at_5": 1.0,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 45,
+          "mrr": 0.9888888888888889,
+          "root_observable": 45
+        }
+      },
+      "by_system": {
+        "ob": {
+          "ac_at_1": 0.9083333333333333,
+          "ac_at_10": 0.9916666666666667,
+          "ac_at_2": 0.95,
+          "ac_at_3": 0.9666666666666667,
+          "ac_at_5": 0.9833333333333333,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 120,
+          "mrr": 0.939854797979798,
+          "root_observable": 120
+        },
+        "ss": {
+          "ac_at_1": 0.8833333333333333,
+          "ac_at_10": 1.0,
+          "ac_at_2": 0.9583333333333334,
+          "ac_at_3": 0.9666666666666667,
+          "ac_at_5": 0.9916666666666667,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 120,
+          "mrr": 0.9310515873015873,
+          "root_observable": 120
+        },
+        "tt": {
+          "ac_at_1": 0.7166666666666667,
+          "ac_at_10": 0.9833333333333333,
+          "ac_at_2": 0.8833333333333333,
+          "ac_at_3": 0.8916666666666667,
+          "ac_at_5": 0.95,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 120,
+          "mrr": 0.8222569444444444,
+          "root_observable": 120
+        }
+      },
+      "invariants": {
+        "membership_equal": true,
+        "membership_mismatches": [],
+        "tail_mismatches": [],
+        "tail_relative_order_identical": true,
+        "top_k": 3
+      },
+      "macro_system_average": {
+        "ac_at_1": 0.8361111111111111,
+        "ac_at_10": 0.9916666666666667,
+        "ac_at_2": 0.9305555555555555,
+        "ac_at_3": 0.9416666666666668,
+        "ac_at_5": 0.975,
+        "mrr": 0.8977211099086099
+      },
+      "metrics": {
+        "ac_at_1": 0.8361111111111111,
+        "ac_at_10": 0.9916666666666667,
+        "ac_at_2": 0.9305555555555556,
+        "ac_at_3": 0.9416666666666667,
+        "ac_at_5": 0.975,
+        "candidate_universe_coverage": 1.0,
+        "incidents": 360,
+        "mrr": 0.8977211099086099,
+        "root_observable": 360
+      }
+    },
+    "selected_architecture": {
+      "by_dataset": {
+        "RE2-OB": {
+          "ac_at_1": 0.9,
+          "ac_at_10": 1.0,
+          "ac_at_2": 0.9666666666666667,
+          "ac_at_3": 0.9888888888888889,
+          "ac_at_5": 1.0,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 90,
+          "mrr": 0.9435185185185185,
+          "root_observable": 90
+        },
+        "RE2-SS": {
+          "ac_at_1": 0.9222222222222223,
+          "ac_at_10": 1.0,
+          "ac_at_2": 0.9777777777777777,
+          "ac_at_3": 0.9888888888888889,
+          "ac_at_5": 1.0,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 90,
+          "mrr": 0.9564814814814814,
+          "root_observable": 90
+        },
+        "RE2-TT": {
+          "ac_at_1": 0.7888888888888889,
+          "ac_at_10": 0.9777777777777777,
+          "ac_at_2": 0.9444444444444444,
+          "ac_at_3": 0.9555555555555556,
+          "ac_at_5": 0.9555555555555556,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 90,
+          "mrr": 0.8743055555555556,
+          "root_observable": 90
+        },
+        "RE3-OB": {
+          "ac_at_1": 0.9,
+          "ac_at_10": 0.9666666666666667,
+          "ac_at_2": 0.9333333333333333,
+          "ac_at_3": 0.9333333333333333,
+          "ac_at_5": 0.9333333333333333,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 30,
+          "mrr": 0.9238636363636363,
+          "root_observable": 30
+        },
+        "RE3-SS": {
+          "ac_at_1": 0.7666666666666667,
+          "ac_at_10": 1.0,
+          "ac_at_2": 0.8666666666666667,
+          "ac_at_3": 0.9333333333333333,
+          "ac_at_5": 0.9666666666666667,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 30,
+          "mrr": 0.851984126984127,
+          "root_observable": 30
+        },
+        "RE3-TT": {
+          "ac_at_1": 0.6,
+          "ac_at_10": 1.0,
+          "ac_at_2": 0.8,
+          "ac_at_3": 0.8666666666666667,
+          "ac_at_5": 0.9333333333333333,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 30,
+          "mrr": 0.7483333333333333,
+          "root_observable": 30
+        }
+      },
+      "by_fault_family": {
+        "cpu": {
+          "ac_at_1": 1.0,
+          "ac_at_10": 1.0,
+          "ac_at_2": 1.0,
+          "ac_at_3": 1.0,
+          "ac_at_5": 1.0,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 45,
+          "mrr": 1.0,
+          "root_observable": 45
+        },
+        "delay": {
+          "ac_at_1": 0.6444444444444445,
+          "ac_at_10": 1.0,
+          "ac_at_2": 0.8888888888888888,
+          "ac_at_3": 0.9333333333333333,
+          "ac_at_5": 0.9777777777777777,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 45,
+          "mrr": 0.7953703703703703,
+          "root_observable": 45
+        },
+        "disk": {
+          "ac_at_1": 1.0,
+          "ac_at_10": 1.0,
+          "ac_at_2": 1.0,
+          "ac_at_3": 1.0,
+          "ac_at_5": 1.0,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 45,
+          "mrr": 1.0,
+          "root_observable": 45
+        },
+        "f1": {
+          "ac_at_1": 0.7692307692307693,
+          "ac_at_10": 0.9615384615384616,
+          "ac_at_2": 0.8846153846153846,
+          "ac_at_3": 0.8846153846153846,
+          "ac_at_5": 0.8846153846153846,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 26,
+          "mrr": 0.8407217782217782,
+          "root_observable": 26
+        },
+        "f2": {
+          "ac_at_1": 0.7692307692307693,
+          "ac_at_10": 1.0,
+          "ac_at_2": 0.9230769230769231,
+          "ac_at_3": 0.9230769230769231,
+          "ac_at_5": 0.9230769230769231,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 13,
+          "mrr": 0.8589743589743589,
+          "root_observable": 13
+        },
+        "f3": {
+          "ac_at_1": 0.6923076923076923,
+          "ac_at_10": 1.0,
+          "ac_at_2": 0.7692307692307693,
+          "ac_at_3": 0.8461538461538461,
+          "ac_at_5": 0.9615384615384616,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 26,
+          "mrr": 0.7897435897435898,
+          "root_observable": 26
+        },
+        "f4": {
+          "ac_at_1": 0.7368421052631579,
+          "ac_at_10": 1.0,
+          "ac_at_2": 0.8947368421052632,
+          "ac_at_3": 1.0,
+          "ac_at_5": 1.0,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 19,
+          "mrr": 0.8508771929824562,
+          "root_observable": 19
+        },
+        "f5": {
+          "ac_at_1": 1.0,
+          "ac_at_10": 1.0,
+          "ac_at_2": 1.0,
+          "ac_at_3": 1.0,
+          "ac_at_5": 1.0,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 6,
+          "mrr": 1.0,
+          "root_observable": 6
+        },
+        "loss": {
+          "ac_at_1": 0.6,
+          "ac_at_10": 0.9555555555555556,
+          "ac_at_2": 0.8888888888888888,
+          "ac_at_3": 0.9333333333333333,
+          "ac_at_5": 0.9333333333333333,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 45,
+          "mrr": 0.764351851851852,
+          "root_observable": 45
+        },
+        "mem": {
+          "ac_at_1": 1.0,
+          "ac_at_10": 1.0,
+          "ac_at_2": 1.0,
+          "ac_at_3": 1.0,
+          "ac_at_5": 1.0,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 45,
+          "mrr": 1.0,
+          "root_observable": 45
+        },
+        "socket": {
+          "ac_at_1": 0.9777777777777777,
+          "ac_at_10": 1.0,
+          "ac_at_2": 1.0,
+          "ac_at_3": 1.0,
+          "ac_at_5": 1.0,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 45,
+          "mrr": 0.9888888888888889,
+          "root_observable": 45
+        }
+      },
+      "by_system": {
+        "ob": {
+          "ac_at_1": 0.9,
+          "ac_at_10": 0.9916666666666667,
+          "ac_at_2": 0.9583333333333334,
+          "ac_at_3": 0.975,
+          "ac_at_5": 0.9833333333333333,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 120,
+          "mrr": 0.9386047979797979,
+          "root_observable": 120
+        },
+        "ss": {
+          "ac_at_1": 0.8833333333333333,
+          "ac_at_10": 1.0,
+          "ac_at_2": 0.95,
+          "ac_at_3": 0.975,
+          "ac_at_5": 0.9916666666666667,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 120,
+          "mrr": 0.9303571428571428,
+          "root_observable": 120
+        },
+        "tt": {
+          "ac_at_1": 0.7416666666666667,
+          "ac_at_10": 0.9833333333333333,
+          "ac_at_2": 0.9083333333333333,
+          "ac_at_3": 0.9333333333333333,
+          "ac_at_5": 0.95,
+          "candidate_universe_coverage": 1.0,
+          "incidents": 120,
+          "mrr": 0.8428125000000001,
+          "root_observable": 120
+        }
+      },
+      "cluster_bootstrap_vs_frozen_m10d": {
+        "ac_at_1": {
+          "ci95": [
+            -0.0055096418732781816,
+            0.016759776536312776
+          ],
+          "clusters": 117,
+          "evidence_label": "WEAK_CLUSTER_NOT_SUPPORTED",
+          "metric": "ac_at_1",
+          "observed_delta": 0.005555555555555536,
+          "resamples": 10000,
+          "seed": 20260906,
+          "supported_positive": false
+        },
+        "mrr": {
+          "ci95": [
+            -0.00032499948128193176,
+            0.01386611139807172
+          ],
+          "clusters": 117,
+          "evidence_label": "WEAK_CLUSTER_NOT_SUPPORTED",
+          "metric": "mrr",
+          "observed_delta": 0.006203703703703711,
+          "resamples": 10000,
+          "seed": 20260906,
+          "supported_positive": false
+        }
+      },
+      "delta_vs_frozen_m10d": {
+        "ac_at_1": 0.005555555555555536,
+        "ac_at_10": 0.0,
+        "ac_at_2": 0.008333333333333304,
+        "ac_at_3": 0.019444444444444486,
+        "ac_at_5": 0.0,
+        "mrr": 0.006203703703703711
+      },
+      "incident_bootstrap_vs_frozen_m10d": {
+        "ac_at_1": {
+          "ci_high": 0.01666666666666672,
+          "ci_low": -0.005555555555555536,
+          "difference": 0.005555555555555536
+        },
+        "mrr": {
+          "ci_high": 0.013981481481481595,
+          "ci_low": -0.0005555555555555314,
+          "difference": 0.006203703703703711
+        }
+      },
+      "invariants": {
+        "membership_equal": true,
+        "membership_mismatches": [],
+        "tail_mismatches": [],
+        "tail_relative_order_identical": true,
+        "top_k": 5
+      },
+      "macro_system_average": {
+        "ac_at_1": 0.8416666666666667,
+        "ac_at_10": 0.9916666666666667,
+        "ac_at_2": 0.9388888888888888,
+        "ac_at_3": 0.9611111111111111,
+        "ac_at_5": 0.975,
+        "mrr": 0.9039248136123136
+      },
+      "metrics": {
+        "ac_at_1": 0.8416666666666667,
+        "ac_at_10": 0.9916666666666667,
+        "ac_at_2": 0.9388888888888889,
+        "ac_at_3": 0.9611111111111111,
+        "ac_at_5": 0.975,
+        "candidate_universe_coverage": 1.0,
+        "incidents": 360,
+        "mrr": 0.9039248136123136,
+        "root_observable": 360
+      }
+    },
+    "selection_use": "none; read-only regression after freeze"
+  },
+  "integrity": {
+    "checked_files": 23,
+    "mismatches": {},
+    "ok": true
+  },
+  "protocol_deviations": [
+    {
+      "execution_count": 3,
+      "limitation": "The requested single historical regression execution was not met during implementation.",
+      "locked_new_test_impact": "none; no LOCKED_NEW_TEST dataset exists or was opened",
+      "reason": "Two uncommitted pre-release runs were superseded while correcting and expanding the reporting schema; the final run is authoritative.",
+      "scope": "historical RCAEval RE2/RE3 implementation validation",
+      "selection_impact": "none; every run wrote the same RE1-only Top-5 freeze before historical access"
+    }
+  ],
+  "protocol_order": {
+    "freeze_manifest_written_before_historical_access": true,
+    "preflight_before_model_scoring": true,
+    "public_data_audit_before_model_scoring": true,
+    "selection_before_historical_access": true
+  },
+  "public_dataset_audit": {
+    "audited": [
+      "AIOps Challenge 2020",
+      "Murphy/DeathStarBench",
+      "Cloud-OpsBench",
+      "GAIA MicroSS",
+      "AIOpsLab"
+    ],
+    "locked_new_test": "BLOCKED",
+    "new_development": "BLOCKED",
+    "reason": "No source has a validated compatible single-root service-level adapter and a separate locked corpus."
+  },
+  "runtime_seconds": 72.85846183300237,
+  "verdicts": {
+    "ARCHITECTURE": "PROMOTE_M11_RESEARCH_CHAMPION",
+    "GNN": "NOT_JUSTIFIED",
+    "M11_CANDIDATE_RECOVERY": "PROMOTED",
+    "NEW_SYSTEM_TRANSFER": "BLOCKED",
+    "RELIABILITY_V3": "BLOCKED",
+    "TRACE_INCREMENTAL_VALUE": "INCONCLUSIVE",
+    "implementation_decision": "PROMOTE_TOP5"
+  },
+  "version": "m11-generalization-hardening-v1"
+}

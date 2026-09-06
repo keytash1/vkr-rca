@@ -1,0 +1,42 @@
+{
+  "version": "m11-ledger-v1",
+  "frozen_before_model_scoring": true,
+  "base_commit": "2fd38885ef8c0f0930d1830d8fd429fb6594f8a4",
+  "roles": {
+    "RE1-OB": "DEVELOPMENT_EXISTING",
+    "RE1-SS": "DEVELOPMENT_EXISTING",
+    "RE1-TT": "DEVELOPMENT_EXISTING",
+    "Synthetic-A": "DEVELOPMENT_AUXILIARY",
+    "Synthetic-B": "DEVELOPMENT_AUXILIARY",
+    "Synthetic-C": "DEVELOPMENT_AUXILIARY",
+    "RE2-OB": "USED_TEST_READONLY",
+    "RE2-SS": "USED_TEST_READONLY",
+    "RE2-TT": "USED_TEST_READONLY",
+    "RE3-OB": "USED_TEST_READONLY",
+    "RE3-SS": "USED_TEST_READONLY",
+    "RE3-TT": "USED_TEST_READONLY"
+  },
+  "new_roles": {
+    "NEW_DEVELOPMENT": {
+      "status": "BLOCKED",
+      "dataset": null,
+      "reason": "No audited corpus has a validated service-level truth-free adapter contract."
+    },
+    "LOCKED_NEW_TEST": {
+      "status": "BLOCKED",
+      "dataset": null,
+      "reason": "No second independent compatible corpus is available for one-time locked evaluation."
+    }
+  },
+  "forbidden_for_training_calibration_selection": [
+    "USED_TEST_READONLY",
+    "USED_TEST",
+    "LOCKED_NEW_TEST"
+  ],
+  "locked_test_transition": {
+    "allowed": "LOCKED_NEW_TEST -> USED_TEST",
+    "maximum_transitions": 1,
+    "reversible": false,
+    "transitions": []
+  }
+}
