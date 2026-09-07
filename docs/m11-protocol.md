@@ -75,7 +75,7 @@ meaningful number of trace-bearing incidents and supports matched-modality
 ablations. A GNN is considered only after a positive graph/modal signal and a
 demonstrated bottleneck of handcrafted topology features. Reliability v3 requires
 an independent new domain. Otherwise the mandatory verdicts are respectively
-`INCONCLUSIVE`, `NOT_JUSTIFIED`, and `BLOCKED`.
+`BLOCKED`, `NOT_JUSTIFIED`, and `BLOCKED`.
 
 ## Freeze and evaluation order
 

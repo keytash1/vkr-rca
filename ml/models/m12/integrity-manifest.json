@@ -1,0 +1,29 @@
+{
+  "sha256": {
+    "deploy/m12/Dockerfile.exporter": "d9ba6e96deae17516317ac1e54bb013dcb412cd6b312eea3493c8739c805eed3",
+    "deploy/m12/Dockerfile.hotel": "8e887999d366a28b90e7f6ffa90d4aa679244ef3864489279392b131d0f11c28",
+    "deploy/m12/compose.yml": "9bd00ff11c43386222a3ff249cc473439e7ea8179f92f5f9204b3f18603debd8",
+    "docs/m12-adapter-contract.md": "2af157f565790d4ade53c40ed48d1e37c52123048a200b16cf0fbdeaf8219e20",
+    "docs/m12-claim-registry.md": "dc66a98a51721035acd162d929c1df8611bb4b5d1f760650f84ed49201511af4",
+    "docs/m12-deployment.md": "795dac8e86ac2dfb1f5a883cba1eddc469c548fad6d179a31c263f52edcecf00",
+    "docs/m12-error-analysis.md": "1c4449adf749e50a872bd7fe50474e9d1b348cd541d0b67b8bea0b6e0a200e0a",
+    "docs/m12-protocol.md": "1862a126708b9fd60a2401a0e70ff0bd755283d3d1abbc526b75003934156fc1",
+    "docs/m12-results.md": "a8f65980c2e79ee97b23772bf2c5d53df602070c832beb5e6727c44fcea9a25d",
+    "docs/m12-system-selection.md": "3943af8ca18ca0fb26605a4a8ce1475862e62da00a6e2961cfe09eabd8775c97",
+    "ml/models/m12/adapter-manifest.json": "34c18eb749a577f2ec70da7850380a31680a15d11d5a7287cd912131b9fccbc0",
+    "ml/models/m12/data-ledger.json": "4851633bc19c4ee2899817b68844d5d82cafca1e5ecd14fe8112318787cf8c57",
+    "ml/models/m12/evaluation.json": "19178bec504eb9dde91c6cd433985bf456c794012e82d8eae8a3523cb9f5dfb5",
+    "ml/models/m12/freeze-manifest-attempt-1.json": "629194ee6b631f9377aa45648a96202940e6a443fe55df652fcec5015ed04483",
+    "ml/models/m12/freeze-manifest.json": "cc6350ce1c0fac06c3369c371c0042877d4bcdc4acf39310a3654cf3d0d0b66f",
+    "ml/models/m12/incident-plan.json": "76b499f11b161d7ba6230bc87b8369effcc53569fac357c1f485e38639c3287f",
+    "ml/models/m12/preflight.json": "58a3d182526a51a87c5ab12f0cbf264a66d794985f71a9d3a4136b8cdb513e26",
+    "ml/models/m12/system-manifest.json": "0824809ab36c42fe4d1391081269a6d9dc094d0dbcd48953fc11ed25904cf88e",
+    "ml/rca_ml/m12_adapter.py": "49f5dd08ad28e999bb1e565c2073e75f764827717745ad1daa8f1896ba908a7b",
+    "ml/rca_ml/m12_evaluate.py": "928994d5169a870bd48b3f8a69c7ac05ab496a281ee999bfbef9a392830e0501",
+    "ml/rca_ml/m12_shadow.py": "f6ab9a394a376c783f85d7e128444bb1e2f2878c3268f3880a35bf38b888d6e5",
+    "scripts/m12/freeze.py": "956fb9113664a859d8ba138f9654a5e1c5ebe665d50b6ebf995a71113b55404d",
+    "scripts/m12/run.py": "c8896a2957ebc29e86995cf0b2ad17f9de18b441a45f331659c392ab9eb4c575",
+    "scripts/m12/workload.py": "243c295024a6210305ac410889b56d985e60f9da44cd557e991f3e91dc076890"
+  },
+  "version": "m12-integrity-v1"
+}

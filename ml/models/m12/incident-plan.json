@@ -1,0 +1,372 @@
+{
+  "clusters": 25,
+  "fault_families": [
+    "cpu",
+    "memory",
+    "network_latency",
+    "packet_loss",
+    "service_unavailable"
+  ],
+  "incidents": [
+    {
+      "duration_seconds": 12,
+      "fault_family": "cpu",
+      "incident_id": "m12-001-b3a3ed2b",
+      "repetition": 1,
+      "root_service": "search"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "network_latency",
+      "incident_id": "m12-002-d132dba7",
+      "repetition": 1,
+      "root_service": "frontend"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "network_latency",
+      "incident_id": "m12-003-39af0150",
+      "repetition": 2,
+      "root_service": "rate"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "memory",
+      "incident_id": "m12-004-5623afb5",
+      "repetition": 2,
+      "root_service": "rate"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "cpu",
+      "incident_id": "m12-005-07fc53ed",
+      "repetition": 1,
+      "root_service": "geo"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "network_latency",
+      "incident_id": "m12-006-90095642",
+      "repetition": 1,
+      "root_service": "geo"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "packet_loss",
+      "incident_id": "m12-007-6188c5d6",
+      "repetition": 1,
+      "root_service": "geo"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "cpu",
+      "incident_id": "m12-008-4fd8b1aa",
+      "repetition": 1,
+      "root_service": "recommendation"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "cpu",
+      "incident_id": "m12-009-cee35ae2",
+      "repetition": 1,
+      "root_service": "rate"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "packet_loss",
+      "incident_id": "m12-010-d76baa06",
+      "repetition": 2,
+      "root_service": "search"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "network_latency",
+      "incident_id": "m12-011-9e6971bc",
+      "repetition": 2,
+      "root_service": "geo"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "service_unavailable",
+      "incident_id": "m12-012-b4c13e0c",
+      "repetition": 2,
+      "root_service": "rate"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "service_unavailable",
+      "incident_id": "m12-013-d6bb6e12",
+      "repetition": 2,
+      "root_service": "recommendation"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "network_latency",
+      "incident_id": "m12-014-5c03f5e7",
+      "repetition": 1,
+      "root_service": "rate"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "network_latency",
+      "incident_id": "m12-015-f6511730",
+      "repetition": 2,
+      "root_service": "recommendation"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "service_unavailable",
+      "incident_id": "m12-016-399831a3",
+      "repetition": 1,
+      "root_service": "search"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "packet_loss",
+      "incident_id": "m12-017-9c3f33cc",
+      "repetition": 2,
+      "root_service": "recommendation"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "service_unavailable",
+      "incident_id": "m12-018-814165bb",
+      "repetition": 1,
+      "root_service": "frontend"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "network_latency",
+      "incident_id": "m12-019-7cd559d4",
+      "repetition": 2,
+      "root_service": "search"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "memory",
+      "incident_id": "m12-020-963b04d4",
+      "repetition": 1,
+      "root_service": "geo"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "network_latency",
+      "incident_id": "m12-021-01158216",
+      "repetition": 1,
+      "root_service": "search"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "cpu",
+      "incident_id": "m12-022-f536664d",
+      "repetition": 2,
+      "root_service": "search"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "network_latency",
+      "incident_id": "m12-023-e1d2b578",
+      "repetition": 1,
+      "root_service": "recommendation"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "network_latency",
+      "incident_id": "m12-024-d35d9dd4",
+      "repetition": 2,
+      "root_service": "frontend"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "packet_loss",
+      "incident_id": "m12-025-d7e8e908",
+      "repetition": 1,
+      "root_service": "rate"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "memory",
+      "incident_id": "m12-026-f919758b",
+      "repetition": 2,
+      "root_service": "search"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "packet_loss",
+      "incident_id": "m12-027-2d4d9eb9",
+      "repetition": 2,
+      "root_service": "geo"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "cpu",
+      "incident_id": "m12-028-397aff3c",
+      "repetition": 2,
+      "root_service": "rate"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "cpu",
+      "incident_id": "m12-029-c30e0561",
+      "repetition": 2,
+      "root_service": "frontend"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "service_unavailable",
+      "incident_id": "m12-030-7665e5a8",
+      "repetition": 1,
+      "root_service": "geo"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "cpu",
+      "incident_id": "m12-031-46ac6703",
+      "repetition": 2,
+      "root_service": "geo"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "memory",
+      "incident_id": "m12-032-c68c04aa",
+      "repetition": 1,
+      "root_service": "recommendation"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "packet_loss",
+      "incident_id": "m12-033-8ec9c591",
+      "repetition": 2,
+      "root_service": "frontend"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "service_unavailable",
+      "incident_id": "m12-034-226189ac",
+      "repetition": 2,
+      "root_service": "frontend"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "service_unavailable",
+      "incident_id": "m12-035-d6eae1d5",
+      "repetition": 1,
+      "root_service": "recommendation"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "cpu",
+      "incident_id": "m12-036-d8675c79",
+      "repetition": 2,
+      "root_service": "recommendation"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "memory",
+      "incident_id": "m12-037-410dfc93",
+      "repetition": 1,
+      "root_service": "search"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "memory",
+      "incident_id": "m12-038-c9b6fccd",
+      "repetition": 2,
+      "root_service": "frontend"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "cpu",
+      "incident_id": "m12-039-23f77dc4",
+      "repetition": 1,
+      "root_service": "frontend"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "memory",
+      "incident_id": "m12-040-dc774c49",
+      "repetition": 2,
+      "root_service": "recommendation"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "service_unavailable",
+      "incident_id": "m12-041-1c1e1f83",
+      "repetition": 1,
+      "root_service": "rate"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "packet_loss",
+      "incident_id": "m12-042-88a58cd8",
+      "repetition": 1,
+      "root_service": "search"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "memory",
+      "incident_id": "m12-043-7eb62c89",
+      "repetition": 1,
+      "root_service": "rate"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "packet_loss",
+      "incident_id": "m12-044-5b4fb119",
+      "repetition": 1,
+      "root_service": "recommendation"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "memory",
+      "incident_id": "m12-045-c85af329",
+      "repetition": 1,
+      "root_service": "frontend"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "packet_loss",
+      "incident_id": "m12-046-67612e13",
+      "repetition": 1,
+      "root_service": "frontend"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "packet_loss",
+      "incident_id": "m12-047-47ae6437",
+      "repetition": 2,
+      "root_service": "rate"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "service_unavailable",
+      "incident_id": "m12-048-9ba4197c",
+      "repetition": 2,
+      "root_service": "geo"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "service_unavailable",
+      "incident_id": "m12-049-2f6555e9",
+      "repetition": 2,
+      "root_service": "search"
+    },
+    {
+      "duration_seconds": 12,
+      "fault_family": "memory",
+      "incident_id": "m12-050-a86b7870",
+      "repetition": 2,
+      "root_service": "geo"
+    }
+  ],
+  "repetitions_per_cluster": 2,
+  "seed": 20260906,
+  "targets": [
+    "frontend",
+    "search",
+    "geo",
+    "rate",
+    "recommendation"
+  ],
+  "version": "m12-locked-plan-v1"
+}

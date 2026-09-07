@@ -1,0 +1,33 @@
+{
+  "version": "m12-system-manifest-v1",
+  "selected_before_model_scoring": true,
+  "name": "DeathStarBench Hotel Reservation",
+  "source": "https://github.com/delimitrou/DeathStarBench",
+  "source_commit": "6ecb09706140f8730b5385c08f1386c654c3c526",
+  "source_commit_date": "2024-06-27T13:13:08-07:00",
+  "license": "Apache-2.0",
+  "deployment": "Docker Compose",
+  "runtime": ["Go", "gRPC", "HTTP", "Consul", "MongoDB", "Memcached"],
+  "application_services": [
+    "frontend", "profile", "search", "geo", "rate", "review",
+    "attractions", "recommendation", "user", "reservation"
+  ],
+  "initial_workload_service_universe": [
+    "frontend", "profile", "search", "geo", "rate", "recommendation",
+    "user", "reservation"
+  ],
+  "infrastructure_excluded_from_root_candidates": [
+    "consul", "jaeger", "mongodb-*", "memcached-*"
+  ],
+  "operational_startup_measurement": {
+    "command": "/usr/bin/time -p make m12-up after docker compose down",
+    "image_build_cache": "warm",
+    "compose_start_through_application_and_telemetry_ready_seconds": 12.70,
+    "post_compose_application_probe_seconds": 0.04735994338989258,
+    "post_compose_telemetry_probe_seconds": 0.047360897064208984,
+    "collected_after_locked_evaluation": true,
+    "available_to_rca_inference": false
+  },
+  "rcaeval_overlap": false,
+  "selection_used_rca_predictions": false
+}

@@ -1,0 +1,23 @@
+FROM golang:1.21.13-bookworm
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends iproute2=6.1.0-3 stress-ng=0.15.06-2 \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /workspace
+COPY go.sum go.mod ./
+COPY vendor/ vendor/
+COPY cmd/ cmd/
+COPY data/ data/
+COPY dialer/ dialer/
+COPY registry/ registry/
+COPY services/ services/
+COPY tls/ tls/
+COPY tracing/ tracing/
+COPY tune/ tune/
+RUN CGO_ENABLED=0 GOOS=linux GO111MODULE=on go install -ldflags="-s -w" -mod=vendor ./cmd/...
+
+LABEL org.opencontainers.image.source="https://github.com/delimitrou/DeathStarBench" \
+      org.opencontainers.image.revision="6ecb09706140f8730b5385c08f1386c654c3c526" \
+      org.opencontainers.image.licenses="Apache-2.0"
+

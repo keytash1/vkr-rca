@@ -743,7 +743,7 @@ def run(root: Path) -> dict:
         },
         "verdicts": {
             "M11_CANDIDATE_RECOVERY": "PROMOTED" if selected_k > 3 else "REJECTED",
-            "TRACE_INCREMENTAL_VALUE": "INCONCLUSIVE",
+            "TRACE_INCREMENTAL_VALUE": "BLOCKED",
             "GNN": "NOT_JUSTIFIED",
             "RELIABILITY_V3": "BLOCKED",
             "NEW_SYSTEM_TRANSFER": "BLOCKED",

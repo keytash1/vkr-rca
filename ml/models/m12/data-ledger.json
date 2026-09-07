@@ -1,0 +1,41 @@
+{
+  "existing_roles": {
+    "RE1-OB": "DEVELOPMENT_EXISTING",
+    "RE1-SS": "DEVELOPMENT_EXISTING",
+    "RE1-TT": "DEVELOPMENT_EXISTING",
+    "RE2-OB": "USED_TEST_READONLY",
+    "RE2-SS": "USED_TEST_READONLY",
+    "RE2-TT": "USED_TEST_READONLY",
+    "RE3-OB": "USED_TEST_READONLY",
+    "RE3-SS": "USED_TEST_READONLY",
+    "RE3-TT": "USED_TEST_READONLY",
+    "Synthetic-A": "DEVELOPMENT_AUXILIARY",
+    "Synthetic-B": "DEVELOPMENT_AUXILIARY",
+    "Synthetic-C": "DEVELOPMENT_AUXILIARY"
+  },
+  "forbidden_for_training_or_selection": [
+    "USED_TEST_READONLY",
+    "USED_TEST",
+    "M12_CANARY",
+    "M12_LOCKED_TEST"
+  ],
+  "frozen_before_m12_scoring": true,
+  "locked_transition": {
+    "allowed": "M12_LOCKED_TEST -> USED_TEST",
+    "maximum_transitions": 1,
+    "reversible": false,
+    "transitions": [
+      {
+        "from": "M12_LOCKED_TEST",
+        "prediction_sha256": "fd303fed807e9a08413e66aa1c3697dc16030691a55575c728498c26663bea2a",
+        "to": "USED_TEST"
+      }
+    ]
+  },
+  "m12_roles": {
+    "canary": "M12_CANARY",
+    "healthy": "M12_HEALTHY_ENGINEERING",
+    "locked": "USED_TEST"
+  },
+  "version": "m12-data-ledger-v1"
+}

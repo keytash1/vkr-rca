@@ -1,0 +1,84 @@
+name: vkr-rca-m12
+
+x-app: &app
+  image: vkr-rca-m12/hotel-reservation:6ecb097
+  environment:
+    JAEGER_SAMPLE_RATIO: "1"
+    LOG_LEVEL: warn
+  volumes:
+    - ./config.json:/workspace/config.json:ro
+  cap_add: [NET_ADMIN]
+  depends_on:
+    consul: {condition: service_healthy}
+    mongodb: {condition: service_started}
+    memcached: {condition: service_started}
+  restart: unless-stopped
+  labels:
+    io.vkr.m12.role: application
+
+services:
+  consul:
+    image: hashicorp/consul:1.20.6
+    command: agent -dev -client=0.0.0.0
+    healthcheck:
+      test: ["CMD", "consul", "members"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+
+  mongodb:
+    image: mongo:7.0.14
+    command: ["mongod", "--quiet", "--bind_ip_all"]
+
+  memcached:
+    image: memcached:1.6.30-bookworm
+    command: ["memcached", "-m", "128", "-t", "2"]
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.60
+    ports: ["16687:16686"]
+
+  frontend:
+    <<: *app
+    build:
+      context: ../../external-data/m12/DeathStarBench/hotelReservation
+      dockerfile: ../../../../deploy/m12/Dockerfile.hotel
+    entrypoint: frontend
+    ports: ["15000:5000"]
+  profile:
+    <<: *app
+    entrypoint: profile
+  search:
+    <<: *app
+    entrypoint: search
+  geo:
+    <<: *app
+    entrypoint: geo
+  rate:
+    <<: *app
+    entrypoint: rate
+  recommendation:
+    <<: *app
+    entrypoint: recommendation
+  user:
+    <<: *app
+    entrypoint: user
+  reservation:
+    <<: *app
+    entrypoint: reservation
+
+  metrics-exporter:
+    image: vkr-rca-m12/metrics-exporter:v1
+    build:
+      context: .
+      dockerfile: Dockerfile.exporter
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    command: ["--config.file=/etc/prometheus/prometheus.yml", "--storage.tsdb.retention.time=24h"]
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports: ["19090:9090"]
+    depends_on: [metrics-exporter]

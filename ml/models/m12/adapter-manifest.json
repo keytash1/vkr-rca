@@ -1,0 +1,18 @@
+{
+  "version": "m12-adapter-v1",
+  "scrape_interval_seconds": 1,
+  "identity_source": "com.docker.compose.service label",
+  "identity_is_feature": false,
+  "canonical_families": {
+    "cpu": {"source": "Docker stats CPU and system deltas", "raw_type": "counter deltas", "transformation": "container_delta/system_delta*online_cpus", "unit": "cores"},
+    "memory": {"source": "Docker stats memory usage minus inactive_file", "raw_type": "gauge", "transformation": "working_set", "unit": "bytes"},
+    "network": {"source": "container_network_receive_bytes_total + container_network_transmit_bytes_total", "raw_type": "counter", "transformation": "rate_5s", "unit": "bytes_per_second"},
+    "traffic_rate": {"source": "container_network_receive_bytes_total", "raw_type": "counter", "transformation": "rate_5s", "unit": "bytes_per_second"}
+  },
+  "unavailable_families": ["latency", "error_rate", "disk", "saturation", "dependency", "runtime", "database", "cache", "queue"],
+  "trace_modality": "PARTIAL: Jaeger collection covers eight services; canonical inference adapter unavailable",
+  "topology_source": "deployment metadata and pinned application call graph",
+  "missing_values": "unavailable family has coverage=0 and frozen feature value=0",
+  "interpolation": false,
+  "forbidden_feature_identities": ["service", "system", "dataset", "fault", "root_service", "semantic_label"]
+}

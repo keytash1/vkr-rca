@@ -31,7 +31,7 @@ rather than rejected, because the candidate universe was held fixed.
 - New-development adapter: **BLOCKED**.
 - One-time locked new test: **BLOCKED**.
 - Candidate recovery: **PROMOTED**.
-- Trace/topology incremental study: **INCONCLUSIVE**.
+- Trace/topology incremental study: **BLOCKED**.
 - GNN: **NOT_JUSTIFIED**.
 - Reliability v3: **BLOCKED**.
 - New-system transfer: **BLOCKED**.

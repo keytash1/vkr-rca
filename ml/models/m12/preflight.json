@@ -1,0 +1,62 @@
+{
+  "version": "m12-preflight-v1",
+  "status": "FROZEN_BEFORE_M12_RCA_SCORING",
+  "base_commit": "c03d16f7b83ca28abfba518d574489e8c96e41ac",
+  "m11_models_read_only": true,
+  "model_training_count_required": 0,
+  "selected_system": {
+    "name": "DeathStarBench Hotel Reservation",
+    "source": "https://github.com/delimitrou/DeathStarBench",
+    "commit": "6ecb09706140f8730b5385c08f1386c654c3c526",
+    "selection_used_rca_scores": false
+  },
+  "top_k": 5,
+  "feature_schema": [
+    "component_MetricSupport",
+    "component_TraceLocalSupport",
+    "component_PropagationSupport",
+    "component_TopologySupport",
+    "component_DependencyWaitSupport",
+    "component_CoverageSupport",
+    "component_ContradictionEvidence",
+    "component_OODPenalty",
+    "component_ExpertAgreement",
+    "support_score",
+    "base_rank_percentile",
+    "base_relative_score",
+    "base_margin"
+  ],
+  "bootstrap": {
+    "incident_resamples": 10000,
+    "cluster_resamples": 10000,
+    "cluster_key": ["root_service", "fault_family"],
+    "seed": 20260906
+  },
+  "sha256": {
+    "ml/models/m10a-freeze/evaluation.json": "eb14e3fd02ebb9fe55d97c3852075114d103493586dd02e8ca40988caeac6db4",
+    "ml/models/m10a-freeze/integrity-manifest.json": "7e152bdb19301bdd9cd0e38377cdd22a990b507e4c9b86f95610d768d62928c7",
+    "docs/m10b-demo-cases.md": "d492ea4d9be69f3ad496a19349829e4ddee933e4ea19f2a13114ba295559ba49",
+    "docs/demo-guide.md": "33dc8d623ddd642860d405ee92ba6b23c02208af4e69052a22f8c6b5200bf631",
+    "docs/defense-demo-script.md": "eea52dad938aecbe944f680baf357ee62093e361d36056558f2fb56c96e8d3b7",
+    "ml/models/m10c-v2/m10c-core-v2.json": "8452b88958d2fa2972cfcc89c8021f9108e08be690fcc20add1292bcfe8caace",
+    "ml/models/m10c-v2/feature-schema.json": "83a5a62700d2e1c803af1408d2af9488b997951412b54663c3d82145b2cd2bfe",
+    "ml/models/m10d-integration/evaluation.json": "a66729462d1782cc13d55c38bbd6cc267f8c616129cf87412feb0589fff59d61",
+    "ml/models/m10d-integration/protocol.json": "076b179a40bf350645037f556ce1281e2951a34856a27183f0ab584db4bfc727",
+    "ml/models/m10d-integration/integrity-manifest.json": "28f382f7fe4eb858daf3c38125e007bae3d5de6a918bffdbf6ca2b2fd50d552c",
+    "ml/models/m10d-integration/reranker-seed-20260906.json": "880f7870eab35a73cfa37adaeddd8f80d7ddba92abd4cf6223b4828446b3a5da",
+    "ml/models/m10d-integration/reranker-seed-20260907.json": "06c0d4343bb48c679084b89e8896e2b76d0e207ffba31801dcb3ced596785b44",
+    "ml/models/m10d-integration/reranker-seed-20260908.json": "22b32193cd7c7d7b5e84833315761166a88415be55073cc71d73c5f6647bdc07",
+    "ml/models/m10d-integration/reranker-seed-20260909.json": "0b63c093f9d9d29b2f5412f8194a57cf04c9cc0bc6fcd2664f5bbba63fe27a0b",
+    "ml/models/m10d-integration/reranker-seed-20260910.json": "88648e01f8e67d6fc06d5eaf5b2d16cf6d386ef498df93724249b15bd87f156c",
+    "ml/models/m11/freeze-manifest.json": "a596ff5253416702b61110dcee57451d4c2b93e82600720d64fd636cc89e0830",
+    "ml/models/m11/candidate-recovery-k5-seed-20260906.json": "a84482b6446e9c25498cb5250b8fe0bf1e0e887147d420d8905ce39696095749",
+    "ml/models/m11/candidate-recovery-k5-seed-20260907.json": "422de5139fe0c20084077ebb255cf55ce2530bb63bd502b4e3a2b4cdf3b1f0a9",
+    "ml/models/m11/candidate-recovery-k5-seed-20260908.json": "e999bbc8ff50471b29fda682d8dbe7bbe12ff80e106773886b67f2fab1c27820",
+    "ml/models/m11/candidate-recovery-k5-seed-20260909.json": "1d4a0dc26e3ee86ee6b35c1b5c7c9ec254dc9a6e82ca7e5dc7897dbc39b1027f",
+    "ml/models/m11/candidate-recovery-k5-seed-20260910.json": "f8b771177c60a9b3bd62c8a0fb3b83b69973a002331943e181906af7eb8e5fec",
+    "ml/rca_ml/m10c_features.py": "b3f673e9614495ea5d8284ebf7432397b014c4518213ec86abc50d00e465bcef",
+    "ml/rca_ml/m10d_reranker.py": "23f3c1c24ff1de43378e45fee84124e5c5e4f7bbd4c530c536255e3d457e903e",
+    "ml/rca_ml/m11_protocol.py": "e89efc888499ea7ea8b8a058082c8a627854155f7ca104b3ef057bdd7dd9150a",
+    "ml/rca_ml/m9b_features.py": "c3fccadaa636f2a6b73b83b6175be0e6c5442a14ddc8bfd83b65f94b9d44cc46"
+  }
+}

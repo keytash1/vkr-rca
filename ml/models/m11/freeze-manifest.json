@@ -55,7 +55,7 @@
     "canonical_features": "M10D 13-feature truth-free evidence representation",
     "ood_fit": "development-only robust 1st/99th percentile bounds"
   },
-  "protocol_sha256": "651c111c6455103ca78c0720fe215528aecc8a053bd6e01d75475aaf8daefc9b",
+  "protocol_sha256": "0a008d71a849e3c85681e5f0d8d33d55f6b72959c9dfc3c853ead2b8fc76e49b",
   "reliability_thresholds": null,
   "selected_top_k": 5,
   "selection_data": [

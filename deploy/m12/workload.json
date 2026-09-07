@@ -1,0 +1,11 @@
+{
+  "seed": 20260906,
+  "requests_per_second": 10,
+  "mix": {
+    "hotels": 0.60,
+    "recommendations": 0.20,
+    "login": 0.10,
+    "reservation": 0.10
+  },
+  "frontend_url": "http://127.0.0.1:15000"
+}

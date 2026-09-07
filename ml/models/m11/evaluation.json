@@ -2126,7 +2126,7 @@
     "M11_CANDIDATE_RECOVERY": "PROMOTED",
     "NEW_SYSTEM_TRANSFER": "BLOCKED",
     "RELIABILITY_V3": "BLOCKED",
-    "TRACE_INCREMENTAL_VALUE": "INCONCLUSIVE",
+    "TRACE_INCREMENTAL_VALUE": "BLOCKED",
     "implementation_decision": "PROMOTE_TOP5"
   },
   "version": "m11-generalization-hardening-v1"

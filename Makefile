@@ -7,7 +7,7 @@ DEMO_PORT ?= 18000
 ML_PYTHON ?= .venv/bin/python
 DEMO_COMPOSE = docker compose -f docker-compose.yml -f docker-compose.demo.yml
 
-.PHONY: fmt test build compose-up compose-down smoke trace-smoke graph-smoke baseline-smoke anomaly-smoke rca-smoke ml-setup ml-smoke m7-experiment m8a-smoke m8a-experiment m8b-smoke m8b-experiment m9a-smoke m9a-experiment m9b-smoke m9b-experiment m10a-smoke m10a-analysis m11-experiment demo-prepare demo-up demo-down demo-smoke demo fault-gateway-latency fault-gateway-errors fault-payment-latency fault-orders-latency fault-payment-errors fault-reset fault-status logs
+.PHONY: fmt test build compose-up compose-down smoke trace-smoke graph-smoke baseline-smoke anomaly-smoke rca-smoke ml-setup ml-smoke m7-experiment m8a-smoke m8a-experiment m8b-smoke m8b-experiment m9a-smoke m9a-experiment m9b-smoke m9b-experiment m10a-smoke m10a-analysis m11-experiment m12-setup m12-up m12-down m12-healthy m12-canary m12-run-locked m12-freeze m12-evaluate m12-shadow demo-prepare demo-up demo-down demo-smoke demo fault-gateway-latency fault-gateway-errors fault-payment-latency fault-orders-latency fault-payment-errors fault-reset fault-status logs
 
 fmt:
 	gofmt -w cmd internal
@@ -170,6 +170,35 @@ m10a-analysis:
 m11-experiment:
 	@test -x "$(ML_PYTHON)" || (echo "run 'make ml-setup' first" >&2; exit 1)
 	PYTHONPATH=ml $(ML_PYTHON) -m rca_ml.m11_experiment --root .
+
+m12-setup:
+	./scripts/m12/setup.sh
+
+m12-up:
+	docker compose -f deploy/m12/compose.yml up --build -d
+	PYTHONPATH=ml $(ML_PYTHON) scripts/m12/run.py ready
+
+m12-down:
+	docker compose -f deploy/m12/compose.yml down --remove-orphans
+
+m12-healthy:
+	PYTHONPATH=ml $(ML_PYTHON) scripts/m12/prepare_frozen.py
+	PYTHONPATH=ml $(ML_PYTHON) scripts/m12/run.py healthy
+
+m12-canary:
+	PYTHONPATH=ml $(ML_PYTHON) scripts/m12/run.py canary
+
+m12-run-locked:
+	PYTHONPATH=ml $(ML_PYTHON) scripts/m12/run.py run-locked
+
+m12-freeze:
+	PYTHONPATH=ml $(ML_PYTHON) scripts/m12/freeze.py
+
+m12-evaluate:
+	PYTHONPATH=ml $(ML_PYTHON) scripts/m12/run.py evaluate
+
+m12-shadow:
+	PYTHONPATH=ml $(ML_PYTHON) -m rca_ml.m12_shadow
 
 demo-prepare:
 	@test -x "$(ML_PYTHON)" || (echo "run 'make ml-setup' first" >&2; exit 1)
