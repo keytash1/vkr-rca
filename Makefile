@@ -7,7 +7,7 @@ DEMO_PORT ?= 18000
 ML_PYTHON ?= .venv/bin/python
 DEMO_COMPOSE = docker compose -f docker-compose.yml -f docker-compose.demo.yml
 
-.PHONY: fmt test build compose-up compose-down smoke trace-smoke graph-smoke baseline-smoke anomaly-smoke rca-smoke ml-setup ml-smoke m7-experiment m8a-smoke m8a-experiment m8b-smoke m8b-experiment m9a-smoke m9a-experiment m9b-smoke m9b-experiment m10a-smoke m10a-analysis m11-experiment m12-setup m12-up m12-down m12-healthy m12-canary m12-run-locked m12-freeze m12-evaluate m12-shadow m13-setup m13-up m13-down m13-healthy m13-canary m13-corpus m13-experiment demo-prepare demo-up demo-down demo-smoke demo fault-gateway-latency fault-gateway-errors fault-payment-latency fault-orders-latency fault-payment-errors fault-reset fault-status logs
+.PHONY: fmt test build compose-up compose-down smoke trace-smoke graph-smoke baseline-smoke anomaly-smoke rca-smoke ml-setup ml-smoke m7-experiment m8a-smoke m8a-experiment m8b-smoke m8b-experiment m9a-smoke m9a-experiment m9b-smoke m9b-experiment m10a-smoke m10a-analysis m11-experiment m12-setup m12-up m12-down m12-healthy m12-canary m12-run-locked m12-freeze m12-evaluate m12-shadow m13-setup m13-up m13-down m13-healthy m13-canary m13-corpus m13-experiment m13-1-validation demo-prepare demo-up demo-down demo-smoke demo fault-gateway-latency fault-gateway-errors fault-payment-latency fault-orders-latency fault-payment-errors fault-reset fault-status logs
 
 fmt:
 	gofmt -w cmd internal
@@ -222,6 +222,9 @@ m13-corpus:
 
 m13-experiment:
 	PYTHONPATH=ml $(ML_PYTHON) -m rca_ml.m13_experiment --root .
+
+m13-1-validation:
+	PYTHONPATH=ml $(ML_PYTHON) -m rca_ml.m13_1_nested --root .
 
 demo-prepare:
 	@test -x "$(ML_PYTHON)" || (echo "run 'make ml-setup' first" >&2; exit 1)

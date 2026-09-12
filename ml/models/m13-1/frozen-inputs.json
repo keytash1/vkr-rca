@@ -1,0 +1,40 @@
+{
+  "version": "m13-1-frozen-inputs-v1",
+  "base_commit": "2c295760bff8b644cee8f2c0d460bbf98cf71735",
+  "development_dataset": "DeathStarBench Social Network",
+  "development_role": "NEW_DEVELOPMENT",
+  "incident_count": 120,
+  "cluster_count": 60,
+  "outer_folds": 5,
+  "inner_folds": 4,
+  "bootstrap_resamples": 10000,
+  "seed": 20260906,
+  "architectures": [
+    "extended_full_top5",
+    "two_expert_fusion_top5",
+    "full_candidate_challenger"
+  ],
+  "hyperparameter_grid": {
+    "max_depth": [2, 3],
+    "eta": [0.03, 0.08],
+    "rounds": [24, 48]
+  },
+  "m13_sha256": {
+    "ml/models/m13/evaluation.json": "8996803481301894fbd6a6973ab766afcd27b606639245ecefb2a0f608da2368",
+    "ml/models/m13/freeze-manifest.json": "eef445e32b32e6e1219e2e7487e405ba0224a28d9885245bdc3754ba1619df15",
+    "ml/models/m13/data-ledger.json": "8b9636c8dcad3e469d5777b4a8d75c909cf38dc5c215aa2ef5f46a03d91fdf35",
+    "ml/models/m13/corpus-manifest.json": "fd85c713baa1be8b2992ce1f4eb197dcb4876f9c3530979f79b591443abbf7ee",
+    "ml/rca_ml/m13_experiment.py": "793fd56ea1da8f3ccff8b8c23608cc63d800adcb47e65dedd7af1b72773dab3c",
+    "ml/rca_ml/m13_features.py": "cb8f6806f833cd0a85e5221e3a204597c2206c9f32924e79623fc313bfbe4a3b",
+    "ml/rca_ml/m13_trace.py": "555fbc59a07b3abdf8b0d19fc0022e1c5ee86ef716abefcdba2224ba72ac5725"
+  },
+  "forbidden_selection_roles": [
+    "USED_TEST_READONLY",
+    "USED_TEST_FOREVER",
+    "RESERVED_FINAL_TEST"
+  ],
+  "m12_incidents_used": 0,
+  "re2_re3_incidents_used": 0,
+  "reserved_final_incidents_used": 0,
+  "reserved_final_scored": false
+}
