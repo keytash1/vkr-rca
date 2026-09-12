@@ -25,10 +25,17 @@ repeatedly timed out downloading it, including with Compose parallelism limited
 to two. Independent Gradle and PECL fetches also suffered DNS timeouts.
 
 To keep this infrastructure failure outside the measured candidate universe,
-four non-candidate support services are run from the official pinned Astronomy
-Shop `3.0.0` images: `flagd-ui`, `telemetry-docs`, `image-provider`, and the
-disabled `load-generator`. Their Compose `build` definitions are explicitly
-reset. The 12 RCA candidate services remain source-built from the audited exact
-checkout (with the documented QuoteService shim). This substitution happened
-before readiness, healthy baseline, fault injection, prediction, or truth
-opening and was not informed by RCA output.
+the non-candidate `image-provider` is run from the official pinned Astronomy
+Shop `3.0.0` image. Its image digest was recorded by Docker. The three support
+processes that the experiment never queries (`flagd-ui`, `telemetry-docs`, and
+the disabled upstream `load-generator`) are deterministic inert containers
+using `alpine@sha256:d9e853e87e55526f6b2917df91a2115c36dd7c696a35be12163d44e6e2a4b6bc`.
+The first two retain successful health checks solely to satisfy the upstream
+frontend-proxy dependencies; M14 uses its own locked workload generator.
+
+Their Compose `build` definitions are explicitly reset. The 12 RCA candidate
+services remain source-built from the audited exact checkout (with the
+documented QuoteService shim), while the real `flagd` feature-flag service is
+unchanged. This substitution happened before readiness, healthy baseline,
+fault injection, prediction, or truth opening and was not informed by RCA
+output.

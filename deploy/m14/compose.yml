@@ -18,8 +18,9 @@ services:
   shipping: {labels: {io.vkr.m14.role: application}}
 
   load-generator:
-    image: ghcr.io/open-telemetry/demo:3.0.0-load-generator
+    image: alpine@sha256:d9e853e87e55526f6b2917df91a2115c36dd7c696a35be12163d44e6e2a4b6bc
     build: !reset null
+    command: ["sleep", "infinity"]
     environment:
       LOCUST_AUTOSTART: "false"
       LOCUST_BROWSER_TRAFFIC_ENABLED: "false"
@@ -29,12 +30,18 @@ services:
     build: !reset null
 
   flagd-ui:
-    image: ghcr.io/open-telemetry/demo:3.0.0-flagd-ui
+    image: alpine@sha256:d9e853e87e55526f6b2917df91a2115c36dd7c696a35be12163d44e6e2a4b6bc
     build: !reset null
+    command: ["sleep", "infinity"]
+    healthcheck:
+      test: ["CMD", "true"]
 
   telemetry-docs:
-    image: ghcr.io/open-telemetry/demo:3.0.0-telemetry-docs
+    image: alpine@sha256:d9e853e87e55526f6b2917df91a2115c36dd7c696a35be12163d44e6e2a4b6bc
     build: !reset null
+    command: ["sleep", "infinity"]
+    healthcheck:
+      test: ["CMD", "true"]
 
   otel-collector:
     command:
