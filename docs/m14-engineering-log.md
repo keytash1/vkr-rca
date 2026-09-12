@@ -39,3 +39,14 @@ documented QuoteService shim), while the real `flagd` feature-flag service is
 unchanged. This substitution happened before readiness, healthy baseline,
 fault injection, prediction, or truth opening and was not informed by RCA
 output.
+
+## 2026-09-13: AdService Gradle transport tolerance
+
+The upstream Gradle wrapper properties set `networkTimeout=10000` and
+`retries=0`. Three exact-source builds failed while downloading the unchanged
+Gradle 9.7.1 distribution because the experiment host exceeded that ten-second
+read timeout. `deploy/m14/Dockerfile.ad-repro` copies the upstream Dockerfile
+and changes only the builder-image wrapper transport settings to a 300-second
+timeout and five retries. The Gradle URL, checksums, dependencies, source,
+runtime image, Java agent and application configuration are unchanged. This
+shim was committed before readiness or data collection.

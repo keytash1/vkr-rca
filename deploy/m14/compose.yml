@@ -1,5 +1,8 @@
 services:
-  ad: {labels: {io.vkr.m14.role: application}}
+  ad:
+    labels: {io.vkr.m14.role: application}
+    build:
+      dockerfile: ${M14_ROOT}/deploy/m14/Dockerfile.ad-repro
   cart: {labels: {io.vkr.m14.role: application}}
   checkout: {labels: {io.vkr.m14.role: application}}
   currency: {labels: {io.vkr.m14.role: application}}
