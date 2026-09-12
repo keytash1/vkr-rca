@@ -1,0 +1,8 @@
+FROM golang:1.25.1-bookworm AS build
+WORKDIR /src
+COPY exporter/main.go ./main.go
+RUN CGO_ENABLED=0 GOOS=linux go build -trimpath -ldflags="-s -w" -o /metrics-exporter ./main.go
+
+FROM scratch
+COPY --from=build /metrics-exporter /metrics-exporter
+ENTRYPOINT ["/metrics-exporter"]

@@ -1,0 +1,408 @@
+{
+  "clusters": 25,
+  "incidents": [
+    {
+      "fault_family": "cpu",
+      "incident_id": "m14-001-f87778dc",
+      "intensity": "one busy worker",
+      "repetition": 2,
+      "root_service": "recommendation",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "packet_loss",
+      "incident_id": "m14-002-e09ee7ed",
+      "intensity": "15pct",
+      "repetition": 1,
+      "root_service": "ad",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "service_unavailable",
+      "incident_id": "m14-003-6a785736",
+      "intensity": "container paused",
+      "repetition": 2,
+      "root_service": "ad",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "service_unavailable",
+      "incident_id": "m14-004-a31e9b9f",
+      "intensity": "container paused",
+      "repetition": 1,
+      "root_service": "ad",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "cpu",
+      "incident_id": "m14-005-ad7a1b50",
+      "intensity": "one busy worker",
+      "repetition": 1,
+      "root_service": "ad",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "packet_loss",
+      "incident_id": "m14-006-800b976a",
+      "intensity": "15pct",
+      "repetition": 2,
+      "root_service": "recommendation",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "cpu",
+      "incident_id": "m14-007-88b81141",
+      "intensity": "one busy worker",
+      "repetition": 1,
+      "root_service": "frontend",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "service_unavailable",
+      "incident_id": "m14-008-d8f3752e",
+      "intensity": "container paused",
+      "repetition": 2,
+      "root_service": "cart",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "cpu",
+      "incident_id": "m14-009-331ee628",
+      "intensity": "one busy worker",
+      "repetition": 1,
+      "root_service": "recommendation",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "service_unavailable",
+      "incident_id": "m14-010-c0a1a38c",
+      "intensity": "container paused",
+      "repetition": 2,
+      "root_service": "frontend",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "network_latency",
+      "incident_id": "m14-011-8af526fb",
+      "intensity": "200ms",
+      "repetition": 1,
+      "root_service": "frontend",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "packet_loss",
+      "incident_id": "m14-012-232bb485",
+      "intensity": "15pct",
+      "repetition": 1,
+      "root_service": "recommendation",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "packet_loss",
+      "incident_id": "m14-013-eaca6fcc",
+      "intensity": "15pct",
+      "repetition": 2,
+      "root_service": "payment",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "cpu",
+      "incident_id": "m14-014-6c362ebe",
+      "intensity": "one busy worker",
+      "repetition": 2,
+      "root_service": "cart",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "memory",
+      "incident_id": "m14-015-2f4e6ec1",
+      "intensity": "32MiB resident allocation",
+      "repetition": 2,
+      "root_service": "frontend",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "cpu",
+      "incident_id": "m14-016-d354e0b9",
+      "intensity": "one busy worker",
+      "repetition": 1,
+      "root_service": "cart",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "packet_loss",
+      "incident_id": "m14-017-da3544b8",
+      "intensity": "15pct",
+      "repetition": 2,
+      "root_service": "cart",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "memory",
+      "incident_id": "m14-018-0ce346bc",
+      "intensity": "32MiB resident allocation",
+      "repetition": 1,
+      "root_service": "payment",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "packet_loss",
+      "incident_id": "m14-019-b1fc6ebc",
+      "intensity": "15pct",
+      "repetition": 1,
+      "root_service": "frontend",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "service_unavailable",
+      "incident_id": "m14-020-99071a00",
+      "intensity": "container paused",
+      "repetition": 1,
+      "root_service": "cart",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "memory",
+      "incident_id": "m14-021-f52e1abc",
+      "intensity": "32MiB resident allocation",
+      "repetition": 1,
+      "root_service": "frontend",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "network_latency",
+      "incident_id": "m14-022-7c1d1351",
+      "intensity": "200ms",
+      "repetition": 2,
+      "root_service": "recommendation",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "memory",
+      "incident_id": "m14-023-7b964fe6",
+      "intensity": "32MiB resident allocation",
+      "repetition": 2,
+      "root_service": "payment",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "memory",
+      "incident_id": "m14-024-c0f10eb2",
+      "intensity": "32MiB resident allocation",
+      "repetition": 1,
+      "root_service": "ad",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "network_latency",
+      "incident_id": "m14-025-f569f851",
+      "intensity": "200ms",
+      "repetition": 2,
+      "root_service": "payment",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "network_latency",
+      "incident_id": "m14-026-2045b079",
+      "intensity": "200ms",
+      "repetition": 2,
+      "root_service": "cart",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "network_latency",
+      "incident_id": "m14-027-311c8367",
+      "intensity": "200ms",
+      "repetition": 1,
+      "root_service": "payment",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "packet_loss",
+      "incident_id": "m14-028-9ab6d406",
+      "intensity": "15pct",
+      "repetition": 1,
+      "root_service": "cart",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "network_latency",
+      "incident_id": "m14-029-1af241a2",
+      "intensity": "200ms",
+      "repetition": 1,
+      "root_service": "cart",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "network_latency",
+      "incident_id": "m14-030-7e5194df",
+      "intensity": "200ms",
+      "repetition": 1,
+      "root_service": "recommendation",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "network_latency",
+      "incident_id": "m14-031-91c6842a",
+      "intensity": "200ms",
+      "repetition": 2,
+      "root_service": "frontend",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "memory",
+      "incident_id": "m14-032-6179137c",
+      "intensity": "32MiB resident allocation",
+      "repetition": 1,
+      "root_service": "recommendation",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "cpu",
+      "incident_id": "m14-033-a312052f",
+      "intensity": "one busy worker",
+      "repetition": 2,
+      "root_service": "frontend",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "network_latency",
+      "incident_id": "m14-034-af6091d9",
+      "intensity": "200ms",
+      "repetition": 1,
+      "root_service": "ad",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "service_unavailable",
+      "incident_id": "m14-035-77fcc008",
+      "intensity": "container paused",
+      "repetition": 2,
+      "root_service": "recommendation",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "service_unavailable",
+      "incident_id": "m14-036-fa12c05d",
+      "intensity": "container paused",
+      "repetition": 1,
+      "root_service": "frontend",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "cpu",
+      "incident_id": "m14-037-c0ab5460",
+      "intensity": "one busy worker",
+      "repetition": 2,
+      "root_service": "payment",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "service_unavailable",
+      "incident_id": "m14-038-b673535f",
+      "intensity": "container paused",
+      "repetition": 1,
+      "root_service": "recommendation",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "memory",
+      "incident_id": "m14-039-53f4f28f",
+      "intensity": "32MiB resident allocation",
+      "repetition": 1,
+      "root_service": "cart",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "network_latency",
+      "incident_id": "m14-040-b1a849dd",
+      "intensity": "200ms",
+      "repetition": 2,
+      "root_service": "ad",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "cpu",
+      "incident_id": "m14-041-b64f7d25",
+      "intensity": "one busy worker",
+      "repetition": 1,
+      "root_service": "payment",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "service_unavailable",
+      "incident_id": "m14-042-6fb9b6a0",
+      "intensity": "container paused",
+      "repetition": 1,
+      "root_service": "payment",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "packet_loss",
+      "incident_id": "m14-043-09e7d1e0",
+      "intensity": "15pct",
+      "repetition": 1,
+      "root_service": "payment",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "service_unavailable",
+      "incident_id": "m14-044-38777133",
+      "intensity": "container paused",
+      "repetition": 2,
+      "root_service": "payment",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "cpu",
+      "incident_id": "m14-045-5eb53a9b",
+      "intensity": "one busy worker",
+      "repetition": 2,
+      "root_service": "ad",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "packet_loss",
+      "incident_id": "m14-046-e07704ce",
+      "intensity": "15pct",
+      "repetition": 2,
+      "root_service": "ad",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "memory",
+      "incident_id": "m14-047-e4dd64c0",
+      "intensity": "32MiB resident allocation",
+      "repetition": 2,
+      "root_service": "cart",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "packet_loss",
+      "incident_id": "m14-048-0b99f314",
+      "intensity": "15pct",
+      "repetition": 2,
+      "root_service": "frontend",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "memory",
+      "incident_id": "m14-049-ca0aec7c",
+      "intensity": "32MiB resident allocation",
+      "repetition": 2,
+      "root_service": "recommendation",
+      "workload_regime": "mixed_steady"
+    },
+    {
+      "fault_family": "memory",
+      "incident_id": "m14-050-6419126b",
+      "intensity": "32MiB resident allocation",
+      "repetition": 2,
+      "root_service": "ad",
+      "workload_regime": "mixed_steady"
+    }
+  ],
+  "repetitions_per_cluster": 2,
+  "seed": 20260912,
+  "version": "m14-locked-plan-v1"
+}

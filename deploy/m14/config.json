@@ -1,0 +1,62 @@
+{
+  "version": "m14-locked-protocol-v1",
+  "upstream": {
+    "repository": "https://github.com/open-telemetry/opentelemetry-demo.git",
+    "commit": "8c47d47c9ac27710d2b2a153bcd53e483bffe66d",
+    "license": "Apache-2.0"
+  },
+  "candidate_services": [
+    "ad",
+    "cart",
+    "checkout",
+    "currency",
+    "email",
+    "frontend",
+    "frontend-proxy",
+    "payment",
+    "product-catalog",
+    "quote",
+    "recommendation",
+    "shipping"
+  ],
+  "target_services": ["ad", "cart", "frontend", "payment", "recommendation"],
+  "fault_families": ["cpu", "memory", "network_latency", "packet_loss", "service_unavailable"],
+  "fault_intensity": {
+    "cpu": "one busy worker",
+    "memory": "32MiB resident allocation",
+    "network_latency": "200ms",
+    "packet_loss": "15pct",
+    "service_unavailable": "container paused"
+  },
+  "workload": {
+    "regime": "mixed_steady",
+    "requests_per_second": 6,
+    "mix": {
+      "product": 0.2,
+      "recommendation": 0.2,
+      "ad": 0.2,
+      "cart": 0.2,
+      "checkout": 0.2
+    }
+  },
+  "healthy": {
+    "warmup_seconds": 300,
+    "baseline_seconds": 900,
+    "scrape_interval_seconds": 1
+  },
+  "incident": {
+    "duration_seconds": 30,
+    "cooldown_seconds": 5,
+    "repetitions_per_cluster": 2,
+    "randomization_seed": 20260912,
+    "expected_incidents": 50,
+    "expected_clusters": 25,
+    "maximum_collection_attempts": 2
+  },
+  "statistics": {
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 20260912,
+    "cluster_key": ["root_service", "fault_family"],
+    "absolute_interval": "Wilson 95%"
+  }
+}

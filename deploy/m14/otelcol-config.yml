@@ -1,0 +1,13 @@
+exporters:
+  otlp_grpc/jaeger:
+    endpoint: jaeger:4317
+    tls: {insecure: true}
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [resource_detection, memory_limiter, transform/sanitize_spans, gen_ai_normalizer, transform/redact_sensitive_data]
+      exporters: [otlp_grpc/jaeger]
+  telemetry:
+    logs:
+      level: error

@@ -1,0 +1,62 @@
+services:
+  ad: {labels: {io.vkr.m14.role: application}}
+  cart: {labels: {io.vkr.m14.role: application}}
+  checkout: {labels: {io.vkr.m14.role: application}}
+  currency: {labels: {io.vkr.m14.role: application}}
+  email: {labels: {io.vkr.m14.role: application}}
+  frontend: {labels: {io.vkr.m14.role: application}}
+  frontend-proxy:
+    labels: {io.vkr.m14.role: application}
+    ports: ["15014:8080", "11014:10000"]
+  payment: {labels: {io.vkr.m14.role: application}}
+  product-catalog: {labels: {io.vkr.m14.role: application}}
+  quote: {labels: {io.vkr.m14.role: application}}
+  recommendation: {labels: {io.vkr.m14.role: application}}
+  shipping: {labels: {io.vkr.m14.role: application}}
+
+  load-generator:
+    environment:
+      LOCUST_AUTOSTART: "false"
+      LOCUST_BROWSER_TRAFFIC_ENABLED: "false"
+
+  otel-collector:
+    command:
+      - "--config=/etc/otelcol-config.yml"
+      - "--config=/etc/m14-otelcol-config.yml"
+    volumes:
+      - ${M14_ROOT}/deploy/m14/otelcol-config.yml:/etc/m14-otelcol-config.yml:ro
+    depends_on:
+      jaeger:
+        condition: service_started
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.60
+    environment:
+      COLLECTOR_OTLP_ENABLED: "true"
+      MEMORY_MAX_TRACES: "100000"
+    ports: ["16689:16686"]
+    restart: unless-stopped
+
+  metrics-exporter:
+    image: vkr-rca-m14/metrics-exporter:v1
+    build:
+      context: ${M14_ROOT}/deploy/m14
+      dockerfile: Dockerfile.exporter
+    volumes: ["/var/run/docker.sock:/var/run/docker.sock:ro"]
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    command: ["--config.file=/etc/prometheus/prometheus.yml", "--storage.tsdb.retention.time=24h"]
+    volumes:
+      - ${M14_ROOT}/deploy/m14/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports: ["19092:9090"]
+    depends_on: [metrics-exporter]
+    restart: unless-stopped
+
+  fault-tool:
+    image: vkr-rca-m14/fault-tool:v1
+    build:
+      context: ${M14_ROOT}/deploy/m14
+      dockerfile: Dockerfile.fault-tool
+    profiles: [tools]
