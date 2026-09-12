@@ -50,3 +50,10 @@ and changes only the builder-image wrapper transport settings to a 300-second
 timeout and five retries. The Gradle URL, checksums, dependencies, source,
 runtime image, Java agent and application configuration are unchanged. This
 shim was committed before readiness or data collection.
+
+The same build then exposed an HTTP/2 protocol error in Dockerfile `ADD` while
+fetching the upstream-pinned OpenTelemetry Java agent. The shim downloads the
+identical versioned URL with the JDK builder's `wget` using ten retries and a
+300-second timeout, then copies the resulting jar into the same runtime path.
+This changes download transport only; the agent version remains the upstream
+`OTEL_JAVA_AGENT_VERSION` build argument.
