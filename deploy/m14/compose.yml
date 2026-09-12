@@ -10,7 +10,10 @@ services:
     ports: ["15014:8080", "11014:10000"]
   payment: {labels: {io.vkr.m14.role: application}}
   product-catalog: {labels: {io.vkr.m14.role: application}}
-  quote: {labels: {io.vkr.m14.role: application}}
+  quote:
+    labels: {io.vkr.m14.role: application}
+    build:
+      dockerfile: ${M14_ROOT}/deploy/m14/Dockerfile.quote-repro
   recommendation: {labels: {io.vkr.m14.role: application}}
   shipping: {labels: {io.vkr.m14.role: application}}
 
