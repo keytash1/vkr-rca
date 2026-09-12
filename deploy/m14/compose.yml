@@ -18,9 +18,23 @@ services:
   shipping: {labels: {io.vkr.m14.role: application}}
 
   load-generator:
+    image: ghcr.io/open-telemetry/demo:3.0.0-load-generator
+    build: !reset null
     environment:
       LOCUST_AUTOSTART: "false"
       LOCUST_BROWSER_TRAFFIC_ENABLED: "false"
+
+  image-provider:
+    image: ghcr.io/open-telemetry/demo:3.0.0-image-provider
+    build: !reset null
+
+  flagd-ui:
+    image: ghcr.io/open-telemetry/demo:3.0.0-flagd-ui
+    build: !reset null
+
+  telemetry-docs:
+    image: ghcr.io/open-telemetry/demo:3.0.0-telemetry-docs
+    build: !reset null
 
   otel-collector:
     command:

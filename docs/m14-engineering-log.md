@@ -19,6 +19,16 @@ instrumentation remain unchanged. The shim prevents a time-varying advisory
 policy from making the historical source commit unbuildable; it neither changes
 the RCA method nor uses predictions or truth.
 
-The first build attempt also observed transient Debian mirror `404` responses
-while building the ancillary `flagd-ui`. A clean retry resolved those responses;
-no image or source substitution was made for that component.
+The first build attempt also observed Debian mirror `404` responses while
+building the ancillary `flagd-ui`. Later attempts reached the updated index but
+repeatedly timed out downloading it, including with Compose parallelism limited
+to two. Independent Gradle and PECL fetches also suffered DNS timeouts.
+
+To keep this infrastructure failure outside the measured candidate universe,
+four non-candidate support services are run from the official pinned Astronomy
+Shop `3.0.0` images: `flagd-ui`, `telemetry-docs`, `image-provider`, and the
+disabled `load-generator`. Their Compose `build` definitions are explicitly
+reset. The 12 RCA candidate services remain source-built from the audited exact
+checkout (with the documented QuoteService shim). This substitution happened
+before readiness, healthy baseline, fault injection, prediction, or truth
+opening and was not informed by RCA output.
