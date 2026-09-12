@@ -1,0 +1,29 @@
+{
+  "version": "m13-canonical-trace-v1",
+  "fields": {
+    "trace_id": "opaque string join key",
+    "span_id": "opaque string join key",
+    "parent_span_id": "opaque string join key or empty",
+    "service": "service join key, never a learned identity feature",
+    "peer_service": "optional service join key derived from parent-child relation",
+    "start_time_us": "integer microseconds",
+    "duration_us": "non-negative integer microseconds",
+    "span_kind": "SERVER, CLIENT, INTERNAL, PRODUCER, CONSUMER or UNKNOWN",
+    "error": "boolean request/span outcome",
+    "observed_edge": "optional caller/callee pair"
+  },
+  "forbidden_learned_fields": [
+    "service",
+    "peer_service",
+    "operation_name",
+    "route",
+    "system",
+    "dataset",
+    "fault",
+    "root_service"
+  ],
+  "units": {
+    "start_time_us": "microseconds",
+    "duration_us": "microseconds"
+  }
+}

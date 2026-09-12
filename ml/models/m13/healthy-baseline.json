@@ -1,0 +1,1144 @@
+{
+  "expected_edges": [
+    {
+      "presence": 0.9836065573770492,
+      "source": "compose-post-service",
+      "target": "home-timeline-service"
+    },
+    {
+      "presence": 0.9836065573770492,
+      "source": "compose-post-service",
+      "target": "media-service"
+    },
+    {
+      "presence": 0.9836065573770492,
+      "source": "compose-post-service",
+      "target": "post-storage-service"
+    },
+    {
+      "presence": 0.9836065573770492,
+      "source": "compose-post-service",
+      "target": "text-service"
+    },
+    {
+      "presence": 0.9836065573770492,
+      "source": "compose-post-service",
+      "target": "unique-id-service"
+    },
+    {
+      "presence": 0.9836065573770492,
+      "source": "compose-post-service",
+      "target": "user-service"
+    },
+    {
+      "presence": 0.9836065573770492,
+      "source": "compose-post-service",
+      "target": "user-timeline-service"
+    },
+    {
+      "presence": 0.9836065573770492,
+      "source": "home-timeline-service",
+      "target": "post-storage-service"
+    },
+    {
+      "presence": 0.9836065573770492,
+      "source": "home-timeline-service",
+      "target": "social-graph-service"
+    },
+    {
+      "presence": 0.9836065573770492,
+      "source": "nginx-thrift",
+      "target": "compose-post-service"
+    },
+    {
+      "presence": 0.9836065573770492,
+      "source": "nginx-thrift",
+      "target": "home-timeline-service"
+    },
+    {
+      "presence": 0.9836065573770492,
+      "source": "nginx-thrift",
+      "target": "user-timeline-service"
+    },
+    {
+      "presence": 0.9836065573770492,
+      "source": "text-service",
+      "target": "url-shorten-service"
+    },
+    {
+      "presence": 0.9836065573770492,
+      "source": "text-service",
+      "target": "user-mention-service"
+    },
+    {
+      "presence": 0.9836065573770492,
+      "source": "user-timeline-service",
+      "target": "post-storage-service"
+    }
+  ],
+  "fit_role": "M13_HEALTHY_ENGINEERING",
+  "healthy_metric_count": 28800,
+  "healthy_trace_count": 43784,
+  "metric": {
+    "compose-post-service": {
+      "cpu": {
+        "intercept": 0.0015406231820668888,
+        "residual_iqr": 0.005791786,
+        "residual_median": 0.00041335266370434026,
+        "samples": 599,
+        "slope": 0.0002675716923714619
+      },
+      "memory": {
+        "intercept": -52296775.49361916,
+        "residual_iqr": 29978624.0,
+        "residual_median": -320361.93975776434,
+        "samples": 599,
+        "slope": 21969114.825930767
+      },
+      "network": {
+        "intercept": -446.55654122539534,
+        "residual_iqr": 2688.0,
+        "residual_median": -94.65050558465646,
+        "samples": 599,
+        "slope": 536.9928411350087
+      },
+      "traffic_rate": {
+        "intercept": -121.40016611721344,
+        "residual_iqr": 892.4547094583113,
+        "residual_median": -32.07256143581708,
+        "samples": 599,
+        "slope": 156.7747475058923
+      }
+    },
+    "home-timeline-service": {
+      "cpu": {
+        "intercept": 0.001112292924285656,
+        "residual_iqr": 0.0025255160000000002,
+        "residual_median": -5.7106379691577135e-05,
+        "samples": 599,
+        "slope": 0.0008000149092343204
+      },
+      "memory": {
+        "intercept": 14015915.63587064,
+        "residual_iqr": 710668.3888298981,
+        "residual_median": 12909.141789156944,
+        "samples": 599,
+        "slope": 485371.870390034
+      },
+      "network": {
+        "intercept": -4020.9123859543274,
+        "residual_iqr": 7344.738244033022,
+        "residual_median": -91.80234614473738,
+        "samples": 599,
+        "slope": 5245.74608134434
+      },
+      "traffic_rate": {
+        "intercept": -2026.0484830200887,
+        "residual_iqr": 3578.0,
+        "residual_median": -72.0645091785027,
+        "samples": 599,
+        "slope": 2540.977165366432
+      }
+    },
+    "media-service": {
+      "cpu": {
+        "intercept": 0.00033757046969548334,
+        "residual_iqr": 0.0008914789999999999,
+        "residual_median": 5.86973012928389e-05,
+        "samples": 599,
+        "slope": 2.7390914334630863e-05
+      },
+      "memory": {
+        "intercept": 9197073.70419478,
+        "residual_iqr": 692102.1024713013,
+        "residual_median": 6394.500747822225,
+        "samples": 599,
+        "slope": 480637.9658428996
+      },
+      "network": {
+        "intercept": -41.21353977531414,
+        "residual_iqr": 318.125,
+        "residual_median": -3.380655340343253,
+        "samples": 599,
+        "slope": 68.59903251927624
+      },
+      "traffic_rate": {
+        "intercept": -30.588888302693217,
+        "residual_iqr": 163.6383685357299,
+        "residual_median": 7.011729270257035,
+        "samples": 599,
+        "slope": 33.17952650540603
+      }
+    },
+    "nginx-thrift": {
+      "cpu": {
+        "intercept": -0.0036249078649724406,
+        "residual_iqr": 0.012252355,
+        "residual_median": -0.0003074026865113044,
+        "samples": 599,
+        "slope": 0.008346917839053749
+      },
+      "memory": {
+        "intercept": 266975224.65300578,
+        "residual_iqr": 2802196.48,
+        "residual_median": 73826.76315975189,
+        "samples": 599,
+        "slope": 1788912.7639724102
+      },
+      "network": {
+        "intercept": -14507.328650621874,
+        "residual_iqr": 5142.970252034371,
+        "residual_median": 4.542894518759567,
+        "samples": 599,
+        "slope": 11013.365084011457
+      },
+      "traffic_rate": {
+        "intercept": -5760.464068427776,
+        "residual_iqr": 1898.125,
+        "residual_median": -26.243425504078914,
+        "samples": 599,
+        "slope": 4029.3563882146505
+      }
+    },
+    "post-storage-service": {
+      "cpu": {
+        "intercept": 0.0023650339756418337,
+        "residual_iqr": 0.004115182053713161,
+        "residual_median": -6.248165336287387e-05,
+        "samples": 599,
+        "slope": 0.0022814546308578933
+      },
+      "memory": {
+        "intercept": 6718182.739276996,
+        "residual_iqr": 8126065.288552534,
+        "residual_median": -81067.89348714054,
+        "samples": 599,
+        "slope": 5708192.8590350235
+      },
+      "network": {
+        "intercept": -18648.275837001944,
+        "residual_iqr": 5967.747836339411,
+        "residual_median": 5.038818965491373,
+        "samples": 599,
+        "slope": 12141.248557559606
+      },
+      "traffic_rate": {
+        "intercept": -12067.737014227785,
+        "residual_iqr": 4129.411074067488,
+        "residual_median": 44.45345863269904,
+        "samples": 599,
+        "slope": 7396.892617288344
+      }
+    },
+    "social-graph-service": {
+      "cpu": {
+        "intercept": 0.00040072534822196433,
+        "residual_iqr": 0.0010327023858107088,
+        "residual_median": 7.11991950208715e-05,
+        "samples": 599,
+        "slope": 4.124640945952736e-05
+      },
+      "memory": {
+        "intercept": 67631956.49634045,
+        "residual_iqr": 717025.2411893904,
+        "residual_median": 9837.986038342118,
+        "samples": 599,
+        "slope": 481887.5862702015
+      },
+      "network": {
+        "intercept": 39.06455340087941,
+        "residual_iqr": 555.4129165160557,
+        "residual_median": 9.174196147287716,
+        "samples": 599,
+        "slope": 99.1956944946481
+      },
+      "traffic_rate": {
+        "intercept": 30.301120442420867,
+        "residual_iqr": 196.22050361763775,
+        "residual_median": 1.0373687046658802,
+        "samples": 599,
+        "slope": 36.40683453921258
+      }
+    },
+    "text-service": {
+      "cpu": {
+        "intercept": 0.0010023734546980403,
+        "residual_iqr": 0.003737375357924049,
+        "residual_median": 0.0002664446190741073,
+        "samples": 599,
+        "slope": 0.0001624305473586503
+      },
+      "memory": {
+        "intercept": -14578548.004417647,
+        "residual_iqr": 12640256.0,
+        "residual_median": -163423.0649239123,
+        "samples": 599,
+        "slope": 9217417.22992684
+      },
+      "network": {
+        "intercept": -190.71580714239747,
+        "residual_iqr": 1031.6868070482747,
+        "residual_median": -11.536964664504012,
+        "samples": 599,
+        "slope": 215.5421286344836
+      },
+      "traffic_rate": {
+        "intercept": -64.64119286368317,
+        "residual_iqr": 378.48342194127116,
+        "residual_median": -10.158541312503417,
+        "samples": 599,
+        "slope": 72.83885935290962
+      }
+    },
+    "unique-id-service": {
+      "cpu": {
+        "intercept": 0.0003528481222128107,
+        "residual_iqr": 0.00082283,
+        "residual_median": 4.909434763696204e-05,
+        "samples": 599,
+        "slope": 2.6130058905580818e-05
+      },
+      "memory": {
+        "intercept": 9297177.277959177,
+        "residual_iqr": 701908.0159501117,
+        "residual_median": 11918.753941042349,
+        "samples": 599,
+        "slope": 482830.66134996334
+      },
+      "network": {
+        "intercept": -35.52727408137349,
+        "residual_iqr": 333.88841155912655,
+        "residual_median": 0.4443069312664534,
+        "samples": 599,
+        "slope": 64.9721611916845
+      },
+      "traffic_rate": {
+        "intercept": -25.611839873915205,
+        "residual_iqr": 161.86908405317814,
+        "residual_median": 7.100007980271556,
+        "samples": 599,
+        "slope": 30.58530531560728
+      }
+    },
+    "url-shorten-service": {
+      "cpu": {
+        "intercept": 0.00056099652784458,
+        "residual_iqr": 0.002047284,
+        "residual_median": 0.000165614625623302,
+        "samples": 599,
+        "slope": 9.562709405912424e-05
+      },
+      "memory": {
+        "intercept": 4717884.567811778,
+        "residual_iqr": 6705987.6620860025,
+        "residual_median": -99185.58155376464,
+        "samples": 599,
+        "slope": 4849385.445971332
+      },
+      "network": {
+        "intercept": -81.14367307043193,
+        "residual_iqr": 702.3350967953734,
+        "residual_median": -3.4361333388212643,
+        "samples": 599,
+        "slope": 140.97163440154222
+      },
+      "traffic_rate": {
+        "intercept": -18.336219990169432,
+        "residual_iqr": 214.75,
+        "residual_median": -6.012763582029947,
+        "samples": 599,
+        "slope": 47.09433150802215
+      }
+    },
+    "user-mention-service": {
+      "cpu": {
+        "intercept": 0.00043555803176584707,
+        "residual_iqr": 0.0012772499221480901,
+        "residual_median": 0.00010328950112269424,
+        "samples": 599,
+        "slope": 4.9028051901273195e-05
+      },
+      "memory": {
+        "intercept": 15970550.083455645,
+        "residual_iqr": 703709.2373388074,
+        "residual_median": 10436.39122197032,
+        "samples": 599,
+        "slope": 482912.9208870641
+      },
+      "network": {
+        "intercept": -219.40123580112106,
+        "residual_iqr": 1014.125,
+        "residual_median": -35.3818510403147,
+        "samples": 599,
+        "slope": 204.38051447357262
+      },
+      "traffic_rate": {
+        "intercept": -105.2724411331741,
+        "residual_iqr": 391.81694882940553,
+        "residual_median": -11.09366120801485,
+        "samples": 599,
+        "slope": 86.56101705686483
+      }
+    },
+    "user-service": {
+      "cpu": {
+        "intercept": 0.0003607901091827484,
+        "residual_iqr": 0.0008950654457916807,
+        "residual_median": 6.092673983973851e-06,
+        "samples": 599,
+        "slope": 3.114770280554628e-05
+      },
+      "memory": {
+        "intercept": 25924422.13703758,
+        "residual_iqr": 706821.9705928825,
+        "residual_median": 11973.804148185998,
+        "samples": 599,
+        "slope": 481192.676469039
+      },
+      "network": {
+        "intercept": 35.50645549403129,
+        "residual_iqr": 341.5,
+        "residual_median": 1.2249869179123039,
+        "samples": 599,
+        "slope": 68.25309293134274
+      },
+      "traffic_rate": {
+        "intercept": 26.710897252284138,
+        "residual_iqr": 169.375,
+        "residual_median": 3.6884963752627584,
+        "samples": 599,
+        "slope": 31.641767728742185
+      }
+    },
+    "user-timeline-service": {
+      "cpu": {
+        "intercept": 0.007009351985163534,
+        "residual_iqr": 0.005137101000000001,
+        "residual_median": -5.687559936295994e-05,
+        "samples": 599,
+        "slope": 3.005817935549184e-05
+      },
+      "memory": {
+        "intercept": -15743666.206693562,
+        "residual_iqr": 20734501.95117666,
+        "residual_median": -75882.08624652028,
+        "samples": 599,
+        "slope": 13976550.699215565
+      },
+      "network": {
+        "intercept": -2801.940136147121,
+        "residual_iqr": 5973.669678808946,
+        "residual_median": 201.95820900079343,
+        "samples": 599,
+        "slope": 2682.553547460703
+      },
+      "traffic_rate": {
+        "intercept": -2791.686355022233,
+        "residual_iqr": 2919.5,
+        "residual_median": 104.64961135656813,
+        "samples": 599,
+        "slope": 1455.6311239442775
+      }
+    }
+  },
+  "trace": {
+    "compose-post-service": {
+      "downstream_wait_ratio": {
+        "intercept": 0.0,
+        "residual_iqr": 1e-09,
+        "residual_median": 0.0,
+        "samples": 61,
+        "slope": 0.0
+      },
+      "error_rate": {
+        "intercept": 0.0,
+        "residual_iqr": 1e-09,
+        "residual_median": 0.0,
+        "samples": 61,
+        "slope": 0.0
+      },
+      "exclusive_median_us": {
+        "intercept": 2704.7048937896857,
+        "residual_iqr": 361.5,
+        "residual_median": -6.223469952844425,
+        "samples": 61,
+        "slope": -108.94238042631568
+      },
+      "latency_median_us": {
+        "intercept": 2704.7048937896857,
+        "residual_iqr": 361.5,
+        "residual_median": -6.223469952844425,
+        "samples": 61,
+        "slope": -108.94238042631568
+      },
+      "latency_p90_us": {
+        "intercept": 14651.767117771315,
+        "residual_iqr": 1458.9471019465036,
+        "residual_median": 59.591576389157126,
+        "samples": 61,
+        "slope": -442.68429935116353
+      },
+      "latency_p99_us": {
+        "intercept": 27860.445226954194,
+        "residual_iqr": 7014.450000000055,
+        "residual_median": -417.8732021675569,
+        "samples": 61,
+        "slope": -760.5357805318412
+      },
+      "request_rate": {
+        "intercept": -1.1350577613154818,
+        "residual_iqr": 2.1988093102974813,
+        "residual_median": 0.23148569220792492,
+        "samples": 61,
+        "slope": 0.9003968965675063
+      },
+      "span_rate": {
+        "intercept": -1.1350577613154818,
+        "residual_iqr": 2.1988093102974813,
+        "residual_median": 0.23148569220792492,
+        "samples": 61,
+        "slope": 0.9003968965675063
+      }
+    },
+    "home-timeline-service": {
+      "downstream_wait_ratio": {
+        "intercept": 0.0,
+        "residual_iqr": 1e-09,
+        "residual_median": 0.0,
+        "samples": 61,
+        "slope": 0.0
+      },
+      "error_rate": {
+        "intercept": 0.0,
+        "residual_iqr": 1e-09,
+        "residual_median": 0.0,
+        "samples": 61,
+        "slope": 0.0
+      },
+      "exclusive_median_us": {
+        "intercept": 1323.8993533074402,
+        "residual_iqr": 217.68698786550158,
+        "residual_median": 8.661610289064583,
+        "samples": 61,
+        "slope": -49.22899595516719
+      },
+      "latency_median_us": {
+        "intercept": 1323.8993533074402,
+        "residual_iqr": 217.68698786550158,
+        "residual_median": 8.661610289064583,
+        "samples": 61,
+        "slope": -49.22899595516719
+      },
+      "latency_p90_us": {
+        "intercept": 5814.809195174502,
+        "residual_iqr": 494.6999999999998,
+        "residual_median": 26.843091017252846,
+        "samples": 61,
+        "slope": -221.7946984657505
+      },
+      "latency_p99_us": {
+        "intercept": 9128.225472800726,
+        "residual_iqr": 1201.2700000000032,
+        "residual_median": 64.30363647327886,
+        "samples": 61,
+        "slope": -309.0015182123338
+      },
+      "request_rate": {
+        "intercept": -0.8009112680639271,
+        "residual_iqr": 1.3000000000000007,
+        "residual_median": -0.025229885993457657,
+        "samples": 61,
+        "slope": 1.6043568590095643
+      },
+      "span_rate": {
+        "intercept": -0.8009112680639271,
+        "residual_iqr": 1.3000000000000007,
+        "residual_median": -0.025229885993457657,
+        "samples": 61,
+        "slope": 1.6043568590095643
+      }
+    },
+    "media-service": {
+      "downstream_wait_ratio": {
+        "intercept": 0.0,
+        "residual_iqr": 1e-09,
+        "residual_median": 0.0,
+        "samples": 61,
+        "slope": 0.0
+      },
+      "error_rate": {
+        "intercept": 0.0,
+        "residual_iqr": 1e-09,
+        "residual_median": 0.0,
+        "samples": 61,
+        "slope": 0.0
+      },
+      "exclusive_median_us": {
+        "intercept": 83.17904145439518,
+        "residual_iqr": 15.5,
+        "residual_median": -1.8736222180849182,
+        "samples": 61,
+        "slope": -2.256157692923362
+      },
+      "latency_median_us": {
+        "intercept": 83.17904145439518,
+        "residual_iqr": 15.5,
+        "residual_median": -1.8736222180849182,
+        "samples": 61,
+        "slope": -2.256157692923362
+      },
+      "latency_p90_us": {
+        "intercept": 124.87964177851977,
+        "residual_iqr": 66.20000000000003,
+        "residual_median": -3.406366173402489,
+        "samples": 61,
+        "slope": -1.6081417339019204
+      },
+      "latency_p99_us": {
+        "intercept": 129.6925947921471,
+        "residual_iqr": 213.01999999999998,
+        "residual_median": -14.478733264079224,
+        "samples": 61,
+        "slope": 1.8693564119886834
+      },
+      "request_rate": {
+        "intercept": -0.14068401140037676,
+        "residual_iqr": 0.2629502764435653,
+        "residual_median": 0.02953484073107271,
+        "samples": 61,
+        "slope": 0.1123499078521449
+      },
+      "span_rate": {
+        "intercept": -0.14068401140037676,
+        "residual_iqr": 0.2629502764435653,
+        "residual_median": 0.02953484073107271,
+        "samples": 61,
+        "slope": 0.1123499078521449
+      }
+    },
+    "nginx-thrift": {
+      "downstream_wait_ratio": {
+        "intercept": 0.0,
+        "residual_iqr": 1e-09,
+        "residual_median": 0.0,
+        "samples": 61,
+        "slope": 0.0
+      },
+      "error_rate": {
+        "intercept": 0.0,
+        "residual_iqr": 1e-09,
+        "residual_median": 0.0,
+        "samples": 61,
+        "slope": 0.0
+      },
+      "exclusive_median_us": {
+        "intercept": 13751.010483795959,
+        "residual_iqr": 985.5,
+        "residual_median": -7.65693229473618,
+        "samples": 61,
+        "slope": -271.1503946112469
+      },
+      "latency_median_us": {
+        "intercept": 13751.010483795959,
+        "residual_iqr": 985.5,
+        "residual_median": -7.65693229473618,
+        "samples": 61,
+        "slope": -271.1503946112469
+      },
+      "latency_p90_us": {
+        "intercept": 20815.062433986488,
+        "residual_iqr": 1541.4000000000015,
+        "residual_median": -179.7663767857739,
+        "samples": 61,
+        "slope": -586.2440063556352
+      },
+      "latency_p99_us": {
+        "intercept": 41279.02556360299,
+        "residual_iqr": 9470.354193193692,
+        "residual_median": -30.627177215657866,
+        "samples": 61,
+        "slope": -1720.101397731218
+      },
+      "request_rate": {
+        "intercept": 7.94110311665819e-08,
+        "residual_iqr": 0.18300000000000002,
+        "residual_median": 1.321850362501209e-08,
+        "samples": 61,
+        "slope": 2.9999999897078293
+      },
+      "span_rate": {
+        "intercept": 7.94110311665819e-08,
+        "residual_iqr": 0.18300000000000002,
+        "residual_median": 1.321850362501209e-08,
+        "samples": 61,
+        "slope": 2.9999999897078293
+      }
+    },
+    "post-storage-service": {
+      "downstream_wait_ratio": {
+        "intercept": 0.0,
+        "residual_iqr": 1e-09,
+        "residual_median": 0.0,
+        "samples": 61,
+        "slope": 0.0
+      },
+      "error_rate": {
+        "intercept": 0.0,
+        "residual_iqr": 1e-09,
+        "residual_median": 0.0,
+        "samples": 61,
+        "slope": 0.0
+      },
+      "exclusive_median_us": {
+        "intercept": 1544.9769071841233,
+        "residual_iqr": 191.54981046944818,
+        "residual_median": 1.1725242242207514,
+        "samples": 61,
+        "slope": -11.016603489816003
+      },
+      "latency_median_us": {
+        "intercept": 1544.9769071841233,
+        "residual_iqr": 191.54981046944818,
+        "residual_median": 1.1725242242207514,
+        "samples": 61,
+        "slope": -11.016603489816003
+      },
+      "latency_p90_us": {
+        "intercept": 3460.6801807625934,
+        "residual_iqr": 361.0692940461936,
+        "residual_median": -1.2722986240119099,
+        "samples": 61,
+        "slope": -111.08976468206455
+      },
+      "latency_p99_us": {
+        "intercept": 6181.61794909366,
+        "residual_iqr": 781.0900000000061,
+        "residual_median": -42.86388205224739,
+        "samples": 61,
+        "slope": -192.91067784023573
+      },
+      "request_rate": {
+        "intercept": -0.12774740090513997,
+        "residual_iqr": 0.5999999999999996,
+        "residual_median": -0.0025136807169054975,
+        "samples": 61,
+        "slope": 2.1883768469370075
+      },
+      "span_rate": {
+        "intercept": -0.12774740090513997,
+        "residual_iqr": 0.5999999999999996,
+        "residual_median": -0.0025136807169054975,
+        "samples": 61,
+        "slope": 2.1883768469370075
+      }
+    },
+    "social-graph-service": {
+      "downstream_wait_ratio": {
+        "intercept": 0.0,
+        "residual_iqr": 1e-09,
+        "residual_median": 0.0,
+        "samples": 61,
+        "slope": 0.0
+      },
+      "error_rate": {
+        "intercept": 0.0,
+        "residual_iqr": 1e-09,
+        "residual_median": 0.0,
+        "samples": 61,
+        "slope": 0.0
+      },
+      "exclusive_median_us": {
+        "intercept": 361.414685488323,
+        "residual_iqr": 50.5,
+        "residual_median": -1.471516184412394,
+        "samples": 61,
+        "slope": -9.271463255990065
+      },
+      "latency_median_us": {
+        "intercept": 361.414685488323,
+        "residual_iqr": 50.5,
+        "residual_median": -1.471516184412394,
+        "samples": 61,
+        "slope": -9.271463255990065
+      },
+      "latency_p90_us": {
+        "intercept": 783.6893644083809,
+        "residual_iqr": 328.67754140622924,
+        "residual_median": -10.02198862706831,
+        "samples": 61,
+        "slope": -34.04081953125695
+      },
+      "latency_p99_us": {
+        "intercept": 818.932347914354,
+        "residual_iqr": 473.56130752920717,
+        "residual_median": -17.82627050197584,
+        "samples": 61,
+        "slope": -22.842897490264242
+      },
+      "request_rate": {
+        "intercept": -0.2829928757597183,
+        "residual_iqr": 0.5250883371488226,
+        "residual_median": 0.0582578872061863,
+        "samples": 61,
+        "slope": 0.22497055428372575
+      },
+      "span_rate": {
+        "intercept": -0.2829928757597183,
+        "residual_iqr": 0.5250883371488226,
+        "residual_median": 0.0582578872061863,
+        "samples": 61,
+        "slope": 0.22497055428372575
+      }
+    },
+    "text-service": {
+      "downstream_wait_ratio": {
+        "intercept": 0.0,
+        "residual_iqr": 1e-09,
+        "residual_median": 0.0,
+        "samples": 61,
+        "slope": 0.0
+      },
+      "error_rate": {
+        "intercept": 0.0,
+        "residual_iqr": 1e-09,
+        "residual_median": 0.0,
+        "samples": 61,
+        "slope": 0.0
+      },
+      "exclusive_median_us": {
+        "intercept": 4159.810690278037,
+        "residual_iqr": 611.7287909157303,
+        "residual_median": -50.62431753084593,
+        "samples": 61,
+        "slope": -156.90959697191016
+      },
+      "latency_median_us": {
+        "intercept": 4159.810690278037,
+        "residual_iqr": 611.7287909157303,
+        "residual_median": -50.62431753084593,
+        "samples": 61,
+        "slope": -156.90959697191016
+      },
+      "latency_p90_us": {
+        "intercept": 8143.099787525226,
+        "residual_iqr": 1513.8999999999996,
+        "residual_median": 4.2416155146665915,
+        "samples": 61,
+        "slope": -226.60460033776573
+      },
+      "latency_p99_us": {
+        "intercept": 11110.681097278204,
+        "residual_iqr": 2754.4999999999945,
+        "residual_median": -163.38293273812633,
+        "samples": 61,
+        "slope": -265.40969409001326
+      },
+      "request_rate": {
+        "intercept": -0.42586506941780256,
+        "residual_iqr": 0.7869452005014688,
+        "residual_median": 0.0867006709222089,
+        "samples": 61,
+        "slope": 0.3376849331661771
+      },
+      "span_rate": {
+        "intercept": -0.42586506941780256,
+        "residual_iqr": 0.7869452005014688,
+        "residual_median": 0.0867006709222089,
+        "samples": 61,
+        "slope": 0.3376849331661771
+      }
+    },
+    "unique-id-service": {
+      "downstream_wait_ratio": {
+        "intercept": 0.0,
+        "residual_iqr": 1e-09,
+        "residual_median": 0.0,
+        "samples": 61,
+        "slope": 0.0
+      },
+      "error_rate": {
+        "intercept": 0.0,
+        "residual_iqr": 1e-09,
+        "residual_median": 0.0,
+        "samples": 61,
+        "slope": 0.0
+      },
+      "exclusive_median_us": {
+        "intercept": 151.5121523647926,
+        "residual_iqr": 24.597369697185485,
+        "residual_median": -0.2200432732361719,
+        "samples": 61,
+        "slope": -4.3657898990618245
+      },
+      "latency_median_us": {
+        "intercept": 151.5121523647926,
+        "residual_iqr": 24.597369697185485,
+        "residual_median": -0.2200432732361719,
+        "samples": 61,
+        "slope": -4.3657898990618245
+      },
+      "latency_p90_us": {
+        "intercept": 274.53915036990736,
+        "residual_iqr": 102.10000000000005,
+        "residual_median": -4.296687578711868,
+        "samples": 61,
+        "slope": -7.9713847545772785
+      },
+      "latency_p99_us": {
+        "intercept": 263.5308069411194,
+        "residual_iqr": 186.94122538560708,
+        "residual_median": 1.7067422876664295,
+        "samples": 61,
+        "slope": -0.04292487146430195
+      },
+      "request_rate": {
+        "intercept": -0.1423250248076083,
+        "residual_iqr": 0.26212978201015136,
+        "residual_median": 0.028714370838062386,
+        "samples": 61,
+        "slope": 0.11262340599661623
+      },
+      "span_rate": {
+        "intercept": -0.1423250248076083,
+        "residual_iqr": 0.26212978201015136,
+        "residual_median": 0.028714370838062386,
+        "samples": 61,
+        "slope": 0.11262340599661623
+      }
+    },
+    "url-shorten-service": {
+      "downstream_wait_ratio": {
+        "intercept": 0.0,
+        "residual_iqr": 1e-09,
+        "residual_median": 0.0,
+        "samples": 61,
+        "slope": 0.0
+      },
+      "error_rate": {
+        "intercept": 0.0,
+        "residual_iqr": 1e-09,
+        "residual_median": 0.0,
+        "samples": 61,
+        "slope": 0.0
+      },
+      "exclusive_median_us": {
+        "intercept": 1466.50038832533,
+        "residual_iqr": 255.0,
+        "residual_median": -12.35770162690892,
+        "samples": 61,
+        "slope": -24.12696518871345
+      },
+      "latency_median_us": {
+        "intercept": 1466.50038832533,
+        "residual_iqr": 255.0,
+        "residual_median": -12.35770162690892,
+        "samples": 61,
+        "slope": -24.12696518871345
+      },
+      "latency_p90_us": {
+        "intercept": 2329.711675463572,
+        "residual_iqr": 939.8131847003917,
+        "residual_median": -104.83804486435474,
+        "samples": 61,
+        "slope": 6.937728233463749
+      },
+      "latency_p99_us": {
+        "intercept": 3316.077576884774,
+        "residual_iqr": 1445.822947004208,
+        "residual_median": -30.421682876359228,
+        "samples": 61,
+        "slope": -21.28431566806917
+      },
+      "request_rate": {
+        "intercept": -0.28465090694237777,
+        "residual_iqr": 0.524259092078371,
+        "residual_median": 0.05742818317749099,
+        "samples": 61,
+        "slope": 0.22524696930720964
+      },
+      "span_rate": {
+        "intercept": -0.28465090694237777,
+        "residual_iqr": 0.524259092078371,
+        "residual_median": 0.05742818317749099,
+        "samples": 61,
+        "slope": 0.22524696930720964
+      }
+    },
+    "user-mention-service": {
+      "downstream_wait_ratio": {
+        "intercept": 0.0,
+        "residual_iqr": 1e-09,
+        "residual_median": 0.0,
+        "samples": 61,
+        "slope": 0.0
+      },
+      "error_rate": {
+        "intercept": 0.0,
+        "residual_iqr": 1e-09,
+        "residual_median": 0.0,
+        "samples": 61,
+        "slope": 0.0
+      },
+      "exclusive_median_us": {
+        "intercept": 851.032349914741,
+        "residual_iqr": 231.0,
+        "residual_median": -43.489368727282226,
+        "samples": 61,
+        "slope": -32.67383019790978
+      },
+      "latency_median_us": {
+        "intercept": 851.032349914741,
+        "residual_iqr": 231.0,
+        "residual_median": -43.489368727282226,
+        "samples": 61,
+        "slope": -32.67383019790978
+      },
+      "latency_p90_us": {
+        "intercept": 1805.7466241821621,
+        "residual_iqr": 787.9,
+        "residual_median": -55.40440688308786,
+        "samples": 61,
+        "slope": -75.50469081100815
+      },
+      "latency_p99_us": {
+        "intercept": 1667.0951929613345,
+        "residual_iqr": 1125.14,
+        "residual_median": -86.87709903719247,
+        "samples": 61,
+        "slope": -20.33867710268247
+      },
+      "request_rate": {
+        "intercept": -0.28465090694237777,
+        "residual_iqr": 0.524259092078371,
+        "residual_median": 0.05742818317749099,
+        "samples": 61,
+        "slope": 0.22524696930720964
+      },
+      "span_rate": {
+        "intercept": -0.28465090694237777,
+        "residual_iqr": 0.524259092078371,
+        "residual_median": 0.05742818317749099,
+        "samples": 61,
+        "slope": 0.22524696930720964
+      }
+    },
+    "user-service": {
+      "downstream_wait_ratio": {
+        "intercept": 0.0,
+        "residual_iqr": 1e-09,
+        "residual_median": 0.0,
+        "samples": 61,
+        "slope": 0.0
+      },
+      "error_rate": {
+        "intercept": 0.0,
+        "residual_iqr": 1e-09,
+        "residual_median": 0.0,
+        "samples": 61,
+        "slope": 0.0
+      },
+      "exclusive_median_us": {
+        "intercept": 81.32479957307551,
+        "residual_iqr": 12.641719033931025,
+        "residual_median": -0.6082376409375456,
+        "samples": 61,
+        "slope": -2.11942698868966
+      },
+      "latency_median_us": {
+        "intercept": 81.32479957307551,
+        "residual_iqr": 12.641719033931025,
+        "residual_median": -0.6082376409375456,
+        "samples": 61,
+        "slope": -2.11942698868966
+      },
+      "latency_p90_us": {
+        "intercept": 159.29123301016935,
+        "residual_iqr": 70.2,
+        "residual_median": -10.435521058679441,
+        "samples": 61,
+        "slope": -6.428412439054434
+      },
+      "latency_p99_us": {
+        "intercept": 172.13378350507858,
+        "residual_iqr": 129.82430346581793,
+        "residual_median": -25.77239043671443,
+        "samples": 61,
+        "slope": -4.365232178060693
+      },
+      "request_rate": {
+        "intercept": -0.14068401140037676,
+        "residual_iqr": 0.2629502764435653,
+        "residual_median": 0.02953484073107271,
+        "samples": 61,
+        "slope": 0.1123499078521449
+      },
+      "span_rate": {
+        "intercept": -0.14068401140037676,
+        "residual_iqr": 0.2629502764435653,
+        "residual_median": 0.02953484073107271,
+        "samples": 61,
+        "slope": 0.1123499078521449
+      }
+    },
+    "user-timeline-service": {
+      "downstream_wait_ratio": {
+        "intercept": 0.0,
+        "residual_iqr": 1e-09,
+        "residual_median": 0.0,
+        "samples": 61,
+        "slope": 0.0
+      },
+      "error_rate": {
+        "intercept": 0.0,
+        "residual_iqr": 1e-09,
+        "residual_median": 0.0,
+        "samples": 61,
+        "slope": 0.0
+      },
+      "exclusive_median_us": {
+        "intercept": 138.04351401721829,
+        "residual_iqr": 169.8661765412698,
+        "residual_median": -11.275867099757818,
+        "samples": 61,
+        "slope": 45.45539218042325
+      },
+      "latency_median_us": {
+        "intercept": 138.04351401721829,
+        "residual_iqr": 169.8661765412698,
+        "residual_median": -11.275867099757818,
+        "samples": 61,
+        "slope": 45.45539218042325
+      },
+      "latency_p90_us": {
+        "intercept": 5578.774134874564,
+        "residual_iqr": 659.3028415073736,
+        "residual_median": 46.31734060331382,
+        "samples": 61,
+        "slope": -130.63238616420864
+      },
+      "latency_p99_us": {
+        "intercept": 9147.857367189627,
+        "residual_iqr": 1870.7999999999884,
+        "residual_median": 24.267885118689264,
+        "samples": 61,
+        "slope": -293.75058358981295
+      },
+      "request_rate": {
+        "intercept": 8.957118737615133,
+        "residual_iqr": 2.0754180070968813,
+        "residual_median": -0.08337275890577622,
+        "samples": 61,
+        "slope": -0.008193997634372854
+      },
+      "span_rate": {
+        "intercept": 8.957118737615133,
+        "residual_iqr": 2.0754180070968813,
+        "residual_median": -0.08337275890577622,
+        "samples": 61,
+        "slope": -0.008193997634372854
+      }
+    }
+  },
+  "version": "m13-healthy-baseline-v1",
+  "windows": 61
+}

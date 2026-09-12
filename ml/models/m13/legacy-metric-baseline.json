@@ -1,0 +1,266 @@
+{
+  "compose-post-service": {
+    "cpu": {
+      "iqr": 0.006226655,
+      "median": 0.004160199,
+      "samples": 600
+    },
+    "memory": {
+      "iqr": 67104768.0,
+      "median": 107819008.0,
+      "samples": 600
+    },
+    "network": {
+      "iqr": 2834.5625,
+      "median": 3645.5,
+      "samples": 600
+    },
+    "traffic_rate": {
+      "iqr": 717.875,
+      "median": 1052.375,
+      "samples": 600
+    }
+  },
+  "home-timeline-service": {
+    "cpu": {
+      "iqr": 0.003356286249999999,
+      "median": 0.00712047,
+      "samples": 600
+    },
+    "memory": {
+      "iqr": 1462272.0,
+      "median": 17612800.0,
+      "samples": 600
+    },
+    "network": {
+      "iqr": 16130.1875,
+      "median": 33720.625,
+      "samples": 600
+    },
+    "traffic_rate": {
+      "iqr": 7739.3125,
+      "median": 16327.625,
+      "samples": 600
+    }
+  },
+  "media-service": {
+    "cpu": {
+      "iqr": 0.000895713,
+      "median": 0.000583085,
+      "samples": 600
+    },
+    "memory": {
+      "iqr": 1466368.0,
+      "median": 12763136.0,
+      "samples": 600
+    },
+    "network": {
+      "iqr": 391.3125,
+      "median": 462.25,
+      "samples": 600
+    },
+    "traffic_rate": {
+      "iqr": 153.0,
+      "median": 213.75,
+      "samples": 600
+    }
+  },
+  "nginx-thrift": {
+    "cpu": {
+      "iqr": 0.025836065000000005,
+      "median": 0.05860304,
+      "samples": 600
+    },
+    "memory": {
+      "iqr": 5431296.0,
+      "median": 280219648.0,
+      "samples": 600
+    },
+    "network": {
+      "iqr": 32902.75,
+      "median": 57476.25,
+      "samples": 600
+    },
+    "traffic_rate": {
+      "iqr": 12107.0,
+      "median": 20818.75,
+      "samples": 600
+    }
+  },
+  "post-storage-service": {
+    "cpu": {
+      "iqr": 0.007321497999999999,
+      "median": 0.0199446805,
+      "samples": 600
+    },
+    "memory": {
+      "iqr": 17268736.0,
+      "median": 48500736.0,
+      "samples": 600
+    },
+    "network": {
+      "iqr": 36481.75,
+      "median": 62012.5,
+      "samples": 600
+    },
+    "traffic_rate": {
+      "iqr": 22051.75,
+      "median": 37293.75,
+      "samples": 600
+    }
+  },
+  "social-graph-service": {
+    "cpu": {
+      "iqr": 0.001120829,
+      "median": 0.000763,
+      "samples": 600
+    },
+    "memory": {
+      "iqr": 1462272.0,
+      "median": 71204864.0,
+      "samples": 600
+    },
+    "network": {
+      "iqr": 597.25,
+      "median": 774.25,
+      "samples": 600
+    },
+    "traffic_rate": {
+      "iqr": 242.5,
+      "median": 295.375,
+      "samples": 600
+    }
+  },
+  "text-service": {
+    "cpu": {
+      "iqr": 0.00387844425,
+      "median": 0.002578788,
+      "samples": 600
+    },
+    "memory": {
+      "iqr": 28155904.0,
+      "median": 52613120.0,
+      "samples": 600
+    },
+    "network": {
+      "iqr": 1154.0625,
+      "median": 1429.0,
+      "samples": 600
+    },
+    "traffic_rate": {
+      "iqr": 330.6875,
+      "median": 474.625,
+      "samples": 600
+    }
+  },
+  "unique-id-service": {
+    "cpu": {
+      "iqr": 0.000872,
+      "median": 0.000605,
+      "samples": 600
+    },
+    "memory": {
+      "iqr": 1466368.0,
+      "median": 12877824.0,
+      "samples": 600
+    },
+    "network": {
+      "iqr": 380.75,
+      "median": 442.5,
+      "samples": 600
+    },
+    "traffic_rate": {
+      "iqr": 142.75,
+      "median": 198.0,
+      "samples": 600
+    }
+  },
+  "url-shorten-service": {
+    "cpu": {
+      "iqr": 0.00219363125,
+      "median": 0.00150198,
+      "samples": 600
+    },
+    "memory": {
+      "iqr": 14802944.0,
+      "median": 40095744.0,
+      "samples": 600
+    },
+    "network": {
+      "iqr": 800.0625,
+      "median": 965.875,
+      "samples": 600
+    },
+    "traffic_rate": {
+      "iqr": 266.9375,
+      "median": 328.75,
+      "samples": 600
+    }
+  },
+  "user-mention-service": {
+    "cpu": {
+      "iqr": 0.001315005,
+      "median": 0.000936683,
+      "samples": 600
+    },
+    "memory": {
+      "iqr": 1466368.0,
+      "median": 19558400.0,
+      "samples": 600
+    },
+    "network": {
+      "iqr": 1039.125,
+      "median": 1365.75,
+      "samples": 600
+    },
+    "traffic_rate": {
+      "iqr": 480.25,
+      "median": 548.25,
+      "samples": 600
+    }
+  },
+  "user-service": {
+    "cpu": {
+      "iqr": 0.0009428349999999999,
+      "median": 0.000616832,
+      "samples": 600
+    },
+    "memory": {
+      "iqr": 1458176.0,
+      "median": 29495296.0,
+      "samples": 600
+    },
+    "network": {
+      "iqr": 366.0,
+      "median": 544.125,
+      "samples": 600
+    },
+    "traffic_rate": {
+      "iqr": 192.5,
+      "median": 254.125,
+      "samples": 600
+    }
+  },
+  "user-timeline-service": {
+    "cpu": {
+      "iqr": 0.0051229922500000006,
+      "median": 0.007129941,
+      "samples": 600
+    },
+    "memory": {
+      "iqr": 41639936.0,
+      "median": 85716992.0,
+      "samples": 600
+    },
+    "network": {
+      "iqr": 8748.75,
+      "median": 16894.75,
+      "samples": 600
+    },
+    "traffic_rate": {
+      "iqr": 4739.5,
+      "median": 7953.0,
+      "samples": 600
+    }
+  }
+}

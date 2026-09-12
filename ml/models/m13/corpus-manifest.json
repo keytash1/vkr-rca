@@ -1,0 +1,53 @@
+{
+  "cluster_key": [
+    "system",
+    "root_service",
+    "fault_family",
+    "workload_regime",
+    "intensity"
+  ],
+  "clusters": 60,
+  "fault_families": [
+    "cpu",
+    "memory",
+    "network_latency",
+    "packet_loss",
+    "service_unavailable"
+  ],
+  "incident_duration_seconds": 15,
+  "m12_incidents_used": 0,
+  "planned_clusters": 60,
+  "planned_incidents": 120,
+  "repetitions_per_cluster": 2,
+  "requests_per_second": {
+    "mixed_high": 9,
+    "mixed_low": 6
+  },
+  "reserved_final_incidents_used": 0,
+  "role": "NEW_DEVELOPMENT",
+  "seed": 20260906,
+  "status": "COLLECTED_AND_VALIDATED",
+  "target_services": [
+    "compose-post-service",
+    "post-storage-service",
+    "user-timeline-service",
+    "url-shorten-service",
+    "text-service",
+    "user-mention-service"
+  ],
+  "telemetry_index_sha256": "245bc0f3b0ffe05c8942d311112e242c355d674f4f9a9ea61b9e7422ab0d23f7",
+  "truth_sha256": "2d54bb54ca63d70c5f6721ba25f70ab07fbdd82f993e9d9e6a716abddd40d2be",
+  "truth_source": "injector configuration",
+  "upstream_commit": "6ecb09706140f8730b5385c08f1386c654c3c526",
+  "valid_incidents": 120,
+  "version": "m13-corpus-plan-v1",
+  "workload_mix": {
+    "compose_post": 0.1,
+    "home_timeline": 0.6,
+    "user_timeline": 0.3
+  },
+  "workload_regimes": [
+    "mixed_low",
+    "mixed_high"
+  ]
+}

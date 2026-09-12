@@ -1,0 +1,14 @@
+{
+  "seed": 20260906,
+  "endpoint": "http://127.0.0.1:15013/wrk2-api/post/compose",
+  "registration_endpoint": "http://127.0.0.1:15013/wrk2-api/user/register",
+  "follow_endpoint": "http://127.0.0.1:15013/wrk2-api/user/follow",
+  "user_timeline_endpoint": "http://127.0.0.1:15013/wrk2-api/user-timeline/read",
+  "home_timeline_endpoint": "http://127.0.0.1:15013/wrk2-api/home-timeline/read",
+  "users": 32,
+  "mix": {"home_timeline": 0.6, "user_timeline": 0.3, "compose_post": 0.1},
+  "regimes": {
+    "mixed_low": {"requests_per_second": 6},
+    "mixed_high": {"requests_per_second": 9}
+  }
+}

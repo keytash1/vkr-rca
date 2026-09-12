@@ -1,0 +1,131 @@
+name: vkr-rca-m13
+
+x-app: &app
+  image: deathstarbench/social-network-microservices@sha256:a845266e98ce15d204ee7b98d41a2a95820af525013ce70f14104f5b9b5e92b6
+  platform: linux/amd64
+  restart: unless-stopped
+  volumes:
+    - ../../external-data/m13/DeathStarBench/socialNetwork/config:/social-network-microservices/config:ro
+    - ./jaeger-config.yml:/social-network-microservices/config/jaeger-config.yml:ro
+  labels:
+    io.vkr.m13.role: application
+
+services:
+  social-graph-service:
+    <<: *app
+    hostname: social-graph-service
+    entrypoint: SocialGraphService
+    depends_on: [jaeger-agent, social-graph-mongodb, social-graph-redis]
+  compose-post-service:
+    <<: *app
+    hostname: compose-post-service
+    entrypoint: ComposePostService
+    depends_on: [jaeger-agent]
+  post-storage-service:
+    <<: *app
+    hostname: post-storage-service
+    entrypoint: PostStorageService
+    depends_on: [jaeger-agent, post-storage-mongodb, post-storage-memcached]
+  user-timeline-service:
+    <<: *app
+    hostname: user-timeline-service
+    entrypoint: UserTimelineService
+    depends_on: [jaeger-agent, user-timeline-mongodb, user-timeline-redis]
+  url-shorten-service:
+    <<: *app
+    hostname: url-shorten-service
+    entrypoint: UrlShortenService
+    depends_on: [jaeger-agent, url-shorten-mongodb, url-shorten-memcached]
+  user-service:
+    <<: *app
+    hostname: user-service
+    entrypoint: UserService
+    depends_on: [jaeger-agent, user-mongodb, user-memcached]
+  media-service:
+    <<: *app
+    hostname: media-service
+    entrypoint: MediaService
+    depends_on: [jaeger-agent, media-mongodb, media-memcached]
+  text-service:
+    <<: *app
+    hostname: text-service
+    entrypoint: TextService
+    depends_on: [jaeger-agent]
+  unique-id-service:
+    <<: *app
+    hostname: unique-id-service
+    entrypoint: UniqueIdService
+    depends_on: [jaeger-agent]
+  user-mention-service:
+    <<: *app
+    hostname: user-mention-service
+    entrypoint: UserMentionService
+    depends_on: [jaeger-agent]
+  home-timeline-service:
+    <<: *app
+    hostname: home-timeline-service
+    entrypoint: HomeTimelineService
+    depends_on: [jaeger-agent, home-timeline-redis]
+
+  nginx-thrift:
+    image: yg397/openresty-thrift@sha256:6c295fda3c2f6b941d85ebf16421bafac0dcf72450c96f53a2d031b29d8c81ef
+    platform: linux/amd64
+    hostname: nginx-thrift
+    restart: unless-stopped
+    ports: ["15013:8080"]
+    depends_on: [jaeger-agent, compose-post-service]
+    volumes:
+      - ../../external-data/m13/DeathStarBench/socialNetwork/nginx-web-server/lua-scripts:/usr/local/openresty/nginx/lua-scripts:ro
+      - ../../external-data/m13/DeathStarBench/socialNetwork/nginx-web-server/pages:/usr/local/openresty/nginx/pages:ro
+      - ../../external-data/m13/DeathStarBench/socialNetwork/nginx-web-server/conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf:ro
+      - ./nginx-jaeger-config.json:/usr/local/openresty/nginx/jaeger-config.json:ro
+      - ../../external-data/m13/DeathStarBench/socialNetwork/gen-lua:/gen-lua:ro
+      - ../../external-data/m13/DeathStarBench/socialNetwork/docker/openresty-thrift/lua-thrift:/usr/local/openresty/lualib/thrift:ro
+    labels:
+      io.vkr.m13.role: application
+
+  social-graph-mongodb: {image: "mongo:4.4.6", restart: unless-stopped}
+  social-graph-redis: {image: "redis:7.4.1-alpine", restart: unless-stopped}
+  home-timeline-redis: {image: "redis:7.4.1-alpine", restart: unless-stopped}
+  post-storage-memcached: {image: "memcached:1.6.30-bookworm", restart: unless-stopped}
+  post-storage-mongodb: {image: "mongo:4.4.6", restart: unless-stopped}
+  user-timeline-redis: {image: "redis:7.4.1-alpine", restart: unless-stopped}
+  user-timeline-mongodb: {image: "mongo:4.4.6", restart: unless-stopped}
+  url-shorten-memcached: {image: "memcached:1.6.30-bookworm", restart: unless-stopped}
+  url-shorten-mongodb: {image: "mongo:4.4.6", restart: unless-stopped}
+  user-memcached: {image: "memcached:1.6.30-bookworm", restart: unless-stopped}
+  user-mongodb: {image: "mongo:4.4.6", restart: unless-stopped}
+  media-memcached: {image: "memcached:1.6.30-bookworm", restart: unless-stopped}
+  media-mongodb: {image: "mongo:4.4.6", restart: unless-stopped}
+
+  jaeger-agent:
+    image: jaegertracing/all-in-one:1.60
+    restart: unless-stopped
+    ports: ["16688:16686"]
+    environment:
+      COLLECTOR_ZIPKIN_HTTP_PORT: "9411"
+
+  metrics-exporter:
+    image: vkr-rca-m13/metrics-exporter:v1
+    build:
+      context: .
+      dockerfile: Dockerfile.exporter
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    command: ["--config.file=/etc/prometheus/prometheus.yml", "--storage.tsdb.retention.time=24h"]
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports: ["19091:9090"]
+    depends_on: [metrics-exporter]
+    restart: unless-stopped
+
+  fault-tool:
+    image: vkr-rca-m13/fault-tool:v1
+    build:
+      context: .
+      dockerfile: Dockerfile.fault-tool
+    profiles: [tools]

@@ -1,0 +1,36 @@
+{
+  "version": "m13-system-manifest-v1",
+  "selected_before_scoring": true,
+  "name": "DeathStarBench Social Network",
+  "data_role": "NEW_DEVELOPMENT",
+  "source": "https://github.com/delimitrou/DeathStarBench/tree/master/socialNetwork",
+  "source_commit": "6ecb09706140f8730b5385c08f1386c654c3c526",
+  "license": "Apache-2.0",
+  "application_image": "deathstarbench/social-network-microservices@sha256:a845266e98ce15d204ee7b98d41a2a95820af525013ce70f14104f5b9b5e92b6",
+  "application_image_architecture": "linux/amd64 under ARM64 emulation",
+  "runtime": ["C++", "Thrift", "OpenResty", "Lua", "MongoDB", "Redis", "Memcached"],
+  "telemetry": ["Jaeger distributed traces", "Docker API one-second container metrics"],
+  "candidate_services": [
+    "nginx-thrift",
+    "social-graph-service",
+    "compose-post-service",
+    "post-storage-service",
+    "user-timeline-service",
+    "url-shorten-service",
+    "user-service",
+    "media-service",
+    "text-service",
+    "unique-id-service",
+    "user-mention-service",
+    "home-timeline-service"
+  ],
+  "target_services": [
+    "compose-post-service",
+    "post-storage-service",
+    "user-timeline-service",
+    "url-shorten-service",
+    "text-service",
+    "user-mention-service"
+  ],
+  "selection_used_rca_predictions": false
+}

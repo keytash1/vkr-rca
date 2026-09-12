@@ -1,0 +1,27 @@
+{
+  "version": "m13-data-ledger-v1",
+  "roles": {
+    "RE1-OB": "DEVELOPMENT_EXISTING",
+    "RE1-SS": "DEVELOPMENT_EXISTING",
+    "RE1-TT": "DEVELOPMENT_EXISTING",
+    "Synthetic-A": "DEVELOPMENT_AUXILIARY",
+    "Synthetic-B": "DEVELOPMENT_AUXILIARY",
+    "Synthetic-C": "DEVELOPMENT_AUXILIARY",
+    "RE2-OB": "USED_TEST_READONLY",
+    "RE2-SS": "USED_TEST_READONLY",
+    "RE2-TT": "USED_TEST_READONLY",
+    "RE3-OB": "USED_TEST_READONLY",
+    "RE3-SS": "USED_TEST_READONLY",
+    "RE3-TT": "USED_TEST_READONLY",
+    "M12-HotelReservation": "USED_TEST_READONLY",
+    "M13-SocialNetwork": "NEW_DEVELOPMENT",
+    "OpenTelemetry-AstronomyShop": "RESERVED_FINAL_TEST"
+  },
+  "forbidden_selection_roles": [
+    "USED_TEST_READONLY",
+    "USED_TEST",
+    "RESERVED_FINAL_TEST"
+  ],
+  "m12_incident_prefix_forbidden": "m12-",
+  "reserved_final_scored": false
+}
