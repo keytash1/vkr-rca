@@ -210,8 +210,12 @@ def validate_workload(result: dict, *, phase: str, allow_failures: bool = False)
 
 
 def healthy(warmup: int, baseline_seconds: int) -> dict:
+    print(f"M14 warm-up started: {warmup}s", flush=True)
     warm, warm_result = workload_thread(warmup, SEED); warm.join(); validate_workload(warm_result, phase="warm-up")
+    print(f"M14 warm-up passed: {warm_result['stdout']}", flush=True)
+    print(f"M14 healthy baseline started: {baseline_seconds}s", flush=True)
     start = time.time(); thread, workload = workload_thread(baseline_seconds, SEED + 1); thread.join(); validate_workload(workload, phase="healthy baseline"); end = time.time()
+    print(f"M14 healthy workload passed: {workload['stdout']}", flush=True)
     time.sleep(4)
     metrics = collect_metrics(start, end); traces, collected = collect_traces(start, end)
     coverage = {(item["service"], item["family"]) for item in metrics}
@@ -226,6 +230,7 @@ def healthy(warmup: int, baseline_seconds: int) -> dict:
     }
     path = RUN_DIR / "healthy"; path.mkdir(parents=True, exist_ok=True)
     (path / "baseline.json").write_text(json.dumps(output, separators=(",", ":")))
+    print(f"M14 fitting healthy-only expectations: metrics={len(metrics)} spans={len(traces)}", flush=True)
     fit_target_baselines(output)
     return {"metrics": len(metrics), "spans": len(traces), "seconds": end - start}
 

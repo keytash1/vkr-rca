@@ -160,3 +160,9 @@ memory is allocated on demand; these are limits, not 6 GiB of reservations.
 The source images, instrumentation, CPU allocation, workload, faults and frozen
 RCA method remain unchanged. Subsequent healthy validation must pass before
 this configuration can enter the sealed experiment.
+
+The first 60-second smoke after this profile returned 356 HTTP 200 and four
+timeouts (360 operations); it is not accepted as healthy data. The locked
+300-second warm-up gate must pass without any non-2xx responses before the
+harness can start the 900-second baseline. Progress messages expose those
+phase boundaries without exposing or generating rankings.
