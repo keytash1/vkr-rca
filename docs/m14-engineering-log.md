@@ -88,3 +88,19 @@ request fails: successful containers replace the snapshot while the failed
 container is absent, rather than freezing all 12 previous values. A snapshot
 older than ten seconds produces HTTP 503, and a timestamp gauge makes sampling
 freshness observable. Missing telemetry remains missing; it is not imputed.
+
+Early infrastructure startup found that the M14 collector command override
+had omitted the upstream `service.profilesSupport` feature gate while retaining
+the upstream profiles pipeline. Restoring the exact upstream flag fixes that
+configuration error; no signal mapping or application instrumentation changes.
+
+Upstream random host-port publications for internal application/database
+services are removed in the experiment overlay. Those services still use the
+same container ports and DNS names on the private bridge; only the four
+explicit loopback publications (frontend, Envoy admin, Jaeger, Prometheus)
+remain reachable from the host. This confines the historically pinned demo
+dependencies to a local experiment rather than exposing them on the LAN.
+
+Readiness records Docker CPU/RAM resources, Compose state and co-resident
+running containers without copying environment secrets. This evidence and all
+M14 deployment files are hashed in the experiment seal.

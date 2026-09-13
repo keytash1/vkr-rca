@@ -136,6 +136,15 @@ def ready() -> dict:
         "upstream_commit": verify_source(), "ready_seconds": time.time() - started,
         "candidate_services": list(SERVICES), "application_image_ids": images,
         "host": {"platform": platform.platform(), "python": platform.python_version()},
+        "compose_state": command("ps", "--all", "--format", "json", capture=True).stdout,
+        "docker_resources": subprocess.run([
+            "docker", "info", "--format", "cpus={{.NCPU}} memory_bytes={{.MemTotal}} architecture={{.Architecture}} server={{.ServerVersion}}",
+        ], check=True, text=True, capture_output=True).stdout.strip(),
+        "other_running_containers": subprocess.run([
+            "docker", "ps", "--filter", "label!=com.docker.compose.project=vkr-rca-m14",
+            "--format", "{{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Status}}",
+        ], check=True, text=True, capture_output=True).stdout.strip().splitlines(),
+        "deployment_deviations": list(DEPLOYMENT_DEVIATIONS),
     }
     RUN_DIR.mkdir(parents=True, exist_ok=True)
     (RUN_DIR / "readiness.json").write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
@@ -402,6 +411,7 @@ def freeze() -> dict:
         "m11_model_sha256": {path.name: sha256_file(path) for path in sorted((ROOT / "ml/models/m11").glob("candidate-recovery-k5-seed-*.json"))},
     }
     input_paths = set((ROOT / "ml/rca_ml").glob("*.py"))
+    input_paths.update(path for path in (ROOT / "deploy/m14").rglob("*") if path.is_file())
     input_paths.update(ROOT / name for name in MODEL_ARTIFACTS)
     input_paths.update(ROOT / "ml/models/m13" / name for name in m13["models"])
     input_paths.update(ROOT / name for name in (
@@ -415,6 +425,7 @@ def freeze() -> dict:
         "version": "m14-final-freeze-v1", "status": "SEALED_UNSCORED", "upstream_commit": verify_source(),
         "config_sha256": sha256_file(ROOT / "deploy/m14/config.json"), "protocol_sha256": sha256_file(ROOT / "docs/m14-protocol.md"),
         "incident_plan_sha256": sha256_file(MODEL_DIR / "incident-plan.json"), "healthy_raw_sha256": sha256_file(healthy_path),
+        "readiness_sha256": sha256_file(RUN_DIR / "readiness.json"),
         "healthy_baseline_sha256": sha256_file(MODEL_DIR / "healthy-baseline.json"), "legacy_baseline_sha256": sha256_file(MODEL_DIR / "legacy-metric-baseline.json"),
         "locked_truth_sha256": sha256_file(truth_path), "telemetry_index_sha256": sha256_file(index_path),
         "telemetry_sha256": {item["incident_id"]: item["sha256"] for item in index}, "frozen_inputs_sha256": sha256_file(MODEL_DIR / "frozen-inputs.json"),

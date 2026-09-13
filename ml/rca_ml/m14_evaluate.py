@@ -40,6 +40,8 @@ def _verify_freeze(root: Path) -> tuple[dict, Path]:
     run_dir = root / "external-data/m14/runs/locked-v1"
     if sha256_file(run_dir / "healthy/baseline.json") != freeze["healthy_raw_sha256"]:
         raise RuntimeError("M14 healthy telemetry seal mismatch")
+    if sha256_file(run_dir / "readiness.json") != freeze["readiness_sha256"]:
+        raise RuntimeError("M14 environment evidence seal mismatch")
     index_path = run_dir / "locked/telemetry-index.jsonl"
     if sha256_file(index_path) != freeze["telemetry_index_sha256"]: raise RuntimeError("M14 telemetry index seal mismatch")
     for item in _load_jsonl(index_path):

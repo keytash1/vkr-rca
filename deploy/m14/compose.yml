@@ -5,26 +5,33 @@ networks:
 services:
   ad:
     labels: {io.vkr.m14.role: application}
+    ports: !reset []
     build:
       dockerfile: ${M14_ROOT}/deploy/m14/Dockerfile.ad-repro
-  cart: {labels: {io.vkr.m14.role: application}}
-  checkout: {labels: {io.vkr.m14.role: application}}
-  currency: {labels: {io.vkr.m14.role: application}}
-  email: {labels: {io.vkr.m14.role: application}}
-  frontend: {labels: {io.vkr.m14.role: application}}
+  cart: {labels: {io.vkr.m14.role: application}, ports: !reset []}
+  checkout: {labels: {io.vkr.m14.role: application}, ports: !reset []}
+  currency: {labels: {io.vkr.m14.role: application}, ports: !reset []}
+  email: {labels: {io.vkr.m14.role: application}, ports: !reset []}
+  frontend: {labels: {io.vkr.m14.role: application}, ports: !reset []}
   frontend-proxy:
     labels: {io.vkr.m14.role: application}
     ports: !override ["127.0.0.1:15014:8080", "127.0.0.1:11014:10000"]
-  payment: {labels: {io.vkr.m14.role: application}}
-  product-catalog: {labels: {io.vkr.m14.role: application}}
+  payment: {labels: {io.vkr.m14.role: application}, ports: !reset []}
+  product-catalog: {labels: {io.vkr.m14.role: application}, ports: !reset []}
   quote:
     labels: {io.vkr.m14.role: application}
+    ports: !reset []
     build:
       dockerfile: ${M14_ROOT}/deploy/m14/Dockerfile.quote-repro
-  recommendation: {labels: {io.vkr.m14.role: application}}
-  shipping: {labels: {io.vkr.m14.role: application}}
+  recommendation: {labels: {io.vkr.m14.role: application}, ports: !reset []}
+  shipping: {labels: {io.vkr.m14.role: application}, ports: !reset []}
+
+  astronomy-db: {ports: !reset []}
+  valkey-cart: {ports: !reset []}
+  flagd: {ports: !reset []}
 
   load-generator:
+    ports: !reset []
     image: alpine@sha256:d9e853e87e55526f6b2917df91a2115c36dd7c696a35be12163d44e6e2a4b6bc
     build: !reset null
     command: ["sleep", "infinity"]
@@ -33,10 +40,12 @@ services:
       LOCUST_BROWSER_TRAFFIC_ENABLED: "false"
 
   image-provider:
+    ports: !reset []
     image: ghcr.io/open-telemetry/demo:3.0.0-image-provider@sha256:93e1585e97ac3de0e2ace6929dc5e2a797e2c009fbb3eba668fa3990f4f271b5
     build: !reset null
 
   flagd-ui:
+    ports: !reset []
     image: alpine@sha256:d9e853e87e55526f6b2917df91a2115c36dd7c696a35be12163d44e6e2a4b6bc
     build: !reset null
     command: ["sleep", "infinity"]
@@ -44,6 +53,7 @@ services:
       test: ["CMD", "true"]
 
   telemetry-docs:
+    ports: !reset []
     image: alpine@sha256:d9e853e87e55526f6b2917df91a2115c36dd7c696a35be12163d44e6e2a4b6bc
     build: !reset null
     command: ["sleep", "infinity"]
@@ -51,9 +61,11 @@ services:
       test: ["CMD", "true"]
 
   otel-collector:
+    ports: !reset []
     command:
       - "--config=/etc/otelcol-config.yml"
       - "--config=/etc/m14-otelcol-config.yml"
+      - "--feature-gates=service.profilesSupport"
     volumes:
       - ${M14_ROOT}/deploy/m14/otelcol-config.yml:/etc/m14-otelcol-config.yml:ro
     depends_on:
