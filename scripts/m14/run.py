@@ -455,10 +455,18 @@ def freeze() -> dict:
     return result
 
 
+def guard_sealed_collection(operation: str) -> None:
+    if operation in {"ready", "plan", "healthy", "canary", "corpus", "freeze"}:
+        for name in ("freeze-manifest.json", "scoring-completed.marker", "evaluation-opened.marker"):
+            if (MODEL_DIR / name).exists():
+                raise RuntimeError(f"M14 collection is sealed; {operation} must not overwrite evidence ({name})")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(); parser.add_argument("command", choices=("up", "down", "ready", "plan", "healthy", "canary", "corpus", "freeze"))
     parser.add_argument("--warmup", type=int, default=int(CONFIG["healthy"]["warmup_seconds"])); parser.add_argument("--baseline", type=int, default=int(CONFIG["healthy"]["baseline_seconds"])); parser.add_argument("--duration", type=int, default=int(CONFIG["incident"]["duration_seconds"]))
     args = parser.parse_args()
+    guard_sealed_collection(args.command)
     if args.command == "up": result = up()
     elif args.command == "down": result = down()
     elif args.command == "ready": result = ready()

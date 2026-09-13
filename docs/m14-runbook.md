@@ -63,7 +63,9 @@ to fabricate or silently drop an incident.
 ```
 
 Review and commit the fitted healthy artifacts, frozen dependency inventory
-and freeze manifest before scoring. The scorer verifies dependency and input
+and freeze manifest before scoring. Once the seal exists, the collection CLI
+refuses commands that would overwrite readiness, plans, baselines or corpus;
+shutdown remains available. The scorer verifies dependency and input
 hashes and does not read the sealed truth file:
 
 ```sh

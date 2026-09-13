@@ -53,6 +53,13 @@ def main():
     assert len(truth) == len(index) == len(plan) == 50
     assert {x["incident_id"] for x in truth} == {x["incident_id"] for x in index} == {x["incident_id"] for x in plan}
     assert all(x["valid_injection"] for x in truth)
+    write_json(MODEL / "evaluation-inputs.json", {
+        "data_role": "USED_TEST", "purpose": "Independent metric reproduction, never model selection",
+        "source_truth_sha256": freeze["locked_truth_sha256"],
+        "source_prediction_sha256": scoring["prediction_sha256"],
+        "truth": [{key: value for key, value in item.items() if key != "injection_evidence"} for item in truth],
+        "predictions": read(RUN / "locked/sealed-predictions.json"),
+    })
     clusters = Counter((x["root_service"], x["fault_family"]) for x in truth)
     assert len(clusters) == 25 and set(clusters.values()) == {2}
     workload_statuses, candidate_pairs, trace_counts = Counter(), [], []
@@ -133,7 +140,7 @@ def main():
               "- Native trace collection is anchored at frontend traces; not a claim of complete autonomous background telemetry. Canonical metrics are Docker resource signals, not full application RED/USE instrumentation.",
               "- Rank is not causal proof or calibrated probability. Diagnostic error flags are descriptive hypotheses. No final-system ablation or retuning is authorized.",
               "- Wilson intervals are descriptive binomial intervals; paired cluster intervals are primary for comparisons. Gates use AC@1 OR MRR as registered, without a new multiplicity correction.", "",
-              "Full grouped Wilson intervals and incident-level error records are in `ml/models/m14/evaluation.json`; raw telemetry and predictions are retained locally under `external-data/m14/runs/locked-v1/`, not embedded in Git."]
+              "Full grouped Wilson intervals and incident-level error records are in `ml/models/m14/evaluation.json`. Compact truth labels and all four sealed rankings are published in `evaluation-inputs.json` for independent metric reproduction (USED_TEST, never training). Original raw telemetry, process evidence and sealed files remain locally under `external-data/m14/runs/locked-v1/`, not embedded in Git."]
     (ROOT / "docs/m14-results.md").write_text("\n".join(lines) + "\n")
     errors = evaluation["error_analysis"]
     lines = ["# M14 Error Analysis", "", "No model changes follow this analysis. Error stages follow the preregistered truth rank; diagnostic flags are not causal truth.", "",

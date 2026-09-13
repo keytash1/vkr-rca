@@ -8,6 +8,7 @@ from unittest.mock import patch
 from rca_ml.m14_evaluate import decide_verdict, verify_frozen_inputs
 from rca_ml.dataset import sha256_file
 from rca_ml.m14_runtime import FrozenM13TransferRuntime
+from rca_ml.m13_protocol import ranking_metrics
 
 ROOT = Path(__file__).resolve().parents[2]
 SPEC = importlib.util.spec_from_file_location("m14_collection", ROOT / "scripts/m14/run.py")
@@ -16,6 +17,16 @@ SPEC.loader.exec_module(collection)
 
 
 class HealthyWorkloadTest(unittest.TestCase):
+    def test_seal_blocks_collection_overwrites_but_allows_shutdown(self):
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory)
+            (target / "freeze-manifest.json").write_text("{}")
+            with patch.object(collection, "MODEL_DIR", target):
+                for operation in ("ready", "plan", "healthy", "canary", "corpus", "freeze"):
+                    with self.subTest(operation=operation), self.assertRaisesRegex(RuntimeError, "collection is sealed"):
+                        collection.guard_sealed_collection(operation)
+                collection.guard_sealed_collection("down")
+
     def test_process_evidence_includes_required_docker_pid_column(self):
         with patch.object(collection, "container_id", return_value="target"), \
              patch.object(collection.subprocess, "run") as run:
@@ -119,6 +130,25 @@ class RuntimeBoundaryTest(unittest.TestCase):
 
 
 class ProtocolTest(unittest.TestCase):
+    def test_published_final_results_match_sealed_rankings(self):
+        model = ROOT / "ml/models/m14"
+        if not (model / "evaluation-inputs.json").exists():
+            self.skipTest("final test is not opened and published yet")
+        inputs = json.loads((model / "evaluation-inputs.json").read_text())
+        evaluation = json.loads((model / "evaluation.json").read_text())
+        frozen = json.loads((model / "frozen-inputs.json").read_text())
+        verify_frozen_inputs(ROOT, frozen)
+        self.assertEqual("USED_TEST", inputs["data_role"])
+        self.assertEqual("FINAL_RESEARCH_FREEZE", evaluation["research_status"])
+        truth = {item["incident_id"]: item for item in inputs["truth"]}
+        self.assertEqual(50, len(truth))
+        self.assertEqual({"chance", "metric_heuristic", "frozen_m11", "frozen_m13"}, set(inputs["predictions"]))
+        for name, rankings in inputs["predictions"].items():
+            self.assertEqual(set(truth), set(rankings))
+            self.assertEqual(evaluation["pooled"][name], ranking_metrics(rankings, truth))
+        self.assertEqual(evaluation["verdict"], decide_verdict(
+            evaluation["pooled"], evaluation["paired_m13_vs"], evaluation["per_fault"])[0])
+
     def test_locked_plan_has_50_incidents_and_25_clusters(self):
         root = Path(__file__).resolve().parents[2]
         namespace = {}
