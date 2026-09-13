@@ -104,3 +104,8 @@ dependencies to a local experiment rather than exposing them on the LAN.
 Readiness records Docker CPU/RAM resources, Compose state and co-resident
 running containers without copying environment secrets. This evidence and all
 M14 deployment files are hashed in the experiment seal.
+
+The trace exporter overlay also retains the upstream `span_metrics` connector:
+the inherited metrics pipeline consumes that connector and cannot start when
+its trace-side producer is missing. Jaeger is added alongside it, rather than
+disconnecting the original pipeline.

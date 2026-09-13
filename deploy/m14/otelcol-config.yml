@@ -7,7 +7,7 @@ service:
     traces:
       receivers: [otlp]
       processors: [resource_detection, memory_limiter, transform/sanitize_spans, gen_ai_normalizer, transform/redact_sensitive_data]
-      exporters: [otlp_grpc/jaeger]
+      exporters: [otlp_grpc/jaeger, span_metrics]
   telemetry:
     logs:
       level: error
