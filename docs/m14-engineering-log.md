@@ -57,3 +57,16 @@ identical versioned URL with the JDK builder's `wget` using ten retries and a
 300-second timeout, then copies the resulting jar into the same runtime path.
 This changes download transport only; the agent version remains the upstream
 `OTEL_JAVA_AGENT_VERSION` build argument.
+
+## Resumption after host disk exhaustion
+
+The host ran out of disk space during CheckoutService dependency download.
+The user rebooted and freed space; resumption confirmed 110 GiB free and
+readable Docker storage. The tagged AdService and CartService images survived.
+No baseline, canary, corpus or predictions existed at this point.
+
+Pre-collection harness review tightened healthy workload validation to reject
+all non-2xx responses (previously HTTP 4xx could pass). CPU/memory fault-agent
+compilation and copying now occur before the observation window so setup does
+not consume the locked 30-second workload period. These corrections precede
+all experiment data and do not change the models or planned fault intensities.

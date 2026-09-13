@@ -181,7 +181,7 @@ def validate_workload(result: dict, *, phase: str, allow_failures: bool = False)
     if result.get("returncode") != 0 or not result.get("stdout"):
         raise RuntimeError(f"M14 {phase} workload failed: {result}")
     payload = json.loads(result["stdout"])
-    failures = sum(count for status, count in payload["statuses"].items() if int(status) == 0 or int(status) >= 500)
+    failures = sum(count for status, count in payload["statuses"].items() if not 200 <= int(status) < 300)
     if failures and not allow_failures:
         raise RuntimeError(f"M14 {phase} has {failures}/{payload['attempts']} failures: {payload['statuses']}")
     if payload["attempts"] <= 0 or payload["dispatch_rate"] < .99 * payload["requests_per_second"]:
@@ -235,7 +235,6 @@ def prepare_agent(service: str) -> None:
 
 def inject(service: str, fault: str, duration: int) -> dict:
     if fault in {"cpu", "memory"}:
-        prepare_agent(service)
         proc = command("exec", "-T", "-d", service, "/tmp/m14-fault-agent", fault, str(duration), capture=True)
         criterion = f"target runs frozen {fault} agent"
     elif fault == "network_latency":
@@ -280,6 +279,9 @@ def valid_injection(service: str, fault: str, state: str, metrics: list[dict], h
 
 def capture_case(case: dict, duration: int, seed: int) -> tuple[dict, dict]:
     service, fault = case["root_service"], case["fault_family"]
+    # Compilation/copying is setup, not part of the locked incident window.
+    if fault in {"cpu", "memory"}:
+        prepare_agent(service)
     start = time.time(); thread, workload = workload_thread(duration, seed); injected = False
     try:
         injection = inject(service, fault, duration); injected = True; time.sleep(2); state = mechanism_state(service, fault)

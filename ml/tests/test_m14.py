@@ -1,4 +1,5 @@
 import json
+import importlib.util
 import tempfile
 import unittest
 from pathlib import Path
@@ -6,6 +7,30 @@ from unittest.mock import patch
 
 from rca_ml.m14_evaluate import decide_verdict
 from rca_ml.m14_runtime import FrozenM13TransferRuntime
+
+ROOT = Path(__file__).resolve().parents[2]
+SPEC = importlib.util.spec_from_file_location("m14_collection", ROOT / "scripts/m14/run.py")
+collection = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(collection)
+
+
+class HealthyWorkloadTest(unittest.TestCase):
+    def result(self, status):
+        return {"returncode": 0, "stdout": json.dumps({
+            "statuses": {str(status): 6}, "attempts": 6,
+            "dispatch_rate": 6, "requests_per_second": 6,
+        })}
+
+    def test_client_errors_cannot_be_a_healthy_baseline(self):
+        for status in (0, 301, 404, 422, 500):
+            with self.subTest(status=status), self.assertRaises(RuntimeError):
+                collection.validate_workload(self.result(status), phase="healthy")
+
+    def test_expected_fault_errors_remain_in_denominator(self):
+        self.assertEqual(6, collection.validate_workload(
+            self.result(500), phase="fault", allow_failures=True)["attempts"])
+        self.assertEqual(6, collection.validate_workload(
+            self.result(200), phase="healthy")["attempts"])
 
 
 def comparison(ac=False, mrr=False):
@@ -53,6 +78,10 @@ class ProtocolTest(unittest.TestCase):
         self.assertEqual(5, len(config["target_services"]))
         self.assertEqual(5, len(config["fault_families"]))
         self.assertEqual(2, config["incident"]["repetitions_per_cluster"])
+        plan = collection.plan()
+        self.assertEqual(json.loads((root / "ml/models/m14/incident-plan.json").read_text()), plan)
+        self.assertEqual(50, len(plan["incidents"]))
+        self.assertEqual(25, len({(item["root_service"], item["fault_family"]) for item in plan["incidents"]}))
 
 
 if __name__ == "__main__":
