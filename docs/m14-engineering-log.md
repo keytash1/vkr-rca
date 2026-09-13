@@ -166,3 +166,20 @@ timeouts (360 operations); it is not accepted as healthy data. The locked
 300-second warm-up gate must pass without any non-2xx responses before the
 harness can start the 900-second baseline. Progress messages expose those
 phase boundaries without exposing or generating rankings.
+
+## Accepted healthy baseline and canary compatibility
+
+The locked 300-second warm-up completed 1,800/1,800 operations with HTTP 200.
+The subsequent 900-second baseline completed 5,400/5,400 operations with HTTP
+200 (1,080 for each operation). It contains 43,248 metric samples covering all
+48 candidate/family pairs and 123,218 canonical native spans, including all
+12 candidates. Its SHA-256 is
+`9b96041ada41a356cf6ac5e3b8bae13765530449212954946c62636cbdff631e`.
+Both healthy-only baseline artifacts were fitted before any injection.
+
+The first canary stopped during CPU process-state inspection: this Docker
+daemon rejects `docker top ... -eo args` with "Couldn't find PID field in ps
+output". Adding the required PID column (`-eo pid,args`) fixes inspection,
+without changing the agent, fault intensity or validity criterion. The agent
+self-expires after 30 seconds. No corpus incident or ranking was produced by
+this aborted canary. The full five-mechanism canary is rerun after this fix.

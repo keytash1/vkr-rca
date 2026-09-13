@@ -289,7 +289,7 @@ def mechanism_state(service: str, fault: str) -> str:
         return netem(service, "qdisc", "show", "dev", "eth0").stdout.strip()
     if fault == "service_unavailable":
         return subprocess.run(["docker", "inspect", "-f", "{{.State.Paused}}", container_id(service)], check=True, text=True, capture_output=True).stdout.strip()
-    return subprocess.run(["docker", "top", container_id(service), "-eo", "args"], check=True, text=True, capture_output=True).stdout
+    return subprocess.run(["docker", "top", container_id(service), "-eo", "pid,args"], check=True, text=True, capture_output=True).stdout
 
 
 def reset_fault(service: str, fault: str) -> None:
@@ -343,6 +343,7 @@ def canary(duration: int) -> dict:
         telemetry, truth = capture_case(case, duration, SEED + 100 + index)
         valid = valid_injection("ad", fault, truth["injection_evidence"]["state"], telemetry["metrics"], healthy_data)
         results.append({"fault_family": fault, "valid": valid, "evidence": truth["injection_evidence"], "spans": len(telemetry["traces"]), "rankings_generated": False})
+        print(f"M14 canary {index + 1}/5 {fault} valid={valid}", flush=True)
     output = {"role": "M14_CANARY", "rankings_generated": False, "results": results}
     path = RUN_DIR / "canary"; path.mkdir(parents=True, exist_ok=True); (path / "validity.json").write_text(json.dumps(output, indent=2, sort_keys=True) + "\n")
     if not all(item["valid"] for item in results): raise RuntimeError("M14 canary gate failed")

@@ -16,6 +16,12 @@ SPEC.loader.exec_module(collection)
 
 
 class HealthyWorkloadTest(unittest.TestCase):
+    def test_process_evidence_includes_required_docker_pid_column(self):
+        with patch.object(collection, "container_id", return_value="target"), \
+             patch.object(collection.subprocess, "run") as run:
+            collection.mechanism_state("ad", "cpu")
+        self.assertEqual(["docker", "top", "target", "-eo", "pid,args"], run.call_args.args[0])
+
     def result(self, status):
         return {"returncode": 0, "stdout": json.dumps({
             "statuses": {str(status): 6}, "attempts": 6,
