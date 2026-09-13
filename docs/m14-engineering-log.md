@@ -141,3 +141,22 @@ the incident observation and reset network/pause faults at `start + 30s`, not
 after all slow HTTP futures finish. It then drains requests and collects the
 fixed window. A regression test simulates an eight-second late completion and
 verifies the unchanged 30-second window. Corpus duration overrides are rejected.
+
+The next 30-second smoke run returned 179 HTTP 200 and one timeout. A subsequent
+60-second diagnostic run (same six operations/second and seed) returned 170
+HTTP 200 and 190 timeouts: ad and cart were 72/72 successful each; product,
+recommendation and checkout were 14/72, 5/72 and 7/72 respectively. PostgreSQL
+had no new restart or blocked queries. During the run ProductCatalog consumed
+55.95% CPU at 18.33 MiB of its 20 MiB cgroup limit; its inherited Go soft limit
+was 16 MiB. Payment was at 135.1 MiB of 140 MiB and 51.86% CPU. These observations
+support resource-pressure investigation, not an RCA model result.
+
+Before any healthy baseline or fault injection, M14 adopts a uniform 512 MiB
+memory ceiling for all 12 application candidates and a 384 MiB Go soft limit
+for Checkout and ProductCatalog. This is a fixed deployment envelope, not
+per-root ranking optimization. It provides headroom for application runtime,
+instrumentation, health checks and the unchanged 32 MiB injection agent. Actual
+memory is allocated on demand; these are limits, not 6 GiB of reservations.
+The source images, instrumentation, CPU allocation, workload, faults and frozen
+RCA method remain unchanged. Subsequent healthy validation must pass before
+this configuration can enter the sealed experiment.

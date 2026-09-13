@@ -6,25 +6,41 @@ services:
   ad:
     labels: {io.vkr.m14.role: application}
     ports: !reset []
+    deploy: &m14-app-resources
+      resources:
+        limits:
+          memory: 512M
     build:
       dockerfile: ${M14_ROOT}/deploy/m14/Dockerfile.ad-repro
-  cart: {labels: {io.vkr.m14.role: application}, ports: !reset []}
-  checkout: {labels: {io.vkr.m14.role: application}, ports: !reset []}
-  currency: {labels: {io.vkr.m14.role: application}, ports: !reset []}
-  email: {labels: {io.vkr.m14.role: application}, ports: !reset []}
-  frontend: {labels: {io.vkr.m14.role: application}, ports: !reset []}
+  cart: {labels: {io.vkr.m14.role: application}, ports: !reset [], deploy: *m14-app-resources}
+  checkout:
+    labels: {io.vkr.m14.role: application}
+    ports: !reset []
+    deploy: *m14-app-resources
+    environment:
+      GOMEMLIMIT: 384MiB
+  currency: {labels: {io.vkr.m14.role: application}, ports: !reset [], deploy: *m14-app-resources}
+  email: {labels: {io.vkr.m14.role: application}, ports: !reset [], deploy: *m14-app-resources}
+  frontend: {labels: {io.vkr.m14.role: application}, ports: !reset [], deploy: *m14-app-resources}
   frontend-proxy:
     labels: {io.vkr.m14.role: application}
+    deploy: *m14-app-resources
     ports: !override ["127.0.0.1:15014:8080", "127.0.0.1:11014:10000"]
-  payment: {labels: {io.vkr.m14.role: application}, ports: !reset []}
-  product-catalog: {labels: {io.vkr.m14.role: application}, ports: !reset []}
+  payment: {labels: {io.vkr.m14.role: application}, ports: !reset [], deploy: *m14-app-resources}
+  product-catalog:
+    labels: {io.vkr.m14.role: application}
+    ports: !reset []
+    deploy: *m14-app-resources
+    environment:
+      GOMEMLIMIT: 384MiB
   quote:
     labels: {io.vkr.m14.role: application}
     ports: !reset []
+    deploy: *m14-app-resources
     build:
       dockerfile: ${M14_ROOT}/deploy/m14/Dockerfile.quote-repro
-  recommendation: {labels: {io.vkr.m14.role: application}, ports: !reset []}
-  shipping: {labels: {io.vkr.m14.role: application}, ports: !reset []}
+  recommendation: {labels: {io.vkr.m14.role: application}, ports: !reset [], deploy: *m14-app-resources}
+  shipping: {labels: {io.vkr.m14.role: application}, ports: !reset [], deploy: *m14-app-resources}
 
   astronomy-db:
     ports: !reset []
