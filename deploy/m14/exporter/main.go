@@ -51,7 +51,8 @@ type sample struct {
 
 var state struct {
 	sync.RWMutex
-	samples []sample
+	samples   []sample
+	updatedAt time.Time
 }
 
 func dockerClient() *http.Client {
@@ -113,9 +114,7 @@ func collect(client *http.Client) error {
 	group.Wait()
 	close(results)
 	close(errors)
-	if err := <-errors; err != nil {
-		return err
-	}
+	firstError := <-errors
 	collected := make([]sample, 0, len(containers))
 	for item := range results {
 		collected = append(collected, item)
@@ -123,14 +122,20 @@ func collect(client *http.Client) error {
 	sort.Slice(collected, func(i, j int) bool { return collected[i].service < collected[j].service })
 	state.Lock()
 	state.samples = collected
+	state.updatedAt = time.Now()
 	state.Unlock()
-	return nil
+	return firstError
 }
 
 func metrics(w http.ResponseWriter, _ *http.Request) {
 	w.Header().Set("Content-Type", "text/plain; version=0.0.4")
 	state.RLock()
 	defer state.RUnlock()
+	if state.updatedAt.IsZero() || time.Since(state.updatedAt) > 10*time.Second {
+		http.Error(w, "no fresh Docker samples", http.StatusServiceUnavailable)
+		return
+	}
+	fmt.Fprintf(w, "m14_exporter_snapshot_timestamp_seconds %.3f\n", float64(state.updatedAt.UnixMilli())/1000)
 	for _, item := range state.samples {
 		label := fmt.Sprintf("service=%q", item.service)
 		fmt.Fprintf(w, "m14_container_cpu_cores{%s} %.9f\n", label, item.cpu)

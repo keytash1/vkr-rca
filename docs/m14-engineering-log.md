@@ -82,3 +82,9 @@ The frontend proxy host ports replace (rather than extend) upstream bindings,
 avoiding a collision with another local project on port 8080. Experiment HTTP
 endpoints bind to loopback, and its bridge network has a project-specific name.
 The official image-provider image is pinned by its inspected digest.
+
+Exporter review removed stale-value replay when one container's Docker stats
+request fails: successful containers replace the snapshot while the failed
+container is absent, rather than freezing all 12 previous values. A snapshot
+older than ten seconds produces HTTP 503, and a timestamp gauge makes sampling
+freshness observable. Missing telemetry remains missing; it is not imputed.
