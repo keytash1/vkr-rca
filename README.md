@@ -1,6 +1,14 @@
 # RCA for distributed services
 
-Milestone 10B of the RCA graduation project: a synchronous Go telemetry/RCA pipeline, a research core frozen at M10A, and an offline defense demo that keeps controlled live behavior separate from frozen external benchmark evidence.
+RCA graduation project: a synchronous Go telemetry/RCA pipeline, an offline defense demo, and a completed M14 locked cross-system evaluation of the frozen M13 research model. The original live demo and the newer research runtime are distinct; final product integration remains follow-up work.
+
+## Current research status: M14 final freeze
+
+Astronomy Shop: **SUPPORTED_TRANSFER**, 50 incidents / 25 clusters, AC@1 **0.50**, AC@3 **0.70**, AC@5 **0.78**, MRR **0.629955**, candidate coverage **1.00**. M13 beats chance, the metric heuristic and frozen M11 under the preregistered paired cluster gates. The stronger Top-3/Top-5 gates fail; this is not universal or production-ready RCA.
+
+Research is now **FINAL_RESEARCH_FREEZE**; Astronomy Shop is **USED_TEST**. No further training, feature/threshold tuning or extra test systems. Next: frozen-runtime integration, demo and thesis writing.
+
+See [full results](docs/m14-results.md), [claim boundaries](docs/m14-claim-registry.md), [error analysis](docs/m14-error-analysis.md), [engineering exceptions](docs/m14-engineering-log.md), and [final research freeze](docs/final-research-freeze.md). Machine-readable evidence and compact truth/rankings for independent metric reproduction are in `ml/models/m14/`.
 
 ```text
 Client -> Gateway -> Orders -> Payment

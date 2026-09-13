@@ -1,0 +1,30 @@
+{
+  "forbidden_selection_roles": [
+    "USED_TEST_READONLY",
+    "USED_TEST",
+    "RESERVED_FINAL_TEST"
+  ],
+  "m12_incident_prefix_forbidden": "m12-",
+  "research_status": "FINAL_RESEARCH_FREEZE",
+  "reserved_final_scored": true,
+  "roles": {
+    "M12-HotelReservation": "USED_TEST_READONLY",
+    "M13-SocialNetwork": "NEW_DEVELOPMENT",
+    "M14-Canary": "MECHANICAL_VALIDATION_ONLY_NOT_EVALUATED",
+    "M14-Healthy": "HEALTHY_ONLY_ADAPTER_FIT_BEFORE_INJECTION",
+    "OpenTelemetry-AstronomyShop": "USED_TEST",
+    "RE1-OB": "DEVELOPMENT_EXISTING",
+    "RE1-SS": "DEVELOPMENT_EXISTING",
+    "RE1-TT": "DEVELOPMENT_EXISTING",
+    "RE2-OB": "USED_TEST_READONLY",
+    "RE2-SS": "USED_TEST_READONLY",
+    "RE2-TT": "USED_TEST_READONLY",
+    "RE3-OB": "USED_TEST_READONLY",
+    "RE3-SS": "USED_TEST_READONLY",
+    "RE3-TT": "USED_TEST_READONLY",
+    "Synthetic-A": "DEVELOPMENT_AUXILIARY",
+    "Synthetic-B": "DEVELOPMENT_AUXILIARY",
+    "Synthetic-C": "DEVELOPMENT_AUXILIARY"
+  },
+  "version": "m14-final-data-ledger-v1"
+}

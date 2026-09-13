@@ -151,6 +151,10 @@ def main():
     for error in errors["errors"]:
         lines.append(f"| {error['incident_id']} | {error['root_service']} | {error['fault_family']} | {error['truth_rank']} | {error['primary_stage']} | {', '.join(error['diagnostic_flags'])} |")
     lines += ["", "`OOD_DOMAIN_SHIFT` marks the held-out domain context; it does not prove why a particular ranking failed. `LOW_WORKLOAD_SIGNAL` means most workload operations timed out or returned 5xx, not that the injection is invalid. Other possible mechanisms are not assigned without evidence."]
+    lines += ["", "## Repeated failure patterns", "",
+              "Both frontend service-unavailable incidents rank the root 12th; each retained only eight canonical spans while all 48 metric pairs were present. Both ad latency incidents rank the root 11th. Payment latency ranks are 8 and 10. These repeated cluster failures must not be hidden by the pooled improvement.", "",
+              "There are zero candidate-universe misses: 25 Top-1 successes, 10 ranks 2–3, four ranks 4–5, five ranks 6–10 and six ranks 11–12. Thus the observed residual is ranking/order failure, not omission of the known root from the candidate set. This classification does not identify its causal mechanism.", "",
+              "The two frontend outages receive the low-workload flag; no incident has a wholly missing metric or trace modality. Sparse or uneven service-level traces can still be inadequate evidence. No new features, disappearance thresholds, reliability model or challenger are developed from these errors."]
     (ROOT / "docs/m14-error-analysis.md").write_text("\n".join(lines) + "\n")
     print(json.dumps({"verdict": evaluation["verdict"], "collection_audit": {k: v for k, v in audit.items() if k != "attempt_sha256"}, "reports_written": True}, indent=2, sort_keys=True))
 

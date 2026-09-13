@@ -1,0 +1,55 @@
+{
+  "application_image_ids": {
+    "ad": "sha256:3b1ce00b22cc55a9f154b3734c972b504c4f555f96f8585a72e9a842b32e7d45",
+    "cart": "sha256:ebc1db7c33e637b641a15cb31139a85ec26425c227530f7248b2248aa2dff0c0",
+    "checkout": "sha256:b0c038cd0805adf837005a7125489da8912f990022789d50aad33d870aa6c709",
+    "currency": "sha256:9200755b03240433d78dc6236cef9fc706c3f203c658e501e01e54afe4654343",
+    "email": "sha256:8f89f407f21f61d9f95dcd776b5c1092dec8aaf21f0c4329feeaac990412ce74",
+    "frontend": "sha256:3b89b7e0137f20c41f6eba6050f2635367b8666cba0f138de806220cc7bb3b16",
+    "frontend-proxy": "sha256:00fd5ab806187690204f90d1836df520d8042c61cb3ecd22464f6a532874fade",
+    "payment": "sha256:ce8c39105f1ef96706b71600713a4519ef7955b1f4eda6240df08f5e07b76645",
+    "product-catalog": "sha256:9f230f19a15a84d2d8f34fe2b24f6bff17e4412c40abeac554a70e8196122fa4",
+    "quote": "sha256:4c8c6ba7374fa6109a1c42fa5bd7bfa643f6fae3247817e8059de9309cc1ba26",
+    "recommendation": "sha256:f98bb47a413d3ff63b17c85faccc425ad191b694dfb3b26d1bad11b58e5844ec",
+    "shipping": "sha256:7b646596389d0c5dd2edd439146e3f247642e90c4d94b7dff4777bb203503aa4"
+  },
+  "candidate_services": [
+    "ad",
+    "cart",
+    "checkout",
+    "currency",
+    "email",
+    "frontend",
+    "frontend-proxy",
+    "payment",
+    "product-catalog",
+    "quote",
+    "recommendation",
+    "shipping"
+  ],
+  "co_resident_running_container_count": 10,
+  "deployment_deviations": [
+    "QUOTE_COMPOSER_ADVISORY_BUILD_SHIM",
+    "AD_DOWNLOAD_TRANSPORT_BUILD_SHIM",
+    "IMAGE_PROVIDER_OFFICIAL_3_0_0_PINNED_IMAGE",
+    "UNUSED_SUPPORT_SERVICES_INERT",
+    "POSTGRES_SUPPORT_MEMORY_LIMIT_512M",
+    "APPLICATION_MEMORY_LIMIT_512M_GO_SOFT_LIMIT_384MIB"
+  ],
+  "docker_resources": "cpus=2 memory_bytes=8308269056 architecture=aarch64 server=29.2.1",
+  "host": {
+    "platform": "macOS-26.3.1-arm64-arm-64bit-Mach-O",
+    "python": "3.14.5"
+  },
+  "post_collection_check": {
+    "all_12_candidates_and_postgresql_current_oom_killed": false,
+    "all_12_candidates_and_postgresql_memory_limit_bytes": 536870912,
+    "all_12_candidates_and_postgresql_restart_count": 0,
+    "all_12_candidates_and_postgresql_running": true,
+    "all_12_candidates_and_postgresql_unpaused": true,
+    "candidate_images_match_readiness": true
+  },
+  "source_readiness_sha256": "60ebc648fa20ed23e4a816512b6c9ac22a20d494928301212d793797466bd076",
+  "unrelated_projects_stopped": false,
+  "upstream_commit": "8c47d47c9ac27710d2b2a153bcd53e483bffe66d"
+}
