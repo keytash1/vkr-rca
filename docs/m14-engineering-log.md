@@ -197,3 +197,21 @@ the fixed p90 + 16 MiB requirement. The permitted second attempt passed with
 the same 32 MiB agent and unchanged validity threshold. Both raw attempts are
 retained. This is prediction-independent mechanical selection, not evidence
 that all weak-signal faults are covered by the final evaluation.
+
+## Completed collection, before scoring
+
+All 50 planned incidents completed in 25 root/fault clusters. Each window is
+exactly 30 seconds and contains all 48 candidate/metric-family pairs. The
+accepted corpus contains 190,039 canonical native spans (8–4,110 per incident).
+There is one rejected measured attempt, retained alongside its accepted retry.
+No incident was selected or excluded by an RCA prediction.
+
+Post-collection Docker inspection confirmed that all 12 candidate image IDs
+match the healthy readiness snapshot. Every candidate and PostgreSQL is running,
+unpaused, reports zero restarts and current `OOMKilled=false`, with the fixed
+536,870,912-byte memory limit. No unrelated project was stopped.
+
+Truth SHA-256:
+`ea9d629df71adfcd292b6e650d57d2c724ee3e6c2bc5c46b98fbcb110128f195`.
+Telemetry-index SHA-256:
+`a8786c0fb20267fec9efec15fe27e33f56b55848d73af32a86afe9505a9d80ba`.
