@@ -188,3 +188,12 @@ Before the first corpus incident, collection also retains a separate raw audit
 record for every measured attempt, including rejected mechanical injections.
 This does not change the two-attempt limit, acceptance rule, locked order or
 final denominator; rejected attempts are never silently discarded.
+
+The repeated five-mechanism canary passed all five checks without rankings.
+During corpus collection, incident `m14-018-0ce346bc` (Payment / memory)
+failed its first metric visibility check: agent present, 31 memory samples,
+observed maximum 192,450,560 bytes versus healthy p90 180,199,424 bytes, below
+the fixed p90 + 16 MiB requirement. The permitted second attempt passed with
+the same 32 MiB agent and unchanged validity threshold. Both raw attempts are
+retained. This is prediction-independent mechanical selection, not evidence
+that all weak-signal faults are covered by the final evaluation.
