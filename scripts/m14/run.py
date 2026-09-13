@@ -56,6 +56,7 @@ DEPLOYMENT_DEVIATIONS = [
     "AD_DOWNLOAD_TRANSPORT_BUILD_SHIM",
     "IMAGE_PROVIDER_OFFICIAL_3_0_0_PINNED_IMAGE",
     "UNUSED_SUPPORT_SERVICES_INERT",
+    "POSTGRES_SUPPORT_MEMORY_LIMIT_512M",
 ]
 
 
@@ -140,10 +141,11 @@ def ready() -> dict:
         "docker_resources": subprocess.run([
             "docker", "info", "--format", "cpus={{.NCPU}} memory_bytes={{.MemTotal}} architecture={{.Architecture}} server={{.ServerVersion}}",
         ], check=True, text=True, capture_output=True).stdout.strip(),
-        "other_running_containers": subprocess.run([
-            "docker", "ps", "--filter", "label!=com.docker.compose.project=vkr-rca-m14",
-            "--format", "{{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Status}}",
-        ], check=True, text=True, capture_output=True).stdout.strip().splitlines(),
+        "other_running_containers": [line for line in subprocess.run([
+            "docker", "ps", "--format",
+            '{{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Label "com.docker.compose.project"}}',
+        ], check=True, text=True, capture_output=True).stdout.strip().splitlines()
+            if line.rsplit("\t", 1)[-1] != "vkr-rca-m14"],
         "deployment_deviations": list(DEPLOYMENT_DEVIATIONS),
     }
     RUN_DIR.mkdir(parents=True, exist_ok=True)
@@ -308,14 +310,16 @@ def capture_case(case: dict, duration: int, seed: int) -> tuple[dict, dict]:
     # Compilation/copying is setup, not part of the locked incident window.
     if fault in {"cpu", "memory"}:
         prepare_agent(service)
-    start = time.time(); thread, workload = workload_thread(duration, seed); injected = False
+    start = time.time(); end = start + duration
+    thread, workload = workload_thread(duration, seed); injected = False
     try:
         injection = inject(service, fault, duration); injected = True; time.sleep(2); state = mechanism_state(service, fault)
-        thread.join(); validate_workload(workload, phase=case["incident_id"], allow_failures=True)
+        time.sleep(max(0, end - time.time()))
     finally:
         if injected: reset_fault(service, fault)
-        if thread.is_alive(): thread.join(timeout=10)
-    end = time.time(); time.sleep(int(CONFIG["incident"]["cooldown_seconds"]))
+        thread.join()
+    validate_workload(workload, phase=case["incident_id"], allow_failures=True)
+    time.sleep(int(CONFIG["incident"]["cooldown_seconds"]))
     metrics = collect_metrics(start, end); traces, collected = collect_traces(start, end)
     telemetry = {
         "incident_id": case["incident_id"], "start_unix": start, "end_unix": end,
@@ -352,6 +356,8 @@ def write_plan() -> dict:
 
 
 def corpus(duration: int) -> dict:
+    if duration != int(CONFIG["incident"]["duration_seconds"]):
+        raise RuntimeError("M14 incident duration differs from pre-registration")
     healthy_data = json.loads((RUN_DIR / "healthy/baseline.json").read_text())
     canary_data = json.loads((RUN_DIR / "canary/validity.json").read_text())
     if canary_data["rankings_generated"] or not all(item["valid"] for item in canary_data["results"]): raise RuntimeError("M14 canary gate not satisfied")

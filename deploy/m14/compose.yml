@@ -26,7 +26,12 @@ services:
   recommendation: {labels: {io.vkr.m14.role: application}, ports: !reset []}
   shipping: {labels: {io.vkr.m14.role: application}, ports: !reset []}
 
-  astronomy-db: {ports: !reset []}
+  astronomy-db:
+    ports: !reset []
+    deploy:
+      resources:
+        limits:
+          memory: 512M
   valkey-cart: {ports: !reset []}
   flagd: {ports: !reset []}
 

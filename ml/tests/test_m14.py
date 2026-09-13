@@ -33,6 +33,36 @@ class HealthyWorkloadTest(unittest.TestCase):
         self.assertEqual(6, collection.validate_workload(
             self.result(200), phase="healthy")["attempts"])
 
+    def test_fault_window_does_not_expand_for_slow_requests(self):
+        now = [100.0]
+        resets = []
+
+        def sleep(seconds):
+            now[0] += seconds
+
+        class LateRequests:
+            def join(self):
+                sleep(8)
+
+        with patch.object(collection.time, "time", side_effect=lambda: now[0]), \
+             patch.object(collection.time, "sleep", side_effect=sleep), \
+             patch.object(collection, "workload_thread", return_value=(LateRequests(), self.result(500))), \
+             patch.object(collection, "inject", return_value={"returncode": 0}), \
+             patch.object(collection, "mechanism_state", return_value="true"), \
+             patch.object(collection, "reset_fault", side_effect=lambda *args: resets.append(now[0])), \
+             patch.object(collection, "collect_metrics", return_value=[]) as metrics, \
+             patch.object(collection, "collect_traces", return_value=([], True)):
+            telemetry, _ = collection.capture_case({
+                "root_service": "ad", "fault_family": "service_unavailable", "incident_id": "fixture",
+            }, 30, 1)
+        self.assertEqual([130.0], resets)
+        self.assertEqual(30, telemetry["end_unix"] - telemetry["start_unix"])
+        metrics.assert_called_once_with(100.0, 130.0)
+
+    def test_corpus_rejects_duration_override_before_collection(self):
+        with self.assertRaisesRegex(RuntimeError, "duration differs"):
+            collection.corpus(1)
+
 
 def comparison(ac=False, mrr=False):
     return {

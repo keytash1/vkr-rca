@@ -109,3 +109,35 @@ The trace exporter overlay also retains the upstream `span_metrics` connector:
 the inherited metrics pipeline consumes that connector and cannot start when
 its trace-side producer is missing. Jaeger is added alongside it, rather than
 disconnecting the original pipeline.
+
+## Full mixed-workload smoke gate
+
+All 12 application images were successfully source-built and started. Initial
+individual product/recommendation/ad/cart requests returned HTTP 200, and
+native traces and Docker metrics reached their respective adapters.
+
+The first 20-second mixed smoke run at the locked six operations per second
+returned 77 HTTP 200, 16 HTTP 500 and 27 timeouts. PostgreSQL restarted during
+the run. Docker's current `OOMKilled` state was false after restart, but the
+VM kernel log confirmed a memory-cgroup OOM for the exact `astronomy-db`
+container ID (`d0725f5a44ba177601ab2bc2cea397ecd4b89efbd23741dc9d705a7265d2d411`)
+with the inherited 80 MiB limit. ProductCatalog maps database-read errors to
+`NOT_FOUND`, explaining misleading product-not-found frontend messages.
+An unchanged second smoke run improved to 118 HTTP 200 and two timeouts, which
+still does not pass the healthy gate.
+
+Before any baseline or fault data, the non-candidate PostgreSQL support service
+receives a 512 MiB limit. Application candidates, fault magnitudes, request mix
+and rate, model features and verdict gates are unchanged. The deployment
+exception is included in the raw healthy metadata and frozen Compose hash.
+
+Readiness environment capture was also corrected to filter the formatted
+container inventory locally: this Docker version rejects the negative label
+filter used in the original command. No environment secrets are recorded.
+
+The mixed smoke run also demonstrated that request completion can lag the
+dispatch interval. Before fault collection, the harness was corrected to end
+the incident observation and reset network/pause faults at `start + 30s`, not
+after all slow HTTP futures finish. It then drains requests and collects the
+fixed window. A regression test simulates an eight-second late completion and
+verifies the unchanged 30-second window. Corpus duration overrides are rejected.
