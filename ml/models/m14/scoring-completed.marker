@@ -1,0 +1,1 @@
+{"incidents": 50, "latency_ms": {"max": 112.51570799868205, "median": 54.629374999422, "p95": 89.4659835495986}, "prediction_sha256": "c1e8476820796308803bdd97f59591dfcd7b8d48bfdde3a58458cba27de53e49", "truth_accessed": false, "version": "m14-sealed-predictions-v1", "wall_seconds": 3.7296460409997962}
