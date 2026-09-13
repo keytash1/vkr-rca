@@ -70,3 +70,15 @@ all non-2xx responses (previously HTTP 4xx could pass). CPU/memory fault-agent
 compilation and copying now occur before the observation window so setup does
 not consume the locked 30-second workload period. These corrections precede
 all experiment data and do not change the models or planned fault intensities.
+
+The pre-collection review also moved healthy-only baseline fitting to the end
+of healthy collection, before fault injection. Sealing checks that these fitted
+artifacts still match the healthy telemetry. Scoring and opening now verify
+the hashes of all Python inference dependencies, comparator models, feature
+schema, OOD statistics and collection code, not only the M13 ensemble.
+Deployment deviations are explicitly carried into healthy data metadata.
+
+The frontend proxy host ports replace (rather than extend) upstream bindings,
+avoiding a collision with another local project on port 8080. Experiment HTTP
+endpoints bind to loopback, and its bridge network has a project-specific name.
+The official image-provider image is pinned by its inspected digest.

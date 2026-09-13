@@ -40,6 +40,7 @@ COMPOSE = [
 sys.path.insert(0, str(ROOT / "ml"))
 from rca_ml.dataset import sha256_file  # noqa: E402
 from rca_ml.m12_adapter import CANONICAL_UNITS, robust_baseline  # noqa: E402
+from rca_ml.m12_evaluate import MODEL_ARTIFACTS  # noqa: E402
 from rca_ml.m13_features import fit_healthy_baseline  # noqa: E402
 from rca_ml.m13_trace import canonicalize_jaeger  # noqa: E402
 
@@ -49,6 +50,13 @@ QUERIES = {
     "network": "rate(m14_container_network_receive_bytes_total[5s]) + rate(m14_container_network_transmit_bytes_total[5s])",
     "traffic_rate": "rate(m14_container_network_receive_bytes_total[5s])",
 }
+
+DEPLOYMENT_DEVIATIONS = [
+    "QUOTE_COMPOSER_ADVISORY_BUILD_SHIM",
+    "AD_DOWNLOAD_TRANSPORT_BUILD_SHIM",
+    "IMAGE_PROVIDER_OFFICIAL_3_0_0_PINNED_IMAGE",
+    "UNUSED_SUPPORT_SERVICES_INERT",
+]
 
 
 def command(*args: str, check: bool = True, capture: bool = False) -> subprocess.CompletedProcess:
@@ -202,11 +210,20 @@ def healthy(warmup: int, baseline_seconds: int) -> dict:
         "role": "M14_HEALTHY_ENGINEERING", "warmup_seconds": warmup, "baseline_seconds": baseline_seconds,
         "scrape_interval_seconds": 1, "segments": [{"start_unix": start, "end_unix": end, "workload_regime": "mixed_steady", "requests_per_second": RPS}],
         "metrics": metrics, "traces": traces, "traces_collected": collected, "warmup_result": warm_result,
-        "baseline_workload_result": workload, "protocol_deviations": [],
+        "baseline_workload_result": workload, "protocol_deviations": list(DEPLOYMENT_DEVIATIONS),
     }
     path = RUN_DIR / "healthy"; path.mkdir(parents=True, exist_ok=True)
     (path / "baseline.json").write_text(json.dumps(output, separators=(",", ":")))
+    fit_target_baselines(output)
     return {"metrics": len(metrics), "spans": len(traces), "seconds": end - start}
+
+
+def fit_target_baselines(healthy_data: dict) -> None:
+    target = fit_healthy_baseline(healthy_data, SERVICES)
+    legacy = robust_baseline(healthy_data["metrics"])
+    MODEL_DIR.mkdir(parents=True, exist_ok=True)
+    (MODEL_DIR / "healthy-baseline.json").write_text(json.dumps(target, indent=2, sort_keys=True) + "\n")
+    (MODEL_DIR / "legacy-metric-baseline.json").write_text(json.dumps(legacy, indent=2, sort_keys=True) + "\n")
 
 
 def container_id(service: str) -> str:
@@ -367,8 +384,13 @@ def freeze() -> dict:
         if sha256_file(RUN_DIR / item["telemetry_path"]) != item["sha256"]: raise RuntimeError(f"telemetry seal mismatch: {item['incident_id']}")
     healthy_path = RUN_DIR / "healthy/baseline.json"; healthy_data = json.loads(healthy_path.read_text())
     if healthy_data["warmup_seconds"] != CONFIG["healthy"]["warmup_seconds"] or healthy_data["baseline_seconds"] != CONFIG["healthy"]["baseline_seconds"]: raise RuntimeError("healthy duration differs from pre-registration")
-    target_baseline = fit_healthy_baseline(healthy_data, SERVICES); legacy = robust_baseline(healthy_data["metrics"])
-    (MODEL_DIR / "healthy-baseline.json").write_text(json.dumps(target_baseline, indent=2, sort_keys=True) + "\n"); (MODEL_DIR / "legacy-metric-baseline.json").write_text(json.dumps(legacy, indent=2, sort_keys=True) + "\n")
+    expected_baselines = {
+        "healthy-baseline.json": fit_healthy_baseline(healthy_data, SERVICES),
+        "legacy-metric-baseline.json": robust_baseline(healthy_data["metrics"]),
+    }
+    for name, expected in expected_baselines.items():
+        if json.loads((MODEL_DIR / name).read_text()) != expected:
+            raise RuntimeError(f"M14 healthy-only baseline drift: {name}")
     m13 = json.loads((ROOT / "ml/models/m13/freeze-manifest.json").read_text())
     frozen_inputs = {
         "m13_freeze_sha256": sha256_file(ROOT / "ml/models/m13/freeze-manifest.json"),
@@ -379,6 +401,15 @@ def freeze() -> dict:
         "m13_trace_sha256": sha256_file(ROOT / "ml/rca_ml/m13_trace.py"),
         "m11_model_sha256": {path.name: sha256_file(path) for path in sorted((ROOT / "ml/models/m11").glob("candidate-recovery-k5-seed-*.json"))},
     }
+    input_paths = set((ROOT / "ml/rca_ml").glob("*.py"))
+    input_paths.update(ROOT / name for name in MODEL_ARTIFACTS)
+    input_paths.update(ROOT / "ml/models/m13" / name for name in m13["models"])
+    input_paths.update(ROOT / name for name in (
+        "ml/models/m13/freeze-manifest.json", "ml/models/m10c-v2/feature-schema.json",
+        "ml/models/m12/ood-stats.json", "scripts/m14/run.py", "scripts/m14/workload.py",
+        "scripts/m14/fault_agent.go", "deploy/m14/compose.yml",
+    ))
+    frozen_inputs["files"] = {str(path.relative_to(ROOT)): sha256_file(path) for path in sorted(input_paths)}
     (MODEL_DIR / "frozen-inputs.json").write_text(json.dumps(frozen_inputs, indent=2, sort_keys=True) + "\n")
     result = {
         "version": "m14-final-freeze-v1", "status": "SEALED_UNSCORED", "upstream_commit": verify_source(),

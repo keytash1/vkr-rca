@@ -5,7 +5,8 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from rca_ml.m14_evaluate import decide_verdict
+from rca_ml.m14_evaluate import decide_verdict, verify_frozen_inputs
+from rca_ml.dataset import sha256_file
 from rca_ml.m14_runtime import FrozenM13TransferRuntime
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -61,6 +62,19 @@ class VerdictTest(unittest.TestCase):
 
 
 class RuntimeBoundaryTest(unittest.TestCase):
+    def test_frozen_dependencies_reject_code_and_model_changes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            dependency = root / "model.json"
+            dependency.write_text("original")
+            inventory = {"files": {"model.json": sha256_file(dependency)}}
+            verify_frozen_inputs(root, inventory)
+            dependency.write_text("modified")
+            with self.assertRaisesRegex(RuntimeError, "dependency drift"):
+                verify_frozen_inputs(root, inventory)
+            with self.assertRaisesRegex(RuntimeError, "inventory is missing"):
+                verify_frozen_inputs(root, {})
+
     def test_candidate_universe_drift_is_rejected_before_features(self):
         runtime = object.__new__(FrozenM13TransferRuntime)
         runtime.services = ("a", "b")

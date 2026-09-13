@@ -35,12 +35,25 @@ def _verify_freeze(root: Path) -> tuple[dict, Path]:
     }
     for path, expected in checks.items():
         if sha256_file(path) != expected: raise RuntimeError(f"M14 frozen artifact drift: {path.relative_to(root)}")
+    frozen_inputs = json.loads((model_dir / "frozen-inputs.json").read_text())
+    verify_frozen_inputs(root, frozen_inputs)
     run_dir = root / "external-data/m14/runs/locked-v1"
+    if sha256_file(run_dir / "healthy/baseline.json") != freeze["healthy_raw_sha256"]:
+        raise RuntimeError("M14 healthy telemetry seal mismatch")
     index_path = run_dir / "locked/telemetry-index.jsonl"
     if sha256_file(index_path) != freeze["telemetry_index_sha256"]: raise RuntimeError("M14 telemetry index seal mismatch")
     for item in _load_jsonl(index_path):
         if sha256_file(run_dir / item["telemetry_path"]) != freeze["telemetry_sha256"][item["incident_id"]]: raise RuntimeError(f"M14 telemetry seal mismatch: {item['incident_id']}")
     return freeze, run_dir
+
+
+def verify_frozen_inputs(root: Path, frozen_inputs: dict) -> None:
+    if not frozen_inputs.get("files"):
+        raise RuntimeError("M14 frozen dependency inventory is missing")
+    for name, expected in frozen_inputs["files"].items():
+        path = root / name
+        if not path.is_file() or sha256_file(path) != expected:
+            raise RuntimeError(f"M14 frozen dependency drift: {name}")
 
 
 def score(root: Path) -> dict:
