@@ -183,3 +183,8 @@ output". Adding the required PID column (`-eo pid,args`) fixes inspection,
 without changing the agent, fault intensity or validity criterion. The agent
 self-expires after 30 seconds. No corpus incident or ranking was produced by
 this aborted canary. The full five-mechanism canary is rerun after this fix.
+
+Before the first corpus incident, collection also retains a separate raw audit
+record for every measured attempt, including rejected mechanical injections.
+This does not change the two-attempt limit, acceptance rule, locked order or
+final denominator; rejected attempts are never silently discarded.

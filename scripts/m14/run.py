@@ -384,6 +384,13 @@ def corpus(duration: int) -> dict:
             telemetry, truth_item = capture_case(case, duration, SEED + position * 10 + attempt)
             valid = valid_injection(case["root_service"], case["fault_family"], truth_item["injection_evidence"]["state"], telemetry["metrics"], healthy_data)
             truth_item["valid_injection"] = valid
+            # Preserve every measured attempt, including rejected mechanical
+            # injections, independently of the final accepted denominator.
+            attempt_dir = RUN_DIR / "locked/attempts"; attempt_dir.mkdir(parents=True, exist_ok=True)
+            attempt_path = attempt_dir / f"{case['incident_id']}-{time.time_ns()}.json"
+            attempt_path.write_text(json.dumps({"attempt": attempt, "truth": truth_item, "telemetry": telemetry}, separators=(",", ":")))
+            if not valid:
+                print(f"M14 mechanical retry {case['incident_id']} attempt={attempt} preserved={attempt_path.name}", flush=True)
             if valid: break
             replacements += 1
         if not valid: raise RuntimeError(f"M14 mechanical injection failed twice: {case['incident_id']}")
