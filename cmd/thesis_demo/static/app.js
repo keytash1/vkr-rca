@@ -93,7 +93,7 @@ function renderRanking(data) {
   const incomplete = data.source_status?.metric_families_by_service &&
     Object.values(data.source_status.metric_families_by_service).some(families => families.length < 4)
     ? ' · метрики неполны' : '';
-  $('#incident-label').textContent = `${source} · ${start}–${end} UTC · ${data.model_count} моделей${traces}${incomplete}`;
+  $('#incident-label').textContent = `${source} · ${start}–${end} UTC · ансамбль из ${data.model_count} экземпляров${traces}${incomplete}`;
   $('#candidate-count').textContent = `${data.candidate_count} сервисов`;
   const warning = $('#coverage-warning');
   const families = Object.values(data.source_status?.metric_families_by_service || {});
@@ -184,7 +184,7 @@ async function initialize() {
   $('#incident-file').addEventListener('change', () => {$('#example-select').value = ''; clearResult();});
   try {
     const [health, profiles] = await Promise.all([request('/api/health'), request('/api/profiles')]);
-    $('#readiness').textContent = `Модель загружена · ${health.model_count} экземпляров`;
+    $('#readiness').textContent = `Ансамбль загружен · ${health.model_count} экземпляров`;
     state.profiles = profiles;
     const profileSelect = $('#profile-select'); profileSelect.replaceChildren();
     const profilePlaceholder = document.createElement('option'); profilePlaceholder.value = '';
