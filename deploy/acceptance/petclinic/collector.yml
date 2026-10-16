@@ -1,0 +1,16 @@
+receivers:
+  zipkin:
+    endpoint: "0.0.0.0:9411"
+processors:
+  batch:
+    timeout: 1s
+exporters:
+  otlp_grpc/jaeger:
+    endpoint: jaeger:4317
+    tls: {insecure: true}
+service:
+  pipelines:
+    traces:
+      receivers: [zipkin]
+      processors: [batch]
+      exporters: [otlp_grpc/jaeger]

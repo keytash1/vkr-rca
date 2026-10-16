@@ -1,0 +1,65 @@
+{
+  "candidate_count": 3,
+  "elapsed_seconds": 0.1,
+  "interval_seconds": 130,
+  "issues": [],
+  "missing_metric_families": {},
+  "profile_id": "local-three",
+  "profile_version": "acceptance-2",
+  "purpose": "baseline",
+  "source_status": {
+    "annotations": [],
+    "collected_at_unix": 1792150208.924292,
+    "elapsed_seconds": 0.0973,
+    "input_sha256": "2ac9bdc7f0fede8b35e0f5022c6f958d961d5fdadb1c10aabc6f65ae9c004c4f",
+    "metric_families_by_service": {
+      "gateway": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ],
+      "orders": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ],
+      "payment": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ]
+    },
+    "metric_point_coverage": {
+      "gateway": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      },
+      "orders": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      },
+      "payment": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      }
+    },
+    "metric_sample_count": 792,
+    "metrics": "available",
+    "query_step_seconds": 2,
+    "span_count": 3245,
+    "trace_api": "jaeger-http-json",
+    "trace_error": null,
+    "trace_tested_version": "2.20.0",
+    "traces": "available"
+  },
+  "verdict": "ready"
+}

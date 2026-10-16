@@ -1,0 +1,34 @@
+{
+  "annotations": [],
+  "collected_at_unix": 1792149042.236406,
+  "elapsed_seconds": 0.0292,
+  "input_sha256": "765b078bdaeada8920141f509060da28a238d09cd34d771ae7e4b3e174db37a4",
+  "metric_families_by_service": {
+    "gateway": [
+      "cpu",
+      "memory",
+      "network",
+      "traffic_rate"
+    ],
+    "orders": [
+      "cpu",
+      "memory",
+      "network",
+      "traffic_rate"
+    ],
+    "payment": [
+      "cpu",
+      "memory",
+      "network",
+      "traffic_rate"
+    ]
+  },
+  "metric_sample_count": 252,
+  "metrics": "available",
+  "query_step_seconds": 2,
+  "span_count": 1000,
+  "trace_api": "jaeger-http-json",
+  "trace_error": null,
+  "trace_tested_version": "2.20.0",
+  "traces": "available"
+}

@@ -1,0 +1,109 @@
+{
+  "all_metric_families_match": true,
+  "baseline_interval": {
+    "end_unix": 1792153088,
+    "start_unix": 1792152958
+  },
+  "baseline_reused": true,
+  "candidate_services": [
+    "api-gateway",
+    "customers-service",
+    "vets-service",
+    "visits-service"
+  ],
+  "direct_candidate_span_ids_present": {
+    "api-gateway": 1800,
+    "customers-service": 1202,
+    "vets-service": 724,
+    "visits-service": 163
+  },
+  "direct_cpu_values_match": true,
+  "intervals": {
+    "end_unix": 1792153696,
+    "healthy_end": 1792153636,
+    "healthy_start": 1792153506,
+    "start_unix": 1792153656
+  },
+  "model_version": "m13-freeze-v1",
+  "profile_id": "petclinic",
+  "profile_version": "acceptance-3",
+  "purpose": "ENGINEERING_INTEGRATION_NO_ACCURACY_EVALUATION",
+  "recorded_at_utc": "2026-10-16T12:28:38.348276+00:00",
+  "replay_scores_match": true,
+  "source_status": {
+    "annotations": [],
+    "collected_at_unix": 1792153717.472264,
+    "elapsed_seconds": 0.1884,
+    "input_sha256": "2870aba84928a3d88169983daf7b16356aa7c336457999941601107d4097a2d3",
+    "metric_families_by_service": {
+      "api-gateway": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ],
+      "customers-service": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ],
+      "vets-service": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ],
+      "visits-service": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ]
+    },
+    "metric_point_coverage": {
+      "api-gateway": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      },
+      "customers-service": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      },
+      "vets-service": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      },
+      "visits-service": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      }
+    },
+    "metric_sample_count": 336,
+    "metrics": "available",
+    "query_step_seconds": 2,
+    "services_without_spans": [],
+    "span_count": 2129,
+    "trace_api": "jaeger-http-json",
+    "trace_error": null,
+    "trace_query_services": [
+      "api-gateway",
+      "customers-service",
+      "vets-service",
+      "visits-service"
+    ],
+    "trace_tested_version": "2.20.0",
+    "traces": "available"
+  },
+  "status": "PASSED_API_REAL_SOURCES_BROWSER_PENDING",
+  "trace_api": "jaeger-http-json",
+  "trace_tested_version": "2.20.0"
+}

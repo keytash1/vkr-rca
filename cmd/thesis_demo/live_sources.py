@@ -7,6 +7,8 @@ collector returns the same truth-free canonical window used by replay tests.
 from __future__ import annotations
 
 import hashlib
+import contextvars
+import functools
 import json
 import math
 import os
@@ -15,10 +17,11 @@ from dataclasses import dataclass
 from pathlib import Path
 from urllib.parse import urlencode, urlsplit
 from urllib.error import HTTPError, URLError
-from urllib.request import Request, urlopen
+from urllib.request import Request, HTTPRedirectHandler, build_opener
 
 from rca_ml.m12_adapter import CANONICAL_UNITS
 from rca_ml.m13_trace import canonicalize_jaeger
+from api_errors import ApiError
 
 
 FAMILIES = tuple(CANONICAL_UNITS)
@@ -27,18 +30,43 @@ TRACE_CHUNK_SECONDS = 300
 TRACE_LIMIT = 1000
 MAX_TRACE_QUERIES = 128
 MAX_COLLECTION_SECONDS = 120
+MAX_SOURCE_BYTES = 64 * 1024 * 1024
+_source_budget = contextvars.ContextVar("telemetry_source_byte_budget", default=None)
+
+
+class _NoRedirect(HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        # A configured bearer token must never be forwarded to another origin.
+        return None
+
+
+def _bounded_collection(function):
+    @functools.wraps(function)
+    def wrapped(*args, **kwargs):
+        token = _source_budget.set([MAX_SOURCE_BYTES])
+        try:
+            return function(*args, **kwargs)
+        finally:
+            _source_budget.reset(token)
+    return wrapped
 
 
 class TelemetrySourceError(OSError):
     """The configured source failed or violated the expected response contract."""
 
+    def __init__(self, message: str, code: str = "TELEMETRY_INVALID"):
+        super().__init__(message)
+        self.code = code
+
 
 def _endpoint(value: str) -> str:
     parsed = urlsplit(value)
-    if parsed.scheme not in {"http", "https"} or not parsed.netloc or parsed.username or parsed.password:
+    if parsed.scheme not in {"http", "https"} or not parsed.netloc or not parsed.hostname or parsed.username or parsed.password:
         raise ValueError("invalid telemetry endpoint in profile")
-    if parsed.path not in {"", "/"} or parsed.query or parsed.fragment:
-        raise ValueError("telemetry endpoint must be a base URL")
+    if parsed.port is not None and parsed.port == 0:
+        raise ValueError("invalid telemetry port in profile")
+    if parsed.query or parsed.fragment:
+        raise ValueError("telemetry base URL must not contain a query or fragment")
     return value.rstrip("/")
 
 
@@ -48,22 +76,28 @@ def _get_json(base: str, path: str, params: dict, token_env: str | None,
     if token_env:
         token = os.environ.get(token_env)
         if not token:
-            raise ValueError(f"telemetry credential is missing: {token_env}")
+            raise TelemetrySourceError("telemetry credential is missing", "TELEMETRY_UNAVAILABLE")
         headers["Authorization"] = f"Bearer {token}"
     url = f"{base}{path}?{urlencode(params)}"
+    budget = _source_budget.get()
+    limit = min(32 * 1024 * 1024, budget[0]) if budget is not None else 32 * 1024 * 1024
+    if limit <= 0:
+        raise TelemetrySourceError("telemetry collection exceeds 64 MiB")
     try:
-        with urlopen(Request(url, headers=headers), timeout=timeout) as response:
+        with build_opener(_NoRedirect()).open(Request(url, headers=headers), timeout=timeout) as response:
             if response.status != 200:
                 raise OSError(f"telemetry source returned HTTP {response.status}")
-            payload = response.read(32 * 1024 * 1024 + 1)
+            payload = response.read(limit + 1)
     except HTTPError as error:
         code = error.code
         error.close()
         raise OSError(f"telemetry source returned HTTP {code}") from error
     except URLError as error:
-        raise TelemetrySourceError(f"telemetry source is unreachable at {base}") from error
-    if len(payload) > 32 * 1024 * 1024:
-        raise TelemetrySourceError("telemetry response exceeds 32 MiB")
+        raise TelemetrySourceError("telemetry source is unreachable", "TELEMETRY_UNAVAILABLE") from error
+    if len(payload) > limit:
+        raise TelemetrySourceError("telemetry response exceeds its byte budget")
+    if budget is not None:
+        budget[0] -= len(payload)
     try:
         value = json.loads(payload)
     except json.JSONDecodeError as error:
@@ -91,6 +125,10 @@ class LiveProfile:
     rps_query: str | None
     artifact_dir: Path
     version: str
+    query_step_seconds: int = 1
+    baseline_min_coverage: float = 0.8
+    trace_contract: str = "jaeger-http-json"
+    trace_version: str = "unspecified"
 
     @classmethod
     def load(cls, path: Path, root: Path, *, require_artifacts: bool = True) -> "LiveProfile":
@@ -106,6 +144,15 @@ class LiveProfile:
         if set(queries) != set(FAMILIES) or any(not isinstance(queries[f], str) or not queries[f] for f in FAMILIES):
             raise ValueError(f"profile {profile_id}: four metric-family queries are required")
         trace = raw["traces"]
+        trace_contract = trace.get("api", "jaeger-http-json")
+        if trace_contract != "jaeger-http-json":
+            raise ValueError(f"profile {profile_id}: unsupported trace API contract")
+        step = metric.get("query_step_seconds", 1)
+        if isinstance(step, bool) or not isinstance(step, int) or not 1 <= step <= 60:
+            raise ValueError(f"profile {profile_id}: query step must be an integer from 1 to 60 seconds")
+        minimum = metric.get("baseline_min_coverage", 0.8)
+        if isinstance(minimum, bool) or not isinstance(minimum, (int, float)) or not 0 < minimum <= 1:
+            raise ValueError(f"profile {profile_id}: invalid baseline coverage requirement")
         trace_services = tuple(trace["query_services"])
         if not trace_services or any(not isinstance(s, str) or not s for s in trace_services):
             raise ValueError(f"profile {profile_id}: at least one trace entry service is required")
@@ -150,6 +197,10 @@ class LiveProfile:
             rps_query=query,
             artifact_dir=artifact_dir,
             version=str(raw["version"]),
+            query_step_seconds=step,
+            baseline_min_coverage=float(minimum),
+            trace_contract=trace_contract,
+            trace_version=str(trace.get("tested_version", "unspecified")),
         )
 
     def service(self, name: str) -> str | None:
@@ -171,19 +222,54 @@ def _remaining(deadline: float | None) -> float:
 
 
 def _prometheus(profile: LiveProfile, query: str, start: float, end: float,
-                deadline: float | None = None) -> list[dict]:
+                deadline: float | None = None, annotations: list | None = None,
+                family: str = "workload") -> list[dict]:
     data = _get_json(
         profile.metrics_url,
         "/api/v1/query_range",
-        {"query": query, "start": start, "end": end, "step": "1s"},
+        {"query": query, "start": start, "end": end, "step": f"{profile.query_step_seconds}s"},
         profile.metric_token_env, _remaining(deadline),
     )
-    if data.get("status") != "success" or data.get("data", {}).get("resultType") != "matrix":
+    body = data.get("data")
+    if data.get("status") != "success" or not isinstance(body, dict) or body.get("resultType") != "matrix":
         raise TelemetrySourceError("invalid Prometheus query_range response")
-    result = data["data"].get("result")
-    if not isinstance(result, list):
+    result = body.get("result")
+    if not isinstance(result, list) or any(not isinstance(series, dict) or not isinstance(series.get("metric"), dict)
+                                         or not isinstance(series.get("values"), list) for series in result):
         raise TelemetrySourceError("invalid Prometheus series")
+    for level in ("warnings", "infos"):
+        messages = data.get(level, [])
+        if not isinstance(messages, list) or any(not isinstance(x, str) for x in messages):
+            raise TelemetrySourceError("invalid Prometheus query annotations")
+        if annotations is not None:
+            annotations.extend({"source": "metrics", "family": family, "level": level,
+                                "message": message} for message in messages)
     return result
+
+
+def baseline_issues(profile: LiveProfile, window: dict, status: dict,
+                    start: float, end: float) -> list[str]:
+    """Readiness concerns collection coverage, never model accuracy or labels."""
+    issues = []
+    if end - start < 60:
+        issues.append("healthy interval must be at least 60 seconds")
+    expected = math.floor((end - start) / profile.query_step_seconds) + 1
+    points = {}
+    for point in window.get("metrics", []):
+        points.setdefault((point["service"], point["family"]), set()).add(point["timestamp"])
+    sparse = [f"{service}/{family}" for service in profile.services for family in FAMILIES
+              if len(points.get((service, family), ())) / expected < profile.baseline_min_coverage]
+    if sparse:
+        issues.append("insufficient returned metric-point coverage: " + ", ".join(sparse))
+    if status.get("traces") != "available" or not window.get("traces"):
+        issues.append("healthy trace source is unavailable or empty")
+    observed = {span.get("service") for span in window.get("traces", [])}
+    missing_traces = sorted(set(profile.services) - observed)
+    if missing_traces:
+        issues.append("healthy traces are missing for candidate services: " + ", ".join(missing_traces))
+    if any(x["level"] == "warnings" for x in status.get("annotations", [])):
+        issues.append("healthy metric source returned query warnings; inspect before preparation")
+    return issues
 
 
 def _jaeger_interval(profile: LiveProfile, service: str, left: float, right: float,
@@ -210,6 +296,7 @@ def _jaeger_interval(profile: LiveProfile, service: str, left: float, right: flo
             + _jaeger_interval(profile, service, middle, right, budget, deadline))
 
 
+@_bounded_collection
 def collect(profile: LiveProfile, start: float, end: float) -> tuple[dict, dict]:
     if (
         isinstance(start, bool) or isinstance(end, bool)
@@ -217,25 +304,41 @@ def collect(profile: LiveProfile, start: float, end: float) -> tuple[dict, dict]
         or not math.isfinite(start) or not math.isfinite(end)
         or start <= 0 or end <= start or end - start > MAX_WINDOW_SECONDS
     ):
-        raise ValueError("invalid incident interval")
+        raise ApiError("INVALID_INTERVAL", "Задайте интервал в пределах одного часа: конец должен быть позже начала.",
+                       fields=("start_unix", "end_unix"))
+    if end > time.time():
+        raise ApiError("INVALID_INTERVAL", "Конец интервала не может находиться в будущем.", fields=("end_unix",))
     metrics: list[dict] = []
+    collected_at = time.time()
+    annotations = []
     deadline = time.monotonic() + MAX_COLLECTION_SECONDS
     coverage = {service: set() for service in profile.services}
     seen_metric_points = set()
+    point_counts = {(service, family): 0 for service in profile.services for family in FAMILIES}
+    nonfinite = {family: 0 for family in FAMILIES}
     for family in FAMILIES:
-        for series in _prometheus(profile, profile.metric_queries[family], start, end, deadline):
+        for series in _prometheus(profile, profile.metric_queries[family], start, end,
+                                  deadline, annotations, family):
             labels = series.get("metric", {})
             name = labels.get(profile.metric_service_label)
             if not isinstance(name, str):
                 raise TelemetrySourceError("metric series has no configured service label")
-            service = profile.service(name)
+            try:
+                service = profile.service(name)
+            except ValueError as error:
+                raise TelemetrySourceError("metric series contains an unmapped service") from error
             if service is None:
                 continue
-            for timestamp, value in series.get("values", []):
-                timestamp = float(timestamp)
-                value = float(value)
+            for point in series.get("values", []):
+                try:
+                    timestamp, value = map(float, point)
+                except (TypeError, ValueError) as error:
+                    raise TelemetrySourceError("invalid metric point") from error
                 if not math.isfinite(timestamp) or not math.isfinite(value):
+                    nonfinite[family] += 1
                     continue
+                if value < 0:
+                    raise TelemetrySourceError(f"negative canonical {family} observation")
                 if start <= timestamp <= end:
                     point = (timestamp, service, family)
                     if point in seen_metric_points:
@@ -243,19 +346,29 @@ def collect(profile: LiveProfile, start: float, end: float) -> tuple[dict, dict]
                             f"duplicate metric series for {service}/{family}; aggregate by service in the profile query"
                         )
                     seen_metric_points.add(point)
+                    point_counts[(service, family)] += 1
                     metrics.append({
-                        "timestamp": int(timestamp), "service": service, "family": family,
+                        "timestamp": timestamp, "service": service, "family": family,
                         "value": value, "unit": CANONICAL_UNITS[family],
                     })
                     coverage[service].add(family)
     if not metrics:
         raise TelemetrySourceError("no metric observations for the configured candidates")
     metrics.sort(key=lambda item: (item["timestamp"], item["service"], item["family"]))
+    for family, count in nonfinite.items():
+        if count:
+            annotations.append({"source": "metrics", "family": family, "level": "warnings",
+                                "message": f"Excluded {count} non-finite metric points."})
     traces_by_id = {}
     trace_error = None
     try:
         budget = [MAX_TRACE_QUERIES]
-        for entry_service in profile.trace_query_services:
+        # A gateway-only query assumes perfect propagation. A new installation
+        # can have disconnected traces; query every candidate's known source
+        # names as well and deduplicate whole traces by ID before canonicalizing.
+        query_services = sorted(set(profile.trace_query_services) | set(profile.services)
+                                | set(profile.aliases))
+        for entry_service in query_services:
             left = start
             while left < end:
                 right = min(end, left + TRACE_CHUNK_SECONDS)
@@ -287,8 +400,13 @@ def collect(profile: LiveProfile, start: float, end: float) -> tuple[dict, dict]
     rps = profile.fixed_rps
     if rps is None:
         values = []
-        for series in _prometheus(profile, profile.rps_query or "", start, end, deadline):
-            values.extend(float(value) for _, value in series.get("values", []) if math.isfinite(float(value)))
+        workload = _prometheus(profile, profile.rps_query or "", start, end, deadline, annotations)
+        if len(workload) != 1:
+            raise TelemetrySourceError("workload query must return exactly one aggregated series")
+        for timestamp, value in workload[0].get("values", []):
+            value = float(value)
+            if start <= float(timestamp) <= end and math.isfinite(value):
+                values.append(value)
         if not values:
             raise TelemetrySourceError("workload intensity is unavailable")
         rps = sum(values) / len(values)
@@ -310,6 +428,23 @@ def collect(profile: LiveProfile, start: float, end: float) -> tuple[dict, dict]
         "trace_error": trace_error,
         "metric_families_by_service": {s: sorted(families) for s, families in coverage.items()},
         "metric_sample_count": len(metrics),
+        "metric_point_coverage": {
+            service: {family: min(1.0, point_counts[(service, family)]
+                                         / (math.floor((end - start) / profile.query_step_seconds) + 1))
+                      for family in FAMILIES}
+            for service in profile.services
+        },
         "span_count": len(traces),
+        "services_without_spans": sorted(set(profile.services) - {span["service"] for span in traces}),
+        "annotations": annotations,
+        "collected_at_unix": collected_at,
+        "query_step_seconds": profile.query_step_seconds,
+        "trace_api": profile.trace_contract,
+        "trace_tested_version": profile.trace_version,
+        "trace_query_services": query_services,
+        "input_sha256": hashlib.sha256(json.dumps(
+            window, sort_keys=True, separators=(",", ":"), allow_nan=False,
+        ).encode()).hexdigest(),
+        "elapsed_seconds": round(time.monotonic() - deadline + MAX_COLLECTION_SECONDS, 4),
     }
     return window, status

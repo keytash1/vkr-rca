@@ -4,6 +4,9 @@ from __future__ import annotations
 
 import json
 import shutil
+import os
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -37,6 +40,9 @@ class ProductBundleTests(unittest.TestCase):
             (root / "deploy/product/verify_bundle.py").write_bytes(
                 (ROOT / "deploy/product/verify_bundle.py").read_bytes()
             )
+            (root / "deploy/product/runtime-pyproject.toml").write_bytes(
+                (ROOT / "deploy/product/runtime-pyproject.toml").read_bytes()
+            )
             artifact = root / "deploy/profiles/artifacts/portable"
             artifact.mkdir(parents=True)
             for name in ("healthy-baseline.json", "legacy-metric-baseline.json"):
@@ -51,6 +57,9 @@ class ProductBundleTests(unittest.TestCase):
             with ZipFile(archive_path) as archive:
                 self.assertIsNone(archive.testzip())
                 self.assertFalse(any(name.startswith("ml/models/m14/") for name in archive.namelist()))
+                self.assertFalse(any(name.startswith("ml/models/m10d-integration/") for name in archive.namelist()))
+                self.assertNotIn("ml/rca_ml/m12_evaluate.py", archive.namelist())
+                self.assertNotIn("ml/rca_ml/m14_runtime.py", archive.namelist())
                 self.assertFalse(any("evaluation" in name or "external-data" in name for name in archive.namelist()))
                 self.assertFalse(any(name.endswith(("m14_evaluate.py", "m13_experiment.py", "train.py"))
                                      for name in archive.namelist()))
@@ -69,6 +78,16 @@ class ProductBundleTests(unittest.TestCase):
             app = DiagnosticApplication(Path(temporary) / "installed")
             self.assertEqual(list(app.profiles), ["portable"])
             self.assertIsNone(app.runtime)
+            # Fresh imports must not be masked by the parent's sys.modules.
+            environment = os.environ | {"PYTHONPATH": os.pathsep.join((str(installed / "ml"), str(installed / "cmd/thesis_demo")))}
+            cold = subprocess.run([sys.executable, "-c",
+                "from pathlib import Path; from server import DiagnosticApplication; "
+                "app = DiagnosticApplication(Path.cwd()); "
+                "assert list(app.profiles) == ['portable'], app.profile_errors; "
+                "assert app.runtime is None; print('clean-process-ok')"],
+                cwd=installed, env=environment, capture_output=True, text=True, timeout=30)
+            self.assertEqual(cold.returncode, 0, cold.stderr)
+            self.assertIn("clean-process-ok", cold.stdout)
 
 
 if __name__ == "__main__":

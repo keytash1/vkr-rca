@@ -11,7 +11,7 @@ GitHub хранит исходный код, модели и историю из
 git clone --branch codex/portable-diagnostics https://github.com/keytash1/vkr-rca.git
 cd vkr-rca
 python3 -m venv .venv
-.venv/bin/python -m pip install ./ml
+.venv/bin/python -m pip install -r deploy/product/requirements.txt
 ```
 
 Запуск из корня репозитория:
@@ -30,13 +30,13 @@ Check the application with:
 PYTHONPATH=ml:cmd/thesis_demo .venv/bin/python -m unittest discover -s cmd/thesis_demo -p 'test_*.py' -v
 ```
 
-The tests cover HTTP behavior, rejection of truth fields and invalid intervals, exact agreement for all 50 saved incidents with sealed rankings, profile-based collection through local Prometheus/Jaeger-compatible fakes, source failures and healthy-baseline setup for a different service set. The application is read-only and binds to loopback by default; use authentication and transport security before exposing it outside a trusted local environment. A successful connection test does not establish accuracy on an unrelated system.
+Install `requirements-dev.txt` before running the tests. They cover HTTP/OpenAPI contracts, rejection of truth fields and invalid intervals, profile collection, source failures, baseline setup, artifact integrity and exact agreement for available saved inputs. The full local corpus contains 50 inputs; a clean public checkout ships one regression case, not the whole corpus. Real-source engineering checks additionally use our three Go services and external Spring Petclinic, including source shutdown/recovery. See [acceptance progress](docs/PROGRESS_PRODUCT_FINAL.md), [runtime audit](docs/product-acceptance/RUNTIME_AUDIT.md) and [API guide](docs/product-architecture/API.md). The application is read-only and binds to loopback by default; external access requires independent authentication/TLS protection. Engineering connection checks do not establish RCA accuracy on another system.
 
 ## Current research status: M14 final freeze
 
 Astronomy Shop: **SUPPORTED_TRANSFER**, 50 incidents / 25 clusters, AC@1 **0.50**, AC@3 **0.70**, AC@5 **0.78**, MRR **0.629955**, candidate coverage **1.00**. M13 beats chance, the metric heuristic and frozen M11 under the preregistered paired cluster gates. The stronger Top-3/Top-5 gates fail; this is not universal or production-ready RCA.
 
-Research is now **FINAL_RESEARCH_FREEZE**; Astronomy Shop is **USED_TEST**. No further training, feature/threshold tuning or extra test systems. The profile-based live ingestion path is implemented and verified against local telemetry-source fakes. The controlled quantitative results above are separate from that integration test; they do not prove production accuracy on another system.
+Research is **FINAL_RESEARCH_FREEZE**; Astronomy Shop is **USED_TEST**. No further training, feature/threshold tuning or additional model-selection/accuracy trials use this test. Engineering acceptance of the profile ingestion path is recorded separately on real Prometheus/Jaeger sources for two application stacks. Those checks verify collection and execution, not new accuracy claims or production effectiveness.
 
 See [full results](docs/m14-results.md), [claim boundaries](docs/m14-claim-registry.md), [error analysis](docs/m14-error-analysis.md), [engineering exceptions](docs/m14-engineering-log.md), and [final research freeze](docs/final-research-freeze.md). Machine-readable evidence and compact truth/rankings for independent metric reproduction are in `ml/models/m14/`.
 

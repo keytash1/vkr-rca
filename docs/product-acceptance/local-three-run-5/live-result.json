@@ -1,0 +1,243 @@
+{
+  "baseline_sha256": "3519d0c3022f250d231be05c5b0886f69a41610e4a1671efc157fa9dc3b7d44a",
+  "candidate_count": 3,
+  "candidates": [
+    {
+      "evidence": {
+        "coverage": {
+          "metrics": 1.0,
+          "topology": 1.0,
+          "traces": 1.0
+        },
+        "dependency_wait_support": 0.0,
+        "disappearance_support": 0.002250000000000002,
+        "metric_support": 3.620592589890009,
+        "propagation_support": 0.5,
+        "trace_local_support": 0.12318840579710144
+      },
+      "model_score": -1.1839841604232788,
+      "observations": {
+        "metrics": {
+          "cpu": {
+            "max": 0.009630188,
+            "median": 0.006217983,
+            "min": 0.003794102,
+            "samples": 21,
+            "unit": "cores"
+          },
+          "memory": {
+            "max": 24002560.0,
+            "median": 23998464.0,
+            "min": 23998464.0,
+            "samples": 21,
+            "unit": "bytes"
+          },
+          "network": {
+            "max": 15212.5,
+            "median": 13619.25,
+            "min": 10201.25,
+            "samples": 21,
+            "unit": "bytes_per_second"
+          },
+          "traffic_rate": {
+            "max": 4622.75,
+            "median": 4338.5,
+            "min": 3249.75,
+            "samples": 21,
+            "unit": "bytes_per_second"
+          }
+        },
+        "traces": {
+          "count": 398,
+          "errors": 0
+        }
+      },
+      "rank": 1,
+      "service": "gateway"
+    },
+    {
+      "evidence": {
+        "coverage": {
+          "metrics": 1.0,
+          "topology": 1.0,
+          "traces": 1.0
+        },
+        "dependency_wait_support": 0.0,
+        "disappearance_support": 0.002250000000000002,
+        "metric_support": 5.2753859673220935,
+        "propagation_support": 0.5,
+        "trace_local_support": 0.09999999999999999
+      },
+      "model_score": -1.2003217935562134,
+      "observations": {
+        "metrics": {
+          "cpu": {
+            "max": 0.005495303,
+            "median": 0.002927815,
+            "min": 0.001960004,
+            "samples": 21,
+            "unit": "cores"
+          },
+          "memory": {
+            "max": 22220800.0,
+            "median": 22220800.0,
+            "min": 22089728.0,
+            "samples": 21,
+            "unit": "bytes"
+          },
+          "network": {
+            "max": 7452.0,
+            "median": 6521.0,
+            "min": 4885.5,
+            "samples": 21,
+            "unit": "bytes_per_second"
+          },
+          "traffic_rate": {
+            "max": 2298.5,
+            "median": 2154.0,
+            "min": 1615.5,
+            "samples": 21,
+            "unit": "bytes_per_second"
+          }
+        },
+        "traces": {
+          "count": 199,
+          "errors": 0
+        }
+      },
+      "rank": 2,
+      "service": "payment"
+    },
+    {
+      "evidence": {
+        "coverage": {
+          "metrics": 1.0,
+          "topology": 1.0,
+          "traces": 1.0
+        },
+        "dependency_wait_support": 0.07934005398253165,
+        "disappearance_support": 0.002250000000000002,
+        "metric_support": 4.268288255581775,
+        "propagation_support": 0.3333333333333333,
+        "trace_local_support": 0.08333333333333452
+      },
+      "model_score": -1.226628065109253,
+      "observations": {
+        "metrics": {
+          "cpu": {
+            "max": 0.007322291,
+            "median": 0.004735901,
+            "min": 0.002981934,
+            "samples": 21,
+            "unit": "cores"
+          },
+          "memory": {
+            "max": 22417408.0,
+            "median": 22417408.0,
+            "min": 22417408.0,
+            "samples": 21,
+            "unit": "bytes"
+          },
+          "network": {
+            "max": 12793.0,
+            "median": 11321.5,
+            "min": 8492.75,
+            "samples": 21,
+            "unit": "bytes_per_second"
+          },
+          "traffic_rate": {
+            "max": 3690.5,
+            "median": 3464.0,
+            "min": 2598.0,
+            "samples": 21,
+            "unit": "bytes_per_second"
+          }
+        },
+        "traces": {
+          "count": 398,
+          "errors": 0
+        }
+      },
+      "rank": 3,
+      "service": "orders"
+    }
+  ],
+  "causal_status": "DIAGNOSTIC_RANKING_ONLY",
+  "end_unix": 1792153692,
+  "feature_schema_sha256": "bdbb1134867f8c9883450933c35dda0f43d52da238de5f6834cd9d3b94b0716c",
+  "incident_id": "live-4fc19739441f14f8",
+  "input_sha256": "afc6b042a5afce64db0dae0ff42ce92adac5d11cbf05d425fb136a7dc805f087",
+  "method": "Диагностическое ранжирование сервисов",
+  "model_count": 5,
+  "model_version": "m13-freeze-v1",
+  "profile_id": "local-three",
+  "profile_version": "acceptance-4",
+  "result_id": "55e5e838-11ad-418f-92cf-d1bbfb51c905",
+  "schema_version": "1.0",
+  "source_status": {
+    "annotations": [],
+    "collected_at_unix": 1792153713.4892921,
+    "elapsed_seconds": 0.195,
+    "input_sha256": "afc6b042a5afce64db0dae0ff42ce92adac5d11cbf05d425fb136a7dc805f087",
+    "metric_families_by_service": {
+      "gateway": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ],
+      "orders": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ],
+      "payment": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ]
+    },
+    "metric_point_coverage": {
+      "gateway": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      },
+      "orders": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      },
+      "payment": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      }
+    },
+    "metric_sample_count": 252,
+    "metrics": "available",
+    "query_step_seconds": 2,
+    "services_without_spans": [],
+    "span_count": 995,
+    "trace_api": "jaeger-http-json",
+    "trace_error": null,
+    "trace_query_services": [
+      "gateway",
+      "orders",
+      "payment"
+    ],
+    "trace_tested_version": "2.20.0",
+    "traces": "available"
+  },
+  "start_unix": 1792153652,
+  "timing": {
+    "calculation_seconds": 0.016,
+    "collection_seconds": 0.1962,
+    "total_seconds": 0.2121
+  }
+}

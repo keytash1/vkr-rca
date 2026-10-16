@@ -12,7 +12,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from live_sources import FAMILIES, LiveProfile, collect
+from live_sources import FAMILIES, LiveProfile, baseline_issues, collect
 from rca_ml.m12_adapter import robust_baseline
 from rca_ml.m13_features import fit_healthy_baseline
 
@@ -35,6 +35,9 @@ def prepare(root: Path, profile_path: Path, start: float, end: float) -> dict:
     if end - start < 60:
         raise ValueError("healthy interval must be at least 60 seconds")
     window, status = collect(profile, start, end)
+    issues = baseline_issues(profile, window, status, start, end)
+    if issues:
+        raise ValueError("; ".join(issues))
     if status["traces"] != "available" or not window["traces"]:
         raise ValueError("healthy trace source is unavailable or empty")
     missing = {
@@ -68,10 +71,16 @@ def prepare(root: Path, profile_path: Path, start: float, end: float) -> dict:
             "role": "UNLABELED_HEALTHY_ENGINEERING",
         },
     }
+    outputs["provenance.json"]["files_sha256"] = {
+        name: hashlib.sha256((json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode()).hexdigest()
+        for name, value in outputs.items() if name != "provenance.json"
+    }
+    outputs["provenance.json"]["source_status"] = status
     profile.artifact_dir.mkdir(parents=True, exist_ok=False)
     for name, value in outputs.items():
         (profile.artifact_dir / name).write_text(
-            json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+            json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8", newline="\n",
         )
     return outputs["provenance.json"] | {"artifact_dir": str(profile.artifact_dir)}
 

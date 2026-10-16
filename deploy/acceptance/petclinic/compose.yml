@@ -1,0 +1,86 @@
+name: rca-petclinic-acceptance
+
+x-java: &java
+  mem_limit: 512m
+  environment: &java-env
+    JAVA_TOOL_OPTIONS: "-Xms64m -Xmx256m -XX:ActiveProcessorCount=2"
+    SPRING_PROFILES_ACTIVE: docker
+    MANAGEMENT_TRACING_SAMPLING_PROBABILITY: "1.0"
+    MANAGEMENT_TRACING_EXPORT_ZIPKIN_ENDPOINT: http://tracing-server:9411/api/v2/spans
+    MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://tracing-server:9411/api/v2/spans
+  depends_on:
+    config-server: {condition: service_healthy}
+    discovery-server: {condition: service_healthy}
+  labels: {io.vkr.telemetry: enabled}
+
+services:
+  config-server:
+    image: springcommunity/spring-petclinic-config-server@sha256:db14626a92afda51963a29804fe24329b7711467ffdc7dc2157fe800abc3f756
+    mem_limit: 512m
+    environment:
+      JAVA_TOOL_OPTIONS: "-Xms64m -Xmx256m -XX:ActiveProcessorCount=2"
+      SPRING_PROFILES_ACTIVE: native
+      GIT_REPO: /config
+    volumes: ["../../../external-data/product-acceptance/spring-petclinic-microservices-config:/config:ro"]
+    healthcheck:
+      test: [CMD, curl, -fsS, http://localhost:8888/actuator/health]
+      interval: 5s
+      timeout: 4s
+      retries: 40
+  discovery-server:
+    image: springcommunity/spring-petclinic-discovery-server@sha256:c3cb50137cf7f2f61ac7f3f878f93b79a3b71213360a0d4550a4f5ab4418c342
+    mem_limit: 512m
+    environment:
+      <<: *java-env
+    depends_on:
+      config-server: {condition: service_healthy}
+    healthcheck:
+      test: [CMD, curl, -fsS, http://localhost:8761/actuator/health]
+      interval: 5s
+      timeout: 4s
+      retries: 40
+  customers-service:
+    <<: *java
+    image: springcommunity/spring-petclinic-customers-service@sha256:ab1181fed9b1c23a74a442c1c1625f1ab34b4e0e928192cb5db77eef3f75b14a
+  visits-service:
+    <<: *java
+    image: springcommunity/spring-petclinic-visits-service@sha256:307ae223b722d13b7a0e35ef34e93352ab118687d9a0e189565392244031a1c7
+  vets-service:
+    <<: *java
+    image: springcommunity/spring-petclinic-vets-service@sha256:963f480587e365b7ef17fdbcce5267ac3aa3436f649852cc7eb4f85da86abab4
+  api-gateway:
+    <<: *java
+    image: springcommunity/spring-petclinic-api-gateway@sha256:250c96946936d623d4ded3e1987fd76d61a66a3125913e5eee6556f2a80d5862
+    ports: ["127.0.0.1:18880:8080"]
+  collector:
+    image: otel/opentelemetry-collector-contrib@sha256:c5918f78992ee73b0d6f0e599423ac5ec52dd5d9726733114d6eca53d5a32ed5
+    command: ["--config=/etc/otelcol.yaml"]
+    volumes: ["./collector.yml:/etc/otelcol.yaml:ro"]
+    mem_limit: 160m
+    networks:
+      default:
+        aliases: [tracing-server]
+  jaeger:
+    image: jaegertracing/jaeger@sha256:46a886260e04002d8f45e213fc39063fa11a50446048fdaa64786fc0840cb9f8
+    ports: ["127.0.0.1:19687:16686"]
+    mem_limit: 384m
+  metrics-exporter:
+    image: vkr-rca/resource-exporter:acceptance-v1
+    environment: {COMPOSE_PROJECT: rca-petclinic-acceptance}
+    volumes: ["/var/run/docker.sock:/var/run/docker.sock:ro"]
+    mem_limit: 64m
+  workload:
+    image: python:3.12-slim
+    command: [python, /workload.py, --rate, "3",
+              --url, http://api-gateway:8080/api/gateway/owners/1,
+              --url, http://api-gateway:8080/api/vet/vets,
+              --url, http://api-gateway:8080/api/customer/owners]
+    volumes: ["../workload.py:/workload.py:ro"]
+    depends_on: [api-gateway]
+    mem_limit: 64m
+  prometheus:
+    image: prom/prometheus@sha256:f6639335d34a77d9d9db382b92eeb7fc00934be8eae81dbc03b31cfe90411a94
+    command: ["--config.file=/etc/prometheus/prometheus.yml", "--storage.tsdb.retention.time=6h"]
+    volumes: ["../prometheus.yml:/etc/prometheus/prometheus.yml:ro"]
+    ports: ["127.0.0.1:19991:9090"]
+    mem_limit: 256m

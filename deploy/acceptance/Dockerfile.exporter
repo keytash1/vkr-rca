@@ -1,0 +1,7 @@
+FROM golang:1.26-alpine AS build
+WORKDIR /src
+COPY cmd/telemetry-exporter/main.go ./main.go
+RUN CGO_ENABLED=0 go build -trimpath -o /exporter ./main.go
+FROM alpine:3.23
+COPY --from=build /exporter /usr/local/bin/exporter
+ENTRYPOINT ["/usr/local/bin/exporter"]

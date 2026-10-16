@@ -25,6 +25,10 @@ class FakeTelemetry(BaseHTTPRequestHandler):
     fail_metrics = False
     fail_traces = False
     duplicate_metrics = False
+    warn_metrics = False
+    missing_network = False
+    nonfinite_cpu = False
+    disconnected_traces = False
 
     def log_message(self, *_args):
         pass
@@ -47,6 +51,12 @@ class FakeTelemetry(BaseHTTPRequestHandler):
             ]}}
             if self.duplicate_metrics:
                 payload["data"]["result"].append(payload["data"]["result"][0])
+            if self.warn_metrics:
+                payload["warnings"] = ["source returned partial query data"]
+            if self.missing_network and query == "network":
+                payload["data"]["result"] = []
+            if self.nonfinite_cpu and query == "cpu":
+                payload["data"]["result"][0]["values"][0][1] = "NaN"
         elif parsed.path == "/api/traces":
             if self.fail_traces:
                 self.send_error(503)
@@ -59,6 +69,10 @@ class FakeTelemetry(BaseHTTPRequestHandler):
                            "tags": [{"key": "span.kind", "value": "SERVER"}],
                            "references": []}],
             }]}
+            if self.disconnected_traces and args["service"][0] == "ad":
+                payload["data"][0]["traceID"] = "isolated-ad"
+                payload["data"][0]["processes"]["p1"]["serviceName"] = "ad"
+                payload["data"][0]["spans"][0]["traceID"] = "isolated-ad"
         else:
             self.send_error(404)
             return
@@ -139,6 +153,50 @@ class LivePathTests(unittest.TestCase):
             self.assertEqual(result["candidate_count"], 12)
         finally:
             FakeTelemetry.fail_traces = False
+
+    def test_successful_prometheus_warnings_reach_the_result(self):
+        FakeTelemetry.warn_metrics = True
+        try:
+            _, result = self.request("/api/analyze", {
+                "profile_id": "lab-system", "start_unix": 1_700_000_100,
+                "end_unix": 1_700_000_130,
+            })
+            self.assertEqual(len(result["source_status"]["annotations"]), 4)
+            self.assertEqual(len(result["input_sha256"]), 64)
+            self.assertEqual(result["source_status"]["annotations"][0]["level"], "warnings")
+        finally:
+            FakeTelemetry.warn_metrics = False
+
+    def test_missing_metric_family_and_nonfinite_are_not_measured_zero(self):
+        for flag, missing in (("missing_network", "network"), ("nonfinite_cpu", "cpu")):
+            setattr(FakeTelemetry, flag, True)
+            try:
+                _, result = self.request("/api/analyze", {
+                    "profile_id": "lab-system", "start_unix": 1_700_000_100,
+                    "end_unix": 1_700_000_130,
+                })
+                self.assertEqual(result["candidate_count"], 12)
+                self.assertNotIn(missing, result["source_status"]["metric_families_by_service"]["frontend"])
+                candidate = next(x for x in result["candidates"] if x["service"] == "frontend")
+                self.assertNotIn(missing, candidate["observations"]["metrics"])
+                if missing == "cpu":
+                    self.assertTrue(result["source_status"]["annotations"])
+            finally:
+                setattr(FakeTelemetry, flag, False)
+
+    def test_disconnected_candidate_traces_are_collected_and_duplicates_removed(self):
+        FakeTelemetry.disconnected_traces = True
+        try:
+            _, result = self.request("/api/analyze", {
+                "profile_id": "lab-system", "start_unix": 1_700_000_100,
+                "end_unix": 1_700_000_130,
+            })
+            candidate = next(x for x in result["candidates"] if x["service"] == "ad")
+            self.assertEqual(candidate["observations"]["traces"]["count"], 1)
+            self.assertEqual(result["source_status"]["span_count"], 2)
+            self.assertIn("ad", result["source_status"]["trace_query_services"])
+        finally:
+            FakeTelemetry.disconnected_traces = False
 
     def test_metric_source_failure_rejects_ranking(self):
         FakeTelemetry.fail_metrics = True

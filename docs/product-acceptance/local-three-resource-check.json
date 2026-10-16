@@ -1,0 +1,254 @@
+{
+  "checks": {
+    "cpu_matches_independent_formula": true,
+    "cpu_responds_to_current_load": true,
+    "memory_matches_working_set": true,
+    "network_receive_rate_observed": true,
+    "probe_observed_in_raw_counters": true
+  },
+  "container_id": "80daaabafb1994c33590654a85573b1a549f3e1becab11abc7b874fae4fc454c",
+  "cpu_before": [
+    1792150070.811,
+    "0.005282565"
+  ],
+  "cpu_exported_during_probe": [
+    1792150078.83,
+    "0.9944789725000001"
+  ],
+  "cpu_reference_cores": 1.0005973973973974,
+  "memory_exported": [
+    1792150078.831,
+    "24010752"
+  ],
+  "memory_reference_bytes": 24010752,
+  "network_receive_rate": [
+    1792150078.831,
+    "4373.111111111111"
+  ],
+  "probe_exit_code": 143,
+  "project": "rca-product-acceptance",
+  "purpose": "ENGINEERING_TELEMETRY_VALIDATION_NOT_MODEL_ACCURACY",
+  "raw_after": {
+    "blkio_stats": {
+      "io_merged_recursive": null,
+      "io_queue_recursive": null,
+      "io_service_bytes_recursive": [
+        {
+          "major": 253,
+          "minor": 16,
+          "op": "read",
+          "value": 15638528
+        },
+        {
+          "major": 253,
+          "minor": 16,
+          "op": "write",
+          "value": 0
+        }
+      ],
+      "io_service_time_recursive": null,
+      "io_serviced_recursive": null,
+      "io_time_recursive": null,
+      "io_wait_time_recursive": null,
+      "sectors_recursive": null
+    },
+    "cpu_stats": {
+      "cpu_usage": {
+        "total_usage": 17679777000,
+        "usage_in_kernelmode": 3425160000,
+        "usage_in_usermode": 14254617000
+      },
+      "online_cpus": 2,
+      "system_cpu_usage": 23528090000000,
+      "throttling_data": {
+        "periods": 0,
+        "throttled_periods": 0,
+        "throttled_time": 0
+      }
+    },
+    "id": "80daaabafb1994c33590654a85573b1a549f3e1becab11abc7b874fae4fc454c",
+    "memory_stats": {
+      "limit": 134217728,
+      "stats": {
+        "active_anon": 7626752,
+        "active_file": 15511552,
+        "anon": 7626752,
+        "anon_thp": 0,
+        "file": 15638528,
+        "file_dirty": 0,
+        "file_mapped": 13852672,
+        "file_writeback": 0,
+        "inactive_anon": 0,
+        "inactive_file": 126976,
+        "kernel_stack": 163840,
+        "pgactivate": 0,
+        "pgdeactivate": 0,
+        "pgfault": 5480,
+        "pglazyfree": 0,
+        "pglazyfreed": 0,
+        "pgmajfault": 135,
+        "pgrefill": 0,
+        "pgscan": 0,
+        "pgsteal": 0,
+        "shmem": 0,
+        "slab": 444184,
+        "slab_reclaimable": 185840,
+        "slab_unreclaimable": 258344,
+        "sock": 0,
+        "thp_collapse_alloc": 0,
+        "thp_fault_alloc": 0,
+        "unevictable": 0,
+        "workingset_activate": 0,
+        "workingset_nodereclaim": 0,
+        "workingset_refault": 0
+      },
+      "usage": 24137728
+    },
+    "name": "/rca-product-acceptance-gateway-1",
+    "networks": {
+      "eth0": {
+        "rx_bytes": 6640866,
+        "rx_dropped": 0,
+        "rx_errors": 0,
+        "rx_packets": 53134,
+        "tx_bytes": 14191196,
+        "tx_dropped": 0,
+        "tx_errors": 0,
+        "tx_packets": 59978
+      }
+    },
+    "num_procs": 0,
+    "os_type": "linux",
+    "pids_stats": {
+      "current": 11,
+      "limit": 18446744073709551615
+    },
+    "precpu_stats": {
+      "cpu_usage": {
+        "total_usage": 0,
+        "usage_in_kernelmode": 0,
+        "usage_in_usermode": 0
+      },
+      "throttling_data": {
+        "periods": 0,
+        "throttled_periods": 0,
+        "throttled_time": 0
+      }
+    },
+    "preread": "0001-01-01T00:00:00Z",
+    "read": "2026-10-16T11:27:58.828340185Z",
+    "storage_stats": {}
+  },
+  "raw_before": {
+    "blkio_stats": {
+      "io_merged_recursive": null,
+      "io_queue_recursive": null,
+      "io_service_bytes_recursive": [
+        {
+          "major": 253,
+          "minor": 16,
+          "op": "read",
+          "value": 15638528
+        },
+        {
+          "major": 253,
+          "minor": 16,
+          "op": "write",
+          "value": 0
+        }
+      ],
+      "io_service_time_recursive": null,
+      "io_serviced_recursive": null,
+      "io_time_recursive": null,
+      "io_wait_time_recursive": null,
+      "sectors_recursive": null
+    },
+    "cpu_stats": {
+      "cpu_usage": {
+        "total_usage": 12681793000,
+        "usage_in_kernelmode": 3425160000,
+        "usage_in_usermode": 9256633000
+      },
+      "online_cpus": 2,
+      "system_cpu_usage": 23518100000000,
+      "throttling_data": {
+        "periods": 0,
+        "throttled_periods": 0,
+        "throttled_time": 0
+      }
+    },
+    "id": "80daaabafb1994c33590654a85573b1a549f3e1becab11abc7b874fae4fc454c",
+    "memory_stats": {
+      "limit": 134217728,
+      "stats": {
+        "active_anon": 7626752,
+        "active_file": 15511552,
+        "anon": 7626752,
+        "anon_thp": 0,
+        "file": 15638528,
+        "file_dirty": 0,
+        "file_mapped": 13852672,
+        "file_writeback": 0,
+        "inactive_anon": 0,
+        "inactive_file": 126976,
+        "kernel_stack": 163840,
+        "pgactivate": 0,
+        "pgdeactivate": 0,
+        "pgfault": 5480,
+        "pglazyfree": 0,
+        "pglazyfreed": 0,
+        "pgmajfault": 135,
+        "pgrefill": 0,
+        "pgscan": 0,
+        "pgsteal": 0,
+        "shmem": 0,
+        "slab": 444184,
+        "slab_reclaimable": 185840,
+        "slab_unreclaimable": 258344,
+        "sock": 0,
+        "thp_collapse_alloc": 0,
+        "thp_fault_alloc": 0,
+        "unevictable": 0,
+        "workingset_activate": 0,
+        "workingset_nodereclaim": 0,
+        "workingset_refault": 0
+      },
+      "usage": 24137728
+    },
+    "name": "/rca-product-acceptance-gateway-1",
+    "networks": {
+      "eth0": {
+        "rx_bytes": 6619421,
+        "rx_dropped": 0,
+        "rx_errors": 0,
+        "rx_packets": 52964,
+        "tx_bytes": 14145163,
+        "tx_dropped": 0,
+        "tx_errors": 0,
+        "tx_packets": 59788
+      }
+    },
+    "num_procs": 0,
+    "os_type": "linux",
+    "pids_stats": {
+      "current": 11,
+      "limit": 18446744073709551615
+    },
+    "precpu_stats": {
+      "cpu_usage": {
+        "total_usage": 0,
+        "usage_in_kernelmode": 0,
+        "usage_in_usermode": 0
+      },
+      "throttling_data": {
+        "periods": 0,
+        "throttled_periods": 0,
+        "throttled_time": 0
+      }
+    },
+    "preread": "0001-01-01T00:00:00Z",
+    "read": "2026-10-16T11:27:53.820228558Z",
+    "storage_stats": {}
+  },
+  "recorded_at_utc": "2026-10-16T11:28:05.836698+00:00"
+}

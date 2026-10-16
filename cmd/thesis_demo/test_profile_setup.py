@@ -30,15 +30,17 @@ class ProfileSetupTests(unittest.TestCase):
                 "workload": {"fixed_requests_per_second": 4},
             }))
             metrics = [
-                {"timestamp": 1_700_000_010, "service": service, "family": family,
+                {"timestamp": timestamp, "service": service, "family": family,
                  "value": 1.0, "unit": CANONICAL_UNITS[family]}
                 for service in ("api", "worker") for family in CANONICAL_UNITS
+                for timestamp in range(1_700_000_000, 1_700_000_101)
             ]
             trace = {"trace_id": "healthy-1", "span_id": "span-1", "parent_span_id": None,
                      "service": "api", "peer_service": None, "span_kind": "SERVER",
                      "start_time_us": 1_700_000_010_000_000, "duration_us": 10_000,
                      "status_code": "OK", "error": False}
-            window = {"requests_per_second": 4.0, "metrics": metrics, "traces": [trace]}
+            window = {"requests_per_second": 4.0, "metrics": metrics,
+                      "traces": [trace, trace | {"service": "worker", "span_id": "span-2"}]}
             status = {
                 "traces": "available",
                 "metric_families_by_service": {
@@ -64,6 +66,10 @@ class ProfileSetupTests(unittest.TestCase):
                 self.assertEqual({item["service"] for item in ranked}, {"api", "worker"})
                 with self.assertRaises(FileExistsError):
                     prepare(root, profile_path, 1_700_000_000, 1_700_000_100)
+                damaged = baseline_dir / "healthy-baseline.json"
+                damaged.write_text(damaged.read_text() + " ")
+                with self.assertRaisesRegex(ValueError, "checksum differs"):
+                    ProfileTransferRuntime(ROOT, baseline_dir, ("api", "worker"))
 
 
 if __name__ == "__main__":

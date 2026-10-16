@@ -12,45 +12,51 @@
   <div class="app">
     <header class="masthead">
       <a class="identity" href="/" aria-label="Диагностика — главная">
-        <span class="identity-mark">D</span>
-        <span><strong>Диагностика</strong><small>Локализация первопричин сбоев</small></span>
+        <span><strong>Диагностика</strong><small>Расследование инцидентов</small></span>
       </a>
-      <div class="system-state"><span class="status-dot"></span><span id="readiness">Проверка модели…</span></div>
+      <div class="system-state" role="status"><span id="readiness">Проверка подключения…</span></div>
     </header>
 
     <main>
       <section class="intro">
         <div>
-          <p class="eyebrow">СИСТЕМА ПОДДЕРЖКИ РАССЛЕДОВАНИЯ ИНЦИДЕНТОВ</p>
-          <h1>С какого сервиса начать проверку?</h1>
-          <p class="lead">Система анализирует метрики и трассировки, сохраняет полный перечень сервисов и предлагает порядок инженерной проверки. Вывод о причине остаётся за специалистом.</p>
+          <h1>Анализ инцидента</h1>
+          <p class="lead">Выберите систему и интервал. Приложение получит телеметрию и предложит порядок проверки сервисов.</p>
         </div>
-        <div class="intro-stat"><span>Метод ранжирования</span><strong>Ансамбль LambdaMART</strong><small>Пять экземпляров одного ранжировщика · полный список сервисов выбранной системы</small></div>
       </section>
 
       <nav class="tabs" aria-label="Разделы">
         <button class="tab active" data-tab="analysis" aria-current="page">Анализ инцидента</button>
-        <button class="tab" data-tab="evaluation">Проверка качества</button>
-        <button class="tab" data-tab="about">Как устроена система</button>
+        <button class="tab" data-tab="evaluation">Эксперимент</button>
+        <button class="tab" data-tab="about">Справка</button>
       </nav>
 
       <section id="analysis" class="view active" aria-label="Анализ инцидента">
         <div class="analysis-grid">
-          <section class="card input-card">
-            <div class="section-index">01 / ИНЦИДЕНТ</div>
-            <h2>Запрос диагностики</h2>
-            <p class="secondary">Укажите систему и интервал уже обнаруженного инцидента. Данные будут получены из настроенных источников.</p>
+          <section class="card input-card" aria-label="Параметры запроса">
+            <h2>Параметры</h2>
+            <form id="diagnosis-form" novalidate>
             <label for="profile-select">Подключённая система</label>
             <select id="profile-select"><option value="">Загрузка профилей…</option></select>
+            <p id="profile-field-error" class="field-error" hidden></p>
             <label for="start-time">Начало инцидента</label>
             <input id="start-time" type="datetime-local" step="1">
+            <p id="start-field-error" class="field-error" hidden></p>
             <label for="end-time">Конец интервала</label>
             <input id="end-time" type="datetime-local" step="1">
-            <p class="hint">Время указывается по часам этого компьютера; запрос передаётся в UTC.</p>
-            <button id="analyze" class="primary">Рассчитать рейтинг <span aria-hidden="true">›</span></button>
-            <p id="analysis-error" class="error" role="alert" hidden></p>
+            <p id="end-field-error" class="field-error" hidden></p>
+            <div class="interval-presets" aria-label="Быстрый выбор интервала">
+              <button type="button" data-minutes="5">5 минут</button>
+              <button type="button" data-minutes="15">15 минут</button>
+              <button type="button" data-minutes="60">1 час</button>
+            </div>
+            <p id="time-hint" class="hint">Местное время компьютера.</p>
+            <button id="analyze" type="submit" class="primary">Рассчитать рейтинг</button>
+            <p id="request-status" role="status" class="hint"></p>
+            <div id="analysis-error" class="error" role="alert" tabindex="-1" hidden></div>
+            </form>
             <details class="replay-panel">
-              <summary>Воспроизвести контрольный случай</summary>
+              <summary>Контрольное воспроизведение</summary>
               <p class="hint">Технический режим для повторения испытания. Не требуется при обычной работе.</p>
               <label for="example-select">Сохранённый случай</label>
               <select id="example-select"><option value="">Загрузка списка…</option></select>
@@ -58,22 +64,20 @@
               <input id="incident-file" type="file" accept=".json,application/json">
               <button id="replay-analyze" class="secondary-button">Воспроизвести рейтинг</button>
             </details>
-            <div class="input-footnote">Балл задаёт приоритет проверки, а не доказанную причину. Разметка отказа не подаётся модели.</div>
           </section>
 
           <section class="card ranking-card">
-            <div class="section-index">02 / РЕЗУЛЬТАТ</div>
-            <div class="ranking-title"><div><h2>Очередность проверки</h2><p id="incident-label" class="secondary">Выберите систему и интервал, затем выполните анализ.</p></div><span id="candidate-count" class="count">—</span></div>
-            <div class="result-note">Балл используется для сравнения сервисов внутри одного инцидента. Это не вероятность неисправности.</div>
-            <p id="coverage-warning" class="coverage-warning" hidden></p>
+            <div class="ranking-title"><div><h2>Очередность проверки</h2><p id="incident-label" class="secondary">Результат появится после расчёта.</p></div><span id="candidate-count" class="count" hidden></span></div>
+            <div id="result-tools" hidden><button id="export-result" class="secondary-button" hidden>Сохранить результат</button><details class="result-provenance"><summary>Сведения о расчёте</summary><dl id="result-provenance"></dl></details></div>
+            <p id="result-note" class="result-note" hidden>Выше в списке — раньше в проверке. Балл сравнивает сервисы в этом интервале и не является вероятностью отказа.</p>
+            <p id="coverage-warning" class="coverage-warning" role="status" hidden></p>
             <div id="ranking" class="ranking"><div class="empty-state">После расчёта здесь появится полный рейтинг сервисов.</div></div>
           </section>
         </div>
 
-        <section class="card detail-card" aria-live="polite">
-          <div class="section-index">03 / ОСНОВАНИЯ</div>
-          <h2 id="detail-title">Наблюдения по выбранному сервису</h2>
-          <p class="secondary">Выберите строку рейтинга, чтобы увидеть отдельные группы диагностических наблюдений и полноту данных.</p>
+        <section id="service-detail" class="card detail-card" hidden>
+          <h2 id="detail-title" aria-live="polite">Наблюдения по выбранному сервису</h2>
+          <p class="secondary">Проверьте отклонения в исходной телеметрии выбранного сервиса и его зависимостей. Итоговый вывод о причине формулирует инженер.</p>
           <div id="detail" class="detail-content"><div class="empty-state">Основания появятся после анализа.</div></div>
         </section>
       </section>
@@ -92,11 +96,11 @@
           <div class="process-step"><span>03</span><h3>Ранжирование</h3><p>Пять обученных экземпляров LambdaMART оценивают всех кандидатов; их оценки усредняются.</p></div>
           <div class="process-step"><span>04</span><h3>Проверка</h3><p>Инженер изучает основания и сверяет гипотезу с исходной телеметрией.</p></div>
         </div>
-        <div class="card text-card"><h3>Что важно</h3><p>При подключении другой системы интегратор задаёт профиль и строит её базовое состояние только по нормальной работе. Файлы обученной модели при этом не изменяются. Экспериментальные показатели на соседней вкладке относятся к одной контрольной системе и не гарантируют точность на любой новой системе.</p></div>
+        <div class="card text-card"><h3>Подключение системы</h3><p>Интегратор задаёт профиль источников и строит базовое состояние по нормальной работе. Файлы обученной модели не изменяются. При изменении состава сервисов, инструментирования или режима нагрузки необходимо проверить профиль и подготовить новую версию базового состояния.</p></div>
       </section>
     </main>
 
-    <footer>ВКР · Диагностическое ранжирование сервисов · Режим только для чтения</footer>
+    <footer>Источники используются только для чтения. Приложение не изменяет состояние сервисов.</footer>
   </div>
 </body>
 </html>

@@ -1,0 +1,65 @@
+name: rca-product-acceptance
+
+x-application: &application
+  environment: &tracing
+    OTEL_EXPORTER_OTLP_ENDPOINT: collector:4317
+    OTEL_EXPORTER_OTLP_INSECURE: "true"
+  labels:
+    io.vkr.telemetry: enabled
+  mem_limit: 128m
+  depends_on: [collector]
+
+services:
+  gateway:
+    <<: *application
+    image: vkr-rca-gateway:latest
+    build: {context: ../.., args: {SERVICE: gateway}}
+    environment:
+      <<: *tracing
+      HTTP_ADDR: ":8080"
+      ORDERS_URL: http://orders:8081
+    ports: ["127.0.0.1:18680:8080"]
+  orders:
+    <<: *application
+    image: vkr-rca-orders:latest
+    build: {context: ../.., args: {SERVICE: orders}}
+    environment:
+      <<: *tracing
+      HTTP_ADDR: ":8081"
+      PAYMENT_URL: http://payment:8082
+    ports: ["127.0.0.1:18681:8081"]
+  payment:
+    <<: *application
+    image: vkr-rca-payment:latest
+    build: {context: ../.., args: {SERVICE: payment}}
+    environment:
+      <<: *tracing
+      HTTP_ADDR: ":8082"
+    ports: ["127.0.0.1:18682:8082"]
+  collector:
+    image: otel/opentelemetry-collector-contrib@sha256:c5918f78992ee73b0d6f0e599423ac5ec52dd5d9726733114d6eca53d5a32ed5
+    command: ["--config=/etc/otelcol.yaml"]
+    volumes: ["./collector.yml:/etc/otelcol.yaml:ro"]
+    mem_limit: 128m
+  jaeger:
+    image: jaegertracing/jaeger@sha256:46a886260e04002d8f45e213fc39063fa11a50446048fdaa64786fc0840cb9f8
+    ports: ["127.0.0.1:19686:16686"]
+    mem_limit: 384m
+  metrics-exporter:
+    image: vkr-rca/resource-exporter:acceptance-v1
+    build: {context: ../.., dockerfile: deploy/acceptance/Dockerfile.exporter}
+    environment: {COMPOSE_PROJECT: rca-product-acceptance}
+    volumes: ["/var/run/docker.sock:/var/run/docker.sock:ro"]
+    mem_limit: 64m
+  workload:
+    image: python:3.12-slim
+    command: ["python", "/workload.py", "--url", "http://gateway:8080/api/order", "--rate", "5"]
+    volumes: ["./workload.py:/workload.py:ro"]
+    depends_on: [gateway]
+    mem_limit: 64m
+  prometheus:
+    image: prom/prometheus@sha256:f6639335d34a77d9d9db382b92eeb7fc00934be8eae81dbc03b31cfe90411a94
+    command: ["--config.file=/etc/prometheus/prometheus.yml", "--storage.tsdb.retention.time=6h"]
+    volumes: ["./prometheus.yml:/etc/prometheus/prometheus.yml:ro"]
+    ports: ["127.0.0.1:19990:9090"]
+    mem_limit: 256m

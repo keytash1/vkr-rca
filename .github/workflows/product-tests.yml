@@ -15,9 +15,11 @@ jobs:
         with:
           python-version: '3.12'
           cache: pip
-          cache-dependency-path: ml/pyproject.toml
+          cache-dependency-path: |
+            ml/pyproject.toml
+            requirements-dev.txt
       - name: Install diagnostic dependencies
-        run: python -m pip install ./ml
+        run: python -m pip install ./ml -r requirements-dev.txt
       - name: Verify clean-checkout application
         env:
           PYTHONPATH: ml:cmd/thesis_demo

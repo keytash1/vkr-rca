@@ -19,22 +19,22 @@ SEEDS = range(20260906, 20260911)
 MODEL_FILES = (
     "ml/models/m10c-v2/feature-schema.json",
     "ml/models/m10c-v2/m10c-core-v2.json",
-    *(f"ml/models/m10d-integration/reranker-seed-{seed}.json" for seed in SEEDS),
     *(f"ml/models/m11/candidate-recovery-k5-seed-{seed}.json" for seed in SEEDS),
     "ml/models/m12/ood-stats.json",
     "ml/models/m13/freeze-manifest.json",
     *(f"ml/models/m13/diagnostic-ranker-seed-{seed}.json" for seed in SEEDS),
 )
 RUNTIME_MODULES = (
-    "__init__", "dataset", "m10c_schema", "m10d_reranker", "m11_protocol",
-    "m12_adapter", "m12_evaluate", "m12_report", "m13_features",
-    "m13_protocol", "m13_runtime", "m13_trace", "m14_runtime", "schema",
+    "__init__", "m10c_schema", "m10d_reranker", "m11_protocol",
+    "m12_adapter", "m13_features", "m13_protocol", "m13_trace", "schema",
 )
 
 
 def build(root: Path, profile_path: Path, output: Path) -> dict:
     root = root.resolve()
     profile_path = profile_path.resolve()
+    if output.exists():
+        raise FileExistsError("refusing to replace an existing product snapshot")
     if output.resolve() == profile_path or output.resolve().is_relative_to(root / "ml/models"):
         raise ValueError("output path would overwrite an input artifact")
     profile = json.loads(profile_path.read_text())
@@ -61,7 +61,7 @@ def build(root: Path, profile_path: Path, output: Path) -> dict:
     for source in sorted((root / "cmd/thesis_demo/static").iterdir()):
         if source.is_file():
             files[str(source.relative_to(root))] = source.read_bytes()
-    files["ml/pyproject.toml"] = (root / "ml/pyproject.toml").read_bytes()
+    files["ml/pyproject.toml"] = (root / "deploy/product/runtime-pyproject.toml").read_bytes()
     files["README.md"] = (root / "deploy/product/README.md").read_bytes()
     files["verify_bundle.py"] = (root / "deploy/product/verify_bundle.py").read_bytes()
     files[f"deploy/profiles/{profile_id}.json"] = json.dumps(
@@ -89,7 +89,7 @@ def build(root: Path, profile_path: Path, output: Path) -> dict:
         "files_sha256": {name: hashlib.sha256(data).hexdigest() for name, data in sorted(files.items())},
     }
     output.parent.mkdir(parents=True, exist_ok=True)
-    with ZipFile(output, "w", compression=ZIP_DEFLATED) as archive:
+    with ZipFile(output, "x", compression=ZIP_DEFLATED) as archive:
         for name, data in sorted(files.items()):
             archive.writestr(name, data)
         archive.writestr("bundle-manifest.json", json.dumps(manifest, indent=2, sort_keys=True) + "\n")

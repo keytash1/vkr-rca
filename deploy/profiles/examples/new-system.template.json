@@ -9,15 +9,19 @@
   "metrics": {
     "url": "https://prometheus.example.invalid",
     "service_label": "service",
+    "query_step_seconds": 2,
+    "baseline_min_coverage": 0.8,
     "queries": {
       "cpu": "REPLACE_WITH_CPU_CORES_PROMQL_GROUPED_BY_SERVICE",
       "memory": "REPLACE_WITH_MEMORY_BYTES_PROMQL_GROUPED_BY_SERVICE",
-      "network": "REPLACE_WITH_NETWORK_BYTES_PER_SECOND_PROMQL_GROUPED_BY_SERVICE",
-      "traffic_rate": "REPLACE_WITH_TRAFFIC_BYTES_PER_SECOND_PROMQL_GROUPED_BY_SERVICE"
+      "network": "REPLACE_WITH_RX_PLUS_TX_5S_RATE_BYTES_PER_SECOND_GROUPED_BY_SERVICE",
+      "traffic_rate": "REPLACE_WITH_RX_5S_RATE_BYTES_PER_SECOND_GROUPED_BY_SERVICE"
     }
   },
   "traces": {
     "url": "https://jaeger.example.invalid",
+    "api": "jaeger-http-json",
+    "tested_version": "REPLACE_WITH_VERIFIED_JAEGER_VERSION",
     "query_services": ["service-a"]
   },
   "workload": {

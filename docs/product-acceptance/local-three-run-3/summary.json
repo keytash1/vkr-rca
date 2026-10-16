@@ -1,0 +1,82 @@
+{
+  "candidate_services": [
+    "gateway",
+    "orders",
+    "payment"
+  ],
+  "direct_cpu_values_match": true,
+  "intervals": {
+    "end_unix": 1792152272,
+    "healthy_end": 1792152212,
+    "healthy_start": 1792152082,
+    "start_unix": 1792152232
+  },
+  "model_version": "m13-freeze-v1",
+  "profile_id": "local-three",
+  "profile_version": "acceptance-3",
+  "purpose": "ENGINEERING_INTEGRATION_NO_ACCURACY_EVALUATION",
+  "recorded_at_utc": "2026-10-16T12:04:55.312353+00:00",
+  "replay_scores_match": true,
+  "source_status": {
+    "annotations": [],
+    "collected_at_unix": 1792152294.544349,
+    "elapsed_seconds": 0.2012,
+    "input_sha256": "2c82fa5ead36b6959c8ddd705d4b3eb47dd19de2bcfddcb5d327f4125d3c756d",
+    "metric_families_by_service": {
+      "gateway": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ],
+      "orders": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ],
+      "payment": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ]
+    },
+    "metric_point_coverage": {
+      "gateway": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      },
+      "orders": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      },
+      "payment": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      }
+    },
+    "metric_sample_count": 252,
+    "metrics": "available",
+    "query_step_seconds": 2,
+    "span_count": 995,
+    "trace_api": "jaeger-http-json",
+    "trace_error": null,
+    "trace_query_services": [
+      "gateway",
+      "orders",
+      "payment"
+    ],
+    "trace_tested_version": "2.20.0",
+    "traces": "available"
+  },
+  "status": "PASSED_API_REAL_SOURCES_BROWSER_PENDING",
+  "trace_api": "jaeger-http-json",
+  "trace_tested_version": "2.20.0"
+}

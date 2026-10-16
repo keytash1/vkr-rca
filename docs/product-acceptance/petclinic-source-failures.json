@@ -1,0 +1,1276 @@
+{
+  "cases": {
+    "before": {
+      "http_status": 200,
+      "result": {
+        "baseline_sha256": "f2dbb515468dde3e64a1cafa2ae5c5376bb16cab96720dac2dfcaee007d31a6d",
+        "candidate_count": 4,
+        "candidates": [
+          {
+            "evidence": {
+              "coverage": {
+                "metrics": 1.0,
+                "topology": 1.0,
+                "traces": 1.0
+              },
+              "dependency_wait_support": 0.2168329689116675,
+              "disappearance_support": 0.0,
+              "metric_support": 33.09776741341464,
+              "propagation_support": 0.25,
+              "trace_local_support": 0.2168329689116675
+            },
+            "model_score": 0.1048734039068222,
+            "observations": {
+              "metrics": {
+                "cpu": {
+                  "max": 0.019279452,
+                  "median": 0.011351843,
+                  "min": 0.005350764,
+                  "samples": 21,
+                  "unit": "cores"
+                },
+                "memory": {
+                  "max": 322838528.0,
+                  "median": 322834432.0,
+                  "min": 322834432.0,
+                  "samples": 21,
+                  "unit": "bytes"
+                },
+                "network": {
+                  "max": 4469.2346173086535,
+                  "median": 3471.5,
+                  "min": 1731.0,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                },
+                "traffic_rate": {
+                  "max": 1321.6608304152073,
+                  "median": 993.0,
+                  "min": 496.5,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                }
+              },
+              "traces": {
+                "count": 642,
+                "errors": 0
+              }
+            },
+            "rank": 1,
+            "service": "vets-service"
+          },
+          {
+            "evidence": {
+              "coverage": {
+                "metrics": 1.0,
+                "topology": 1.0,
+                "traces": 1.0
+              },
+              "dependency_wait_support": 0.004785154874873435,
+              "disappearance_support": 0.0,
+              "metric_support": 17.473514614874322,
+              "propagation_support": 0.0,
+              "trace_local_support": 0.041666666666666484
+            },
+            "model_score": -0.48663535714149475,
+            "observations": {
+              "metrics": {
+                "cpu": {
+                  "max": 0.042224487,
+                  "median": 0.00913375,
+                  "min": 0.00585957,
+                  "samples": 21,
+                  "unit": "cores"
+                },
+                "memory": {
+                  "max": 323047424.0,
+                  "median": 322998272.0,
+                  "min": 322936832.0,
+                  "samples": 21,
+                  "unit": "bytes"
+                },
+                "network": {
+                  "max": 2979.0,
+                  "median": 2190.5,
+                  "min": 1094.5,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                },
+                "traffic_rate": {
+                  "max": 904.0,
+                  "median": 718.0,
+                  "min": 359.0,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                }
+              },
+              "traces": {
+                "count": 162,
+                "errors": 0
+              }
+            },
+            "rank": 2,
+            "service": "visits-service"
+          },
+          {
+            "evidence": {
+              "coverage": {
+                "metrics": 1.0,
+                "topology": 1.0,
+                "traces": 1.0
+              },
+              "dependency_wait_support": 0.0,
+              "disappearance_support": 0.0,
+              "metric_support": 5.823408318562332,
+              "propagation_support": 0.5,
+              "trace_local_support": 0.08222108145106093
+            },
+            "model_score": -1.1125192642211914,
+            "observations": {
+              "metrics": {
+                "cpu": {
+                  "max": 0.134058217,
+                  "median": 0.021592067,
+                  "min": 0.012755215,
+                  "samples": 21,
+                  "unit": "cores"
+                },
+                "memory": {
+                  "max": 315543552.0,
+                  "median": 315469824.0,
+                  "min": 315326464.0,
+                  "samples": 21,
+                  "unit": "bytes"
+                },
+                "network": {
+                  "max": 17719.0,
+                  "median": 14365.182591295645,
+                  "min": 7140.0,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                },
+                "traffic_rate": {
+                  "max": 8050.0,
+                  "median": 6446.223111555777,
+                  "min": 3188.5,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                }
+              },
+              "traces": {
+                "count": 200,
+                "errors": 0
+              }
+            },
+            "rank": 3,
+            "service": "api-gateway"
+          },
+          {
+            "evidence": {
+              "coverage": {
+                "metrics": 1.0,
+                "topology": 1.0,
+                "traces": 1.0
+              },
+              "dependency_wait_support": 0.0,
+              "disappearance_support": 0.0,
+              "metric_support": 5.365450429425482,
+              "propagation_support": 0.25,
+              "trace_local_support": 0.05232457406872637
+            },
+            "model_score": -1.2003217935562134,
+            "observations": {
+              "metrics": {
+                "cpu": {
+                  "max": 0.031066322,
+                  "median": 0.011061274,
+                  "min": 0.006574316,
+                  "samples": 21,
+                  "unit": "cores"
+                },
+                "memory": {
+                  "max": 340135936.0,
+                  "median": 340090880.0,
+                  "min": 340066304.0,
+                  "samples": 21,
+                  "unit": "bytes"
+                },
+                "network": {
+                  "max": 8000.0,
+                  "median": 6466.233116558278,
+                  "min": 3156.5,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                },
+                "traffic_rate": {
+                  "max": 1646.5,
+                  "median": 1333.6668334167082,
+                  "min": 633.5,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                }
+              },
+              "traces": {
+                "count": 1122,
+                "errors": 0
+              }
+            },
+            "rank": 4,
+            "service": "customers-service"
+          }
+        ],
+        "causal_status": "DIAGNOSTIC_RANKING_ONLY",
+        "end_unix": 1792153148,
+        "feature_schema_sha256": "bdbb1134867f8c9883450933c35dda0f43d52da238de5f6834cd9d3b94b0716c",
+        "incident_id": "live-62881b91cda12e48",
+        "input_sha256": "af60f17b1d86516cc7333a941e3949d60f99eb6016dfedc54e6fc64fad8be221",
+        "method": "Диагностическое ранжирование сервисов",
+        "model_count": 5,
+        "model_version": "m13-freeze-v1",
+        "profile_id": "petclinic",
+        "profile_version": "acceptance-3",
+        "result_id": "0215d2a3-0dea-4cd4-844a-f53bd3e77c31",
+        "schema_version": "1.0",
+        "source_status": {
+          "annotations": [],
+          "collected_at_unix": 1792153339.498704,
+          "elapsed_seconds": 0.2481,
+          "input_sha256": "af60f17b1d86516cc7333a941e3949d60f99eb6016dfedc54e6fc64fad8be221",
+          "metric_families_by_service": {
+            "api-gateway": [
+              "cpu",
+              "memory",
+              "network",
+              "traffic_rate"
+            ],
+            "customers-service": [
+              "cpu",
+              "memory",
+              "network",
+              "traffic_rate"
+            ],
+            "vets-service": [
+              "cpu",
+              "memory",
+              "network",
+              "traffic_rate"
+            ],
+            "visits-service": [
+              "cpu",
+              "memory",
+              "network",
+              "traffic_rate"
+            ]
+          },
+          "metric_point_coverage": {
+            "api-gateway": {
+              "cpu": 1.0,
+              "memory": 1.0,
+              "network": 1.0,
+              "traffic_rate": 1.0
+            },
+            "customers-service": {
+              "cpu": 1.0,
+              "memory": 1.0,
+              "network": 1.0,
+              "traffic_rate": 1.0
+            },
+            "vets-service": {
+              "cpu": 1.0,
+              "memory": 1.0,
+              "network": 1.0,
+              "traffic_rate": 1.0
+            },
+            "visits-service": {
+              "cpu": 1.0,
+              "memory": 1.0,
+              "network": 1.0,
+              "traffic_rate": 1.0
+            }
+          },
+          "metric_sample_count": 336,
+          "metrics": "available",
+          "query_step_seconds": 2,
+          "services_without_spans": [],
+          "span_count": 2126,
+          "trace_api": "jaeger-http-json",
+          "trace_error": null,
+          "trace_query_services": [
+            "api-gateway",
+            "customers-service",
+            "vets-service",
+            "visits-service"
+          ],
+          "trace_tested_version": "2.20.0",
+          "traces": "available"
+        },
+        "start_unix": 1792153108,
+        "timing": {
+          "calculation_seconds": 0.0269,
+          "collection_seconds": 0.2493,
+          "total_seconds": 0.2763
+        }
+      }
+    },
+    "jaeger_restored": {
+      "http_status": 200,
+      "result": {
+        "baseline_sha256": "f2dbb515468dde3e64a1cafa2ae5c5376bb16cab96720dac2dfcaee007d31a6d",
+        "candidate_count": 4,
+        "candidates": [
+          {
+            "evidence": {
+              "coverage": {
+                "metrics": 1.0,
+                "topology": 1.0,
+                "traces": 0.0
+              },
+              "dependency_wait_support": 0.0,
+              "disappearance_support": 0.65,
+              "metric_support": 33.09776741341464,
+              "propagation_support": 0.25,
+              "trace_local_support": 1.0
+            },
+            "model_score": 0.5229854583740234,
+            "observations": {
+              "metrics": {
+                "cpu": {
+                  "max": 0.019279452,
+                  "median": 0.011351843,
+                  "min": 0.005350764,
+                  "samples": 21,
+                  "unit": "cores"
+                },
+                "memory": {
+                  "max": 322838528.0,
+                  "median": 322834432.0,
+                  "min": 322834432.0,
+                  "samples": 21,
+                  "unit": "bytes"
+                },
+                "network": {
+                  "max": 4469.2346173086535,
+                  "median": 3471.5,
+                  "min": 1731.0,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                },
+                "traffic_rate": {
+                  "max": 1321.6608304152073,
+                  "median": 993.0,
+                  "min": 496.5,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                }
+              },
+              "traces": {
+                "count": 0,
+                "errors": 0
+              }
+            },
+            "rank": 1,
+            "service": "vets-service"
+          },
+          {
+            "evidence": {
+              "coverage": {
+                "metrics": 1.0,
+                "topology": 1.0,
+                "traces": 0.0
+              },
+              "dependency_wait_support": 0.0,
+              "disappearance_support": 0.65,
+              "metric_support": 17.473514614874322,
+              "propagation_support": 0.0,
+              "trace_local_support": 1.0
+            },
+            "model_score": 0.37541913986206055,
+            "observations": {
+              "metrics": {
+                "cpu": {
+                  "max": 0.042224487,
+                  "median": 0.00913375,
+                  "min": 0.00585957,
+                  "samples": 21,
+                  "unit": "cores"
+                },
+                "memory": {
+                  "max": 323047424.0,
+                  "median": 322998272.0,
+                  "min": 322936832.0,
+                  "samples": 21,
+                  "unit": "bytes"
+                },
+                "network": {
+                  "max": 2979.0,
+                  "median": 2190.5,
+                  "min": 1094.5,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                },
+                "traffic_rate": {
+                  "max": 904.0,
+                  "median": 718.0,
+                  "min": 359.0,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                }
+              },
+              "traces": {
+                "count": 0,
+                "errors": 0
+              }
+            },
+            "rank": 2,
+            "service": "visits-service"
+          },
+          {
+            "evidence": {
+              "coverage": {
+                "metrics": 1.0,
+                "topology": 1.0,
+                "traces": 0.0
+              },
+              "dependency_wait_support": 0.0,
+              "disappearance_support": 1.0,
+              "metric_support": 5.823408318562332,
+              "propagation_support": 0.5,
+              "trace_local_support": 1.0
+            },
+            "model_score": 0.32324710488319397,
+            "observations": {
+              "metrics": {
+                "cpu": {
+                  "max": 0.134058217,
+                  "median": 0.021592067,
+                  "min": 0.012755215,
+                  "samples": 21,
+                  "unit": "cores"
+                },
+                "memory": {
+                  "max": 315543552.0,
+                  "median": 315469824.0,
+                  "min": 315326464.0,
+                  "samples": 21,
+                  "unit": "bytes"
+                },
+                "network": {
+                  "max": 17719.0,
+                  "median": 14365.182591295645,
+                  "min": 7140.0,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                },
+                "traffic_rate": {
+                  "max": 8050.0,
+                  "median": 6446.223111555777,
+                  "min": 3188.5,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                }
+              },
+              "traces": {
+                "count": 0,
+                "errors": 0
+              }
+            },
+            "rank": 3,
+            "service": "api-gateway"
+          },
+          {
+            "evidence": {
+              "coverage": {
+                "metrics": 1.0,
+                "topology": 1.0,
+                "traces": 0.0
+              },
+              "dependency_wait_support": 0.0,
+              "disappearance_support": 0.65,
+              "metric_support": 5.365450429425482,
+              "propagation_support": 0.25,
+              "trace_local_support": 1.0
+            },
+            "model_score": 0.2866881787776947,
+            "observations": {
+              "metrics": {
+                "cpu": {
+                  "max": 0.031066322,
+                  "median": 0.011061274,
+                  "min": 0.006574316,
+                  "samples": 21,
+                  "unit": "cores"
+                },
+                "memory": {
+                  "max": 340135936.0,
+                  "median": 340090880.0,
+                  "min": 340066304.0,
+                  "samples": 21,
+                  "unit": "bytes"
+                },
+                "network": {
+                  "max": 8000.0,
+                  "median": 6466.233116558278,
+                  "min": 3156.5,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                },
+                "traffic_rate": {
+                  "max": 1646.5,
+                  "median": 1333.6668334167082,
+                  "min": 633.5,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                }
+              },
+              "traces": {
+                "count": 0,
+                "errors": 0
+              }
+            },
+            "rank": 4,
+            "service": "customers-service"
+          }
+        ],
+        "causal_status": "DIAGNOSTIC_RANKING_ONLY",
+        "end_unix": 1792153148,
+        "feature_schema_sha256": "bdbb1134867f8c9883450933c35dda0f43d52da238de5f6834cd9d3b94b0716c",
+        "incident_id": "live-62881b91cda12e48",
+        "input_sha256": "cc35ff7c0933c2c3d3835098d173d78635e20b36ad43e7b1d0dc98bbbf122c0a",
+        "method": "Диагностическое ранжирование сервисов",
+        "model_count": 5,
+        "model_version": "m13-freeze-v1",
+        "profile_id": "petclinic",
+        "profile_version": "acceptance-3",
+        "result_id": "58c912d2-258d-42c4-a882-bc0d067fbb9b",
+        "schema_version": "1.0",
+        "source_status": {
+          "annotations": [],
+          "collected_at_unix": 1792153346.278406,
+          "elapsed_seconds": 0.0914,
+          "input_sha256": "cc35ff7c0933c2c3d3835098d173d78635e20b36ad43e7b1d0dc98bbbf122c0a",
+          "metric_families_by_service": {
+            "api-gateway": [
+              "cpu",
+              "memory",
+              "network",
+              "traffic_rate"
+            ],
+            "customers-service": [
+              "cpu",
+              "memory",
+              "network",
+              "traffic_rate"
+            ],
+            "vets-service": [
+              "cpu",
+              "memory",
+              "network",
+              "traffic_rate"
+            ],
+            "visits-service": [
+              "cpu",
+              "memory",
+              "network",
+              "traffic_rate"
+            ]
+          },
+          "metric_point_coverage": {
+            "api-gateway": {
+              "cpu": 1.0,
+              "memory": 1.0,
+              "network": 1.0,
+              "traffic_rate": 1.0
+            },
+            "customers-service": {
+              "cpu": 1.0,
+              "memory": 1.0,
+              "network": 1.0,
+              "traffic_rate": 1.0
+            },
+            "vets-service": {
+              "cpu": 1.0,
+              "memory": 1.0,
+              "network": 1.0,
+              "traffic_rate": 1.0
+            },
+            "visits-service": {
+              "cpu": 1.0,
+              "memory": 1.0,
+              "network": 1.0,
+              "traffic_rate": 1.0
+            }
+          },
+          "metric_sample_count": 336,
+          "metrics": "available",
+          "query_step_seconds": 2,
+          "services_without_spans": [
+            "api-gateway",
+            "customers-service",
+            "vets-service",
+            "visits-service"
+          ],
+          "span_count": 0,
+          "trace_api": "jaeger-http-json",
+          "trace_error": null,
+          "trace_query_services": [
+            "api-gateway",
+            "customers-service",
+            "vets-service",
+            "visits-service"
+          ],
+          "trace_tested_version": "2.20.0",
+          "traces": "available"
+        },
+        "start_unix": 1792153108,
+        "timing": {
+          "calculation_seconds": 0.0083,
+          "collection_seconds": 0.0914,
+          "total_seconds": 0.0997
+        }
+      }
+    },
+    "jaeger_stopped": {
+      "http_status": 200,
+      "result": {
+        "baseline_sha256": "f2dbb515468dde3e64a1cafa2ae5c5376bb16cab96720dac2dfcaee007d31a6d",
+        "candidate_count": 4,
+        "candidates": [
+          {
+            "evidence": {
+              "coverage": {
+                "metrics": 1.0,
+                "topology": 1.0,
+                "traces": 0.0
+              },
+              "dependency_wait_support": 0.0,
+              "disappearance_support": 0.65,
+              "metric_support": 33.09776741341464,
+              "propagation_support": 0.25,
+              "trace_local_support": 1.0
+            },
+            "model_score": 0.5229854583740234,
+            "observations": {
+              "metrics": {
+                "cpu": {
+                  "max": 0.019279452,
+                  "median": 0.011351843,
+                  "min": 0.005350764,
+                  "samples": 21,
+                  "unit": "cores"
+                },
+                "memory": {
+                  "max": 322838528.0,
+                  "median": 322834432.0,
+                  "min": 322834432.0,
+                  "samples": 21,
+                  "unit": "bytes"
+                },
+                "network": {
+                  "max": 4469.2346173086535,
+                  "median": 3471.5,
+                  "min": 1731.0,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                },
+                "traffic_rate": {
+                  "max": 1321.6608304152073,
+                  "median": 993.0,
+                  "min": 496.5,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                }
+              },
+              "traces": {
+                "count": 0,
+                "errors": 0
+              }
+            },
+            "rank": 1,
+            "service": "vets-service"
+          },
+          {
+            "evidence": {
+              "coverage": {
+                "metrics": 1.0,
+                "topology": 1.0,
+                "traces": 0.0
+              },
+              "dependency_wait_support": 0.0,
+              "disappearance_support": 0.65,
+              "metric_support": 17.473514614874322,
+              "propagation_support": 0.0,
+              "trace_local_support": 1.0
+            },
+            "model_score": 0.37541913986206055,
+            "observations": {
+              "metrics": {
+                "cpu": {
+                  "max": 0.042224487,
+                  "median": 0.00913375,
+                  "min": 0.00585957,
+                  "samples": 21,
+                  "unit": "cores"
+                },
+                "memory": {
+                  "max": 323047424.0,
+                  "median": 322998272.0,
+                  "min": 322936832.0,
+                  "samples": 21,
+                  "unit": "bytes"
+                },
+                "network": {
+                  "max": 2979.0,
+                  "median": 2190.5,
+                  "min": 1094.5,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                },
+                "traffic_rate": {
+                  "max": 904.0,
+                  "median": 718.0,
+                  "min": 359.0,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                }
+              },
+              "traces": {
+                "count": 0,
+                "errors": 0
+              }
+            },
+            "rank": 2,
+            "service": "visits-service"
+          },
+          {
+            "evidence": {
+              "coverage": {
+                "metrics": 1.0,
+                "topology": 1.0,
+                "traces": 0.0
+              },
+              "dependency_wait_support": 0.0,
+              "disappearance_support": 1.0,
+              "metric_support": 5.823408318562332,
+              "propagation_support": 0.5,
+              "trace_local_support": 1.0
+            },
+            "model_score": 0.32324710488319397,
+            "observations": {
+              "metrics": {
+                "cpu": {
+                  "max": 0.134058217,
+                  "median": 0.021592067,
+                  "min": 0.012755215,
+                  "samples": 21,
+                  "unit": "cores"
+                },
+                "memory": {
+                  "max": 315543552.0,
+                  "median": 315469824.0,
+                  "min": 315326464.0,
+                  "samples": 21,
+                  "unit": "bytes"
+                },
+                "network": {
+                  "max": 17719.0,
+                  "median": 14365.182591295645,
+                  "min": 7140.0,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                },
+                "traffic_rate": {
+                  "max": 8050.0,
+                  "median": 6446.223111555777,
+                  "min": 3188.5,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                }
+              },
+              "traces": {
+                "count": 0,
+                "errors": 0
+              }
+            },
+            "rank": 3,
+            "service": "api-gateway"
+          },
+          {
+            "evidence": {
+              "coverage": {
+                "metrics": 1.0,
+                "topology": 1.0,
+                "traces": 0.0
+              },
+              "dependency_wait_support": 0.0,
+              "disappearance_support": 0.65,
+              "metric_support": 5.365450429425482,
+              "propagation_support": 0.25,
+              "trace_local_support": 1.0
+            },
+            "model_score": 0.2866881787776947,
+            "observations": {
+              "metrics": {
+                "cpu": {
+                  "max": 0.031066322,
+                  "median": 0.011061274,
+                  "min": 0.006574316,
+                  "samples": 21,
+                  "unit": "cores"
+                },
+                "memory": {
+                  "max": 340135936.0,
+                  "median": 340090880.0,
+                  "min": 340066304.0,
+                  "samples": 21,
+                  "unit": "bytes"
+                },
+                "network": {
+                  "max": 8000.0,
+                  "median": 6466.233116558278,
+                  "min": 3156.5,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                },
+                "traffic_rate": {
+                  "max": 1646.5,
+                  "median": 1333.6668334167082,
+                  "min": 633.5,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                }
+              },
+              "traces": {
+                "count": 0,
+                "errors": 0
+              }
+            },
+            "rank": 4,
+            "service": "customers-service"
+          }
+        ],
+        "causal_status": "DIAGNOSTIC_RANKING_ONLY",
+        "end_unix": 1792153148,
+        "feature_schema_sha256": "bdbb1134867f8c9883450933c35dda0f43d52da238de5f6834cd9d3b94b0716c",
+        "incident_id": "live-62881b91cda12e48",
+        "input_sha256": "464d04ceb66fd6c7e94f2377cb2b25fcbf7f98cb029ac3c2f405dd9858db2266",
+        "method": "Диагностическое ранжирование сервисов",
+        "model_count": 5,
+        "model_version": "m13-freeze-v1",
+        "profile_id": "petclinic",
+        "profile_version": "acceptance-3",
+        "result_id": "21d5d495-89c4-4a1a-be82-981556fb7f97",
+        "schema_version": "1.0",
+        "source_status": {
+          "annotations": [],
+          "collected_at_unix": 1792153345.367504,
+          "elapsed_seconds": 0.0634,
+          "input_sha256": "464d04ceb66fd6c7e94f2377cb2b25fcbf7f98cb029ac3c2f405dd9858db2266",
+          "metric_families_by_service": {
+            "api-gateway": [
+              "cpu",
+              "memory",
+              "network",
+              "traffic_rate"
+            ],
+            "customers-service": [
+              "cpu",
+              "memory",
+              "network",
+              "traffic_rate"
+            ],
+            "vets-service": [
+              "cpu",
+              "memory",
+              "network",
+              "traffic_rate"
+            ],
+            "visits-service": [
+              "cpu",
+              "memory",
+              "network",
+              "traffic_rate"
+            ]
+          },
+          "metric_point_coverage": {
+            "api-gateway": {
+              "cpu": 1.0,
+              "memory": 1.0,
+              "network": 1.0,
+              "traffic_rate": 1.0
+            },
+            "customers-service": {
+              "cpu": 1.0,
+              "memory": 1.0,
+              "network": 1.0,
+              "traffic_rate": 1.0
+            },
+            "vets-service": {
+              "cpu": 1.0,
+              "memory": 1.0,
+              "network": 1.0,
+              "traffic_rate": 1.0
+            },
+            "visits-service": {
+              "cpu": 1.0,
+              "memory": 1.0,
+              "network": 1.0,
+              "traffic_rate": 1.0
+            }
+          },
+          "metric_sample_count": 336,
+          "metrics": "available",
+          "query_step_seconds": 2,
+          "services_without_spans": [
+            "api-gateway",
+            "customers-service",
+            "vets-service",
+            "visits-service"
+          ],
+          "span_count": 0,
+          "trace_api": "jaeger-http-json",
+          "trace_error": "telemetry source is unreachable",
+          "trace_query_services": [
+            "api-gateway",
+            "customers-service",
+            "vets-service",
+            "visits-service"
+          ],
+          "trace_tested_version": "2.20.0",
+          "traces": "unavailable"
+        },
+        "start_unix": 1792153108,
+        "timing": {
+          "calculation_seconds": 0.0086,
+          "collection_seconds": 0.0634,
+          "total_seconds": 0.072
+        }
+      }
+    },
+    "prometheus_restored": {
+      "http_status": 200,
+      "result": {
+        "baseline_sha256": "f2dbb515468dde3e64a1cafa2ae5c5376bb16cab96720dac2dfcaee007d31a6d",
+        "candidate_count": 4,
+        "candidates": [
+          {
+            "evidence": {
+              "coverage": {
+                "metrics": 1.0,
+                "topology": 1.0,
+                "traces": 1.0
+              },
+              "dependency_wait_support": 0.2168329689116675,
+              "disappearance_support": 0.0,
+              "metric_support": 33.09776741341464,
+              "propagation_support": 0.25,
+              "trace_local_support": 0.2168329689116675
+            },
+            "model_score": 0.1048734039068222,
+            "observations": {
+              "metrics": {
+                "cpu": {
+                  "max": 0.019279452,
+                  "median": 0.011351843,
+                  "min": 0.005350764,
+                  "samples": 21,
+                  "unit": "cores"
+                },
+                "memory": {
+                  "max": 322838528.0,
+                  "median": 322834432.0,
+                  "min": 322834432.0,
+                  "samples": 21,
+                  "unit": "bytes"
+                },
+                "network": {
+                  "max": 4469.2346173086535,
+                  "median": 3471.5,
+                  "min": 1731.0,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                },
+                "traffic_rate": {
+                  "max": 1321.6608304152073,
+                  "median": 993.0,
+                  "min": 496.5,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                }
+              },
+              "traces": {
+                "count": 642,
+                "errors": 0
+              }
+            },
+            "rank": 1,
+            "service": "vets-service"
+          },
+          {
+            "evidence": {
+              "coverage": {
+                "metrics": 1.0,
+                "topology": 1.0,
+                "traces": 1.0
+              },
+              "dependency_wait_support": 0.004785154874873435,
+              "disappearance_support": 0.0,
+              "metric_support": 17.473514614874322,
+              "propagation_support": 0.0,
+              "trace_local_support": 0.041666666666666484
+            },
+            "model_score": -0.48663535714149475,
+            "observations": {
+              "metrics": {
+                "cpu": {
+                  "max": 0.042224487,
+                  "median": 0.00913375,
+                  "min": 0.00585957,
+                  "samples": 21,
+                  "unit": "cores"
+                },
+                "memory": {
+                  "max": 323047424.0,
+                  "median": 322998272.0,
+                  "min": 322936832.0,
+                  "samples": 21,
+                  "unit": "bytes"
+                },
+                "network": {
+                  "max": 2979.0,
+                  "median": 2190.5,
+                  "min": 1094.5,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                },
+                "traffic_rate": {
+                  "max": 904.0,
+                  "median": 718.0,
+                  "min": 359.0,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                }
+              },
+              "traces": {
+                "count": 162,
+                "errors": 0
+              }
+            },
+            "rank": 2,
+            "service": "visits-service"
+          },
+          {
+            "evidence": {
+              "coverage": {
+                "metrics": 1.0,
+                "topology": 1.0,
+                "traces": 1.0
+              },
+              "dependency_wait_support": 0.0,
+              "disappearance_support": 0.0,
+              "metric_support": 5.823408318562332,
+              "propagation_support": 0.5,
+              "trace_local_support": 0.08222108145106093
+            },
+            "model_score": -1.1125192642211914,
+            "observations": {
+              "metrics": {
+                "cpu": {
+                  "max": 0.134058217,
+                  "median": 0.021592067,
+                  "min": 0.012755215,
+                  "samples": 21,
+                  "unit": "cores"
+                },
+                "memory": {
+                  "max": 315543552.0,
+                  "median": 315469824.0,
+                  "min": 315326464.0,
+                  "samples": 21,
+                  "unit": "bytes"
+                },
+                "network": {
+                  "max": 17719.0,
+                  "median": 14365.182591295645,
+                  "min": 7140.0,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                },
+                "traffic_rate": {
+                  "max": 8050.0,
+                  "median": 6446.223111555777,
+                  "min": 3188.5,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                }
+              },
+              "traces": {
+                "count": 200,
+                "errors": 0
+              }
+            },
+            "rank": 3,
+            "service": "api-gateway"
+          },
+          {
+            "evidence": {
+              "coverage": {
+                "metrics": 1.0,
+                "topology": 1.0,
+                "traces": 1.0
+              },
+              "dependency_wait_support": 0.0,
+              "disappearance_support": 0.0,
+              "metric_support": 5.365450429425482,
+              "propagation_support": 0.25,
+              "trace_local_support": 0.05232457406872637
+            },
+            "model_score": -1.2003217935562134,
+            "observations": {
+              "metrics": {
+                "cpu": {
+                  "max": 0.031066322,
+                  "median": 0.011061274,
+                  "min": 0.006574316,
+                  "samples": 21,
+                  "unit": "cores"
+                },
+                "memory": {
+                  "max": 340135936.0,
+                  "median": 340090880.0,
+                  "min": 340066304.0,
+                  "samples": 21,
+                  "unit": "bytes"
+                },
+                "network": {
+                  "max": 8000.0,
+                  "median": 6466.233116558278,
+                  "min": 3156.5,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                },
+                "traffic_rate": {
+                  "max": 1646.5,
+                  "median": 1333.6668334167082,
+                  "min": 633.5,
+                  "samples": 21,
+                  "unit": "bytes_per_second"
+                }
+              },
+              "traces": {
+                "count": 1122,
+                "errors": 0
+              }
+            },
+            "rank": 4,
+            "service": "customers-service"
+          }
+        ],
+        "causal_status": "DIAGNOSTIC_RANKING_ONLY",
+        "end_unix": 1792153148,
+        "feature_schema_sha256": "bdbb1134867f8c9883450933c35dda0f43d52da238de5f6834cd9d3b94b0716c",
+        "incident_id": "live-62881b91cda12e48",
+        "input_sha256": "af60f17b1d86516cc7333a941e3949d60f99eb6016dfedc54e6fc64fad8be221",
+        "method": "Диагностическое ранжирование сервисов",
+        "model_count": 5,
+        "model_version": "m13-freeze-v1",
+        "profile_id": "petclinic",
+        "profile_version": "acceptance-3",
+        "result_id": "0e587802-28e0-4ab6-8f04-3584f726cdaf",
+        "schema_version": "1.0",
+        "source_status": {
+          "annotations": [],
+          "collected_at_unix": 1792153341.091512,
+          "elapsed_seconds": 0.2562,
+          "input_sha256": "af60f17b1d86516cc7333a941e3949d60f99eb6016dfedc54e6fc64fad8be221",
+          "metric_families_by_service": {
+            "api-gateway": [
+              "cpu",
+              "memory",
+              "network",
+              "traffic_rate"
+            ],
+            "customers-service": [
+              "cpu",
+              "memory",
+              "network",
+              "traffic_rate"
+            ],
+            "vets-service": [
+              "cpu",
+              "memory",
+              "network",
+              "traffic_rate"
+            ],
+            "visits-service": [
+              "cpu",
+              "memory",
+              "network",
+              "traffic_rate"
+            ]
+          },
+          "metric_point_coverage": {
+            "api-gateway": {
+              "cpu": 1.0,
+              "memory": 1.0,
+              "network": 1.0,
+              "traffic_rate": 1.0
+            },
+            "customers-service": {
+              "cpu": 1.0,
+              "memory": 1.0,
+              "network": 1.0,
+              "traffic_rate": 1.0
+            },
+            "vets-service": {
+              "cpu": 1.0,
+              "memory": 1.0,
+              "network": 1.0,
+              "traffic_rate": 1.0
+            },
+            "visits-service": {
+              "cpu": 1.0,
+              "memory": 1.0,
+              "network": 1.0,
+              "traffic_rate": 1.0
+            }
+          },
+          "metric_sample_count": 336,
+          "metrics": "available",
+          "query_step_seconds": 2,
+          "services_without_spans": [],
+          "span_count": 2126,
+          "trace_api": "jaeger-http-json",
+          "trace_error": null,
+          "trace_query_services": [
+            "api-gateway",
+            "customers-service",
+            "vets-service",
+            "visits-service"
+          ],
+          "trace_tested_version": "2.20.0",
+          "traces": "available"
+        },
+        "start_unix": 1792153108,
+        "timing": {
+          "calculation_seconds": 0.0256,
+          "collection_seconds": 0.2575,
+          "total_seconds": 0.2832
+        }
+      }
+    },
+    "prometheus_stopped": {
+      "http_status": 502,
+      "result": {
+        "code": "TELEMETRY_UNAVAILABLE",
+        "error": "Источник телеметрии недоступен. Повторите запрос или обратитесь к интегратору.",
+        "fields": [],
+        "request_id": "a07eb0bc-c4c2-4554-9673-8d723da15468",
+        "schema_version": "1.0"
+      }
+    }
+  },
+  "project": "rca-petclinic-acceptance",
+  "recorded_at_utc": "2026-10-16T12:22:26.378635+00:00",
+  "scope": "Required metrics fail closed; unavailable traces remain explicit; recovery requires no application restart. No accuracy claim.",
+  "status": "PASSED_REAL_SOURCE_FAILURE_RECOVERY"
+}

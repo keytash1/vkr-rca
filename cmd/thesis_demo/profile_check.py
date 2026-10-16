@@ -12,7 +12,7 @@ from pathlib import Path
 import sys
 import time
 
-from live_sources import FAMILIES, LiveProfile, collect
+from live_sources import FAMILIES, LiveProfile, baseline_issues, collect
 
 
 def parse_time(value: str) -> float:
@@ -39,6 +39,10 @@ def check_profile(root: Path, profile_path: Path, start: float, end: float,
         issues.append("trace source is unavailable")
     elif not window["traces"]:
         issues.append("no trace spans were returned for the selected interval")
+    if baseline:
+        issues.extend(baseline_issues(profile, window, status, start, end))
+    elif status.get("annotations"):
+        issues.append("metric source returned query annotations; inspect source status")
     if baseline and issues:
         verdict = "not_ready_for_baseline"
     elif issues:
@@ -53,12 +57,7 @@ def check_profile(root: Path, profile_path: Path, start: float, end: float,
         "candidate_count": len(profile.services),
         "interval_seconds": end - start,
         "elapsed_seconds": round(time.monotonic() - started, 3),
-        "source_status": {
-            "metrics": status["metrics"],
-            "traces": status["traces"],
-            "metric_sample_count": status["metric_sample_count"],
-            "span_count": status["span_count"],
-        },
+        "source_status": status,
         "missing_metric_families": missing,
         "issues": issues,
     }

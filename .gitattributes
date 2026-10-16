@@ -1,1 +1,4 @@
 deploy/m12/Dockerfile.hotel whitespace=-blank-at-eof
+# Sealed artifacts are byte-hashed; checkout must not convert their line endings.
+ml/models/** -text
+deploy/profiles/artifacts/** -text
