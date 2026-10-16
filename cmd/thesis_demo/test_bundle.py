@@ -1,0 +1,75 @@
+"""A shipped product archive must start without the independent test corpus."""
+
+from __future__ import annotations
+
+import json
+import shutil
+import tempfile
+import unittest
+from pathlib import Path
+from zipfile import ZipFile
+
+from server import DiagnosticApplication
+
+
+ROOT = Path(__file__).resolve().parents[2]
+
+
+class ProductBundleTests(unittest.TestCase):
+    def test_bundle_contains_only_runtime_assets_and_starts(self):
+        from importlib.util import module_from_spec, spec_from_file_location
+
+        spec = spec_from_file_location("product_builder", ROOT / "deploy/product/build_bundle.py")
+        module = module_from_spec(spec)
+        assert spec and spec.loader
+        spec.loader.exec_module(module)
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary) / "source"
+            for name in ("m10c-v2", "m10d-integration", "m11", "m12", "m13"):
+                shutil.copytree(ROOT / "ml/models" / name, root / "ml/models" / name)
+            shutil.copytree(ROOT / "ml/rca_ml", root / "ml/rca_ml", ignore=shutil.ignore_patterns("__pycache__"))
+            shutil.copytree(ROOT / "cmd/thesis_demo", root / "cmd/thesis_demo",
+                            ignore=shutil.ignore_patterns("__pycache__"))
+            (root / "ml/pyproject.toml").write_bytes((ROOT / "ml/pyproject.toml").read_bytes())
+            guide = root / "deploy/product/README.md"
+            guide.parent.mkdir(parents=True)
+            guide.write_bytes((ROOT / "deploy/product/README.md").read_bytes())
+            (root / "deploy/product/verify_bundle.py").write_bytes(
+                (ROOT / "deploy/product/verify_bundle.py").read_bytes()
+            )
+            artifact = root / "deploy/profiles/artifacts/portable"
+            artifact.mkdir(parents=True)
+            for name in ("healthy-baseline.json", "legacy-metric-baseline.json"):
+                shutil.copyfile(ROOT / "ml/models/m14" / name, artifact / name)
+            profile = json.loads((ROOT / "deploy/profiles/lab-system.json").read_text())
+            profile["id"] = "portable"
+            profile["artifact_dir"] = "deploy/profiles/artifacts/portable"
+            profile_path = root / "deploy/profiles/portable.json"
+            profile_path.write_text(json.dumps(profile))
+            archive_path = Path(temporary) / "product.zip"
+            module.build(root, profile_path, archive_path)
+            with ZipFile(archive_path) as archive:
+                self.assertIsNone(archive.testzip())
+                self.assertFalse(any(name.startswith("ml/models/m14/") for name in archive.namelist()))
+                self.assertFalse(any("evaluation" in name or "external-data" in name for name in archive.namelist()))
+                self.assertFalse(any(name.endswith(("m14_evaluate.py", "m13_experiment.py", "train.py"))
+                                     for name in archive.namelist()))
+                archive.extractall(Path(temporary) / "installed")
+            verify_spec = spec_from_file_location("bundle_verifier", ROOT / "deploy/product/verify_bundle.py")
+            verifier = module_from_spec(verify_spec)
+            assert verify_spec and verify_spec.loader
+            verify_spec.loader.exec_module(verifier)
+            installed = Path(temporary) / "installed"
+            self.assertEqual(verifier.verify(installed)["status"], "ok")
+            one_file = installed / "README.md"
+            one_file.write_bytes(one_file.read_bytes() + b"corruption")
+            with self.assertRaisesRegex(ValueError, "checksum differs"):
+                verifier.verify(installed)
+            one_file.write_bytes((ROOT / "deploy/product/README.md").read_bytes())
+            app = DiagnosticApplication(Path(temporary) / "installed")
+            self.assertEqual(list(app.profiles), ["portable"])
+            self.assertIsNone(app.runtime)
+
+
+if __name__ == "__main__":
+    unittest.main()

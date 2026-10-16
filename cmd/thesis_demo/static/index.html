@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Диагностика распределённой системы</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/live.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <header class="masthead">
+      <a class="identity" href="/" aria-label="Диагностика — главная">
+        <span class="identity-mark">D</span>
+        <span><strong>Диагностика</strong><small>Локализация первопричин сбоев</small></span>
+      </a>
+      <div class="system-state"><span class="status-dot"></span><span id="readiness">Проверка модели…</span></div>
+    </header>
+
+    <main>
+      <section class="intro">
+        <div>
+          <p class="eyebrow">СИСТЕМА ПОДДЕРЖКИ РАССЛЕДОВАНИЯ ИНЦИДЕНТОВ</p>
+          <h1>С какого сервиса начать проверку?</h1>
+          <p class="lead">Система анализирует метрики и трассировки, сохраняет полный перечень сервисов и предлагает порядок инженерной проверки. Вывод о причине остаётся за специалистом.</p>
+        </div>
+        <div class="intro-stat"><span>Метод ранжирования</span><strong>Ансамбль LambdaMART</strong><small>Пять зафиксированных моделей · полный список сервисов выбранной системы</small></div>
+      </section>
+
+      <nav class="tabs" aria-label="Разделы">
+        <button class="tab active" data-tab="analysis" aria-current="page">Анализ инцидента</button>
+        <button class="tab" data-tab="evaluation">Проверка качества</button>
+        <button class="tab" data-tab="about">Как устроена система</button>
+      </nav>
+
+      <section id="analysis" class="view active" aria-label="Анализ инцидента">
+        <div class="analysis-grid">
+          <section class="card input-card">
+            <div class="section-index">01 / ИНЦИДЕНТ</div>
+            <h2>Запрос диагностики</h2>
+            <p class="secondary">Укажите систему и интервал уже обнаруженного инцидента. Данные будут получены из настроенных источников.</p>
+            <label for="profile-select">Подключённая система</label>
+            <select id="profile-select"><option value="">Загрузка профилей…</option></select>
+            <label for="start-time">Начало инцидента</label>
+            <input id="start-time" type="datetime-local" step="1">
+            <label for="end-time">Конец интервала</label>
+            <input id="end-time" type="datetime-local" step="1">
+            <p class="hint">Время указывается по часам этого компьютера; запрос передаётся в UTC.</p>
+            <button id="analyze" class="primary">Рассчитать рейтинг <span aria-hidden="true">›</span></button>
+            <p id="analysis-error" class="error" role="alert" hidden></p>
+            <details class="replay-panel">
+              <summary>Воспроизвести контрольный случай</summary>
+              <p class="hint">Технический режим для повторения испытания. Не требуется при обычной работе.</p>
+              <label for="example-select">Сохранённый случай</label>
+              <select id="example-select"><option value="">Загрузка списка…</option></select>
+              <label for="incident-file">Канонический файл</label>
+              <input id="incident-file" type="file" accept=".json,application/json">
+              <button id="replay-analyze" class="secondary-button">Воспроизвести рейтинг</button>
+            </details>
+            <div class="input-footnote">Балл задаёт приоритет проверки, а не доказанную причину. Разметка отказа не подаётся модели.</div>
+          </section>
+
+          <section class="card ranking-card">
+            <div class="section-index">02 / РЕЗУЛЬТАТ</div>
+            <div class="ranking-title"><div><h2>Очередность проверки</h2><p id="incident-label" class="secondary">Выберите систему и интервал, затем выполните анализ.</p></div><span id="candidate-count" class="count">—</span></div>
+            <div class="result-note">Балл используется для сравнения сервисов внутри одного инцидента. Это не вероятность неисправности.</div>
+            <p id="coverage-warning" class="coverage-warning" hidden></p>
+            <div id="ranking" class="ranking"><div class="empty-state">После расчёта здесь появится полный рейтинг сервисов.</div></div>
+          </section>
+        </div>
+
+        <section class="card detail-card" aria-live="polite">
+          <div class="section-index">03 / ОСНОВАНИЯ</div>
+          <h2 id="detail-title">Наблюдения по выбранному сервису</h2>
+          <p class="secondary">Выберите строку рейтинга, чтобы увидеть отдельные группы диагностических наблюдений и полноту данных.</p>
+          <div id="detail" class="detail-content"><div class="empty-state">Основания появятся после анализа.</div></div>
+        </section>
+      </section>
+
+      <section id="evaluation" class="view" aria-label="Проверка качества">
+        <div class="page-heading"><div class="section-index">НЕЗАВИСИМОЕ ИСПЫТАНИЕ</div><h2>Проверка на другой программной системе</h2><p class="secondary">После выбора метода на DeathStarBench Social Network ансамбль был применён к OpenTelemetry Astronomy Shop без изменения весов. Это оценка качества метода, а не тест веб-интерфейса.</p></div>
+        <div id="metrics" class="metrics"></div>
+        <div class="card text-card"><h3>Границы вывода</h3><ul id="limitations"></ul><p>Результаты получены для 50 контролируемых инцидентов. Они не подтверждают эксплуатационную надёжность, универсальный перенос или сокращение времени расследования.</p></div>
+      </section>
+
+      <section id="about" class="view" aria-label="Как устроена система">
+        <div class="page-heading"><div class="section-index">ПУТЬ ДАННЫХ</div><h2>От наблюдений к рейтингу</h2><p class="secondary">Для выбранной системы приложение получает телеметрию за заданный интервал, сопоставляет её со здоровым состоянием и применяет зафиксированный ансамбль.</p></div>
+        <div class="process">
+          <div class="process-step"><span>01</span><h3>Наблюдения</h3><p>Метрики, трассировки, состав сервисов и границы окна.</p></div>
+          <div class="process-step"><span>02</span><h3>Признаки</h3><p>Отклонения, связи вызовов, исчезновение ожидаемой активности и полнота данных.</p></div>
+          <div class="process-step"><span>03</span><h3>Ранжирование</h3><p>Сохранённые модели оценивают всех кандидатов; оценки усредняются.</p></div>
+          <div class="process-step"><span>04</span><h3>Проверка</h3><p>Инженер изучает основания и сверяет гипотезу с исходной телеметрией.</p></div>
+        </div>
+        <div class="card text-card"><h3>Что важно</h3><p>При подключении другой системы интегратор задаёт профиль и строит её базовое состояние только по нормальной работе. Файлы обученной модели при этом не изменяются. Экспериментальные показатели на соседней вкладке относятся к одной контрольной системе и не гарантируют точность на любой новой системе.</p></div>
+      </section>
+    </main>
+
+    <footer>ВКР · Диагностическое ранжирование сервисов · Режим только для чтения</footer>
+  </div>
+</body>
+</html>

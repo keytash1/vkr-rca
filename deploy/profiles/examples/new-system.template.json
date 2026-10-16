@@ -1,0 +1,26 @@
+{
+  "id": "replace-with-system-id",
+  "version": "1",
+  "title": "Название подключаемой системы",
+  "candidate_services": ["service-a", "service-b"],
+  "artifact_dir": "deploy/profiles/artifacts/replace-with-system-id",
+  "service_aliases": {},
+  "ignored_service_labels": [],
+  "metrics": {
+    "url": "https://prometheus.example.invalid",
+    "service_label": "service",
+    "queries": {
+      "cpu": "REPLACE_WITH_CPU_CORES_PROMQL_GROUPED_BY_SERVICE",
+      "memory": "REPLACE_WITH_MEMORY_BYTES_PROMQL_GROUPED_BY_SERVICE",
+      "network": "REPLACE_WITH_NETWORK_BYTES_PER_SECOND_PROMQL_GROUPED_BY_SERVICE",
+      "traffic_rate": "REPLACE_WITH_TRAFFIC_BYTES_PER_SECOND_PROMQL_GROUPED_BY_SERVICE"
+    }
+  },
+  "traces": {
+    "url": "https://jaeger.example.invalid",
+    "query_services": ["service-a"]
+  },
+  "workload": {
+    "prometheus_query": "REPLACE_WITH_REQUESTS_PER_SECOND_PROMQL"
+  }
+}

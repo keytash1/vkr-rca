@@ -1,0 +1,266 @@
+{
+  "ad": {
+    "cpu": {
+      "iqr": 0.011734804,
+      "median": 0.008333921,
+      "samples": 901
+    },
+    "memory": {
+      "iqr": 2973696.0,
+      "median": 228511744.0,
+      "samples": 901
+    },
+    "network": {
+      "iqr": 542.5,
+      "median": 4565.75,
+      "samples": 901
+    },
+    "traffic_rate": {
+      "iqr": 140.25,
+      "median": 661.0763454317897,
+      "samples": 901
+    }
+  },
+  "cart": {
+    "cpu": {
+      "iqr": 0.006338494,
+      "median": 0.011594949,
+      "samples": 901
+    },
+    "memory": {
+      "iqr": 1863680.0,
+      "median": 62230528.0,
+      "samples": 901
+    },
+    "network": {
+      "iqr": 12760.5,
+      "median": 17774.0,
+      "samples": 901
+    },
+    "traffic_rate": {
+      "iqr": 189.25,
+      "median": 4005.5,
+      "samples": 901
+    }
+  },
+  "checkout": {
+    "cpu": {
+      "iqr": 0.008619771,
+      "median": 0.006011055,
+      "samples": 901
+    },
+    "memory": {
+      "iqr": 573440.0,
+      "median": 37548032.0,
+      "samples": 901
+    },
+    "network": {
+      "iqr": 2309.0,
+      "median": 17957.0,
+      "samples": 901
+    },
+    "traffic_rate": {
+      "iqr": 215.0,
+      "median": 4461.0,
+      "samples": 901
+    }
+  },
+  "currency": {
+    "cpu": {
+      "iqr": 0.004020837,
+      "median": 0.004554315,
+      "samples": 901
+    },
+    "memory": {
+      "iqr": 34570.24,
+      "median": 3457024.0,
+      "samples": 901
+    },
+    "network": {
+      "iqr": 942.75,
+      "median": 3832.25,
+      "samples": 901
+    },
+    "traffic_rate": {
+      "iqr": 94.0,
+      "median": 1135.75,
+      "samples": 901
+    }
+  },
+  "email": {
+    "cpu": {
+      "iqr": 0.011333659000000001,
+      "median": 0.008739,
+      "samples": 901
+    },
+    "memory": {
+      "iqr": 568852.48,
+      "median": 56885248.0,
+      "samples": 901
+    },
+    "network": {
+      "iqr": 511.0,
+      "median": 4171.0,
+      "samples": 901
+    },
+    "traffic_rate": {
+      "iqr": 76.0,
+      "median": 1840.5,
+      "samples": 901
+    }
+  },
+  "frontend": {
+    "cpu": {
+      "iqr": 0.031946499999999996,
+      "median": 0.042027411,
+      "samples": 901
+    },
+    "memory": {
+      "iqr": 984842.24,
+      "median": 98484224.0,
+      "samples": 901
+    },
+    "network": {
+      "iqr": 7046.75,
+      "median": 41470.25,
+      "samples": 901
+    },
+    "traffic_rate": {
+      "iqr": 546.75,
+      "median": 11540.75,
+      "samples": 901
+    }
+  },
+  "frontend-proxy": {
+    "cpu": {
+      "iqr": 0.009416044,
+      "median": 0.015317526,
+      "samples": 901
+    },
+    "memory": {
+      "iqr": 182927.36000000002,
+      "median": 18292736.0,
+      "samples": 901
+    },
+    "network": {
+      "iqr": 2431.0,
+      "median": 47300.5,
+      "samples": 901
+    },
+    "traffic_rate": {
+      "iqr": 773.25,
+      "median": 14756.75,
+      "samples": 901
+    }
+  },
+  "payment": {
+    "cpu": {
+      "iqr": 0.23390874499999997,
+      "median": 0.018689,
+      "samples": 901
+    },
+    "memory": {
+      "iqr": 1556234.24,
+      "median": 155623424.0,
+      "samples": 901
+    },
+    "network": {
+      "iqr": 1382.5,
+      "median": 4603.75,
+      "samples": 901
+    },
+    "traffic_rate": {
+      "iqr": 164.25,
+      "median": 944.25,
+      "samples": 901
+    }
+  },
+  "product-catalog": {
+    "cpu": {
+      "iqr": 0.013592091,
+      "median": 0.014473469,
+      "samples": 901
+    },
+    "memory": {
+      "iqr": 1810432.0,
+      "median": 40460288.0,
+      "samples": 901
+    },
+    "network": {
+      "iqr": 9704.25,
+      "median": 60828.75,
+      "samples": 901
+    },
+    "traffic_rate": {
+      "iqr": 1098.0,
+      "median": 23468.64851361479,
+      "samples": 901
+    }
+  },
+  "quote": {
+    "cpu": {
+      "iqr": 0.0064851200000000005,
+      "median": 0.003877387,
+      "samples": 901
+    },
+    "memory": {
+      "iqr": 978944.0,
+      "median": 20258816.0,
+      "samples": 901
+    },
+    "network": {
+      "iqr": 336.0,
+      "median": 5106.5,
+      "samples": 901
+    },
+    "traffic_rate": {
+      "iqr": 81.75,
+      "median": 1090.25,
+      "samples": 901
+    }
+  },
+  "recommendation": {
+    "cpu": {
+      "iqr": 0.013386802000000001,
+      "median": 0.019908824,
+      "samples": 901
+    },
+    "memory": {
+      "iqr": 468500.48,
+      "median": 46850048.0,
+      "samples": 901
+    },
+    "network": {
+      "iqr": 1913.0,
+      "median": 12491.0,
+      "samples": 901
+    },
+    "traffic_rate": {
+      "iqr": 159.25,
+      "median": 7594.5,
+      "samples": 901
+    }
+  },
+  "shipping": {
+    "cpu": {
+      "iqr": 0.0026788180000000003,
+      "median": 0.002568687,
+      "samples": 901
+    },
+    "memory": {
+      "iqr": 42639.36,
+      "median": 4263936.0,
+      "samples": 901
+    },
+    "network": {
+      "iqr": 1056.5,
+      "median": 7296.0,
+      "samples": 901
+    },
+    "traffic_rate": {
+      "iqr": 91.07442034405358,
+      "median": 2294.25,
+      "samples": 901
+    }
+  }
+}

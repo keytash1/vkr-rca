@@ -1,12 +1,42 @@
 # RCA for distributed services
 
-RCA graduation project: a synchronous Go telemetry/RCA pipeline, an offline defense demo, and a completed M14 locked cross-system evaluation of the frozen M13 research model. The original live demo and the newer research runtime are distinct; final product integration remains follow-up work.
+RCA graduation project: one diagnostic application accepts a configured system and incident interval, collects telemetry, and uses the trained ranking ensemble to prioritize service candidates. The Go pipeline and fault-injection environment are research infrastructure, not a second user-facing product. Model accuracy and application behavior are verified by different tests of this same solution.
+
+## Диагностическое приложение
+
+GitHub хранит исходный код, модели и историю изменений. Для установки используйте
+ветку `codex/portable-diagnostics`, а не отдельный ZIP-архив:
+
+```bash
+git clone --branch codex/portable-diagnostics https://github.com/keytash1/vkr-rca.git
+cd vkr-rca
+python3 -m venv .venv
+.venv/bin/python -m pip install ./ml
+```
+
+Запуск из корня репозитория:
+
+```bash
+PYTHONPATH=ml:cmd/thesis_demo .venv/bin/python cmd/thesis_demo/server.py --root .
+```
+
+Откройте <http://127.0.0.1:18100/>. Обычный путь: **подключённая система → интервал → источники телеметрии → внутреннее диагностическое окно → ансамбль LambdaMART → полный рейтинг сервисов**. `deploy/profiles/lab-system.json` — контрольный профиль для лабораторного окружения, а не обязательная часть новой системы; его локальные источники должны быть запущены отдельно. Сохранённые случаи и загрузка канонического JSON находятся в режиме воспроизведения, не в повседневном сценарии инженера.
+
+См. [руководство по подключению и работе](docs/product-architecture/GETTING_STARTED.md): профиль, проверка реальных источников, подготовка здорового состояния, ограничения. ZIP-комплект можно собрать как дополнительный артефакт выпуска **после** настройки конкретной системы; исходный репозиторий остаётся основным способом установки и обновления.
+
+Check the application with:
+
+```bash
+PYTHONPATH=ml:cmd/thesis_demo .venv/bin/python -m unittest discover -s cmd/thesis_demo -p 'test_*.py' -v
+```
+
+The tests cover HTTP behavior, rejection of truth fields and invalid intervals, exact agreement for all 50 saved incidents with sealed rankings, profile-based collection through local Prometheus/Jaeger-compatible fakes, source failures and healthy-baseline setup for a different service set. The application is read-only and binds to loopback by default; use authentication and transport security before exposing it outside a trusted local environment. A successful connection test does not establish accuracy on an unrelated system.
 
 ## Current research status: M14 final freeze
 
 Astronomy Shop: **SUPPORTED_TRANSFER**, 50 incidents / 25 clusters, AC@1 **0.50**, AC@3 **0.70**, AC@5 **0.78**, MRR **0.629955**, candidate coverage **1.00**. M13 beats chance, the metric heuristic and frozen M11 under the preregistered paired cluster gates. The stronger Top-3/Top-5 gates fail; this is not universal or production-ready RCA.
 
-Research is now **FINAL_RESEARCH_FREEZE**; Astronomy Shop is **USED_TEST**. No further training, feature/threshold tuning or extra test systems. Next: frozen-runtime integration, demo and thesis writing.
+Research is now **FINAL_RESEARCH_FREEZE**; Astronomy Shop is **USED_TEST**. No further training, feature/threshold tuning or extra test systems. The profile-based live ingestion path is implemented and verified against local telemetry-source fakes. The controlled quantitative results above are separate from that integration test; they do not prove production accuracy on another system.
 
 See [full results](docs/m14-results.md), [claim boundaries](docs/m14-claim-registry.md), [error analysis](docs/m14-error-analysis.md), [engineering exceptions](docs/m14-engineering-log.md), and [final research freeze](docs/final-research-freeze.md). Machine-readable evidence and compact truth/rankings for independent metric reproduction are in `ml/models/m14/`.
 

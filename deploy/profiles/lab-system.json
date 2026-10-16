@@ -1,0 +1,30 @@
+{
+  "id": "lab-system",
+  "version": "1",
+  "title": "Контрольная микросервисная система",
+  "candidate_services": [
+    "ad", "cart", "checkout", "currency", "email", "frontend",
+    "frontend-proxy", "payment", "product-catalog", "quote",
+    "recommendation", "shipping"
+  ],
+  "artifact_dir": "deploy/profiles/artifacts/lab-system",
+  "service_aliases": {},
+  "ignored_service_labels": [],
+  "metrics": {
+    "url": "http://127.0.0.1:19092",
+    "service_label": "service",
+    "queries": {
+      "cpu": "m14_container_cpu_cores",
+      "memory": "m14_container_memory_working_set_bytes",
+      "network": "rate(m14_container_network_receive_bytes_total[5s]) + rate(m14_container_network_transmit_bytes_total[5s])",
+      "traffic_rate": "rate(m14_container_network_receive_bytes_total[5s])"
+    }
+  },
+  "traces": {
+    "url": "http://127.0.0.1:16689",
+    "query_services": ["frontend"]
+  },
+  "workload": {
+    "fixed_requests_per_second": 6
+  }
+}
