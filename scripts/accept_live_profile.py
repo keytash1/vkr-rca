@@ -6,6 +6,7 @@ import argparse
 from datetime import datetime, timezone
 from http.server import ThreadingHTTPServer
 import json
+import math
 from pathlib import Path
 import sys
 import threading
@@ -34,6 +35,29 @@ def save(path: Path, data: object) -> None:
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2, sort_keys=True) + "\n")
 
 
+def verify_healthy_workload(responses: dict) -> dict[str, float]:
+    """Missing counters are unknown, never evidence of zero failed requests."""
+    values = {}
+    for name in ("started", "succeeded", "failed", "dropped"):
+        response = responses.get(name, {})
+        try:
+            results = response["data"]["result"]
+            if response["status"] != "success" or len(results) != 1:
+                raise ValueError("expected exactly one counter result")
+            value = float(results[0]["value"][1])
+            if not math.isfinite(value) or value < 0:
+                raise ValueError("invalid counter increase")
+        except (KeyError, IndexError, TypeError, ValueError) as error:
+            raise RuntimeError(
+                f"healthy workload cannot be verified: counter '{name}' is missing or invalid; "
+                "check the workload exporter and choose a fully observed interval"
+            ) from error
+        values[name] = value
+    if values["failed"] > 0 or values["dropped"] > 0 or min(values["started"], values["succeeded"]) <= 0:
+        raise RuntimeError("selected healthy interval includes failed/dropped requests or no successful workload")
+    return values
+
+
 def run(profile_path: Path, output: Path, *, verify_workload: bool = False) -> None:
     profile_path = profile_path.resolve()
     output.mkdir(parents=True, exist_ok=False)
@@ -52,9 +76,7 @@ def run(profile_path: Path, output: Path, *, verify_workload: bool = False) -> N
                 "query": expression, "time": healthy_end,
             }))
         save(output / "workload-health.json", health)
-        values = {name: float(result["data"]["result"][0]["value"][1]) for name, result in health.items()}
-        if values["failed"] > 0 or values["dropped"] > 0 or values["succeeded"] <= 0:
-            raise RuntimeError("selected healthy interval includes failed/dropped requests; do not prepare baseline")
+        verify_healthy_workload(health)
     preflight = check_profile(ROOT, profile_path, healthy_start, healthy_end, baseline=True)
     save(output / "preflight.json", preflight)
     if preflight["verdict"] != "ready":
