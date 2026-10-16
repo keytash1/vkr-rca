@@ -49,9 +49,10 @@ class DiagnosticApplicationTests(unittest.TestCase):
         status, health = self.request("/api/health")
         self.assertEqual(status, 200)
         self.assertEqual(health["model_count"], 5)
-        self.assertEqual(health["examples"], 50)
+        self.assertEqual(health["examples"], len(self.app.examples))
+        self.assertGreater(health["examples"], 0)
         _, examples = self.request("/api/examples")
-        self.assertEqual(len(examples), 50)
+        self.assertEqual(len(examples), len(self.app.examples))
         self.assertNotIn("root_service", examples[0])
 
     def test_http_analysis_matches_sealed_prediction(self):

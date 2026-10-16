@@ -71,6 +71,10 @@ class DiagnosticApplication:
         if not self.profile_runtimes and self.runtime is None:
             raise ValueError("no installed system profile or replay runtime")
         index_path = self.run_dir / "locked/telemetry-index.jsonl"
+        replay_root = self.run_dir
+        if not index_path.is_file():
+            replay_root = self.root / "deploy/product/replay"
+            index_path = replay_root / "index.jsonl"
         self.examples = {}
         if self.runtime is not None and index_path.is_file():
             for line in index_path.read_text().splitlines():
@@ -81,8 +85,8 @@ class DiagnosticApplication:
                 if not isinstance(case_id, str) or not case_id.startswith("m14-") or case_id in self.examples:
                     raise ValueError("invalid example index")
                 relative = Path(entry["telemetry_path"])
-                path = (self.run_dir / relative).resolve()
-                if not path.is_relative_to(self.run_dir) or not path.is_file():
+                path = (replay_root / relative).resolve()
+                if not path.is_relative_to(replay_root) or not path.is_file():
                     raise ValueError("example telemetry is missing or outside run directory")
                 self.examples[case_id] = (path, entry["sha256"])
 
