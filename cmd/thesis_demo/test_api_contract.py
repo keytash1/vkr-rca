@@ -16,6 +16,7 @@ from openapi_spec_validator import validate
 from api_contract import document
 from server import DiagnosticApplication, MAX_UPLOAD_BYTES, make_handler
 from test_live import FakeTelemetry
+from live_sources import TelemetrySourceError
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -109,6 +110,15 @@ class ApiContractTests(unittest.TestCase):
         self.assertEqual(error["code"], "INTERNAL_ERROR")
         self.assertNotIn("super-secret", json.dumps(error))
         self.assertEqual(self.request(self.payload)[0], 200)
+
+    def test_source_data_errors_and_deadlines_are_not_user_input_errors(self):
+        for exception, status, code in ((TelemetrySourceError("invalid workload"), 502, "TELEMETRY_INVALID"),
+                                        (TimeoutError("expired source deadline"), 504, "SOURCE_TIMEOUT")):
+            with self.subTest(code=code), patch.object(self.app, "analyze_live", side_effect=exception):
+                actual, error, _ = self.request(self.payload)
+                self.assertEqual((actual, error["code"]), (status, code))
+                self.assertNotIn("candidates", error)
+                self.check_schema(error, "Error")
 
     def test_invalid_profile_does_not_break_valid_one(self):
         _, health, _ = self.request(path="/api/health")

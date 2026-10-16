@@ -5,10 +5,11 @@ import threading
 import unittest
 from unittest.mock import patch
 
-from live_sources import TelemetrySourceError, _get_json, _prometheus, _source_budget, LiveProfile
+from live_sources import TelemetrySourceError, _get_json, _prometheus, _source_budget, LiveProfile, _workload_intensity
 from live_sources import _endpoint
 from urllib.parse import urlsplit
 from pathlib import Path
+from urllib.error import URLError
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -79,3 +80,17 @@ class SourceLimitTests(unittest.TestCase):
             with self.subTest(value=value), patch("live_sources._get_json", return_value=value):
                 with self.assertRaises(TelemetrySourceError):
                     _prometheus(profile, "cpu", 100, 200)
+
+    def test_connect_timeout_remains_a_timeout(self):
+        with patch("live_sources.build_opener") as opener:
+            opener.return_value.open.side_effect = URLError(TimeoutError("synthetic timeout"))
+            with self.assertRaises(TimeoutError):
+                _get_json(self.url, "/payload", {}, None)
+
+    def test_invalid_workload_is_a_source_error_not_a_bad_user_request(self):
+        self.assertEqual(_workload_intensity([{"values": [[100, "2"], [101, "4"]]}], 100, 101), 3.)
+        for invalid in ([], [{"values": []}], [{"values": [[100, "0"]]}],
+                        [{"values": [[100, "-1"]]}], [{"values": [[100, "NaN"]]}],
+                        [{"values": [[100]]}], [{"values": [[100, "2"], [100, "3"]]}]):
+            with self.subTest(invalid=invalid), self.assertRaises(TelemetrySourceError):
+                _workload_intensity(invalid, 100, 101)

@@ -1,0 +1,94 @@
+{
+  "all_metric_families_match": true,
+  "baseline_interval": {
+    "end_unix": 1792156566,
+    "start_unix": 1792156436
+  },
+  "baseline_reused": false,
+  "candidate_services": [
+    "gateway",
+    "orders",
+    "payment"
+  ],
+  "direct_candidate_span_ids_present": {
+    "gateway": 1000,
+    "orders": 1000,
+    "payment": 1000
+  },
+  "direct_cpu_values_match": true,
+  "intervals": {
+    "end_unix": 1792156626,
+    "healthy_end": 1792156566,
+    "healthy_start": 1792156436,
+    "start_unix": 1792156586
+  },
+  "model_version": "m13-freeze-v1",
+  "profile_id": "local-three",
+  "profile_version": "acceptance-4",
+  "purpose": "ENGINEERING_INTEGRATION_NO_ACCURACY_EVALUATION",
+  "recorded_at_utc": "2026-10-16T13:17:29.955480+00:00",
+  "replay_scores_match": true,
+  "source_status": {
+    "annotations": [],
+    "collected_at_unix": 1792156648.935842,
+    "elapsed_seconds": 0.268,
+    "input_sha256": "f5e55fea1299d94ea5d635e3fcbe73d5f3ff2758d1a5c71003a54cbf50c35014",
+    "metric_families_by_service": {
+      "gateway": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ],
+      "orders": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ],
+      "payment": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ]
+    },
+    "metric_point_coverage": {
+      "gateway": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      },
+      "orders": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      },
+      "payment": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      }
+    },
+    "metric_sample_count": 252,
+    "metrics": "available",
+    "query_step_seconds": 2,
+    "services_without_spans": [],
+    "span_count": 1000,
+    "trace_api": "jaeger-http-json",
+    "trace_error": null,
+    "trace_query_services": [
+      "gateway",
+      "orders",
+      "payment"
+    ],
+    "trace_tested_version": "2.20.0",
+    "traces": "available"
+  },
+  "status": "PASSED_API_REAL_SOURCES_BROWSER_PENDING",
+  "trace_api": "jaeger-http-json",
+  "trace_tested_version": "2.20.0"
+}

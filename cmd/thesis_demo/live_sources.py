@@ -93,6 +93,8 @@ def _get_json(base: str, path: str, params: dict, token_env: str | None,
         error.close()
         raise OSError(f"telemetry source returned HTTP {code}") from error
     except URLError as error:
+        if isinstance(error.reason, TimeoutError):
+            raise TimeoutError("telemetry source timed out") from error
         raise TelemetrySourceError("telemetry source is unreachable", "TELEMETRY_UNAVAILABLE") from error
     if len(payload) > limit:
         raise TelemetrySourceError("telemetry response exceeds its byte budget")
@@ -217,7 +219,7 @@ def _remaining(deadline: float | None) -> float:
         return 30
     remaining = deadline - time.monotonic()
     if remaining <= 0:
-        raise TelemetrySourceError("telemetry collection exceeded its time budget")
+        raise TimeoutError("telemetry collection exceeded its time budget")
     return min(30, remaining)
 
 
@@ -294,6 +296,27 @@ def _jaeger_interval(profile: LiveProfile, service: str, left: float, right: flo
     middle = (left + right) / 2
     return (_jaeger_interval(profile, service, left, middle, budget, deadline)
             + _jaeger_interval(profile, service, middle, right, budget, deadline))
+
+
+def _workload_intensity(series: list[dict], start: float, end: float) -> float:
+    if len(series) != 1:
+        raise TelemetrySourceError("workload query must return exactly one aggregated series")
+    values, timestamps = [], set()
+    for point in series[0].get("values", []):
+        try:
+            timestamp, value = map(float, point)
+        except (TypeError, ValueError) as error:
+            raise TelemetrySourceError("invalid workload observation") from error
+        if not math.isfinite(timestamp) or not math.isfinite(value) or value < 0:
+            raise TelemetrySourceError("non-finite or negative workload observation")
+        if start <= timestamp <= end:
+            if timestamp in timestamps:
+                raise TelemetrySourceError("duplicate workload observation")
+            timestamps.add(timestamp)
+            values.append(value)
+    if not values or sum(values) <= 0:
+        raise TelemetrySourceError("positive workload intensity is unavailable for this interval")
+    return sum(values) / len(values)
 
 
 @_bounded_collection
@@ -399,19 +422,10 @@ def collect(profile: LiveProfile, start: float, end: float) -> tuple[dict, dict]
     ).hexdigest()[:16]
     rps = profile.fixed_rps
     if rps is None:
-        values = []
         workload = _prometheus(profile, profile.rps_query or "", start, end, deadline, annotations)
-        if len(workload) != 1:
-            raise TelemetrySourceError("workload query must return exactly one aggregated series")
-        for timestamp, value in workload[0].get("values", []):
-            value = float(value)
-            if start <= float(timestamp) <= end and math.isfinite(value):
-                values.append(value)
-        if not values:
-            raise TelemetrySourceError("workload intensity is unavailable")
-        rps = sum(values) / len(values)
+        rps = _workload_intensity(workload, start, end)
     if not math.isfinite(rps) or rps <= 0:
-        raise ValueError("invalid workload intensity")
+        raise TelemetrySourceError("invalid workload intensity")
     window = {
         "incident_id": incident_id,
         "start_unix": start,

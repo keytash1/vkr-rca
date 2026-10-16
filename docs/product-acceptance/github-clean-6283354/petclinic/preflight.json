@@ -1,0 +1,84 @@
+{
+  "candidate_count": 4,
+  "elapsed_seconds": 0.675,
+  "interval_seconds": 130,
+  "issues": [],
+  "missing_metric_families": {},
+  "profile_id": "petclinic",
+  "profile_version": "acceptance-3",
+  "purpose": "baseline",
+  "source_status": {
+    "annotations": [],
+    "collected_at_unix": 1792156647.451324,
+    "elapsed_seconds": 0.6701,
+    "input_sha256": "4e6d312643b448be60db132174e8e4281a68c916d1e149197edc6bb70d9a39a3",
+    "metric_families_by_service": {
+      "api-gateway": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ],
+      "customers-service": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ],
+      "vets-service": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ],
+      "visits-service": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ]
+    },
+    "metric_point_coverage": {
+      "api-gateway": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      },
+      "customers-service": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      },
+      "vets-service": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      },
+      "visits-service": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      }
+    },
+    "metric_sample_count": 1056,
+    "metrics": "available",
+    "query_step_seconds": 2,
+    "services_without_spans": [],
+    "span_count": 6835,
+    "trace_api": "jaeger-http-json",
+    "trace_error": null,
+    "trace_query_services": [
+      "api-gateway",
+      "customers-service",
+      "vets-service",
+      "visits-service"
+    ],
+    "trace_tested_version": "2.20.0",
+    "traces": "available"
+  },
+  "verdict": "ready"
+}

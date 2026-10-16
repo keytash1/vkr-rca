@@ -1,0 +1,309 @@
+{
+  "schema_version": "1.0",
+  "result_id": "fb901ea4-2079-49f5-9375-ce1525a0782c",
+  "incident_id": "live-a7fe654bff929369",
+  "start_unix": 1792156828,
+  "end_unix": 1792157128,
+  "method": "Диагностическое ранжирование сервисов",
+  "model_version": "m13-freeze-v1",
+  "model_count": 5,
+  "feature_schema_sha256": "bdbb1134867f8c9883450933c35dda0f43d52da238de5f6834cd9d3b94b0716c",
+  "baseline_sha256": "bc5038fee61b9549eb32be70efa7a2830d8dae28912dfbe122530f82e11ead3c",
+  "input_sha256": "64b8ad0341a44aa54468cd5916d1261c51bb37af56ce8056d24824832db0f58f",
+  "candidate_count": 4,
+  "causal_status": "DIAGNOSTIC_RANKING_ONLY",
+  "candidates": [
+    {
+      "service": "visits-service",
+      "rank": 1,
+      "model_score": -0.5854769945144653,
+      "evidence": {
+        "metric_support": 3.6050474758290068,
+        "trace_local_support": 0.9279491844343379,
+        "propagation_support": 0,
+        "dependency_wait_support": 0,
+        "disappearance_support": 0.003658536585365874,
+        "coverage": {
+          "metrics": 1,
+          "traces": 1,
+          "topology": 1
+        }
+      },
+      "observations": {
+        "metrics": {
+          "cpu": {
+            "samples": 151,
+            "min": 0.003724172,
+            "median": 0.006904771,
+            "max": 0.141410371,
+            "unit": "cores"
+          },
+          "memory": {
+            "samples": 151,
+            "min": 336433152,
+            "median": 338636800,
+            "max": 343838720,
+            "unit": "bytes"
+          },
+          "network": {
+            "samples": 151,
+            "min": 0,
+            "median": 2190.5,
+            "max": 3497.251374312844,
+            "unit": "bytes_per_second"
+          },
+          "traffic_rate": {
+            "samples": 151,
+            "min": 0,
+            "median": 718,
+            "max": 1150.424787606197,
+            "unit": "bytes_per_second"
+          }
+        },
+        "traces": {
+          "count": 1220,
+          "errors": 0
+        }
+      }
+    },
+    {
+      "service": "vets-service",
+      "rank": 2,
+      "model_score": -0.6093086004257202,
+      "evidence": {
+        "metric_support": 7.295563171277318,
+        "trace_local_support": 0.3146076489777941,
+        "propagation_support": 0,
+        "dependency_wait_support": 0,
+        "disappearance_support": 0,
+        "coverage": {
+          "metrics": 1,
+          "traces": 1,
+          "topology": 1
+        }
+      },
+      "observations": {
+        "metrics": {
+          "cpu": {
+            "samples": 151,
+            "min": 0.003909949,
+            "median": 0.00667479,
+            "max": 0.250037497,
+            "unit": "cores"
+          },
+          "memory": {
+            "samples": 151,
+            "min": 332972032,
+            "median": 333807616,
+            "max": 341495808,
+            "unit": "bytes"
+          },
+          "network": {
+            "samples": 151,
+            "min": 0,
+            "median": 3466,
+            "max": 6370.314842578711,
+            "unit": "bytes_per_second"
+          },
+          "traffic_rate": {
+            "samples": 151,
+            "min": 0,
+            "median": 993,
+            "max": 1948.025987006497,
+            "unit": "bytes_per_second"
+          }
+        },
+        "traces": {
+          "count": 4836,
+          "errors": 0
+        }
+      }
+    },
+    {
+      "service": "api-gateway",
+      "rank": 3,
+      "model_score": -1.1945059299468994,
+      "evidence": {
+        "metric_support": 2.2518232644338196,
+        "trace_local_support": 0.41978578889416435,
+        "propagation_support": 0.5,
+        "dependency_wait_support": 0.07347629139358992,
+        "disappearance_support": 0,
+        "coverage": {
+          "metrics": 1,
+          "traces": 1,
+          "topology": 1
+        }
+      },
+      "observations": {
+        "metrics": {
+          "cpu": {
+            "samples": 151,
+            "min": 0.008115895,
+            "median": 0.012622514,
+            "max": 0.136516308,
+            "unit": "cores"
+          },
+          "memory": {
+            "samples": 151,
+            "min": 323735552,
+            "median": 323923968,
+            "max": 324112384,
+            "unit": "bytes"
+          },
+          "network": {
+            "samples": 151,
+            "min": 0,
+            "median": 14456,
+            "max": 28192.90354822589,
+            "unit": "bytes_per_second"
+          },
+          "traffic_rate": {
+            "samples": 151,
+            "min": 0,
+            "median": 6470.5,
+            "max": 12918.040979510246,
+            "unit": "bytes_per_second"
+          }
+        },
+        "traces": {
+          "count": 1502,
+          "errors": 0
+        }
+      }
+    },
+    {
+      "service": "customers-service",
+      "rank": 4,
+      "model_score": -1.2120641469955444,
+      "evidence": {
+        "metric_support": 2.255721488798006,
+        "trace_local_support": 0.039682539682539535,
+        "propagation_support": 0,
+        "dependency_wait_support": 0,
+        "disappearance_support": 0,
+        "coverage": {
+          "metrics": 1,
+          "traces": 1,
+          "topology": 1
+        }
+      },
+      "observations": {
+        "metrics": {
+          "cpu": {
+            "samples": 151,
+            "min": 0.006309477,
+            "median": 0.009073992,
+            "max": 0.227145966,
+            "unit": "cores"
+          },
+          "memory": {
+            "samples": 151,
+            "min": 343158784,
+            "median": 344719360,
+            "max": 353509376,
+            "unit": "bytes"
+          },
+          "network": {
+            "samples": 151,
+            "min": 0,
+            "median": 6394.197098549275,
+            "max": 12710.144927536234,
+            "unit": "bytes_per_second"
+          },
+          "traffic_rate": {
+            "samples": 151,
+            "min": 0,
+            "median": 1333,
+            "max": 2497.7511244377815,
+            "unit": "bytes_per_second"
+          }
+        },
+        "traces": {
+          "count": 8420,
+          "errors": 0
+        }
+      }
+    }
+  ],
+  "profile_id": "petclinic",
+  "profile_version": "acceptance-3",
+  "source_status": {
+    "metrics": "available",
+    "traces": "available",
+    "trace_error": null,
+    "metric_families_by_service": {
+      "api-gateway": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ],
+      "customers-service": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ],
+      "vets-service": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ],
+      "visits-service": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ]
+    },
+    "metric_sample_count": 2416,
+    "metric_point_coverage": {
+      "api-gateway": {
+        "cpu": 1,
+        "memory": 1,
+        "network": 1,
+        "traffic_rate": 1
+      },
+      "customers-service": {
+        "cpu": 1,
+        "memory": 1,
+        "network": 1,
+        "traffic_rate": 1
+      },
+      "vets-service": {
+        "cpu": 1,
+        "memory": 1,
+        "network": 1,
+        "traffic_rate": 1
+      },
+      "visits-service": {
+        "cpu": 1,
+        "memory": 1,
+        "network": 1,
+        "traffic_rate": 1
+      }
+    },
+    "span_count": 15978,
+    "services_without_spans": [],
+    "annotations": [],
+    "collected_at_unix": 1792157149.036389,
+    "query_step_seconds": 2,
+    "trace_api": "jaeger-http-json",
+    "trace_tested_version": "2.20.0",
+    "trace_query_services": [
+      "api-gateway",
+      "customers-service",
+      "vets-service",
+      "visits-service"
+    ],
+    "input_sha256": "64b8ad0341a44aa54468cd5916d1261c51bb37af56ce8056d24824832db0f58f",
+    "elapsed_seconds": 1.082
+  },
+  "timing": {
+    "collection_seconds": 1.0928,
+    "calculation_seconds": 0.1436,
+    "total_seconds": 1.2364
+  }
+}

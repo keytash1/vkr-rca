@@ -1,0 +1,62 @@
+{
+  "dropped": {
+    "data": {
+      "result": [
+        {
+          "metric": {},
+          "value": [
+            1792156566,
+            "0"
+          ]
+        }
+      ],
+      "resultType": "vector"
+    },
+    "status": "success"
+  },
+  "failed": {
+    "data": {
+      "result": [
+        {
+          "metric": {},
+          "value": [
+            1792156566,
+            "0"
+          ]
+        }
+      ],
+      "resultType": "vector"
+    },
+    "status": "success"
+  },
+  "started": {
+    "data": {
+      "result": [
+        {
+          "metric": {},
+          "value": [
+            1792156566,
+            "386.953125"
+          ]
+        }
+      ],
+      "resultType": "vector"
+    },
+    "status": "success"
+  },
+  "succeeded": {
+    "data": {
+      "result": [
+        {
+          "metric": {},
+          "value": [
+            1792156566,
+            "386.953125"
+          ]
+        }
+      ],
+      "resultType": "vector"
+    },
+    "status": "success"
+  }
+}

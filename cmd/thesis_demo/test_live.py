@@ -240,7 +240,7 @@ class LivePathTests(unittest.TestCase):
         self.assertEqual(len(calls), 3)
 
     def test_collection_deadline_is_bounded(self):
-        with self.assertRaises(TelemetrySourceError):
+        with self.assertRaises(TimeoutError):
             _remaining(0)
 
     def test_product_installation_does_not_need_experiment_files(self):
