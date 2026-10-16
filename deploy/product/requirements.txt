@@ -2,7 +2,8 @@
 numpy==2.4.4
 scipy==1.18.1
 scikit-learn==1.8.0
-xgboost==3.2.0
+xgboost==3.2.0; platform_system != "Linux"
+xgboost-cpu==3.2.0; platform_system == "Linux"
 joblib==1.6.0
 threadpoolctl==3.6.0
 cloudpickle==3.1.2

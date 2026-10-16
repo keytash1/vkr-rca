@@ -24,3 +24,22 @@ jobs:
         env:
           PYTHONPATH: ml:cmd/thesis_demo
         run: python -m unittest discover -s cmd/thesis_demo -p 'test_*.py' -v
+
+  product-container:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build CPU-only product without experiment corpus
+        run: docker build -f deploy/product/Dockerfile -t rca-product:ci .
+      - name: Validate runtime Compose limits
+        run: |
+          RCA_PROFILES_DIR="$GITHUB_WORKSPACE/deploy/profiles" docker compose -f deploy/product/compose.yml config --format json \
+            | python -c 'import json,sys; s=json.load(sys.stdin)["services"]["diagnostic"]; assert s["tmpfs"] == ["/tmp:rw,nosuid,size=64m"]; assert s["read_only"] is True'
+      - name: Compare installed CPU runtime with public sealed reference
+        run: |
+          docker run --rm --network none --read-only --tmpfs /tmp:rw,nosuid,size=64m \
+            --mount type=bind,src="$GITHUB_WORKSPACE",dst=/reference,readonly \
+            --mount type=bind,src="$GITHUB_WORKSPACE/scripts/verify_portable_runtime.py",dst=/verify.py,readonly \
+            rca-product:ci python /verify.py --root /opt/rca \
+            --reference-root /reference --minimum-cases 1

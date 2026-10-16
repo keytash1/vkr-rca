@@ -1,0 +1,101 @@
+{
+  "purpose": "INSTALLATION_ACCEPTANCE_NOT_ACCURACY_EXPERIMENT",
+  "status": "passed",
+  "request": {
+    "profile_id": "petclinic",
+    "start_unix": 1792160892,
+    "end_unix": 1792161012
+  },
+  "candidate_count": 4,
+  "all_candidates_scores_and_observations_exact": true,
+  "canonical_input_hash_exact": true,
+  "input_sha256": "fdbe13efeeb2d00919e5aefc542bc2dbefdc0a3d2e63ecce6252aafeae0e6cc5",
+  "result_id": "c0d43830-1863-4ee6-923a-08679a4c3b00",
+  "timing": {
+    "collection_seconds": 0.3336,
+    "calculation_seconds": 0.0743,
+    "total_seconds": 0.4079
+  },
+  "health": {
+    "status": "model_loaded",
+    "sources": "not_checked",
+    "model_count": 5,
+    "profiles": 1,
+    "examples": 0,
+    "profile_errors": {},
+    "experiment_available": false
+  },
+  "source_status": {
+    "metrics": "available",
+    "traces": "available",
+    "trace_error": null,
+    "metric_families_by_service": {
+      "api-gateway": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ],
+      "customers-service": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ],
+      "vets-service": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ],
+      "visits-service": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ]
+    },
+    "metric_sample_count": 976,
+    "metric_point_coverage": {
+      "api-gateway": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      },
+      "customers-service": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      },
+      "vets-service": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      },
+      "visits-service": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      }
+    },
+    "span_count": 6366,
+    "services_without_spans": [],
+    "annotations": [],
+    "collected_at_unix": 1792161073.1045463,
+    "query_step_seconds": 2,
+    "trace_api": "jaeger-http-json",
+    "trace_tested_version": "2.20.0",
+    "trace_query_services": [
+      "api-gateway",
+      "customers-service",
+      "vets-service",
+      "visits-service"
+    ],
+    "input_sha256": "fdbe13efeeb2d00919e5aefc542bc2dbefdc0a3d2e63ecce6252aafeae0e6cc5",
+    "elapsed_seconds": 0.328
+  }
+}

@@ -1,0 +1,309 @@
+{
+  "schema_version": "1.0",
+  "result_id": "c0d43830-1863-4ee6-923a-08679a4c3b00",
+  "incident_id": "live-4ca7d970bdb13078",
+  "start_unix": 1792160892,
+  "end_unix": 1792161012,
+  "method": "Диагностическое ранжирование сервисов",
+  "model_version": "m13-freeze-v1",
+  "model_count": 5,
+  "feature_schema_sha256": "bdbb1134867f8c9883450933c35dda0f43d52da238de5f6834cd9d3b94b0716c",
+  "baseline_sha256": "f9e26da0d7907725f680766fc909cb484fbae8d40a3187898069839b37f61b14",
+  "input_sha256": "fdbe13efeeb2d00919e5aefc542bc2dbefdc0a3d2e63ecce6252aafeae0e6cc5",
+  "candidate_count": 4,
+  "causal_status": "DIAGNOSTIC_RANKING_ONLY",
+  "candidates": [
+    {
+      "service": "vets-service",
+      "rank": 1,
+      "model_score": -1.1576778888702393,
+      "evidence": {
+        "metric_support": 3.139363331125343,
+        "trace_local_support": 0.1388888888888884,
+        "propagation_support": 0.3333333333333333,
+        "dependency_wait_support": 0.07523491567987461,
+        "disappearance_support": 0.0018749999999999934,
+        "coverage": {
+          "metrics": 1.0,
+          "traces": 1.0,
+          "topology": 1.0
+        }
+      },
+      "observations": {
+        "metrics": {
+          "cpu": {
+            "samples": 61,
+            "min": 0.00335132,
+            "median": 0.005076323,
+            "max": 0.043369088,
+            "unit": "cores"
+          },
+          "memory": {
+            "samples": 61,
+            "min": 340205568.0,
+            "median": 340205568.0,
+            "max": 340209664.0,
+            "unit": "bytes"
+          },
+          "network": {
+            "samples": 61,
+            "min": 2580.854786303424,
+            "median": 3463.365841460365,
+            "max": 4277.75,
+            "unit": "bytes_per_second"
+          },
+          "traffic_rate": {
+            "samples": 61,
+            "min": 728.067983004249,
+            "median": 993.0,
+            "max": 1277.5,
+            "unit": "bytes_per_second"
+          }
+        },
+        "traces": {
+          "count": 1912,
+          "errors": 0
+        }
+      }
+    },
+    {
+      "service": "customers-service",
+      "rank": 2,
+      "model_score": -1.2003217935562134,
+      "evidence": {
+        "metric_support": 7.297241624278879,
+        "trace_local_support": 0.11791831357048749,
+        "propagation_support": 0.3333333333333333,
+        "dependency_wait_support": 0.0,
+        "disappearance_support": 0.0,
+        "coverage": {
+          "metrics": 1.0,
+          "traces": 1.0,
+          "topology": 1.0
+        }
+      },
+      "observations": {
+        "metrics": {
+          "cpu": {
+            "samples": 61,
+            "min": 0.005066247,
+            "median": 0.008799544,
+            "max": 0.10112687,
+            "unit": "cores"
+          },
+          "memory": {
+            "samples": 61,
+            "min": 352378880.0,
+            "median": 352395264.0,
+            "max": 352448512.0,
+            "unit": "bytes"
+          },
+          "network": {
+            "samples": 61,
+            "min": 4777.25,
+            "median": 6573.893473368343,
+            "max": 7772.0,
+            "unit": "bytes_per_second"
+          },
+          "traffic_rate": {
+            "samples": 61,
+            "min": 983.25,
+            "median": 1367.6580854786303,
+            "max": 1566.25,
+            "unit": "bytes_per_second"
+          }
+        },
+        "traces": {
+          "count": 3368,
+          "errors": 0
+        }
+      }
+    },
+    {
+      "service": "visits-service",
+      "rank": 3,
+      "model_score": -1.2120641469955444,
+      "evidence": {
+        "metric_support": 2.3109386171515736,
+        "trace_local_support": 0.05555555555555555,
+        "propagation_support": 0.0,
+        "dependency_wait_support": 0.031159645275095797,
+        "disappearance_support": 0.0036585365853658235,
+        "coverage": {
+          "metrics": 1.0,
+          "traces": 1.0,
+          "topology": 1.0
+        }
+      },
+      "observations": {
+        "metrics": {
+          "cpu": {
+            "samples": 61,
+            "min": 0.003220734,
+            "median": 0.005393958,
+            "max": 0.014694347,
+            "unit": "cores"
+          },
+          "memory": {
+            "samples": 61,
+            "min": 345309184.0,
+            "median": 345317376.0,
+            "max": 345321472.0,
+            "unit": "bytes"
+          },
+          "network": {
+            "samples": 61,
+            "min": 1623.5,
+            "median": 2189.5,
+            "max": 2816.25,
+            "unit": "bytes_per_second"
+          },
+          "traffic_rate": {
+            "samples": 61,
+            "min": 521.8695326168457,
+            "median": 718.1795448862216,
+            "max": 904.0,
+            "unit": "bytes_per_second"
+          }
+        },
+        "traces": {
+          "count": 488,
+          "errors": 0
+        }
+      }
+    },
+    {
+      "service": "api-gateway",
+      "rank": 4,
+      "model_score": -1.226628065109253,
+      "evidence": {
+        "metric_support": 4.441908601916047,
+        "trace_local_support": 0.12044109076408503,
+        "propagation_support": 0.6666666666666666,
+        "dependency_wait_support": 0.08859925416794767,
+        "disappearance_support": 0.0014999999999999846,
+        "coverage": {
+          "metrics": 1.0,
+          "traces": 1.0,
+          "topology": 1.0
+        }
+      },
+      "observations": {
+        "metrics": {
+          "cpu": {
+            "samples": 61,
+            "min": 0.007028769,
+            "median": 0.014150707,
+            "max": 0.03197771,
+            "unit": "cores"
+          },
+          "memory": {
+            "samples": 61,
+            "min": 327925760.0,
+            "median": 327938048.0,
+            "max": 327946240.0,
+            "unit": "bytes"
+          },
+          "network": {
+            "samples": 61,
+            "min": 10709.572606848287,
+            "median": 14507.0,
+            "max": 16550.25,
+            "unit": "bytes_per_second"
+          },
+          "traffic_rate": {
+            "samples": 61,
+            "min": 4766.25,
+            "median": 6459.5,
+            "max": 7339.5,
+            "unit": "bytes_per_second"
+          }
+        },
+        "traces": {
+          "count": 598,
+          "errors": 0
+        }
+      }
+    }
+  ],
+  "profile_id": "petclinic",
+  "profile_version": "acceptance-container-1",
+  "source_status": {
+    "metrics": "available",
+    "traces": "available",
+    "trace_error": null,
+    "metric_families_by_service": {
+      "api-gateway": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ],
+      "customers-service": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ],
+      "vets-service": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ],
+      "visits-service": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ]
+    },
+    "metric_sample_count": 976,
+    "metric_point_coverage": {
+      "api-gateway": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      },
+      "customers-service": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      },
+      "vets-service": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      },
+      "visits-service": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      }
+    },
+    "span_count": 6366,
+    "services_without_spans": [],
+    "annotations": [],
+    "collected_at_unix": 1792161073.1045463,
+    "query_step_seconds": 2,
+    "trace_api": "jaeger-http-json",
+    "trace_tested_version": "2.20.0",
+    "trace_query_services": [
+      "api-gateway",
+      "customers-service",
+      "vets-service",
+      "visits-service"
+    ],
+    "input_sha256": "fdbe13efeeb2d00919e5aefc542bc2dbefdc0a3d2e63ecce6252aafeae0e6cc5",
+    "elapsed_seconds": 0.328
+  },
+  "timing": {
+    "collection_seconds": 0.3336,
+    "calculation_seconds": 0.0743,
+    "total_seconds": 0.4079
+  }
+}

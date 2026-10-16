@@ -62,6 +62,9 @@ services:
         aliases: [tracing-server]
   jaeger:
     image: jaegertracing/jaeger@sha256:46a886260e04002d8f45e213fc39063fa11a50446048fdaa64786fc0840cb9f8
+    command: ["--config=/etc/jaeger.yaml"]
+    volumes: ["../jaeger.yml:/etc/jaeger.yaml:ro"]
+    environment: {GOMEMLIMIT: 300MiB}
     ports: ["127.0.0.1:19687:16686"]
     mem_limit: 384m
   metrics-exporter:

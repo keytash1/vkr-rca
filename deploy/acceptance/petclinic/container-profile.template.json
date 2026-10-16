@@ -1,0 +1,26 @@
+{
+  "id": "petclinic",
+  "title": "Ветеринарная клиника",
+  "version": "acceptance-container-1",
+  "candidate_services": ["api-gateway", "customers-service", "vets-service", "visits-service"],
+  "artifact_dir": "deploy/profiles/artifacts/petclinic-container-1",
+  "metrics": {
+    "url": "http://prometheus:9090",
+    "service_label": "service",
+    "query_step_seconds": 2,
+    "baseline_min_coverage": 0.8,
+    "queries": {
+      "cpu": "sum by (service) (rca_container_cpu_cores)",
+      "memory": "sum by (service) (rca_container_memory_working_set_bytes)",
+      "network": "sum by (service) (rate(rca_container_network_receive_bytes_total[5s]) + rate(rca_container_network_transmit_bytes_total[5s]))",
+      "traffic_rate": "sum by (service) (rate(rca_container_network_receive_bytes_total[5s]))"
+    }
+  },
+  "traces": {
+    "url": "http://jaeger:16686",
+    "api": "jaeger-http-json",
+    "tested_version": "2.20.0",
+    "query_services": ["api-gateway"]
+  },
+  "workload": {"prometheus_query": "sum(rate(acceptance_requests_started_total[20s]))"}
+}

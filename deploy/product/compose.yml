@@ -1,0 +1,22 @@
+name: rca-diagnostic-product
+services:
+  diagnostic:
+    image: vkr-rca/diagnostic-product:local
+    build:
+      context: ../..
+      dockerfile: deploy/product/Dockerfile
+    ports:
+      - "127.0.0.1:${RCA_PORT:-18100}:18100"
+    volumes:
+      - "${RCA_PROFILES_DIR:?Set an absolute path to prepared profiles}:/opt/rca/deploy/profiles:ro"
+    environment:
+      RCA_PROMETHEUS_TOKEN: ${RCA_PROMETHEUS_TOKEN:-}
+      RCA_JAEGER_TOKEN: ${RCA_JAEGER_TOKEN:-}
+    read_only: true
+    tmpfs:
+      - "/tmp:rw,nosuid,size=64m"
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    pids_limit: 128
+    mem_limit: 768m
+    restart: unless-stopped

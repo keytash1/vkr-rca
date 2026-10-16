@@ -1,0 +1,17 @@
+{
+  "purpose": "INSTALLATION_REGRESSION_NOT_NEW_ACCURACY_EVALUATION",
+  "status": "passed",
+  "cases": 50,
+  "all_ranks_and_scores_exact": true,
+  "python": "3.12.15",
+  "platform": "Linux-6.8.0-100-generic-aarch64-with-glibc2.41",
+  "numpy": "2.4.4",
+  "xgboost": "3.2.0",
+  "experiment_runtime_imported": false,
+  "corpus_inside_image": false,
+  "network": "none",
+  "root_filesystem_read_only": true,
+  "runtime_uid": "10001:10001",
+  "pip_check": "No broken requirements found.",
+  "image_config_id": "sha256:317a7d4277911ee355ea3530d066c2a33787b31d1366c95a920420c36657c170"
+}
