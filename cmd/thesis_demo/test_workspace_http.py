@@ -112,6 +112,17 @@ class WorkspaceHTTPTests(unittest.TestCase):
             self.assertEqual((status, e["code"]), (403, code))
         self.assertEqual(self.store.list_investigations(), [])
 
+    def test_history_query_contract_and_invalid_filters(self):
+        self.login()
+        status,value,_=self.request('/api/v2/investigations?service=alpha&category=latency&limit=100')
+        self.assertEqual(status,200)
+        self.assertEqual(value['period_basis'],'INVESTIGATION_CREATED_AT')
+        self.assertEqual(value['investigations'],[])
+        for query in ('limit=101','after=nan','after=200&before=100','service=a&service=b',
+                      'url=http://outside','category=','action_status=execute'):
+            with self.subTest(query=query):
+                self.assertEqual(self.request('/api/v2/investigations?'+query)[0],400)
+
     def test_snapshot_create_repeat_update_and_export_scope(self):
         self.login()
         payload = {
@@ -168,6 +179,26 @@ class WorkspaceHTTPTests(unittest.TestCase):
             {"deleted": True},
         )
         self.assertEqual(self.request(path)[0], 404)
+
+    def test_daily_allowance_rejects_before_worker_and_keeps_b_available(self):
+        self.login()
+        self.store.assistant_daily_jobs=1
+        self.store.create_investigation("analysis-unit",{"mode":"D"},idempotency_key="earlier")
+        calls=[]
+        self.service.python_executable="unused"
+        self.service.state_dir="unused"
+        self.service.model="unit"
+        self.service.allowed_profiles=frozenset(["project-unit"])
+        self.service.runner=lambda **kwargs: calls.append(kwargs) or {"status":"failed","report":None}
+        payload={"analysis_id":"analysis-unit","mode":"D","question":"Check","idempotency_key":"new"}
+        status,value,_=self.request("/api/v2/investigations",payload)
+        self.assertEqual((status,value["code"]),(429,"STORE_ASSISTANT_DAILY_LIMIT"))
+        self.assertIn("24 часа",value["error"])
+        self.assertEqual(calls,[])
+        status,capabilities,_=self.request("/api/v2/workspace")
+        self.assertEqual(status,200)
+        self.assertEqual(capabilities["assistant_budget"]["remaining_jobs"],0)
+        self.assertEqual(self.request("/api/v2/investigations",payload|{"mode":"B"})[0],202)
 
 
 if __name__ == "__main__":

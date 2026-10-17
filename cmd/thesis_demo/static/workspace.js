@@ -46,6 +46,8 @@
       ? 'Используется тариф ChatGPT. Помощнику передаются агрегаты снимка и текст вопроса; ручная карточка не передаётся. Проверки подтверждает инженер.'
       : 'LLM не подключена. Наблюдения, проверки и карточка расследования работают без внешнего провайдера.';
     if (config?.assistant_configured) {
+      if (config.assistant_budget) el('assistant-policy-note').append(document.createTextNode(
+        ` Локальный предел: ${config.assistant_budget.limit_jobs} запусков за скользящие 24 часа; это не расход токенов.`));
       const link=document.createElement('a'); link.href='https://chatgpt.com/settings/usage';
       link.target='_blank'; link.rel='noopener noreferrer'; link.textContent='Расход и лимиты ChatGPT';
       el('assistant-policy-note').append(document.createTextNode(' '),link);
@@ -130,6 +132,26 @@
         }
       }
       list(box,'Недостающие данные',outcome.report.data_gaps); list(box,'Ограничения',outcome.report.limitations);
+      for (const proposal of outcome.report.action_proposals || []) {
+        const area=document.createElement('section'); area.className='record-row';
+        const purposes={mitigation:'Смягчение последствий',corrective:'Исправление механизма',preventive:'Снижение риска повтора'};
+        paragraph(area,`${purposes[proposal.purpose]} · ${proposal.service}`,'h4');
+        paragraph(area,text(proposal.title,outcome.local_identity_legend));
+        paragraph(area,`Основание: ${text(proposal.rationale,outcome.local_identity_legend)}`);
+        paragraph(area,`Как проверить эффект: ${text(proposal.verification_plan,outcome.local_identity_legend)}`);
+        references(area,proposal.evidence_ids);
+        const adopt=document.createElement('button'); adopt.type='button'; adopt.className='secondary-button';
+        adopt.textContent='Добавить в черновик мер';
+        const sourceSession=session.id;
+        adopt.addEventListener('click',() => {
+          if (session?.id!==sourceSession || !record || record.action_items.length>=20) return;
+          // Keep unsaved form edits; no server write and no execution here.
+          readRecord();
+          record.action_items.push(actionFromProposal(proposal,outcome.local_identity_legend));
+          renderRows(); dirty(); adopt.disabled=true; adopt.textContent='Добавлено в черновик';
+        });
+        area.append(adopt); box.append(area);
+      }
       if (outcome.consulted_runbooks?.length) {
         const guidance=document.createElement('details');
         paragraph(guidance,'Прочитанные руководства','summary');
@@ -187,9 +209,18 @@
   }
   function dirty() { el('record-save-state').textContent = 'Есть несохранённые изменения'; }
   let record = null;
+  function actionFromProposal(proposal, legend) {
+    return {id:crypto.randomUUID(),service:proposal.service,purpose:proposal.purpose,
+      title:text(proposal.title,legend),rationale:text(proposal.rationale,legend),
+      verification_plan:text(proposal.verification_plan,legend),ticket:'',
+      owner:'',due_unix:null,status:'proposed',importance:'normal',effort:'unknown',
+      verification:'',evidence_ids:[...proposal.evidence_ids]};
+  }
   function readRecord() {
     if (!record) return session.record;
     for (const name of ['title','symptoms','impact','conclusion']) record[name] = el('investigation-record').elements[name].value;
+    const metadata=Object.fromEntries(['owner','incident','category'].map(name => [name,el('investigation-record').elements[`meta_${name}`].value]));
+    if (record.metadata || Object.values(metadata).some(Boolean)) record.metadata=metadata;
     return structuredClone(record);
   }
   function localDate(seconds) {
@@ -237,6 +268,11 @@
     for (const item of record.action_items) {
       const row=document.createElement('div'); row.className='record-row';
       field(row,'Мера',item.title,v => item.title=v,{type:'textarea',wide:true});
+      field(row,'Назначение',item.purpose || 'unspecified',v => item.purpose=v,{options:[['unspecified','Не задано'],['mitigation','Смягчение последствий'],['corrective','Исправление механизма'],['preventive','Снижение риска повтора']]});
+      field(row,'Сервис',item.service || '',v => { if (v) item.service=v; else delete item.service; },{options:[['','Не задан'],...snapshot.catalog.services.map(s => [s,s])]});
+      field(row,'Основание меры',item.rationale || '',v => item.rationale=v,{type:'textarea',wide:true});
+      field(row,'План проверки эффекта',item.verification_plan || '',v => item.verification_plan=v,{type:'textarea',wide:true});
+      field(row,'Тикет (номер или ссылка)',item.ticket || '',v => item.ticket=v);
       field(row,'Ответственный',item.owner,v => item.owner=v);
       field(row,'Срок',localDate(item.due_unix),v => item.due_unix=epoch(v),{type:'datetime-local'});
       field(row,'Статус',item.status,v => item.status=v,{options:[['proposed','Предложена'],['planned','Запланирована'],['in_progress','В работе'],['verification_pending','Ожидает проверки'],['verified','Эффект проверен'],['not_verified','Эффект не подтверждён']]});
@@ -250,6 +286,7 @@
   function renderRecord() {
     record=structuredClone(drafts.get(session.id) || session.record);
     for (const name of ['title','symptoms','impact','conclusion']) el('investigation-record').elements[name].value=record[name];
+    for (const name of ['owner','incident','category']) el('investigation-record').elements[`meta_${name}`].value=record.metadata?.[name] || '';
     el('investigation-record').hidden=false; el('record-save-state').textContent=drafts.has(session.id) ? 'Черновик не сохранён' : '';
     renderRows();
   }
@@ -282,14 +319,28 @@
     renderOutcome(); renderRecord(); controls();
     if (activeStates.has(value.state)) poll(value.id,generation);
   }
+  let historyGeneration=0;
   async function history() {
     const list=el('investigation-list');
-    const data=await api('/api/v2/investigations'); list.replaceChildren();
-    if (!data.investigations.length) paragraph(list,'Сохранённых расследований пока нет.');
+    const version=++historyGeneration, query=new URLSearchParams();
+    for (const key of ['project','service','category','action_status']) {
+      const value=el(`history-${key}`).value.trim(); if (value) query.set(key,value);
+    }
+    for (const key of ['after','before']) {
+      const value=el(`history-${key}`).value; if (value) query.set(key,String(epoch(value)));
+    }
+    query.set('limit','100');
+    const data=await api('/api/v2/investigations?'+query);
+    if (version!==historyGeneration) return;
+    list.replaceChildren();
+    if (!data.investigations.length) paragraph(list,'Нет расследований, соответствующих фильтрам.');
+    else paragraph(list,`Показано ${data.investigations.length}, максимум ${data.limit}. Период — дата создания карточки.`);
     for (const item of data.investigations) {
       const button=document.createElement('button'); button.type='button'; button.className='workspace-history-item';
       button.textContent=`${item.title || item.project} · ${labels[item.state] || item.state} · ${new Date(item.created*1000).toLocaleString('ru-RU')}`;
       button.addEventListener('click',async () => { const version=generation; try { const value=await api(`/api/v2/investigations/${item.id}`); if (version===generation) await choose(value); } catch (reason) { message(reason); } }); list.append(button);
+      if (item.mentioned_services?.length) paragraph(list,`Записаны инженером: ${item.mentioned_services.join(', ')}. Подтверждены: ${item.confirmed_services.join(', ') || 'нет'}.`);
+      if (item.action_count) paragraph(list,`Мер: ${item.action_count}; просрочены и открыты: ${item.overdue_action_count}.`);
       const remove=document.createElement('button'); remove.type='button'; remove.className='secondary-button'; remove.textContent='Удалить снимок и связанные карточки';
       remove.addEventListener('click',async () => {
         if (!window.confirm('Удалить этот снимок и все связанные расследования из приложения? Восстановление не предусмотрено. Выгруженные файлы и данные в источниках останутся.')) return;
@@ -321,6 +372,11 @@
     el('ask-assistant').addEventListener('click',() => start('D'));
     el('cancel-investigation').addEventListener('click',async () => { try { session=await api(`/api/v2/investigations/${session.id}/cancel`,{}); renderOutcome(); controls(); } catch (e) { message(e); } });
     el('investigation-record').addEventListener('input',dirty);
+    el('history-apply').addEventListener('click',() => history().catch(message));
+    el('history-reset').addEventListener('click',() => {
+      for (const key of ['project','service','category','action_status','after','before']) el(`history-${key}`).value='';
+      history().catch(message);
+    });
     el('add-timeline').addEventListener('click',() => { if (record.timeline.length>=50) return; record.timeline.push({time_unix:analysis.start_unix,description:'',evidence_ids:[]}); renderRows(); dirty(); });
     el('add-cause').addEventListener('click',() => { if (record.causes.length>=10) return; record.causes.push({service:snapshot.catalog.services[0],statement:'',status:'hypothesis',verification:'',evidence_ids:[]}); renderRows(); dirty(); });
     el('add-action').addEventListener('click',() => { if (record.action_items.length>=20) return; record.action_items.push({id:crypto.randomUUID(),title:'',owner:'',due_unix:null,status:'proposed',importance:'normal',effort:'unknown',verification:'',evidence_ids:[]}); renderRows(); dirty(); });

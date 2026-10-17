@@ -103,6 +103,9 @@
             <p class="hint">Ответ помощника не подтверждает причину и не изменяет эту карточку. Вывод и результат проверки фиксируете вы.</p>
             <div class="record-grid">
               <label>Название<input name="title" maxlength="200"></label>
+              <label>Владелец расследования<input name="meta_owner" maxlength="200"></label>
+              <label>Инцидент / тикет<input name="meta_incident" maxlength="200"></label>
+              <label>Категория для обзора повторов<input name="meta_category" maxlength="100"></label>
               <label>Влияние на систему<textarea name="impact" rows="2" maxlength="2000"></textarea></label>
               <label>Симптомы<textarea name="symptoms" rows="3" maxlength="2000"></textarea></label>
               <label>Вывод инженера<textarea name="conclusion" rows="3" maxlength="2000"></textarea></label>
@@ -115,7 +118,19 @@
             <button id="add-action" class="secondary-button" type="button">Добавить меру</button>
             <div class="workspace-actions record-save"><button type="submit" class="secondary-button">Сохранить карточку</button><button id="export-investigation" type="button" class="secondary-button">Экспорт расследования</button><span id="record-save-state" class="hint" role="status"></span></div>
           </form>
-          <details id="investigation-history"><summary>Сохранённые расследования</summary><div id="investigation-list"></div></details>
+          <details id="investigation-history"><summary>Сохранённые расследования</summary>
+            <p class="hint">Обзор ваших записей, не автоматическое выявление повторных причин. Сервис ищется в записанных инженером гипотезах и мерах, не в ML-рейтинге. История хранится в пределах установленного срока.</p>
+            <div class="record-grid">
+              <label>Система (ID профиля)<input id="history-project" maxlength="128"></label>
+              <label>Сервис в записях инженера<input id="history-service" maxlength="200"></label>
+              <label>Категория<input id="history-category" maxlength="100"></label>
+              <label>Состояние мер<select id="history-action_status"><option value="">Любое</option><option value="proposed">Предложены</option><option value="planned">Запланированы</option><option value="in_progress">В работе</option><option value="verification_pending">Ожидают проверки</option><option value="verified">Эффект проверен</option><option value="not_verified">Эффект не подтверждён</option><option value="overdue">Просрочены и открыты</option></select></label>
+              <label>Карточка создана не раньше<input id="history-after" type="datetime-local"></label>
+              <label>Карточка создана не позже<input id="history-before" type="datetime-local"></label>
+            </div>
+            <div class="workspace-actions"><button id="history-apply" type="button" class="secondary-button">Применить фильтры</button><button id="history-reset" type="button" class="secondary-button">Сбросить</button></div>
+            <div id="investigation-list"></div>
+          </details>
         </section>
       </section>
 

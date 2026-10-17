@@ -11,7 +11,7 @@ import json
 import secrets
 import threading
 import time
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, parse_qs
 
 from api_errors import ApiError
 from investigations import InvestigationError
@@ -158,6 +158,7 @@ class WorkspaceHTTP:
                     if self.service.llm_configured
                     else None,
                     "queue_capacity": 2,
+                    "assistant_budget": self.store.assistant_budget_status(),
                     "recovered_jobs": self.service.recovered_jobs,
                     "worker": self.service.health(),
                 },
@@ -166,8 +167,22 @@ class WorkspaceHTTP:
             return True
         if path == "/api/v2/investigations":
             self._session(handler)
+            query = parse_qs(urlsplit(handler.path).query, keep_blank_values=True, max_num_fields=8)
+            allowed = {"project", "service", "category", "after", "before", "action_status", "limit"}
+            if set(query) - allowed or any(len(v) != 1 or not v[0] for v in query.values()):
+                raise ApiError("INVALID_REQUEST", "Проверьте фильтры истории.")
+            filters = {k: v[0] for k, v in query.items()}
+            try:
+                for key in ("after", "before"):
+                    if key in filters:
+                        filters[key] = float(filters[key])
+                if "limit" in filters:
+                    filters["limit"] = int(filters["limit"])
+            except ValueError:
+                raise ApiError("INVALID_REQUEST", "Проверьте период и размер истории.") from None
             handler._json(
-                HTTPStatus.OK, {"investigations": self.store.list_investigations()}
+                HTTPStatus.OK, {"investigations": self.store.list_investigations(**filters),
+                                "period_basis": "INVESTIGATION_CREATED_AT", "limit": filters.get("limit", 30)}
             )
             return True
         parts = path.split("/")
@@ -285,6 +300,10 @@ def public_workspace_error(error):
             "Состояние изменилось. Обновите расследование перед сохранением.",
             HTTPStatus.CONFLICT,
         )
+    if code == "STORE_ASSISTANT_DAILY_LIMIT":
+        return ApiError(code,
+            "Лимит запусков помощника за последние 24 часа исчерпан. Рейтинг, наблюдения и карточка работают без LLM; удаление карточки не сбрасывает лимит.",
+            HTTPStatus.TOO_MANY_REQUESTS)
     if code in {
         "WORKSPACE_BUSY",
         "STORE_CAPACITY",

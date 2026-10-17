@@ -5,12 +5,27 @@ import threading
 import time
 import unittest
 
-from investigations import InvestigationService, InvestigationError
+from investigations import InvestigationService, InvestigationError, restore_report_identity, previous_discussion
 from workspace_store import WorkspaceStore
 from test_workspace_store import snapshot
 
 
 class InvestigationTests(unittest.TestCase):
+    def test_action_proposal_identity_round_trip_without_rewriting_prose(self):
+        from assistant_contract import validate_report
+        mapping={"services":{"alpha":"svc-001"},"observations":{"real-fact":"obs-001"}}
+        report={"summary":"svc-001 remains a hypothesis", "hypotheses":[],"data_gaps":[],"limitations":[],
+            "action_proposals":[{"service":"svc-001","purpose":"preventive","title":"Check before changing svc-001",
+                "rationale":"Conditional","verification_plan":"Compare before and after","evidence_ids":["obs-001"]}]}
+        outcome=restore_report_identity({"report":report},mapping)
+        self.assertEqual(outcome['report']['action_proposals'][0]['service'],'alpha')
+        self.assertEqual(outcome['report']['action_proposals'][0]['evidence_ids'],['real-fact'])
+        self.assertEqual(outcome['report']['summary'],report['summary'])
+        clean={"services":["svc-001"],"observations":[{"id":"obs-001"}]}
+        discussion=previous_discussion([{"state":"completed","outcome":outcome,"request":{"mode":"D","question":"Check alpha"}}],mapping,clean)
+        self.assertEqual(discussion[0]['report'],report)
+        validate_report(discussion[0]['report'],clean)
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.store = WorkspaceStore(Path(self.temp.name) / "workspace")

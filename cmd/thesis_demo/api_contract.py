@@ -125,6 +125,7 @@ SCHEMAS.update({
         ("analysis_id","mode","question","idempotency_key")),
     "InvestigationRecord": obj({"title":{"type":"string","maxLength":200},"symptoms":RECORD_TEXT,
         "impact":RECORD_TEXT,"conclusion":RECORD_TEXT,
+        "metadata":obj({"owner":{"type":"string","maxLength":200},"incident":{"type":"string","maxLength":200},"category":{"type":"string","maxLength":100}},("owner","incident","category")),
         "timeline":{"type":"array","maxItems":50,"items":obj({"time_unix":NUMBER,"description":RECORD_TEXT,"evidence_ids":ARRAY_STRING},("time_unix","description","evidence_ids"))},
         "causes":{"type":"array","maxItems":10,"items":obj({"service":STRING,"statement":RECORD_TEXT,
             "status":{"enum":["hypothesis","confirmed","discarded"]},"verification":RECORD_TEXT,"evidence_ids":ARRAY_STRING},
@@ -133,7 +134,9 @@ SCHEMAS.update({
             "owner":{"type":"string","maxLength":200},"due_unix":{"type":["number","null"]},
             "status":{"enum":["proposed","planned","in_progress","verification_pending","verified","not_verified"]},
             "importance":{"enum":["low","normal","high"]},"effort":{"enum":["small","medium","large","unknown"]},
-            "verification":RECORD_TEXT,"evidence_ids":ARRAY_STRING},
+            "verification":RECORD_TEXT,"evidence_ids":ARRAY_STRING,
+            "purpose":{"enum":["unspecified","mitigation","corrective","preventive"]},"service":STRING,
+            "rationale":RECORD_TEXT,"verification_plan":RECORD_TEXT,"ticket":{"type":"string","maxLength":200}},
             ("id","title","owner","due_unix","status","importance","effort","verification","evidence_ids"))}},
         ("title","symptoms","impact","conclusion","timeline","causes","action_items")),
     "Investigation": obj({"id":STRING,"analysis_id":STRING,"project":STRING,
@@ -198,7 +201,7 @@ def workspace_paths():
     error_responses={str(c):response(ref("Error"),m) for c,m in ((400,"Invalid fields/business validation"),
         (401,"Session required"),(403,"Host/Origin/CSRF or profile transmission policy rejected"),
         (404,"Object unavailable or extension disabled"),(409,"Idempotency/revision conflict"),
-        (413,"Maximum body 32 KiB"),(429,"Bounded queue/storage full"),(503,"Workspace unavailable"))}
+        (413,"Maximum body 32 KiB"),(429,"Bounded queue/storage, turn or rolling assistant job allowance exceeded"),(503,"Workspace unavailable"))}
     security=[{"workspaceCookie":[],"workspaceCSRF":[]}]
     def operation(name,summary,*,post=False,body=None,result=None):
         value={"operationId":name,"summary":summary,"tags":["Optional trusted-loopback workspace"],
@@ -214,10 +217,16 @@ def workspace_paths():
         body=obj({"mode":{"enum":["B","C","D"]},"question":{"type":"string","minLength":1,"maxLength":2000},
             "idempotency_key":{"type":"string","pattern":"^[A-Za-z0-9_-]{1,128}$"}},("mode","question","idempotency_key")))
     follow["responses"]["202"]=response(ref("Investigation"),"New turn enqueued; earlier answers and human record retained")
+    history=operation("listInvestigations","Filter human records before limit; period is card creation time, not incident time",result={"type":"object"})
+    history["parameters"]=[{"name":name,"in":"query","required":False,"schema":schema}
+        for name,schema in (("project",STRING),("service",STRING),("category",{"type":"string","maxLength":100}),
+            ("after",{"type":"number","minimum":0}),("before",{"type":"number","minimum":0}),
+            ("action_status",{"enum":["proposed","planned","in_progress","verification_pending","verified","not_verified","overdue"]}),
+            ("limit",{"type":"integer","minimum":1,"maximum":100,"default":30}))]
     return {
         "/api/v2/workspace":{"get":{"operationId":"workspaceSession","summary":"Start local browser session and inspect configured capabilities",
             "tags":["Optional trusted-loopback workspace"],"responses":{"200":response({"type":"object"},"CSRF token; HttpOnly SameSite=Strict session cookie"),**error_responses}}},
-        "/api/v2/investigations":{"get":operation("listInvestigations","Latest 30 non-expired investigations",result={"type":"object"}),"post":create},
+        "/api/v2/investigations":{"get":history,"post":create},
         "/api/v2/investigations/{investigation_id}":{"parameters":[{"name":"investigation_id","in":"path","required":True,"schema":STRING}],
             "get":operation("getInvestigation","Read current job, outcome and human record")},
         "/api/v2/investigations/{investigation_id}/cancel":{"parameters":[{"name":"investigation_id","in":"path","required":True,"schema":STRING}],

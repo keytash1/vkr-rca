@@ -518,6 +518,8 @@ def main() -> None:
     parser.add_argument("--assistant-python",type=Path,help="Optional isolated interpreter with assistant dependencies")
     parser.add_argument("--assistant-state-dir",type=Path,help="App-owned OAuth store; never the Codex credential directory")
     parser.add_argument("--assistant-model",help="Explicit previously verified provider model")
+    parser.add_argument("--assistant-daily-jobs",type=int,choices=range(1,201),default=20,
+                        help="Reserved LLM jobs per rolling 24h, 1–200 (default 20); not a provider token/cost cap")
     parser.add_argument("--allow-assistant-profile",action="append",default=[],help="Profile permitted to send approved aggregates; repeat per profile")
     parser.add_argument("--runbook-corpus",type=Path,help="Explicit approved project-scoped runbook corpus")
     args = parser.parse_args()
@@ -544,7 +546,8 @@ def main() -> None:
         if args.runbook_corpus:
             from runbook_corpus import RunbookCorpus
             corpus=RunbookCorpus(args.runbook_corpus)
-        store = WorkspaceStore(args.workspace_dir,retention_seconds=args.workspace_retention_days*86400)
+        store = WorkspaceStore(args.workspace_dir,retention_seconds=args.workspace_retention_days*86400,
+            assistant_daily_jobs=args.assistant_daily_jobs)
         service = InvestigationService(store,python_executable=args.assistant_python,state_dir=args.assistant_state_dir,
             model=args.assistant_model,allowed_profiles=args.allow_assistant_profile,runbook_corpus=corpus)
     app = DiagnosticApplication(args.root, args.profiles_dir,workspace=store,investigations=service,workspace_origin=args.workspace_origin)

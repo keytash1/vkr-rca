@@ -137,6 +137,12 @@ def report_schema(catalog=None):
             "hypotheses": {"type": "array", "items": hypothesis, "maxItems": 2},
             "data_gaps": texts | {"maxItems": 3},
             "limitations": texts | {"maxItems": 2},
+            "action_proposals": {"type": "array", "maxItems": 2, "items": obj({
+                "service": service,
+                "purpose": {"type": "string", "enum": ["mitigation", "corrective", "preventive"]},
+                "title": text, "rationale": text,
+                "verification_plan": text, "evidence_ids": references,
+            })},
         }
     )
     if definitions:
@@ -192,7 +198,10 @@ def validate_report(report, catalog):
     Entailment, critical false claims and usefulness require I04/I09 evaluation;
     this function must never be described as a semantic truth guarantee.
     """
-    _exact(report, ("summary", "hypotheses", "data_gaps", "limitations"))
+    # Read stored v1 reports as well; new provider output includes proposals.
+    old_fields = {"summary", "hypotheses", "data_gaps", "limitations"}
+    if not isinstance(report, dict) or set(report) not in (old_fields, old_fields | {"action_proposals"}):
+        raise AssistantContractError("REPORT_FIELDS_INVALID")
     _text(report["summary"])
     _texts(report["data_gaps"])
     _texts(report["limitations"])
@@ -249,4 +258,18 @@ def validate_report(report, catalog):
             _text(check["action"])
             _text(check["expected_observation"])
             refs(check["evidence_ids"])
+    proposals = report.get("action_proposals", [])
+    if not isinstance(proposals, list) or len(proposals) > 2:
+        raise AssistantContractError("REPORT_ACTION_BUDGET")
+    for item in proposals:
+        _exact(item, ("service", "purpose", "title", "rationale", "verification_plan", "evidence_ids"))
+        if not isinstance(item["service"], str) or item["service"] not in services:
+            raise AssistantContractError("REPORT_SERVICE_OUTSIDE_SCOPE")
+        if item["purpose"] not in {"mitigation", "corrective", "preventive"}:
+            raise AssistantContractError("REPORT_ACTION_PURPOSE_INVALID")
+        for field in ("title", "rationale", "verification_plan"):
+            _text(item[field])
+        refs(item["evidence_ids"])
+        if not item["evidence_ids"]:
+            raise AssistantContractError("REPORT_ACTION_EVIDENCE_REQUIRED")
     return report

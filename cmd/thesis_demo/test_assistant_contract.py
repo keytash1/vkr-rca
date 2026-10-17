@@ -45,6 +45,21 @@ class AssistantReportTests(unittest.TestCase):
         empty = report_schema({'services': [], 'observations': []})
         self.assertEqual(empty['properties']['hypotheses']['maxItems'], 0)
 
+    def test_action_proposals_are_scoped_conditional_and_not_assignments(self):
+        proposal = {"service":"alpha", "purpose":"preventive", "title":"После проверки ограничить нагрузку",
+            "rationale":"Наблюдается изменение", "verification_plan":"Сравнить ошибки при той же нагрузке",
+            "evidence_ids":["obs-local"]}
+        report = self.report | {"action_proposals":[proposal]}
+        self.assertEqual(validate_report(report,self.catalog),report)
+        for extra in ({"owner":"invented"},{"status":"verified"},{"due_unix":123},{"executed":True}):
+            with self.subTest(extra=extra), self.assertRaises(AssistantContractError):
+                validate_report(report | {"action_proposals":[proposal | extra]},self.catalog)
+        for replacement in ({"service":"outside"},{"purpose":"shell"},{"evidence_ids":[]},
+                            {"evidence_ids":["outside"]},{"verification_plan":""}):
+            with self.subTest(replacement=replacement), self.assertRaises(AssistantContractError):
+                validate_report(report | {"action_proposals":[proposal | replacement]},self.catalog)
+        self.assertEqual(validate_report(self.report | {"action_proposals":[]},self.catalog)["action_proposals"],[])
+
 
 if __name__ == "__main__":
     unittest.main()

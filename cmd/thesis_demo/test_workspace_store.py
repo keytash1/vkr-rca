@@ -1,4 +1,6 @@
 import copy
+from concurrent.futures import ThreadPoolExecutor
+import fcntl
 import os
 from pathlib import Path
 import tempfile
@@ -57,6 +59,49 @@ class StoreTests(unittest.TestCase):
         r["result_id"] = "different"
         with self.assertRaisesRegex(StoreError, "STORE_SNAPSHOT_MISMATCH"):
             self.store.put_snapshot(c, r, project="project-unit")
+
+    def test_extended_actions_keep_plan_separate_from_effect_and_accept_old_records(self):
+        identifier=self.create()
+        record=self.store.get_investigation(identifier)["record"]
+        validate_record(record,snapshot()[0])  # Existing v1 record needs no rewrite.
+        record["metadata"]={"owner":"Engineer", "incident":"INC-1", "category":"latency"}
+        action={"id":"measure-1","title":"Review connection pool after confirming contention",
+            "owner":"","due_unix":None,"status":"proposed","importance":"normal","effort":"unknown",
+            "verification":"","evidence_ids":[],"purpose":"preventive","rationale":"Conditional hypothesis",
+            "verification_plan":"Repeat representative load and compare timeouts", "ticket":"TASK-1","service":"alpha"}
+        record["action_items"]=[action]
+        self.store.save_record(identifier,record,expected_revision=0)
+        self.assertEqual(self.store.get_investigation(identifier)["record"],record)
+        invalid=copy.deepcopy(record)
+        invalid["action_items"][0].update(status="verified",owner="Engineer",due_unix=1100)
+        with self.assertRaisesRegex(StoreError,"RECORD_ACTION_VERIFICATION_REQUIRED"):
+            validate_record(invalid,snapshot()[0])
+        invalid["action_items"][0]["verification"]="No effect under repeat load"
+        invalid["action_items"][0]["status"]="not_verified"
+        validate_record(invalid,snapshot()[0])
+        for replacement in ({"service":"outside"},{"purpose":"execute"},{"rationale":"x"*2001}):
+            bad=copy.deepcopy(record);bad["action_items"][0].update(replacement)
+            with self.assertRaises(StoreError):validate_record(bad,snapshot()[0])
+
+    def test_history_filters_before_limit_and_never_treats_rank_as_confirmed(self):
+        old=self.create(key="old")
+        record=self.store.get_investigation(old)["record"] | {"metadata":{"owner":"","incident":"","category":"latency"}}
+        record["causes"]=[{"service":"alpha","statement":"Hypothesis only","status":"hypothesis","verification":"","evidence_ids":[]}]
+        record["action_items"]=[{"id":"a1","title":"Investigate","owner":"Engineer","due_unix":999,
+            "status":"planned","importance":"normal","effort":"unknown","verification":"","evidence_ids":[],"service":"alpha"}]
+        self.store.save_record(old,record,expected_revision=0)
+        self.now[0]+=1
+        for number in range(35):self.create(key=f"new-{number}")
+        selected=self.store.list_investigations(service="alpha",category="latency",limit=1)
+        self.assertEqual([i["id"] for i in selected],[old])
+        self.assertEqual(selected[0]["confirmed_services"],[])
+        self.assertEqual(selected[0]["mentioned_services"],["alpha"])
+        self.assertEqual(self.store.list_investigations(service="beta"),[])
+        self.assertEqual([i["id"] for i in self.store.list_investigations(action_status="overdue")],[old])
+        self.assertEqual(self.store.list_investigations(project="other"),[])
+        self.assertEqual(len(self.store.list_investigations(after=1001,before=1001,limit=100)),35)
+        for filters in ({"after":float("nan")},{"after":1002,"before":1000},{"action_status":"executed"},{"limit":101}):
+            with self.assertRaises(StoreError):self.store.list_investigations(**filters)
 
     def test_idempotency_same_request_is_read_back_not_new_work_conflict_rejected(self):
         identifier = self.create()
@@ -225,6 +270,102 @@ class StoreTests(unittest.TestCase):
             db.execute("PRAGMA user_version=99")
         with self.assertRaisesRegex(StoreError, "STORE_SCHEMA_UNSUPPORTED"):
             WorkspaceStore(self.path)
+
+    def quota_store(self):
+        return WorkspaceStore(self.path,clock=lambda:self.now[0],retention_seconds=60,
+                              assistant_daily_jobs=1)
+
+    def test_daily_reservation_survives_reopen_and_deletion_but_not_window_expiry(self):
+        store=self.quota_store()
+        request={"mode":"D","question":"Check"}
+        identifier,_=store.create_investigation("analysis-unit",request,idempotency_key="paid-once")
+        self.assertEqual(store.create_investigation("analysis-unit",request,idempotency_key="paid-once"),(identifier,False))
+        self.assertEqual(store.assistant_budget_status()["reserved_jobs"],1)
+        with self.assertRaisesRegex(StoreError,"STORE_ASSISTANT_DAILY_LIMIT"):
+            store.create_investigation("analysis-unit",request,idempotency_key="over-limit")
+        # Ordinary B work does not spend or depend on the LLM allowance.
+        store.create_investigation("analysis-unit",{"mode":"B"},idempotency_key="offline")
+        store.delete_snapshot("analysis-unit")
+        store=self.quota_store()
+        self.assertEqual(store.assistant_budget_status()["remaining_jobs"],0)
+        store.put_snapshot(*snapshot(),project="project-unit")
+        with self.assertRaisesRegex(StoreError,"STORE_ASSISTANT_DAILY_LIMIT"):
+            store.create_investigation("analysis-unit",request,idempotency_key="after-delete")
+        self.now[0]+=86400
+        store.put_snapshot(*snapshot(),project="project-unit")
+        store.create_investigation("analysis-unit",request,idempotency_key="next-day")
+        self.assertEqual(store.assistant_budget_status()["reserved_jobs"],1)
+
+    def test_follow_up_uses_same_daily_allowance_and_unknown_is_not_refunded(self):
+        store=self.quota_store()
+        identifier,_=store.create_investigation("analysis-unit",{"mode":"B"},idempotency_key="first")
+        store.transition(identifier,expected=["queued"],state="completed",outcome={"status":"completed"})
+        request={"mode":"D","question":"More evidence"}
+        self.assertEqual(store.add_turn(identifier,request,idempotency_key="second"),(2,True))
+        store.transition(identifier,expected=["queued"],state="failed",
+                         outcome={"status":"failed","usage":{"accounting_complete":False}})
+        self.assertEqual(store.add_turn(identifier,request,idempotency_key="second"),(2,False))
+        with self.assertRaisesRegex(StoreError,"STORE_ASSISTANT_DAILY_LIMIT"):
+            store.add_turn(identifier,request,idempotency_key="third")
+        self.assertEqual(len(store.get_investigation(identifier)["turns"]),2)
+        self.assertEqual(store.assistant_budget_status()["reserved_jobs"],1)
+
+    def test_v2_migration_backfills_prior_llm_work_not_b(self):
+        self.store.create_investigation("analysis-unit",{"mode":"D"},idempotency_key="old-llm")
+        self.create(key="old-b")
+        # Reproduce the preceding on-disk schema, retaining actual old turns.
+        with self.store._db(write=True) as db:
+            db.execute("DROP TABLE assistant_reservations")
+            db.execute("PRAGMA user_version=2")
+        migrated=self.quota_store()
+        self.assertEqual(migrated.assistant_budget_status()["reserved_jobs"],1)
+        self.assertEqual(len(migrated.list_investigations()),2)
+        with migrated._db() as db:
+            self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0],3)
+
+    def test_v1_migration_keeps_existing_record_and_counts_previous_llm(self):
+        identifier,_=self.store.create_investigation("analysis-unit",{"mode":"D"},idempotency_key="legacy")
+        previous=self.store.get_investigation(identifier)
+        with self.store._db(write=True) as db:
+            db.execute("DROP TABLE assistant_reservations")
+            db.execute("DROP TABLE investigation_turns")
+            db.execute("PRAGMA user_version=1")
+        migrated=self.quota_store()
+        current=migrated.get_investigation(identifier)
+        for key in ("id","analysis_id","request","record","revision","state"):
+            self.assertEqual(current[key],previous[key])
+        self.assertEqual(len(current["turns"]),1)
+        self.assertEqual(migrated.assistant_budget_status()["reserved_jobs"],1)
+
+    def test_concurrent_store_connections_cannot_overbook_daily_allowance(self):
+        stores=[self.quota_store(),self.quota_store()]
+        def reserve(index):
+            try:
+                stores[index].create_investigation("analysis-unit",{"mode":"D"},idempotency_key=f"parallel-{index}")
+                return "reserved"
+            except StoreError as error:
+                return str(error)
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            self.assertCountEqual(list(pool.map(reserve,range(2))),["reserved","STORE_ASSISTANT_DAILY_LIMIT"])
+        self.assertEqual(stores[0].assistant_budget_status()["reserved_jobs"],1)
+
+    def test_daily_limit_configuration_is_bounded_integer(self):
+        for limit in (True,0,-1,201,1.5):
+            with self.assertRaisesRegex(StoreError,"STORE_LIMIT_INVALID"):
+                WorkspaceStore(self.path,assistant_daily_jobs=limit)
+
+    def test_schema_migration_refuses_a_running_old_owner_without_mutation(self):
+        with self.store._db(write=True) as db:
+            db.execute("DROP TABLE assistant_reservations")
+            db.execute("PRAGMA user_version=2")
+        with (self.path/"worker.lock").open("a+b") as owner:
+            fcntl.flock(owner,fcntl.LOCK_EX|fcntl.LOCK_NB)
+            with self.assertRaisesRegex(StoreError,"STORE_MIGRATION_WORKSPACE_RUNNING"):
+                self.quota_store()
+            with self.store._db() as db:
+                self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0],2)
+                self.assertIsNone(db.execute("SELECT name FROM sqlite_master WHERE name='assistant_reservations'").fetchone())
+        self.assertEqual(self.quota_store().assistant_budget_status()["reserved_jobs"],0)
 
 
 if __name__ == "__main__":

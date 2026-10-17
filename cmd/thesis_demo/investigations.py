@@ -37,6 +37,9 @@ def restore_report_identity(outcome, mapping):
                 h[name] = [reverse_ids[i] for i in h[name]]
             for check in h["next_checks"]:
                 check["evidence_ids"] = [reverse_ids[i] for i in check["evidence_ids"]]
+        for item in result["report"].get("action_proposals", []):
+            item["service"] = reverse_services[item["service"]]
+            item["evidence_ids"] = [reverse_ids[i] for i in item["evidence_ids"]]
     result["local_identity_legend"] = {
         "services": reverse_services,
         "observations": reverse_ids,
@@ -61,6 +64,9 @@ def previous_discussion(turns, mapping, clean_catalog):
                 h[key] = [ids[i] for i in h[key]]
             for check in h["next_checks"]:
                 check["evidence_ids"] = [ids[i] for i in check["evidence_ids"]]
+        for item in report.get("action_proposals", []):
+            item["service"] = names[item["service"]]
+            item["evidence_ids"] = [ids[i] for i in item["evidence_ids"]]
         validate_report(report, clean_catalog)
         question = turn["request"]["question"]
         for source, target in sorted(names.items(), key=lambda pair: -len(pair[0])):

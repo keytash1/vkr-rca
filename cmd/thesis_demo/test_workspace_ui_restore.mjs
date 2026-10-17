@@ -57,3 +57,17 @@ test('superseded restoration does not clear the newer request validation',async(
   assert.equal(h.elements['analysis-error'].hidden,false);
   assert.equal(h.context.session,null);
 });
+
+test('adopting a proposal creates an unassigned draft with a separate verification plan',()=>{
+  const source=section('./static/workspace.js','  function actionFromProposal(proposal, legend) {','  function readRecord() {');
+  const make=vm.runInNewContext(source+'\nactionFromProposal;',{
+    crypto:{randomUUID:()=> 'new-human-draft'},text:value=>value});
+  const proposal={service:'alpha',purpose:'preventive',title:'Conditional change',rationale:'Observed pattern',
+    verification_plan:'Compare timeouts under representative load',evidence_ids:['obs-1']};
+  const draft=make(proposal,{});
+  assert.equal(draft.status,'proposed'); assert.equal(draft.owner,''); assert.equal(draft.due_unix,null);
+  assert.equal(draft.verification,''); assert.equal(draft.verification_plan,proposal.verification_plan);
+  assert.equal(draft.purpose,'preventive'); assert.equal(draft.service,'alpha');
+  draft.evidence_ids.push('obs-2'); assert.deepEqual(proposal.evidence_ids,['obs-1']);
+  assert.equal('executed' in draft,false);
+});

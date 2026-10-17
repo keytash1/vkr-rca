@@ -29,6 +29,8 @@ services:
       - /var/lib/rca-assistant
       - --assistant-model
       - "${RCA_ASSISTANT_MODEL:-gpt-6.1-sol}"
+      - --assistant-daily-jobs
+      - "${RCA_ASSISTANT_DAILY_JOBS:-20}"
       - --allow-assistant-profile
       - "${RCA_ASSISTANT_PROFILE:?Explicitly disclosure-approved profile ID required}"
       - --runbook-corpus

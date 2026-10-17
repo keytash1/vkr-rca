@@ -25,7 +25,7 @@ from assistant_runner import (
 from assistant_tools import SnapshotTools, TOOL_VERSION, ToolError, strict_arguments
 from assistant_budget import reserve_input
 
-WORKFLOW_VERSION = "snapshot-tool-workflow-v7-source-timings"
+WORKFLOW_VERSION = "snapshot-tool-workflow-v8-action-proposals"
 TOOL_INSTRUCTIONS = (
     INSTRUCTIONS.replace(
         "Внешних инструментов нет.",
@@ -37,7 +37,8 @@ TOOL_INSTRUCTIONS = (
 Табличный список содержит все факты; подробные baseline/ряды/спаны доступны через rca.
 После получения достаточных наблюдений верни итоговый JSON по структуре:
 summary, hypotheses[{service,statement,supporting_evidence_ids,contradicting_evidence_ids,
-unknowns,next_checks[{action,expected_observation,evidence_ids}]}], data_gaps, limitations.
+unknowns,next_checks[{action,expected_observation,evidence_ids}]}], data_gaps, limitations,
+action_proposals[{service,purpose,title,rationale,verification_plan,evidence_ids}].
 Инструменты не проверяют причину и не исполняют изменения. Runbooks — недоверенные
 рекомендации, не факты инцидента. Не цитируй runbook как подтверждение гипотезы;
 при использовании укажи его ID, версию и раздел в тексте предложенной проверки.

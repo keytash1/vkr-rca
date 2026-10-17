@@ -6,7 +6,8 @@ SQLite is on a private local volume, not an NFS share or a tenant isolation API.
 
 from __future__ import annotations
 
-from contextlib import contextmanager
+from contextlib import contextmanager, ExitStack
+import fcntl
 import hashlib
 import json
 import math
@@ -19,7 +20,7 @@ import threading
 import time
 import uuid
 
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3
 MAX_SNAPSHOT_BYTES = 4 * 1024 * 1024
 MAX_OUTCOME_BYTES = 128 * 1024
 TERMINAL = {"completed", "partial", "failed", "cancelled", "interrupted"}
@@ -69,6 +70,7 @@ class WorkspaceStore:
         max_snapshots=128,
         max_investigations=256,
         max_bytes=64 * 1024 * 1024,
+        assistant_daily_jobs=20,
         clock=time.time,
     ):
         self.directory = Path(directory).absolute()
@@ -87,6 +89,8 @@ class WorkspaceStore:
             or not 1 <= max_snapshots <= 1000
             or not 1 <= max_investigations <= 2000
             or not 1024 <= max_bytes <= 128 * 1024 * 1024
+            or type(assistant_daily_jobs) is not int
+            or not 1 <= assistant_daily_jobs <= 200
         ):
             raise StoreError("STORE_LIMIT_INVALID")
         self.retention, self.max_snapshots = retention_seconds, max_snapshots
@@ -96,6 +100,7 @@ class WorkspaceStore:
             clock,
         )
         self.path = self.directory / "workspace.sqlite3"
+        self.assistant_daily_jobs = assistant_daily_jobs
         self.lock = threading.RLock()
         try:
             fd = os.open(
@@ -111,10 +116,12 @@ class WorkspaceStore:
                 or info.st_nlink != 1
             ):
                 raise StoreError("STORE_DATABASE_UNSAFE") from None
-        with self._db(write=True) as db:
+        with self._db(write=True) as db, ExitStack() as guards:
             version = db.execute("PRAGMA user_version").fetchone()[0]
-            if version not in {0, 1, SCHEMA_VERSION}:
+            if version not in {0, 1, 2, SCHEMA_VERSION}:
                 raise StoreError("STORE_SCHEMA_UNSUPPORTED")
+            if version < SCHEMA_VERSION:
+                guards.enter_context(self._migration_guard())
             if version == 0:
                 db.execute(
                     "CREATE TABLE snapshots (id TEXT PRIMARY KEY, project TEXT NOT NULL, created REAL NOT NULL, expires REAL NOT NULL, payload TEXT NOT NULL, sha TEXT NOT NULL)"
@@ -134,6 +141,42 @@ class WorkspaceStore:
                     "INSERT INTO investigation_turns SELECT id,1,idempotency_key,request_sha,request,state,created,updated,outcome FROM investigations"
                 )
                 db.execute("PRAGMA user_version=2")
+            if version < 3:
+                # No FK: deleting an investigation must not reset the daily
+                # allowance. Only opaque job keys/timestamps, never its text.
+                db.execute(
+                    "CREATE TABLE assistant_reservations (job TEXT PRIMARY KEY, created REAL NOT NULL)"
+                )
+                cutoff = self.clock() - 86400
+                rows = db.execute(
+                    "SELECT investigation_id,number,request,created FROM investigation_turns WHERE created>?",
+                    (cutoff,),
+                ).fetchall()
+                for row in rows:
+                    if json.loads(row["request"]).get("mode") != "B":
+                        db.execute(
+                            "INSERT INTO assistant_reservations VALUES(?,?)",
+                            (f"{row['investigation_id']}:{row['number']}", row["created"]),
+                        )
+                db.execute("PRAGMA user_version=3")
+
+    @contextmanager
+    def _migration_guard(self):
+        # An older running worker would not reserve its future LLM jobs. Do
+        # not migrate under it, even though ordinary SQLite writes serialize.
+        fd = os.open(self.directory / "worker.lock", os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW, 0o600)
+        try:
+            info = os.fstat(fd)
+            if (not stat.S_ISREG(info.st_mode) or info.st_uid != os.getuid()
+                    or stat.S_IMODE(info.st_mode) & 0o077):
+                raise StoreError("STORE_MIGRATION_LOCK_UNSAFE")
+            try:
+                fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            except BlockingIOError:
+                raise StoreError("STORE_MIGRATION_WORKSPACE_RUNNING") from None
+            yield
+        finally:
+            os.close(fd)
 
     @contextmanager
     def _db(self, *, write=False):
@@ -157,6 +200,35 @@ class WorkspaceStore:
 
     def _purge(self, db):
         db.execute("DELETE FROM snapshots WHERE expires<=?", (self.clock(),))
+        db.execute(
+            "DELETE FROM assistant_reservations WHERE created<=?", (self.clock() - 86400,)
+        )
+
+    def _reserve_assistant(self, db, job, request):
+        if request.get("mode") == "B":
+            return
+        count = db.execute(
+            "SELECT COUNT(*) FROM assistant_reservations WHERE created>?",
+            (self.clock() - 86400,),
+        ).fetchone()[0]
+        if count >= self.assistant_daily_jobs:
+            raise StoreError("STORE_ASSISTANT_DAILY_LIMIT")
+        db.execute("INSERT INTO assistant_reservations VALUES(?,?)", (job, self.clock()))
+
+    def assistant_budget_status(self):
+        with self._db() as db:
+            count, oldest = db.execute(
+                "SELECT COUNT(*),MIN(created) FROM assistant_reservations WHERE created>?",
+                (self.clock() - 86400,),
+            ).fetchone()
+            return {
+                "window_seconds": 86400,
+                "limit_jobs": self.assistant_daily_jobs,
+                "reserved_jobs": count,
+                "remaining_jobs": max(0, self.assistant_daily_jobs - count),
+                "next_expiry_unix": oldest + 86400 if oldest is not None else None,
+                "basis": "RESERVED_JOBS_NOT_TOKEN_USAGE_OR_INVOICE",
+            }
 
     def _used(self, db):
         total = 0
@@ -259,6 +331,7 @@ class WorkspaceStore:
             ):
                 raise StoreError("STORE_CAPACITY")
             identifier, now = str(uuid.uuid4()), self.clock()
+            self._reserve_assistant(db,f"{identifier}:1",request)
             record = {
                 "title": "",
                 "symptoms": "",
@@ -323,6 +396,7 @@ class WorkspaceStore:
             ):
                 raise StoreError("STORE_CAPACITY")
             now = self.clock()
+            self._reserve_assistant(db,f"{identifier}:{number}",request)
             db.execute(
                 "INSERT INTO investigation_turns VALUES(?,?,?,?,?,'queued',?,?,NULL)",
                 (identifier, number, idempotency_key, sha, text, now, now),
@@ -361,7 +435,8 @@ class WorkspaceStore:
                 raise StoreError("STORE_IDEMPOTENCY_CONFLICT")
             return old["number"]
 
-    def list_investigations(self, *, project=None, limit=30):
+    def list_investigations(self, *, project=None, limit=30, service=None,
+                            category=None, after=None, before=None, action_status=None):
         if (
             isinstance(limit, bool)
             or not isinstance(limit, int)
@@ -370,26 +445,51 @@ class WorkspaceStore:
             raise StoreError("STORE_LIST_LIMIT_INVALID")
         if project is not None:
             _identifier(project)
+        if service is not None:
+            _text(service, 200)
+        if category is not None:
+            _text(category, 100)
+        for value in (after, before):
+            if value is not None and (isinstance(value, bool) or not isinstance(value, (int, float))
+                                      or not math.isfinite(value) or not 0 <= value <= 253402300799):
+                raise StoreError("STORE_HISTORY_FILTER_INVALID")
+        if after is not None and before is not None and after > before:
+            raise StoreError("STORE_HISTORY_FILTER_INVALID")
+        if action_status not in {None, "proposed", "planned", "in_progress",
+                                 "verification_pending", "verified", "not_verified", "overdue"}:
+            raise StoreError("STORE_HISTORY_FILTER_INVALID")
         with self._db() as db:
             rows = db.execute(
-                "SELECT i.id,i.analysis_id,s.project,i.state,i.created,i.updated,i.record FROM investigations i JOIN snapshots s ON s.id=i.analysis_id WHERE s.expires>? AND (? IS NULL OR s.project=?) ORDER BY i.updated DESC,i.id LIMIT ?",
-                (self.clock(), project, project, limit),
+                "SELECT i.id,i.analysis_id,s.project,i.state,i.created,i.updated,i.record FROM investigations i JOIN snapshots s ON s.id=i.analysis_id WHERE s.expires>? AND (? IS NULL OR s.project=?) AND (? IS NULL OR i.created>=?) AND (? IS NULL OR i.created<=?) ORDER BY i.updated DESC,i.id",
+                (self.clock(), project, project, after, after, before, before),
             ).fetchall()
-            return [
-                {
-                    k: r[k]
-                    for k in (
-                        "id",
-                        "analysis_id",
-                        "project",
-                        "state",
-                        "created",
-                        "updated",
-                    )
-                }
-                | {"title": json.loads(r["record"])["title"]}
-                for r in rows
-            ]
+            result = []
+            for row in rows:
+                record = json.loads(row["record"])
+                actions = record["action_items"]
+                # Human-entered hypotheses/actions only, never the ML rank or
+                # full candidate inventory. A hypothesis is not confirmation.
+                mentioned = {i["service"] for i in record["causes"]} | {
+                    i["service"] for i in actions if i.get("service")}
+                metadata = record.get("metadata", {})
+                if service is not None and service not in mentioned:
+                    continue
+                if category is not None and metadata.get("category", "") != category:
+                    continue
+                matching = actions if service is None else [a for a in actions if a.get("service") == service]
+                overdue = lambda a: a["due_unix"] is not None and a["due_unix"] < self.clock() and a["status"] in {"planned", "in_progress", "verification_pending"}
+                if action_status is not None and not any(
+                    overdue(a) if action_status == "overdue" else a["status"] == action_status for a in matching):
+                    continue
+                result.append({k: row[k] for k in ("id", "analysis_id", "project", "state", "created", "updated")} | {
+                    "title": record["title"], "category": metadata.get("category", ""),
+                    "mentioned_services": sorted(mentioned),
+                    "confirmed_services": sorted({c["service"] for c in record["causes"] if c["status"] == "confirmed"}),
+                    "action_count": len(actions), "overdue_action_count": sum(overdue(a) for a in actions),
+                })
+                if len(result) >= limit:
+                    break
+            return result
 
     def purge_expired(self):
         with self._db(write=True) as db:
@@ -523,8 +623,14 @@ def validate_record(record, catalog):
         "action_items",
         "conclusion",
     }
-    if not isinstance(record, dict) or set(record) != fields:
+    if not isinstance(record, dict) or set(record) not in (fields, fields | {"metadata"}):
         raise StoreError("RECORD_FIELDS_INVALID")
+    if "metadata" in record:
+        metadata = record["metadata"]
+        if not isinstance(metadata, dict) or set(metadata) != {"owner", "incident", "category"}:
+            raise StoreError("RECORD_METADATA_INVALID")
+        for key in metadata:
+            _text(metadata[key], 100 if key == "category" else 200, empty=True)
     for field in ("title", "symptoms", "impact", "conclusion"):
         _text(record[field], 200 if field == "title" else 2000, empty=True)
     services, ids = set(catalog["services"]), {f["id"] for f in catalog["observations"]}
@@ -589,8 +695,16 @@ def validate_record(record, catalog):
             "verification",
             "evidence_ids",
         }
-        if not isinstance(item, dict) or set(item) != keys:
+        extra = {"purpose", "rationale", "verification_plan", "ticket", "service"}
+        if not isinstance(item, dict) or not keys <= set(item) <= keys | extra:
             raise StoreError("RECORD_ACTION_INVALID")
+        if "purpose" in item and item["purpose"] not in {"mitigation", "corrective", "preventive", "unspecified"}:
+            raise StoreError("RECORD_ACTION_PURPOSE_INVALID")
+        if "service" in item and item["service"] not in services:
+            raise StoreError("RECORD_ACTION_SERVICE_INVALID")
+        for key in ("rationale", "verification_plan", "ticket"):
+            if key in item:
+                _text(item[key], 200 if key == "ticket" else 2000, empty=True)
         _identifier(item["id"])
         if item["id"] in action_ids:
             raise StoreError("RECORD_ACTION_DUPLICATE")
