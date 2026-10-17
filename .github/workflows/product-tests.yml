@@ -53,7 +53,10 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install optional assistant and test dependencies
-        run: python -m pip install ./ml -r requirements-dev.txt -r deploy/product/requirements-assistant.txt
+        # Keep historical research pins intact. This job tests the current
+        # optional runtime, whose requests pin differs from the training env.
+        # pandas/pyarrow/tqdm are only for read-only research regression imports.
+        run: python -m pip install -r deploy/product/requirements.txt -r requirements-dev.txt -r deploy/product/requirements-assistant.txt pandas==3.0.2 pyarrow==24.0.0 tqdm==4.65.0
       - name: Validate local assistant security and lifecycle without provider calls
         env:
           PYTHONPATH: ml:cmd/thesis_demo

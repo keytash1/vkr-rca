@@ -24,7 +24,9 @@ class ProductBundleTests(unittest.TestCase):
         spec = spec_from_file_location("optional_builder", ROOT / "deploy/product/build_bundle.py")
         module = module_from_spec(spec)
         spec.loader.exec_module(module)
-        profile = ROOT / "deploy/acceptance/profiles/petclinic.json"
+        # Composition does not require a local live-acceptance installation.
+        # This prepared control fixture is tracked in a clean public checkout.
+        profile = ROOT / "deploy/profiles/lab-system.json"
         with tempfile.TemporaryDirectory() as temporary:
             for assistant in (False, True):
                 output = Path(temporary) / ("assistant.zip" if assistant else "workspace.zip")
@@ -47,7 +49,7 @@ class ProductBundleTests(unittest.TestCase):
                     "from workspace_store import WorkspaceStore; from investigations import InvestigationService; "
                     "s=WorkspaceStore(Path('private')); service=InvestigationService(s); "
                     "app=DiagnosticApplication(Path.cwd(),workspace=s,investigations=service); "
-                    "assert list(app.profiles)==['petclinic'],app.profile_errors; "
+                    "assert list(app.profiles)==['lab-system'],app.profile_errors; "
                     "assert app.runtime is None; service.close(); print('optional-cold-import-ok')")
                 cold = subprocess.run([sys.executable, "-c", script], cwd=installed, env=environment,
                                       capture_output=True, text=True, timeout=30)

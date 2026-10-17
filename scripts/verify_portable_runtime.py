@@ -27,6 +27,9 @@ def run(root: Path, reference: Path, minimum: int) -> dict:
     expected = json.loads((reference / "ml/models/m14/evaluation-inputs.json").read_text())["predictions"]["frozen_m13"]
     if len(entries) < minimum:
         raise ValueError("insufficient available reference cases")
+    # Use normal initialization: evidence projection is part of the installed
+    # application even when this comparator only reads its ranking.
+    app = DiagnosticApplication(root)
     runtime = None
     checked = []
     for entry in sorted(entries, key=lambda x: x["incident_id"]):
@@ -36,7 +39,6 @@ def run(root: Path, reference: Path, minimum: int) -> dict:
         incident = {k: v for k, v in json.loads(raw).items() if k != "workload_result"}
         if runtime is None:
             runtime = ProfileTransferRuntime(root, reference / "ml/models/m14", tuple(incident["candidate_services"]))
-        app = DiagnosticApplication.__new__(DiagnosticApplication)
         actual = app.analyze(incident, runtime)["candidates"]
         got = [(p["rank"], p["service"], p["model_score"]) for p in actual]
         want = [(p["rank"], p["service"], p["score"]) for p in expected[entry["incident_id"]]]
