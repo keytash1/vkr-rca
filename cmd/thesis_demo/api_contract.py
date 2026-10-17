@@ -18,7 +18,8 @@ COVERAGE = {"type": "number", "minimum": 0, "maximum": 1}
 ARRAY_STRING = {"type": "array", "items": STRING}
 LIVE_INPUT = obj({"profile_id": {"type": "string", "minLength": 1},
                   "start_unix": {"type": "number", "exclusiveMinimum": 0},
-                  "end_unix": {"type": "number", "exclusiveMinimum": 0}},
+                  "end_unix": {"type": "number", "exclusiveMinimum": 0},
+                  "force_refresh": {"type": "boolean", "default": False}},
                  ("profile_id", "start_unix", "end_unix"))
 LIVE_INPUT["description"] = "Unix seconds UTC; end > start, duration <= 3600 s, end not in future. Both metric boundaries inclusive."
 
@@ -58,8 +59,12 @@ SCHEMAS = {
         "annotations": {"type": "array", "items": obj({"source": {"const": "metrics"}, "family": STRING,
                         "level": {"enum": ["warnings", "infos"]}, "message": STRING}, ("source", "family", "level", "message"))},
         "collected_at_unix": NUMBER, "query_step_seconds": {"type": "integer", "minimum": 1, "maximum": 60},
-        "trace_api": {"const": "jaeger-http-json"}, "trace_tested_version": STRING,
+        "trace_api": {"enum": ["jaeger-http-json","jaeger-v3-json"]}, "trace_tested_version": STRING,
         "trace_query_services": ARRAY_STRING, "input_sha256": HASH,
+        "trace_search_completeness": {"const": "unknown_backend_search_depth_sampling_and_retention"},
+        "baseline_binding": obj({"state": {"enum": ["active", "needs_review", "draft"]},
+            "reason": STRING, "profile_contract_sha256": HASH,
+            "healthy_end_unix": {"type": ["number", "null"]}}, ("state", "reason")),
         "elapsed_seconds": {"type": "number", "minimum": 0},
     }, ("metrics", "traces", "trace_error", "metric_families_by_service", "metric_point_coverage",
         "metric_sample_count", "span_count", "services_without_spans", "annotations", "collected_at_unix",
@@ -74,6 +79,11 @@ SCHEMAS = {
         "candidates": {"type": "array", "minItems": 1, "items": ref("Candidate")},
         "profile_id": STRING, "profile_version": STRING,
         "source_status": ref("SourceStatus"),
+        "workspace_status": {"enum": ["saved", "unavailable"], "description": "Present only with optional local workspace; rank does not depend on storage."},
+        "delivery": obj({"cache_hit": {"type": "boolean"}, "joined_inflight": {"type": "boolean"},
+            "cache_ttl_seconds": {"type": "number", "minimum": 0},
+            "source_age_seconds": {"type": ["number", "null"], "minimum": 0}},
+            ("cache_hit", "joined_inflight", "cache_ttl_seconds", "source_age_seconds")),
         "timing": obj({name: {"type": "number", "minimum": 0} for name in (
             "collection_seconds", "calculation_seconds", "total_seconds")},
             ("collection_seconds", "calculation_seconds", "total_seconds")),
@@ -83,7 +93,58 @@ SCHEMAS = {
     "Profile": obj({"id": STRING, "title": STRING, "version": STRING,
                     "candidate_count": {"type": "integer", "minimum": 1}, "status": {"const": "configured"}},
                    ("id", "title", "version", "candidate_count", "status")),
+    "Observation": obj({"id": {"type": "string", "pattern": "^obs-[0-9a-f]{32}$"},
+        "service": STRING, "kind": {"enum": ["metric", "traces", "dependencies"]},
+        "start_unix": NUMBER, "end_unix": NUMBER, "values": {"type": "object"},
+        "source_links": {"type": "array", "items": obj({"kind": STRING,
+            "url": {"type": "string", "format": "uri"}}, ("kind", "url"))}},
+        ("id", "service", "kind", "start_unix", "end_unix", "values", "source_links")),
+    "EvidenceCatalog": obj({"schema_version": {"const": "2.0"},
+        "catalog_version": {"enum": ["evidence-v1", "evidence-v2-source-timings"]},
+        "analysis_id": {"type": "string", "format": "uuid"},
+        "profile_id": {"type": ["string", "null"]}, "profile_version": {"type": ["string", "null"]},
+        "input_sha256": HASH, "baseline_sha256": HASH, "feature_schema_sha256": HASH,
+        "model_version": STRING, "start_unix": NUMBER, "end_unix": NUMBER,
+        "services": ARRAY_STRING, "requests_per_second": NUMBER,
+        "source_quality": {"type": "object"}, "limitations": ARRAY_STRING,
+        "observations": {"type": "array", "items": ref("Observation")},
+        "checks": {"type": "array", "items": obj({"service": STRING, "code": STRING,
+            "evidence_ids": ARRAY_STRING, "text": STRING, "status": {"const": "PROPOSED_NOT_EXECUTED"}},
+            ("service", "code", "evidence_ids", "text", "status"))}},
+        ("schema_version", "catalog_version", "analysis_id", "profile_id", "profile_version",
+         "input_sha256", "baseline_sha256", "feature_schema_sha256", "model_version",
+         "start_unix", "end_unix", "services", "requests_per_second", "source_quality",
+         "limitations", "observations", "checks")),
 }
+
+RECORD_TEXT = {"type":"string","maxLength":2000}
+SCHEMAS.update({
+    "InvestigationRequest": obj({"analysis_id":STRING,"mode":{"enum":["B","C","D"]},
+        "question":{"type":"string","minLength":1,"maxLength":2000},
+        "idempotency_key":{"type":"string","pattern":"^[A-Za-z0-9_-]{1,128}$"}},
+        ("analysis_id","mode","question","idempotency_key")),
+    "InvestigationRecord": obj({"title":{"type":"string","maxLength":200},"symptoms":RECORD_TEXT,
+        "impact":RECORD_TEXT,"conclusion":RECORD_TEXT,
+        "timeline":{"type":"array","maxItems":50,"items":obj({"time_unix":NUMBER,"description":RECORD_TEXT,"evidence_ids":ARRAY_STRING},("time_unix","description","evidence_ids"))},
+        "causes":{"type":"array","maxItems":10,"items":obj({"service":STRING,"statement":RECORD_TEXT,
+            "status":{"enum":["hypothesis","confirmed","discarded"]},"verification":RECORD_TEXT,"evidence_ids":ARRAY_STRING},
+            ("service","statement","status","verification","evidence_ids"))},
+        "action_items":{"type":"array","maxItems":20,"items":obj({"id":STRING,"title":RECORD_TEXT,
+            "owner":{"type":"string","maxLength":200},"due_unix":{"type":["number","null"]},
+            "status":{"enum":["proposed","planned","in_progress","verification_pending","verified","not_verified"]},
+            "importance":{"enum":["low","normal","high"]},"effort":{"enum":["small","medium","large","unknown"]},
+            "verification":RECORD_TEXT,"evidence_ids":ARRAY_STRING},
+            ("id","title","owner","due_unix","status","importance","effort","verification","evidence_ids"))}},
+        ("title","symptoms","impact","conclusion","timeline","causes","action_items")),
+    "Investigation": obj({"id":STRING,"analysis_id":STRING,"project":STRING,
+        "state":{"enum":["queued","running","cancelling","completed","partial","failed","cancelled","interrupted"]},
+        "created":NUMBER,"updated":NUMBER,"revision":{"type":"integer","minimum":0},
+        "request":{"type":"object"},"outcome":{"type":["object","null"]},"record":ref("InvestigationRecord"),
+        "turns":{"type":"array","maxItems":10,"items":obj({"number":{"type":"integer","minimum":1},"state":STRING,
+            "created":NUMBER,"updated":NUMBER,"request":{"type":"object"},"outcome":{"type":["object","null"]}},
+            ("number","state","created","updated","request","outcome"))}},
+        ("id","analysis_id","project","state","created","updated","revision","request","outcome","record","turns")),
+})
 
 
 def response(schema, description):
@@ -92,28 +153,82 @@ def response(schema, description):
 
 def document():
     errors = {str(status): response(ref("Error"), description) for status, description in (
-        (400, "INVALID_REQUEST or INVALID_INTERVAL"), (404, "PROFILE_UNKNOWN or NOT_FOUND"),
+        (400, "INVALID_REQUEST or INVALID_INTERVAL"), (403, "HOST_NOT_ALLOWED or ORIGIN_NOT_ALLOWED"), (404, "PROFILE_UNKNOWN or NOT_FOUND"),
         (408, "REQUEST_TIMEOUT; incomplete client body"),
         (413, "PAYLOAD_TOO_LARGE"), (415, "MEDIA_TYPE_UNSUPPORTED"), (429, "REQUEST_BUSY; retry later"),
         (502, "TELEMETRY_UNAVAILABLE or TELEMETRY_INVALID; missing or unusable required telemetry"),
         (504, "SOURCE_TIMEOUT"), (500, "INTERNAL_ERROR"))}
     return {
-        "openapi": "3.1.0", "info": {"title": "Service diagnostic ranking API", "version": "1.0.0"},
+        "openapi": "3.1.0", "info": {"title": "Service diagnostic ranking API", "version": "1.1.0"},
         "servers": [{"url": "/"}],
         "paths": {
+            "/healthz": {"get": {"operationId": "coreReadiness", "summary": "Non-sensitive core readiness; no source I/O or workspace content",
+                "responses": {str(code): response(obj({"status": {"type": "string", "enum": [state]}}, ("status",)), state)
+                              for code, state in ((200, "ready"), (503, "not_configured"))}}},
             "/api/health": {"get": {"operationId": "health", "summary": "Model/setup status, not a source connectivity check",
                 "responses": {"200": response({"type": "object"}, "Application status")}}},
             "/api/profiles": {"get": {"operationId": "profiles", "summary": "Installed usable systems",
                 "responses": {"200": response({"type": "array", "items": ref("Profile")}, "Systems")}}},
             "/api/analyze": {"post": {"operationId": "analyze", "summary": "Collect and rank, or replay a saved input",
-                "description": "Read-only synchronous operation. One in-flight analysis per application process; no queue. Maximum body 24 MiB. Sources and queries are operator-installed, never caller supplied. Live collection has a 120-second budget; response timing is measured, not an SLA.",
+                "description": "Read-only synchronous operation. One live owner plus at most one identical joining request; other concurrent requests return 429. Complete eligible results are reused in memory up to 15 seconds; force_refresh bypasses reuse and creates a new result. No stale fallback after a source error. Replay has its own single in-flight guard. Maximum body 24 MiB. Sources and queries are operator-installed, never caller supplied. Live collection has a 120-second budget; timing is measured, not an SLA.",
                 "requestBody": {"required": True, "content": {"application/json": {"schema": ref("AnalysisRequest")}}},
                 "responses": {"200": response(ref("AnalysisResult"), "Full ranking; inspect warnings and coverage"), **errors}}},
+            "/api/v2/analyses/{analysis_id}/evidence": {"get": {
+                "operationId": "analysisEvidence", "summary": "Bounded observations and proposed checks, not a causal conclusion",
+                "description": "No source I/O. Default: in-memory retention 30 minutes, 16 catalogues, 32 MiB total/4 MiB each. Optional loopback workspace retains live snapshots for its configured TTL and supplies a durable fallback. Missing/expired IDs return 404. Source links can require separate authentication and are not sent to LLM by default.",
+                "parameters": [{"name": "analysis_id", "in": "path", "required": True,
+                    "schema": {"type": "string", "format": "uuid"}}],
+                "responses": {"200": response(ref("EvidenceCatalog"), "Versioned facts, full inventory in neutral order"),
+                    "404": response(ref("Error"), "EVIDENCE_NOT_FOUND")}}},
             "/api/examples": {"get": {"operationId": "replayExamples", "tags": ["Optional research"],
                 "responses": {"200": response({"type": "array", "items": obj({"id": STRING, "title": STRING}, ("id", "title"))}, "Empty when replay is not installed")}}},
             "/api/results": {"get": {"operationId": "researchResults", "tags": ["Optional research"],
                 "responses": {"200": response({"type": "object"}, "Independent experiment summary"),
                               "404": response(ref("Error"), "Experiment is not installed")}}},
             "/api/openapi.json": {"get": {"operationId": "openapi", "responses": {"200": response({"type": "object"}, "This OpenAPI document")}}},
-        }, "components": {"schemas": SCHEMAS},
+            **workspace_paths(),
+        }, "components": {"schemas": SCHEMAS,"securitySchemes":{
+            "workspaceCookie":{"type":"apiKey","in":"cookie","name":"rca_workspace_session"},
+            "workspaceCSRF":{"type":"apiKey","in":"header","name":"X-RCA-CSRF"}}},
+    }
+
+
+def workspace_paths():
+    """Optional local extension. Disabled deployments return 404 for these URIs."""
+    error_responses={str(c):response(ref("Error"),m) for c,m in ((400,"Invalid fields/business validation"),
+        (401,"Session required"),(403,"Host/Origin/CSRF or profile transmission policy rejected"),
+        (404,"Object unavailable or extension disabled"),(409,"Idempotency/revision conflict"),
+        (413,"Maximum body 32 KiB"),(429,"Bounded queue/storage full"),(503,"Workspace unavailable"))}
+    security=[{"workspaceCookie":[],"workspaceCSRF":[]}]
+    def operation(name,summary,*,post=False,body=None,result=None):
+        value={"operationId":name,"summary":summary,"tags":["Optional trusted-loopback workspace"],
+            "description":"One local installation, not multi-tenant authentication. Admin settings are CLI-only. Mutations require exact local Origin, session cookie and X-RCA-CSRF. No source queries or side effects on monitored services.",
+            "security":security if post else [{"workspaceCookie":[]}],
+            "responses":{"200":response(result or ref("Investigation"),"Current state"),**error_responses}}
+        if post:
+            value["requestBody"]={"required":True,"content":{"application/json":{"schema":body or obj({})}}}
+        return value
+    create=operation("createInvestigation","Create deterministic or approved assistant investigation; retry same idempotency key",post=True,body=ref("InvestigationRequest"))
+    create["responses"]["202"]=response(ref("Investigation"),"Enqueued; one running/one waiting, no rank lock")
+    follow=operation("followUpInvestigation","Bounded follow-up on the same immutable snapshot; preserve human record and prior turns",post=True,
+        body=obj({"mode":{"enum":["B","C","D"]},"question":{"type":"string","minLength":1,"maxLength":2000},
+            "idempotency_key":{"type":"string","pattern":"^[A-Za-z0-9_-]{1,128}$"}},("mode","question","idempotency_key")))
+    follow["responses"]["202"]=response(ref("Investigation"),"New turn enqueued; earlier answers and human record retained")
+    return {
+        "/api/v2/workspace":{"get":{"operationId":"workspaceSession","summary":"Start local browser session and inspect configured capabilities",
+            "tags":["Optional trusted-loopback workspace"],"responses":{"200":response({"type":"object"},"CSRF token; HttpOnly SameSite=Strict session cookie"),**error_responses}}},
+        "/api/v2/investigations":{"get":operation("listInvestigations","Latest 30 non-expired investigations",result={"type":"object"}),"post":create},
+        "/api/v2/investigations/{investigation_id}":{"parameters":[{"name":"investigation_id","in":"path","required":True,"schema":STRING}],
+            "get":operation("getInvestigation","Read current job, outcome and human record")},
+        "/api/v2/investigations/{investigation_id}/cancel":{"parameters":[{"name":"investigation_id","in":"path","required":True,"schema":STRING}],
+            "post":operation("cancelInvestigation","Request cancellation; poll until terminal state",post=True)},
+        "/api/v2/investigations/{investigation_id}/record":{"parameters":[{"name":"investigation_id","in":"path","required":True,"schema":STRING}],
+            "post":operation("saveInvestigationRecord","Optimistic revision update; human hypotheses/causes/actions, not LLM confirmation",post=True,
+                body=obj({"expected_revision":{"type":"integer","minimum":0},"record":ref("InvestigationRecord")},("expected_revision","record")))},
+        "/api/v2/investigations/{investigation_id}/messages":{"parameters":[{"name":"investigation_id","in":"path","required":True,"schema":STRING}],
+            "post":follow},
+        "/api/v2/analyses/{analysis_id}/snapshot":{"parameters":[{"name":"analysis_id","in":"path","required":True,"schema":STRING}],
+            "get":operation("readSnapshot","Read immutable stored result/catalog with provenance; no recollection",result={"type":"object"})},
+        "/api/v2/analyses/{analysis_id}/delete":{"parameters":[{"name":"analysis_id","in":"path","required":True,"schema":STRING}],
+            "post":operation("deleteSnapshot","Cancel dependent work and logically delete snapshot and investigations; baseline untouched",post=True,result=obj({"deleted":{"type":"boolean"}},("deleted",)))},
     }

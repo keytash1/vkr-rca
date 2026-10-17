@@ -19,6 +19,41 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 class ProductBundleTests(unittest.TestCase):
+    def test_optional_workspace_and_provider_are_explicit_clean_compositions(self):
+        from importlib.util import module_from_spec, spec_from_file_location
+        spec = spec_from_file_location("optional_builder", ROOT / "deploy/product/build_bundle.py")
+        module = module_from_spec(spec)
+        spec.loader.exec_module(module)
+        profile = ROOT / "deploy/acceptance/profiles/petclinic.json"
+        with tempfile.TemporaryDirectory() as temporary:
+            for assistant in (False, True):
+                output = Path(temporary) / ("assistant.zip" if assistant else "workspace.zip")
+                module.build(ROOT, profile, output, with_workspace=True, with_assistant=assistant)
+                installed = Path(temporary) / ("assistant" if assistant else "workspace")
+                with ZipFile(output) as archive:
+                    names = archive.namelist()
+                    self.assertIn("cmd/thesis_demo/workspace_store.py", names)
+                    for notice in ("LICENSE", "NOTICE", "THIRD_PARTY.md", "THIRD_PARTY_NOTICES"):
+                        self.assertIn(notice, names)
+                    self.assertEqual("cmd/thesis_demo/assistant_worker.py" in names, assistant)
+                    self.assertEqual("requirements-assistant.txt" in names, assistant)
+                    self.assertFalse(any(".rca-private" in n or "evaluation" in n or "external-data" in n or "test_" in n for n in names))
+                    manifest = json.loads(archive.read("bundle-manifest.json"))
+                    self.assertFalse(manifest["capabilities"]["external_transmission_enabled"])
+                    self.assertFalse(manifest["capabilities"]["credentials_included"])
+                    archive.extractall(installed)
+                environment = os.environ | {"PYTHONPATH": os.pathsep.join((str(installed / "ml"), str(installed / "cmd/thesis_demo")))}
+                script = ("from pathlib import Path; from server import DiagnosticApplication; "
+                    "from workspace_store import WorkspaceStore; from investigations import InvestigationService; "
+                    "s=WorkspaceStore(Path('private')); service=InvestigationService(s); "
+                    "app=DiagnosticApplication(Path.cwd(),workspace=s,investigations=service); "
+                    "assert list(app.profiles)==['petclinic'],app.profile_errors; "
+                    "assert app.runtime is None; service.close(); print('optional-cold-import-ok')")
+                cold = subprocess.run([sys.executable, "-c", script], cwd=installed, env=environment,
+                                      capture_output=True, text=True, timeout=30)
+                self.assertEqual(cold.returncode, 0, cold.stderr)
+                self.assertIn("optional-cold-import-ok", cold.stdout)
+
     def test_bundle_contains_only_runtime_assets_and_starts(self):
         from importlib.util import module_from_spec, spec_from_file_location
 
@@ -43,6 +78,8 @@ class ProductBundleTests(unittest.TestCase):
             (root / "deploy/product/runtime-pyproject.toml").write_bytes(
                 (ROOT / "deploy/product/runtime-pyproject.toml").read_bytes()
             )
+            for name in ("LICENSE", "NOTICE", "THIRD_PARTY.md", "THIRD_PARTY_NOTICES"):
+                (root / "deploy/product" / name).write_bytes((ROOT / "deploy/product" / name).read_bytes())
             artifact = root / "deploy/profiles/artifacts/portable"
             artifact.mkdir(parents=True)
             for name in ("healthy-baseline.json", "legacy-metric-baseline.json"):
@@ -60,6 +97,9 @@ class ProductBundleTests(unittest.TestCase):
                 self.assertFalse(any(name.startswith("ml/models/m10d-integration/") for name in archive.namelist()))
                 self.assertNotIn("ml/rca_ml/m12_evaluate.py", archive.namelist())
                 self.assertNotIn("ml/rca_ml/m14_runtime.py", archive.namelist())
+                self.assertNotIn("cmd/thesis_demo/evaluation_ledger.py", archive.namelist())
+                self.assertNotIn("cmd/thesis_demo/assistant_worker.py", archive.namelist())
+                self.assertIn("cmd/thesis_demo/assistant_context.py", archive.namelist())
                 self.assertFalse(any("evaluation" in name or "external-data" in name for name in archive.namelist()))
                 self.assertFalse(any(name.endswith(("m14_evaluate.py", "m13_experiment.py", "train.py"))
                                      for name in archive.namelist()))

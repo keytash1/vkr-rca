@@ -1,0 +1,35 @@
+# Explicit override. Requires the workspace file, owner-authorized data scope
+# and an independently completed official account login. No credential values
+# are interpolated into Compose or baked into the image.
+services:
+  diagnostic:
+    image: rca-workbench:assistant-local
+    build:
+      target: assistant
+    volumes:
+      - "${RCA_ASSISTANT_STATE_DIR:?Absolute private app-owned authorization directory required}:/var/lib/rca-assistant"
+      - "${RCA_RUNBOOK_FILE:?Absolute approved project-scoped runbook JSON required}:/etc/rca/runbooks.json:ro"
+    command:
+      - python
+      - cmd/thesis_demo/server.py
+      - --root
+      - /opt/rca
+      - --host
+      - 0.0.0.0
+      - --unsafe-public
+      - --port
+      - '18100'
+      - --workspace-dir
+      - /var/lib/rca-workspace
+      - --workspace-origin
+      - "http://127.0.0.1:${RCA_PORT:-18100}"
+      - --assistant-python
+      - /usr/local/bin/python
+      - --assistant-state-dir
+      - /var/lib/rca-assistant
+      - --assistant-model
+      - "${RCA_ASSISTANT_MODEL:-gpt-6.1-sol}"
+      - --allow-assistant-profile
+      - "${RCA_ASSISTANT_PROFILE:?Explicitly disclosure-approved profile ID required}"
+      - --runbook-corpus
+      - /etc/rca/runbooks.json

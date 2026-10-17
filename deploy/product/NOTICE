@@ -1,0 +1,12 @@
+RCA Workbench
+Copyright 2026 RCA Workbench contributors.
+
+The product's original source code and locally trained model parameter files
+are distributed under Apache License 2.0. This notice applies to the explicit
+product composition, not to every file in the research workspace.
+
+Third-party dependencies, Python, the base operating-system image and optional
+services retain their own licenses and notices. See THIRD_PARTY.md. No company
+documents, provider credentials, incident truth or external benchmark source
+code are part of the product composition. OpenAI services and account access
+are not licensed or sublicensed by this product.

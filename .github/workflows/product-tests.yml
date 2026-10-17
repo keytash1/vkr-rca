@@ -43,3 +43,24 @@ jobs:
             --mount type=bind,src="$GITHUB_WORKSPACE/scripts/verify_portable_runtime.py",dst=/verify.py,readonly \
             rca-product:ci python /verify.py --root /opt/rca \
             --reference-root /reference --minimum-cases 1
+
+  assistant-contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install optional assistant and test dependencies
+        run: python -m pip install ./ml -r requirements-dev.txt -r deploy/product/requirements-assistant.txt
+      - name: Validate local assistant security and lifecycle without provider calls
+        env:
+          PYTHONPATH: ml:cmd/thesis_demo
+        run: python -m unittest discover -s cmd/thesis_demo -p 'test_*.py' -q
+      - name: Build explicit optional runtime composition
+        run: docker build --target assistant -f deploy/product/Dockerfile -t rca-assistant:ci .
+      - name: Verify absent research corpus and credentials inside image
+        run: |
+          docker run --rm --network none --read-only --tmpfs /tmp:rw,nosuid,size=64m rca-assistant:ci \
+            python -c 'from pathlib import Path; import sys; sys.path.insert(0,"cmd/thesis_demo"); import workspace_store,assistant_worker; assert not Path("external-data").exists(); assert not Path("ml/models/m14").exists(); assert not Path(".rca-private").exists()'

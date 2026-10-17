@@ -12,8 +12,10 @@ import ipaddress
 from collections import defaultdict
 import hashlib
 import json
+import logging
 import math
 import mimetypes
+import os
 import threading
 import time
 import uuid
@@ -27,7 +29,11 @@ from typing import TYPE_CHECKING
 from live_sources import LiveProfile, TelemetrySourceError, collect
 from api_errors import ApiError
 from api_contract import document as api_document
+from evidence_catalog import EvidenceRegistry, build_catalog
 from profile_runtime import ProfileTransferRuntime
+from trace_adapters import validate_canonical_spans
+from profile_contract import baseline_binding, contract_sha256
+from analysis_requests import AnalysisRequests
 from rca_ml.m13_features import build_candidate_rows
 if TYPE_CHECKING:
     from rca_ml.m14_runtime import FrozenM13TransferRuntime
@@ -51,15 +57,22 @@ def is_loopback_host(host: str) -> bool:
 
 
 class DiagnosticApplication:
-    def __init__(self, root: Path, profiles_dir: Path | None = None):
+    def __init__(self, root: Path, profiles_dir: Path | None = None, *, workspace=None, investigations=None, workspace_origin=None):
         self.root = root.resolve()
+        self.workspace, self.investigations, self.workspace_http = workspace, investigations, None
+        if workspace is not None and investigations is not None:
+            from workspace_http import WorkspaceHTTP
+            self.workspace_http = WorkspaceHTTP(workspace, investigations,evict_evidence=self._evict_analysis,expected_origin=workspace_origin)
         # Bound memory/CPU and serialize access to shared inference objects.
         # Do not build an unbounded queue of expired incident requests.
         self.analysis_slot = threading.BoundedSemaphore(1)
+        self.live_requests = AnalysisRequests()
+        self.evidence_registry = EvidenceRegistry()
         profiles_dir = profiles_dir or self.root / "deploy/profiles"
         self.profiles = {}
         self.profile_runtimes = {}
         self.profile_errors = {}
+        self.profile_artifact_hashes = {}
         for path in sorted(profiles_dir.glob("*.json")):
             try:
                 profile = LiveProfile.load(path, self.root)
@@ -71,6 +84,9 @@ class DiagnosticApplication:
                 raise ValueError(f"duplicate telemetry profile: {profile.id}")
             self.profiles[profile.id] = profile
             self.profile_runtimes[profile.id] = runtime
+            self.profile_artifact_hashes[profile.id] = {
+                name: hashlib.sha256((profile.artifact_dir / name).read_bytes()).hexdigest()
+                for name in ("healthy-baseline.json", "legacy-metric-baseline.json")}
         self.run_dir = self.root / "external-data/m14/runs/locked-v1"
         self.static_dir = Path(__file__).resolve().parent / "static"
         evaluation_path = self.root / "ml/models/m14/evaluation.json"
@@ -104,6 +120,10 @@ class DiagnosticApplication:
                     raise ValueError("example telemetry is missing or outside run directory")
                 self.examples[case_id] = (path, entry["sha256"])
 
+    def _evict_analysis(self, identifier):
+        self.evidence_registry.delete(identifier)
+        self.live_requests.delete(identifier)
+
     def example(self, case_id: str) -> dict:
         if case_id not in self.examples:
             raise ValueError("unknown incident")
@@ -113,7 +133,8 @@ class DiagnosticApplication:
             raise ValueError("incident data checksum mismatch")
         return json.loads(data)
 
-    def analyze(self, incident: dict, runtime: FrozenM13TransferRuntime | None = None) -> dict:
+    def analyze(self, incident: dict, runtime: FrozenM13TransferRuntime | None = None,
+                *, profile: LiveProfile | None = None, source_status: dict | None = None) -> dict:
         runtime = runtime or self.runtime
         if runtime is None:
             raise ValueError("replay mode is not installed")
@@ -136,6 +157,7 @@ class DiagnosticApplication:
                 or end <= start):
             raise ValueError("diagnostic window has invalid time boundaries")
         clean = dict(incident)
+        validate_canonical_spans(clean.get("traces",[]))
         ranked = runtime.rank_all(clean)["frozen_m13"]
         rows = build_candidate_rows(clean, runtime.baseline, expected)
         by_service = {row["service"]: row["features"] for row in rows}
@@ -147,7 +169,7 @@ class DiagnosticApplication:
         ]
         if len(candidates) != len(expected):
             raise RuntimeError("incomplete candidate ranking")
-        return {
+        result = {
             "schema_version": "1.0",
             "result_id": str(uuid.uuid4()),
             "incident_id": str(incident.get("incident_id", "uploaded-window")),
@@ -166,6 +188,17 @@ class DiagnosticApplication:
             "causal_status": "DIAGNOSTIC_RANKING_ONLY",
             "candidates": candidates,
         }
+        # An optional presentation projection never feeds back into inference.
+        # A projection budget/error must not make a valid v1 ranking unavailable.
+        try:
+            provenance = {}
+            if profile and (profile.artifact_dir / "provenance.json").is_file():
+                provenance = json.loads((profile.artifact_dir / "provenance.json").read_text())
+            self.evidence_registry.put(build_catalog(clean, result, runtime.baseline,
+                profile=profile, source_status=source_status, baseline_provenance=provenance))
+        except (ValueError, KeyError, TypeError, OSError) as error:
+            logging.getLogger(__name__).warning("evidence_projection_unavailable type=%s", type(error).__name__)
+        return result
 
     @staticmethod
     def _observation_summary(incident: dict, services: tuple[str, ...]) -> dict:
@@ -174,7 +207,7 @@ class DiagnosticApplication:
         units = {}
         for item in incident["metrics"]:
             service = item["service"]
-            if service in services:
+            if service in services and incident["start_unix"] <= float(item["timestamp"]) <= incident["end_unix"]:
                 family = item["family"]
                 value = float(item["value"])
                 if math.isfinite(value):
@@ -183,7 +216,7 @@ class DiagnosticApplication:
         spans = {service: {"count": 0, "errors": 0} for service in services}
         for span in incident["traces"]:
             service = span.get("service")
-            if service in spans:
+            if service in spans and incident["start_unix"] * 1e6 <= span["start_time_us"] <= incident["end_unix"] * 1e6:
                 spans[service]["count"] += 1
                 spans[service]["errors"] += int(bool(span.get("error", False)))
         return {
@@ -201,23 +234,56 @@ class DiagnosticApplication:
             for service in services
         }
 
-    def analyze_live(self, profile_id: str, start: float, end: float) -> dict:
+    def analyze_live(self, profile_id: str, start: float, end: float, *, force_refresh=False) -> dict:
         if not isinstance(profile_id, str):
             raise ApiError("INVALID_REQUEST", "Выберите подключённую систему.", fields=("profile_id",))
         profile = self.profiles.get(profile_id)
         if profile is None:
             raise ApiError("PROFILE_UNKNOWN", "Система не подключена. Выберите доступную систему или обратитесь к интегратору.",
                            status=HTTPStatus.NOT_FOUND, fields=("profile_id",))
+        if not isinstance(force_refresh, bool):
+            raise ApiError("INVALID_REQUEST", "force_refresh должен быть логическим значением.")
+        # Validate before even considering reuse; do not serve a previous result
+        # after baseline files or source credential scope were changed in place.
+        baseline_binding(profile)
+        for name, expected in self.profile_artifact_hashes[profile.id].items():
+            if hashlib.sha256((profile.artifact_dir / name).read_bytes()).hexdigest() != expected:
+                raise ApiError("PROFILE_INCOMPATIBLE", "Базовое состояние изменено. Перезапустите приложение после проверки интегратором.", 409)
+        key = hashlib.sha256(json.dumps({"profile": profile.id, "version": profile.version,
+            "contract": contract_sha256(profile), "baseline": self.profile_artifact_hashes[profile.id],
+            "start": start, "end": end,
+            "access": [os.environ.get(name, "") if name else "" for name in (profile.metric_token_env,profile.trace_token_env)]},
+            sort_keys=True, allow_nan=False).encode()).hexdigest()
+        def compute():
+            if not self.analysis_slot.acquire(blocking=False):
+                raise ApiError("REQUEST_BUSY", "Выполняется другой анализ. Повторите после его завершения.", 429)
+            try:
+                return self._analyze_live(profile, start, end)
+            finally:
+                self.analysis_slot.release()
+        return self.live_requests.run(key, compute, refresh=force_refresh)
+
+    def _analyze_live(self, profile: LiveProfile, start: float, end: float) -> dict:
         started = time.monotonic()
         window, source_status = collect(profile, start, end)
-        runtime = self.profile_runtimes[profile_id]
+        runtime = self.profile_runtimes[profile.id]
         calculation_started = time.monotonic()
-        result = self.analyze(window, runtime)
+        result = self.analyze(window, runtime, profile=profile, source_status=source_status)
         result.update({"profile_id": profile.id, "profile_version": profile.version,
                        "source_status": source_status, "input_sha256": source_status["input_sha256"]})
         result["timing"] = {"collection_seconds": round(calculation_started - started, 4),
                             "calculation_seconds": round(time.monotonic() - calculation_started, 4),
                             "total_seconds": round(time.monotonic() - started, 4)}
+        if self.workspace is not None:
+            try:
+                catalog = self.evidence_registry.get(result["result_id"])
+                if catalog is None:
+                    raise ValueError("EVIDENCE_PROJECTION_UNAVAILABLE")
+                result["workspace_status"] = "saved"
+                self.workspace.put_snapshot(catalog,result,project=profile.id)
+            except Exception as error:
+                result["workspace_status"] = "unavailable"
+                logging.getLogger(__name__).warning("workspace_snapshot_unavailable type=%s",type(error).__name__)
         return result
 
     def public_results(self) -> dict:
@@ -238,13 +304,34 @@ class DiagnosticApplication:
         }
 
 
-def make_handler(app: DiagnosticApplication):
+def make_handler(app: DiagnosticApplication, *, allow_proxy_host=False):
     class Handler(BaseHTTPRequestHandler):
         server_version = "RCADiagnostics/1.0"
 
         def setup(self):
             super().setup()
             self.connection.settimeout(15)
+
+        def end_headers(self):
+            # Model/source text is rendered as textContent; CSP is a second
+            # boundary, not an excuse to evaluate generated HTML or commands.
+            self.send_header("Content-Security-Policy", "default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'")
+            self.send_header("Referrer-Policy", "no-referrer")
+            self.send_header("X-Frame-Options", "DENY")
+            super().end_headers()
+
+        def _local_base_guard(self):
+            # Loopback binding alone is insufficient against DNS rebinding.
+            # Optional workspace enforces its own fixed published origin.
+            if app.workspace_http is not None or allow_proxy_host:
+                return
+            host = self.headers.get("Host", "")
+            if host not in {f"127.0.0.1:{self.server.server_port}", f"localhost:{self.server.server_port}"}:
+                raise ApiError("HOST_NOT_ALLOWED", "Недопустимый адрес приложения.", 403)
+            origin = self.headers.get("Origin")
+            if ((origin is not None and origin != "http://"+host)
+                    or self.headers.get("Sec-Fetch-Site", "") not in {"", "same-origin", "none"}):
+                raise ApiError("ORIGIN_NOT_ALLOWED", "Откройте приложение с локального адреса.", 403)
 
         def _error(self, status, code, message, fields=()):
             request_id = str(uuid.uuid4())
@@ -253,13 +340,15 @@ def make_handler(app: DiagnosticApplication):
                                       "error": message, "fields": list(fields),
                                       "request_id": request_id})
 
-        def _json(self, code: HTTPStatus, value: object):
+        def _json(self, code: HTTPStatus, value: object, *, headers=None):
             data = json.dumps(value, ensure_ascii=False, allow_nan=False).encode()
             self.send_response(code)
             self.send_header("Content-Type", "application/json; charset=utf-8")
             self.send_header("Content-Length", str(len(data)))
             self.send_header("Cache-Control", "no-store")
             self.send_header("X-Content-Type-Options", "nosniff")
+            for key,value in (headers or {}).items():
+                self.send_header(key,value)
             if code == HTTPStatus.TOO_MANY_REQUESTS:
                 self.send_header("Retry-After", "2")
             self.end_headers()
@@ -267,6 +356,26 @@ def make_handler(app: DiagnosticApplication):
 
         def do_GET(self):
             path = urlsplit(self.path).path
+            if path == "/healthz":
+                # Non-sensitive process/core readiness only, no profiles, source
+                # requests, cookies or workspace content. Container probes use
+                # the internal port, unlike the browser's fixed public origin.
+                ready = bool(app.profile_runtimes or app.runtime)
+                return self._json(HTTPStatus.OK if ready else HTTPStatus.SERVICE_UNAVAILABLE,
+                                  {"status": "ready" if ready else "not_configured"})
+            try:
+                self._local_base_guard()
+            except ApiError as error:
+                return self._error(error.status,error.code,str(error),error.fields)
+            if app.workspace_http is not None:
+                try:
+                    app.workspace_http.check_local(self)
+                    if app.workspace_http.get(self,path):
+                        return
+                except Exception as error:
+                    from workspace_http import public_workspace_error
+                    error = public_workspace_error(error)
+                    return self._error(error.status,error.code,str(error),error.fields)
             if path == "/api/openapi.json":
                 return self._json(HTTPStatus.OK, api_document())
             if path == "/api/health":
@@ -290,6 +399,20 @@ def make_handler(app: DiagnosticApplication):
                 if app.evaluation is None or app.runtime is None:
                     return self._error(HTTPStatus.NOT_FOUND, "NOT_FOUND", "Результаты эксперимента не установлены.")
                 return self._json(HTTPStatus.OK, app.public_results())
+            if path.startswith("/api/v2/analyses/") and path.endswith("/evidence"):
+                parts = path.split("/")
+                if len(parts) == 6:
+                    catalog = app.evidence_registry.get(parts[4])
+                    if catalog is None and app.workspace is not None:
+                        try:
+                            saved = app.workspace.get_snapshot(parts[4])
+                            catalog = saved["catalog"] if saved else None
+                        except Exception:
+                            catalog = None
+                    if catalog is not None:
+                        return self._json(HTTPStatus.OK, catalog)
+                return self._error(HTTPStatus.NOT_FOUND, "EVIDENCE_NOT_FOUND",
+                    "Наблюдения недоступны или срок хранения истёк. Повторите анализ и сохраните результат.")
             if path.startswith("/api/"):
                 return self._error(HTTPStatus.NOT_FOUND, "NOT_FOUND", "Операция не найдена.")
             file_name = "index.html" if path == "/" else path.removeprefix("/")
@@ -305,6 +428,19 @@ def make_handler(app: DiagnosticApplication):
             self.wfile.write(data)
 
         def do_POST(self):
+            try:
+                self._local_base_guard()
+            except ApiError as error:
+                return self._error(error.status,error.code,str(error),error.fields)
+            if app.workspace_http is not None:
+                try:
+                    app.workspace_http.check_local(self)
+                    if urlsplit(self.path).path.startswith("/api/v2/"):
+                        return app.workspace_http.post(self,urlsplit(self.path).path)
+                except Exception as error:
+                    from workspace_http import public_workspace_error
+                    error = public_workspace_error(error)
+                    return self._error(error.status,error.code,str(error),error.fields)
             if urlsplit(self.path).path != "/api/analyze":
                 return self._error(HTTPStatus.NOT_FOUND, "NOT_FOUND", "Операция не найдена.")
             acquired = False
@@ -327,6 +463,9 @@ def make_handler(app: DiagnosticApplication):
                 payload = json.loads(body)
                 if not isinstance(payload, dict):
                     raise ApiError("INVALID_REQUEST", "Тело запроса должно быть JSON-объектом.")
+                if set(payload) in ({"profile_id", "start_unix", "end_unix"}, {"profile_id", "start_unix", "end_unix", "force_refresh"}):
+                    return self._json(HTTPStatus.OK, app.analyze_live(payload["profile_id"], payload["start_unix"], payload["end_unix"],
+                        force_refresh=payload.get("force_refresh",False)))
                 acquired = app.analysis_slot.acquire(blocking=False)
                 if not acquired:
                     raise ApiError("REQUEST_BUSY", "Выполняется другой анализ. Повторите запрос после его завершения.", HTTPStatus.TOO_MANY_REQUESTS)
@@ -335,10 +474,6 @@ def make_handler(app: DiagnosticApplication):
                     source = {key: value for key, value in source.items() if key != "workload_result"}
                 elif set(payload) == {"incident"}:
                     source = payload["incident"]
-                elif set(payload) == {"profile_id", "start_unix", "end_unix"}:
-                    return self._json(HTTPStatus.OK, app.analyze_live(
-                        payload["profile_id"], payload["start_unix"], payload["end_unix"]
-                    ))
                 else:
                     raise ApiError("INVALID_REQUEST", "Укажите систему и границы интервала без дополнительных полей либо выберите режим воспроизведения.")
                 return self._json(HTTPStatus.OK, app.analyze(source))
@@ -376,11 +511,48 @@ def main() -> None:
                         help="Directory containing the system profiles installed for this deployment")
     parser.add_argument("--unsafe-public", action="store_true",
                         help="Allow non-loopback binding only behind an independently secured proxy")
+    parser.add_argument("--workspace-dir",type=Path,help="Private local SQLite directory; enables loopback-only investigations")
+    parser.add_argument("--workspace-origin",help="Explicit host-loopback origin for isolated container port publishing only")
+    parser.add_argument("--workspace-retention-days",type=int,choices=range(1,31),default=7,
+                        help="Local snapshot/derived-record TTL, 1–30 days (default 7)")
+    parser.add_argument("--assistant-python",type=Path,help="Optional isolated interpreter with assistant dependencies")
+    parser.add_argument("--assistant-state-dir",type=Path,help="App-owned OAuth store; never the Codex credential directory")
+    parser.add_argument("--assistant-model",help="Explicit previously verified provider model")
+    parser.add_argument("--allow-assistant-profile",action="append",default=[],help="Profile permitted to send approved aggregates; repeat per profile")
+    parser.add_argument("--runbook-corpus",type=Path,help="Explicit approved project-scoped runbook corpus")
     args = parser.parse_args()
     if not is_loopback_host(args.host) and not args.unsafe_public:
         parser.error("non-loopback binding requires --unsafe-public and a secured reverse proxy")
-    app = DiagnosticApplication(args.root, args.profiles_dir)
-    server = ThreadingHTTPServer((args.host, args.port), make_handler(app))
+    if args.workspace_origin:
+        from workspace_http import validate_local_origin
+        try:
+            validate_local_origin(args.workspace_origin)
+        except ValueError as error:
+            parser.error(str(error))
+        if not args.workspace_dir:
+            parser.error("workspace origin requires a workspace directory")
+    if (args.workspace_dir and args.host not in {"127.0.0.1","localhost"} and not args.workspace_origin
+            or any((args.assistant_python,args.assistant_state_dir,args.assistant_model,args.allow_assistant_profile,args.runbook_corpus)) and not args.workspace_dir):
+        parser.error("workspace/assistant require an explicit private directory and IPv4 loopback binding")
+    if any((args.assistant_python,args.assistant_state_dir,args.assistant_model)) and not all((args.assistant_python,args.assistant_state_dir,args.assistant_model)):
+        parser.error("assistant requires interpreter, app-owned state directory and explicit model together")
+    store,service = None,None
+    if args.workspace_dir:
+        from workspace_store import WorkspaceStore
+        from investigations import InvestigationService
+        corpus=None
+        if args.runbook_corpus:
+            from runbook_corpus import RunbookCorpus
+            corpus=RunbookCorpus(args.runbook_corpus)
+        store = WorkspaceStore(args.workspace_dir,retention_seconds=args.workspace_retention_days*86400)
+        service = InvestigationService(store,python_executable=args.assistant_python,state_dir=args.assistant_state_dir,
+            model=args.assistant_model,allowed_profiles=args.allow_assistant_profile,runbook_corpus=corpus)
+    app = DiagnosticApplication(args.root, args.profiles_dir,workspace=store,investigations=service,workspace_origin=args.workspace_origin)
+    if set(args.allow_assistant_profile)-set(app.profiles):
+        if service:
+            service.close()
+        parser.error("assistant allowlist includes an uninstalled or unusable profile")
+    server = ThreadingHTTPServer((args.host, args.port), make_handler(app,allow_proxy_host=args.unsafe_public))
     print(f"Диагностическая система: http://{args.host}:{args.port}", flush=True)
     try:
         server.serve_forever()
@@ -388,6 +560,8 @@ def main() -> None:
         pass
     finally:
         server.server_close()
+        if service:
+            service.close()
 
 
 if __name__ == "__main__":

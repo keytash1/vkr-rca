@@ -1,4 +1,4 @@
-const state = {examples: [], profiles: [], current: null, busy: false};
+const state = {examples: [], profiles: [], current: null, busy: false, catalog: null, catalogStatus: '', selectedService: null};
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
 
@@ -59,7 +59,9 @@ function resetError() {
 }
 
 function clearResult() {
+  window.RCAWorkspace?.onAnalysis(null);
   state.current = null;
+  state.catalog = null; state.catalogStatus = ''; state.selectedService = null;
   if (!state.busy) $('#request-status').textContent = '';
   $('#export-result').hidden = true;
   $('#incident-label').textContent = 'Выберите систему и интервал для анализа.';
@@ -75,6 +77,7 @@ function clearResult() {
 }
 
 function renderCandidate(candidate) {
+  state.selectedService = candidate.service;
   $('#detail-title').textContent = `${candidate.service} · место ${candidate.rank}`;
   const values = candidate.evidence;
   const signals = [
@@ -147,10 +150,158 @@ function renderCandidate(candidate) {
       detail.append(missing);
     }
   }
+  renderEvidence(candidate.service, detail);
+}
+
+function textElement(tag, text, className) {
+  const element = document.createElement(tag); element.textContent = text;
+  if (className) element.className = className;
+  return element;
+}
+
+function sourceLinks(fact) {
+  const container = document.createElement('p'); container.className = 'source-links';
+  for (const [index, source] of fact.source_links.entries()) {
+    let url;
+    try { url = new URL(source.url); } catch { continue; }
+    if (!['http:', 'https:'].includes(url.protocol) || url.username || url.password) continue;
+    const link = textElement('a', fact.kind === 'metric' ? 'Открыть ряд в источнике' : `Поиск трасс ${index + 1}`);
+    link.href = url.href; link.target = '_blank'; link.rel = 'noopener noreferrer';
+    container.append(link);
+  }
+  return container;
+}
+
+function metricChart(fact, title) {
+  const bins = fact.values.series;
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', '0 0 600 160'); svg.setAttribute('class', 'metric-chart');
+  svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', `${title}: среднее и диапазон временных групп; пунктир — прогноз базового состояния.`);
+  const expected = fact.values.baseline_comparison?.expected_at_observed_load;
+  const values = bins.flatMap(bin => [bin.min, bin.max]);
+  if (expected != null) values.push(expected);
+  const minimum = Math.min(...values), maximum = Math.max(...values);
+  const y = value => 112 - (value - minimum) / (maximum - minimum || 1) * 96;
+  const x = stamp => 52 + (stamp - fact.start_unix) / (fact.end_unix - fact.start_unix) * 532;
+  const line = (points, style) => {
+    const path = document.createElementNS(svg.namespaceURI, 'polyline');
+    path.setAttribute('points', points); path.setAttribute('class', style); svg.append(path);
+  };
+  for (const key of ['min', 'max', 'mean']) line(bins.map(bin =>
+    `${x((bin.start_unix + bin.end_unix) / 2)},${y(bin[key])}`).join(' '), `metric-line-${key}`);
+  if (expected != null) line(`52,${y(expected)} 584,${y(expected)}`, 'metric-line-baseline');
+  const label = (text, left, top, anchor) => {
+    const element = document.createElementNS(svg.namespaceURI, 'text');
+    element.textContent = text; element.setAttribute('x', left); element.setAttribute('y', top);
+    element.setAttribute('text-anchor', anchor); element.setAttribute('class', 'metric-axis-label'); svg.append(element);
+  };
+  const divisor = fact.values.unit === 'bytes' ? 1024 ** 2 : fact.values.unit === 'bytes_per_second' ? 1024 : 1;
+  const number = value => Number(value / divisor).toLocaleString('ru-RU', {maximumSignificantDigits: 3});
+  label(number(maximum), 46, 20, 'end'); label(number(minimum), 46, 116, 'end');
+  const clock = stamp => new Date(stamp * 1000).toISOString().slice(11, 19);
+  label(clock(fact.start_unix), 52, 144, 'start'); label('UTC', 318, 144, 'middle');
+  label(clock(fact.end_unix), 584, 144, 'end');
+  return svg;
+}
+
+function renderEvidence(service, detail) {
+  const section = document.createElement('section'); section.className = 'primary-evidence';
+  section.append(textElement('h3', 'Проверка по первичным данным'));
+  if (!state.catalog) {
+    section.append(textElement('p', state.catalogStatus || 'Загрузка наблюдений…', 'secondary'));
+    detail.append(section); return;
+  }
+  const names = {cpu: 'CPU', memory: 'Память', network: 'Сетевой обмен', traffic_rate: 'Входящий трафик'};
+  for (const fact of state.catalog.observations.filter(item => item.service === service && item.kind === 'metric')) {
+    const value = fact.values;
+    const divisor = value.unit === 'bytes' ? 1024 ** 2 : value.unit === 'bytes_per_second' ? 1024 : 1;
+    const unit = value.unit === 'bytes' ? 'МиБ' : value.unit === 'bytes_per_second' ? 'КиБ/с' : 'ядра';
+    const display = number => number == null ? 'нет данных' : `${Number(number / divisor).toLocaleString('ru-RU', {maximumSignificantDigits: 6})} ${unit}`;
+    const item = document.createElement('details'); item.className = 'evidence-metric';
+    const name = names[value.family] || value.family;
+    item.append(textElement('summary', `${name} · ${display(value.median)}`));
+    if (!value.samples) item.append(textElement('p', 'Ряд отсутствует. Это не подтверждение нормальной работы.'));
+    else {
+      const comparison = value.baseline_comparison;
+      item.append(textElement('p', `Наблюдается: ${display(value.min)}–${display(value.max)}; отсчётов: ${value.samples}.`));
+      if (comparison) {
+        item.append(textElement('p', `Прогноз здорового состояния при текущей интенсивности: ${display(comparison.expected_at_observed_load)}.`));
+        if (comparison.healthy_start_unix != null && comparison.healthy_end_unix != null) {
+          const date = stamp => new Date(stamp * 1000).toLocaleString('ru-RU');
+          item.append(textElement('p', `Здоровый период: ${date(comparison.healthy_start_unix)} — ${date(comparison.healthy_end_unix)}.`, 'secondary'));
+        }
+      }
+      item.append(metricChart(fact, name));
+      item.append(textElement('p', 'Сплошная линия — среднее группы, светлые линии — её минимум и максимум; пунктир — прогноз baseline. Сопоставимость нагрузки требует проверки. Границы графика совпадают с интервалом анализа.', 'detail-note'));
+      if (value.returned_point_coverage != null) item.append(textElement('p', `Покрытие ожидаемых отсчётов: ${Math.round(value.returned_point_coverage * 100)}%.`, 'secondary'));
+    }
+    item.append(sourceLinks(fact)); section.append(item);
+  }
+  const traces = state.catalog.observations.find(item => item.service === service && item.kind === 'traces');
+  if (traces) {
+    const timing = traces.values.timing;
+    if (timing?.timed_spans) {
+      section.append(textElement('h3', 'Время наблюдаемых операций'));
+      const table = document.createElement('table'); table.className='observation-table';
+      const format = value => value == null ? 'Не установлено' : (value/1000).toLocaleString('ru-RU',{maximumFractionDigits:3})+' мс';
+      for (const [label,value] of [['Медиана длительности',timing.median_us],['P90 длительности',timing.p90_us],
+        ['Наблюдаемое ожидание зависимостей, медиана',timing.observed_client_wait_median_us],
+        ['Остальное время, медиана',timing.observed_exclusive_median_us]]) {
+        const row=document.createElement('tr'); row.append(textElement('th',label),textElement('td',format(value))); table.append(row);
+      }
+      section.append(table);
+      section.append(textElement('p',timing.selection==='SERVER_SPANS'
+        ? 'По SERVER-спанам. Из длительности вычитается объединение наблюдаемых CLIENT-ожиданий. Остальное время — не CPU time и не доказательство локальной причины; неполнота трасс может занизить ожидание.'
+        : 'SERVER-спаны не распознаны: длительности показаны по доступным видам спанов. Время обработки и ожидания не установлено.','detail-note'));
+    }
+    section.append(textElement('p', 'Sampling и срок хранения трасс неизвестны. Примеры выбраны сначала по ошибке, затем по длительности; это не случайная выборка.', 'detail-note'));
+    const traceDetails = document.createElement('details');
+    traceDetails.append(textElement('summary', `Примеры трасс: ${traces.values.examples.length}`));
+    const examples = document.createElement('ul'); examples.className = 'trace-examples';
+    for (const span of traces.values.examples) examples.append(textElement('li',
+      `Трасса ${span.trace_id}, спан ${span.span_id}: ${(span.duration_us / 1000).toLocaleString('ru-RU')} мс${span.error ? ', отмечена ошибка' : ''}.`));
+    traceDetails.append(examples, sourceLinks(traces)); section.append(traceDetails);
+  }
+  const dependencies = state.catalog.observations.find(item => item.service === service && item.kind === 'dependencies');
+  if (dependencies?.values.edges.length) {
+    section.append(textElement('h3', 'Наблюдаемые вызовы'));
+    const list = document.createElement('ul');
+    for (const edge of dependencies.values.edges) list.append(textElement('li', `${edge.source} → ${edge.target}: ${edge.observed_edges} наблюдений связи.`));
+    section.append(list);
+  }
+  const checks = state.catalog.checks.filter(item => item.service === service);
+  section.append(textElement('h3', 'Следующие проверки'));
+  if (checks.length) {
+    const list = document.createElement('ul');
+    const deviations = checks.filter(check => check.code === 'CHECK_METRIC_DEVIATION');
+    if (deviations.length) {
+      const families = deviations.flatMap(check => check.evidence_ids).map(id =>
+        state.catalog.observations.find(fact => fact.id === id)?.values.family).filter(Boolean);
+      list.append(textElement('li', `Сопоставить с нагрузкой и здоровым периодом: ${families.map(family => names[family] || family).join(', ')}.`));
+    }
+    for (const check of checks.filter(check => check.code !== 'CHECK_METRIC_DEVIATION')) list.append(textElement('li', check.text));
+    section.append(list);
+  } else section.append(textElement('p', 'По этим правилам отдельный проверочный шаг не выделен. Отсутствие рекомендации не подтверждает здоровье сервиса.'));
+  section.append(textElement('p', 'Предложенные шаги ещё не выполнены. Наблюдаемые связи и отклонения сами по себе не устанавливают причину.', 'detail-note'));
+  detail.append(section);
+}
+
+async function loadEvidence(result) {
+  try {
+    const catalog = await request(`/api/v2/analyses/${encodeURIComponent(result.result_id)}/evidence`);
+    if (state.current?.result_id !== result.result_id) return;
+    state.catalog = catalog;
+  } catch (error) {
+    if (state.current?.result_id !== result.result_id) return;
+    state.catalogStatus = 'Каталог наблюдений недоступен. Рейтинг сохранён; для повторного получения наблюдений выполните анализ заново.';
+  }
+  const candidate = state.current?.candidates.find(item => item.service === state.selectedService);
+  if (candidate) renderCandidate(candidate);
 }
 
 function renderRanking(data) {
   state.current = data;
+  state.catalog = null; state.catalogStatus = 'Загрузка наблюдений…';
   $('#export-result').hidden = false;
   $('#result-tools').hidden = false;
   $('#result-note').hidden = false;
@@ -161,6 +312,11 @@ function renderRanking(data) {
     ['Экземпляров ранжировщика', data.model_count], ['SHA-256 входа', data.input_sha256 || data.source_status?.input_sha256 || 'Не указан']]) {
     const term = document.createElement('dt'); term.textContent = label;
     const definition = document.createElement('dd'); definition.textContent = String(value);
+    provenance.append(term, definition);
+  }
+  if (data.delivery?.cache_hit) {
+    const term = document.createElement('dt'); term.textContent = 'Повторный ответ';
+    const definition = document.createElement('dd'); definition.textContent = 'Из памяти; возраст наблюдений: ' + Math.ceil(data.delivery.source_age_seconds || 0) + ' с';
     provenance.append(term, definition);
   }
   const selected = state.examples.find(item => item.id === data.incident_id);
@@ -179,6 +335,8 @@ function renderRanking(data) {
   const families = Object.values(data.source_status?.metric_families_by_service || {});
   const complete = families.filter(item => item.length === 4).length;
   const messages = [];
+  if (data.source_status?.baseline_binding?.state === 'needs_review') messages.push(
+    'Историческое базовое состояние не связано с семантической версией профиля. Интегратору необходимо проверить сопоставимость источников и запросов.');
   if (families.length && complete < families.length) messages.push(
     `Полные метрики доступны для ${complete} из ${families.length} сервисов.`);
   if (data.source_status?.traces === 'unavailable') messages.push('Источник трассировок недоступен. Рейтинг рассчитан с неполными наблюдениями.');
@@ -207,6 +365,8 @@ function renderRanking(data) {
     list.append(row);
   }
   list.firstElementChild?.click();
+  loadEvidence(data);
+  window.RCAWorkspace?.onAnalysis(data);
 }
 
 function bindTabs() {
@@ -241,7 +401,8 @@ async function analyzeLive() {
     clearResult();
     const result = await request('/api/analyze', {
       method: 'POST', headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({profile_id: profileId, start_unix: startUnix, end_unix: endUnix})
+      body: JSON.stringify({profile_id: profileId, start_unix: startUnix, end_unix: endUnix,
+        force_refresh: document.getElementById('force-refresh').checked})
     });
     renderRanking(result);
     $('#request-status').textContent = 'Расчёт завершён. Рейтинг и наблюдения доступны ниже.';
@@ -294,7 +455,8 @@ async function initialize() {
   $('#replay-analyze').addEventListener('click', analyzeReplay);
   $('#export-result').addEventListener('click', () => {
     if (!state.current) return;
-    const blob = new Blob([JSON.stringify(state.current, null, 2)], {type: 'application/json'});
+    const exported = state.catalog ? {...state.current, observation_catalog: state.catalog} : state.current;
+    const blob = new Blob([JSON.stringify(exported, null, 2)], {type: 'application/json'});
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url; link.download = `diagnosis-${state.current.result_id || state.current.incident_id}.json`; link.click();

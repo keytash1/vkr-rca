@@ -11,6 +11,12 @@
     "service_label": "service",
     "query_step_seconds": 2,
     "baseline_min_coverage": 0.8,
+    "semantic_map": {
+      "cpu": {"source_kind": "counter", "source_unit": "cpu_seconds_total", "canonical_unit": "cores", "transformation": "REPLACE_WITH_REVIEWED_CPU_RATE_QUERY", "replica_aggregation": "REPLACE_WITH_LOGICAL_SERVICE_REPLICA_POLICY", "counter_reset_policy": "rate_before_replica_aggregation"},
+      "memory": {"source_kind": "gauge", "source_unit": "bytes", "canonical_unit": "bytes", "transformation": "REPLACE_WITH_REVIEWED_MEMORY_QUERY", "replica_aggregation": "REPLACE_WITH_LOGICAL_SERVICE_REPLICA_POLICY", "counter_reset_policy": "not_applicable"},
+      "network": {"source_kind": "counter", "source_unit": "bytes_total", "canonical_unit": "bytes_per_second", "transformation": "REPLACE_WITH_REVIEWED_RX_PLUS_TX_RATE_QUERY", "replica_aggregation": "REPLACE_WITH_LOGICAL_SERVICE_REPLICA_POLICY", "counter_reset_policy": "rate_before_replica_aggregation"},
+      "traffic_rate": {"source_kind": "counter", "source_unit": "bytes_total", "canonical_unit": "bytes_per_second", "transformation": "REPLACE_WITH_REVIEWED_RX_RATE_QUERY", "replica_aggregation": "REPLACE_WITH_LOGICAL_SERVICE_REPLICA_POLICY", "counter_reset_policy": "rate_before_replica_aggregation"}
+    },
     "queries": {
       "cpu": "REPLACE_WITH_CPU_CORES_PROMQL_GROUPED_BY_SERVICE",
       "memory": "REPLACE_WITH_MEMORY_BYTES_PROMQL_GROUPED_BY_SERVICE",
@@ -20,9 +26,9 @@
   },
   "traces": {
     "url": "https://jaeger.example.invalid",
-    "api": "jaeger-http-json",
+    "api": "jaeger-v3-json",
     "tested_version": "REPLACE_WITH_VERIFIED_JAEGER_VERSION",
-    "query_services": ["service-a"]
+    "query_services": ["service-a", "service-b"]
   },
   "workload": {
     "prometheus_query": "REPLACE_WITH_REQUESTS_PER_SECOND_PROMQL"

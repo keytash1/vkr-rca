@@ -28,9 +28,20 @@ RUNTIME_MODULES = (
     "__init__", "m10c_schema", "m10d_reranker", "m11_protocol",
     "m12_adapter", "m13_features", "m13_protocol", "m13_trace", "schema",
 )
+APPLICATION_MODULES = (
+    "server", "live_sources", "profile_runtime", "runtime_assets", "api_contract",
+    "api_errors", "evidence_catalog", "assistant_context", "profile_check", "profile_setup",
+    "trace_adapters", "profile_contract", "profile_onboarding", "analysis_requests", "trace_evidence",
+)
+WORKSPACE_MODULES = (
+    "workspace_store", "workspace_http", "investigations", "runbook_corpus",
+    "assistant_privacy", "assistant_supervisor", "assistant_runner", "assistant_contract",
+    "assistant_budget", "assistant_tools", "assistant_workflow",
+)
+PROVIDER_MODULES = ("assistant_auth", "assistant_provider", "assistant_worker")
 
 
-def build(root: Path, profile_path: Path, output: Path) -> dict:
+def build(root: Path, profile_path: Path, output: Path, *, with_workspace=False, with_assistant=False) -> dict:
     root = root.resolve()
     profile_path = profile_path.resolve()
     if output.exists():
@@ -55,14 +66,27 @@ def build(root: Path, profile_path: Path, output: Path) -> dict:
     for module in RUNTIME_MODULES:
         source = root / "ml/rca_ml" / f"{module}.py"
         files[str(source.relative_to(root))] = source.read_bytes()
-    for source in sorted((root / "cmd/thesis_demo").glob("*.py")):
-        if not source.name.startswith("test_"):
-            files[str(source.relative_to(root))] = source.read_bytes()
+    # A new research/evaluator/admin module must not silently become a runtime
+    # dependency or ship gold-bearing logic merely by appearing in this folder.
+    # Optional composition is explicit; no directory glob can add evaluators,
+    # experiment controllers, credentials or corporate documents to a release.
+    modules = APPLICATION_MODULES
+    if with_workspace or with_assistant:
+        modules += WORKSPACE_MODULES
+        files["WORKSPACE.md"] = (root / "deploy/product/WORKSPACE.md").read_bytes()
+    if with_assistant:
+        modules += PROVIDER_MODULES
+        files["requirements-assistant.txt"] = (root / "deploy/product/requirements-assistant.txt").read_bytes()
+    for module in modules:
+        source = root / "cmd/thesis_demo" / f"{module}.py"
+        files[str(source.relative_to(root))] = source.read_bytes()
     for source in sorted((root / "cmd/thesis_demo/static").iterdir()):
         if source.is_file():
             files[str(source.relative_to(root))] = source.read_bytes()
     files["ml/pyproject.toml"] = (root / "deploy/product/runtime-pyproject.toml").read_bytes()
     files["README.md"] = (root / "deploy/product/README.md").read_bytes()
+    for name in ("LICENSE", "NOTICE", "THIRD_PARTY.md", "THIRD_PARTY_NOTICES"):
+        files[name] = (root / "deploy/product" / name).read_bytes()
     files["verify_bundle.py"] = (root / "deploy/product/verify_bundle.py").read_bytes()
     files[f"deploy/profiles/{profile_id}.json"] = json.dumps(
         profile, ensure_ascii=False, indent=2, sort_keys=True
@@ -86,6 +110,8 @@ def build(root: Path, profile_path: Path, output: Path) -> dict:
         "kind": "PORTABLE_DIAGNOSTIC_APPLICATION",
         "profile_id": profile_id,
         "model_version": freeze["version"],
+        "capabilities": {"workspace": bool(with_workspace or with_assistant), "assistant_code": bool(with_assistant),
+                         "external_transmission_enabled": False, "credentials_included": False},
         "files_sha256": {name: hashlib.sha256(data).hexdigest() for name, data in sorted(files.items())},
     }
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -101,8 +127,11 @@ def main() -> None:
     parser.add_argument("--root", type=Path, default=ROOT)
     parser.add_argument("--profile", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--with-workspace", action="store_true")
+    parser.add_argument("--with-assistant", action="store_true", help="Include optional provider code, never credentials/consent")
     args = parser.parse_args()
-    print(json.dumps(build(args.root, args.profile, args.output), ensure_ascii=False, indent=2))
+    print(json.dumps(build(args.root, args.profile, args.output, with_workspace=args.with_workspace,
+                           with_assistant=args.with_assistant), ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":

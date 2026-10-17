@@ -13,6 +13,7 @@ import json
 import math
 import os
 import time
+from http.client import IncompleteRead
 from dataclasses import dataclass
 from pathlib import Path
 from urllib.parse import urlencode, urlsplit
@@ -22,6 +23,8 @@ from urllib.request import Request, HTTPRedirectHandler, build_opener
 from rca_ml.m12_adapter import CANONICAL_UNITS
 from rca_ml.m13_trace import canonicalize_jaeger
 from api_errors import ApiError
+from trace_adapters import TraceAccumulator, decode_v3_stream,v3_query,validate_canonical_spans,is_v3_no_matches
+from profile_contract import baseline_binding, validate_semantic_map
 
 
 FAMILIES = tuple(CANONICAL_UNITS)
@@ -70,8 +73,8 @@ def _endpoint(value: str) -> str:
     return value.rstrip("/")
 
 
-def _get_json(base: str, path: str, params: dict, token_env: str | None,
-              timeout: float = 30) -> dict:
+def _get_payload(base: str, path: str, params: dict, token_env: str | None,
+              timeout: float = 30, *, v3_empty_search=False) -> bytes:
     headers = {"Accept": "application/json"}
     if token_env:
         token = os.environ.get(token_env)
@@ -90,19 +93,34 @@ def _get_json(base: str, path: str, params: dict, token_env: str | None,
             payload = response.read(limit + 1)
     except HTTPError as error:
         code = error.code
+        if v3_empty_search and path == "/api/v3/traces" and code == 404:
+            empty_body = error.read(min(4096,limit)+1)
+            if len(empty_body) <= min(4096,limit) and is_v3_no_matches(empty_body):
+                error.close()
+                if budget is not None:
+                    budget[0] -= len(empty_body)
+                return b'{"result":{}}'
         error.close()
         raise OSError(f"telemetry source returned HTTP {code}") from error
     except URLError as error:
         if isinstance(error.reason, TimeoutError):
             raise TimeoutError("telemetry source timed out") from error
         raise TelemetrySourceError("telemetry source is unreachable", "TELEMETRY_UNAVAILABLE") from error
+    except IncompleteRead:
+        raise TelemetrySourceError("telemetry response stream was interrupted") from None
     if len(payload) > limit:
         raise TelemetrySourceError("telemetry response exceeds its byte budget")
     if budget is not None:
         budget[0] -= len(payload)
+    return payload
+
+
+def _get_json(base: str, path: str, params: dict, token_env: str | None,
+              timeout: float = 30) -> dict:
+    payload=_get_payload(base,path,params,token_env,timeout)
     try:
         value = json.loads(payload)
-    except json.JSONDecodeError as error:
+    except (json.JSONDecodeError,UnicodeError,RecursionError) as error:
         raise TelemetrySourceError("telemetry response is not JSON") from error
     if not isinstance(value, dict):
         raise TelemetrySourceError("telemetry response must be an object")
@@ -131,6 +149,7 @@ class LiveProfile:
     baseline_min_coverage: float = 0.8
     trace_contract: str = "jaeger-http-json"
     trace_version: str = "unspecified"
+    semantic_map: dict | None = None
 
     @classmethod
     def load(cls, path: Path, root: Path, *, require_artifacts: bool = True) -> "LiveProfile":
@@ -142,12 +161,15 @@ class LiveProfile:
         if not services or services != tuple(sorted(set(services))) or any(not isinstance(s, str) or not s for s in services):
             raise ValueError(f"profile {profile_id}: candidate services must be sorted and unique")
         metric = raw["metrics"]
+        semantic_map = metric.get("semantic_map")
+        if semantic_map is not None:
+            validate_semantic_map(semantic_map)
         queries = metric["queries"]
         if set(queries) != set(FAMILIES) or any(not isinstance(queries[f], str) or not queries[f] for f in FAMILIES):
             raise ValueError(f"profile {profile_id}: four metric-family queries are required")
         trace = raw["traces"]
         trace_contract = trace.get("api", "jaeger-http-json")
-        if trace_contract != "jaeger-http-json":
+        if trace_contract not in {"jaeger-http-json","jaeger-v3-json"}:
             raise ValueError(f"profile {profile_id}: unsupported trace API contract")
         step = metric.get("query_step_seconds", 1)
         if isinstance(step, bool) or not isinstance(step, int) or not 1 <= step <= 60:
@@ -182,7 +204,7 @@ class LiveProfile:
                 raise ValueError(f"profile {profile_id}: baseline candidate universe differs")
             if set(baseline["trace"]) != set(services):
                 raise ValueError(f"profile {profile_id}: trace baseline candidate universe differs")
-        return cls(
+        profile = cls(
             id=profile_id,
             title=str(raw["title"]),
             services=services,
@@ -203,7 +225,11 @@ class LiveProfile:
             baseline_min_coverage=float(minimum),
             trace_contract=trace_contract,
             trace_version=str(trace.get("tested_version", "unspecified")),
+            semantic_map=semantic_map,
         )
+        if require_artifacts:
+            baseline_binding(profile)
+        return profile
 
     def service(self, name: str) -> str | None:
         if name in self.ignored_service_labels:
@@ -280,13 +306,17 @@ def _jaeger_interval(profile: LiveProfile, service: str, left: float, right: flo
     budget[0] -= 1
     if budget[0] < 0:
         raise TelemetrySourceError("trace search exceeded its request budget")
-    payload = _get_json(
-        profile.traces_url, "/api/traces",
-        {"service": service, "start": int(left * 1_000_000),
-         "end": int(right * 1_000_000), "limit": TRACE_LIMIT},
-        profile.trace_token_env, _remaining(deadline),
-    )
-    traces = payload.get("data")
+    if profile.trace_contract=="jaeger-v3-json":
+        traces=decode_v3_stream(_get_payload(profile.traces_url,"/api/v3/traces",
+            v3_query(service,left,right,TRACE_LIMIT),profile.trace_token_env,_remaining(deadline),v3_empty_search=True))
+    else:
+        payload = _get_json(
+            profile.traces_url, "/api/traces",
+            {"service": service, "start": int(left * 1_000_000),
+             "end": int(right * 1_000_000), "limit": TRACE_LIMIT},
+            profile.trace_token_env, _remaining(deadline),
+        )
+        traces = payload.get("data")
     if not isinstance(traces, list):
         raise TelemetrySourceError("invalid Jaeger trace response")
     if len(traces) < TRACE_LIMIT:
@@ -382,7 +412,7 @@ def collect(profile: LiveProfile, start: float, end: float) -> tuple[dict, dict]
         if count:
             annotations.append({"source": "metrics", "family": family, "level": "warnings",
                                 "message": f"Excluded {count} non-finite metric points."})
-    traces_by_id = {}
+    trace_accumulator = TraceAccumulator()
     trace_error = None
     try:
         budget = [MAX_TRACE_QUERIES]
@@ -396,9 +426,10 @@ def collect(profile: LiveProfile, start: float, end: float) -> tuple[dict, dict]
             while left < end:
                 right = min(end, left + TRACE_CHUNK_SECONDS)
                 for trace in _jaeger_interval(profile, entry_service, left, right, budget, deadline):
-                    traces_by_id[str(trace["traceID"])] = trace
+                    trace_accumulator.add(trace)
                 left = right
-        spans = canonicalize_jaeger({"data": list(traces_by_id.values())})
+        spans = canonicalize_jaeger({"data": trace_accumulator.data()})
+        validate_canonical_spans(spans)
         traces = []
         for span in spans:
             # A trace can legitimately contain a supporting service outside
@@ -456,6 +487,9 @@ def collect(profile: LiveProfile, start: float, end: float) -> tuple[dict, dict]
         "trace_api": profile.trace_contract,
         "trace_tested_version": profile.trace_version,
         "trace_query_services": query_services,
+        "baseline_binding": baseline_binding(profile) if (profile.artifact_dir / "healthy-baseline.json").is_file() else {
+            "state": "draft", "reason": "baseline_not_prepared"},
+        "trace_search_completeness": "unknown_backend_search_depth_sampling_and_retention",
         "input_sha256": hashlib.sha256(json.dumps(
             window, sort_keys=True, separators=(",", ":"), allow_nan=False,
         ).encode()).hexdigest(),

@@ -13,6 +13,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from live_sources import FAMILIES, LiveProfile, baseline_issues, collect
+from profile_contract import contract_sha256, semantic_contract
 from rca_ml.m12_adapter import robust_baseline
 from rca_ml.m13_features import fit_healthy_baseline
 
@@ -68,6 +69,8 @@ def prepare(root: Path, profile_path: Path, start: float, end: float) -> dict:
             "metric_sample_count": len(window["metrics"]),
             "span_count": len(window["traces"]),
             "profile_sha256": hashlib.sha256(profile_path.read_bytes()).hexdigest(),
+            "profile_contract_sha256": contract_sha256(profile),
+            "profile_contract": semantic_contract(profile),
             "role": "UNLABELED_HEALTHY_ENGINEERING",
         },
     }

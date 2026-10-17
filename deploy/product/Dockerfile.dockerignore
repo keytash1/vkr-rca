@@ -4,6 +4,11 @@
 !deploy/product/Dockerfile
 !deploy/product/Dockerfile.dockerignore
 !deploy/product/requirements.txt
+!deploy/product/requirements-assistant.txt
+!deploy/product/LICENSE
+!deploy/product/NOTICE
+!deploy/product/THIRD_PARTY.md
+!deploy/product/THIRD_PARTY_NOTICES
 !cmd/
 !cmd/thesis_demo/
 !cmd/thesis_demo/*.py

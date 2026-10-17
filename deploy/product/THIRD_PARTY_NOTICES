@@ -1,0 +1,11 @@
+XGBoost / xgboost-cpu 3.2.0
+Copyright (c) 2019 by Contributors
+
+Licensed under the Apache License, Version 2.0. A complete copy is provided in
+LICENSE. The upstream version-specific text and copyright notice were checked at:
+https://github.com/dmlc/xgboost/blob/v3.2.0/LICENSE
+
+The inspected Linux ARM64 xgboost-cpu wheel declares Apache-2.0 but does not
+contain a separate license file; this notice supplements that wheel metadata.
+The XGBoost library is used unmodified. Other dependencies retain the notices
+installed with their wheels; see THIRD_PARTY.md for the actual composition.

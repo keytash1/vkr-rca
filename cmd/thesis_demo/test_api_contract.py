@@ -75,6 +75,19 @@ class ApiContractTests(unittest.TestCase):
         self.assertGreater(result["timing"]["total_seconds"], 0)
         self.assertEqual(len(result["input_sha256"]), 64)
         self.assertLess(result["source_status"]["metric_point_coverage"]["frontend"]["cpu"], 1)
+        status, catalog, headers = self.request(path=f'/api/v2/analyses/{result["result_id"]}/evidence')
+        self.assertEqual(status, 200)
+        self.check_schema(catalog, "EvidenceCatalog")
+        self.assertEqual(catalog["input_sha256"], result["input_sha256"])
+        self.assertEqual(headers["Cache-Control"], "no-store")
+        self.assertIn("script-src 'self'", headers["Content-Security-Policy"])
+        self.assertIn("frame-ancestors 'none'", headers["Content-Security-Policy"])
+        self.assertEqual(headers["Referrer-Policy"], "no-referrer")
+        self.assertEqual(catalog["services"], sorted(c["service"] for c in result["candidates"]))
+        for suffix in ("unknown/evidence", f'{result["result_id"]}/extra/evidence'):
+            status, error, _ = self.request(path="/api/v2/analyses/" + suffix)
+            self.assertEqual(status, 404)
+            self.check_schema(error, "Error")
 
     def test_stable_validation_errors(self):
         cases = [([], "INVALID_REQUEST", 400),
@@ -91,6 +104,16 @@ class ApiContractTests(unittest.TestCase):
                 self.assertEqual(error["code"], expected)
                 self.check_schema(error, "Error")
                 self.assertNotIn("candidates", error)
+
+    def test_base_local_api_rejects_rebinding_and_cross_origin_before_collection(self):
+        for headers, code in (({"Host":"attacker.invalid"}, "HOST_NOT_ALLOWED"),
+                              ({"Origin":"https://attacker.invalid"}, "ORIGIN_NOT_ALLOWED"),
+                              ({"Sec-Fetch-Site":"cross-site"}, "ORIGIN_NOT_ALLOWED")):
+            with self.subTest(headers=headers), patch.object(self.app,"analyze_live") as analyze:
+                status, error, _ = self.request(self.payload, headers=headers | {"Content-Type":"application/json"})
+                self.assertEqual((status,error["code"]),(403,code))
+                analyze.assert_not_called()
+                self.assertEqual(self.request(path="/api/health",headers=headers)[0],403)
 
     def test_busy_request_does_not_queue_or_corrupt_next_request(self):
         self.app.analysis_slot.acquire()

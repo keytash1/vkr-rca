@@ -1,0 +1,42 @@
+name: rca-workbench
+services:
+  diagnostic:
+    image: rca-workbench:workspace-local
+    build:
+      context: ../..
+      dockerfile: deploy/product/Dockerfile
+      target: workspace
+    user: "${RCA_UID:-10001}:${RCA_GID:-10001}"
+    ports:
+      - "127.0.0.1:${RCA_PORT:-18100}:18100"
+    volumes:
+      - "${RCA_PROFILES_DIR:?Absolute prepared profile directory required}:/opt/rca/deploy/profiles:ro"
+      - "${RCA_WORKSPACE_DIR:?Absolute private workspace directory required}:/var/lib/rca-workspace"
+    environment:
+      RCA_PROMETHEUS_TOKEN: ${RCA_PROMETHEUS_TOKEN:-}
+      RCA_JAEGER_TOKEN: ${RCA_JAEGER_TOKEN:-}
+    command:
+      - python
+      - cmd/thesis_demo/server.py
+      - --root
+      - /opt/rca
+      - --host
+      - 0.0.0.0
+      - --unsafe-public
+      - --port
+      - '18100'
+      - --workspace-dir
+      - /var/lib/rca-workspace
+      - --workspace-origin
+      - "http://127.0.0.1:${RCA_PORT:-18100}"
+    read_only: true
+    tmpfs: ["/tmp:rw,nosuid,size=64m"]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    pids_limit: 128
+    mem_limit: 768m
+    restart: unless-stopped
+networks:
+  default:
+    external: true
+    name: "${RCA_SOURCE_NETWORK:?Docker network with the configured telemetry sources required}"

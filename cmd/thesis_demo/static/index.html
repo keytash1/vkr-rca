@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/styles.css">
   <link rel="stylesheet" href="/live.css">
   <script src="/app.js" defer></script>
+  <script src="/workspace.js" defer></script>
 </head>
 <body>
   <div class="app">
@@ -51,6 +52,8 @@
               <button type="button" data-minutes="60">1 час</button>
             </div>
             <p id="time-hint" class="hint">Местное время компьютера.</p>
+            <label class="refresh-option"><input id="force-refresh" type="checkbox"> Перечитать источники</label>
+            <p class="hint">Полный результат повторного запроса хранится в памяти до 15 секунд. Перечитывание создаёт новый снимок.</p>
             <button id="analyze" type="submit" class="primary">Рассчитать рейтинг</button>
             <p id="request-status" role="status" class="hint"></p>
             <div id="analysis-error" class="error" role="alert" tabindex="-1" hidden></div>
@@ -79,6 +82,40 @@
           <h2 id="detail-title" aria-live="polite">Наблюдения по выбранному сервису</h2>
           <p class="secondary">Проверьте отклонения в исходной телеметрии выбранного сервиса и его зависимостей. Итоговый вывод о причине формулирует инженер.</p>
           <div id="detail" class="detail-content"><div class="empty-state">Основания появятся после анализа.</div></div>
+        </section>
+        <section id="investigation-workspace" class="card investigation-card" hidden aria-labelledby="investigation-heading">
+          <div class="workspace-title"><div><h2 id="investigation-heading">Расследование</h2><p class="secondary">Сохраните наблюдения, проверьте гипотезы и зафиксируйте дальнейшие меры.</p></div><span id="investigation-state" role="status"></span></div>
+          <p id="workspace-note" class="hint"></p>
+          <div id="investigation-error" class="error" role="alert" hidden></div>
+          <div id="investigation-start">
+            <label for="investigation-question">Симптомы и вопрос</label>
+            <textarea id="investigation-question" rows="3" maxlength="2000" placeholder="Что изменилось, какие запросы затронуты и что нужно проверить?"></textarea>
+            <div class="workspace-actions">
+              <button id="start-record" type="button" class="secondary-button" disabled>Создать карточку</button>
+              <button id="ask-assistant" type="button" class="secondary-button" disabled>Помощник расследования</button>
+              <button id="cancel-investigation" type="button" class="secondary-button" hidden>Остановить помощника</button>
+            </div>
+            <p id="assistant-policy-note" class="hint"></p>
+          </div>
+          <section id="assistant-outcome" class="assistant-outcome" aria-live="polite" hidden></section>
+          <form id="investigation-record" hidden>
+            <h3>Карточка инженера</h3>
+            <p class="hint">Ответ помощника не подтверждает причину и не изменяет эту карточку. Вывод и результат проверки фиксируете вы.</p>
+            <div class="record-grid">
+              <label>Название<input name="title" maxlength="200"></label>
+              <label>Влияние на систему<textarea name="impact" rows="2" maxlength="2000"></textarea></label>
+              <label>Симптомы<textarea name="symptoms" rows="3" maxlength="2000"></textarea></label>
+              <label>Вывод инженера<textarea name="conclusion" rows="3" maxlength="2000"></textarea></label>
+            </div>
+            <h4>Хронология</h4><div id="record-timeline"></div>
+            <button id="add-timeline" class="secondary-button" type="button">Добавить событие</button>
+            <h4>Гипотезы и причины</h4><div id="record-causes"></div>
+            <button id="add-cause" class="secondary-button" type="button">Добавить гипотезу</button>
+            <h4>Дальнейшие меры</h4><div id="record-actions"></div>
+            <button id="add-action" class="secondary-button" type="button">Добавить меру</button>
+            <div class="workspace-actions record-save"><button type="submit" class="secondary-button">Сохранить карточку</button><button id="export-investigation" type="button" class="secondary-button">Экспорт расследования</button><span id="record-save-state" class="hint" role="status"></span></div>
+          </form>
+          <details id="investigation-history"><summary>Сохранённые расследования</summary><div id="investigation-list"></div></details>
         </section>
       </section>
 
