@@ -14,6 +14,54 @@ function section(file, start, end) {
 const reset=section('./static/app.js','function resetError() {','function clearResult() {');
 const choose=section('./static/workspace.js','  async function choose(value) {','  async function history() {');
 
+test('investigation shortcuts open the requested section without changing the record',()=>{
+  const source=section('./static/workspace.js','  function openWorkspace(', '  function rememberDraft()');
+  for (const choice of ['investigation','history','unavailable']) {
+    const calls=[],elements={};
+    for (const id of ['workspace-details','investigation-history']) elements[id]={open:false,
+      scrollIntoView(){calls.push(`scroll:${id}`);},querySelector(){return {focus(){calls.push(`focus:${id}`);}};}};
+    elements['investigation-workspace']={hidden:choice==='unavailable'};
+    const context={el:id=>elements[id],document:{querySelector(){return {click(){calls.push('analysis');}};}}};
+    vm.runInNewContext(source+'\nopenWorkspace;',context)(choice==='history');
+    assert.equal(elements['workspace-details'].open,choice==='investigation');
+    assert.equal(elements['investigation-history'].open,choice==='history');
+    assert.equal(calls.length,choice==='unavailable'?0:3);
+  }
+});
+
+test('compact disclosure keeps all engineer fields in the same saved form',()=>{
+  const html=readFileSync(new URL('./static/index.html',import.meta.url),'utf8');
+  assert.match(html,/<details id="workspace-details">/);
+  assert.ok(html.indexOf('id="investigation-error"')<html.indexOf('<details id="workspace-details">'),'workspace errors must remain visible when details are collapsed');
+  assert.match(html,/<details class="record-context">/);
+  const form=html.slice(html.indexOf('<form id="investigation-record"'),html.indexOf('</form>',html.indexOf('<form id="investigation-record"')));
+  for (const name of ['title','meta_owner','meta_incident','meta_category','impact','symptoms','conclusion'])
+    assert.equal((form.match(new RegExp(`name="${name}"`,'g'))||[]).length,1,name);
+  assert.match(form,/id="record-actions"/);
+});
+
+test('measure details retain every field and expose verification when its status requires it',()=>{
+  const source=section('./static/workspace.js','  function renderRows() {','  function renderRecord() {');
+  for (const status of ['proposed','verification_pending','verified','not_verified']) {
+    const node=()=>({children:[],append(...children){this.children.push(...children);},replaceChildren(){this.children=[];}});
+    const containers=Object.fromEntries(['record-timeline','record-causes','record-actions'].map(id=>[id,node()]));
+    const item={title:'Measure',purpose:'preventive',owner:'Engineer',due_unix:null,status,importance:'high',effort:'small',
+      service:'alpha',rationale:'Observed',verification_plan:'Repeat',verification:'Result',ticket:'T-1',evidence_ids:['obs-1']};
+    const fields=new Map(),context={el:id=>containers[id],record:{timeline:[],causes:[],action_items:[item]},
+      document:{createElement:node},snapshot:{catalog:{services:['alpha']}},localDate:()=>'',epoch:()=>null,
+      field(parent,label,value,change){fields.set(label,{parent,value,change});},
+      chooseReferences(parent,value){assert.equal(value,item);},rowRemove(){}};
+    vm.runInNewContext(source+'\nrenderRows;',context)();
+    const row=containers['record-actions'].children[0],details=row.children[0],extra=details.children[1];
+    assert.equal(fields.size,12);
+    assert.equal(details.open,status!=='proposed');
+    for (const label of ['Мера','Назначение','Ответственный','Срок','Статус']) assert.equal(fields.get(label).parent,row);
+    for (const label of ['Основание меры','План проверки эффекта','Результат проверки эффекта','Сервис','Тикет (номер или ссылка)','Важность','Трудоёмкость']) assert.equal(fields.get(label).parent,extra);
+    fields.get('Статус').change('verification_pending'); assert.equal(details.open,true);
+    fields.get('Результат проверки эффекта').change('Checked'); assert.equal(item.verification,'Checked');
+  }
+});
+
 test('download keeps an attached fallback link alive until explicitly replaced',()=>{
   const source=section('./static/workspace.js','  let downloadUrl = null;','  async function exportInvestigation() {');
   const box={hidden:true,children:[],replaceChildren(){this.children=[];},append(...nodes){this.children.push(...nodes);}};
@@ -53,7 +101,7 @@ function harness() {
   const loaded={analysis:{profile_id:'system',start_unix:1700000000,end_unix:1700000030}};
   const context={generation:0,restoring:false,snapshot:null,session:null,
     activeStates:new Set(),api:async()=>loaded,
-    rememberDraft(){},clearTimer(){},renderRanking(){},renderOutcome(){},renderRecord(){},controls(){},
+    rememberDraft(){},clearTimer(){},renderRanking(){},renderOutcome(){},renderRecord(){},controls(){},openWorkspace(){},
     poll(){throw new Error('completed snapshot must not start polling');},
     el:id=>elements[id],$:selector=>elements[selector.slice(1)],
     $$:selector=>selector==='[aria-invalid]' ? fields : errors};

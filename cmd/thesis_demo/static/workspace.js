@@ -59,6 +59,16 @@
       'X-RCA-CSRF':config.csrf_token}, body:JSON.stringify(payload)});
   }
   function clearTimer() { if (timer) clearTimeout(timer); timer = null; }
+  function openWorkspace(showHistory=false) {
+    const root=el('investigation-workspace');
+    if (root.hidden) return;
+    document.querySelector('[data-tab="analysis"]').click();
+    if (showHistory) el('investigation-history').open=true;
+    else el('workspace-details').open=true;
+    const target=showHistory ? el('investigation-history') : el('workspace-details');
+    target.scrollIntoView({behavior:'smooth',block:'start'});
+    target.querySelector('summary').focus({preventScroll:true});
+  }
   function rememberDraft() {
     if (session && !el('investigation-record').hidden) {
       const value=readRecord();
@@ -70,13 +80,14 @@
   function controls() {
     const busy = session && activeStates.has(session.state);
     const saved = analysis?.workspace_status === 'saved';
+    el('open-investigation').hidden=!saved;
     el('start-record').disabled = !saved || busy || Boolean(session);
     el('ask-assistant').disabled = !saved || busy || !config?.assistant_configured || !config?.assistant_profiles.includes(analysis?.profile_id);
     el('cancel-investigation').hidden = !busy;
     el('ask-assistant').textContent = session ? 'Уточнить у помощника' : 'Помощник расследования';
     el('assistant-policy-note').textContent = config?.assistant_configured
-      ? 'Используется тариф ChatGPT. Помощнику передаются агрегаты снимка и текст вопроса; ручная карточка не передаётся. Проверки подтверждает инженер.'
-      : 'LLM не подключена. Наблюдения, проверки и карточка расследования работают без внешнего провайдера.';
+      ? 'В OpenAI передаются агрегаты снимка и вопрос. Ручная карточка не передаётся; добавьте в вопрос результаты своих проверок, если они важны для уточнения.'
+      : 'Помощник не подключён. Карточка и проверки по наблюдениям доступны.';
     if (config?.assistant_configured) {
       if (config.assistant_budget) el('assistant-policy-note').append(document.createTextNode(
         ` Локальный предел: ${config.assistant_budget.limit_jobs} запусков за скользящие 24 часа; это не расход токенов.`));
@@ -93,6 +104,7 @@
     if (!restoring) {
       clearDownload();
       rememberDraft(); generation++; clearTimer(); session = null; snapshot = null;
+      el('workspace-details').open=false;
       if (el('investigation-record')) {
         el('investigation-record').hidden = true; el('assistant-outcome').hidden = true;
         el('investigation-state').textContent = ''; el('investigation-error').hidden = true;
@@ -113,7 +125,7 @@
   }
   function list(parent, title, lines) {
     if (!lines?.length) return;
-    paragraph(parent,title,'h4'); const ul = document.createElement('ul');
+    if (title) paragraph(parent,title,'h4'); const ul = document.createElement('ul');
     lines.forEach(line => paragraph(ul,line,'li')); parent.append(ul);
   }
   function references(parent, ids) {
@@ -158,13 +170,17 @@
         if (h.contradicting_evidence_ids.length) {
           const contrary = paragraph(box,'Противоречащие наблюдения:'); references(contrary,h.contradicting_evidence_ids);
         }
-        list(box,'Неизвестное',h.unknowns);
+        if (h.unknowns.length) {
+          const unknown=document.createElement('details'); paragraph(unknown,'Что ещё не установлено','summary');
+          list(unknown,'',h.unknowns); box.append(unknown);
+        }
         for (const check of h.next_checks) {
           paragraph(box,check.action); paragraph(box,`Что должно различить гипотезы: ${check.expected_observation}`);
           references(box,check.evidence_ids);
         }
       }
-      list(box,'Недостающие данные',outcome.report.data_gaps); list(box,'Ограничения',outcome.report.limitations);
+      const limits=document.createElement('details'); paragraph(limits,'Недостающие данные и ограничения','summary');
+      list(limits,'Недостающие данные',outcome.report.data_gaps); list(limits,'Ограничения',outcome.report.limitations); box.append(limits);
       for (const proposal of outcome.report.action_proposals || []) {
         const area=document.createElement('section'); area.className='record-row';
         const purposes={mitigation:'Смягчение последствий',corrective:'Исправление механизма',preventive:'Снижение риска повтора'};
@@ -200,14 +216,15 @@
         grouped.get(check.service).push(check);
       }
       for (const [service,checks] of grouped) {
-        paragraph(box,service,'h4');
+        const group=document.createElement('details'); paragraph(group,service,'summary');
         const deviations=checks.filter(c => c.code==='CHECK_METRIC_DEVIATION');
         if (deviations.length) {
           const fs=new Set(deviations.flatMap(c => c.evidence_ids).map(id => snapshot.catalog.observations.find(f => f.id===id)?.values.family).filter(Boolean));
-          paragraph(box,`Сопоставить с нагрузкой и здоровым периодом: ${[...fs].map(f => families[f] || f).join(', ')}.`);
-          references(box,deviations.flatMap(c => c.evidence_ids));
+          paragraph(group,`Сопоставить с нагрузкой и здоровым периодом: ${[...fs].map(f => families[f] || f).join(', ')}.`);
+          references(group,deviations.flatMap(c => c.evidence_ids));
         }
-        for (const check of checks.filter(c => c.code!=='CHECK_METRIC_DEVIATION')) { paragraph(box,check.text); references(box,check.evidence_ids); }
+        for (const check of checks.filter(c => c.code!=='CHECK_METRIC_DEVIATION')) { paragraph(group,check.text); references(group,check.evidence_ids); }
+        box.append(group);
       }
       if (!outcome.checks?.length) paragraph(box,'Автоматических предложений нет. Проверьте первичные наблюдения и опишите симптомы в карточке.');
     } else {
@@ -346,17 +363,22 @@
       const row=document.createElement('div'); row.className='record-row';
       field(row,'Мера',item.title,v => item.title=v,{type:'textarea',wide:true});
       field(row,'Назначение',item.purpose || 'unspecified',v => item.purpose=v,{options:[['unspecified','Не задано'],['mitigation','Смягчение последствий'],['corrective','Исправление механизма'],['preventive','Снижение риска повтора']]});
-      field(row,'Сервис',item.service || '',v => { if (v) item.service=v; else delete item.service; },{options:[['','Не задан'],...snapshot.catalog.services.map(s => [s,s])]});
-      field(row,'Основание меры',item.rationale || '',v => item.rationale=v,{type:'textarea',wide:true});
-      field(row,'План проверки эффекта',item.verification_plan || '',v => item.verification_plan=v,{type:'textarea',wide:true});
-      field(row,'Тикет (номер или ссылка)',item.ticket || '',v => item.ticket=v);
       field(row,'Ответственный',item.owner,v => item.owner=v);
       field(row,'Срок',localDate(item.due_unix),v => item.due_unix=epoch(v),{type:'datetime-local'});
-      field(row,'Статус',item.status,v => item.status=v,{options:[['proposed','Предложена'],['planned','Запланирована'],['in_progress','В работе'],['verification_pending','Ожидает проверки'],['verified','Эффект проверен'],['not_verified','Эффект не подтверждён']]});
-      field(row,'Важность',item.importance,v => item.importance=v,{options:[['low','Низкая'],['normal','Обычная'],['high','Высокая']]});
-      field(row,'Трудоёмкость',item.effort,v => item.effort=v,{options:[['unknown','Не оценена'],['small','Небольшая'],['medium','Средняя'],['large','Большая']]});
-      field(row,'Результат проверки эффекта',item.verification,v => item.verification=v,{type:'textarea',wide:true});
-      chooseReferences(row,item);
+      const details=document.createElement('details'); details.className='action-details wide-field';
+      const verificationStates=new Set(['verification_pending','verified','not_verified']);
+      details.open=verificationStates.has(item.status);
+      const summary=document.createElement('summary'); summary.textContent='Основание, проверка и дополнительные сведения'; details.append(summary);
+      const extra=document.createElement('div'); extra.className='record-grid'; details.append(extra);
+      field(row,'Статус',item.status,v => { item.status=v; if (verificationStates.has(v)) details.open=true; },{options:[['proposed','Предложена'],['planned','Запланирована'],['in_progress','В работе'],['verification_pending','Ожидает проверки'],['verified','Эффект проверен'],['not_verified','Эффект не подтверждён']]});
+      field(extra,'Основание меры',item.rationale || '',v => item.rationale=v,{type:'textarea',wide:true});
+      field(extra,'План проверки эффекта',item.verification_plan || '',v => item.verification_plan=v,{type:'textarea',wide:true});
+      field(extra,'Результат проверки эффекта',item.verification,v => item.verification=v,{type:'textarea',wide:true});
+      field(extra,'Сервис',item.service || '',v => { if (v) item.service=v; else delete item.service; },{options:[['','Не задан'],...snapshot.catalog.services.map(s => [s,s])]});
+      field(extra,'Тикет (номер или ссылка)',item.ticket || '',v => item.ticket=v);
+      field(extra,'Важность',item.importance,v => item.importance=v,{options:[['low','Низкая'],['normal','Обычная'],['high','Высокая']]});
+      field(extra,'Трудоёмкость',item.effort,v => item.effort=v,{options:[['unknown','Не оценена'],['small','Небольшая'],['medium','Средняя'],['large','Большая']]});
+      chooseReferences(extra,item); row.append(details);
       rowRemove(row,record.action_items,item,renderRows); actions.append(row);
     }
   }
@@ -400,6 +422,7 @@
     el('request-status').textContent='Открыто сохранённое расследование. Источники заново не запрашивались.';
     session=value; el('investigation-question').value=value.request.question;
     renderOutcome(); renderRecord(); controls();
+    openWorkspace();
     if (activeStates.has(value.state)) poll(value.id,generation);
   }
   let historyGeneration=0;
@@ -451,6 +474,9 @@
   async function init() {
     try { config=await request('/api/v2/workspace'); } catch { return; }
     el('investigation-workspace').hidden=false; analysis=state.current; controls();
+    el('history-shortcut').hidden=false;
+    el('history-shortcut').addEventListener('click',() => openWorkspace(true));
+    el('open-investigation').addEventListener('click',() => openWorkspace());
     el('start-record').addEventListener('click',() => start('B'));
     el('ask-assistant').addEventListener('click',() => start('D'));
     el('cancel-investigation').addEventListener('click',async () => { try { session=await api(`/api/v2/investigations/${session.id}/cancel`,{}); renderOutcome(); controls(); } catch (e) { message(e); } });

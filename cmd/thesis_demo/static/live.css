@@ -45,3 +45,11 @@ summary{cursor:pointer;color:#334d60;font-size:13px;line-height:1.5}.replay-pane
 /* Explicit refresh is a plain input, not another primary action. */
 .refresh-option { display:flex; align-items:center; gap:8px; }
 .refresh-option input[type="checkbox"] { width:auto; margin:0; flex:0 0 auto; }
+.request-details { margin:8px 0 16px; }
+#workspace-details > summary { padding:10px 0; font-weight:600; }
+.record-context { margin:16px 0; padding:12px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.record-context[open] > summary { margin-bottom:14px; }
+.record-grid .wide-field { grid-column:1/-1; }
+.assistant-outcome > details { margin:12px 0; }
+.action-details > .record-grid { margin-top:14px; }
+.record-row .action-details .record-grid > label { flex-direction:column; align-items:stretch; margin:0; }

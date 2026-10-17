@@ -30,6 +30,7 @@
         <button class="tab active" data-tab="analysis" aria-current="page">Анализ инцидента</button>
         <button class="tab" data-tab="evaluation">Эксперимент</button>
         <button class="tab" data-tab="about">Справка</button>
+        <button id="history-shortcut" type="button" class="secondary-button" hidden>История расследований</button>
       </nav>
 
       <section id="analysis" class="view active" aria-label="Анализ инцидента">
@@ -53,7 +54,7 @@
             </div>
             <p id="time-hint" class="hint">Местное время компьютера.</p>
             <label class="refresh-option"><input id="force-refresh" type="checkbox"> Перечитать источники</label>
-            <p class="hint">Полный результат повторного запроса хранится в памяти до 15 секунд. Перечитывание создаёт новый снимок.</p>
+            <details class="request-details"><summary>Как обновляются данные</summary><p class="hint">Повторный результат может использоваться до 15 секунд. «Перечитать источники» создаёт новый снимок; сохранённые расследования не изменяются.</p></details>
             <button id="analyze" type="submit" class="primary">Рассчитать рейтинг</button>
             <p id="request-status" role="status" class="hint"></p>
             <div id="analysis-error" class="error" role="alert" tabindex="-1" hidden></div>
@@ -71,7 +72,7 @@
 
           <section class="card ranking-card">
             <div class="ranking-title"><div><h2>Очередность проверки</h2><p id="incident-label" class="secondary">Результат появится после расчёта.</p></div><span id="candidate-count" class="count" hidden></span></div>
-            <div id="result-tools" hidden><button id="export-result" class="secondary-button" hidden>Сохранить результат</button><details class="result-provenance"><summary>Сведения о расчёте</summary><dl id="result-provenance"></dl></details></div>
+            <div id="result-tools" hidden><button id="open-investigation" type="button" class="secondary-button" hidden>Расследовать</button><button id="export-result" class="secondary-button" hidden>Сохранить результат</button><details class="result-provenance"><summary>Сведения о расчёте</summary><dl id="result-provenance"></dl></details></div>
             <p id="result-note" class="result-note" hidden>Выше в списке — раньше в проверке. Балл сравнивает сервисы в этом интервале и не является вероятностью отказа.</p>
             <p id="coverage-warning" class="coverage-warning" role="status" hidden></p>
             <div id="ranking" class="ranking"><div class="empty-state">После расчёта здесь появится полный рейтинг сервисов.</div></div>
@@ -85,8 +86,9 @@
         </section>
         <section id="investigation-workspace" class="card investigation-card" hidden aria-labelledby="investigation-heading">
           <div class="workspace-title"><div><h2 id="investigation-heading">Расследование</h2><p class="secondary">Сохраните наблюдения, проверьте гипотезы и зафиксируйте дальнейшие меры.</p></div><span id="investigation-state" role="status"></span></div>
-          <p id="workspace-note" class="hint"></p>
           <div id="investigation-error" class="error" role="alert" hidden></div>
+          <details id="workspace-details"><summary>Вопрос помощнику и карточка инженера</summary>
+          <p id="workspace-note" class="hint"></p>
           <div id="investigation-start">
             <label for="investigation-question">Симптомы и вопрос</label>
             <textarea id="investigation-question" rows="3" maxlength="2000" placeholder="Что изменилось, какие запросы затронуты и что нужно проверить?"></textarea>
@@ -104,16 +106,20 @@
             <div class="record-grid">
               <label>Название<input name="title" maxlength="200"></label>
               <label>Владелец расследования<input name="meta_owner" maxlength="200"></label>
+              <label class="wide-field">Вывод инженера<textarea name="conclusion" rows="3" maxlength="2000"></textarea></label>
+            </div>
+            <details class="record-context"><summary>Симптомы, хронология и гипотезы</summary>
+            <div class="record-grid">
               <label>Инцидент / тикет<input name="meta_incident" maxlength="200"></label>
               <label>Категория для обзора повторов<input name="meta_category" maxlength="100"></label>
               <label>Влияние на систему<textarea name="impact" rows="2" maxlength="2000"></textarea></label>
               <label>Симптомы<textarea name="symptoms" rows="3" maxlength="2000"></textarea></label>
-              <label>Вывод инженера<textarea name="conclusion" rows="3" maxlength="2000"></textarea></label>
             </div>
             <h4>Хронология</h4><div id="record-timeline"></div>
             <button id="add-timeline" class="secondary-button" type="button">Добавить событие</button>
             <h4>Гипотезы и причины</h4><div id="record-causes"></div>
             <button id="add-cause" class="secondary-button" type="button">Добавить гипотезу</button>
+            </details>
             <h4>Дальнейшие меры</h4><div id="record-actions"></div>
             <button id="add-action" class="secondary-button" type="button">Добавить меру</button>
             <div class="workspace-actions record-save"><button type="submit" class="secondary-button">Сохранить карточку</button><button id="review-record" type="button" class="secondary-button">Отметить проверку карточки</button><button id="export-investigation" type="button" class="secondary-button">Экспорт расследования</button><span id="record-save-state" class="hint" role="status"></span></div>
@@ -121,6 +127,7 @@
             <p id="export-download" class="hint" role="status" hidden></p>
             <p id="record-review-state" class="hint" role="status"></p>
           </form>
+          </details>
           <details id="investigation-history"><summary>Сохранённые расследования</summary>
             <p class="hint">Обзор ваших записей, не автоматическое выявление повторных причин. Сервис ищется в записанных инженером гипотезах и мерах, не в ML-рейтинге. История хранится в пределах установленного срока.</p>
             <div class="record-grid">
