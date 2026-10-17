@@ -123,6 +123,22 @@ class WorkspaceHTTPTests(unittest.TestCase):
             with self.subTest(query=query):
                 self.assertEqual(self.request('/api/v2/investigations?'+query)[0],400)
 
+    def test_review_requires_saved_owner_conclusion_and_revision(self):
+        self.login()
+        identifier,_=self.store.create_investigation('analysis-unit',{'mode':'B'},idempotency_key='review')
+        route='/api/v2/investigations/'+identifier
+        status,error,_=self.request(route+'/review',{'expected_revision':0})
+        self.assertEqual((status,error['code']),(400,'RECORD_REVIEW_OWNER_CONCLUSION_REQUIRED'))
+        record=self.store.get_investigation(identifier)['record'] | {
+            'metadata':{'owner':'Engineer','incident':'','category':''},'conclusion':'Unresolved'}
+        self.assertEqual(self.request(route+'/record',{'expected_revision':0,'record':record})[0],200)
+        status,reviewed,_=self.request(route+'/review',{'expected_revision':1})
+        self.assertEqual(status,200)
+        Draft202012Validator({'$ref':'#/components/schemas/Investigation','components':document()['components']}).validate(reviewed)
+        self.assertIn('approval',reviewed['record'])
+        self.assertEqual(self.request(route+'/review',{'expected_revision':1})[0],409)
+        self.assertEqual(self.request(route+'/review',{'expected_revision':2},headers={'X-RCA-CSRF':'wrong'})[0],403)
+
     def test_snapshot_create_repeat_update_and_export_scope(self):
         self.login()
         payload = {

@@ -207,7 +207,10 @@
     input.value = value ?? ''; input.addEventListener('input',() => { onChange(input.value); dirty(); });
     wrapper.append(input); row.append(wrapper); return input;
   }
-  function dirty() { el('record-save-state').textContent = 'Есть несохранённые изменения'; }
+  function dirty() {
+    el('record-save-state').textContent = 'Есть несохранённые изменения';
+    el('record-review-state').textContent = 'Черновик изменён. Предыдущая отметка проверки не подтверждает эти изменения.';
+  }
   let record = null;
   function actionFromProposal(proposal, legend) {
     return {id:crypto.randomUUID(),service:proposal.service,purpose:proposal.purpose,
@@ -288,6 +291,11 @@
     for (const name of ['title','symptoms','impact','conclusion']) el('investigation-record').elements[name].value=record[name];
     for (const name of ['owner','incident','category']) el('investigation-record').elements[`meta_${name}`].value=record.metadata?.[name] || '';
     el('investigation-record').hidden=false; el('record-save-state').textContent=drafts.has(session.id) ? 'Черновик не сохранён' : '';
+    el('record-review-state').textContent=drafts.has(session.id)
+      ? 'Есть несохранённый черновик; прежняя отметка проверки не относится к изменениям.'
+      : record.approval
+      ? `Карточка проверена инженером ${new Date(record.approval.reviewed_at_unix*1000).toLocaleString('ru-RU')}. Это не подтверждает все гипотезы или эффект всех мер.`
+      : 'Карточка не отмечена как проверенная инженером.';
     renderRows();
   }
   async function poll(id, version) {
@@ -387,10 +395,18 @@
       try {
         const saved=await api(`/api/v2/investigations/${identifier}/record`,{expected_revision:session.revision,record:readRecord()});
         drafts.delete(identifier);
-        if (version===generation && session?.id===identifier) { session=saved; el('record-save-state').textContent='Сохранено'; }
+        if (version===generation && session?.id===identifier) { session=saved; renderRecord(); el('record-save-state').textContent='Сохранено'; }
         await history();
       }
       catch (reason) { message(reason); }
+    });
+    el('review-record').addEventListener('click',async () => {
+      try {
+        if (!sameRecord(readRecord(),session.record)) throw new Error('Перед проверкой сохраните изменения карточки.');
+        const identifier=session.id, version=generation;
+        const saved=await api(`/api/v2/investigations/${identifier}/review`,{expected_revision:session.revision});
+        if (version===generation && session?.id===identifier) { session=saved; renderRecord(); }
+      } catch (reason) { message(reason); }
     });
     el('export-investigation').addEventListener('click',async () => {
       try {

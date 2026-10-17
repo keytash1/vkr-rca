@@ -48,7 +48,7 @@ def wait_ready(url):
     raise RuntimeError(f"source was not restored: {url}")
 
 
-def main(output, profile_id):
+def main(output, profile_id, *, recent=False):
     if output.exists():
         raise ValueError("refusing to overwrite acceptance record")
     app = DiagnosticApplication(ROOT, ROOT / "deploy/acceptance/profiles")
@@ -60,8 +60,14 @@ def main(output, profile_id):
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
     url = f"http://127.0.0.1:{server.server_port}/api/analyze"
-    interval = json.loads((ROOT / "docs/product-acceptance" / reference / "intervals.json").read_text())
-    payload = {"profile_id": profile_id, "start_unix": interval["start_unix"], "end_unix": interval["end_unix"]}
+    if recent:
+        end=time.time()-20
+        interval={"start_unix":end-120,"end_unix":end}
+    else:
+        interval = json.loads((ROOT / "docs/product-acceptance" / reference / "intervals.json").read_text())
+    # Failure probes must read the source rather than hit the documented
+    # healthy 15-second cache. Original historical intervals stay available.
+    payload = {"profile_id": profile_id, "start_unix": interval["start_unix"], "end_unix": interval["end_unix"], "force_refresh":True}
     results = {}
     try:
         status, result = request(url, payload)
@@ -101,5 +107,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--profile-id", choices=sorted(PROJECTS), default="local-three")
+    parser.add_argument("--recent", action="store_true", help="Use a fresh past 120-second interval instead of a historical retention-sensitive one")
     args = parser.parse_args()
-    main(args.output, args.profile_id)
+    main(args.output, args.profile_id, recent=args.recent)

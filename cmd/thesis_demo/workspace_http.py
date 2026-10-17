@@ -263,6 +263,9 @@ class WorkspaceHTTP:
                     ),
                 )
                 return
+            if operation == "review" and set(payload) == {"expected_revision"}:
+                handler._json(HTTPStatus.OK,self.store.review_record(identifier,expected_revision=payload["expected_revision"]))
+                return
             if operation == "messages" and set(payload) == {
                 "mode",
                 "question",
@@ -322,6 +325,7 @@ def public_workspace_error(error):
             HTTPStatus.FORBIDDEN,
         )
     record_messages = {
+        "RECORD_REVIEW_OWNER_CONCLUSION_REQUIRED": "Для проверки карточки укажите владельца расследования и вывод. Это не подтверждает все гипотезы автоматически.",
         "RECORD_CAUSE_VERIFICATION_REQUIRED": "Укажите, как гипотеза проверена и почему подтверждена или отклонена.",
         "RECORD_ACTION_OWNER_REQUIRED": "У запланированной или выполняемой меры должен быть указан ответственный.",
         "RECORD_ACTION_DUE_REQUIRED": "Укажите срок меры, прежде чем переводить её из предложенной в работу.",

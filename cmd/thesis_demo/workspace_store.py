@@ -587,6 +587,11 @@ class WorkspaceStore:
         if current is None:
             raise StoreError("STORE_INVESTIGATION_NOT_FOUND")
         snapshot = self.get_snapshot(current["analysis_id"])
+        # Approval is server-computed, never accepted from the client or LLM.
+        if not isinstance(record, dict):
+            raise StoreError("RECORD_FIELDS_INVALID")
+        record = json.loads(pack(record))
+        record.pop("approval", None)
         validate_record(record, snapshot["catalog"])
         if (
             isinstance(expected_revision, bool)
@@ -595,6 +600,13 @@ class WorkspaceStore:
         ):
             raise StoreError("STORE_REVISION_INVALID")
         with self._db(write=True) as db:
+            previous = db.execute("SELECT record FROM investigations WHERE id=? AND revision=?",
+                                  (identifier, expected_revision)).fetchone()
+            if previous is None:
+                raise StoreError("STORE_REVISION_CONFLICT")
+            approval = json.loads(previous["record"]).get("approval")
+            if approval and approval["record_sha256"] == digest(record):
+                record["approval"] = approval
             if self._used(db) + len(pack(record).encode()) > self.max_bytes:
                 raise StoreError("STORE_CAPACITY")
             updated = db.execute(
@@ -603,6 +615,27 @@ class WorkspaceStore:
             ).rowcount
             if not updated:
                 raise StoreError("STORE_REVISION_CONFLICT")
+        return self.get_investigation(identifier)
+
+    def review_record(self, identifier, *, expected_revision):
+        _identifier(identifier)
+        if type(expected_revision) is not int or expected_revision < 0:
+            raise StoreError("STORE_REVISION_INVALID")
+        with self._db(write=True) as db:
+            row = db.execute("SELECT i.record,s.payload FROM investigations i JOIN snapshots s ON s.id=i.analysis_id WHERE i.id=? AND i.revision=? AND s.expires>?",
+                             (identifier,expected_revision,self.clock())).fetchone()
+            if row is None:
+                raise StoreError("STORE_REVISION_CONFLICT")
+            record = json.loads(row["record"])
+            record.pop("approval",None)
+            validate_record(record,json.loads(row["payload"])["catalog"])
+            if not record.get("metadata",{}).get("owner","").strip() or not record["conclusion"].strip():
+                raise StoreError("RECORD_REVIEW_OWNER_CONCLUSION_REQUIRED")
+            record["approval"]={"record_sha256":digest(record),"reviewed_at_unix":self.clock()}
+            if self._used(db)+len(pack(record).encode()) > self.max_bytes:
+                raise StoreError("STORE_CAPACITY")
+            db.execute("UPDATE investigations SET record=?,revision=revision+1,updated=? WHERE id=? AND revision=?",
+                       (pack(record),self.clock(),identifier,expected_revision))
         return self.get_investigation(identifier)
 
     def delete_snapshot(self, identifier):
@@ -623,8 +656,18 @@ def validate_record(record, catalog):
         "action_items",
         "conclusion",
     }
-    if not isinstance(record, dict) or set(record) not in (fields, fields | {"metadata"}):
+    if not isinstance(record, dict) or not fields <= set(record) <= fields | {"metadata", "approval"}:
         raise StoreError("RECORD_FIELDS_INVALID")
+    if "approval" in record:
+        approval = record["approval"]
+        body = {k:v for k,v in record.items() if k != "approval"}
+        if (not isinstance(approval, dict) or set(approval) != {"record_sha256", "reviewed_at_unix"}
+                or approval["record_sha256"] != digest(body)
+                or isinstance(approval["reviewed_at_unix"],bool)
+                or not isinstance(approval["reviewed_at_unix"],(int,float))
+                or not math.isfinite(approval["reviewed_at_unix"])
+                or not 0 <= approval["reviewed_at_unix"] <= 253402300799):
+            raise StoreError("RECORD_APPROVAL_INVALID")
     if "metadata" in record:
         metadata = record["metadata"]
         if not isinstance(metadata, dict) or set(metadata) != {"owner", "incident", "category"}:

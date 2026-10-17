@@ -83,6 +83,28 @@ class StoreTests(unittest.TestCase):
             bad=copy.deepcopy(record);bad["action_items"][0].update(replacement)
             with self.assertRaises(StoreError):validate_record(bad,snapshot()[0])
 
+    def test_review_is_bound_to_saved_content_and_not_forged_by_client(self):
+        identifier=self.create()
+        with self.assertRaisesRegex(StoreError,'RECORD_REVIEW_OWNER_CONCLUSION_REQUIRED'):
+            self.store.review_record(identifier,expected_revision=0)
+        body=self.store.get_investigation(identifier)['record'] | {
+            'metadata':{'owner':'Engineer','incident':'INC-1','category':'latency'},
+            'conclusion':'Mechanism unresolved; more observations are needed.'}
+        body['approval']={'record_sha256':'f'*64,'reviewed_at_unix':1000}
+        self.store.save_record(identifier,body,expected_revision=0)
+        self.assertNotIn('approval',self.store.get_investigation(identifier)['record'])
+        reviewed=self.store.review_record(identifier,expected_revision=1)
+        validate_record(reviewed['record'],snapshot()[0])
+        self.assertIn('approval',reviewed['record'])
+        self.assertEqual(reviewed['record']['causes'],[])  # Review is not causal proof.
+        same=self.store.save_record(identifier,reviewed['record'],expected_revision=2)
+        self.assertEqual(same['record']['approval'],reviewed['record']['approval'])
+        changed=copy.deepcopy(same['record']);changed['symptoms']='New observations recorded'
+        saved=self.store.save_record(identifier,changed,expected_revision=3)
+        self.assertNotIn('approval',saved['record'])
+        with self.assertRaisesRegex(StoreError,'STORE_REVISION_CONFLICT'):
+            self.store.review_record(identifier,expected_revision=3)
+
     def test_history_filters_before_limit_and_never_treats_rank_as_confirmed(self):
         old=self.create(key="old")
         record=self.store.get_investigation(old)["record"] | {"metadata":{"owner":"","incident":"","category":"latency"}}
