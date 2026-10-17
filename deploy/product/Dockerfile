@@ -38,6 +38,13 @@ CMD ["python", "cmd/thesis_demo/server.py", "--root", "/opt/rca", "--host", "0.0
 
 # Explicit optional targets. Default final target below stays the minimal runtime.
 FROM runtime AS workspace
+USER root
+# Docker copies this private directory's owner/mode into a new named volume.
+# Never repair/chown an existing user's workspace at application startup.
+RUN mkdir -p /var/lib/rca-workspace \
+    && chown 10001:10001 /var/lib/rca-workspace \
+    && chmod 0700 /var/lib/rca-workspace
+USER 10001:10001
 COPY cmd/thesis_demo/workspace_store.py cmd/thesis_demo/workspace_http.py cmd/thesis_demo/investigations.py \
      cmd/thesis_demo/runbook_corpus.py cmd/thesis_demo/assistant_privacy.py cmd/thesis_demo/assistant_supervisor.py \
      cmd/thesis_demo/assistant_runner.py cmd/thesis_demo/assistant_contract.py cmd/thesis_demo/assistant_budget.py \

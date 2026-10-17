@@ -1,7 +1,8 @@
 import copy
 import unittest
 
-from assistant_contract import AssistantContractError, report_schema, validate_report
+from assistant_contract import AssistantContractError, report_schema, validate_report, parse_report
+import json
 
 
 class AssistantReportTests(unittest.TestCase):
@@ -19,6 +20,13 @@ class AssistantReportTests(unittest.TestCase):
         self.assertEqual(validate_report(self.report, self.catalog), self.report)
         abstention = self.report | {"summary": "Данных недостаточно.", "hypotheses": []}
         self.assertEqual(validate_report(abstention, self.catalog), abstention)
+
+    def test_legacy_storage_is_readable_but_new_provider_must_include_action_field(self):
+        self.assertEqual(validate_report(self.report,self.catalog),self.report)
+        with self.assertRaisesRegex(AssistantContractError,"REPORT_ACTION_PROPOSALS_REQUIRED"):
+            parse_report(json.dumps(self.report),self.catalog)
+        current=self.report | {"action_proposals":[]}
+        self.assertEqual(parse_report(json.dumps(current),self.catalog),current)
 
     def test_unknown_fields_arbitrary_links_and_cross_scope_are_rejected(self):
         for field, value in (("confidence", .99), ("url", "https://evil.invalid"), ("executed", True)):

@@ -14,6 +14,35 @@ function section(file, start, end) {
 const reset=section('./static/app.js','function resetError() {','function clearResult() {');
 const choose=section('./static/workspace.js','  async function choose(value) {','  async function history() {');
 
+test('download keeps an attached fallback link alive until explicitly replaced',()=>{
+  const source=section('./static/workspace.js','  let downloadUrl = null;','  async function exportInvestigation() {');
+  const box={hidden:true,children:[],replaceChildren(){this.children=[];},append(...nodes){this.children.push(...nodes);}};
+  const revoked=[],links=[];
+  const context={el:()=>box,Blob,URL:{createObjectURL:()=>`blob:${links.length}`,revokeObjectURL:x=>revoked.push(x)},
+    document:{createElement:()=>{const link={click(){assert.ok(box.children.includes(link));}};links.push(link);return link;},createTextNode:x=>x}};
+  const make=vm.runInNewContext(source+'\nprepareDownload;',context);
+  make('one','one.md','text/markdown');
+  assert.equal(box.hidden,false);assert.equal(links[0].download,'one.md');assert.deepEqual(revoked,[]);
+  make('two','two.json','application/json');
+  assert.deepEqual(revoked,['blob:1']);assert.equal(box.children.length,2);
+});
+
+test('export refuses stale revisions, unsaved edits and a superseded investigation',async()=>{
+  const source=section('./static/workspace.js','  async function exportInvestigation() {','  // Object key order');
+  for (const problem of ['none','stale','edited','switched']) {
+    const saved={id:'card',revision:2,record:{title:'saved'}};
+    const downloads=[],errors=[];
+    const context={session:saved,generation:1,snapshot:{id:'original-snapshot'},el:()=>({value:'json'}),
+      readRecord:()=>({title:problem==='edited' ? 'unsaved' : 'saved'}),sameRecord:(a,b)=>JSON.stringify(a)===JSON.stringify(b),
+      api:async()=>{if(problem==='switched')context.generation++;return {...saved,revision:problem==='stale'?3:2};},
+      prepareDownload:(...args)=>downloads.push(args),message:e=>errors.push(e.message)};
+    await vm.runInNewContext(source+'\nexportInvestigation;',context)();
+    assert.equal(downloads.length,problem==='none'?1:0,problem);
+    assert.equal(errors.length,['stale','edited'].includes(problem)?1:0,problem);
+    if(downloads.length)assert.equal(JSON.parse(downloads[0][0]).snapshot.id,'original-snapshot');
+  }
+});
+
 function harness() {
   const fields=Array.from({length:2},()=>({attributes:{'aria-invalid':'true','aria-describedby':'old-error'},
     removeAttribute(key) { delete this.attributes[key]; }}));

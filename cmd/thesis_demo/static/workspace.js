@@ -9,6 +9,38 @@
   const families = {cpu:'CPU', memory:'памяти', network:'сетевого трафика', traffic_rate:'входного трафика'};
   let config = null, analysis = null, session = null, snapshot = null, timer = null, generation = 0, restoring = false;
   const drafts = new Map();
+  let downloadUrl = null;
+  function clearDownload() {
+    if (downloadUrl) URL.revokeObjectURL(downloadUrl);
+    downloadUrl=null;
+    const box=el('export-download');
+    if (box) { box.replaceChildren(); box.hidden=true; }
+  }
+  function prepareDownload(body,filename,type) {
+    clearDownload();
+    const box=el('export-download'), link=document.createElement('a');
+    downloadUrl=URL.createObjectURL(new Blob([body],{type}));
+    link.href=downloadUrl; link.download=filename; link.textContent=`Скачать ${filename}`;
+    box.append(document.createTextNode('Файл подготовлен. Если загрузка не началась: '),link);
+    box.hidden=false;
+    // Keep the attached link and URL alive for browsers which defer the download.
+    // At most one export URL exists; navigation/editing/new export releases it.
+    link.click();
+  }
+  async function exportInvestigation() {
+    try {
+      if (!sameRecord(readRecord(),session.record)) throw new Error('Перед экспортом сохраните изменения карточки.');
+      const identifier=session.id, version=generation, savedSnapshot=snapshot;
+      const markdown=el('export-format').value==='markdown';
+      const value=await api(`/api/v2/investigations/${identifier}`);
+      if (version!==generation || session?.id!==identifier) return;
+      if (value.revision!==session.revision || !sameRecord(readRecord(),value.record))
+        throw new Error('Карточка изменилась. Сохраните или заново откройте её перед экспортом.');
+      const body=markdown ? investigationMarkdown(value,savedSnapshot) : JSON.stringify({schema_version:'investigation-export-v1',investigation:value,snapshot:savedSnapshot},null,2);
+      prepareDownload(body,`investigation-${value.id}.${markdown ? 'md' : 'json'}`,
+        markdown ? 'text/markdown;charset=utf-8' : 'application/json');
+    } catch (reason) { message(reason); }
+  }
   // Object key order is not a change: API/SQLite JSON may reorder action fields.
   function stable(value) {
     if (Array.isArray(value)) return value.map(stable);
@@ -59,6 +91,7 @@
   function onAnalysis(value) {
     analysis = value;
     if (!restoring) {
+      clearDownload();
       rememberDraft(); generation++; clearTimer(); session = null; snapshot = null;
       if (el('investigation-record')) {
         el('investigation-record').hidden = true; el('assistant-outcome').hidden = true;
@@ -328,6 +361,7 @@
     }
   }
   function renderRecord() {
+    clearDownload();
     record=structuredClone(drafts.get(session.id) || session.record);
     for (const name of ['title','symptoms','impact','conclusion']) el('investigation-record').elements[name].value=record[name];
     for (const name of ['owner','incident','category']) el('investigation-record').elements[`meta_${name}`].value=record.metadata?.[name] || '';
@@ -420,7 +454,7 @@
     el('start-record').addEventListener('click',() => start('B'));
     el('ask-assistant').addEventListener('click',() => start('D'));
     el('cancel-investigation').addEventListener('click',async () => { try { session=await api(`/api/v2/investigations/${session.id}/cancel`,{}); renderOutcome(); controls(); } catch (e) { message(e); } });
-    el('investigation-record').addEventListener('input',event => { if (event.target.id!=='export-format') dirty(); });
+    el('investigation-record').addEventListener('input',event => { clearDownload(); if (event.target.id!=='export-format') dirty(); });
     el('history-apply').addEventListener('click',() => history().catch(message));
     el('history-reset').addEventListener('click',() => {
       for (const key of ['project','service','category','action_status','after','before']) el(`history-${key}`).value='';
@@ -449,16 +483,7 @@
         if (version===generation && session?.id===identifier) { session=saved; renderRecord(); }
       } catch (reason) { message(reason); }
     });
-    el('export-investigation').addEventListener('click',async () => {
-      try {
-        if (!sameRecord(readRecord(),session.record)) throw new Error('Перед экспортом сохраните изменения карточки.');
-        const value=await api(`/api/v2/investigations/${session.id}`);
-        const markdown=el('export-format').value==='markdown';
-        const body=markdown ? investigationMarkdown(value,snapshot) : JSON.stringify({schema_version:'investigation-export-v1',investigation:value,snapshot},null,2);
-        const blob=new Blob([body],{type:markdown ? 'text/markdown;charset=utf-8' : 'application/json'});
-        const url=URL.createObjectURL(blob), link=document.createElement('a'); link.href=url; link.download=`investigation-${value.id}.${markdown ? 'md' : 'json'}`; link.click(); URL.revokeObjectURL(url);
-      } catch (reason) { message(reason); }
-    });
+    el('export-investigation').addEventListener('click',exportInvestigation);
     await history();
   }
   window.RCAWorkspace={onAnalysis};

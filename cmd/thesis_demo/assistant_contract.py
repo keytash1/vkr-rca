@@ -172,7 +172,12 @@ def parse_report(text, catalog):
         report = json.loads(text, object_pairs_hook=pairs, parse_constant=constant)
     except (ValueError, RecursionError):
         raise AssistantContractError("REPORT_JSON_INVALID") from None
-    return validate_report(report, catalog)
+    validated = validate_report(report, catalog)
+    # Stored historical answers remain readable via validate_report, but a new
+    # provider answer must satisfy the current schema, including explicit [].
+    if "action_proposals" not in validated:
+        raise AssistantContractError("REPORT_ACTION_PROPOSALS_REQUIRED")
+    return validated
 
 
 def _exact(value, keys):

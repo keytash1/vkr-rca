@@ -6,12 +6,12 @@ services:
       context: ../..
       dockerfile: deploy/product/Dockerfile
       target: workspace
-    user: "${RCA_UID:-10001}:${RCA_GID:-10001}"
+    user: "10001:10001"
     ports:
       - "127.0.0.1:${RCA_PORT:-18100}:18100"
     volumes:
       - "${RCA_PROFILES_DIR:?Absolute prepared profile directory required}:/opt/rca/deploy/profiles:ro"
-      - "${RCA_WORKSPACE_DIR:?Absolute private workspace directory required}:/var/lib/rca-workspace"
+      - "workspace:/var/lib/rca-workspace"
     environment:
       RCA_PROMETHEUS_TOKEN: ${RCA_PROMETHEUS_TOKEN:-}
       RCA_JAEGER_TOKEN: ${RCA_JAEGER_TOKEN:-}
@@ -36,6 +36,9 @@ services:
     pids_limit: 128
     mem_limit: 768m
     restart: unless-stopped
+volumes:
+  workspace:
+    name: "${RCA_WORKSPACE_VOLUME:-rca-workbench-workspace}"
 networks:
   default:
     external: true

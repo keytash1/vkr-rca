@@ -30,7 +30,7 @@ def report():
         "unknowns": ["Нет сопоставимого здорового периода."], "next_checks": [{
             "action": "Сопоставить нагрузку со здоровым периодом.",
             "expected_observation": "Проверить наличие сходной нагрузки.", "evidence_ids": ["obs-a"]}]}],
-        "data_gaps": ["Трассировки недоступны."], "limitations": ["Причина не доказана."]}
+        "data_gaps": ["Трассировки недоступны."], "limitations": ["Причина не доказана."], "action_proposals": []}
 
 
 class FakeProvider:

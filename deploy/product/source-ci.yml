@@ -30,3 +30,13 @@ jobs:
         run: |
           docker run --rm --network none --read-only --tmpfs /tmp:rw,nosuid,size=64m rca-workbench:ci \
             python -c 'from pathlib import Path; import sys,hashlib; sys.path.insert(0,"cmd/thesis_demo"); import assistant_worker,workspace_store; from runtime_assets import EXPECTED_SHA256; from assistant_budget import reserve_input; assert all(hashlib.sha256(Path(p).read_bytes()).hexdigest()==h for p,h in EXPECTED_SHA256.items()); assert reserve_input({"probe":"no network"},"gpt-6.1-sol")[1].startswith("O200K_VERIFIED"); assert not Path("external-data").exists(); assert not Path("ml/models/m14").exists(); assert not Path(".rca-private").exists()'
+      - name: Private named volume persists across independent non-root containers
+        run: |
+          docker volume create rca-workspace-ci
+          trap 'docker volume rm rca-workspace-ci' EXIT
+          for pass in first second; do
+            docker run --rm --network none --read-only --cap-drop ALL \
+              --security-opt no-new-privileges:true --tmpfs /tmp:rw,nosuid,size=64m \
+              --mount type=volume,source=rca-workspace-ci,target=/var/lib/rca-workspace \
+              rca-workbench:ci python -c 'import os,sys,stat; from pathlib import Path; sys.path.insert(0,"cmd/thesis_demo"); from workspace_store import WorkspaceStore; p=Path("/var/lib/rca-workspace"); assert os.getuid()==10001; assert p.stat().st_uid==10001 and stat.S_IMODE(p.stat().st_mode)==0o700; store=WorkspaceStore(p); assert store.path.is_file() and stat.S_IMODE(store.path.stat().st_mode)==0o600'
+          done
