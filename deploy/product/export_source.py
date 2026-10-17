@@ -17,7 +17,7 @@ PRODUCT_FILES = (
     "Dockerfile", "Dockerfile.dockerignore", "requirements.txt", "requirements-assistant.txt",
     "runtime-pyproject.toml", "build_bundle.py", "verify_bundle.py", "export_source.py",
     "README.md", "WORKSPACE.md", "compose.yml", "compose.workspace.yml", "compose.assistant.yml",
-    "LICENSE", "NOTICE", "THIRD_PARTY.md", "THIRD_PARTY_NOTICES", "SOURCE_README.md", "ASSISTANT_CONNECTION.md", "COMPATIBILITY.md", "ARCHITECTURE.md", "source-ci.yml",
+    "LICENSE", "NOTICE", "THIRD_PARTY.md", "THIRD_PARTY_NOTICES", "SOURCE_README.md", "ASSISTANT_CONNECTION.md", "COMPATIBILITY.md", "ARCHITECTURE.md", "RELEASE.md", "source-ci.yml",
 )
 TESTS = (
     "analysis_requests", "assistant_auth", "assistant_budget", "assistant_contract",
@@ -65,6 +65,7 @@ def export(root, output):
     files["docs/WORKSPACE.md"] = root/"deploy/product/WORKSPACE.md"
     files["docs/ASSISTANT_CONNECTION.md"] = root/"deploy/product/ASSISTANT_CONNECTION.md"
     files["docs/ARCHITECTURE.md"] = root/"deploy/product/ARCHITECTURE.md"
+    files["RELEASE.md"] = root/"deploy/product/RELEASE.md"
     files["requirements-assistant.txt"] = root/"deploy/product/requirements-assistant.txt"
     # Source paths are fixed above, but still refuse symlinks and escapes. No
     # output exists until every source is checked and read successfully.
