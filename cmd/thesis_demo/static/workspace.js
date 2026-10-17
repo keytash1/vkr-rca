@@ -230,6 +230,47 @@
     if (seconds == null) return '';
     const d = new Date(seconds*1000); return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,16);
   }
+  function investigationMarkdown(value, savedSnapshot) {
+    // Escape every ASCII punctuation character in untrusted fields: no model
+    // HTML, active image/link, heading or fence can become Markdown structure.
+    const literal=v => String(v ?? '').replace(/\r\n?/g,'\n')
+      .replace(/[\x21-\x2f\x3a-\x40\x5b-\x60\x7b-\x7e]/g,'\\$&').replace(/\n/g,'  \n');
+    const stamp=v => v == null ? 'Не указан' : new Date(v*1000).toISOString();
+    const r=value.record, a=savedSnapshot.analysis, lines=['# Расследование инцидента',''];
+    const field=(label,v) => lines.push(`${label}: ${literal(v || 'Не указано')}`,'');
+    field('Название',r.title); field('Система',value.project); field('ID расследования',value.id);
+    field('Редакция',String(value.revision)); field('Начало интервала (UTC)',stamp(a.start_unix));
+    field('Конец интервала (UTC)',stamp(a.end_unix));
+    field('Состояние карточки',r.approval ? 'Отмечена как проверенная инженером' : 'Черновик, не отмечен как проверенный');
+    if (r.approval) field('Время проверки карточки (UTC)',stamp(r.approval.reviewed_at_unix));
+    field('Владелец расследования',r.metadata?.owner); field('Исходный инцидент',r.metadata?.incident);
+    field('Категория',r.metadata?.category); field('Симптомы',r.symptoms); field('Влияние',r.impact);
+    lines.push('## Вывод инженера',''); field('Вывод',r.conclusion);
+    lines.push('## Хронология','');
+    for (const item of r.timeline) { field('Время (UTC)',stamp(item.time_unix)); field('Событие',item.description); field('Наблюдения',item.evidence_ids.join(', ')); }
+    if (!r.timeline.length) lines.push('События не записаны.','');
+    lines.push('## Гипотезы и причины','');
+    const causeStates={hypothesis:'Гипотеза',confirmed:'Подтверждена инженером',discarded:'Отклонена инженером'};
+    for (const item of r.causes) { field('Сервис',item.service); field('Статус',causeStates[item.status]); field('Формулировка',item.statement); field('Основание решения',item.verification); field('Наблюдения',item.evidence_ids.join(', ')); }
+    if (!r.causes.length) lines.push('Подтверждённая причина в карточке не записана.','');
+    lines.push('## Дальнейшие меры','');
+    const purposes={mitigation:'Смягчение последствий',corrective:'Исправление механизма',preventive:'Снижение риска повтора',unspecified:'Не задано'};
+    const statuses={proposed:'Предложена',planned:'Запланирована',in_progress:'В работе',verification_pending:'Ожидает проверки',verified:'Эффект проверен',not_verified:'Эффект не подтверждён'};
+    const importance={low:'Низкая',normal:'Обычная',high:'Высокая'}, effort={unknown:'Не оценена',small:'Небольшая',medium:'Средняя',large:'Большая'};
+    for (const item of r.action_items) {
+      field('Мера',item.title); field('Назначение',purposes[item.purpose || 'unspecified']); field('Сервис',item.service);
+      field('Основание',item.rationale); field('Ответственный',item.owner); field('Срок (UTC)',stamp(item.due_unix));
+      field('Статус',statuses[item.status]); field('Важность',importance[item.importance]); field('Трудоёмкость',effort[item.effort]);
+      field('План проверки эффекта',item.verification_plan); field('Фактический результат проверки',item.verification);
+      field('Внешний тикет',item.ticket); field('Наблюдения',item.evidence_ids.join(', '));
+    }
+    if (!r.action_items.length) lines.push('Меры не записаны.','');
+    lines.push('## Воспроизводимость и ограничения','');
+    field('Версия модели',a.model_version); field('SHA-256 входа',a.input_sha256);
+    field('SHA-256 baseline',a.baseline_sha256); field('SHA-256 снимка',savedSnapshot.snapshot_sha256);
+    lines.push('Ранг — порядок проверки, не вероятность причины. Отметка проверки карточки не подтверждает автоматически все гипотезы и эффект мер. Приложение не выполняет изменения в наблюдаемых сервисах. Полный снимок и ответы помощника доступны в JSON-экспорте.','');
+    return lines.join('\n');
+  }
   function epoch(value) { return value ? new Date(value).getTime()/1000 : null; }
   function rowRemove(row, items, item, rerender) {
     const button = document.createElement('button'); button.type='button'; button.className='secondary-button'; button.textContent='Удалить запись';
@@ -379,7 +420,7 @@
     el('start-record').addEventListener('click',() => start('B'));
     el('ask-assistant').addEventListener('click',() => start('D'));
     el('cancel-investigation').addEventListener('click',async () => { try { session=await api(`/api/v2/investigations/${session.id}/cancel`,{}); renderOutcome(); controls(); } catch (e) { message(e); } });
-    el('investigation-record').addEventListener('input',dirty);
+    el('investigation-record').addEventListener('input',event => { if (event.target.id!=='export-format') dirty(); });
     el('history-apply').addEventListener('click',() => history().catch(message));
     el('history-reset').addEventListener('click',() => {
       for (const key of ['project','service','category','action_status','after','before']) el(`history-${key}`).value='';
@@ -412,8 +453,10 @@
       try {
         if (!sameRecord(readRecord(),session.record)) throw new Error('Перед экспортом сохраните изменения карточки.');
         const value=await api(`/api/v2/investigations/${session.id}`);
-        const blob=new Blob([JSON.stringify({schema_version:'investigation-export-v1',investigation:value,snapshot},null,2)],{type:'application/json'});
-        const url=URL.createObjectURL(blob), link=document.createElement('a'); link.href=url; link.download=`investigation-${session.id}.json`; link.click(); URL.revokeObjectURL(url);
+        const markdown=el('export-format').value==='markdown';
+        const body=markdown ? investigationMarkdown(value,snapshot) : JSON.stringify({schema_version:'investigation-export-v1',investigation:value,snapshot},null,2);
+        const blob=new Blob([body],{type:markdown ? 'text/markdown;charset=utf-8' : 'application/json'});
+        const url=URL.createObjectURL(blob), link=document.createElement('a'); link.href=url; link.download=`investigation-${value.id}.${markdown ? 'md' : 'json'}`; link.click(); URL.revokeObjectURL(url);
       } catch (reason) { message(reason); }
     });
     await history();

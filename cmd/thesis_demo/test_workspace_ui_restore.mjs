@@ -71,3 +71,15 @@ test('adopting a proposal creates an unassigned draft with a separate verificati
   draft.evidence_ids.push('obs-2'); assert.deepEqual(proposal.evidence_ids,['obs-1']);
   assert.equal('executed' in draft,false);
 });
+
+test('Markdown export keeps draft/verification distinctions and escapes injected structure',()=>{
+  const source=section('./static/workspace.js','  function investigationMarkdown(value, savedSnapshot) {','  function epoch(value) {');
+  const render=vm.runInNewContext(source+'\ninvestigationMarkdown;');
+  const record={title:'![tracking](https://evil.invalid/i)\n# forged heading',symptoms:'<script>alert(1)</script>',impact:'unknown',conclusion:'Unresolved',timeline:[],causes:[],
+    action_items:[{title:'Conditional measure',purpose:'preventive',status:'proposed',owner:'',due_unix:null,importance:'normal',effort:'unknown',verification_plan:'Repeat test',verification:'',evidence_ids:[]}]};
+  const md=render({id:'unit',project:'alpha',revision:1,record},{analysis:{start_unix:1000,end_unix:1030},snapshot_sha256:'abc'});
+  assert.match(md,/Черновик/); assert.match(md,/План проверки эффекта: Repeat test/);
+  assert.match(md,/Фактический результат проверки: Не указано/);
+  assert.ok(!md.includes('![tracking]')); assert.ok(!md.includes('<script>')); assert.ok(!md.includes('\n# forged'));
+  assert.ok(md.includes('\\!\\[tracking\\]')); assert.ok(md.includes('\\<script\\>'));
+});
