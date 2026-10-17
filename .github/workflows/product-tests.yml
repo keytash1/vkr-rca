@@ -58,6 +58,8 @@ jobs:
         env:
           PYTHONPATH: ml:cmd/thesis_demo
         run: python -m unittest discover -s cmd/thesis_demo -p 'test_*.py' -q
+      - name: Workspace restoration validation regression
+        run: node --test cmd/thesis_demo/test_workspace_ui_restore.mjs
       - name: Build explicit optional runtime composition
         run: docker build --target assistant -f deploy/product/Dockerfile -t rca-assistant:ci .
       - name: Verify absent research corpus and credentials inside image

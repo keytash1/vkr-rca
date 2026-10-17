@@ -276,7 +276,7 @@
       function localSeconds(seconds) { const d=new Date(seconds*1000); return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,19); }
       el('start-time').value=localSeconds(snapshot.analysis.start_unix); el('end-time').value=localSeconds(snapshot.analysis.end_unix);
     } finally { restoring=false; }
-    el('analysis-error').hidden=true;
+    resetError();
     el('request-status').textContent='Открыто сохранённое расследование. Источники заново не запрашивались.';
     session=value; el('investigation-question').value=value.request.question;
     renderOutcome(); renderRecord(); controls();

@@ -18,6 +18,8 @@ jobs:
         env:
           PYTHONPATH: ml:cmd/thesis_demo
         run: python -c 'from openapi_spec_validator import validate; from api_contract import document; validate(document())'
+      - name: Workspace restoration validation regression
+        run: node --test cmd/thesis_demo/test_workspace_ui_restore.mjs
   image:
     runs-on: ubuntu-latest
     timeout-minutes: 20

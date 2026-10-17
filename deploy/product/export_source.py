@@ -17,7 +17,7 @@ PRODUCT_FILES = (
     "Dockerfile", "Dockerfile.dockerignore", "requirements.txt", "requirements-assistant.txt",
     "runtime-pyproject.toml", "build_bundle.py", "verify_bundle.py", "export_source.py",
     "README.md", "WORKSPACE.md", "compose.yml", "compose.workspace.yml", "compose.assistant.yml",
-    "LICENSE", "NOTICE", "THIRD_PARTY.md", "THIRD_PARTY_NOTICES", "SOURCE_README.md", "ASSISTANT_CONNECTION.md", "source-ci.yml",
+    "LICENSE", "NOTICE", "THIRD_PARTY.md", "THIRD_PARTY_NOTICES", "SOURCE_README.md", "ASSISTANT_CONNECTION.md", "COMPATIBILITY.md", "source-ci.yml",
 )
 TESTS = (
     "analysis_requests", "assistant_auth", "assistant_budget", "assistant_contract",
@@ -47,6 +47,7 @@ def export(root, output):
         files[path] = root/path
     files["cmd/thesis_demo/profile_test_fixtures.py"] = root/"cmd/thesis_demo/profile_test_fixtures.py"
     files["cmd/thesis_demo/telemetry_test_fixtures.py"] = root/"cmd/thesis_demo/telemetry_test_fixtures.py"
+    files["cmd/thesis_demo/test_workspace_ui_restore.mjs"] = root/"cmd/thesis_demo/test_workspace_ui_restore.mjs"
     for path in sorted((root/"cmd/thesis_demo/static").iterdir()):
         if path.is_file():
             files[str(path.relative_to(root))] = path
