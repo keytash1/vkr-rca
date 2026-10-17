@@ -24,6 +24,33 @@ def tool_reply(*calls):
 
 
 class WorkflowTests(unittest.TestCase):
+    def test_large_followup_reserves_final_before_spending_on_tools(self):
+        provider=FakeProvider(report())
+        conversation=[{"question":"Previous question","report":report(),"mode":"D"}]
+        with patch("assistant_workflow.reserve_input",return_value=(7000,"UNIT")):
+            result=run_with_tools(provider,model="unit-model",catalog=catalog(),
+                ranking=[{"service":"alpha","rank":1,"model_score":0.1},
+                         {"service":"beta","rank":2,"model_score":0.0}],
+                conversation=conversation)
+        self.assertEqual(result["status"],"completed")
+        self.assertEqual(len(provider.calls),1)
+        self.assertIsNone(provider.calls[0]["tools"])
+        self.assertIsNotNone(provider.calls[0]["response_schema"])
+        self.assertIn("prior_discussion",provider.calls[0]["input_items"][0]["content"])
+        self.assertEqual(result["usage"]["tool_calls"],0)
+        self.assertTrue(any(e["kind"]=="followup_final_reserved" for e in result["events"]))
+
+    def test_small_followup_still_can_read_discriminating_details(self):
+        provider=FakeProvider(tool_reply(call("get_candidate_evidence",{"service":"alpha"})),report())
+        with patch("assistant_workflow.reserve_input",return_value=(100,"UNIT")):
+            result=run_with_tools(provider,model="unit-model",catalog=catalog(),
+                ranking=[{"service":"alpha","rank":1,"model_score":0.1},
+                         {"service":"beta","rank":2,"model_score":0.0}],
+                conversation=[{"question":"Previous","report":report(),"mode":"D"}])
+        self.assertEqual(result["status"],"completed")
+        self.assertEqual(result["usage"]["tool_calls"],1)
+        self.assertIsNotNone(provider.calls[0]["tools"])
+
     def test_runbook_citation_requires_actual_read_and_has_server_provenance(self):
         runbook = {"id": "rb-traces", "version": "1", "section": "sample", "topic": "traces", "text": "Guidance, not incident evidence."}
         answer = report()

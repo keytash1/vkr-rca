@@ -25,7 +25,7 @@ from assistant_runner import (
 from assistant_tools import SnapshotTools, TOOL_VERSION, ToolError, strict_arguments
 from assistant_budget import reserve_input
 
-WORKFLOW_VERSION = "snapshot-tool-workflow-v8-action-proposals"
+WORKFLOW_VERSION = "snapshot-tool-workflow-v9-followup-budget"
 TOOL_INSTRUCTIONS = (
     INSTRUCTIONS.replace(
         "Внешних инструментов нет.",
@@ -162,6 +162,19 @@ def run_with_tools(
             },
             model,
         )
+        if step == 0 and discussion:
+            # A follow-up already has a larger question/history packet. Do not
+            # spend its first call on tools when no conservative room remains
+            # for a final answer. Answer from the same brief snapshot/history;
+            # never increase the budget or pretend omitted details were read.
+            final_reserve, _ = reserve_input({
+                "instructions": base_instructions + "\nИнструменты закрыты. Верни итоговый JSON с явными пробелами.",
+                "input": history, "tools": None, "schema": schema,
+            }, model)
+            if planning_reserve + final_reserve > limits.input_tokens:
+                final_only = True
+                result["events"].append({"kind":"followup_final_reserved",
+                    "reason":"PLANNING_AND_FINAL_DO_NOT_FIT", "new_tool_details_read":False})
         # Preserve room for a final report before spending the last budget on
         # another planning turn. This is a conservative scheduling policy, not
         # a claim that tool_steps must always reach their configured maximum.
