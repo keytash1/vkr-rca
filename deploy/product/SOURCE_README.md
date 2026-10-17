@@ -48,6 +48,9 @@ PYTHONPATH=ml:cmd/thesis_demo .venv/bin/python cmd/thesis_demo/server.py \
 
 ## Поставка и API
 
+[Архитектурные контракты](docs/ARCHITECTURE.md) описывают границы модулей,
+состояния неполноты, внешнюю передачу и основания выбора локального хранения.
+
 Контейнерные targets `runtime`, `workspace`, `assistant` разделяют минимальный
 анализ, локальную историю и optional-провайдера. Настройки, приватные volumes,
 обновление/откат описаны в [руководстве workspace](deploy/product/WORKSPACE.md).
