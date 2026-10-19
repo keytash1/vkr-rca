@@ -1,0 +1,27 @@
+{
+  "scope": "Research-only; no source telemetry, models or DOCX; plans are commit snapshots",
+  "verdict": "SIGNAL_FOR_FRESH_PILOT",
+  "ranking_fits": 12,
+  "llm_calls": 0,
+  "protected_assets_unchanged": true,
+  "sha256": {
+    "README.md": "8349752ae5d5c84d56f8ba0e1b91bf01acf6c655637a51bb5d2ab9254a953b90",
+    "docs/PLAN_PRODUCT_ITERATION_2.md": "1bc4084d3836bb1fcd333b1ddfd3c78f4d375a03b885cd8e867380f011fb5b66",
+    "docs/PROGRESS_PRODUCT_R3.md": "2a34ea4b3ab4ec41567e2ee2d7ce603b7bbf387babdecc57431a5466f9fd979d",
+    "docs/HANDOFF_PRODUCT_NEXT_ITERATION.md": "63e5258ec45a9e05e2c27455a0fc3bbb89521c3278541c987c45bd25ad5fa601",
+    "docs/R3_RAW_SOURCE_PROTOCOL.md": "d5298a5f13763d1a46de57ed36ae65f8254e573542ef70dea3e87850193d5391",
+    "docs/R3_FAMILY_ABLATION_PROTOCOL.md": "e6145d256028f6426d16f04746bd08918e575c172b860049b6a8efa3ade5fafd",
+    "docs/product-research/CORE_INPUT_REDUCTION_AUDIT.md": "57ecdf85813edfe01f38dba9829f6f6ed9bb1d1b3502fc75c00547370d3aea58",
+    "docs/product-research/R3_FAMILY_ABLATION_RESULTS.md": "e4909879bad1130b94d1b1ba0ae2e32f8e5578023845986fc537833c907a6f8a",
+    "scripts/r3_raw_source_probe.py": "15e7291e78572f5eeeb4776eada6df2c63be47c806615527cf4cc3cc332ffd51",
+    "scripts/r3_family_ablation.py": "4ab41319f3589904c78716d6aca646f97e8e213033f094858c2e0dfd467f5b90",
+    "scripts/test_r3_raw_source_probe.py": "49584f5b7b4c70d6fe3564cccb44f32a28fefbcd7f8c865838f54525b2bd4d14",
+    "scripts/test_r3_family_ablation.py": "c8c6d3be55595901ea391756277b642acd7950125312a308ca2e9c32bcf7f811",
+    "scripts/finalize_r3_signal_audit.py": "bd81d49c08ee6ea37155aa75acebb3833fe79965a4998b0dae6efc27dd851a12",
+    "docs/product-research/r3-family-ablation-v1/registration.json": "689eb8731ac3352941a0d1bbf017d26ffe091b7b75f5f6647af913a1b0538e5e",
+    "docs/product-research/r3-family-ablation-v1/results.json": "163a0708b4f1ae02cebcdaa02fe34a489603446762fe41d6c1ea8d3323d5fc50",
+    "docs/product-research/r3-family-ablation-v1/predictions.json": "ad06465c005dbc3c1223cf4f3dbd92c4202936e923b0439cb6a01f72acdf1b6d",
+    "docs/product-research/r3-raw-source-v1/acquisition.json": "905d92450fbceeaffedc04ae90f6507c68eedcd87d8907f8c92939f3e53bf50f",
+    "docs/product-research/r3-raw-source-v1/schema.json": "dbbd30450051d709767246cf8d49afa57e8b545443eb3b2dd691d304969a0598"
+  }
+}

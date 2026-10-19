@@ -1,0 +1,49 @@
+{
+  "source_url": "https://zenodo.org/api/records/17105974/files/rcabench-absolute_anomaly.tar.gz/content",
+  "role": "DISCOVERY_ONLY",
+  "files": [
+    {
+      "source_member": "ts5-ts-order-service-stress-svfvxk/abnormal_metrics.parquet",
+      "local_file": "sample-001/abnormal_metrics.parquet",
+      "bytes": 175725,
+      "sha256": "8bd874eafba9f0f126add0f24a696392b6969e51b14227cc71c936547ecd72ab"
+    },
+    {
+      "source_member": "ts5-ts-order-service-stress-svfvxk/abnormal_metrics_sum.parquet",
+      "local_file": "sample-001/abnormal_metrics_sum.parquet",
+      "bytes": 110974,
+      "sha256": "ca8c7e6b7a9346c5242ab3d545426875dd6f80a1f14183019ccec2692c0df59a"
+    },
+    {
+      "source_member": "ts5-ts-order-service-stress-svfvxk/abnormal_traces.parquet",
+      "local_file": "sample-001/abnormal_traces.parquet",
+      "bytes": 5424220,
+      "sha256": "86f6a23fa10fb56200fb0a6e40efbaf91c852224b3e2edd931a201a137e0fc3e"
+    },
+    {
+      "source_member": "ts5-ts-order-service-stress-svfvxk/normal_metrics.parquet",
+      "local_file": "sample-001/normal_metrics.parquet",
+      "bytes": 176052,
+      "sha256": "6763e6b64372315e102a8148520bb97f309eeeb34c59d2234749d88af9e43151"
+    },
+    {
+      "source_member": "ts5-ts-order-service-stress-svfvxk/normal_metrics_sum.parquet",
+      "local_file": "sample-001/normal_metrics_sum.parquet",
+      "bytes": 108984,
+      "sha256": "11fd9313fb9b49832fd54265fbd8388087ab42ac80ec2dac12e3ec715859340b"
+    },
+    {
+      "source_member": "ts5-ts-order-service-stress-svfvxk/normal_traces.parquet",
+      "local_file": "sample-001/normal_traces.parquet",
+      "bytes": 5233167,
+      "sha256": "1dd49796e9e874cfbf3047dcaf3f3ead78f1544031c6c58006b53b8a9981b03d"
+    }
+  ],
+  "oracle_files_read": [],
+  "fits": 0,
+  "inferences": 0,
+  "status": "complete",
+  "source_datapack": "ts5-ts-order-service-stress-svfvxk",
+  "compressed_bytes_read": 13875200,
+  "uncompressed_member_bytes_scanned": 14007678
+}

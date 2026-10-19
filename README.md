@@ -2,6 +2,24 @@
 
 RCA graduation project: one diagnostic application accepts a configured system and incident interval, collects telemetry, and uses the trained ranking ensemble to prioritize service candidates. The Go pipeline and fault-injection environment are research infrastructure, not a second user-facing product. Model accuracy and application behavior are verified by different tests of this same solution.
 
+## Где находятся актуальные этапы
+
+**M13 и M14 уже включены в `main`.** Отдельные ветки `research/m13-*` и
+`research/m14-*` сохраняют исторические точки, а не отсутствующие слияния.
+
+| Этап | Код / артефакты | Результат |
+|---|---|---|
+| M13 — диагностическое ядро | [модель и схема](ml/models/m13), [признаки](ml/rca_ml/m13_features.py) | [результаты](docs/m13-results.md) |
+| M13.1 — вложенная оценка | [протокол](docs/m13-1-protocol.md), [код](ml/rca_ml/m13_1_nested.py) | [результаты](docs/m13-1-results.md) |
+| M14 — независимый финальный опыт | [код оценки](ml/rca_ml/m14_evaluate.py), [артефакты](ml/models/m14) | [50 случаев](docs/m14-results.md), [фиксация результата](docs/final-research-freeze.md) |
+| R3 — последующие исследования | [журнал](docs/PROGRESS_PRODUCT_R3.md), [план](docs/PLAN_PRODUCT_ITERATION_2.md) | [temporal/missingness](docs/product-research/R3_ML_RESULTS.md), [абляция семейств метрик](docs/product-research/R3_FAMILY_ABLATION_RESULTS.md) |
+
+Действующий переносимый продукт — отдельный
+[rca-workbench](https://github.com/keytash1/rca-workbench). Его рабочая модель
+остаётся замороженным ансамблем M13; новые research-опыты не заменяют веса
+автоматически. Последний опыт R3 дал сигнал пользы дополнительных метрик на
+данных разработки, а не новый результат точности работающего продукта.
+
 ## Диагностическое приложение
 
 Чистый переносимый продукт выделен в
@@ -35,11 +53,11 @@ PYTHONPATH=ml:cmd/thesis_demo .venv/bin/python -m unittest discover -s cmd/thesi
 
 Install `requirements-dev.txt` before running the tests. They cover HTTP/OpenAPI contracts, rejection of truth fields and invalid intervals, profile collection, source failures, baseline setup, artifact integrity and exact agreement for available saved inputs. The full local corpus contains 50 inputs; a clean public checkout ships one regression case, not the whole corpus. Real-source engineering checks additionally use our three Go services and external Spring Petclinic, including source shutdown/recovery. See [acceptance progress](docs/PROGRESS_PRODUCT_FINAL.md), [runtime audit](docs/product-acceptance/RUNTIME_AUDIT.md) and [API guide](docs/product-architecture/API.md). The application is read-only and binds to loopback by default; external access requires independent authentication/TLS protection. Engineering connection checks do not establish RCA accuracy on another system.
 
-## Current research status: M14 final freeze
+## Frozen thesis result: M14 (continued research is tracked separately)
 
 Astronomy Shop: **SUPPORTED_TRANSFER**, 50 incidents / 25 clusters, AC@1 **0.50**, AC@3 **0.70**, AC@5 **0.78**, MRR **0.629955**, candidate coverage **1.00**. M13 beats chance, the metric heuristic and frozen M11 under the preregistered paired cluster gates. The stronger Top-3/Top-5 gates fail; this is not universal or production-ready RCA.
 
-Research is **FINAL_RESEARCH_FREEZE**; Astronomy Shop is **USED_TEST**. No further training, feature/threshold tuning or additional model-selection/accuracy trials use this test. Engineering acceptance of the profile ingestion path is recorded separately on real Prometheus/Jaeger sources for two application stacks. Those checks verify collection and execution, not new accuracy claims or production effectiveness.
+The M14 result is **FINAL_RESEARCH_FREEZE**; Astronomy Shop is **USED_TEST**. No further training, feature/threshold tuning or additional model-selection/accuracy trials use this test. Subsequent R3 experiments have separate protocols and data roles; they do not reopen M14. Engineering acceptance of the profile ingestion path is recorded separately on real Prometheus/Jaeger sources for two application stacks. Those checks verify collection and execution, not new accuracy claims or production effectiveness.
 
 See [full results](docs/m14-results.md), [claim boundaries](docs/m14-claim-registry.md), [error analysis](docs/m14-error-analysis.md), [engineering exceptions](docs/m14-engineering-log.md), and [final research freeze](docs/final-research-freeze.md). Machine-readable evidence and compact truth/rankings for independent metric reproduction are in `ml/models/m14/`.
 
