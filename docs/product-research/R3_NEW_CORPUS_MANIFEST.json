@@ -1,0 +1,23 @@
+{
+  "scope": "Research-only new-corpus audit; no telemetry rows, weights, or DOCX",
+  "verdict": "ADAPTER_REQUIRED_NOT_READY_FOR_TRAINING",
+  "ranking_fits": 0,
+  "ranking_inferences": 0,
+  "llm_calls": 0,
+  "older_manifest_scope": "R3_ML_MANIFEST.json is the snapshot at research commit 12b89d4; current plans can advance",
+  "sha256": {
+    "docs/R3_NEW_CORPUS_PROTOCOL.md": "b8037bca9b9044ed1c78f5315a177e76992f35b04e2b0b9eb2c1441dc6e88533",
+    "docs/product-research/R3_NEW_CORPUS_RESULTS.md": "6614bd285bdd0fa81f4da1c6129f3a90a38d2aec80a9812e1f5850a0ed9d53e6",
+    "docs/PLAN_PRODUCT_ITERATION_2.md": "6d3f03ce71aad4112c25fc8cceb90ccf5a106441d3b2a79e340c8ce19a578791",
+    "docs/HANDOFF_PRODUCT_NEXT_ITERATION.md": "db094588f01e10f1816e71a822dad8654bc17bbabc70d6a3ad888eef6f528671",
+    "docs/PROGRESS_PRODUCT_R3.md": "96c96ffe7937ce726d0dc5f1def6b5511381ddcadeb26bde43e4dd8cc3e738d8",
+    "ml/requirements-r3-audit.txt": "b8ed16a9332240f96a2c05393161fc5f06afa2cad3b1e7501da616e4c7068508",
+    "scripts/r3_new_corpus_audit.py": "a3da4f3edfb3c88aaa0d4b415dc8509c33716e853781a3faad5112b8f5c51c4e",
+    "scripts/test_r3_new_corpus_audit.py": "dcd7d16309fda420b8678ccebfc06e074c24e506e83dafb77f52e86daa63f71f",
+    "scripts/finalize_r3_corpus_audit.py": "1a6b4879ed29261689c9c29e94a3386e6a9d76488f0eea36fbd4736305c0f4cc",
+    "docs/product-research/r3-new-corpus-v1/acquisition.json": "e11855b82821d2944913816b0570b718e7c75f15d51e4131c85c359a428f76dc",
+    "docs/product-research/r3-new-corpus-v1/schema.json": "999ba63110967b99684fc5b17d1f2a80ad819b34e3cdf6e478abc3af9686ea2a",
+    "docs/product-research/r3-new-corpus-v1/semantics.json": "cddeba8be5724f85138c60d1ad182c3affbd610b9a78bef6bf23275d196bed0f",
+    "docs/product-research/r3-new-corpus-v1/overlap-and-protected.json": "504e1230e88a7050a93d841389ab108783131d74416689f7eb10dce5924e5819"
+  }
+}
