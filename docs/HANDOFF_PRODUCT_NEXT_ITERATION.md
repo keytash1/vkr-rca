@@ -1,15 +1,16 @@
 # RCA Workbench — handoff следующей исследовательской итерации R3
 
-> **Продолжать отсюда:** [R3-F](product-research/R3_FRESH_RED_RESULTS.md).
-> AnoMod ZIP скачан и проверен, не качать повторно. SN RED отсутствуют в
-> опубликованном directory inventory, Eadro по коду не решает этот пробел.
-> Новые HTTP counters/histogram уже добавлены в наш Go-контур, отдельные
-> PromQL/единицы — `deploy/acceptance/red-queries.json`. HTTP/race/build прошли;
-> настоящий Prometheus ещё не запускался: Docker daemon выключен.
-> Дальше — ограниченный live capture, регистрация matched сравнения и
-> достаточных train-данных новых полей до fit. Не выдавать наличие измерителя
-> за рост качества M13; не повторять старый RE1 и не подбирать по M14.
-> Продукт rca-workbench и DOCX не изменялись.
+> **Продолжать отсюда:** [R3-G завершён](product-research/R3_LIVE_RED_RESULTS.md).
+> Не повторять live pilot: настоящий Prometheus/Jaeger, 6/6 валидных случаев,
+> idle/up=0 приняты. RRF не дал роста Top-1, не включён в продукт. Colima есть:
+> профиль default, Docker socket `/Users/maxryabets/.colima/default/docker.sock`;
+> отсутствие Docker Desktop не означает отсутствие окружения.
+> Следующая гипотеза — portable observed dependency wait без обязательного
+> SERVER/CLIENT. Старые healthy 43784 и dev 128596 spans все UNKNOWN; wait
+> features нулевые во всех 1440 cached rows. Происхождение UNKNOWN по raw
+> старого capture не установлено. До fit — регистрация и support gate;
+> 120 старых и эти Go-6 только development, M14 не использовать для выбора.
+> Не качать снова AnoMod и не делать grid. Рабочие веса/продукт/DOCX сохранены.
 
 > Последнее выполнение: [R3-D/E](product-research/R3_FAMILY_ABLATION_RESULTS.md).
 > 12 fits завершены: расширение метрик latency/error дало ΔMRR +0,1121 на RE1

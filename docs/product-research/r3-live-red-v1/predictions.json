@@ -1,0 +1,872 @@
+{
+  "truth_evaluation_only": {
+    "g-001": {
+      "root_service": "gateway",
+      "fault_family": "latency",
+      "system": "local-three-new-red"
+    },
+    "g-002": {
+      "root_service": "gateway",
+      "fault_family": "error",
+      "system": "local-three-new-red"
+    },
+    "g-003": {
+      "root_service": "orders",
+      "fault_family": "latency",
+      "system": "local-three-new-red"
+    },
+    "g-004": {
+      "root_service": "orders",
+      "fault_family": "error",
+      "system": "local-three-new-red"
+    },
+    "g-005": {
+      "root_service": "payment",
+      "fault_family": "latency",
+      "system": "local-three-new-red"
+    },
+    "g-006": {
+      "root_service": "payment",
+      "fault_family": "error",
+      "system": "local-three-new-red"
+    }
+  },
+  "predictions": {
+    "observed_traces": {
+      "frozen_m13": {
+        "g-001": [
+          {
+            "service": "gateway",
+            "score": 0.21729448437690735,
+            "rank": 1
+          },
+          {
+            "service": "payment",
+            "score": -1.1681993007659912,
+            "rank": 2
+          },
+          {
+            "service": "orders",
+            "score": -1.1945059299468994,
+            "rank": 3
+          }
+        ],
+        "g-002": [
+          {
+            "service": "orders",
+            "score": 0.8493057489395142,
+            "rank": 1
+          },
+          {
+            "service": "payment",
+            "score": 0.6866812705993652,
+            "rank": 2
+          },
+          {
+            "service": "gateway",
+            "score": 0.1110147088766098,
+            "rank": 3
+          }
+        ],
+        "g-003": [
+          {
+            "service": "orders",
+            "score": 0.6100545525550842,
+            "rank": 1
+          },
+          {
+            "service": "gateway",
+            "score": -0.8334876298904419,
+            "rank": 2
+          },
+          {
+            "service": "payment",
+            "score": -1.1681993007659912,
+            "rank": 3
+          }
+        ],
+        "g-004": [
+          {
+            "service": "payment",
+            "score": 0.8115026354789734,
+            "rank": 1
+          },
+          {
+            "service": "orders",
+            "score": 0.4463740289211273,
+            "rank": 2
+          },
+          {
+            "service": "gateway",
+            "score": -0.04471968859434128,
+            "rank": 3
+          }
+        ],
+        "g-005": [
+          {
+            "service": "payment",
+            "score": 0.8213348388671875,
+            "rank": 1
+          },
+          {
+            "service": "orders",
+            "score": -0.7204923629760742,
+            "rank": 2
+          },
+          {
+            "service": "gateway",
+            "score": -0.8334876298904419,
+            "rank": 3
+          }
+        ],
+        "g-006": [
+          {
+            "service": "gateway",
+            "score": -0.6899254322052002,
+            "rank": 1
+          },
+          {
+            "service": "payment",
+            "score": -0.8903605341911316,
+            "rank": 2
+          },
+          {
+            "service": "orders",
+            "score": -0.8937265276908875,
+            "rank": 3
+          }
+        ]
+      },
+      "resource_heuristic": {
+        "g-001": [
+          {
+            "service": "payment",
+            "score": 6.892202452043827,
+            "rank": 1
+          },
+          {
+            "service": "gateway",
+            "score": 6.5633008559231625,
+            "rank": 2
+          },
+          {
+            "service": "orders",
+            "score": 5.507891705009054,
+            "rank": 3
+          }
+        ],
+        "g-002": [
+          {
+            "service": "orders",
+            "score": 68.6506222835996,
+            "rank": 1
+          },
+          {
+            "service": "payment",
+            "score": 65.57506236031091,
+            "rank": 2
+          },
+          {
+            "service": "gateway",
+            "score": 37.83554423674474,
+            "rank": 3
+          }
+        ],
+        "g-003": [
+          {
+            "service": "gateway",
+            "score": 14.917367132929591,
+            "rank": 1
+          },
+          {
+            "service": "orders",
+            "score": 12.925734425802203,
+            "rank": 2
+          },
+          {
+            "service": "payment",
+            "score": 11.92039647275085,
+            "rank": 3
+          }
+        ],
+        "g-004": [
+          {
+            "service": "payment",
+            "score": 65.57192450377619,
+            "rank": 1
+          },
+          {
+            "service": "gateway",
+            "score": 20.152932824565802,
+            "rank": 2
+          },
+          {
+            "service": "orders",
+            "score": 16.288239366276834,
+            "rank": 3
+          }
+        ],
+        "g-005": [
+          {
+            "service": "gateway",
+            "score": 13.473475475582761,
+            "rank": 1
+          },
+          {
+            "service": "orders",
+            "score": 12.978653165654015,
+            "rank": 2
+          },
+          {
+            "service": "payment",
+            "score": 12.536479227421008,
+            "rank": 3
+          }
+        ],
+        "g-006": [
+          {
+            "service": "orders",
+            "score": 53.2594159266196,
+            "rank": 1
+          },
+          {
+            "service": "payment",
+            "score": 35.89356561561635,
+            "rank": 2
+          },
+          {
+            "service": "gateway",
+            "score": 24.31702877967734,
+            "rank": 3
+          }
+        ]
+      },
+      "red_heuristic": {
+        "g-001": [
+          {
+            "service": "gateway",
+            "score": 237.6801470588235,
+            "rank": 1
+          },
+          {
+            "service": "orders",
+            "score": 0.017335766423357338,
+            "rank": 2
+          },
+          {
+            "service": "payment",
+            "score": 0.0,
+            "rank": 3
+          }
+        ],
+        "g-002": [
+          {
+            "service": "gateway",
+            "score": 100.0,
+            "rank": 1
+          },
+          {
+            "service": "orders",
+            "score": 0.0,
+            "rank": 2
+          },
+          {
+            "service": "payment",
+            "score": 0.0,
+            "rank": 3
+          }
+        ],
+        "g-003": [
+          {
+            "service": "orders",
+            "score": 237.73278985507244,
+            "rank": 1
+          },
+          {
+            "service": "gateway",
+            "score": 237.6801470588235,
+            "rank": 2
+          },
+          {
+            "service": "payment",
+            "score": 0.0,
+            "rank": 3
+          }
+        ],
+        "g-004": [
+          {
+            "service": "gateway",
+            "score": 100.0,
+            "rank": 1
+          },
+          {
+            "service": "orders",
+            "score": 100.0,
+            "rank": 2
+          },
+          {
+            "service": "payment",
+            "score": 0.0,
+            "rank": 3
+          }
+        ],
+        "g-005": [
+          {
+            "service": "gateway",
+            "score": 240.84681372549016,
+            "rank": 1
+          },
+          {
+            "service": "orders",
+            "score": 238.7729358404739,
+            "rank": 2
+          },
+          {
+            "service": "payment",
+            "score": 237.75,
+            "rank": 3
+          }
+        ],
+        "g-006": [
+          {
+            "service": "gateway",
+            "score": 100.0,
+            "rank": 1
+          },
+          {
+            "service": "orders",
+            "score": 100.0,
+            "rank": 2
+          },
+          {
+            "service": "payment",
+            "score": 100.0,
+            "rank": 3
+          }
+        ]
+      },
+      "rrf": {
+        "g-001": [
+          {
+            "service": "gateway",
+            "score": 0.03278688524590164,
+            "rank": 1
+          },
+          {
+            "service": "payment",
+            "score": 0.03200204813108039,
+            "rank": 2
+          },
+          {
+            "service": "orders",
+            "score": 0.03200204813108039,
+            "rank": 3
+          }
+        ],
+        "g-002": [
+          {
+            "service": "orders",
+            "score": 0.8493057489395142,
+            "rank": 1
+          },
+          {
+            "service": "payment",
+            "score": 0.6866812705993652,
+            "rank": 2
+          },
+          {
+            "service": "gateway",
+            "score": 0.1110147088766098,
+            "rank": 3
+          }
+        ],
+        "g-003": [
+          {
+            "service": "orders",
+            "score": 0.03278688524590164,
+            "rank": 1
+          },
+          {
+            "service": "gateway",
+            "score": 0.03225806451612903,
+            "rank": 2
+          },
+          {
+            "service": "payment",
+            "score": 0.031746031746031744,
+            "rank": 3
+          }
+        ],
+        "g-004": [
+          {
+            "service": "payment",
+            "score": 0.8115026354789734,
+            "rank": 1
+          },
+          {
+            "service": "orders",
+            "score": 0.4463740289211273,
+            "rank": 2
+          },
+          {
+            "service": "gateway",
+            "score": -0.04471968859434128,
+            "rank": 3
+          }
+        ],
+        "g-005": [
+          {
+            "service": "payment",
+            "score": 0.032266458495966696,
+            "rank": 1
+          },
+          {
+            "service": "gateway",
+            "score": 0.032266458495966696,
+            "rank": 2
+          },
+          {
+            "service": "orders",
+            "score": 0.03225806451612903,
+            "rank": 3
+          }
+        ],
+        "g-006": [
+          {
+            "service": "gateway",
+            "score": -0.6899254322052002,
+            "rank": 1
+          },
+          {
+            "service": "payment",
+            "score": -0.8903605341911316,
+            "rank": 2
+          },
+          {
+            "service": "orders",
+            "score": -0.8937265276908875,
+            "rank": 3
+          }
+        ]
+      }
+    },
+    "no_traces": {
+      "frozen_m13": {
+        "g-001": [
+          {
+            "service": "payment",
+            "score": 0.5290161371231079,
+            "rank": 1
+          },
+          {
+            "service": "orders",
+            "score": 0.4245181083679199,
+            "rank": 2
+          },
+          {
+            "service": "gateway",
+            "score": 0.32240819931030273,
+            "rank": 3
+          }
+        ],
+        "g-002": [
+          {
+            "service": "orders",
+            "score": 0.6378152370452881,
+            "rank": 1
+          },
+          {
+            "service": "payment",
+            "score": 0.5227845907211304,
+            "rank": 2
+          },
+          {
+            "service": "gateway",
+            "score": 0.4101453721523285,
+            "rank": 3
+          }
+        ],
+        "g-003": [
+          {
+            "service": "gateway",
+            "score": 0.6394476890563965,
+            "rank": 1
+          },
+          {
+            "service": "orders",
+            "score": 0.3681805729866028,
+            "rank": 2
+          },
+          {
+            "service": "payment",
+            "score": 0.30667781829833984,
+            "rank": 3
+          }
+        ],
+        "g-004": [
+          {
+            "service": "payment",
+            "score": 0.647605836391449,
+            "rank": 1
+          },
+          {
+            "service": "gateway",
+            "score": 0.6471894383430481,
+            "rank": 2
+          },
+          {
+            "service": "orders",
+            "score": 0.4245181083679199,
+            "rank": 3
+          }
+        ],
+        "g-005": [
+          {
+            "service": "orders",
+            "score": 0.6576439142227173,
+            "rank": 1
+          },
+          {
+            "service": "gateway",
+            "score": 0.6394476890563965,
+            "rank": 2
+          },
+          {
+            "service": "payment",
+            "score": 0.1089039295911789,
+            "rank": 3
+          }
+        ],
+        "g-006": [
+          {
+            "service": "orders",
+            "score": 0.6887922883033752,
+            "rank": 1
+          },
+          {
+            "service": "payment",
+            "score": 0.5033434629440308,
+            "rank": 2
+          },
+          {
+            "service": "gateway",
+            "score": 0.37057870626449585,
+            "rank": 3
+          }
+        ]
+      },
+      "resource_heuristic": {
+        "g-001": [
+          {
+            "service": "payment",
+            "score": 6.892202452043827,
+            "rank": 1
+          },
+          {
+            "service": "gateway",
+            "score": 6.5633008559231625,
+            "rank": 2
+          },
+          {
+            "service": "orders",
+            "score": 5.507891705009054,
+            "rank": 3
+          }
+        ],
+        "g-002": [
+          {
+            "service": "orders",
+            "score": 68.6506222835996,
+            "rank": 1
+          },
+          {
+            "service": "payment",
+            "score": 65.57506236031091,
+            "rank": 2
+          },
+          {
+            "service": "gateway",
+            "score": 37.83554423674474,
+            "rank": 3
+          }
+        ],
+        "g-003": [
+          {
+            "service": "gateway",
+            "score": 14.917367132929591,
+            "rank": 1
+          },
+          {
+            "service": "orders",
+            "score": 12.925734425802203,
+            "rank": 2
+          },
+          {
+            "service": "payment",
+            "score": 11.92039647275085,
+            "rank": 3
+          }
+        ],
+        "g-004": [
+          {
+            "service": "payment",
+            "score": 65.57192450377619,
+            "rank": 1
+          },
+          {
+            "service": "gateway",
+            "score": 20.152932824565802,
+            "rank": 2
+          },
+          {
+            "service": "orders",
+            "score": 16.288239366276834,
+            "rank": 3
+          }
+        ],
+        "g-005": [
+          {
+            "service": "gateway",
+            "score": 13.473475475582761,
+            "rank": 1
+          },
+          {
+            "service": "orders",
+            "score": 12.978653165654015,
+            "rank": 2
+          },
+          {
+            "service": "payment",
+            "score": 12.536479227421008,
+            "rank": 3
+          }
+        ],
+        "g-006": [
+          {
+            "service": "orders",
+            "score": 53.2594159266196,
+            "rank": 1
+          },
+          {
+            "service": "payment",
+            "score": 35.89356561561635,
+            "rank": 2
+          },
+          {
+            "service": "gateway",
+            "score": 24.31702877967734,
+            "rank": 3
+          }
+        ]
+      },
+      "red_heuristic": {
+        "g-001": [
+          {
+            "service": "gateway",
+            "score": 237.6801470588235,
+            "rank": 1
+          },
+          {
+            "service": "orders",
+            "score": 0.017335766423357338,
+            "rank": 2
+          },
+          {
+            "service": "payment",
+            "score": 0.0,
+            "rank": 3
+          }
+        ],
+        "g-002": [
+          {
+            "service": "gateway",
+            "score": 100.0,
+            "rank": 1
+          },
+          {
+            "service": "orders",
+            "score": 0.0,
+            "rank": 2
+          },
+          {
+            "service": "payment",
+            "score": 0.0,
+            "rank": 3
+          }
+        ],
+        "g-003": [
+          {
+            "service": "orders",
+            "score": 237.73278985507244,
+            "rank": 1
+          },
+          {
+            "service": "gateway",
+            "score": 237.6801470588235,
+            "rank": 2
+          },
+          {
+            "service": "payment",
+            "score": 0.0,
+            "rank": 3
+          }
+        ],
+        "g-004": [
+          {
+            "service": "gateway",
+            "score": 100.0,
+            "rank": 1
+          },
+          {
+            "service": "orders",
+            "score": 100.0,
+            "rank": 2
+          },
+          {
+            "service": "payment",
+            "score": 0.0,
+            "rank": 3
+          }
+        ],
+        "g-005": [
+          {
+            "service": "gateway",
+            "score": 240.84681372549016,
+            "rank": 1
+          },
+          {
+            "service": "orders",
+            "score": 238.7729358404739,
+            "rank": 2
+          },
+          {
+            "service": "payment",
+            "score": 237.75,
+            "rank": 3
+          }
+        ],
+        "g-006": [
+          {
+            "service": "gateway",
+            "score": 100.0,
+            "rank": 1
+          },
+          {
+            "service": "orders",
+            "score": 100.0,
+            "rank": 2
+          },
+          {
+            "service": "payment",
+            "score": 100.0,
+            "rank": 3
+          }
+        ]
+      },
+      "rrf": {
+        "g-001": [
+          {
+            "service": "payment",
+            "score": 0.032266458495966696,
+            "rank": 1
+          },
+          {
+            "service": "gateway",
+            "score": 0.032266458495966696,
+            "rank": 2
+          },
+          {
+            "service": "orders",
+            "score": 0.03225806451612903,
+            "rank": 3
+          }
+        ],
+        "g-002": [
+          {
+            "service": "orders",
+            "score": 0.6378152370452881,
+            "rank": 1
+          },
+          {
+            "service": "payment",
+            "score": 0.5227845907211304,
+            "rank": 2
+          },
+          {
+            "service": "gateway",
+            "score": 0.4101453721523285,
+            "rank": 3
+          }
+        ],
+        "g-003": [
+          {
+            "service": "gateway",
+            "score": 0.03252247488101534,
+            "rank": 1
+          },
+          {
+            "service": "orders",
+            "score": 0.03252247488101534,
+            "rank": 2
+          },
+          {
+            "service": "payment",
+            "score": 0.031746031746031744,
+            "rank": 3
+          }
+        ],
+        "g-004": [
+          {
+            "service": "payment",
+            "score": 0.647605836391449,
+            "rank": 1
+          },
+          {
+            "service": "gateway",
+            "score": 0.6471894383430481,
+            "rank": 2
+          },
+          {
+            "service": "orders",
+            "score": 0.4245181083679199,
+            "rank": 3
+          }
+        ],
+        "g-005": [
+          {
+            "service": "orders",
+            "score": 0.03252247488101534,
+            "rank": 1
+          },
+          {
+            "service": "gateway",
+            "score": 0.03252247488101534,
+            "rank": 2
+          },
+          {
+            "service": "payment",
+            "score": 0.031746031746031744,
+            "rank": 3
+          }
+        ],
+        "g-006": [
+          {
+            "service": "orders",
+            "score": 0.6887922883033752,
+            "rank": 1
+          },
+          {
+            "service": "payment",
+            "score": 0.5033434629440308,
+            "rank": 2
+          },
+          {
+            "service": "gateway",
+            "score": 0.37057870626449585,
+            "rank": 3
+          }
+        ]
+      }
+    }
+  }
+}

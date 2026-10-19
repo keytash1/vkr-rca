@@ -1,0 +1,53 @@
+{
+  "id": "g-005",
+  "valid": true,
+  "root_http_code": 200,
+  "root_elapsed_seconds": 0.2078199579991633,
+  "red": {
+    "scores": {
+      "gateway": 240.84681372549016,
+      "orders": 238.7729358404739,
+      "payment": 237.75
+    },
+    "states": {
+      "gateway": "available",
+      "orders": "available",
+      "payment": "available"
+    },
+    "shifts": {
+      "gateway": {
+        "error_ratio": 0.0,
+        "latency_p95": 240.84681372549016
+      },
+      "orders": {
+        "error_ratio": 0.0,
+        "latency_p95": 238.7729358404739
+      },
+      "payment": {
+        "error_ratio": 0.0,
+        "latency_p95": 237.75
+      }
+    },
+    "eligible_for_fusion": true
+  },
+  "source_states": {
+    "gateway": "available",
+    "orders": "available",
+    "payment": "available"
+  },
+  "observed_spans": 860,
+  "root_ranks": {
+    "observed_traces": {
+      "frozen_m13": 1,
+      "resource_heuristic": 3,
+      "red_heuristic": 3,
+      "rrf": 1
+    },
+    "no_traces": {
+      "frozen_m13": 3,
+      "resource_heuristic": 3,
+      "red_heuristic": 3,
+      "rrf": 3
+    }
+  }
+}

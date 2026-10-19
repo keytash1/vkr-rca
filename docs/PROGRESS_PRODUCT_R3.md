@@ -1,5 +1,38 @@
 # Журнал R3
 
+## R3-G: настоящий Prometheus и шесть случаев — 19.10.2026
+
+**Завершён один проход.** [Выводы](product-research/R3_LIVE_RED_RESULTS.md),
+[протокол](R3_LIVE_RED_PROTOCOL.md). Предыдущая проверка окружения была
+неполной: существующая Colima запущена без переустановки/смены контекста.
+Пересобраны только gateway/orders/payment, переиспользованы закреплённые
+Prometheus 2.54.1 / Jaeger 2.20.0. Продукт и чужие проекты не пересоздавались.
+
+Healthy 70 s, 432 resource points, 1725 spans, workload без failed/dropped.
+Counter/count/+Inf совпали, 3/3 targets доступны. Каждому fault предшествовало
+35 s очистки 30 s lookback; все 6 воздействий независимо подтверждены после
+сохранения окна. При полученных traces M13 и RRF Top-1=3/6, MRR=0,7222.
+Без traces M13 0/6, MRR=0,3889; RED heuristic 3/6, 0,6944; RRF 0/6, 0,4167.
+Два режима не считаются независимыми инцидентами. Простой RRF не продвигается,
+его коэффициенты после исходов не подбирались. Новых ranking fits/LLM нет.
+
+Idle отличается от source_unavailable: при scrape-outage старые rate нули
+не приняты за нормальную нагрузку. Источник и workload восстановлены finally,
+воздействия сброшены. Затем восемь своих стендовых контейнеров остановлены,
+тома сохранены; продуктовый контейнер healthy. Сырые окна/API — ignored
+artifacts, не публикация. Глобальный Docker context остаётся default.
+Три проверки нового unit/source-aware RED модуля прошли; протокол/код/queries
+не менялись, метрики пересчитаны по rankings, 47 protected SHA совпали.
+
+Аудит старых canonical traces: healthy 43784 и dev 128596 spans имеют UNKNOWN;
+downstream wait/support всегда нулевые во всех 1440 cached rows. Exclusive
+proxy без CLIENT не подтверждает локальное execution time. Это конкретный
+риск переноса, не доказанная причина всех ошибок и не установленная вина
+адаптера: исторического raw ответа нет. Следующая гипотеза — structural
+observed dependency wait без roles, сначала support gate/регистрация, затем
+один matched development опыт. Не запускать ещё корпуса или grid; Go-6
+теперь development, веса M13/M14 и DOCX не трогать.
+
 ## R3-F: свежий источник и независимые HTTP-метрики — 19.10.2026
 
 [Итог](product-research/R3_FRESH_RED_RESULTS.md),
