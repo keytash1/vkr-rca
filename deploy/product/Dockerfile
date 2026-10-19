@@ -23,8 +23,8 @@ COPY ml/models/m13/freeze-manifest.json ml/models/m13/diagnostic-ranker-seed-*.j
 COPY cmd/thesis_demo/server.py cmd/thesis_demo/live_sources.py cmd/thesis_demo/profile_runtime.py \
      cmd/thesis_demo/runtime_assets.py cmd/thesis_demo/api_contract.py cmd/thesis_demo/api_errors.py \
      cmd/thesis_demo/evidence_catalog.py cmd/thesis_demo/assistant_context.py \
-     cmd/thesis_demo/trace_adapters.py cmd/thesis_demo/profile_contract.py cmd/thesis_demo/profile_onboarding.py cmd/thesis_demo/analysis_requests.py cmd/thesis_demo/trace_evidence.py \
-     cmd/thesis_demo/profile_check.py cmd/thesis_demo/profile_setup.py cmd/thesis_demo/
+     cmd/thesis_demo/trace_adapters.py cmd/thesis_demo/profile_contract.py cmd/thesis_demo/profile_onboarding.py cmd/thesis_demo/analysis_requests.py cmd/thesis_demo/trace_evidence.py cmd/thesis_demo/baseline_applicability.py cmd/thesis_demo/context_source.py cmd/thesis_demo/context_catalog.py \
+     cmd/thesis_demo/profile_check.py cmd/thesis_demo/profile_setup.py cmd/thesis_demo/http_observations.py cmd/thesis_demo/
 COPY cmd/thesis_demo/static/ cmd/thesis_demo/static/
 RUN mkdir -p deploy/profiles
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PYTHONPATH=/opt/rca/ml

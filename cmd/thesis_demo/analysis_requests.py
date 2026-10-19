@@ -27,7 +27,7 @@ class AnalysisRequests:
             self._deleted = {
                 k: expiry for k, expiry in self._deleted.items() if expiry > now
             }
-            self._deleted[analysis_id] = now + 125 + self.ttl
+            self._deleted[analysis_id] = now + 140 + self.ttl
             while len(self._deleted) > 256:
                 del self._deleted[next(iter(self._deleted))]
             self._cache = OrderedDict(
@@ -76,7 +76,7 @@ class AnalysisRequests:
                 self._pending = pending
                 owner = True
         if not owner:
-            if not pending["event"].wait(125):
+            if not pending["event"].wait(140):
                 raise TimeoutError(
                     "identical analysis did not finish within the collection budget"
                 )
@@ -108,6 +108,14 @@ class AnalysisRequests:
                 and all(p >= 0.8 for v in points.values() for p in v.values())
             )
             usable = usable and status.get("span_count",0) > 0
+            context = status.get("incident_context")
+            if context is not None:
+                usable = usable and bool(context.get("services")) and all(
+                    s == "available" for s in context.get("services", {}).values())
+            http = status.get("http_observations")
+            if http is not None:
+                usable = usable and http.get("status") == "complete" and bool(http.get("services")) and all(
+                    s in {"OBSERVED", "NO_ACTIVITY"} for s in http.get("services", {}).values())
             with self._lock:
                 if (
                     usable

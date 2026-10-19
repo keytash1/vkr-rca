@@ -50,6 +50,8 @@ class ProfileSetupTests(unittest.TestCase):
             with patch("profile_setup.collect", return_value=(window, status)):
                 result = prepare(root, profile_path, 1_700_000_000, 1_700_000_100)
                 self.assertEqual(result["profile_id"], "new-system")
+                self.assertEqual(result["workload_reference"]["requests_per_second"], 4)
+                self.assertEqual(result["workload_reference"]["source"], "profile_constant")
                 baseline_dir = root / "deploy/profiles/artifacts/new-system"
                 baseline = json.loads((baseline_dir / "healthy-baseline.json").read_text())
                 self.assertEqual(set(baseline["metric"]), {"api", "worker"})

@@ -24,7 +24,7 @@ TESTS = (
     "assistant_privacy", "assistant_provider", "assistant_runner", "assistant_supervisor",
     "assistant_tools", "assistant_workflow", "evidence_catalog", "investigations",
     "profile_contract", "profile_onboarding", "profile_setup", "runbook_corpus",
-    "trace_adapters", "trace_evidence", "workspace_http", "workspace_store", "product_http",
+    "trace_adapters", "trace_evidence", "workspace_http", "workspace_store", "product_http", "baseline_applicability", "incident_context", "http_observations",
 )
 
 
@@ -48,6 +48,9 @@ def export(root, output):
     files["cmd/thesis_demo/profile_test_fixtures.py"] = root/"cmd/thesis_demo/profile_test_fixtures.py"
     files["cmd/thesis_demo/telemetry_test_fixtures.py"] = root/"cmd/thesis_demo/telemetry_test_fixtures.py"
     files["cmd/thesis_demo/test_workspace_ui_restore.mjs"] = root/"cmd/thesis_demo/test_workspace_ui_restore.mjs"
+    files["cmd/thesis_demo/test_baseline_ui.mjs"] = root/"cmd/thesis_demo/test_baseline_ui.mjs"
+    files["cmd/thesis_demo/test_context_ui.mjs"] = root/"cmd/thesis_demo/test_context_ui.mjs"
+    files["cmd/thesis_demo/test_http_ui.mjs"] = root/"cmd/thesis_demo/test_http_ui.mjs"
     for path in sorted((root/"cmd/thesis_demo/static").iterdir()):
         if path.is_file():
             files[str(path.relative_to(root))] = path
@@ -59,9 +62,15 @@ def export(root, output):
     files[".github/workflows/product.yml"] = root/"deploy/product/source-ci.yml"
     files["ml/pyproject.toml"] = root/"deploy/product/runtime-pyproject.toml"
     files["requirements-dev.txt"] = root/"requirements-dev.txt"
+    # Operator-only research tools are source material, never runtime modules.
+    for name in ("loki_context_probe.py", "test_loki_context_probe.py"):
+        files["tools/"+name] = root/"tools"/name
+    for name in ("ITERATION_2.md", "BASELINE_APPLICABILITY.md", "CONTEXT_PROBE.md", "LOKI_ACCEPTANCE.md", "HTTP_OBSERVATIONS.md"):
+        files["docs/"+name] = root/"docs"/name
     files["deploy/runbooks/basic-investigation.json"] = root/"deploy/runbooks/basic-investigation.json"
     files["deploy/profiles/examples/new-system.template.json"] = root/"deploy/profiles/examples/new-system.template.json"
-    files["docs/ONBOARDING.md"] = root/"docs/product-architecture/ONBOARDING.md"
+    onboarding = root/"docs/product-architecture/ONBOARDING.md"
+    files["docs/ONBOARDING.md"] = onboarding if onboarding.is_file() else root/"docs/ONBOARDING.md"
     files["docs/WORKSPACE.md"] = root/"deploy/product/WORKSPACE.md"
     files["docs/ASSISTANT_CONNECTION.md"] = root/"deploy/product/ASSISTANT_CONNECTION.md"
     files["docs/ARCHITECTURE.md"] = root/"deploy/product/ARCHITECTURE.md"

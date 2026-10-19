@@ -1,5 +1,23 @@
 # RCA Workbench — handoff следующей исследовательской итерации R3
 
+> **Актуальная точка ~01:45 МСК:** product PR #5 MERGED после зелёного CI,
+> main a6845cf (локально чист). Research branch codex/http-observations:
+> runtime mirror + journal/results готовы к commit/PR, не включать чужие
+> report-правки/сырые captures. Следующее — research CI/merge и ff-only main.
+> Начало PLAN_PRODUCT_ITERATION_2 содержит полный узкий контракт и критерии:
+> optional HTTP evidence-only collector/API/snapshot/одна закрытая UI-группа.
+> Код J написан и проверен: 163 product Python tests, 18 Node checks,
+> OpenAPI valid. Живые active/idle/outage приняты, одинаковый core input/rank,
+> snapshot сохраняется; recorded Go/Micrometer compatibility принята.
+> Подлинный браузерный проход выполнен на18224. Исправлена ложная визуальная
+> амплитуда графика p95 при roundoff; дополнительный адресный UI-test прошёл.
+> Delivery/export/bundle принят: 138 source files, 70 bundle files, hashes/import OK.
+> Осталась публикация/CI research. Продуктовый контейнер старой установки
+> не заменён; отдельный актуальный native server18224, процесс62659 для UI.
+> Учебный Go-стенд восстановлен, после проверок остановить только его 8 контейнеров.
+> Не повторять измерения/весь full regression; не запускать новый fit.
+> R3-H/I не повторять, reserve не продвигать, frozen core/DOCX не менять.
+
 > **Обновление:** product PR #4 MERGED, main 41245d2 и локально чист.
 > Не создавать повторный PR/не повторять 150 тестов. Осталось опубликовать
 > research-пакет и проверить его CI; затем следующий ограниченный шаг выбирать

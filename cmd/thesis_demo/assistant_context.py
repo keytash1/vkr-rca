@@ -5,6 +5,9 @@ from __future__ import annotations
 import copy
 import json
 import math
+from baseline_applicability import context_projection as baseline_context
+from context_catalog import assistant_projection as context_projection
+from http_observations import CHANNELS as HTTP_CHANNELS, FAMILIES as HTTP_FAMILIES
 
 
 def assistant_context(catalog, *, ranking=None, summary_only=False):
@@ -36,6 +39,16 @@ def assistant_context(catalog, *, ranking=None, summary_only=False):
                 ),
             )
             comparison = value.get("baseline_comparison")
+            if value.get("family") in HTTP_FAMILIES.values():
+                channel = next(c for c, family in HTTP_FAMILIES.items() if family == value["family"])
+                unit, statistic = HTTP_CHANNELS[channel]
+                if (value.get("unit"), value.get("statistic"), value.get("model_input")) != (unit, statistic, False):
+                    raise ValueError("invalid supplemental HTTP observation semantics")
+                clean["values"].update(statistic=statistic, model_input=False)
+                lookback = value.get("query_lookback_seconds")
+                if type(lookback) is not int or not 1 <= lookback <= 3600:
+                    raise ValueError("invalid HTTP observation lookback")
+                clean["values"]["query_lookback_seconds"] = lookback
             clean["values"]["baseline_comparison"] = (
                 pick(
                     comparison,
@@ -99,6 +112,11 @@ def assistant_context(catalog, *, ranking=None, summary_only=False):
                 pick(edge, ("source", "target", "observed_edges"))
                 for edge in value["edges"]
             ]
+        elif fact["kind"] == "context":
+            projection = context_projection(value)
+            if projection is None:
+                continue  # Raw context stays local without explicit operator opt-in.
+            clean["values"] = projection
         else:
             raise ValueError("unsupported assistant observation kind")
         facts.append(clean)
@@ -122,6 +140,8 @@ def assistant_context(catalog, *, ranking=None, summary_only=False):
         "observations": sorted(facts, key=lambda f: (f["service"], f["kind"], f["id"])),
         "limitations": list(catalog["limitations"]),
     }
+    if any(f["kind"] == "context" and f["values"].get("assistant_categories_enabled") is not True for f in catalog["observations"]):
+        result["limitations"].append("INCIDENT_CONTEXT_NOT_DISCLOSED_TO_ASSISTANT")
     if summary_only:
         result["projection"] = {
             "kind": "all_candidate_summaries",
@@ -129,6 +149,17 @@ def assistant_context(catalog, *, ranking=None, summary_only=False):
             "observations_included": len(facts),
             "candidates_included": len(services),
         }
+    applicability = baseline_context(catalog["source_quality"].get("baseline_applicability"),
+                                     catalog["start_unix"], catalog["end_unix"], catalog["requests_per_second"])
+    if applicability is not None:
+        result["source_quality"]["baseline_applicability"] = applicability
+    http_status = catalog["source_quality"].get("http_observations")
+    if isinstance(http_status, dict):
+        states = {s: state for s, state in http_status.get("services", {}).items()
+                  if s in services and state in {"OBSERVED", "NO_ACTIVITY", "PARTIAL", "INCOMPLETE", "UNAVAILABLE"}}
+        result["source_quality"]["http_observations"] = {
+            "status": http_status.get("status") if http_status.get("status") in {"complete", "partial", "unavailable"} else "unavailable",
+            "services": states, "model_input": False}
     if ranking is not None:
         if (
             not isinstance(ranking, list)

@@ -17,7 +17,8 @@ from assistant_context import assistant_context
 
 TOOL_VERSION = "snapshot-tools-v1"
 MAX_TOOL_BYTES = 12 * 1024
-FAMILIES = ("cpu", "memory", "network", "traffic_rate")
+FAMILIES = ("cpu", "memory", "network", "traffic_rate",
+            "http_request_rate", "http_error_ratio", "http_latency_p95")
 TOPICS = ("cpu", "memory", "network", "traffic_rate", "traces", "coverage", "baseline")
 
 
@@ -230,6 +231,8 @@ class SnapshotTools:
             "observations": rows,
             "trace_timing": [{"evidence_id": f["id"], "service": f["service"], "values": f["values"]["timing"]}
                 for f in c["observations"] if f["kind"] == "traces" and f["values"].get("timing") is not None],
+            "incident_context": [{"evidence_id": f["id"], "service": f["service"], "values": f["values"]}
+                for f in c["observations"] if f["kind"] == "context"],
             "observed_dependencies": [{"evidence_id": f["id"], "service": f["service"], "edges": f["values"]["edges"]}
                 for f in c["observations"] if f["kind"] == "dependencies"],
             "projection": "ALL_CANDIDATES_BRIEF_FACTS_DETAILS_VIA_SNAPSHOT_TOOLS",

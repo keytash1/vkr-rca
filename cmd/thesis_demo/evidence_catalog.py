@@ -18,6 +18,7 @@ from urllib.parse import urlencode, urlsplit
 from rca_ml.m12_adapter import CANONICAL_UNITS
 from assistant_context import assistant_context as assistant_context  # Explicit re-export.
 from trace_evidence import summarize_timings
+from baseline_applicability import assess as assess_baseline
 
 MAX_SERIES_POINTS = 64
 MAX_TRACE_EXAMPLES = 3
@@ -195,6 +196,8 @@ def build_catalog(window, result, baseline, *, profile=None, source_status=None,
         "start_unix": start, "end_unix": end, "services": services,
         "requests_per_second": rps,
         "source_quality": {"traces": status.get("traces", "REPLAY_STATUS_UNKNOWN"),
+            "baseline_applicability": assess_baseline(baseline_provenance, start, end, rps,
+                                                       status.get("workload_source")),
             "sampling": "UNKNOWN", "retention": "UNKNOWN",
             "source_annotation_count": len(status.get("annotations", [])),
             "collected_at_unix": status.get("collected_at_unix")},

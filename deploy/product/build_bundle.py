@@ -31,7 +31,8 @@ RUNTIME_MODULES = (
 APPLICATION_MODULES = (
     "server", "live_sources", "profile_runtime", "runtime_assets", "api_contract",
     "api_errors", "evidence_catalog", "assistant_context", "profile_check", "profile_setup",
-    "trace_adapters", "profile_contract", "profile_onboarding", "analysis_requests", "trace_evidence",
+    "trace_adapters", "profile_contract", "profile_onboarding", "analysis_requests", "trace_evidence", "baseline_applicability", "context_source", "context_catalog",
+    "http_observations",
 )
 WORKSPACE_MODULES = (
     "workspace_store", "workspace_http", "investigations", "runbook_corpus",
@@ -88,6 +89,7 @@ def build(root: Path, profile_path: Path, output: Path, *, with_workspace=False,
     for name in ("LICENSE", "NOTICE", "THIRD_PARTY.md", "THIRD_PARTY_NOTICES"):
         files[name] = (root / "deploy/product" / name).read_bytes()
     files["verify_bundle.py"] = (root / "deploy/product/verify_bundle.py").read_bytes()
+    files["docs/HTTP_OBSERVATIONS.md"] = (root / "docs/HTTP_OBSERVATIONS.md").read_bytes()
     files[f"deploy/profiles/{profile_id}.json"] = json.dumps(
         profile, ensure_ascii=False, indent=2, sort_keys=True
     ).encode() + b"\n"

@@ -1,0 +1,92 @@
+{
+  "role": "PRODUCT_WIRING_NOT_ACCURACY_EVALUATION",
+  "model_fits": 0,
+  "provider_calls": 0,
+  "source": "real Prometheus / Go HTTP instrumentation",
+  "recorded_sources": [
+    {
+      "source": "r3-live-red-v1",
+      "services": [
+        "gateway",
+        "orders",
+        "payment"
+      ],
+      "status": "complete",
+      "raw_sha256": "ae2fea65b8725ba472e094b2f0c99e89385981f89454fdf7ca51e2eade3baf9a"
+    },
+    {
+      "source": "r3-metric-reserve-v1",
+      "services": [
+        "api-gateway",
+        "customers-service",
+        "vets-service",
+        "visits-service"
+      ],
+      "status": "complete",
+      "raw_sha256": "11b0d9527f2b427a180db2272d44884ee2d611067ee3706a09eae39bf44f4904"
+    }
+  ],
+  "source_export": {
+    "files": 138,
+    "source_manifest_sha256": "3c41ed5832e9e9be0dcfd1b08c3ca730ab7e4127fe126febd950b5fc3a3c91d8"
+  },
+  "protocol_sha256": "52f916509b43fcce8309c2c8c562ca7f38f2e1b854611eed0cf0a03fc78d19a3",
+  "api": {
+    "identical_core_input_and_ranking": true,
+    "snapshot_saved": true,
+    "analysis_id": "7b274e2e-62c3-47a7-a57b-044df64124ae",
+    "start_unix": 1792448935,
+    "end_unix": 1792448945,
+    "source_status": {
+      "version": "service-http-observations-v1",
+      "status": "complete",
+      "reason": "BOUNDED_HTTP_OBSERVATIONS",
+      "config_sha256": "ba4192f8349c9b3843c8aaec1020ae3cf0facc47aab210b18cef4ad1b5658533",
+      "lookback_seconds": 30,
+      "services": {
+        "gateway": "OBSERVED",
+        "orders": "OBSERVED",
+        "payment": "OBSERVED"
+      },
+      "model_input": false,
+      "collected_at_unix": 1792449026.392928
+    },
+    "baseline_warning": {
+      "state": "needs_review",
+      "reason": "legacy_baseline_without_provenance"
+    }
+  },
+  "phases": {
+    "active": {
+      "status": "complete",
+      "start_unix": 1792448935,
+      "end_unix": 1792448945,
+      "services": {
+        "gateway": "OBSERVED",
+        "orders": "OBSERVED",
+        "payment": "OBSERVED"
+      }
+    },
+    "idle": {
+      "status": "complete",
+      "start_unix": 1792449071,
+      "end_unix": 1792449081,
+      "services": {
+        "gateway": "NO_ACTIVITY",
+        "orders": "NO_ACTIVITY",
+        "payment": "NO_ACTIVITY"
+      }
+    },
+    "outage": {
+      "status": "partial",
+      "start_unix": 1792449120,
+      "end_unix": 1792449130,
+      "services": {
+        "gateway": "OBSERVED",
+        "orders": "OBSERVED",
+        "payment": "UNAVAILABLE"
+      }
+    }
+  },
+  "accepted": true
+}

@@ -49,7 +49,7 @@ def check_profile(root: Path, profile_path: Path, start: float, end: float,
         verdict = "degraded_incident_input"
     else:
         verdict = "ready"
-    return {
+    report = {
         "verdict": verdict,
         "purpose": "baseline" if baseline else "incident",
         "profile_id": profile.id,
@@ -61,6 +61,14 @@ def check_profile(root: Path, profile_path: Path, start: float, end: float,
         "missing_metric_families": missing,
         "issues": issues,
     }
+    if profile.http_observations_config is not None:
+        from http_observations import collect_http, unavailable
+        try:
+            report["http_observations"] = collect_http(profile, start, end)
+        except Exception:
+            report["http_observations"] = unavailable(profile.services, "HTTP_PROJECTION_UNAVAILABLE", start=start, end=end)
+        report["elapsed_seconds"] = round(time.monotonic()-started, 3)
+    return report
 
 
 def main() -> None:

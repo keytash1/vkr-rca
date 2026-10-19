@@ -65,6 +65,13 @@ def _run_child(command, payload, *, wall_seconds, cancel=None):
     if cancel is not None and cancel.is_set():
         return _failure("ASSISTANT_CANCELLED", cancelled=True)
     started = time.monotonic()
+    # Honour only the operator's tokenizer-cache override, never the rest of
+    # the parent environment. The assistant image prewarms a read-only cache
+    # outside /tmp; discarding its path silently forces the byte fallback.
+    cache_dir = next((os.environ[name] for name in ("TIKTOKEN_CACHE_DIR", "DATA_GYM_CACHE_DIR")
+                      if name in os.environ), None)
+    if cache_dir is None:
+        cache_dir = str(Path(tempfile.gettempdir()) / "data-gym-cache")
     try:
         process = subprocess.Popen(
             command,
@@ -77,9 +84,7 @@ def _run_child(command, payload, *, wall_seconds, cancel=None):
                 "PATH": os.defpath,
                 "PYTHONDONTWRITEBYTECODE": "1",
                 "PYTHONUNBUFFERED": "1",
-                "TIKTOKEN_CACHE_DIR": str(
-                    Path(tempfile.gettempdir()) / "data-gym-cache"
-                ),
+                "TIKTOKEN_CACHE_DIR": cache_dir,
             },
         )
     except OSError:
