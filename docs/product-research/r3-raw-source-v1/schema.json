@@ -1,0 +1,35 @@
+{
+  "role": "DISCOVERY_ONLY",
+  "tables": [
+    {
+      "table": "abnormal_metrics.parquet",
+      "rows": 69392,
+      "schema": "time: timestamp[ns, tz=UTC]\nmetric: large_string\nvalue: double\nservice_name: large_string\nattr.k8s.node.name: large_string\nattr.k8s.namespace.name: large_string\nattr.k8s.statefulset.name: large_string\nattr.k8s.deployment.name: large_string\nattr.k8s.replicaset.name: large_string\nattr.k8s.pod.name: large_string\nattr.k8s.container.name: large_string\nattr.destination_workload: large_string\nattr.source_workload: large_string\nattr.destination: large_string\nattr.source: large_string"
+    },
+    {
+      "table": "abnormal_metrics_sum.parquet",
+      "rows": 42267,
+      "schema": "time: timestamp[ns, tz=UTC]\nmetric: large_string\nvalue: double\nservice_name: large_string\nattr.k8s.node.name: large_string\nattr.k8s.namespace.name: large_string\nattr.k8s.statefulset.name: large_string\nattr.k8s.deployment.name: large_string\nattr.k8s.replicaset.name: large_string\nattr.k8s.pod.name: large_string\nattr.k8s.container.name: large_string\nattr.destination_workload: large_string\nattr.source_workload: large_string\nattr.destination: large_string\nattr.source: large_string"
+    },
+    {
+      "table": "abnormal_traces.parquet",
+      "rows": 188533,
+      "schema": "time: timestamp[ns, tz=UTC]\ntrace_id: large_string\nspan_id: large_string\nparent_span_id: large_string\nspan_name: large_string\nattr.span_kind: large_string\nservice_name: large_string\nduration: uint64\nattr.status_code: large_string\nattr.k8s.pod.name: large_string\nattr.k8s.service.name: large_string\nattr.k8s.namespace.name: large_string\nattr.http.request.content_length: uint64\nattr.http.response.content_length: uint64\nattr.http.request.method: large_string\nattr.http.response.status_code: uint16"
+    },
+    {
+      "table": "normal_metrics.parquet",
+      "rows": 69940,
+      "schema": "time: timestamp[ns, tz=UTC]\nmetric: large_string\nvalue: double\nservice_name: large_string\nattr.k8s.node.name: large_string\nattr.k8s.namespace.name: large_string\nattr.k8s.statefulset.name: large_string\nattr.k8s.deployment.name: large_string\nattr.k8s.replicaset.name: large_string\nattr.k8s.pod.name: large_string\nattr.k8s.container.name: large_string\nattr.destination_workload: large_string\nattr.source_workload: large_string\nattr.destination: large_string\nattr.source: large_string"
+    },
+    {
+      "table": "normal_metrics_sum.parquet",
+      "rows": 41138,
+      "schema": "time: timestamp[ns, tz=UTC]\nmetric: large_string\nvalue: double\nservice_name: large_string\nattr.k8s.node.name: large_string\nattr.k8s.namespace.name: large_string\nattr.k8s.statefulset.name: large_string\nattr.k8s.deployment.name: large_string\nattr.k8s.replicaset.name: large_string\nattr.k8s.pod.name: large_string\nattr.k8s.container.name: large_string\nattr.destination_workload: large_string\nattr.source_workload: large_string\nattr.destination: large_string\nattr.source: large_string"
+    },
+    {
+      "table": "normal_traces.parquet",
+      "rows": 178626,
+      "schema": "time: timestamp[ns, tz=UTC]\ntrace_id: large_string\nspan_id: large_string\nparent_span_id: large_string\nspan_name: large_string\nattr.span_kind: large_string\nservice_name: large_string\nduration: uint64\nattr.status_code: large_string\nattr.k8s.pod.name: large_string\nattr.k8s.service.name: large_string\nattr.k8s.namespace.name: large_string\nattr.http.request.content_length: uint64\nattr.http.response.content_length: uint64\nattr.http.request.method: large_string\nattr.http.response.status_code: uint16"
+    }
+  ]
+}
