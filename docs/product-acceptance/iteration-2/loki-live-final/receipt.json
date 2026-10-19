@@ -1,0 +1,553 @@
+{
+  "kind": "REAL_LOKI_CONTROLLED_APPLICATION_PILOT",
+  "cases": [
+    {
+      "id": "p01",
+      "without_context": {
+        "http_statuses": [
+          503,
+          503,
+          503
+        ],
+        "durations_seconds": [
+          0.0017507500015199184,
+          0.0011124579978059046,
+          0.0010222080018138513
+        ]
+      },
+      "with_context": {
+        "schema_version": "context-probe-v1",
+        "research_only": true,
+        "assistant_disclosure": "DISABLED_NOT_IN_ASSISTANT_TOOLS",
+        "source_id": "local-pilot",
+        "service": "checkout",
+        "start_unix": 1792397544.234823,
+        "end_unix": 1792397544.23871,
+        "interval_semantics": "START_INCLUSIVE_END_EXCLUSIVE",
+        "coverage": "BACKEND_RETENTION_AND_SAMPLING_UNKNOWN",
+        "status": "available",
+        "records": [
+          {
+            "id": "ctx-0aabb4cd59f3f928aa7701ac41336a51",
+            "service": "checkout",
+            "source_timestamp_ns": "1792397544235789000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+            "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+            "fields": {
+              "error.type": "HTTPError",
+              "event.name": "error",
+              "http.response.status_code": 403
+            }
+          },
+          {
+            "id": "ctx-68bfa1424d0d7abef090db08b03424d7",
+            "service": "checkout",
+            "source_timestamp_ns": "1792397544237102000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+            "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+            "fields": {
+              "error.type": "HTTPError",
+              "event.name": "error",
+              "http.response.status_code": 403
+            }
+          },
+          {
+            "id": "ctx-7466932e70531d39a85813558f0dbf8f",
+            "service": "checkout",
+            "source_timestamp_ns": "1792397544238156000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+            "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+            "fields": {
+              "error.type": "HTTPError",
+              "event.name": "error",
+              "http.response.status_code": 403
+            }
+          }
+        ],
+        "meaning": "SOURCE_ASSERTIONS_NOT_VERIFIED_CAUSAL_FACTS",
+        "entries_seen": 3,
+        "unstructured_or_unsupported_entries": 0,
+        "observed_at_unix": 1792397544.240309,
+        "completeness": "NOT_ESTABLISHED"
+      },
+      "checks": {
+        "three_real_503": true,
+        "actual_log_hashes_match": true,
+        "available": true,
+        "no_controller_fields": true
+      }
+    },
+    {
+      "id": "p02",
+      "without_context": {
+        "http_statuses": [
+          503,
+          503,
+          503
+        ],
+        "durations_seconds": [
+          0.0008862079994287342,
+          0.0010053329970105551,
+          0.0009475420010858215
+        ]
+      },
+      "with_context": {
+        "schema_version": "context-probe-v1",
+        "research_only": true,
+        "assistant_disclosure": "DISABLED_NOT_IN_ASSISTANT_TOOLS",
+        "source_id": "local-pilot",
+        "service": "checkout",
+        "start_unix": 1792397544.24032,
+        "end_unix": 1792397544.24316,
+        "interval_semantics": "START_INCLUSIVE_END_EXCLUSIVE",
+        "coverage": "BACKEND_RETENTION_AND_SAMPLING_UNKNOWN",
+        "status": "available",
+        "records": [
+          {
+            "id": "ctx-d7142189ef32590d942381f1920335ce",
+            "service": "checkout",
+            "source_timestamp_ns": "1792397544240744000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+            "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+            "fields": {
+              "error.type": "HTTPError",
+              "event.name": "error",
+              "http.response.status_code": 403
+            }
+          },
+          {
+            "id": "ctx-a01cc6daf3caa08ed0adfaf83e9c8c68",
+            "service": "checkout",
+            "source_timestamp_ns": "1792397544241670000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+            "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+            "fields": {
+              "error.type": "HTTPError",
+              "event.name": "error",
+              "http.response.status_code": 403
+            }
+          },
+          {
+            "id": "ctx-a739801bb1d008a2d72553cd2e45f2ad",
+            "service": "checkout",
+            "source_timestamp_ns": "1792397544242640000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+            "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+            "fields": {
+              "error.type": "HTTPError",
+              "event.name": "error",
+              "http.response.status_code": 403
+            }
+          }
+        ],
+        "meaning": "SOURCE_ASSERTIONS_NOT_VERIFIED_CAUSAL_FACTS",
+        "entries_seen": 3,
+        "unstructured_or_unsupported_entries": 0,
+        "observed_at_unix": 1792397544.2442958,
+        "completeness": "NOT_ESTABLISHED"
+      },
+      "checks": {
+        "three_real_503": true,
+        "actual_log_hashes_match": true,
+        "available": true,
+        "no_controller_fields": true
+      }
+    },
+    {
+      "id": "p03",
+      "without_context": {
+        "http_statuses": [
+          503,
+          503,
+          503
+        ],
+        "durations_seconds": [
+          0.0007011249981587753,
+          0.0006282079993980005,
+          0.0006533330015372485
+        ]
+      },
+      "with_context": {
+        "schema_version": "context-probe-v1",
+        "research_only": true,
+        "assistant_disclosure": "DISABLED_NOT_IN_ASSISTANT_TOOLS",
+        "source_id": "local-pilot",
+        "service": "checkout",
+        "start_unix": 1792397544.2443252,
+        "end_unix": 1792397544.246309,
+        "interval_semantics": "START_INCLUSIVE_END_EXCLUSIVE",
+        "coverage": "BACKEND_RETENTION_AND_SAMPLING_UNKNOWN",
+        "status": "available",
+        "records": [
+          {
+            "id": "ctx-4145939993e4ae378f5f678029baa4dc",
+            "service": "checkout",
+            "source_timestamp_ns": "1792397544244585000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+            "source_line_sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428",
+            "fields": {
+              "error.type": "ConnectionRefusedError",
+              "event.name": "error"
+            }
+          },
+          {
+            "id": "ctx-3571104e8c4303d24a8e607028cbc38a",
+            "service": "checkout",
+            "source_timestamp_ns": "1792397544245237000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+            "source_line_sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428",
+            "fields": {
+              "error.type": "ConnectionRefusedError",
+              "event.name": "error"
+            }
+          },
+          {
+            "id": "ctx-eb316450f45e5620e2d00eadf89f116a",
+            "service": "checkout",
+            "source_timestamp_ns": "1792397544245882000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+            "source_line_sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428",
+            "fields": {
+              "error.type": "ConnectionRefusedError",
+              "event.name": "error"
+            }
+          }
+        ],
+        "meaning": "SOURCE_ASSERTIONS_NOT_VERIFIED_CAUSAL_FACTS",
+        "entries_seen": 3,
+        "unstructured_or_unsupported_entries": 0,
+        "observed_at_unix": 1792397544.247505,
+        "completeness": "NOT_ESTABLISHED"
+      },
+      "checks": {
+        "three_real_503": true,
+        "actual_log_hashes_match": true,
+        "available": true,
+        "no_controller_fields": true
+      }
+    },
+    {
+      "id": "p04",
+      "without_context": {
+        "http_statuses": [
+          503,
+          503,
+          503
+        ],
+        "durations_seconds": [
+          0.0007302919984795153,
+          0.0006626670001423918,
+          0.0006923330001882277
+        ]
+      },
+      "with_context": {
+        "schema_version": "context-probe-v1",
+        "research_only": true,
+        "assistant_disclosure": "DISABLED_NOT_IN_ASSISTANT_TOOLS",
+        "source_id": "local-pilot",
+        "service": "checkout",
+        "start_unix": 1792397544.247529,
+        "end_unix": 1792397544.2496152,
+        "interval_semantics": "START_INCLUSIVE_END_EXCLUSIVE",
+        "coverage": "BACKEND_RETENTION_AND_SAMPLING_UNKNOWN",
+        "status": "available",
+        "records": [
+          {
+            "id": "ctx-2debcefe938d461b243b168a9517a4e1",
+            "service": "checkout",
+            "source_timestamp_ns": "1792397544247790000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+            "source_line_sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428",
+            "fields": {
+              "error.type": "ConnectionRefusedError",
+              "event.name": "error"
+            }
+          },
+          {
+            "id": "ctx-a08fa0ffb56613708ce71ec3b00e5ee9",
+            "service": "checkout",
+            "source_timestamp_ns": "1792397544248497000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+            "source_line_sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428",
+            "fields": {
+              "error.type": "ConnectionRefusedError",
+              "event.name": "error"
+            }
+          },
+          {
+            "id": "ctx-de9894ab658e4570fedfcba7543a5006",
+            "service": "checkout",
+            "source_timestamp_ns": "1792397544249173000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+            "source_line_sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428",
+            "fields": {
+              "error.type": "ConnectionRefusedError",
+              "event.name": "error"
+            }
+          }
+        ],
+        "meaning": "SOURCE_ASSERTIONS_NOT_VERIFIED_CAUSAL_FACTS",
+        "entries_seen": 3,
+        "unstructured_or_unsupported_entries": 0,
+        "observed_at_unix": 1792397544.2507122,
+        "completeness": "NOT_ESTABLISHED"
+      },
+      "checks": {
+        "three_real_503": true,
+        "actual_log_hashes_match": true,
+        "available": true,
+        "no_controller_fields": true
+      }
+    },
+    {
+      "id": "p05",
+      "without_context": {
+        "http_statuses": [
+          503,
+          503,
+          503
+        ],
+        "durations_seconds": [
+          0.04199908400187269,
+          0.04213858299772255,
+          0.0423926669973298
+        ]
+      },
+      "with_context": {
+        "schema_version": "context-probe-v1",
+        "research_only": true,
+        "assistant_disclosure": "DISABLED_NOT_IN_ASSISTANT_TOOLS",
+        "source_id": "local-pilot",
+        "service": "checkout",
+        "start_unix": 1792397544.25072,
+        "end_unix": 1792397544.377252,
+        "interval_semantics": "START_INCLUSIVE_END_EXCLUSIVE",
+        "coverage": "BACKEND_RETENTION_AND_SAMPLING_UNKNOWN",
+        "status": "available",
+        "records": [
+          {
+            "id": "ctx-baddad1d4d9d1499e38600288bcfc613",
+            "service": "checkout",
+            "source_timestamp_ns": "1792397544292083000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+            "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61",
+            "fields": {
+              "error.type": "TimeoutError",
+              "event.name": "error"
+            }
+          },
+          {
+            "id": "ctx-a9f0fb38ecf98a2b7d718e72c86ca2f5",
+            "service": "checkout",
+            "source_timestamp_ns": "1792397544334135000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+            "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61",
+            "fields": {
+              "error.type": "TimeoutError",
+              "event.name": "error"
+            }
+          },
+          {
+            "id": "ctx-ae60fed4f9e8d86c031e43d1d0f466b0",
+            "service": "checkout",
+            "source_timestamp_ns": "1792397544376382000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+            "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61",
+            "fields": {
+              "error.type": "TimeoutError",
+              "event.name": "error"
+            }
+          }
+        ],
+        "meaning": "SOURCE_ASSERTIONS_NOT_VERIFIED_CAUSAL_FACTS",
+        "entries_seen": 3,
+        "unstructured_or_unsupported_entries": 0,
+        "observed_at_unix": 1792397544.379254,
+        "completeness": "NOT_ESTABLISHED"
+      },
+      "checks": {
+        "three_real_503": true,
+        "actual_log_hashes_match": true,
+        "available": true,
+        "no_controller_fields": true
+      }
+    },
+    {
+      "id": "p06",
+      "without_context": {
+        "http_statuses": [
+          503,
+          503,
+          503
+        ],
+        "durations_seconds": [
+          0.042782000004081056,
+          0.044786291000491474,
+          0.04588833299931139
+        ]
+      },
+      "with_context": {
+        "schema_version": "context-probe-v1",
+        "research_only": true,
+        "assistant_disclosure": "DISABLED_NOT_IN_ASSISTANT_TOOLS",
+        "source_id": "local-pilot",
+        "service": "checkout",
+        "start_unix": 1792397544.3792691,
+        "end_unix": 1792397544.5127301,
+        "interval_semantics": "START_INCLUSIVE_END_EXCLUSIVE",
+        "coverage": "BACKEND_RETENTION_AND_SAMPLING_UNKNOWN",
+        "status": "available",
+        "records": [
+          {
+            "id": "ctx-049d35515ec1ace35fc5559369ed5e5f",
+            "service": "checkout",
+            "source_timestamp_ns": "1792397544420798000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+            "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61",
+            "fields": {
+              "error.type": "TimeoutError",
+              "event.name": "error"
+            }
+          },
+          {
+            "id": "ctx-906c13afd711faa473e65b8685fb9dd0",
+            "service": "checkout",
+            "source_timestamp_ns": "1792397544463992000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+            "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61",
+            "fields": {
+              "error.type": "TimeoutError",
+              "event.name": "error"
+            }
+          },
+          {
+            "id": "ctx-d157e60e0037e7c9868012f2b9fa12cd",
+            "service": "checkout",
+            "source_timestamp_ns": "1792397544509370000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+            "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61",
+            "fields": {
+              "error.type": "TimeoutError",
+              "event.name": "error"
+            }
+          }
+        ],
+        "meaning": "SOURCE_ASSERTIONS_NOT_VERIFIED_CAUSAL_FACTS",
+        "entries_seen": 3,
+        "unstructured_or_unsupported_entries": 0,
+        "observed_at_unix": 1792397544.5190458,
+        "completeness": "NOT_ESTABLISHED"
+      },
+      "checks": {
+        "three_real_503": true,
+        "actual_log_hashes_match": true,
+        "available": true,
+        "no_controller_fields": true
+      }
+    },
+    {
+      "id": "p07",
+      "control": "unrelated_change",
+      "with_context": {
+        "schema_version": "context-probe-v1",
+        "research_only": true,
+        "assistant_disclosure": "DISABLED_NOT_IN_ASSISTANT_TOOLS",
+        "source_id": "local-pilot",
+        "service": "checkout",
+        "start_unix": 1792397544.5190709,
+        "end_unix": 1792397544.520067,
+        "interval_semantics": "START_INCLUSIVE_END_EXCLUSIVE",
+        "coverage": "BACKEND_RETENTION_AND_SAMPLING_UNKNOWN",
+        "status": "available",
+        "records": [],
+        "meaning": "SOURCE_ASSERTIONS_NOT_VERIFIED_CAUSAL_FACTS",
+        "entries_seen": 0,
+        "unstructured_or_unsupported_entries": 0,
+        "observed_at_unix": 1792397544.522936,
+        "completeness": "NOT_ESTABLISHED"
+      }
+    },
+    {
+      "id": "p08",
+      "control": "no_record",
+      "with_context": {
+        "schema_version": "context-probe-v1",
+        "research_only": true,
+        "assistant_disclosure": "DISABLED_NOT_IN_ASSISTANT_TOOLS",
+        "source_id": "local-pilot",
+        "service": "checkout",
+        "start_unix": 1792397544.522947,
+        "end_unix": 1792397544.53548,
+        "interval_semantics": "START_INCLUSIVE_END_EXCLUSIVE",
+        "coverage": "BACKEND_RETENTION_AND_SAMPLING_UNKNOWN",
+        "status": "available",
+        "records": [],
+        "meaning": "SOURCE_ASSERTIONS_NOT_VERIFIED_CAUSAL_FACTS",
+        "entries_seen": 0,
+        "unstructured_or_unsupported_entries": 0,
+        "observed_at_unix": 1792397544.5382981,
+        "completeness": "NOT_ESTABLISHED"
+      }
+    },
+    {
+      "id": "p09",
+      "control": "truncated",
+      "with_context": {
+        "schema_version": "context-probe-v1",
+        "research_only": true,
+        "assistant_disclosure": "DISABLED_NOT_IN_ASSISTANT_TOOLS",
+        "source_id": "local-pilot",
+        "service": "checkout",
+        "start_unix": 1792397544.234823,
+        "end_unix": 1792397544.23871,
+        "interval_semantics": "START_INCLUSIVE_END_EXCLUSIVE",
+        "coverage": "BACKEND_RETENTION_AND_SAMPLING_UNKNOWN",
+        "status": "truncated",
+        "records": [
+          {
+            "id": "ctx-0aabb4cd59f3f928aa7701ac41336a51",
+            "service": "checkout",
+            "source_timestamp_ns": "1792397544235789000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+            "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+            "fields": {
+              "error.type": "HTTPError",
+              "event.name": "error",
+              "http.response.status_code": 403
+            }
+          }
+        ],
+        "meaning": "SOURCE_ASSERTIONS_NOT_VERIFIED_CAUSAL_FACTS",
+        "entries_seen": 1,
+        "unstructured_or_unsupported_entries": 0,
+        "observed_at_unix": 1792397544.540815,
+        "completeness": "NOT_ESTABLISHED"
+      }
+    },
+    {
+      "id": "p10",
+      "control": "source_down",
+      "with_context": {
+        "schema_version": "context-probe-v1",
+        "research_only": true,
+        "assistant_disclosure": "DISABLED_NOT_IN_ASSISTANT_TOOLS",
+        "source_id": "local-pilot",
+        "service": "checkout",
+        "start_unix": 1792397544.522947,
+        "end_unix": 1792397544.53548,
+        "interval_semantics": "START_INCLUSIVE_END_EXCLUSIVE",
+        "coverage": "BACKEND_RETENTION_AND_SAMPLING_UNKNOWN",
+        "status": "unavailable",
+        "records": [],
+        "meaning": "SOURCE_ASSERTIONS_NOT_VERIFIED_CAUSAL_FACTS",
+        "reason": "SOURCE_UNAVAILABLE"
+      }
+    }
+  ],
+  "case_count": 10,
+  "provider_calls": 0,
+  "true_root_cause_not_sent_to_loki": true,
+  "exact_ns_end_exclusive_verified": true,
+  "local_only": true,
+  "limits": "No accuracy, user time saving or production transfer claim"
+}

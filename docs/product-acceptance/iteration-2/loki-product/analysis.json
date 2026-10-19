@@ -1,0 +1,169 @@
+{
+  "schema_version": "1.0",
+  "result_id": "502cc8ef-706a-4bbb-97ed-7dd7b93c315f",
+  "incident_id": "live-2e6e448774f1ef6e",
+  "start_unix": 1792397544,
+  "end_unix": 1792397545,
+  "method": "Диагностическое ранжирование сервисов",
+  "model_version": "m13-freeze-v1",
+  "model_count": 5,
+  "feature_schema_sha256": "bdbb1134867f8c9883450933c35dda0f43d52da238de5f6834cd9d3b94b0716c",
+  "baseline_sha256": "1bf16799b1f555f32b46795480cd9fdc958352b3cd14f4578a5b76145e7842c2",
+  "input_sha256": "81910c0275f47402d9af612ec35d504c3dd33b36f329a9ec24ec76602714a8b8",
+  "candidate_count": 2,
+  "causal_status": "DIAGNOSTIC_RANKING_ONLY",
+  "candidates": [
+    {
+      "service": "frontend",
+      "rank": 1,
+      "model_score": 0.4374043047428131,
+      "evidence": {
+        "metric_support": 9999999900.0,
+        "trace_local_support": 1.0,
+        "propagation_support": 0.0,
+        "dependency_wait_support": 0.0,
+        "disappearance_support": 0.0,
+        "coverage": {
+          "metrics": 1.0,
+          "traces": 1.0,
+          "topology": 0.0
+        }
+      },
+      "observations": {
+        "metrics": {
+          "cpu": {
+            "samples": 1,
+            "min": 1.0,
+            "median": 1.0,
+            "max": 1.0,
+            "unit": "cores"
+          },
+          "memory": {
+            "samples": 1,
+            "min": 100000000.0,
+            "median": 100000000.0,
+            "max": 100000000.0,
+            "unit": "bytes"
+          },
+          "network": {
+            "samples": 1,
+            "min": 1.0,
+            "median": 1.0,
+            "max": 1.0,
+            "unit": "bytes_per_second"
+          },
+          "traffic_rate": {
+            "samples": 1,
+            "min": 1.0,
+            "median": 1.0,
+            "max": 1.0,
+            "unit": "bytes_per_second"
+          }
+        },
+        "traces": {
+          "count": 1,
+          "errors": 0
+        }
+      }
+    },
+    {
+      "service": "worker",
+      "rank": 2,
+      "model_score": -0.3069632947444916,
+      "evidence": {
+        "metric_support": 0.0,
+        "trace_local_support": 0.0,
+        "propagation_support": 0.0,
+        "dependency_wait_support": 0.0,
+        "disappearance_support": 0.0,
+        "coverage": {
+          "metrics": 0.0,
+          "traces": 0.0,
+          "topology": 0.0
+        }
+      },
+      "observations": {
+        "metrics": {},
+        "traces": {
+          "count": 0,
+          "errors": 0
+        }
+      }
+    }
+  ],
+  "profile_id": "synthetic",
+  "profile_version": "1",
+  "source_status": {
+    "metrics": "available",
+    "traces": "available",
+    "trace_error": null,
+    "metric_families_by_service": {
+      "frontend": [
+        "cpu",
+        "memory",
+        "network",
+        "traffic_rate"
+      ],
+      "worker": []
+    },
+    "metric_sample_count": 4,
+    "metric_point_coverage": {
+      "frontend": {
+        "cpu": 1.0,
+        "memory": 1.0,
+        "network": 1.0,
+        "traffic_rate": 1.0
+      },
+      "worker": {
+        "cpu": 0.0,
+        "memory": 0.0,
+        "network": 0.0,
+        "traffic_rate": 0.0
+      }
+    },
+    "span_count": 1,
+    "services_without_spans": [
+      "worker"
+    ],
+    "annotations": [],
+    "collected_at_unix": 1792398168.5612211,
+    "workload_source": "profile_constant",
+    "query_step_seconds": 2,
+    "trace_api": "jaeger-http-json",
+    "trace_tested_version": "unspecified",
+    "trace_query_services": [
+      "frontend",
+      "worker"
+    ],
+    "baseline_binding": {
+      "state": "active",
+      "reason": "semantic_contract_and_checksums_match",
+      "profile_contract_sha256": "f64d26b5b00de0299d5deae7be4e734ba6f95cff10570f57a3a529aea457ef17",
+      "healthy_end_unix": 1792397444
+    },
+    "trace_search_completeness": "unknown_backend_search_depth_sampling_and_retention",
+    "input_sha256": "81910c0275f47402d9af612ec35d504c3dd33b36f329a9ec24ec76602714a8b8",
+    "elapsed_seconds": 0.0294,
+    "incident_context": {
+      "services": {
+        "frontend": "available",
+        "worker": "not_configured"
+      },
+      "assistant_categories_enabled": true,
+      "raw_fields_disclosure": "LOCAL_ONLY"
+    },
+    "context_collection_seconds": 0.5935
+  },
+  "timing": {
+    "collection_seconds": 0.6229,
+    "calculation_seconds": 0.0037,
+    "total_seconds": 0.6266
+  },
+  "workspace_status": "saved",
+  "delivery": {
+    "cache_hit": false,
+    "joined_inflight": false,
+    "cache_ttl_seconds": 15,
+    "source_age_seconds": 0.6280479431152344
+  }
+}

@@ -1,0 +1,736 @@
+{
+  "analysis_id": "502cc8ef-706a-4bbb-97ed-7dd7b93c315f",
+  "baseline_sha256": "1bf16799b1f555f32b46795480cd9fdc958352b3cd14f4578a5b76145e7842c2",
+  "catalog_version": "evidence-v3-incident-context",
+  "checks": [
+    {
+      "code": "CHECK_METRIC_DEVIATION",
+      "evidence_ids": [
+        "obs-8704b8993cdad432ad64175f681a2a3d"
+      ],
+      "service": "frontend",
+      "status": "PROPOSED_NOT_EXECUTED",
+      "text": "Сопоставить изменение memory с нагрузкой, единицами и здоровым периодом; отклонение не устанавливает причину."
+    },
+    {
+      "code": "CHECK_METRIC_COVERAGE",
+      "evidence_ids": [
+        "obs-53e855f7bf268c00723274f565aa20bd"
+      ],
+      "service": "worker",
+      "status": "PROPOSED_NOT_EXECUTED",
+      "text": "Проверить покрытие ряда cpu, метки и активность сервиса; пропуск не означает нормальное состояние."
+    },
+    {
+      "code": "CHECK_METRIC_COVERAGE",
+      "evidence_ids": [
+        "obs-8e2b12a6003be10ee9905eff6a341aef"
+      ],
+      "service": "worker",
+      "status": "PROPOSED_NOT_EXECUTED",
+      "text": "Проверить покрытие ряда memory, метки и активность сервиса; пропуск не означает нормальное состояние."
+    },
+    {
+      "code": "CHECK_METRIC_COVERAGE",
+      "evidence_ids": [
+        "obs-d57ece46ba16fee03f06ce60e394ad31"
+      ],
+      "service": "worker",
+      "status": "PROPOSED_NOT_EXECUTED",
+      "text": "Проверить покрытие ряда network, метки и активность сервиса; пропуск не означает нормальное состояние."
+    },
+    {
+      "code": "CHECK_METRIC_COVERAGE",
+      "evidence_ids": [
+        "obs-be5952228baff887494a768b99e6ae54"
+      ],
+      "service": "worker",
+      "status": "PROPOSED_NOT_EXECUTED",
+      "text": "Проверить покрытие ряда traffic_rate, метки и активность сервиса; пропуск не означает нормальное состояние."
+    },
+    {
+      "code": "CHECK_TRACE_AVAILABILITY",
+      "evidence_ids": [
+        "obs-023bae8ca42d064cace03cbeb533eb2b"
+      ],
+      "service": "worker",
+      "status": "PROPOSED_NOT_EXECUTED",
+      "text": "Проверить источник, инструментирование, sampling и активность: отсутствие спанов не доказывает отсутствие вызовов."
+    }
+  ],
+  "end_unix": 1792397545,
+  "feature_schema_sha256": "bdbb1134867f8c9883450933c35dda0f43d52da238de5f6834cd9d3b94b0716c",
+  "input_sha256": "81910c0275f47402d9af612ec35d504c3dd33b36f329a9ec24ec76602714a8b8",
+  "limitations": [
+    "DIAGNOSTIC_OBSERVATIONS_NOT_CAUSAL_PROOF",
+    "BASELINE_LOAD_COMPARABILITY_NOT_ESTABLISHED",
+    "SOURCE_LINKS_MAY_EXPIRE_OR_REQUIRE_SEPARATE_AUTH",
+    "CONTEXT_IS_BOUNDED_SOURCE_ASSERTIONS_NOT_PROOF"
+  ],
+  "model_version": "m13-freeze-v1",
+  "observations": [
+    {
+      "end_unix": 1792397545,
+      "id": "obs-92404c7fe09d899d9e2e869237eaacc6",
+      "kind": "metric",
+      "service": "frontend",
+      "source_links": [
+        {
+          "kind": "prometheus_query_range",
+          "url": "http://127.0.0.1:53357/api/v1/query_range?query=cpu&start=1792397544&end=1792397545&step=2"
+        }
+      ],
+      "start_unix": 1792397544,
+      "values": {
+        "baseline_comparison": {
+          "absolute_residual_p90": 0.0,
+          "expected_at_observed_load": 1.0,
+          "healthy_end_unix": 1792397444,
+          "healthy_start_unix": 1792397344,
+          "load_comparability": "NOT_ESTABLISHED",
+          "method": "workload_linear_prediction_and_residual_iqr",
+          "residual_iqr": 0.01
+        },
+        "family": "cpu",
+        "max": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "returned_point_coverage": 1.0,
+        "samples": 1,
+        "series": [
+          {
+            "end_unix": 1792397544.5,
+            "max": 1.0,
+            "mean": 1.0,
+            "min": 1.0,
+            "samples": 1,
+            "start_unix": 1792397544.5
+          }
+        ],
+        "state": "OBSERVED",
+        "unit": "cores"
+      }
+    },
+    {
+      "end_unix": 1792397545,
+      "id": "obs-8704b8993cdad432ad64175f681a2a3d",
+      "kind": "metric",
+      "service": "frontend",
+      "source_links": [
+        {
+          "kind": "prometheus_query_range",
+          "url": "http://127.0.0.1:53357/api/v1/query_range?query=memory&start=1792397544&end=1792397545&step=2"
+        }
+      ],
+      "start_unix": 1792397544,
+      "values": {
+        "baseline_comparison": {
+          "absolute_residual_p90": 9999999900.0,
+          "expected_at_observed_load": 1.0,
+          "healthy_end_unix": 1792397444,
+          "healthy_start_unix": 1792397344,
+          "load_comparability": "NOT_ESTABLISHED",
+          "method": "workload_linear_prediction_and_residual_iqr",
+          "residual_iqr": 0.01
+        },
+        "family": "memory",
+        "max": 100000000.0,
+        "median": 100000000.0,
+        "min": 100000000.0,
+        "returned_point_coverage": 1.0,
+        "samples": 1,
+        "series": [
+          {
+            "end_unix": 1792397544.5,
+            "max": 100000000.0,
+            "mean": 100000000.0,
+            "min": 100000000.0,
+            "samples": 1,
+            "start_unix": 1792397544.5
+          }
+        ],
+        "state": "OBSERVED",
+        "unit": "bytes"
+      }
+    },
+    {
+      "end_unix": 1792397545,
+      "id": "obs-5c8806b8fd7a8474b4665323bcbf8049",
+      "kind": "metric",
+      "service": "frontend",
+      "source_links": [
+        {
+          "kind": "prometheus_query_range",
+          "url": "http://127.0.0.1:53357/api/v1/query_range?query=network&start=1792397544&end=1792397545&step=2"
+        }
+      ],
+      "start_unix": 1792397544,
+      "values": {
+        "baseline_comparison": {
+          "absolute_residual_p90": 0.0,
+          "expected_at_observed_load": 1.0,
+          "healthy_end_unix": 1792397444,
+          "healthy_start_unix": 1792397344,
+          "load_comparability": "NOT_ESTABLISHED",
+          "method": "workload_linear_prediction_and_residual_iqr",
+          "residual_iqr": 0.01
+        },
+        "family": "network",
+        "max": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "returned_point_coverage": 1.0,
+        "samples": 1,
+        "series": [
+          {
+            "end_unix": 1792397544.5,
+            "max": 1.0,
+            "mean": 1.0,
+            "min": 1.0,
+            "samples": 1,
+            "start_unix": 1792397544.5
+          }
+        ],
+        "state": "OBSERVED",
+        "unit": "bytes_per_second"
+      }
+    },
+    {
+      "end_unix": 1792397545,
+      "id": "obs-6985dfb3d0aad1bc669a81eaa09750d4",
+      "kind": "metric",
+      "service": "frontend",
+      "source_links": [
+        {
+          "kind": "prometheus_query_range",
+          "url": "http://127.0.0.1:53357/api/v1/query_range?query=traffic_rate&start=1792397544&end=1792397545&step=2"
+        }
+      ],
+      "start_unix": 1792397544,
+      "values": {
+        "baseline_comparison": {
+          "absolute_residual_p90": 0.0,
+          "expected_at_observed_load": 1.0,
+          "healthy_end_unix": 1792397444,
+          "healthy_start_unix": 1792397344,
+          "load_comparability": "NOT_ESTABLISHED",
+          "method": "workload_linear_prediction_and_residual_iqr",
+          "residual_iqr": 0.01
+        },
+        "family": "traffic_rate",
+        "max": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "returned_point_coverage": 1.0,
+        "samples": 1,
+        "series": [
+          {
+            "end_unix": 1792397544.5,
+            "max": 1.0,
+            "mean": 1.0,
+            "min": 1.0,
+            "samples": 1,
+            "start_unix": 1792397544.5
+          }
+        ],
+        "state": "OBSERVED",
+        "unit": "bytes_per_second"
+      }
+    },
+    {
+      "end_unix": 1792397545,
+      "id": "obs-2a2e060ab69bdb18b224ac06afb5a252",
+      "kind": "traces",
+      "service": "frontend",
+      "source_links": [
+        {
+          "kind": "jaeger_trace_search",
+          "url": "http://127.0.0.1:53357/api/traces?service=frontend&start=1792397544000000&end=1792397545000000&limit=100"
+        }
+      ],
+      "start_unix": 1792397544,
+      "values": {
+        "example_selection": "error_first_then_longest_duration_not_random",
+        "examples": [],
+        "observed_error_spans": 0,
+        "observed_spans": 1,
+        "retention": "UNKNOWN",
+        "sampling": "UNKNOWN",
+        "state": "OBSERVED",
+        "timing": {
+          "max_us": 10000,
+          "meaning": "OBSERVED_WALL_TIME_NOT_CPU_OR_CAUSAL_PROOF_SAMPLING_UNKNOWN",
+          "median_us": 10000.0,
+          "observed_client_wait_median_us": 0.0,
+          "observed_exclusive_median_us": 10000.0,
+          "p90_us": 10000.0,
+          "selection": "SERVER_SPANS",
+          "timed_spans": 1,
+          "unit": "microseconds",
+          "unresolved_parent_spans": 0,
+          "wait_state": "OBSERVED_SERVER_DECOMPOSITION"
+        }
+      }
+    },
+    {
+      "end_unix": 1792397545,
+      "id": "obs-f8d266cd18ce97da1bbe29c00e3d80c9",
+      "kind": "dependencies",
+      "service": "frontend",
+      "source_links": [],
+      "start_unix": 1792397544,
+      "values": {
+        "edges": [],
+        "external_edge_observations": 0,
+        "meaning": "OBSERVED_CALLS_NOT_CAUSAL_PROOF",
+        "state": "OBSERVED"
+      }
+    },
+    {
+      "end_unix": 1792397545,
+      "id": "obs-53e855f7bf268c00723274f565aa20bd",
+      "kind": "metric",
+      "service": "worker",
+      "source_links": [
+        {
+          "kind": "prometheus_query_range",
+          "url": "http://127.0.0.1:53357/api/v1/query_range?query=cpu&start=1792397544&end=1792397545&step=2"
+        }
+      ],
+      "start_unix": 1792397544,
+      "values": {
+        "baseline_comparison": null,
+        "family": "cpu",
+        "max": null,
+        "median": null,
+        "min": null,
+        "returned_point_coverage": 0.0,
+        "samples": 0,
+        "series": [],
+        "state": "MISSING",
+        "unit": "cores"
+      }
+    },
+    {
+      "end_unix": 1792397545,
+      "id": "obs-8e2b12a6003be10ee9905eff6a341aef",
+      "kind": "metric",
+      "service": "worker",
+      "source_links": [
+        {
+          "kind": "prometheus_query_range",
+          "url": "http://127.0.0.1:53357/api/v1/query_range?query=memory&start=1792397544&end=1792397545&step=2"
+        }
+      ],
+      "start_unix": 1792397544,
+      "values": {
+        "baseline_comparison": null,
+        "family": "memory",
+        "max": null,
+        "median": null,
+        "min": null,
+        "returned_point_coverage": 0.0,
+        "samples": 0,
+        "series": [],
+        "state": "MISSING",
+        "unit": "bytes"
+      }
+    },
+    {
+      "end_unix": 1792397545,
+      "id": "obs-d57ece46ba16fee03f06ce60e394ad31",
+      "kind": "metric",
+      "service": "worker",
+      "source_links": [
+        {
+          "kind": "prometheus_query_range",
+          "url": "http://127.0.0.1:53357/api/v1/query_range?query=network&start=1792397544&end=1792397545&step=2"
+        }
+      ],
+      "start_unix": 1792397544,
+      "values": {
+        "baseline_comparison": null,
+        "family": "network",
+        "max": null,
+        "median": null,
+        "min": null,
+        "returned_point_coverage": 0.0,
+        "samples": 0,
+        "series": [],
+        "state": "MISSING",
+        "unit": "bytes_per_second"
+      }
+    },
+    {
+      "end_unix": 1792397545,
+      "id": "obs-be5952228baff887494a768b99e6ae54",
+      "kind": "metric",
+      "service": "worker",
+      "source_links": [
+        {
+          "kind": "prometheus_query_range",
+          "url": "http://127.0.0.1:53357/api/v1/query_range?query=traffic_rate&start=1792397544&end=1792397545&step=2"
+        }
+      ],
+      "start_unix": 1792397544,
+      "values": {
+        "baseline_comparison": null,
+        "family": "traffic_rate",
+        "max": null,
+        "median": null,
+        "min": null,
+        "returned_point_coverage": 0.0,
+        "samples": 0,
+        "series": [],
+        "state": "MISSING",
+        "unit": "bytes_per_second"
+      }
+    },
+    {
+      "end_unix": 1792397545,
+      "id": "obs-023bae8ca42d064cace03cbeb533eb2b",
+      "kind": "traces",
+      "service": "worker",
+      "source_links": [
+        {
+          "kind": "jaeger_trace_search",
+          "url": "http://127.0.0.1:53357/api/traces?service=worker&start=1792397544000000&end=1792397545000000&limit=100"
+        }
+      ],
+      "start_unix": 1792397544,
+      "values": {
+        "example_selection": "error_first_then_longest_duration_not_random",
+        "examples": [],
+        "observed_error_spans": 0,
+        "observed_spans": 0,
+        "retention": "UNKNOWN",
+        "sampling": "UNKNOWN",
+        "state": "NOT_OBSERVED",
+        "timing": {
+          "max_us": null,
+          "meaning": "OBSERVED_WALL_TIME_NOT_CPU_OR_CAUSAL_PROOF_SAMPLING_UNKNOWN",
+          "median_us": null,
+          "observed_client_wait_median_us": null,
+          "observed_exclusive_median_us": null,
+          "p90_us": null,
+          "selection": "ALL_KINDS_NO_SERVER_OBSERVED",
+          "timed_spans": 0,
+          "unit": "microseconds",
+          "unresolved_parent_spans": 0,
+          "wait_state": "NO_SERVER_SPANS"
+        }
+      }
+    },
+    {
+      "end_unix": 1792397545,
+      "id": "obs-07041749af8e970855c14403bf6c85ba",
+      "kind": "dependencies",
+      "service": "worker",
+      "source_links": [],
+      "start_unix": 1792397544,
+      "values": {
+        "edges": [],
+        "external_edge_observations": 0,
+        "meaning": "OBSERVED_CALLS_NOT_CAUSAL_PROOF",
+        "state": "NOT_OBSERVED"
+      }
+    },
+    {
+      "end_unix": 1792397545,
+      "id": "obs-de7c39d7e90cdffbf5a80cfbd9802d26",
+      "kind": "context",
+      "service": "frontend",
+      "source_links": [],
+      "start_unix": 1792397544,
+      "values": {
+        "assistant_categories_enabled": true,
+        "categories": [
+          "CONNECTION_REFUSED",
+          "OPERATION_TIMEOUT",
+          "PERMISSION_RESPONSE"
+        ],
+        "coverage": "RETENTION_SAMPLING_AND_DELIVERY_UNKNOWN",
+        "interval_semantics": "START_INCLUSIVE_END_EXCLUSIVE",
+        "meaning": "SOURCE_ASSERTIONS_SUGGEST_CHECKS_NOT_CAUSAL_PROOF",
+        "observed_at_unix": 1792398169.1845,
+        "reason": null,
+        "record_count": 18,
+        "records": [
+          {
+            "fields": {
+              "error.type": "HTTPError",
+              "event.name": "error",
+              "http.response.status_code": 403
+            },
+            "id": "ctx-7608b1b44b017df00d67131e2ecff2e8",
+            "service": "frontend",
+            "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+            "source_timestamp_ns": "1792397544235789000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED"
+          },
+          {
+            "fields": {
+              "error.type": "HTTPError",
+              "event.name": "error",
+              "http.response.status_code": 403
+            },
+            "id": "ctx-ef43c851ebe2b4475791c56171113336",
+            "service": "frontend",
+            "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+            "source_timestamp_ns": "1792397544237102000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED"
+          },
+          {
+            "fields": {
+              "error.type": "HTTPError",
+              "event.name": "error",
+              "http.response.status_code": 403
+            },
+            "id": "ctx-fc1b7b456a34654fa7a0c21f15c9903c",
+            "service": "frontend",
+            "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+            "source_timestamp_ns": "1792397544238156000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED"
+          },
+          {
+            "fields": {
+              "error.type": "HTTPError",
+              "event.name": "error",
+              "http.response.status_code": 403
+            },
+            "id": "ctx-66f66e151d378ef9f7025743d822d6a5",
+            "service": "frontend",
+            "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+            "source_timestamp_ns": "1792397544240744000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED"
+          },
+          {
+            "fields": {
+              "error.type": "HTTPError",
+              "event.name": "error",
+              "http.response.status_code": 403
+            },
+            "id": "ctx-04f3427689731544265e0775c3cbcc6e",
+            "service": "frontend",
+            "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+            "source_timestamp_ns": "1792397544241670000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED"
+          },
+          {
+            "fields": {
+              "error.type": "HTTPError",
+              "event.name": "error",
+              "http.response.status_code": 403
+            },
+            "id": "ctx-7e7639d660f3d72b23cabc57098adad4",
+            "service": "frontend",
+            "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+            "source_timestamp_ns": "1792397544242640000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED"
+          },
+          {
+            "fields": {
+              "error.type": "ConnectionRefusedError",
+              "event.name": "error"
+            },
+            "id": "ctx-efcbb1be346ebc630b9de1c336b94691",
+            "service": "frontend",
+            "source_line_sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428",
+            "source_timestamp_ns": "1792397544244585000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED"
+          },
+          {
+            "fields": {
+              "error.type": "ConnectionRefusedError",
+              "event.name": "error"
+            },
+            "id": "ctx-51cb06f3fb7855d711c2ed02bee49de7",
+            "service": "frontend",
+            "source_line_sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428",
+            "source_timestamp_ns": "1792397544245237000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED"
+          },
+          {
+            "fields": {
+              "error.type": "ConnectionRefusedError",
+              "event.name": "error"
+            },
+            "id": "ctx-0e0fa48d0ea4964943dddbb5c49f70d3",
+            "service": "frontend",
+            "source_line_sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428",
+            "source_timestamp_ns": "1792397544245882000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED"
+          },
+          {
+            "fields": {
+              "error.type": "ConnectionRefusedError",
+              "event.name": "error"
+            },
+            "id": "ctx-7c3247e19388f542c62f42a3d46f3c94",
+            "service": "frontend",
+            "source_line_sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428",
+            "source_timestamp_ns": "1792397544247790000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED"
+          },
+          {
+            "fields": {
+              "error.type": "ConnectionRefusedError",
+              "event.name": "error"
+            },
+            "id": "ctx-664c93aebf4162021b725a922b3e15ee",
+            "service": "frontend",
+            "source_line_sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428",
+            "source_timestamp_ns": "1792397544248497000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED"
+          },
+          {
+            "fields": {
+              "error.type": "ConnectionRefusedError",
+              "event.name": "error"
+            },
+            "id": "ctx-fc767e07df4147366b8e71c664c52562",
+            "service": "frontend",
+            "source_line_sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428",
+            "source_timestamp_ns": "1792397544249173000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED"
+          },
+          {
+            "fields": {
+              "error.type": "TimeoutError",
+              "event.name": "error"
+            },
+            "id": "ctx-6d2f35b0637b842705c57311f782cade",
+            "service": "frontend",
+            "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61",
+            "source_timestamp_ns": "1792397544292083000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED"
+          },
+          {
+            "fields": {
+              "error.type": "TimeoutError",
+              "event.name": "error"
+            },
+            "id": "ctx-e6dcb3237644972150d2b0119dac4444",
+            "service": "frontend",
+            "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61",
+            "source_timestamp_ns": "1792397544334135000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED"
+          },
+          {
+            "fields": {
+              "error.type": "TimeoutError",
+              "event.name": "error"
+            },
+            "id": "ctx-c9a4182ad05115b5647551c7c40b6a38",
+            "service": "frontend",
+            "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61",
+            "source_timestamp_ns": "1792397544376382000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED"
+          },
+          {
+            "fields": {
+              "error.type": "TimeoutError",
+              "event.name": "error"
+            },
+            "id": "ctx-c4c353226f8240240131542d1bf10f1f",
+            "service": "frontend",
+            "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61",
+            "source_timestamp_ns": "1792397544420798000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED"
+          },
+          {
+            "fields": {
+              "error.type": "TimeoutError",
+              "event.name": "error"
+            },
+            "id": "ctx-edf357b5edede572775cb5368343fa73",
+            "service": "frontend",
+            "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61",
+            "source_timestamp_ns": "1792397544463992000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED"
+          },
+          {
+            "fields": {
+              "error.type": "TimeoutError",
+              "event.name": "error"
+            },
+            "id": "ctx-bf90ba3cd215780cffb7ea809449b77e",
+            "service": "frontend",
+            "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61",
+            "source_timestamp_ns": "1792397544509370000",
+            "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED"
+          }
+        ],
+        "source_id": "loki-local",
+        "source_status": "available",
+        "state": "OBSERVED",
+        "unsupported_entries": 0
+      }
+    },
+    {
+      "end_unix": 1792397545,
+      "id": "obs-4218a9ca4d69f47d5600b3f1c1f933a4",
+      "kind": "context",
+      "service": "worker",
+      "source_links": [],
+      "start_unix": 1792397544,
+      "values": {
+        "assistant_categories_enabled": true,
+        "categories": [],
+        "coverage": "RETENTION_SAMPLING_AND_DELIVERY_UNKNOWN",
+        "interval_semantics": "START_INCLUSIVE_END_EXCLUSIVE",
+        "meaning": "SOURCE_ASSERTIONS_SUGGEST_CHECKS_NOT_CAUSAL_PROOF",
+        "observed_at_unix": null,
+        "reason": null,
+        "record_count": 0,
+        "records": [],
+        "source_id": "loki-local",
+        "source_status": "not_configured",
+        "state": "UNAVAILABLE",
+        "unsupported_entries": 0
+      }
+    }
+  ],
+  "profile_id": "synthetic",
+  "profile_version": "1",
+  "requests_per_second": 4.0,
+  "schema_version": "2.0",
+  "services": [
+    "frontend",
+    "worker"
+  ],
+  "source_quality": {
+    "baseline_applicability": {
+      "current_rps": 4.0,
+      "current_source": "profile_constant",
+      "healthy_end_unix": 1792397444.0,
+      "healthy_start_unix": 1792397344.0,
+      "load_relation": "SAME_REFERENCE_RPS",
+      "meaning": "PROVENANCE_CHECK_NOT_MODEL_CONFIDENCE_OR_CAUSAL_PROOF",
+      "reasons": [
+        "REFERENCE_LOAD_CONFIGURED_NOT_MEASURED",
+        "CURRENT_LOAD_CONFIGURED_NOT_MEASURED"
+      ],
+      "reference_rps": 4.0,
+      "reference_source": "profile_constant",
+      "rps_ratio": 1.0,
+      "state": "REVIEW_REQUIRED",
+      "temporal_relation": "PRECEDES",
+      "version": "baseline-applicability-v1"
+    },
+    "collected_at_unix": 1792398168.5612211,
+    "incident_context": {
+      "assistant_categories_enabled": true,
+      "raw_fields_disclosure": "LOCAL_ONLY",
+      "services": {
+        "frontend": "available",
+        "worker": "not_configured"
+      }
+    },
+    "retention": "UNKNOWN",
+    "sampling": "UNKNOWN",
+    "source_annotation_count": 0,
+    "traces": "available"
+  },
+  "start_unix": 1792397544
+}

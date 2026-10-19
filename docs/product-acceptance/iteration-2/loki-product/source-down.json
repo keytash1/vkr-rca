@@ -1,0 +1,700 @@
+{
+  "ranking_unchanged": true,
+  "old_snapshot_unchanged": true,
+  "result": {
+    "schema_version": "1.0",
+    "result_id": "42bbe9e0-0301-4ca6-a2c8-0156070d6508",
+    "incident_id": "live-2e6e448774f1ef6e",
+    "start_unix": 1792397544,
+    "end_unix": 1792397545,
+    "method": "Диагностическое ранжирование сервисов",
+    "model_version": "m13-freeze-v1",
+    "model_count": 5,
+    "feature_schema_sha256": "bdbb1134867f8c9883450933c35dda0f43d52da238de5f6834cd9d3b94b0716c",
+    "baseline_sha256": "1bf16799b1f555f32b46795480cd9fdc958352b3cd14f4578a5b76145e7842c2",
+    "input_sha256": "81910c0275f47402d9af612ec35d504c3dd33b36f329a9ec24ec76602714a8b8",
+    "candidate_count": 2,
+    "causal_status": "DIAGNOSTIC_RANKING_ONLY",
+    "candidates": [
+      {
+        "service": "frontend",
+        "rank": 1,
+        "model_score": 0.4374043047428131,
+        "evidence": {
+          "metric_support": 9999999900.0,
+          "trace_local_support": 1.0,
+          "propagation_support": 0.0,
+          "dependency_wait_support": 0.0,
+          "disappearance_support": 0.0,
+          "coverage": {
+            "metrics": 1.0,
+            "traces": 1.0,
+            "topology": 0.0
+          }
+        },
+        "observations": {
+          "metrics": {
+            "cpu": {
+              "samples": 1,
+              "min": 1.0,
+              "median": 1.0,
+              "max": 1.0,
+              "unit": "cores"
+            },
+            "memory": {
+              "samples": 1,
+              "min": 100000000.0,
+              "median": 100000000.0,
+              "max": 100000000.0,
+              "unit": "bytes"
+            },
+            "network": {
+              "samples": 1,
+              "min": 1.0,
+              "median": 1.0,
+              "max": 1.0,
+              "unit": "bytes_per_second"
+            },
+            "traffic_rate": {
+              "samples": 1,
+              "min": 1.0,
+              "median": 1.0,
+              "max": 1.0,
+              "unit": "bytes_per_second"
+            }
+          },
+          "traces": {
+            "count": 1,
+            "errors": 0
+          }
+        }
+      },
+      {
+        "service": "worker",
+        "rank": 2,
+        "model_score": -0.3069632947444916,
+        "evidence": {
+          "metric_support": 0.0,
+          "trace_local_support": 0.0,
+          "propagation_support": 0.0,
+          "dependency_wait_support": 0.0,
+          "disappearance_support": 0.0,
+          "coverage": {
+            "metrics": 0.0,
+            "traces": 0.0,
+            "topology": 0.0
+          }
+        },
+        "observations": {
+          "metrics": {},
+          "traces": {
+            "count": 0,
+            "errors": 0
+          }
+        }
+      }
+    ],
+    "profile_id": "synthetic",
+    "profile_version": "1",
+    "source_status": {
+      "metrics": "available",
+      "traces": "available",
+      "trace_error": null,
+      "metric_families_by_service": {
+        "frontend": [
+          "cpu",
+          "memory",
+          "network",
+          "traffic_rate"
+        ],
+        "worker": []
+      },
+      "metric_sample_count": 4,
+      "metric_point_coverage": {
+        "frontend": {
+          "cpu": 1.0,
+          "memory": 1.0,
+          "network": 1.0,
+          "traffic_rate": 1.0
+        },
+        "worker": {
+          "cpu": 0.0,
+          "memory": 0.0,
+          "network": 0.0,
+          "traffic_rate": 0.0
+        }
+      },
+      "span_count": 1,
+      "services_without_spans": [
+        "worker"
+      ],
+      "annotations": [],
+      "collected_at_unix": 1792398753.1949298,
+      "workload_source": "profile_constant",
+      "query_step_seconds": 2,
+      "trace_api": "jaeger-http-json",
+      "trace_tested_version": "unspecified",
+      "trace_query_services": [
+        "frontend",
+        "worker"
+      ],
+      "baseline_binding": {
+        "state": "active",
+        "reason": "semantic_contract_and_checksums_match",
+        "profile_contract_sha256": "f64d26b5b00de0299d5deae7be4e734ba6f95cff10570f57a3a529aea457ef17",
+        "healthy_end_unix": 1792397444
+      },
+      "trace_search_completeness": "unknown_backend_search_depth_sampling_and_retention",
+      "input_sha256": "81910c0275f47402d9af612ec35d504c3dd33b36f329a9ec24ec76602714a8b8",
+      "elapsed_seconds": 0.0481,
+      "incident_context": {
+        "services": {
+          "frontend": "unavailable",
+          "worker": "not_configured"
+        },
+        "assistant_categories_enabled": true,
+        "raw_fields_disclosure": "LOCAL_ONLY"
+      },
+      "context_collection_seconds": 0.8403
+    },
+    "timing": {
+      "collection_seconds": 0.8884,
+      "calculation_seconds": 0.0057,
+      "total_seconds": 0.8941
+    },
+    "workspace_status": "saved",
+    "delivery": {
+      "cache_hit": false,
+      "joined_inflight": false,
+      "cache_ttl_seconds": 15,
+      "source_age_seconds": 0.8962051868438721
+    }
+  },
+  "catalog": {
+    "analysis_id": "42bbe9e0-0301-4ca6-a2c8-0156070d6508",
+    "baseline_sha256": "1bf16799b1f555f32b46795480cd9fdc958352b3cd14f4578a5b76145e7842c2",
+    "catalog_version": "evidence-v3-incident-context",
+    "checks": [
+      {
+        "code": "CHECK_METRIC_DEVIATION",
+        "evidence_ids": [
+          "obs-8704b8993cdad432ad64175f681a2a3d"
+        ],
+        "service": "frontend",
+        "status": "PROPOSED_NOT_EXECUTED",
+        "text": "Сопоставить изменение memory с нагрузкой, единицами и здоровым периодом; отклонение не устанавливает причину."
+      },
+      {
+        "code": "CHECK_METRIC_COVERAGE",
+        "evidence_ids": [
+          "obs-53e855f7bf268c00723274f565aa20bd"
+        ],
+        "service": "worker",
+        "status": "PROPOSED_NOT_EXECUTED",
+        "text": "Проверить покрытие ряда cpu, метки и активность сервиса; пропуск не означает нормальное состояние."
+      },
+      {
+        "code": "CHECK_METRIC_COVERAGE",
+        "evidence_ids": [
+          "obs-8e2b12a6003be10ee9905eff6a341aef"
+        ],
+        "service": "worker",
+        "status": "PROPOSED_NOT_EXECUTED",
+        "text": "Проверить покрытие ряда memory, метки и активность сервиса; пропуск не означает нормальное состояние."
+      },
+      {
+        "code": "CHECK_METRIC_COVERAGE",
+        "evidence_ids": [
+          "obs-d57ece46ba16fee03f06ce60e394ad31"
+        ],
+        "service": "worker",
+        "status": "PROPOSED_NOT_EXECUTED",
+        "text": "Проверить покрытие ряда network, метки и активность сервиса; пропуск не означает нормальное состояние."
+      },
+      {
+        "code": "CHECK_METRIC_COVERAGE",
+        "evidence_ids": [
+          "obs-be5952228baff887494a768b99e6ae54"
+        ],
+        "service": "worker",
+        "status": "PROPOSED_NOT_EXECUTED",
+        "text": "Проверить покрытие ряда traffic_rate, метки и активность сервиса; пропуск не означает нормальное состояние."
+      },
+      {
+        "code": "CHECK_TRACE_AVAILABILITY",
+        "evidence_ids": [
+          "obs-023bae8ca42d064cace03cbeb533eb2b"
+        ],
+        "service": "worker",
+        "status": "PROPOSED_NOT_EXECUTED",
+        "text": "Проверить источник, инструментирование, sampling и активность: отсутствие спанов не доказывает отсутствие вызовов."
+      }
+    ],
+    "end_unix": 1792397545,
+    "feature_schema_sha256": "bdbb1134867f8c9883450933c35dda0f43d52da238de5f6834cd9d3b94b0716c",
+    "input_sha256": "81910c0275f47402d9af612ec35d504c3dd33b36f329a9ec24ec76602714a8b8",
+    "limitations": [
+      "DIAGNOSTIC_OBSERVATIONS_NOT_CAUSAL_PROOF",
+      "BASELINE_LOAD_COMPARABILITY_NOT_ESTABLISHED",
+      "SOURCE_LINKS_MAY_EXPIRE_OR_REQUIRE_SEPARATE_AUTH",
+      "CONTEXT_IS_BOUNDED_SOURCE_ASSERTIONS_NOT_PROOF"
+    ],
+    "model_version": "m13-freeze-v1",
+    "observations": [
+      {
+        "end_unix": 1792397545,
+        "id": "obs-92404c7fe09d899d9e2e869237eaacc6",
+        "kind": "metric",
+        "service": "frontend",
+        "source_links": [
+          {
+            "kind": "prometheus_query_range",
+            "url": "http://127.0.0.1:53357/api/v1/query_range?query=cpu&start=1792397544&end=1792397545&step=2"
+          }
+        ],
+        "start_unix": 1792397544,
+        "values": {
+          "baseline_comparison": {
+            "absolute_residual_p90": 0.0,
+            "expected_at_observed_load": 1.0,
+            "healthy_end_unix": 1792397444,
+            "healthy_start_unix": 1792397344,
+            "load_comparability": "NOT_ESTABLISHED",
+            "method": "workload_linear_prediction_and_residual_iqr",
+            "residual_iqr": 0.01
+          },
+          "family": "cpu",
+          "max": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "returned_point_coverage": 1.0,
+          "samples": 1,
+          "series": [
+            {
+              "end_unix": 1792397544.5,
+              "max": 1.0,
+              "mean": 1.0,
+              "min": 1.0,
+              "samples": 1,
+              "start_unix": 1792397544.5
+            }
+          ],
+          "state": "OBSERVED",
+          "unit": "cores"
+        }
+      },
+      {
+        "end_unix": 1792397545,
+        "id": "obs-8704b8993cdad432ad64175f681a2a3d",
+        "kind": "metric",
+        "service": "frontend",
+        "source_links": [
+          {
+            "kind": "prometheus_query_range",
+            "url": "http://127.0.0.1:53357/api/v1/query_range?query=memory&start=1792397544&end=1792397545&step=2"
+          }
+        ],
+        "start_unix": 1792397544,
+        "values": {
+          "baseline_comparison": {
+            "absolute_residual_p90": 9999999900.0,
+            "expected_at_observed_load": 1.0,
+            "healthy_end_unix": 1792397444,
+            "healthy_start_unix": 1792397344,
+            "load_comparability": "NOT_ESTABLISHED",
+            "method": "workload_linear_prediction_and_residual_iqr",
+            "residual_iqr": 0.01
+          },
+          "family": "memory",
+          "max": 100000000.0,
+          "median": 100000000.0,
+          "min": 100000000.0,
+          "returned_point_coverage": 1.0,
+          "samples": 1,
+          "series": [
+            {
+              "end_unix": 1792397544.5,
+              "max": 100000000.0,
+              "mean": 100000000.0,
+              "min": 100000000.0,
+              "samples": 1,
+              "start_unix": 1792397544.5
+            }
+          ],
+          "state": "OBSERVED",
+          "unit": "bytes"
+        }
+      },
+      {
+        "end_unix": 1792397545,
+        "id": "obs-5c8806b8fd7a8474b4665323bcbf8049",
+        "kind": "metric",
+        "service": "frontend",
+        "source_links": [
+          {
+            "kind": "prometheus_query_range",
+            "url": "http://127.0.0.1:53357/api/v1/query_range?query=network&start=1792397544&end=1792397545&step=2"
+          }
+        ],
+        "start_unix": 1792397544,
+        "values": {
+          "baseline_comparison": {
+            "absolute_residual_p90": 0.0,
+            "expected_at_observed_load": 1.0,
+            "healthy_end_unix": 1792397444,
+            "healthy_start_unix": 1792397344,
+            "load_comparability": "NOT_ESTABLISHED",
+            "method": "workload_linear_prediction_and_residual_iqr",
+            "residual_iqr": 0.01
+          },
+          "family": "network",
+          "max": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "returned_point_coverage": 1.0,
+          "samples": 1,
+          "series": [
+            {
+              "end_unix": 1792397544.5,
+              "max": 1.0,
+              "mean": 1.0,
+              "min": 1.0,
+              "samples": 1,
+              "start_unix": 1792397544.5
+            }
+          ],
+          "state": "OBSERVED",
+          "unit": "bytes_per_second"
+        }
+      },
+      {
+        "end_unix": 1792397545,
+        "id": "obs-6985dfb3d0aad1bc669a81eaa09750d4",
+        "kind": "metric",
+        "service": "frontend",
+        "source_links": [
+          {
+            "kind": "prometheus_query_range",
+            "url": "http://127.0.0.1:53357/api/v1/query_range?query=traffic_rate&start=1792397544&end=1792397545&step=2"
+          }
+        ],
+        "start_unix": 1792397544,
+        "values": {
+          "baseline_comparison": {
+            "absolute_residual_p90": 0.0,
+            "expected_at_observed_load": 1.0,
+            "healthy_end_unix": 1792397444,
+            "healthy_start_unix": 1792397344,
+            "load_comparability": "NOT_ESTABLISHED",
+            "method": "workload_linear_prediction_and_residual_iqr",
+            "residual_iqr": 0.01
+          },
+          "family": "traffic_rate",
+          "max": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "returned_point_coverage": 1.0,
+          "samples": 1,
+          "series": [
+            {
+              "end_unix": 1792397544.5,
+              "max": 1.0,
+              "mean": 1.0,
+              "min": 1.0,
+              "samples": 1,
+              "start_unix": 1792397544.5
+            }
+          ],
+          "state": "OBSERVED",
+          "unit": "bytes_per_second"
+        }
+      },
+      {
+        "end_unix": 1792397545,
+        "id": "obs-2a2e060ab69bdb18b224ac06afb5a252",
+        "kind": "traces",
+        "service": "frontend",
+        "source_links": [
+          {
+            "kind": "jaeger_trace_search",
+            "url": "http://127.0.0.1:53357/api/traces?service=frontend&start=1792397544000000&end=1792397545000000&limit=100"
+          }
+        ],
+        "start_unix": 1792397544,
+        "values": {
+          "example_selection": "error_first_then_longest_duration_not_random",
+          "examples": [],
+          "observed_error_spans": 0,
+          "observed_spans": 1,
+          "retention": "UNKNOWN",
+          "sampling": "UNKNOWN",
+          "state": "OBSERVED",
+          "timing": {
+            "max_us": 10000,
+            "meaning": "OBSERVED_WALL_TIME_NOT_CPU_OR_CAUSAL_PROOF_SAMPLING_UNKNOWN",
+            "median_us": 10000.0,
+            "observed_client_wait_median_us": 0.0,
+            "observed_exclusive_median_us": 10000.0,
+            "p90_us": 10000.0,
+            "selection": "SERVER_SPANS",
+            "timed_spans": 1,
+            "unit": "microseconds",
+            "unresolved_parent_spans": 0,
+            "wait_state": "OBSERVED_SERVER_DECOMPOSITION"
+          }
+        }
+      },
+      {
+        "end_unix": 1792397545,
+        "id": "obs-f8d266cd18ce97da1bbe29c00e3d80c9",
+        "kind": "dependencies",
+        "service": "frontend",
+        "source_links": [],
+        "start_unix": 1792397544,
+        "values": {
+          "edges": [],
+          "external_edge_observations": 0,
+          "meaning": "OBSERVED_CALLS_NOT_CAUSAL_PROOF",
+          "state": "OBSERVED"
+        }
+      },
+      {
+        "end_unix": 1792397545,
+        "id": "obs-53e855f7bf268c00723274f565aa20bd",
+        "kind": "metric",
+        "service": "worker",
+        "source_links": [
+          {
+            "kind": "prometheus_query_range",
+            "url": "http://127.0.0.1:53357/api/v1/query_range?query=cpu&start=1792397544&end=1792397545&step=2"
+          }
+        ],
+        "start_unix": 1792397544,
+        "values": {
+          "baseline_comparison": null,
+          "family": "cpu",
+          "max": null,
+          "median": null,
+          "min": null,
+          "returned_point_coverage": 0.0,
+          "samples": 0,
+          "series": [],
+          "state": "MISSING",
+          "unit": "cores"
+        }
+      },
+      {
+        "end_unix": 1792397545,
+        "id": "obs-8e2b12a6003be10ee9905eff6a341aef",
+        "kind": "metric",
+        "service": "worker",
+        "source_links": [
+          {
+            "kind": "prometheus_query_range",
+            "url": "http://127.0.0.1:53357/api/v1/query_range?query=memory&start=1792397544&end=1792397545&step=2"
+          }
+        ],
+        "start_unix": 1792397544,
+        "values": {
+          "baseline_comparison": null,
+          "family": "memory",
+          "max": null,
+          "median": null,
+          "min": null,
+          "returned_point_coverage": 0.0,
+          "samples": 0,
+          "series": [],
+          "state": "MISSING",
+          "unit": "bytes"
+        }
+      },
+      {
+        "end_unix": 1792397545,
+        "id": "obs-d57ece46ba16fee03f06ce60e394ad31",
+        "kind": "metric",
+        "service": "worker",
+        "source_links": [
+          {
+            "kind": "prometheus_query_range",
+            "url": "http://127.0.0.1:53357/api/v1/query_range?query=network&start=1792397544&end=1792397545&step=2"
+          }
+        ],
+        "start_unix": 1792397544,
+        "values": {
+          "baseline_comparison": null,
+          "family": "network",
+          "max": null,
+          "median": null,
+          "min": null,
+          "returned_point_coverage": 0.0,
+          "samples": 0,
+          "series": [],
+          "state": "MISSING",
+          "unit": "bytes_per_second"
+        }
+      },
+      {
+        "end_unix": 1792397545,
+        "id": "obs-be5952228baff887494a768b99e6ae54",
+        "kind": "metric",
+        "service": "worker",
+        "source_links": [
+          {
+            "kind": "prometheus_query_range",
+            "url": "http://127.0.0.1:53357/api/v1/query_range?query=traffic_rate&start=1792397544&end=1792397545&step=2"
+          }
+        ],
+        "start_unix": 1792397544,
+        "values": {
+          "baseline_comparison": null,
+          "family": "traffic_rate",
+          "max": null,
+          "median": null,
+          "min": null,
+          "returned_point_coverage": 0.0,
+          "samples": 0,
+          "series": [],
+          "state": "MISSING",
+          "unit": "bytes_per_second"
+        }
+      },
+      {
+        "end_unix": 1792397545,
+        "id": "obs-023bae8ca42d064cace03cbeb533eb2b",
+        "kind": "traces",
+        "service": "worker",
+        "source_links": [
+          {
+            "kind": "jaeger_trace_search",
+            "url": "http://127.0.0.1:53357/api/traces?service=worker&start=1792397544000000&end=1792397545000000&limit=100"
+          }
+        ],
+        "start_unix": 1792397544,
+        "values": {
+          "example_selection": "error_first_then_longest_duration_not_random",
+          "examples": [],
+          "observed_error_spans": 0,
+          "observed_spans": 0,
+          "retention": "UNKNOWN",
+          "sampling": "UNKNOWN",
+          "state": "NOT_OBSERVED",
+          "timing": {
+            "max_us": null,
+            "meaning": "OBSERVED_WALL_TIME_NOT_CPU_OR_CAUSAL_PROOF_SAMPLING_UNKNOWN",
+            "median_us": null,
+            "observed_client_wait_median_us": null,
+            "observed_exclusive_median_us": null,
+            "p90_us": null,
+            "selection": "ALL_KINDS_NO_SERVER_OBSERVED",
+            "timed_spans": 0,
+            "unit": "microseconds",
+            "unresolved_parent_spans": 0,
+            "wait_state": "NO_SERVER_SPANS"
+          }
+        }
+      },
+      {
+        "end_unix": 1792397545,
+        "id": "obs-07041749af8e970855c14403bf6c85ba",
+        "kind": "dependencies",
+        "service": "worker",
+        "source_links": [],
+        "start_unix": 1792397544,
+        "values": {
+          "edges": [],
+          "external_edge_observations": 0,
+          "meaning": "OBSERVED_CALLS_NOT_CAUSAL_PROOF",
+          "state": "NOT_OBSERVED"
+        }
+      },
+      {
+        "end_unix": 1792397545,
+        "id": "obs-a300a2fa85f1fd420fc043fa2773789d",
+        "kind": "context",
+        "service": "frontend",
+        "source_links": [],
+        "start_unix": 1792397544,
+        "values": {
+          "assistant_categories_enabled": true,
+          "categories": [],
+          "coverage": "RETENTION_SAMPLING_AND_DELIVERY_UNKNOWN",
+          "interval_semantics": "START_INCLUSIVE_END_EXCLUSIVE",
+          "meaning": "SOURCE_ASSERTIONS_SUGGEST_CHECKS_NOT_CAUSAL_PROOF",
+          "observed_at_unix": null,
+          "reason": "SOURCE_UNAVAILABLE",
+          "record_count": 0,
+          "records": [],
+          "source_id": "loki-local",
+          "source_status": "unavailable",
+          "state": "UNAVAILABLE",
+          "unsupported_entries": 0
+        }
+      },
+      {
+        "end_unix": 1792397545,
+        "id": "obs-4218a9ca4d69f47d5600b3f1c1f933a4",
+        "kind": "context",
+        "service": "worker",
+        "source_links": [],
+        "start_unix": 1792397544,
+        "values": {
+          "assistant_categories_enabled": true,
+          "categories": [],
+          "coverage": "RETENTION_SAMPLING_AND_DELIVERY_UNKNOWN",
+          "interval_semantics": "START_INCLUSIVE_END_EXCLUSIVE",
+          "meaning": "SOURCE_ASSERTIONS_SUGGEST_CHECKS_NOT_CAUSAL_PROOF",
+          "observed_at_unix": null,
+          "reason": null,
+          "record_count": 0,
+          "records": [],
+          "source_id": "loki-local",
+          "source_status": "not_configured",
+          "state": "UNAVAILABLE",
+          "unsupported_entries": 0
+        }
+      }
+    ],
+    "profile_id": "synthetic",
+    "profile_version": "1",
+    "requests_per_second": 4.0,
+    "schema_version": "2.0",
+    "services": [
+      "frontend",
+      "worker"
+    ],
+    "source_quality": {
+      "baseline_applicability": {
+        "current_rps": 4.0,
+        "current_source": "profile_constant",
+        "healthy_end_unix": 1792397444.0,
+        "healthy_start_unix": 1792397344.0,
+        "load_relation": "SAME_REFERENCE_RPS",
+        "meaning": "PROVENANCE_CHECK_NOT_MODEL_CONFIDENCE_OR_CAUSAL_PROOF",
+        "reasons": [
+          "REFERENCE_LOAD_CONFIGURED_NOT_MEASURED",
+          "CURRENT_LOAD_CONFIGURED_NOT_MEASURED"
+        ],
+        "reference_rps": 4.0,
+        "reference_source": "profile_constant",
+        "rps_ratio": 1.0,
+        "state": "REVIEW_REQUIRED",
+        "temporal_relation": "PRECEDES",
+        "version": "baseline-applicability-v1"
+      },
+      "collected_at_unix": 1792398753.1949298,
+      "incident_context": {
+        "assistant_categories_enabled": true,
+        "raw_fields_disclosure": "LOCAL_ONLY",
+        "services": {
+          "frontend": "unavailable",
+          "worker": "not_configured"
+        }
+      },
+      "retention": "UNKNOWN",
+      "sampling": "UNKNOWN",
+      "source_annotation_count": 0,
+      "traces": "available"
+    },
+    "start_unix": 1792397544
+  }
+}

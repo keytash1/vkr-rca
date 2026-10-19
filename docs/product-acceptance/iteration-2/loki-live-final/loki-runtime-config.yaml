@@ -1,0 +1,29 @@
+auth_enabled: false
+server:
+  http_listen_address: 127.0.0.1
+  http_listen_port: 18310
+  grpc_listen_address: 127.0.0.1
+  grpc_listen_port: 18311
+  log_level: warn
+common:
+  instance_addr: 127.0.0.1
+  path_prefix: /private/tmp/rca-loki-live.JVsI2Y/data
+  replication_factor: 1
+  ring:
+    kvstore:
+      store: inmemory
+  storage:
+    filesystem:
+      chunks_directory: /private/tmp/rca-loki-live.JVsI2Y/data/chunks
+      rules_directory: /private/tmp/rca-loki-live.JVsI2Y/data/rules
+schema_config:
+  configs:
+    - from: 2026-01-01
+      store: tsdb
+      object_store: filesystem
+      schema: v13
+      index:
+        prefix: index_
+        period: 24h
+analytics:
+  reporting_enabled: false

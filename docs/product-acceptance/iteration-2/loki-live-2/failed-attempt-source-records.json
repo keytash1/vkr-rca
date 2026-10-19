@@ -1,0 +1,431 @@
+{
+  "status": "PILOT_ZERO_LENGTH_CONTROL_INTERVAL",
+  "failed_check": "p08: two immediate time.time calls equal; previous seven cases not independently concluded",
+  "source_snapshot": {
+    "schema_version": "context-probe-v1",
+    "research_only": true,
+    "assistant_disclosure": "DISABLED_NOT_IN_ASSISTANT_TOOLS",
+    "source_id": "local-pilot",
+    "service": "checkout",
+    "start_unix": 1792396644.15816,
+    "end_unix": 1792397544.15816,
+    "interval_semantics": "START_INCLUSIVE_END_EXCLUSIVE",
+    "coverage": "BACKEND_RETENTION_AND_SAMPLING_UNKNOWN",
+    "status": "available",
+    "records": [
+      {
+        "id": "ctx-a8607bace48f9ad831d43670895d263d",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397327664223000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+        "fields": {
+          "error.type": "HTTPError",
+          "event.name": "error",
+          "http.response.status_code": 403
+        }
+      },
+      {
+        "id": "ctx-f6b5791a812060036f3bf856f55cbca3",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397327666583000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+        "fields": {
+          "error.type": "HTTPError",
+          "event.name": "error",
+          "http.response.status_code": 403
+        }
+      },
+      {
+        "id": "ctx-a67a4d45aa4d5486040808366431f277",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397327667580000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+        "fields": {
+          "error.type": "HTTPError",
+          "event.name": "error",
+          "http.response.status_code": 403
+        }
+      },
+      {
+        "id": "ctx-46ed13399c94ec4f2c732339228886ec",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397327672613000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+        "fields": {
+          "error.type": "HTTPError",
+          "event.name": "error",
+          "http.response.status_code": 403
+        }
+      },
+      {
+        "id": "ctx-4485320d84848d1e859a19ae94d4700b",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397327673501000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+        "fields": {
+          "error.type": "HTTPError",
+          "event.name": "error",
+          "http.response.status_code": 403
+        }
+      },
+      {
+        "id": "ctx-156a0b89b1a07d893aab0e08b4fedc33",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397327674476000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+        "fields": {
+          "error.type": "HTTPError",
+          "event.name": "error",
+          "http.response.status_code": 403
+        }
+      },
+      {
+        "id": "ctx-122e619d5e45b2b95560f9cbad5c5737",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397327676617000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428",
+        "fields": {
+          "error.type": "ConnectionRefusedError",
+          "event.name": "error"
+        }
+      },
+      {
+        "id": "ctx-df1b429fc7c55a05adcaf92ea497c47f",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397327677366000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428",
+        "fields": {
+          "error.type": "ConnectionRefusedError",
+          "event.name": "error"
+        }
+      },
+      {
+        "id": "ctx-a721234ec1d6e0e246bf540375b05e25",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397327678069000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428",
+        "fields": {
+          "error.type": "ConnectionRefusedError",
+          "event.name": "error"
+        }
+      },
+      {
+        "id": "ctx-c712c568b266994672bd1665a10017a7",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397327680304000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428",
+        "fields": {
+          "error.type": "ConnectionRefusedError",
+          "event.name": "error"
+        }
+      },
+      {
+        "id": "ctx-3e51827db80e804a83cc04b2c21ccf46",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397327681161000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428",
+        "fields": {
+          "error.type": "ConnectionRefusedError",
+          "event.name": "error"
+        }
+      },
+      {
+        "id": "ctx-a198957a96d5454bec42fce6d94a19f9",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397327681944000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428",
+        "fields": {
+          "error.type": "ConnectionRefusedError",
+          "event.name": "error"
+        }
+      },
+      {
+        "id": "ctx-c4400e5432b74df0a7a160831b76b4d0",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397327725320000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61",
+        "fields": {
+          "error.type": "TimeoutError",
+          "event.name": "error"
+        }
+      },
+      {
+        "id": "ctx-f10b6e5772d35cfd8aae60dd627d2810",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397327767574000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61",
+        "fields": {
+          "error.type": "TimeoutError",
+          "event.name": "error"
+        }
+      },
+      {
+        "id": "ctx-bf5350464d79e82695959bb0012e4d17",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397327810159000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61",
+        "fields": {
+          "error.type": "TimeoutError",
+          "event.name": "error"
+        }
+      },
+      {
+        "id": "ctx-397ba4b83a82654a6b63055a1d51d5fb",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397327854984000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61",
+        "fields": {
+          "error.type": "TimeoutError",
+          "event.name": "error"
+        }
+      },
+      {
+        "id": "ctx-34847b69c1ea8b66423c0062bdf58dee",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397327897764000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61",
+        "fields": {
+          "error.type": "TimeoutError",
+          "event.name": "error"
+        }
+      },
+      {
+        "id": "ctx-0bc0a8ba44e63893226a1a6ae077bcbb",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397327941048000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61",
+        "fields": {
+          "error.type": "TimeoutError",
+          "event.name": "error"
+        }
+      },
+      {
+        "id": "ctx-25301b0ca288f289b07d9782b5442a03",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397409985154000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+        "fields": {
+          "error.type": "HTTPError",
+          "event.name": "error",
+          "http.response.status_code": 403
+        }
+      },
+      {
+        "id": "ctx-852d8d5b12bd7f8f635b6afce2ccf8fb",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397409986580000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+        "fields": {
+          "error.type": "HTTPError",
+          "event.name": "error",
+          "http.response.status_code": 403
+        }
+      },
+      {
+        "id": "ctx-dd91c95e25a6755e05259e6e1eaf4345",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397409987537000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+        "fields": {
+          "error.type": "HTTPError",
+          "event.name": "error",
+          "http.response.status_code": 403
+        }
+      },
+      {
+        "id": "ctx-05a593a515a663aa3b7f8d463a96849e",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397409990173000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+        "fields": {
+          "error.type": "HTTPError",
+          "event.name": "error",
+          "http.response.status_code": 403
+        }
+      },
+      {
+        "id": "ctx-b5f6a81da71dc44539b3b7f705949dff",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397409991135000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+        "fields": {
+          "error.type": "HTTPError",
+          "event.name": "error",
+          "http.response.status_code": 403
+        }
+      },
+      {
+        "id": "ctx-dddd90f30402b4eec1ddf64b6fd06486",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397409991969000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60",
+        "fields": {
+          "error.type": "HTTPError",
+          "event.name": "error",
+          "http.response.status_code": 403
+        }
+      },
+      {
+        "id": "ctx-3010f09196dc61c81334aa0e735a2b15",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397409993976000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428",
+        "fields": {
+          "error.type": "ConnectionRefusedError",
+          "event.name": "error"
+        }
+      },
+      {
+        "id": "ctx-3495fa9fb8c71b0b50c33b841cc95863",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397409994596000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428",
+        "fields": {
+          "error.type": "ConnectionRefusedError",
+          "event.name": "error"
+        }
+      },
+      {
+        "id": "ctx-ffb36dd7ab74c2e472ba2683d3a57371",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397409995201000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428",
+        "fields": {
+          "error.type": "ConnectionRefusedError",
+          "event.name": "error"
+        }
+      },
+      {
+        "id": "ctx-39424c57fd17ffbe7f69045e1e5f83f2",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397409997467000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428",
+        "fields": {
+          "error.type": "ConnectionRefusedError",
+          "event.name": "error"
+        }
+      },
+      {
+        "id": "ctx-888c61862004c348709c247fc60eb86b",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397409998229000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428",
+        "fields": {
+          "error.type": "ConnectionRefusedError",
+          "event.name": "error"
+        }
+      },
+      {
+        "id": "ctx-a71256acff7500f0a16328377a74d77c",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397409998987000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428",
+        "fields": {
+          "error.type": "ConnectionRefusedError",
+          "event.name": "error"
+        }
+      },
+      {
+        "id": "ctx-d1d106f8d0ee611f6db1fc539a10ae5c",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397410042080000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61",
+        "fields": {
+          "error.type": "TimeoutError",
+          "event.name": "error"
+        }
+      },
+      {
+        "id": "ctx-e996af0ca61fce42c4a5eb4731c6f045",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397410084317000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61",
+        "fields": {
+          "error.type": "TimeoutError",
+          "event.name": "error"
+        }
+      },
+      {
+        "id": "ctx-d4bbbd1040eb296df27d0e0c0a722e28",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397410126846000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61",
+        "fields": {
+          "error.type": "TimeoutError",
+          "event.name": "error"
+        }
+      },
+      {
+        "id": "ctx-7dedeea8073358796e85c203698f4e90",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397410173332000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61",
+        "fields": {
+          "error.type": "TimeoutError",
+          "event.name": "error"
+        }
+      },
+      {
+        "id": "ctx-1c619cce9232ea4a2ebdb8dae6e618d0",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397410217059000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61",
+        "fields": {
+          "error.type": "TimeoutError",
+          "event.name": "error"
+        }
+      },
+      {
+        "id": "ctx-0787223c4f08a1fe1dee9f3a10ddab58",
+        "service": "checkout",
+        "source_timestamp_ns": "1792397410261027000",
+        "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+        "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61",
+        "fields": {
+          "error.type": "TimeoutError",
+          "event.name": "error"
+        }
+      }
+    ],
+    "meaning": "SOURCE_ASSERTIONS_NOT_VERIFIED_CAUSAL_FACTS",
+    "entries_seen": 36,
+    "unstructured_or_unsupported_entries": 0,
+    "observed_at_unix": 1792397544.162646,
+    "completeness": "NOT_ESTABLISHED"
+  }
+}

@@ -1,0 +1,350 @@
+{
+  "services": [
+    "svc-001",
+    "svc-002"
+  ],
+  "start_unix": 1792397544,
+  "end_unix": 1792397545,
+  "requests_per_second": 4.0,
+  "source_quality": {
+    "traces": "available",
+    "sampling": "UNKNOWN",
+    "retention": "UNKNOWN",
+    "baseline_applicability": {
+      "version": "baseline-applicability-v1",
+      "state": "REVIEW_REQUIRED",
+      "healthy_start_unix": 1792397344.0,
+      "healthy_end_unix": 1792397444.0,
+      "temporal_relation": "PRECEDES",
+      "reference_rps": 4.0,
+      "current_rps": 4.0,
+      "rps_ratio": 1.0,
+      "reference_source": "profile_constant",
+      "current_source": "profile_constant",
+      "load_relation": "SAME_REFERENCE_RPS",
+      "reasons": [
+        "REFERENCE_LOAD_CONFIGURED_NOT_MEASURED",
+        "CURRENT_LOAD_CONFIGURED_NOT_MEASURED"
+      ],
+      "meaning": "PROVENANCE_CHECK_NOT_MODEL_CONFIDENCE_OR_CAUSAL_PROOF"
+    }
+  },
+  "observations": [
+    {
+      "id": "obs-001",
+      "service": "svc-001",
+      "kind": "context",
+      "start_unix": 1792397544,
+      "end_unix": 1792397545,
+      "values": {
+        "state": "OBSERVED",
+        "source_status": "available",
+        "categories": [
+          "CONNECTION_REFUSED",
+          "OPERATION_TIMEOUT",
+          "PERMISSION_RESPONSE"
+        ],
+        "record_count": 18,
+        "unsupported_entries": 0,
+        "assistant_categories_enabled": true,
+        "coverage": "RETENTION_SAMPLING_AND_DELIVERY_UNKNOWN",
+        "interval_semantics": "START_INCLUSIVE_END_EXCLUSIVE",
+        "meaning": "SOURCE_ASSERTIONS_SUGGEST_CHECKS_NOT_CAUSAL_PROOF"
+      }
+    },
+    {
+      "id": "obs-002",
+      "service": "svc-001",
+      "kind": "dependencies",
+      "start_unix": 1792397544,
+      "end_unix": 1792397545,
+      "values": {
+        "state": "OBSERVED",
+        "edges": [],
+        "external_edge_observations": 0,
+        "meaning": "OBSERVED_CALLS_NOT_CAUSAL_PROOF"
+      }
+    },
+    {
+      "id": "obs-003",
+      "service": "svc-001",
+      "kind": "metric",
+      "start_unix": 1792397544,
+      "end_unix": 1792397545,
+      "values": {
+        "state": "OBSERVED",
+        "family": "cpu",
+        "unit": "cores",
+        "samples": 1,
+        "series": [],
+        "min": 1.0,
+        "median": 1.0,
+        "max": 1.0,
+        "returned_point_coverage": 1.0,
+        "baseline_comparison": {
+          "expected_at_observed_load": 1.0,
+          "residual_iqr": 0.01,
+          "absolute_residual_p90": 0.0,
+          "healthy_start_unix": 1792397344,
+          "healthy_end_unix": 1792397444,
+          "method": "workload_linear_prediction_and_residual_iqr",
+          "load_comparability": "NOT_ESTABLISHED"
+        }
+      }
+    },
+    {
+      "id": "obs-004",
+      "service": "svc-001",
+      "kind": "metric",
+      "start_unix": 1792397544,
+      "end_unix": 1792397545,
+      "values": {
+        "state": "OBSERVED",
+        "family": "memory",
+        "unit": "bytes",
+        "samples": 1,
+        "series": [],
+        "min": 100000000.0,
+        "median": 100000000.0,
+        "max": 100000000.0,
+        "returned_point_coverage": 1.0,
+        "baseline_comparison": {
+          "expected_at_observed_load": 1.0,
+          "residual_iqr": 0.01,
+          "absolute_residual_p90": 9999999900.0,
+          "healthy_start_unix": 1792397344,
+          "healthy_end_unix": 1792397444,
+          "method": "workload_linear_prediction_and_residual_iqr",
+          "load_comparability": "NOT_ESTABLISHED"
+        }
+      }
+    },
+    {
+      "id": "obs-005",
+      "service": "svc-001",
+      "kind": "metric",
+      "start_unix": 1792397544,
+      "end_unix": 1792397545,
+      "values": {
+        "state": "OBSERVED",
+        "family": "network",
+        "unit": "bytes_per_second",
+        "samples": 1,
+        "series": [],
+        "min": 1.0,
+        "median": 1.0,
+        "max": 1.0,
+        "returned_point_coverage": 1.0,
+        "baseline_comparison": {
+          "expected_at_observed_load": 1.0,
+          "residual_iqr": 0.01,
+          "absolute_residual_p90": 0.0,
+          "healthy_start_unix": 1792397344,
+          "healthy_end_unix": 1792397444,
+          "method": "workload_linear_prediction_and_residual_iqr",
+          "load_comparability": "NOT_ESTABLISHED"
+        }
+      }
+    },
+    {
+      "id": "obs-006",
+      "service": "svc-001",
+      "kind": "metric",
+      "start_unix": 1792397544,
+      "end_unix": 1792397545,
+      "values": {
+        "state": "OBSERVED",
+        "family": "traffic_rate",
+        "unit": "bytes_per_second",
+        "samples": 1,
+        "series": [],
+        "min": 1.0,
+        "median": 1.0,
+        "max": 1.0,
+        "returned_point_coverage": 1.0,
+        "baseline_comparison": {
+          "expected_at_observed_load": 1.0,
+          "residual_iqr": 0.01,
+          "absolute_residual_p90": 0.0,
+          "healthy_start_unix": 1792397344,
+          "healthy_end_unix": 1792397444,
+          "method": "workload_linear_prediction_and_residual_iqr",
+          "load_comparability": "NOT_ESTABLISHED"
+        }
+      }
+    },
+    {
+      "id": "obs-007",
+      "service": "svc-001",
+      "kind": "traces",
+      "start_unix": 1792397544,
+      "end_unix": 1792397545,
+      "values": {
+        "state": "OBSERVED",
+        "observed_spans": 1,
+        "observed_error_spans": 0,
+        "sampling": "UNKNOWN",
+        "retention": "UNKNOWN",
+        "examples": [],
+        "example_selection": "OMITTED_AGGREGATES_ONLY",
+        "timing": {
+          "unit": "microseconds",
+          "selection": "SERVER_SPANS",
+          "wait_state": "OBSERVED_SERVER_DECOMPOSITION",
+          "meaning": "OBSERVED_WALL_TIME_NOT_CPU_OR_CAUSAL_PROOF_SAMPLING_UNKNOWN",
+          "timed_spans": 1,
+          "unresolved_parent_spans": 0,
+          "median_us": 10000.0,
+          "p90_us": 10000.0,
+          "max_us": 10000,
+          "observed_client_wait_median_us": 0.0,
+          "observed_exclusive_median_us": 10000.0
+        }
+      }
+    },
+    {
+      "id": "obs-008",
+      "service": "svc-002",
+      "kind": "context",
+      "start_unix": 1792397544,
+      "end_unix": 1792397545,
+      "values": {
+        "state": "UNAVAILABLE",
+        "source_status": "not_configured",
+        "categories": [],
+        "record_count": 0,
+        "unsupported_entries": 0,
+        "assistant_categories_enabled": true,
+        "coverage": "RETENTION_SAMPLING_AND_DELIVERY_UNKNOWN",
+        "interval_semantics": "START_INCLUSIVE_END_EXCLUSIVE",
+        "meaning": "SOURCE_ASSERTIONS_SUGGEST_CHECKS_NOT_CAUSAL_PROOF"
+      }
+    },
+    {
+      "id": "obs-009",
+      "service": "svc-002",
+      "kind": "dependencies",
+      "start_unix": 1792397544,
+      "end_unix": 1792397545,
+      "values": {
+        "state": "NOT_OBSERVED",
+        "edges": [],
+        "external_edge_observations": 0,
+        "meaning": "OBSERVED_CALLS_NOT_CAUSAL_PROOF"
+      }
+    },
+    {
+      "id": "obs-010",
+      "service": "svc-002",
+      "kind": "metric",
+      "start_unix": 1792397544,
+      "end_unix": 1792397545,
+      "values": {
+        "state": "MISSING",
+        "family": "cpu",
+        "unit": "cores",
+        "samples": 0,
+        "series": [],
+        "min": null,
+        "median": null,
+        "max": null,
+        "returned_point_coverage": 0.0,
+        "baseline_comparison": null
+      }
+    },
+    {
+      "id": "obs-011",
+      "service": "svc-002",
+      "kind": "metric",
+      "start_unix": 1792397544,
+      "end_unix": 1792397545,
+      "values": {
+        "state": "MISSING",
+        "family": "memory",
+        "unit": "bytes",
+        "samples": 0,
+        "series": [],
+        "min": null,
+        "median": null,
+        "max": null,
+        "returned_point_coverage": 0.0,
+        "baseline_comparison": null
+      }
+    },
+    {
+      "id": "obs-012",
+      "service": "svc-002",
+      "kind": "metric",
+      "start_unix": 1792397544,
+      "end_unix": 1792397545,
+      "values": {
+        "state": "MISSING",
+        "family": "network",
+        "unit": "bytes_per_second",
+        "samples": 0,
+        "series": [],
+        "min": null,
+        "median": null,
+        "max": null,
+        "returned_point_coverage": 0.0,
+        "baseline_comparison": null
+      }
+    },
+    {
+      "id": "obs-013",
+      "service": "svc-002",
+      "kind": "metric",
+      "start_unix": 1792397544,
+      "end_unix": 1792397545,
+      "values": {
+        "state": "MISSING",
+        "family": "traffic_rate",
+        "unit": "bytes_per_second",
+        "samples": 0,
+        "series": [],
+        "min": null,
+        "median": null,
+        "max": null,
+        "returned_point_coverage": 0.0,
+        "baseline_comparison": null
+      }
+    },
+    {
+      "id": "obs-014",
+      "service": "svc-002",
+      "kind": "traces",
+      "start_unix": 1792397544,
+      "end_unix": 1792397545,
+      "values": {
+        "state": "NOT_OBSERVED",
+        "observed_spans": 0,
+        "observed_error_spans": 0,
+        "sampling": "UNKNOWN",
+        "retention": "UNKNOWN",
+        "examples": [],
+        "example_selection": "OMITTED_AGGREGATES_ONLY",
+        "timing": {
+          "unit": "microseconds",
+          "selection": "ALL_KINDS_NO_SERVER_OBSERVED",
+          "wait_state": "NO_SERVER_SPANS",
+          "meaning": "OBSERVED_WALL_TIME_NOT_CPU_OR_CAUSAL_PROOF_SAMPLING_UNKNOWN",
+          "timed_spans": 0,
+          "unresolved_parent_spans": 0,
+          "median_us": null,
+          "p90_us": null,
+          "max_us": null,
+          "observed_client_wait_median_us": null,
+          "observed_exclusive_median_us": null
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "DIAGNOSTIC_OBSERVATIONS_NOT_CAUSAL_PROOF",
+    "BASELINE_LOAD_COMPARABILITY_NOT_ESTABLISHED",
+    "SAMPLING_AND_RETENTION_UNKNOWN",
+    "PSEUDONYM_NUMBERS_ARE_NEUTRAL_NOT_RANKS",
+    "ONLY_AGGREGATES_NO_RAW_SPANS_OR_SOURCE_URLS",
+    "CONTEXT_IS_BOUNDED_SOURCE_ASSERTIONS_NOT_PROOF"
+  ]
+}

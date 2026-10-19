@@ -1,0 +1,116 @@
+[
+  {
+    "service": "checkout",
+    "timestamp_ns": "1792397544235789000",
+    "line": "{\"error.type\": \"HTTPError\", \"event.name\": \"error\", \"http.response.status_code\": 403}",
+    "sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60"
+  },
+  {
+    "service": "checkout",
+    "timestamp_ns": "1792397544237102000",
+    "line": "{\"error.type\": \"HTTPError\", \"event.name\": \"error\", \"http.response.status_code\": 403}",
+    "sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60"
+  },
+  {
+    "service": "checkout",
+    "timestamp_ns": "1792397544238156000",
+    "line": "{\"error.type\": \"HTTPError\", \"event.name\": \"error\", \"http.response.status_code\": 403}",
+    "sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60"
+  },
+  {
+    "service": "checkout",
+    "timestamp_ns": "1792397544240744000",
+    "line": "{\"error.type\": \"HTTPError\", \"event.name\": \"error\", \"http.response.status_code\": 403}",
+    "sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60"
+  },
+  {
+    "service": "checkout",
+    "timestamp_ns": "1792397544241670000",
+    "line": "{\"error.type\": \"HTTPError\", \"event.name\": \"error\", \"http.response.status_code\": 403}",
+    "sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60"
+  },
+  {
+    "service": "checkout",
+    "timestamp_ns": "1792397544242640000",
+    "line": "{\"error.type\": \"HTTPError\", \"event.name\": \"error\", \"http.response.status_code\": 403}",
+    "sha256": "29d02a7afeb066aa25c28b72ffb651f53d79058290adef381da298ad1b7bdc60"
+  },
+  {
+    "service": "checkout",
+    "timestamp_ns": "1792397544244585000",
+    "line": "{\"error.type\": \"ConnectionRefusedError\", \"event.name\": \"error\"}",
+    "sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428"
+  },
+  {
+    "service": "checkout",
+    "timestamp_ns": "1792397544245237000",
+    "line": "{\"error.type\": \"ConnectionRefusedError\", \"event.name\": \"error\"}",
+    "sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428"
+  },
+  {
+    "service": "checkout",
+    "timestamp_ns": "1792397544245882000",
+    "line": "{\"error.type\": \"ConnectionRefusedError\", \"event.name\": \"error\"}",
+    "sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428"
+  },
+  {
+    "service": "checkout",
+    "timestamp_ns": "1792397544247790000",
+    "line": "{\"error.type\": \"ConnectionRefusedError\", \"event.name\": \"error\"}",
+    "sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428"
+  },
+  {
+    "service": "checkout",
+    "timestamp_ns": "1792397544248497000",
+    "line": "{\"error.type\": \"ConnectionRefusedError\", \"event.name\": \"error\"}",
+    "sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428"
+  },
+  {
+    "service": "checkout",
+    "timestamp_ns": "1792397544249173000",
+    "line": "{\"error.type\": \"ConnectionRefusedError\", \"event.name\": \"error\"}",
+    "sha256": "9d22039a1524905849cb4978507f1cef211ffdce312ea7387db7de9a83a63428"
+  },
+  {
+    "service": "checkout",
+    "timestamp_ns": "1792397544292083000",
+    "line": "{\"error.type\": \"TimeoutError\", \"event.name\": \"error\"}",
+    "sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61"
+  },
+  {
+    "service": "checkout",
+    "timestamp_ns": "1792397544334135000",
+    "line": "{\"error.type\": \"TimeoutError\", \"event.name\": \"error\"}",
+    "sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61"
+  },
+  {
+    "service": "checkout",
+    "timestamp_ns": "1792397544376382000",
+    "line": "{\"error.type\": \"TimeoutError\", \"event.name\": \"error\"}",
+    "sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61"
+  },
+  {
+    "service": "checkout",
+    "timestamp_ns": "1792397544420798000",
+    "line": "{\"error.type\": \"TimeoutError\", \"event.name\": \"error\"}",
+    "sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61"
+  },
+  {
+    "service": "checkout",
+    "timestamp_ns": "1792397544463992000",
+    "line": "{\"error.type\": \"TimeoutError\", \"event.name\": \"error\"}",
+    "sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61"
+  },
+  {
+    "service": "checkout",
+    "timestamp_ns": "1792397544509370000",
+    "line": "{\"error.type\": \"TimeoutError\", \"event.name\": \"error\"}",
+    "sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61"
+  },
+  {
+    "service": "unrelated",
+    "timestamp_ns": "1792397544519072000",
+    "line": "{\"event.name\": \"deployment\", \"service.version\": \"v2\"}",
+    "sha256": "c5ac2fac0a971ece0b34805f42fa401e13d8d6dd9e11f5b0f2369bba10145a4a"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "case_id": "p01",
+    "controlled_mechanism": "access"
+  },
+  {
+    "case_id": "p02",
+    "controlled_mechanism": "access"
+  },
+  {
+    "case_id": "p03",
+    "controlled_mechanism": "connection"
+  },
+  {
+    "case_id": "p04",
+    "controlled_mechanism": "connection"
+  },
+  {
+    "case_id": "p05",
+    "controlled_mechanism": "timeout"
+  },
+  {
+    "case_id": "p06",
+    "controlled_mechanism": "timeout"
+  }
+]
