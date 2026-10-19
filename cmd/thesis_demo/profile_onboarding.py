@@ -51,7 +51,7 @@ def inspect_profile(root, path, start, end):
             logical = profile.aliases.get(label, label)
             observed.setdefault(logical, set()).add(family)
     known, found = set(profile.services), set(observed)
-    return {
+    report = {
         "schema_version": "onboarding-inspection-v1",
         "state": "draft",
         "profile_id": profile.id,
@@ -76,6 +76,14 @@ def inspect_profile(root, path, start, end):
         ],
         "notice": "Observed labels are proposals, not an authoritative inventory. Missing services remain candidates. No files or runtime state were changed.",
     }
+    if profile.http_observations_config is not None:
+        from http_observations import collect_http, unavailable
+        try:
+            report["http_observations"] = collect_http(profile, start, end)
+        except Exception:
+            report["http_observations"] = unavailable(profile.services, "HTTP_PROJECTION_UNAVAILABLE", start=start, end=end)
+        report["requires_integrator_review"].append("optional HTTP business scope, units and histogram aggregation")
+    return report
 
 
 def _inside(root, path):

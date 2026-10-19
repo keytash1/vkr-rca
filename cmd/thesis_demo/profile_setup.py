@@ -72,6 +72,12 @@ def prepare(root: Path, profile_path: Path, start: float, end: float) -> dict:
             "profile_contract_sha256": contract_sha256(profile),
             "profile_contract": semantic_contract(profile),
             "role": "UNLABELED_HEALTHY_ENGINEERING",
+            "workload_reference": {
+                "version": 1,
+                "requests_per_second": window["requests_per_second"],
+                "source": "profile_constant" if profile.fixed_rps is not None else "measured_interval_mean",
+                "meaning": "SINGLE_AGGREGATE_MODEL_INPUT_NOT_VALIDATED_LOAD_RANGE",
+            },
         },
     }
     outputs["provenance.json"]["files_sha256"] = {

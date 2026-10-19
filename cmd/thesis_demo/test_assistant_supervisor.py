@@ -1,4 +1,5 @@
 import json
+import os
 import sys
 import threading
 import time
@@ -10,6 +11,18 @@ from test_assistant_runner import catalog, report
 
 
 class ProcessBoundaryTests(unittest.TestCase):
+    def test_worker_honours_only_operator_tokenizer_cache(self):
+        code = "import os,json; print(json.dumps({'status':'completed','cache':os.environ.get('TIKTOKEN_CACHE_DIR'),'secret_inherited':'SECRET_KEY' in os.environ}))"
+        for environment, expected in [
+            ({'TIKTOKEN_CACHE_DIR':'/opt/rca/tokenizer-cache', 'DATA_GYM_CACHE_DIR':'/ignored'}, '/opt/rca/tokenizer-cache'),
+            ({'DATA_GYM_CACHE_DIR':'/operator/public-cache'}, '/operator/public-cache'),
+            ({'TIKTOKEN_CACHE_DIR':''}, ''),
+        ]:
+            with self.subTest(environment=environment), patch.dict(os.environ, environment | {'SECRET_KEY':'not-forwarded'}, clear=True), patch('assistant_supervisor.tempfile.gettempdir', side_effect=AssertionError('explicit cache must not need tmp')):
+                result = self.run_code(code)
+            self.assertEqual(result['cache'], expected)
+            self.assertFalse(result['secret_inherited'])
+
     def run_code(self, code, payload=b"{}", **kwargs):
         return _run_child([sys.executable, "-c", code], payload, wall_seconds=kwargs.pop("wall_seconds", 3), **kwargs)
 

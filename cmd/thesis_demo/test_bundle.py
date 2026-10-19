@@ -80,6 +80,8 @@ class ProductBundleTests(unittest.TestCase):
             (root / "deploy/product/runtime-pyproject.toml").write_bytes(
                 (ROOT / "deploy/product/runtime-pyproject.toml").read_bytes()
             )
+            (root / "docs").mkdir()
+            shutil.copyfile(ROOT / "docs/HTTP_OBSERVATIONS.md", root / "docs/HTTP_OBSERVATIONS.md")
             for name in ("LICENSE", "NOTICE", "THIRD_PARTY.md", "THIRD_PARTY_NOTICES"):
                 (root / "deploy/product" / name).write_bytes((ROOT / "deploy/product" / name).read_bytes())
             artifact = root / "deploy/profiles/artifacts/portable"
@@ -102,6 +104,8 @@ class ProductBundleTests(unittest.TestCase):
                 self.assertNotIn("cmd/thesis_demo/evaluation_ledger.py", archive.namelist())
                 self.assertNotIn("cmd/thesis_demo/assistant_worker.py", archive.namelist())
                 self.assertIn("cmd/thesis_demo/assistant_context.py", archive.namelist())
+                self.assertIn("cmd/thesis_demo/http_observations.py", archive.namelist())
+                self.assertIn("docs/HTTP_OBSERVATIONS.md", archive.namelist())
                 self.assertFalse(any("evaluation" in name or "external-data" in name for name in archive.namelist()))
                 self.assertFalse(any(name.endswith(("m14_evaluate.py", "m13_experiment.py", "train.py"))
                                      for name in archive.namelist()))

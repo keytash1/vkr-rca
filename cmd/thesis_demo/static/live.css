@@ -11,6 +11,7 @@ summary{cursor:pointer;color:#334d60;font-size:13px;line-height:1.5}.replay-pane
 .coverage-line{display:flex;gap:8px 24px;flex-wrap:wrap;padding:12px 0;font-size:13px;border-bottom:1px solid var(--line)}.table-scroll{overflow-x:auto}
 .primary-evidence{border-top:1px solid var(--line);margin-top:24px;padding-top:4px}
 .evidence-metric{border-bottom:1px solid var(--line);padding:12px 0}.evidence-metric summary{font-variant-numeric:tabular-nums;font-weight:600}.evidence-metric p{margin:8px 0}
+.evidence-http{border:1px solid var(--line);padding:12px;margin:12px 0}.evidence-http>summary{font-weight:600}.evidence-http .evidence-metric:last-child{border-bottom:0}
 .metric-chart{width:100%;height:160px;display:block;background:#f7f8f9;border:1px solid #e2e6e9;margin:12px 0}.metric-axis-label{font:10px system-ui;fill:#59656e}
 .metric-chart polyline{fill:none;stroke-width:1.5}.metric-line-mean{stroke:#334d60}.metric-line-min,.metric-line-max{stroke:#a1abb3}.metric-line-baseline{stroke:#62676b;stroke-dasharray:5 4}
 .source-links{display:flex;flex-wrap:wrap;gap:8px 18px}.source-links a{color:#334d60;text-underline-offset:3px}.trace-examples{overflow-wrap:anywhere;font-size:12px;line-height:1.7}

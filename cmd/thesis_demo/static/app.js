@@ -176,11 +176,16 @@ function metricChart(fact, title) {
   const bins = fact.values.series;
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('viewBox', '0 0 600 160'); svg.setAttribute('class', 'metric-chart');
-  svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', `${title}: среднее и диапазон временных групп; пунктир — прогноз базового состояния.`);
   const expected = fact.values.baseline_comparison?.expected_at_observed_load;
+  svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', `${title}: среднее и диапазон временных групп.${expected != null ? ' Пунктир — прогноз базового состояния.' : ''}`);
   const values = bins.flatMap(bin => [bin.min, bin.max]);
   if (expected != null) values.push(expected);
-  const minimum = Math.min(...values), maximum = Math.max(...values);
+  let minimum = Math.min(...values), maximum = Math.max(...values);
+  if (fact.values.family?.startsWith('http_')) {
+    // Floating-point histogram noise must not look like a large latency spike.
+    const padding = Math.max((maximum - minimum) * .05, Math.max(Math.abs(minimum), Math.abs(maximum)) * .01, 1e-12);
+    minimum = Math.max(0, minimum - padding); maximum += padding;
+  }
   const y = value => 112 - (value - minimum) / (maximum - minimum || 1) * 96;
   const x = stamp => 52 + (stamp - fact.start_unix) / (fact.end_unix - fact.start_unix) * 532;
   const line = (points, style) => {
@@ -195,13 +200,54 @@ function metricChart(fact, title) {
     element.textContent = text; element.setAttribute('x', left); element.setAttribute('y', top);
     element.setAttribute('text-anchor', anchor); element.setAttribute('class', 'metric-axis-label'); svg.append(element);
   };
-  const divisor = fact.values.unit === 'bytes' ? 1024 ** 2 : fact.values.unit === 'bytes_per_second' ? 1024 : 1;
+  const divisor = fact.values.unit === 'bytes' ? 1024 ** 2 : fact.values.unit === 'bytes_per_second' ? 1024
+    : fact.values.unit === 'seconds' ? .001 : fact.values.unit === 'ratio' ? .01 : 1;
   const number = value => Number(value / divisor).toLocaleString('ru-RU', {maximumSignificantDigits: 3});
   label(number(maximum), 46, 20, 'end'); label(number(minimum), 46, 116, 'end');
   const clock = stamp => new Date(stamp * 1000).toISOString().slice(11, 19);
   label(clock(fact.start_unix), 52, 144, 'start'); label('UTC', 318, 144, 'middle');
   label(clock(fact.end_unix), 584, 144, 'end');
   return svg;
+}
+
+function renderHttpEvidence(section, service) {
+  const names = {
+    http_request_rate: ['Завершённые запросы', 'запр./с', 1, 'requests_per_second'],
+    http_error_ratio: ['Серверные ошибки 5xx', '%', .01, 'ratio'],
+    http_latency_p95: ['Задержка p95', 'мс', .001, 'seconds'],
+  };
+  const facts = state.catalog.observations.filter(f => f.service === service && f.kind === 'metric' && names[f.values.family]);
+  if (!facts.length) return;
+  const group = document.createElement('details'); group.className = 'evidence-http';
+  const status = state.catalog.source_quality?.http_observations?.services?.[service];
+  const labels = {UNAVAILABLE: 'источник недоступен', INCOMPLETE: 'данные неполны', PARTIAL: 'частичные данные', NO_ACTIVITY: 'нет запросов'};
+  group.append(textElement('summary', `HTTP-наблюдения${labels[status] ? ' · ' + labels[status] : ''}`));
+  group.append(textElement('p', 'Дополнительные факты из HTTP-метрик. В расчёт рейтинга не входят и причину не доказывают.', 'detail-note'));
+  const lookback = state.catalog.source_quality?.http_observations?.lookback_seconds;
+  if (Number.isInteger(lookback)) group.append(textElement('p', `Каждая точка рассчитана по предыдущим ${lookback} с. Первые точки могут включать данные до начала выбранного интервала.`, 'detail-note'));
+  for (const fact of facts) {
+    const value = fact.values;
+    const [name, unit, divisor, expectedUnit] = names[value.family];
+    const item = document.createElement('details'); item.className = 'evidence-metric';
+    const display = number => number == null ? 'не определено' : `${Number(number / divisor).toLocaleString('ru-RU', {maximumSignificantDigits: 4})} ${unit}`;
+    item.append(textElement('summary', `${name} · ${value.unit === expectedUnit ? display(value.median) : 'неверные единицы'}`));
+    if (value.unit !== expectedUnit) {
+      item.append(textElement('p', 'Несовместимые единицы наблюдения. Проверьте профиль подключения.'));
+    } else if (value.state === 'NOT_DEFINED_WITHOUT_TRAFFIC') {
+      item.append(textElement('p', 'Без завершённых запросов доля ошибок и p95 не определены. Это не нулевые ошибки и не нулевая задержка.'));
+    } else if (!value.samples) {
+      item.append(textElement('p', 'Наблюдения недоступны. Старые или отсутствующие значения не показаны как нормальные нули.'));
+    } else {
+      item.append(textElement('p', `Диапазон: ${display(value.min)}–${display(value.max)}; определённых отсчётов: ${value.samples}.`));
+      if (value.state === 'PARTIAL') item.append(textElement('p', 'Часть данных отсутствует; по этому ряду нельзя считать покрытие полным.'));
+      item.append(metricChart(fact, `${name}, ${unit}`));
+      item.append(textElement('p', value.family === 'http_latency_p95'
+        ? 'Это временной ряд оценок p95 завершённых запросов, а не общий p95 всего интервала и не локальное время CPU. В заголовке — медиана оценок p95.'
+        : 'В заголовке — медиана временных отсчётов; на графике — среднее и диапазон временных групп.', 'detail-note'));
+    }
+    item.append(sourceLinks(fact)); group.append(item);
+  }
+  section.append(group);
 }
 
 function renderEvidence(service, detail) {
@@ -211,8 +257,11 @@ function renderEvidence(service, detail) {
     section.append(textElement('p', state.catalogStatus || 'Загрузка наблюдений…', 'secondary'));
     detail.append(section); return;
   }
+  renderBaselineApplicability(section, state.catalog.source_quality?.baseline_applicability);
+  renderIncidentContext(section, state.catalog.observations.find(item => item.service === service && item.kind === 'context'));
+  renderHttpEvidence(section, service);
   const names = {cpu: 'CPU', memory: 'Память', network: 'Сетевой обмен', traffic_rate: 'Входящий трафик'};
-  for (const fact of state.catalog.observations.filter(item => item.service === service && item.kind === 'metric')) {
+  for (const fact of state.catalog.observations.filter(item => item.service === service && item.kind === 'metric' && !item.values.family.startsWith('http_'))) {
     const value = fact.values;
     const divisor = value.unit === 'bytes' ? 1024 ** 2 : value.unit === 'bytes_per_second' ? 1024 : 1;
     const unit = value.unit === 'bytes' ? 'МиБ' : value.unit === 'bytes_per_second' ? 'КиБ/с' : 'ядра';
@@ -286,6 +335,71 @@ function renderEvidence(service, detail) {
   detail.append(section);
 }
 
+function renderIncidentContext(parent, fact) {
+  if (!fact) return;
+  const v = fact.values;
+  const box = document.createElement('details');
+  const labels = {available: `в выборке ${v.record_count} записей`, truncated: 'выборка усечена',
+    unavailable: 'источник недоступен', not_configured: 'сервис не подключён'};
+  box.append(textElement('summary', `Журналы и события: ${labels[v.source_status] || 'нет сведений'}`));
+  if (['unavailable', 'truncated'].includes(v.source_status)) box.open = true;
+  box.append(textElement('p', 'Ограниченная выборка источника. Пустой ответ не доказывает отсутствие ошибки; совпадение события с инцидентом не устанавливает причину.', 'detail-note'));
+  const checks = {
+    PERMISSION_RESPONSE: 'Есть ответ 401/403. Проверьте права и настройки доступа к зависимости.',
+    CONNECTION_REFUSED: 'Есть отказ соединения. Проверьте адрес зависимости, слушающий порт и доступность процесса.',
+    OPERATION_TIMEOUT: 'Есть таймаут операции. Сопоставьте бюджет ожидания с задержками зависимости и очередями.',
+    DEPLOYMENT_EVENT: 'Есть событие развёртывания. Проверьте, влияет ли изменение на наблюдаемый сбой; одной близости по времени недостаточно.',
+    CONFIGURATION_EVENT: 'Есть изменение конфигурации. Сверьте изменённые параметры и проверяемый механизм отказа.',
+    RESTART_EVENT: 'Есть перезапуск. Проверьте причину остановки и изменение состояния до него.',
+    OOM_EVENT: 'Источник сообщает об OOM. Проверьте лимит памяти и события среды исполнения.',
+  };
+  for (const c of v.categories || []) if (checks[c]) box.append(textElement('p', checks[c]));
+  if (v.unsupported_entries) box.append(textElement('p', `Пропущено неподдерживаемых строк: ${v.unsupported_entries}.`));
+  box.append(textElement('p', v.assistant_categories_enabled
+    ? 'Помощнику разрешены только категории и количества; исходные поля журналов остаются локально.'
+    : 'Контекст журналов помощнику не передаётся. Разрешение категорий настраивает интегратор.', 'detail-note'));
+  const records = document.createElement('details');
+  records.append(textElement('summary', `Выбранные поля записей (${v.record_count || 0})`));
+  for (const record of v.records || []) {
+    const fields = Object.entries(record.fields).map(([key, value]) => `${key}: ${value}`).join(' · ');
+    const stamp = new Date(Number(record.source_timestamp_ns) / 1e6).toISOString().replace('T', ' ').replace('Z', ' UTC');
+    records.append(textElement('p', `${stamp} · ${fields}`, 'detail-note'));
+  }
+  if (v.record_count) box.append(records);
+  const provenance = document.createElement('details');
+  provenance.append(textElement('summary', 'Сведения об источнике'));
+  provenance.append(textElement('p', `Источник: ${v.source_id}. Время — отметка записи Loki, часы события не проверены. ID факта: ${fact.id}.`, 'detail-note'));
+  box.append(provenance);
+  parent.append(box);
+}
+
+function renderBaselineApplicability(parent, assessment) {
+  if (!assessment) return; // Earlier saved snapshots remain readable.
+  const box = document.createElement('details'); box.className = 'baseline-applicability';
+  box.append(textElement('summary', assessment.state === 'REVIEW_REQUIRED'
+    ? 'Здоровое состояние: требуется проверка сопоставимости'
+    : 'Здоровое состояние: сопоставлена опорная нагрузка'));
+  const notes = {
+    HEALTHY_PERIOD_UNKNOWN: 'Не указан здоровый период. Проверьте происхождение базового состояния.',
+    HEALTHY_PERIOD_AFTER: 'Здоровый период находится после выбранного интервала. Он не является предшествующим эталоном этого инцидента.',
+    HEALTHY_PERIOD_OVERLAPS: 'Здоровый период пересекается с выбранным интервалом. Проверьте, что в него не попало влияние инцидента.',
+    REFERENCE_LOAD_UNKNOWN: 'Нагрузка здорового периода не записана в этой версии профиля.',
+    REFERENCE_LOAD_CONFIGURED_NOT_MEASURED: 'Нагрузка здорового периода задана интегратором, а не измерена источником.',
+    CURRENT_LOAD_SOURCE_UNKNOWN: 'Происхождение текущей интенсивности нагрузки не установлено.',
+    CURRENT_LOAD_CONFIGURED_NOT_MEASURED: 'Текущая нагрузка задана константой профиля. Фактическое изменение трафика ею не измеряется.',
+    LOAD_DIFFERS_FROM_SINGLE_REFERENCE: 'Текущая интенсивность отличается от опорной. Проверьте прогноз метрик при изменившемся режиме работы.',
+    CURRENT_LOAD_UNKNOWN: 'Текущую интенсивность нагрузки не удалось сопоставить.',
+  };
+  const reasons = assessment.reasons || [];
+  if (reasons.some(reason => ['HEALTHY_PERIOD_AFTER', 'HEALTHY_PERIOD_OVERLAPS', 'LOAD_DIFFERS_FROM_SINGLE_REFERENCE'].includes(reason))) box.open = true;
+  const number = value => Number(value).toLocaleString('ru-RU', {maximumSignificantDigits: 6});
+  if (assessment.reference_rps != null && assessment.current_rps != null)
+    box.append(textElement('p', `Опорная интенсивность: ${number(assessment.reference_rps)} запросов/с; текущая: ${number(assessment.current_rps)} запросов/с.`));
+  for (const reason of reasons) if (notes[reason]) box.append(textElement('p', notes[reason]));
+  box.append(textElement('p', 'Сравнение с одной опорной нагрузкой не подтверждает качество модели на всех режимах. Рейтинг не изменён; это не вероятность причины.', 'detail-note'));
+  parent.append(box);
+}
+
 async function loadEvidence(result) {
   try {
     const catalog = await request(`/api/v2/analyses/${encodeURIComponent(result.result_id)}/evidence`);
@@ -345,6 +459,7 @@ function renderRanking(data) {
     `Нет спанов для: ${data.source_status.services_without_spans.join(', ')}. Проверьте активность и инструментирование этих сервисов.`);
   for (const item of data.source_status?.annotations || []) messages.push(`${item.family}: ${item.message}`);
   const pointCoverage = Object.values(data.source_status?.metric_point_coverage || {});
+  if (data.source_status?.incident_context?.status === 'projection_unavailable') messages.push('Дополнительный контекст не удалось сохранить. Рейтинг и основные наблюдения доступны.');
   if (pointCoverage.some(item => Object.values(item).some(value => value < 0.8))) {
     messages.push('В части метрических рядов получено менее 80% ожидаемых отсчётов. Проверьте временное покрытие источника.');
   }

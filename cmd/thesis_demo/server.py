@@ -30,6 +30,9 @@ from live_sources import LiveProfile, TelemetrySourceError, collect
 from api_errors import ApiError
 from api_contract import document as api_document
 from evidence_catalog import EvidenceRegistry, build_catalog
+from context_source import collect_context
+from http_observations import collect_http, attach_http, unavailable as http_unavailable
+from context_catalog import attach_context
 from profile_runtime import ProfileTransferRuntime
 from trace_adapters import validate_canonical_spans
 from profile_contract import baseline_binding, contract_sha256
@@ -252,7 +255,10 @@ class DiagnosticApplication:
         key = hashlib.sha256(json.dumps({"profile": profile.id, "version": profile.version,
             "contract": contract_sha256(profile), "baseline": self.profile_artifact_hashes[profile.id],
             "start": start, "end": end,
-            "access": [os.environ.get(name, "") if name else "" for name in (profile.metric_token_env,profile.trace_token_env)]},
+            "context": profile.context_config,
+            "http_observations": profile.http_observations_config,
+            "access": [os.environ.get(name, "") if name else "" for name in (profile.metric_token_env,profile.trace_token_env,
+                       (profile.context_config or {}).get("token_env"))]},
             sort_keys=True, allow_nan=False).encode()).hexdigest()
         def compute():
             if not self.analysis_slot.acquire(blocking=False):
@@ -269,10 +275,44 @@ class DiagnosticApplication:
         runtime = self.profile_runtimes[profile.id]
         calculation_started = time.monotonic()
         result = self.analyze(window, runtime, profile=profile, source_status=source_status)
+        calculation_finished = time.monotonic()
         result.update({"profile_id": profile.id, "profile_version": profile.version,
                        "source_status": source_status, "input_sha256": source_status["input_sha256"]})
-        result["timing"] = {"collection_seconds": round(calculation_started - started, 4),
-                            "calculation_seconds": round(time.monotonic() - calculation_started, 4),
+        if profile.context_config is not None:
+            context_started = time.monotonic()
+            try:
+                rows = collect_context(profile.context_config, profile.services, start, end)
+            except Exception:
+                rows = {}  # Optional failure must not discard a valid ranking.
+            try:
+                catalog = self.evidence_registry.get(result["result_id"])
+                if catalog is None:
+                    raise ValueError("CONTEXT_PROJECTION_UNAVAILABLE")
+                enriched = attach_context(catalog, profile.context_config, rows)
+                self.evidence_registry.put(enriched)
+                source_status["incident_context"] = enriched["source_quality"]["incident_context"]
+            except Exception:
+                source_status["incident_context"] = {"status":"projection_unavailable"}
+            source_status["context_collection_seconds"] = round(time.monotonic()-context_started, 4)
+        if profile.http_observations_config is not None:
+            http_started = time.monotonic()
+            try:
+                http_rows = collect_http(profile, start, end)
+            except Exception:
+                http_rows = http_unavailable(profile.services, "HTTP_PROJECTION_UNAVAILABLE", start=start, end=end)
+            try:
+                catalog = self.evidence_registry.get(result["result_id"])
+                if catalog is None:
+                    raise ValueError("HTTP_PROJECTION_UNAVAILABLE")
+                enriched = attach_http(catalog, profile, http_rows)
+                self.evidence_registry.put(enriched)
+                source_status["http_observations"] = enriched["source_quality"]["http_observations"]
+            except Exception:
+                source_status["http_observations"] = {"status": "unavailable", "reason": "HTTP_PROJECTION_UNAVAILABLE"}
+            source_status["http_collection_seconds"] = round(time.monotonic()-http_started, 4)
+        result["timing"] = {"collection_seconds": round(calculation_started - started + source_status.get("context_collection_seconds",0)
+                                                        + source_status.get("http_collection_seconds",0), 4),
+                            "calculation_seconds": round(calculation_finished - calculation_started, 4),
                             "total_seconds": round(time.monotonic() - started, 4)}
         if self.workspace is not None:
             try:
