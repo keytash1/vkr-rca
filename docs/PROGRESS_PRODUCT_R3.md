@@ -18,6 +18,17 @@ challenger: старый cache56 и live profile baseline не гарантир�
 ещё fit вслепую и не скачивать Eadro SN. При пригодности raw — отдельная
 регистрация1 fit, иначе зафиксировать NO_FIT. Веса/отчёт не менять.
 
+Gate [завершён](product-research/R3_LEARNED_RED_SUPPORT_GATE.md): прямой
+cache56→live transfer — NO_FIT. Один и тот же плоский latency signal в seconds
+и milliseconds даёт old external shift500 против500000; отдельный healthy
+старше600 s исчезает из старого extractor. Это не дефект canonical runtime,
+а запрет смешивать external/live transforms по одному имени колонки. Продукт
+не расширялся зависимостью pandas; research demo выполнено своим `.venv`.
+Новых incident predictions/fit0. Следующая версия должна заново определить
+unit/statistic/source kind и извлекать обе стороны изraw одинаково. Сейчас
+слепое переобучение не улучшит корректность. Приёмка/публикация J/K закончены;
+не имитировать продолжение новыми seeds или повторными проверками.
+
 Product main a6845cf (PR #5), research main30117c9 (PR #8), оба merged после
 зелёного CI. Research full CI прошёл все211 Python checks и сборку образа;
 bundle-фикстура исправлена без изменения runtime. Go8 остановлены, raw сохранены.
