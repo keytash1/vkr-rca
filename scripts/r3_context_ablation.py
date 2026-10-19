@@ -4,7 +4,6 @@ prepare: fresh real HTTP failures + synthetic resource series + frozen ranking.
 run: at most one provider attempt per registered task; never retry started work.
 """
 import argparse
-import copy
 import hashlib
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
@@ -37,7 +36,7 @@ from rca_ml.m13_features import fit_healthy_baseline
 from runtime_assets import EXPECTED_SHA256
 from trace_adapters import validate_canonical_spans
 
-PIN = 'f81e6f2'
+PINS = ('f81e6f2', 'aea24f5')  # Tested cache fix and its main merge, same source.
 SERVICES = ('api', 'worker')
 
 
@@ -55,6 +54,26 @@ def save(path, value):
 
 def product_head():
     return subprocess.check_output(['git', '-C', str(PRODUCT), 'rev-parse', 'HEAD'], text=True).strip()
+
+
+def validate_capture(mechanism, requests, records):
+    """An intended injection is not truth: check actual outcomes before inference."""
+    if len(requests) != 3 or any(r['status'] != (200 if mechanism == 'healthy_unrelated_change' else 503)
+                                 for r in requests):
+        raise ValueError('CAPTURE_HTTP_OUTCOME_MISMATCH')
+    fields = [r['fields'] for r in records]
+    if mechanism == 'healthy_unrelated_change':
+        valid = not fields
+    elif mechanism in ('permission', 'unavailable_context'):
+        valid = len(fields) == 3 and all(f.get('http.response.status_code') in (401, 403) for f in fields)
+    elif mechanism == 'connection':
+        valid = len(fields) == 3 and all(f.get('error.type') == 'ConnectionRefusedError' for f in fields)
+    elif mechanism == 'timeout':
+        valid = len(fields) == 3 and all(f.get('error.type') == 'TimeoutError' for f in fields)
+    else:
+        valid = False
+    if not valid:
+        raise ValueError('CAPTURE_MECHANISM_MISMATCH_NOT_VALID_FOR_COMPARISON')
 
 
 def metrics(start, end):
@@ -75,7 +94,7 @@ def span(service, trace, identifier, parent, start, duration, error, kind='SERVE
 
 
 def prepare(output, followup=False):
-    assert product_head().startswith(PIN), 'product changed before registration'
+    assert product_head().startswith(PINS), 'product changed before registration'
     output.mkdir(parents=True, exist_ok=False)
     records, spans, statuses = [], [], []
     target = {'url': ''}
@@ -126,9 +145,12 @@ def prepare(output, followup=False):
     thread_app = threading.Thread(target=app.serve_forever, daemon=True); thread_app.start()
     truth, cases, jobs = [], [], []
     try:
-        # Hold the refused port allocated throughout all calls: no port reuse race.
+        # macOS may time out on a bound/non-listening socket. Close it before
+        # use; validate_capture rejects port reuse or any unexpected outcome.
         with socket.socket() as refused, tempfile.TemporaryDirectory(prefix='rca-r3-baseline-') as tmp:
             refused.bind(('127.0.0.1', 0))
+            refused_port = refused.getsockname()[1]
+            refused.close()
             healthy_start, healthy_end = time.time() - 180, time.time() - 90
             healthy = {'segments': [{'start_unix': healthy_start, 'end_unix': healthy_end, 'requests_per_second': 1.}],
                        'metrics': metrics(healthy_start, healthy_end),
@@ -143,8 +165,8 @@ def prepare(output, followup=False):
             save(output / 'healthy-fixture.json', healthy)
             base_url = f'http://127.0.0.1:{dependency.server_port}'
             targets = [base_url + '/status/401', base_url + '/status/403',
-                       f'http://127.0.0.1:{refused.getsockname()[1]}/a',
-                       f'http://127.0.0.1:{refused.getsockname()[1]}/b',
+                       f'http://127.0.0.1:{refused_port}/a',
+                       f'http://127.0.0.1:{refused_port}/b',
                        base_url + '/delay/.12', base_url + '/delay/.20',
                        base_url + '/healthy', base_url + '/status/403']
             mechanisms = ['permission', 'permission', 'connection', 'connection', 'timeout', 'timeout',
@@ -161,6 +183,11 @@ def prepare(output, followup=False):
                     except HTTPError as exc: exc.close()
                 end = time.time()
                 identifier = f'r3f-{case_number:02d}' if followup else f'r3-{index:02d}'
+                local = records[before_records:]
+                save(output / 'local' / f'{identifier}-capture.json', {
+                    'requests': statuses[before_statuses:], 'records': local,
+                    'intended_mechanism': mechanism})
+                validate_capture(mechanism, statuses[before_statuses:], local)
                 window = {'candidate_services': list(SERVICES), 'start_unix': start, 'end_unix': end,
                           'requests_per_second': 1., 'metrics': metrics(start, end),
                           'traces': spans[before_spans:], 'traces_collected': True}
@@ -171,7 +198,6 @@ def prepare(output, followup=False):
                           'input_sha256': digest(window), 'baseline_sha256': digest(baseline),
                           'model_version': runtime.freeze['version'], 'feature_schema_sha256': digest(runtime.columns)}
                 catalog = build_catalog(window, result, baseline, source_status={'traces': 'available'})
-                local = records[before_records:]
                 rows = {'api': {'status': 'available', 'records': local},
                         'worker': {'status': 'available', 'records': []}}
                 if index == 7:
@@ -224,7 +250,7 @@ def prepare(output, followup=False):
 def run(output, state_dir):
     assert not (output / 'STOPPED.json').exists(), 'stopped experiment must not be resumed'
     registration = json.loads((output / 'registration.json').read_text())
-    assert product_head() == registration['product_commit'] and product_head().startswith(PIN)
+    assert product_head() == registration['product_commit'] and product_head().startswith(PINS)
     assert digest(INSTRUCTIONS) == registration['prompt_sha256']
     assert hashlib.sha256((ROOT / registration['protocol_path']).read_bytes()).hexdigest() == registration['protocol_sha256']
     assert len(registration['jobs']) == registration['max_generation_attempts'] <= 16
@@ -243,7 +269,6 @@ def run(output, state_dir):
     ledger_path = output / 'attempts.jsonl'
     if ledger_path.exists():
         started = {json.loads(line)['job'] for line in ledger_path.read_text().splitlines()}
-    failures = 0
     for number, job in enumerate(registration['jobs'], 1):
         key = job['case'] + '-' + job['arm']
         if key in started: continue
@@ -262,9 +287,8 @@ def run(output, state_dir):
              {'answer_id': f'answer-{number:02d}', 'status': outcome['status'], 'report': outcome.get('report')})
         print(json.dumps({'job': key, 'status': outcome['status'], 'reason': outcome.get('stop_reason'),
                           'usage': outcome.get('usage'), 'seconds': outcome.get('elapsed_seconds')}), flush=True)
-        failures = 0 if outcome['status'] == 'completed' else failures + 1
         if outcome['status'] != 'completed':
-            print('STOP: provider failure; no retries or alternate provider', flush=True)
+            print('STOP: incomplete outcome; no retries or alternate provider', flush=True)
             break
 
 
