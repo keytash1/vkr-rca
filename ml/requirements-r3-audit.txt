@@ -1,0 +1,2 @@
+# Optional offline corpus audit only; not a product dependency.
+pyarrow==23.0.1

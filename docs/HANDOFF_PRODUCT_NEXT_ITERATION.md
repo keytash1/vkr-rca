@@ -1,5 +1,12 @@
 # RCA Workbench — handoff следующей исследовательской итерации R3
 
+> Обновление R3-C: три новых discovery-случая ops-lite скачаны и проверены.
+> [Аудит](product-research/R3_NEW_CORPUS_RESULTS.md): потеряны direction/interface,
+> duration unit и часть измерений счётчиков; прямое обучение запрещено до
+> согласованного маппинга. Нужен полный контракт/экспорт, не повтор скачивания
+> тех же таблиц. Новый train/test ещё не выделен. M13/M14, продукт aea24f5
+> и DOCX не менялись; новых ranking fits/inference нет.
+
 > Обновление R3-B: аудит и два offline-screening завершены 19.10.
 > Оба challenger отклонены; модель продукта не менялась.
 > [Разбор](product-research/R3_ML_RESULTS.md) и [журнал](PROGRESS_PRODUCT_R3.md)

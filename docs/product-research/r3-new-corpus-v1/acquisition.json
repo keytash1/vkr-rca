@@ -1,0 +1,212 @@
+{
+  "repository": "anon-ops/ops-lite",
+  "revision": "581eba39d0bfd2d397eded6cd7cbe3303255521a",
+  "manifest_sha256": "b73137ea8daf0e86b7728250d32a48c3334a70f07a0e0028917d31c62d988a0e",
+  "role": "DISCOVERY_ONLY",
+  "system_counts": {
+    "hs": 148,
+    "ts": 275,
+    "otel-demo": 32
+  },
+  "selection": [
+    {
+      "name": "hs1-geo-pod-failure-drdmjj",
+      "system": "hs"
+    },
+    {
+      "name": "otel-demo13-payment-pod-kill-9ptwmh",
+      "system": "otel-demo"
+    },
+    {
+      "name": "ts1-ts-route-service-latency-vhk7dz",
+      "system": "ts"
+    }
+  ],
+  "files": [
+    {
+      "path": "cases/hs1-geo-pod-failure-drdmjj/normal_metrics.parquet",
+      "system": "hs",
+      "bytes": 42710,
+      "sha256": "4f42951670ee7dcfe30cbf24a293b90dbdf72488bb6b22a27bd9f99c49ebc9db"
+    },
+    {
+      "path": "cases/hs1-geo-pod-failure-drdmjj/normal_metrics_sum.parquet",
+      "system": "hs",
+      "bytes": 31037,
+      "sha256": "bc1771abb5190ff3bbabdbe72ae14d8c884340237acf18e5cbc4c1a69c85b0c8"
+    },
+    {
+      "path": "cases/hs1-geo-pod-failure-drdmjj/normal_metrics_histogram.parquet",
+      "system": "hs",
+      "bytes": 11256,
+      "sha256": "f5f099a8735523680e990bd7f49e2485ece63114e4cf82d5b43f5da2027b4ebc"
+    },
+    {
+      "path": "cases/hs1-geo-pod-failure-drdmjj/normal_traces.parquet",
+      "system": "hs",
+      "bytes": 716267,
+      "sha256": "aa0da669de678d3384ead7b93ed6e9dcc34927a641e0a1f2533ef94173261959"
+    },
+    {
+      "path": "cases/hs1-geo-pod-failure-drdmjj/normal_logs.parquet",
+      "system": "hs",
+      "bytes": 347383,
+      "sha256": "d3251de671371ddcc21ea0535bbb9a8670eea6afcc8230aef4aefcfcf44f2497"
+    },
+    {
+      "path": "cases/hs1-geo-pod-failure-drdmjj/abnormal_metrics.parquet",
+      "system": "hs",
+      "bytes": 50002,
+      "sha256": "545f07736f1f288543b439950469f2d6ebfb12d454a16cd0feaa2f46f9afe22b"
+    },
+    {
+      "path": "cases/hs1-geo-pod-failure-drdmjj/abnormal_metrics_sum.parquet",
+      "system": "hs",
+      "bytes": 33475,
+      "sha256": "117e7129bdec50e6c52edd883f295ad8606667c6aa8fd0efff75dbbf674f314f"
+    },
+    {
+      "path": "cases/hs1-geo-pod-failure-drdmjj/abnormal_metrics_histogram.parquet",
+      "system": "hs",
+      "bytes": 10099,
+      "sha256": "baf8d4e5e7d91ac1f8228a650f881fb4fbf4a978e4aee8cc1f6689c920d7fa3f"
+    },
+    {
+      "path": "cases/hs1-geo-pod-failure-drdmjj/abnormal_traces.parquet",
+      "system": "hs",
+      "bytes": 345346,
+      "sha256": "4db113dba9d1ccd586335a3e8beec9ffbd6f75b099dc6baf3d59e77db22b97d7"
+    },
+    {
+      "path": "cases/hs1-geo-pod-failure-drdmjj/abnormal_logs.parquet",
+      "system": "hs",
+      "bytes": 451587,
+      "sha256": "667dac3bb5aec74c8aa6b611feb0b20b4574f6b248151856f9379b718bd09502"
+    },
+    {
+      "path": "cases/otel-demo13-payment-pod-kill-9ptwmh/normal_metrics.parquet",
+      "system": "otel-demo",
+      "bytes": 48779,
+      "sha256": "7cd676023b534e0e47ff6fa38becfa358fcf520fb2cc852917a2c1799a35ba88"
+    },
+    {
+      "path": "cases/otel-demo13-payment-pod-kill-9ptwmh/normal_metrics_sum.parquet",
+      "system": "otel-demo",
+      "bytes": 85539,
+      "sha256": "0edb4f710c0624f7c5b4e6200c8785380b993161025276f745655fd44d70100a"
+    },
+    {
+      "path": "cases/otel-demo13-payment-pod-kill-9ptwmh/normal_metrics_histogram.parquet",
+      "system": "otel-demo",
+      "bytes": 29818,
+      "sha256": "aa6859298be4d7a99615b133a761fce7ee0406ede41fc727fa28ec7ec4bd4359"
+    },
+    {
+      "path": "cases/otel-demo13-payment-pod-kill-9ptwmh/normal_traces.parquet",
+      "system": "otel-demo",
+      "bytes": 81604,
+      "sha256": "86d48805f81ebc90c265a1354d03c6080a2af23bf8de2519d9b92b0c7593eaa7"
+    },
+    {
+      "path": "cases/otel-demo13-payment-pod-kill-9ptwmh/normal_logs.parquet",
+      "system": "otel-demo",
+      "bytes": 14662,
+      "sha256": "aebfb5e5400ef5ceb78d9f750d652ed099b0263c095b69331d0ba7fb68188722"
+    },
+    {
+      "path": "cases/otel-demo13-payment-pod-kill-9ptwmh/abnormal_metrics.parquet",
+      "system": "otel-demo",
+      "bytes": 53885,
+      "sha256": "be28667ab9273e5c29d48601e8dd00e563666c2c4c2ec75bbe87957a12e09932"
+    },
+    {
+      "path": "cases/otel-demo13-payment-pod-kill-9ptwmh/abnormal_metrics_sum.parquet",
+      "system": "otel-demo",
+      "bytes": 63610,
+      "sha256": "72399330a4428b467b23da379bebe0f8a5f499072cedf02d9f4d6c2d310684d0"
+    },
+    {
+      "path": "cases/otel-demo13-payment-pod-kill-9ptwmh/abnormal_metrics_histogram.parquet",
+      "system": "otel-demo",
+      "bytes": 26129,
+      "sha256": "aef5545a2de3abc11c3a579f1ce48c2d609bfb4032f0f7a64b4c0992c1be1354"
+    },
+    {
+      "path": "cases/otel-demo13-payment-pod-kill-9ptwmh/abnormal_traces.parquet",
+      "system": "otel-demo",
+      "bytes": 81554,
+      "sha256": "b5cc4b69e2abaaa77d46164453c79bf41935a75d858670fab8026f9314537452"
+    },
+    {
+      "path": "cases/otel-demo13-payment-pod-kill-9ptwmh/abnormal_logs.parquet",
+      "system": "otel-demo",
+      "bytes": 36056,
+      "sha256": "042678d6e48af7be34466f6699f14ce2adf0c8ce88d3b3fd5c503dbd356657e1"
+    },
+    {
+      "path": "cases/ts1-ts-route-service-latency-vhk7dz/normal_metrics.parquet",
+      "system": "ts",
+      "bytes": 193483,
+      "sha256": "0704c0debfafe78ef2721908617a0a218e389c18a77d3c6b80aa4206ef043039"
+    },
+    {
+      "path": "cases/ts1-ts-route-service-latency-vhk7dz/normal_metrics_sum.parquet",
+      "system": "ts",
+      "bytes": 183847,
+      "sha256": "0d757b9d359f056c65eaef138f078af7e1c354dbe5ecaccef67ec6c5eb431328"
+    },
+    {
+      "path": "cases/ts1-ts-route-service-latency-vhk7dz/normal_metrics_histogram.parquet",
+      "system": "ts",
+      "bytes": 42163,
+      "sha256": "8caa1e3fd97c98626940be77258fdafce7eb13de33ef52fa40934559daf91db3"
+    },
+    {
+      "path": "cases/ts1-ts-route-service-latency-vhk7dz/normal_traces.parquet",
+      "system": "ts",
+      "bytes": 5368488,
+      "sha256": "ddfa77dd1a8164e6e835fc13113419a1f8ac079bc945eff1c03299e095b771e0"
+    },
+    {
+      "path": "cases/ts1-ts-route-service-latency-vhk7dz/normal_logs.parquet",
+      "system": "ts",
+      "bytes": 2696167,
+      "sha256": "cfa32df7cec17e764849f9414d37a0529ca6dda2af6fc438dab3d56d625de5f9"
+    },
+    {
+      "path": "cases/ts1-ts-route-service-latency-vhk7dz/abnormal_metrics.parquet",
+      "system": "ts",
+      "bytes": 185665,
+      "sha256": "973e85e227ed253fcd2331ae134ee0e8d388b3018e466a9997a493db917773ec"
+    },
+    {
+      "path": "cases/ts1-ts-route-service-latency-vhk7dz/abnormal_metrics_sum.parquet",
+      "system": "ts",
+      "bytes": 161244,
+      "sha256": "781eb3fc76f4c545141c1f707aaa379f790475b88e95432a94aa6cdbb4bc6c36"
+    },
+    {
+      "path": "cases/ts1-ts-route-service-latency-vhk7dz/abnormal_metrics_histogram.parquet",
+      "system": "ts",
+      "bytes": 35654,
+      "sha256": "1fedc43da5f957255eb7e5a9f1aab7d11d42034e0b8dcda595ac733592a5286b"
+    },
+    {
+      "path": "cases/ts1-ts-route-service-latency-vhk7dz/abnormal_traces.parquet",
+      "system": "ts",
+      "bytes": 603149,
+      "sha256": "9b2d9e53a1542a87bc005666534fbc052a18fd77c5fc2a30518e72e443d93fa1"
+    },
+    {
+      "path": "cases/ts1-ts-route-service-latency-vhk7dz/abnormal_logs.parquet",
+      "system": "ts",
+      "bytes": 347425,
+      "sha256": "dcb1d7ca8fa617916ca31195d5576680fb90e5c76ace27baf86d5e795bdd1c65"
+    }
+  ],
+  "downloaded_bytes": 12378083,
+  "oracle_files_downloaded": [],
+  "fits": 0,
+  "inferences": 0,
+  "llm_calls": 0
+}
