@@ -86,14 +86,50 @@ class TraceAccumulator:
                 if not isinstance(tag, dict):
                     raise TraceAdapterError("TRACE_SPAN_METADATA_INVALID")
                 key = tag.get("key")
-                if key in {"span.kind", "error", "status.code", "http.status_code"}:
-                    if key == "error" and not isinstance(tag.get("value"), bool):
-                        raise TraceAdapterError("TRACE_ERROR_TYPE_INVALID")
+                if key in {
+                    "span.kind", "error", "status.code", "http.status_code",
+                    "http.response.status_code", "otel.status_code",
+                }:
+                    value = tag.get("value")
+                    if key == "error" and not isinstance(value, bool):
+                        # Zipkin's typed string error is a message/presence
+                        # marker, not a stringified boolean. Never retain it.
+                        if tag.get("type") == "string" and isinstance(value, str):
+                            value = True
+                        else:
+                            raise TraceAdapterError("TRACE_ERROR_TYPE_INVALID")
                     if key == "span.kind" and (not isinstance(tag.get("value"), str) or len(tag["value"]) > 64):
                         raise TraceAdapterError("TRACE_KIND_INVALID")
-                    if key in relevant_tags and relevant_tags[key] != tag.get("value"):
+                    if key in relevant_tags and relevant_tags[key] != value:
                         raise TraceAdapterError("TRACE_ATTRIBUTE_CONFLICT")
-                    relevant_tags[key] = tag.get("value")
+                    relevant_tags[key] = value
+            # Stable OTel names on Jaeger's HTTP JSON boundary must reach the
+            # unchanged legacy canonicalizer, just as OTLP/v3 status does.
+            if "http.response.status_code" in relevant_tags:
+                modern = relevant_tags.pop("http.response.status_code")
+                if (
+                    isinstance(modern, bool)
+                    or not isinstance(modern, (int, str))
+                    or not str(modern).isdigit()
+                    or not 100 <= int(modern) <= 599
+                ):
+                    raise TraceAdapterError("TRACE_HTTP_STATUS_INVALID")
+                modern = int(modern)
+                if "http.status_code" in relevant_tags:
+                    legacy = relevant_tags["http.status_code"]
+                    if (
+                        isinstance(legacy, bool)
+                        or not isinstance(legacy, (int, str))
+                        or not str(legacy).isdigit()
+                        or int(legacy) != modern
+                    ):
+                        raise TraceAdapterError("TRACE_HTTP_STATUS_CONFLICT")
+                relevant_tags["http.status_code"] = modern
+            if "otel.status_code" in relevant_tags:
+                status = relevant_tags.pop("otel.status_code")
+                if not isinstance(status, str) or status not in {"UNSET", "OK", "ERROR"}:
+                    raise TraceAdapterError("TRACE_STATUS_CODE_INVALID")
+                relevant_tags["error"] = relevant_tags.get("error", False) or status == "ERROR"
             parents = []
             for ref in refs:
                 if not isinstance(ref, dict):
@@ -198,6 +234,11 @@ def _attributes(items, wanted):
         if field not in {"stringValue", "intValue", "boolValue"}:
             raise TraceAdapterError("TRACE_ATTRIBUTE_TYPE_INVALID")
         scalar = value[field]
+        if key == "error":
+            if field == "stringValue" and isinstance(scalar, str):
+                scalar = True  # typed Zipkin message, including empty message
+            elif field != "boolValue" or not isinstance(scalar, bool):
+                raise TraceAdapterError("TRACE_ERROR_TYPE_INVALID")
         if key in result and result[key] != scalar:
             raise TraceAdapterError("TRACE_ATTRIBUTE_CONFLICT")
         result[key] = scalar

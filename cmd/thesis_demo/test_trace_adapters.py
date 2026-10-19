@@ -57,6 +57,66 @@ def encoded(*frames):
 
 
 class AdapterTests(unittest.TestCase):
+    def test_http_json_stable_otel_status_reaches_frozen_canonicalizer(self):
+        raw = decode_v3_stream(encoded(frame()))[0]
+        original = copy.deepcopy(raw)
+        scenarios = [
+            ([{"key": "http.response.status_code", "value": 503}], True),
+            ([{"key": "http.response.status_code", "value": "200"}], False),
+            ([{"key": "otel.status_code", "value": "ERROR"}], True),
+            ([{"key": "otel.status_code", "value": "OK"}], False),
+            ([{"key": "http.response.status_code", "value": 200},
+              {"key": "otel.status_code", "value": "ERROR"}], True),
+            ([{"key": "error", "value": True}, {"key": "otel.status_code", "value": "OK"}], True),
+        ]
+        for tags, expected in scenarios:
+            item = copy.deepcopy(raw)
+            item["spans"][0]["tags"] = tags + [{"key": "private.secret", "value": "discard-me"}]
+            accumulator = TraceAccumulator()
+            accumulator.add(item)
+            canonical = canonicalize_jaeger({"data": accumulator.data()})
+            self.assertIs(canonical[0]["error"], expected)
+            self.assertNotIn("discard-me", json.dumps(accumulator.data()))
+        self.assertEqual(raw, original)
+
+    def test_http_json_legacy_and_stable_aliases_merge_equally(self):
+        raw = decode_v3_stream(encoded(frame()))[0]
+        first, second = copy.deepcopy(raw), copy.deepcopy(raw)
+        first["spans"][0]["tags"] = [{"key": "http.status_code", "value": 503}]
+        second["spans"][0]["tags"] = [{"key": "http.response.status_code", "value": "503"}]
+        accumulator = TraceAccumulator()
+        accumulator.add(first)
+        accumulator.add(second)
+        self.assertEqual(len(accumulator.data()[0]["spans"]), 1)
+        self.assertTrue(canonicalize_jaeger({"data": accumulator.data()})[0]["error"])
+
+    def test_typed_zipkin_error_message_is_error_not_forwarded_or_conflict(self):
+        for message in ("Chaos Monkey - RuntimeException", "", "false"):
+            raw = decode_v3_stream(encoded(frame()))[0]
+            raw["spans"][0]["tags"] = [
+                {"key": "error", "type": "string", "value": message},
+                {"key": "error", "type": "bool", "value": True},
+                {"key": "otel.status_code", "type": "string", "value": "ERROR"}]
+            accumulator = TraceAccumulator()
+            accumulator.add(raw)
+            self.assertTrue(canonicalize_jaeger({"data": accumulator.data()})[0]["error"])
+            self.assertEqual(accumulator.data()[0]["spans"][0]["tags"], [{"key": "error", "value": True}])
+            otlp = frame(spans=[span(attributes=[{"key": "error", "value": {"stringValue": message}}])])
+            self.assertTrue(canonicalize_jaeger({"data": decode_v3_stream(encoded(otlp))})[0]["error"])
+        false = frame(spans=[span(attributes=[{"key": "error", "value": {"boolValue": False}}])])
+        self.assertFalse(canonicalize_jaeger({"data": decode_v3_stream(encoded(false))})[0]["error"])
+
+    def test_http_json_stable_status_invalid_or_conflicting_is_not_normal(self):
+        scenarios = [[{"key": "http.response.status_code", "value": value}] for value in
+                     (True, None, 0, 600, 503., "NaN")]
+        scenarios.append([{"key": "http.response.status_code", "value": 200}, {"key": "http.status_code", "value": 503}])
+        scenarios.extend([[{"key": "otel.status_code", "value": v}] for v in (True, 2, "broken")])
+        for tags in scenarios:
+            raw = decode_v3_stream(encoded(frame()))[0]
+            raw["spans"][0]["tags"] = tags
+            with self.subTest(tags=tags), self.assertRaises(TraceAdapterError):
+                TraceAccumulator().add(raw)
+
     def test_only_exact_pinned_v3_empty_search_404_is_no_results(self):
         import io
         from urllib.error import HTTPError
@@ -175,7 +235,7 @@ class AdapterTests(unittest.TestCase):
             dict(endTimeUnixNano="1"),
             dict(status={"code": False}),
             dict(startTimeUnixNano=2**64),
-            dict(attributes=[{"key": "error", "value": {"stringValue": "false"}}]),
+            dict(attributes=[{"key": "error", "value": {"intValue": "1"}}]),
         ]
         for change in changes:
             raw = span()

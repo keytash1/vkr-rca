@@ -24,6 +24,10 @@ jobs:
         env:
           PYTHONPATH: ml:cmd/thesis_demo
         run: python -m unittest discover -s cmd/thesis_demo -p 'test_*.py' -v
+      - name: Bounded research input contracts, no corpus or model fitting
+        env:
+          PYTHONPATH: ml:scripts
+        run: python -m unittest test_r3_dependency_overlap test_r3_red_reserve test_r3_red -q
 
   product-container:
     runs-on: ubuntu-latest

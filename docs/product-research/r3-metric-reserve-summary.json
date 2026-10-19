@@ -1,0 +1,164 @@
+{
+  "role": "SMALL_CONTROLLED_PROSPECTIVE_PILOT_NOT_UNIVERSAL_ACCURACY",
+  "valid_cases": 6,
+  "total_cases": 12,
+  "metrics_all_registered_cases": {
+    "m13_full": {
+      "ac_at_1": 0.6666666666666666,
+      "ac_at_2": 0.8333333333333334,
+      "ac_at_3": 1,
+      "ac_at_5": 1,
+      "ac_at_10": 1,
+      "mrr": 0.8055555555555555,
+      "candidate_universe_coverage": 1,
+      "incidents": 12,
+      "absolute_wilson_95": {
+        "ac_at_1": [
+          0.39062208887279953,
+          0.8618799089087867
+        ],
+        "ac_at_2": [
+          0.5519691377470266,
+          0.9530348578161463
+        ],
+        "ac_at_3": [
+          0.7575059933447592,
+          1
+        ],
+        "ac_at_5": [
+          0.7575059933447592,
+          1
+        ],
+        "ac_at_10": [
+          0.7575059933447592,
+          1
+        ]
+      }
+    },
+    "m13_masked": {
+      "ac_at_1": 0.3333333333333333,
+      "ac_at_2": 0.75,
+      "ac_at_3": 0.9166666666666666,
+      "ac_at_5": 1,
+      "ac_at_10": 1,
+      "mrr": 0.6180555555555555,
+      "candidate_universe_coverage": 1,
+      "incidents": 12,
+      "absolute_wilson_95": {
+        "ac_at_1": [
+          0.13812009109121315,
+          0.6093779111272004
+        ],
+        "ac_at_2": [
+          0.46769466506643426,
+          0.9110583316059453
+        ],
+        "ac_at_3": [
+          0.646120088858883,
+          0.9851349055950829
+        ],
+        "ac_at_5": [
+          0.7575059933447592,
+          1
+        ],
+        "ac_at_10": [
+          0.7575059933447592,
+          1
+        ]
+      }
+    },
+    "red_only": {
+      "ac_at_1": 0.6666666666666666,
+      "ac_at_2": 1,
+      "ac_at_3": 1,
+      "ac_at_5": 1,
+      "ac_at_10": 1,
+      "mrr": 0.8333333333333334,
+      "candidate_universe_coverage": 1,
+      "incidents": 12,
+      "absolute_wilson_95": {
+        "ac_at_1": [
+          0.39062208887279953,
+          0.8618799089087867
+        ],
+        "ac_at_2": [
+          0.7575059933447592,
+          1
+        ],
+        "ac_at_3": [
+          0.7575059933447592,
+          1
+        ],
+        "ac_at_5": [
+          0.7575059933447592,
+          1
+        ],
+        "ac_at_10": [
+          0.7575059933447592,
+          1
+        ]
+      }
+    },
+    "reserve_masked": {
+      "ac_at_1": 1,
+      "ac_at_2": 1,
+      "ac_at_3": 1,
+      "ac_at_5": 1,
+      "ac_at_10": 1,
+      "mrr": 1,
+      "candidate_universe_coverage": 1,
+      "incidents": 12,
+      "absolute_wilson_95": {
+        "ac_at_1": [
+          0.7575059933447592,
+          1
+        ],
+        "ac_at_2": [
+          0.7575059933447592,
+          1
+        ],
+        "ac_at_3": [
+          0.7575059933447592,
+          1
+        ],
+        "ac_at_5": [
+          0.7575059933447592,
+          1
+        ],
+        "ac_at_10": [
+          0.7575059933447592,
+          1
+        ]
+      }
+    }
+  },
+  "comparisons": {
+    "m13_masked": {
+      "delta_mrr": 0.3819444444444445,
+      "ci95": [
+        0.1875,
+        0.5625
+      ],
+      "groups": 6,
+      "resamples": 2000
+    },
+    "red_only": {
+      "delta_mrr": 0.16666666666666666,
+      "ci95": [
+        0,
+        0.3333333333333333
+      ],
+      "groups": 6,
+      "resamples": 2000
+    }
+  },
+  "guards": {
+    "all_valid": false,
+    "full_trace_unchanged": true,
+    "protected_assets_unchanged": true,
+    "mrr_and_ci_vs_both": false,
+    "ac3_noninferior": true
+  },
+  "verdict": "NOT_PROMOTED",
+  "ranker_fits": 0
+}
