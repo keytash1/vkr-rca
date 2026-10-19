@@ -1,0 +1,2006 @@
+{
+  "role": "SOURCE_INVENTORY_ONLY",
+  "url": "https://zenodo.org/api/records/18342898/files/AnoMod.zip/content",
+  "license": "CC-BY-4.0",
+  "bytes": 201917396,
+  "md5": "30c5835190c3550c5efc34d6be4f9238",
+  "sha256": "5086808ff4f2039b88c106cd996f4b9a7148675e20f66ee1718c511b95eb120a",
+  "protocol_sha256": "4e07037c765f8a61b67345f0fb564ee099cb1f3ff2d242833cc2a8a3639be0f0",
+  "all_member_count": 44291,
+  "all_uncompressed_bytes": 3076340723,
+  "directory_counts": {
+    "SN_data": 1,
+    "SN_data/.DS_Store": 1,
+    "SN_data/api_responses": 67,
+    "SN_data/coverage_data": 9118,
+    "SN_data/log_data": 180,
+    "SN_data/metric_data": 222,
+    "SN_data/trace_data": 53,
+    "TT_data": 1,
+    "TT_data/.DS_Store": 1,
+    "TT_data/api_responses": 40,
+    "TT_data/coverage_data": 547,
+    "TT_data/coverage_report": 32580,
+    "TT_data/log_data": 1422,
+    "TT_data/metric_data": 27,
+    "TT_data/trace_data": 27,
+    "__MACOSX/SN_data": 2,
+    "__MACOSX/TT_data": 2
+  },
+  "members": [
+    {
+      "path": "TT_data/trace_data/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/metric_data/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/trace_data/Lv_S_HTTPABORT_preserve_20251103T155524Z_em/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/trace_data/Lv_C_exception_injection_20251103T185917Z_em/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/trace_data/Lv_D_cachelimit_20251103T170657Z_em/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/trace_data/Lv_D_CONNECTION_POOL_exhaustion_20251103T173702Z_em/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/trace_data/Lv_D_TRANSACTION_timeout_20251103T180430Z_em/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/trace_data/Lv_S_KILLPOD_preserve_20251103T163624Z_em/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/trace_data/Lv_P_DISKIO_preserve_20251103T144212Z_em/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/trace_data/Lv_P_NETLOSS_preserve_20251103T150613Z_em/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/trace_data/Lv_C_travel_detail_failure_20251103T192904Z_em/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/trace_data/Lv_S_DNSFAIL_preserve_no_order_20251103T153116Z_em/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/trace_data/Lv_C_security_check_20251103T183145Z_em/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/trace_data/Lv_P_CPU_preserve_20251103T140939Z_em/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/trace_data/Normal_case_em_20251103T134716Z/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/metric_data/Lv_S_HTTPABORT_preserve_20251103T155524Z_em/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/metric_data/Lv_C_exception_injection_20251103T185917Z_em/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/metric_data/Lv_D_cachelimit_20251103T170657Z_em/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/metric_data/Lv_D_CONNECTION_POOL_exhaustion_20251103T173702Z_em/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/metric_data/Lv_D_TRANSACTION_timeout_20251103T180430Z_em/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/metric_data/Lv_S_KILLPOD_preserve_20251103T163624Z_em/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/metric_data/Lv_P_DISKIO_preserve_20251103T144212Z_em/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/metric_data/Lv_P_NETLOSS_preserve_20251103T150613Z_em/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/metric_data/Lv_C_travel_detail_failure_20251103T192904Z_em/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/metric_data/Lv_S_DNSFAIL_preserve_no_order_20251103T153116Z_em/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/metric_data/Lv_C_security_check_20251103T183145Z_em/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/metric_data/Lv_P_CPU_preserve_20251103T140939Z_em/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/metric_data/Normal_case_em_20251103T134716Z/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "TT_data/trace_data/Lv_S_HTTPABORT_preserve_20251103T155524Z_em/Lv_S_HTTPABORT_preserve_20251103T155524Z_em_skywalking_traces_20251103_162944.json",
+      "bytes": 24356577,
+      "compressed_bytes": 1117829,
+      "crc32": 175768980
+    },
+    {
+      "path": "TT_data/trace_data/Lv_C_exception_injection_20251103T185917Z_em/Lv_C_exception_injection_20251103T185917Z_em_skywalking_traces_20251103_192217.json",
+      "bytes": 24176083,
+      "compressed_bytes": 1123109,
+      "crc32": 1558987184
+    },
+    {
+      "path": "TT_data/trace_data/Lv_D_cachelimit_20251103T170657Z_em/Lv_D_cachelimit_20251103T170657Z_em_skywalking_traces_20251103_173015.json",
+      "bytes": 24140893,
+      "compressed_bytes": 1115973,
+      "crc32": 2242129245
+    },
+    {
+      "path": "TT_data/trace_data/Lv_D_CONNECTION_POOL_exhaustion_20251103T173702Z_em/Lv_D_CONNECTION_POOL_exhaustion_20251103T173702Z_em_skywalking_traces_20251103_175743.json",
+      "bytes": 24136252,
+      "compressed_bytes": 1131292,
+      "crc32": 3944880393
+    },
+    {
+      "path": "TT_data/trace_data/Lv_D_TRANSACTION_timeout_20251103T180430Z_em/Lv_D_TRANSACTION_timeout_20251103T180430Z_em_skywalking_traces_20251103_182511.json",
+      "bytes": 24105498,
+      "compressed_bytes": 1111569,
+      "crc32": 1384049912
+    },
+    {
+      "path": "TT_data/trace_data/Lv_S_KILLPOD_preserve_20251103T163624Z_em/Lv_S_KILLPOD_preserve_20251103T163624Z_em_skywalking_traces_20251103_165347.json",
+      "bytes": 24406956,
+      "compressed_bytes": 1122123,
+      "crc32": 2816729745
+    },
+    {
+      "path": "TT_data/trace_data/Lv_P_DISKIO_preserve_20251103T144212Z_em/Lv_P_DISKIO_preserve_20251103T144212Z_em_skywalking_traces_20251103_145933.json",
+      "bytes": 24431728,
+      "compressed_bytes": 1121426,
+      "crc32": 693063136
+    },
+    {
+      "path": "TT_data/trace_data/Lv_P_NETLOSS_preserve_20251103T150613Z_em/Lv_P_NETLOSS_preserve_20251103T150613Z_em_skywalking_traces_20251103_152407.json",
+      "bytes": 24106202,
+      "compressed_bytes": 1112621,
+      "crc32": 507845986
+    },
+    {
+      "path": "TT_data/trace_data/Lv_C_travel_detail_failure_20251103T192904Z_em/Lv_C_travel_detail_failure_20251103T192904Z_em_skywalking_traces_20251103_194939.json",
+      "bytes": 24244165,
+      "compressed_bytes": 1119389,
+      "crc32": 2827297915
+    },
+    {
+      "path": "TT_data/trace_data/Lv_S_DNSFAIL_preserve_no_order_20251103T153116Z_em/Lv_S_DNSFAIL_preserve_no_order_20251103T153116Z_em_skywalking_traces_20251103_154844.json",
+      "bytes": 24162715,
+      "compressed_bytes": 1122123,
+      "crc32": 4090022375
+    },
+    {
+      "path": "TT_data/trace_data/Lv_C_security_check_20251103T183145Z_em/Lv_C_security_check_20251103T183145Z_em_skywalking_traces_20251103_185231.json",
+      "bytes": 24100071,
+      "compressed_bytes": 1110378,
+      "crc32": 199435355
+    },
+    {
+      "path": "TT_data/trace_data/Lv_P_CPU_preserve_20251103T140939Z_em/Lv_P_CPU_preserve_20251103T140939Z_em_skywalking_traces_20251103_143532.json",
+      "bytes": 24429907,
+      "compressed_bytes": 1126213,
+      "crc32": 969235564
+    },
+    {
+      "path": "TT_data/trace_data/Normal_case_em_20251103T134716Z/Normal_case_em_20251103T134716Z_skywalking_traces_20251103_140200.json",
+      "bytes": 23029074,
+      "compressed_bytes": 1067715,
+      "crc32": 981259966
+    },
+    {
+      "path": "TT_data/metric_data/Lv_S_HTTPABORT_preserve_20251103T155524Z_em/Lv_S_HTTPABORT_preserve_20251103T155524Z_em_metrics_20251103_162901.csv",
+      "bytes": 164803432,
+      "compressed_bytes": 3804826,
+      "crc32": 2315790766
+    },
+    {
+      "path": "TT_data/metric_data/Lv_C_exception_injection_20251103T185917Z_em/Lv_C_exception_injection_20251103T185917Z_em_metrics_20251103_192141.csv",
+      "bytes": 101438777,
+      "compressed_bytes": 2333850,
+      "crc32": 35683979
+    },
+    {
+      "path": "TT_data/metric_data/Lv_D_cachelimit_20251103T170657Z_em/Lv_D_cachelimit_20251103T170657Z_em_metrics_20251103_172938.csv",
+      "bytes": 94711083,
+      "compressed_bytes": 2177261,
+      "crc32": 1864735327
+    },
+    {
+      "path": "TT_data/metric_data/Lv_D_CONNECTION_POOL_exhaustion_20251103T173702Z_em/Lv_D_CONNECTION_POOL_exhaustion_20251103T173702Z_em_metrics_20251103_175708.csv",
+      "bytes": 91546789,
+      "compressed_bytes": 2101697,
+      "crc32": 2668421525
+    },
+    {
+      "path": "TT_data/metric_data/Lv_D_TRANSACTION_timeout_20251103T180430Z_em/Lv_D_TRANSACTION_timeout_20251103T180430Z_em_metrics_20251103_182436.csv",
+      "bytes": 92601906,
+      "compressed_bytes": 2117540,
+      "crc32": 2255128019
+    },
+    {
+      "path": "TT_data/metric_data/Lv_S_KILLPOD_preserve_20251103T163624Z_em/Lv_S_KILLPOD_preserve_20251103T163624Z_em_metrics_20251103_165311.csv",
+      "bytes": 81728551,
+      "compressed_bytes": 1841106,
+      "crc32": 2582724483
+    },
+    {
+      "path": "TT_data/metric_data/Lv_P_DISKIO_preserve_20251103T144212Z_em/Lv_P_DISKIO_preserve_20251103T144212Z_em_metrics_20251103_145858.csv",
+      "bytes": 81303603,
+      "compressed_bytes": 1809917,
+      "crc32": 2712846878
+    },
+    {
+      "path": "TT_data/metric_data/Lv_P_NETLOSS_preserve_20251103T150613Z_em/Lv_P_NETLOSS_preserve_20251103T150613Z_em_metrics_20251103_152332.csv",
+      "bytes": 83595383,
+      "compressed_bytes": 1873471,
+      "crc32": 1169851475
+    },
+    {
+      "path": "TT_data/metric_data/Lv_C_travel_detail_failure_20251103T192904Z_em/Lv_C_travel_detail_failure_20251103T192904Z_em_metrics_20251103_194903.csv",
+      "bytes": 90047037,
+      "compressed_bytes": 2046059,
+      "crc32": 3591816886
+    },
+    {
+      "path": "TT_data/metric_data/Lv_S_DNSFAIL_preserve_no_order_20251103T153116Z_em/Lv_S_DNSFAIL_preserve_no_order_20251103T153116Z_em_metrics_20251103_154809.csv",
+      "bytes": 81930777,
+      "compressed_bytes": 1823921,
+      "crc32": 1565546314
+    },
+    {
+      "path": "TT_data/metric_data/Lv_C_security_check_20251103T183145Z_em/Lv_C_security_check_20251103T183145Z_em_metrics_20251103_185155.csv",
+      "bytes": 93145969,
+      "compressed_bytes": 2117041,
+      "crc32": 2870090539
+    },
+    {
+      "path": "TT_data/metric_data/Lv_P_CPU_preserve_20251103T140939Z_em/Lv_P_CPU_preserve_20251103T140939Z_em_metrics_20251103_143454.csv",
+      "bytes": 122687596,
+      "compressed_bytes": 2849135,
+      "crc32": 1007493426
+    },
+    {
+      "path": "TT_data/metric_data/Normal_case_em_20251103T134716Z/Normal_case_em_20251103T134716Z_metrics_20251103_140128.csv",
+      "bytes": 68098655,
+      "compressed_bytes": 1534750,
+      "crc32": 605937651
+    },
+    {
+      "path": "SN_data/trace_data/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/metric_data/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/trace_data/Code_Stop_UserService_20251104_020019_traces_2025-11-04_02-21-10/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/trace_data/Perf_CPU_Contention_20251103_222601_traces_2025-11-03_22-46-44/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/trace_data/Svc_Kill_SocialGraph_20251104_002506_traces_2025-11-04_00-45-42/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/trace_data/Code_Stop_TextService_20251104_022416_traces_2025-11-04_02-45-14/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/trace_data/DB_Redis_CacheLimit_UserTimeline_20251104_011238_traces_2025-11-04_01-33-04/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/trace_data/Perf_Network_Loss_20251103_224954_traces_2025-11-03_23-10-24/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/trace_data/Perf_Disk_IO_Stress_20251103_231335_traces_2025-11-03_23-34-08/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/trace_data/Normal_Baseline_20251103_220228_traces_2025-11-03_22-22-55/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/trace_data/Svc_Kill_Media_20251104_000111_traces_2025-11-04_00-21-42/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/trace_data/Code_Stop_MediaService_20251104_024819_traces_2025-11-04_03-21-39/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/trace_data/Svc_Kill_UserTimeline_20251103_233717_traces_2025-11-03_23-57-47/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/trace_data/DB_Redis_CacheLimit_HomeTimeline_20251104_004905_traces_2025-11-04_01-09-27/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/trace_data/DB_Redis_CacheLimit_SocialGraph_20251104_013615_traces_2025-11-04_01-57-06/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_Media_20251104_000111_metrics_2025-11-04_00-21-42/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_UserTimeline_20251103_233717_metrics_2025-11-03_23-57-47/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Network_Loss_20251103_224954_metrics_2025-11-03_23-10-24/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_UserTimeline_20251104_011238_metrics_2025-11-04_01-33-04/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Disk_IO_Stress_20251103_231335_metrics_2025-11-03_23-34-08/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_HomeTimeline_20251104_004905_metrics_2025-11-04_01-09-27/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_SocialGraph_20251104_013615_metrics_2025-11-04_01-57-06/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/metric_data/Perf_CPU_Contention_20251103_222601_metrics_2025-11-03_22-46-44/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_SocialGraph_20251104_002506_metrics_2025-11-04_00-45-42/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_TextService_20251104_022416_metrics_2025-11-04_02-45-14/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_UserService_20251104_020019_metrics_2025-11-04_02-21-10/",
+      "bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "path": "SN_data/trace_data/Code_Stop_UserService_20251104_020019_traces_2025-11-04_02-21-10/all_traces.csv",
+      "bytes": 593236,
+      "compressed_bytes": 65281,
+      "crc32": 3352884734
+    },
+    {
+      "path": "SN_data/trace_data/Code_Stop_UserService_20251104_020019_traces_2025-11-04_02-21-10/all_traces.json",
+      "bytes": 2621008,
+      "compressed_bytes": 114188,
+      "crc32": 156259648
+    },
+    {
+      "path": "SN_data/trace_data/Code_Stop_UserService_20251104_020019_traces_2025-11-04_02-21-10/available_services.json",
+      "bytes": 303,
+      "compressed_bytes": 151,
+      "crc32": 3085444186
+    },
+    {
+      "path": "SN_data/trace_data/Perf_CPU_Contention_20251103_222601_traces_2025-11-03_22-46-44/all_traces.csv",
+      "bytes": 513875,
+      "compressed_bytes": 60605,
+      "crc32": 3624082245
+    },
+    {
+      "path": "SN_data/trace_data/Perf_CPU_Contention_20251103_222601_traces_2025-11-03_22-46-44/all_traces.json",
+      "bytes": 2333546,
+      "compressed_bytes": 101740,
+      "crc32": 3240610000
+    },
+    {
+      "path": "SN_data/trace_data/Perf_CPU_Contention_20251103_222601_traces_2025-11-03_22-46-44/available_services.json",
+      "bytes": 303,
+      "compressed_bytes": 154,
+      "crc32": 3979275893
+    },
+    {
+      "path": "SN_data/trace_data/Svc_Kill_SocialGraph_20251104_002506_traces_2025-11-04_00-45-42/all_traces.csv",
+      "bytes": 466050,
+      "compressed_bytes": 54488,
+      "crc32": 2805829714
+    },
+    {
+      "path": "SN_data/trace_data/Svc_Kill_SocialGraph_20251104_002506_traces_2025-11-04_00-45-42/all_traces.json",
+      "bytes": 2109343,
+      "compressed_bytes": 92106,
+      "crc32": 4258398258
+    },
+    {
+      "path": "SN_data/trace_data/Svc_Kill_SocialGraph_20251104_002506_traces_2025-11-04_00-45-42/available_services.json",
+      "bytes": 303,
+      "compressed_bytes": 156,
+      "crc32": 567783873
+    },
+    {
+      "path": "SN_data/trace_data/Code_Stop_TextService_20251104_022416_traces_2025-11-04_02-45-14/all_traces.csv",
+      "bytes": 459750,
+      "compressed_bytes": 47391,
+      "crc32": 213011002
+    },
+    {
+      "path": "SN_data/trace_data/Code_Stop_TextService_20251104_022416_traces_2025-11-04_02-45-14/all_traces.json",
+      "bytes": 1989695,
+      "compressed_bytes": 84707,
+      "crc32": 3683217487
+    },
+    {
+      "path": "SN_data/trace_data/Code_Stop_TextService_20251104_022416_traces_2025-11-04_02-45-14/available_services.json",
+      "bytes": 242,
+      "compressed_bytes": 137,
+      "crc32": 2407601478
+    },
+    {
+      "path": "SN_data/trace_data/DB_Redis_CacheLimit_UserTimeline_20251104_011238_traces_2025-11-04_01-33-04/all_traces.csv",
+      "bytes": 514133,
+      "compressed_bytes": 59629,
+      "crc32": 3561262298
+    },
+    {
+      "path": "SN_data/trace_data/DB_Redis_CacheLimit_UserTimeline_20251104_011238_traces_2025-11-04_01-33-04/all_traces.json",
+      "bytes": 2314692,
+      "compressed_bytes": 99826,
+      "crc32": 2878707082
+    },
+    {
+      "path": "SN_data/trace_data/DB_Redis_CacheLimit_UserTimeline_20251104_011238_traces_2025-11-04_01-33-04/available_services.json",
+      "bytes": 303,
+      "compressed_bytes": 154,
+      "crc32": 2600703088
+    },
+    {
+      "path": "SN_data/trace_data/Perf_Network_Loss_20251103_224954_traces_2025-11-03_23-10-24/all_traces.csv",
+      "bytes": 448689,
+      "compressed_bytes": 50369,
+      "crc32": 1828590533
+    },
+    {
+      "path": "SN_data/trace_data/Perf_Network_Loss_20251103_224954_traces_2025-11-03_23-10-24/all_traces.json",
+      "bytes": 1989975,
+      "compressed_bytes": 85417,
+      "crc32": 2115119147
+    },
+    {
+      "path": "SN_data/trace_data/Perf_Network_Loss_20251103_224954_traces_2025-11-03_23-10-24/available_services.json",
+      "bytes": 303,
+      "compressed_bytes": 156,
+      "crc32": 1696828632
+    },
+    {
+      "path": "SN_data/trace_data/Perf_Disk_IO_Stress_20251103_231335_traces_2025-11-03_23-34-08/all_traces.csv",
+      "bytes": 480281,
+      "compressed_bytes": 54693,
+      "crc32": 3392472676
+    },
+    {
+      "path": "SN_data/trace_data/Perf_Disk_IO_Stress_20251103_231335_traces_2025-11-03_23-34-08/all_traces.json",
+      "bytes": 2145256,
+      "compressed_bytes": 92819,
+      "crc32": 1566390956
+    },
+    {
+      "path": "SN_data/trace_data/Perf_Disk_IO_Stress_20251103_231335_traces_2025-11-03_23-34-08/available_services.json",
+      "bytes": 303,
+      "compressed_bytes": 152,
+      "crc32": 2684019049
+    },
+    {
+      "path": "SN_data/trace_data/Normal_Baseline_20251103_220228_traces_2025-11-03_22-22-55/all_traces.csv",
+      "bytes": 520679,
+      "compressed_bytes": 59974,
+      "crc32": 1941859750
+    },
+    {
+      "path": "SN_data/trace_data/Normal_Baseline_20251103_220228_traces_2025-11-03_22-22-55/all_traces.json",
+      "bytes": 2338030,
+      "compressed_bytes": 101354,
+      "crc32": 2332241219
+    },
+    {
+      "path": "SN_data/trace_data/Normal_Baseline_20251103_220228_traces_2025-11-03_22-22-55/available_services.json",
+      "bytes": 303,
+      "compressed_bytes": 154,
+      "crc32": 1243357959
+    },
+    {
+      "path": "SN_data/trace_data/Svc_Kill_Media_20251104_000111_traces_2025-11-04_00-21-42/all_traces.csv",
+      "bytes": 529092,
+      "compressed_bytes": 63104,
+      "crc32": 1224904605
+    },
+    {
+      "path": "SN_data/trace_data/Svc_Kill_Media_20251104_000111_traces_2025-11-04_00-21-42/all_traces.json",
+      "bytes": 2424787,
+      "compressed_bytes": 107222,
+      "crc32": 2655722352
+    },
+    {
+      "path": "SN_data/trace_data/Svc_Kill_Media_20251104_000111_traces_2025-11-04_00-21-42/available_services.json",
+      "bytes": 303,
+      "compressed_bytes": 153,
+      "crc32": 371257972
+    },
+    {
+      "path": "SN_data/trace_data/Code_Stop_MediaService_20251104_024819_traces_2025-11-04_03-21-39/all_traces.csv",
+      "bytes": 462553,
+      "compressed_bytes": 48579,
+      "crc32": 3463124867
+    },
+    {
+      "path": "SN_data/trace_data/Code_Stop_MediaService_20251104_024819_traces_2025-11-04_03-21-39/all_traces.json",
+      "bytes": 2016841,
+      "compressed_bytes": 86792,
+      "crc32": 3726976526
+    },
+    {
+      "path": "SN_data/trace_data/Code_Stop_MediaService_20251104_024819_traces_2025-11-04_03-21-39/available_services.json",
+      "bytes": 287,
+      "compressed_bytes": 147,
+      "crc32": 883703402
+    },
+    {
+      "path": "SN_data/trace_data/Svc_Kill_UserTimeline_20251103_233717_traces_2025-11-03_23-57-47/all_traces.csv",
+      "bytes": 498172,
+      "compressed_bytes": 57780,
+      "crc32": 2129410114
+    },
+    {
+      "path": "SN_data/trace_data/Svc_Kill_UserTimeline_20251103_233717_traces_2025-11-03_23-57-47/all_traces.json",
+      "bytes": 2240283,
+      "compressed_bytes": 97893,
+      "crc32": 3807502582
+    },
+    {
+      "path": "SN_data/trace_data/Svc_Kill_UserTimeline_20251103_233717_traces_2025-11-03_23-57-47/available_services.json",
+      "bytes": 303,
+      "compressed_bytes": 157,
+      "crc32": 3829976147
+    },
+    {
+      "path": "SN_data/trace_data/DB_Redis_CacheLimit_HomeTimeline_20251104_004905_traces_2025-11-04_01-09-27/all_traces.csv",
+      "bytes": 540621,
+      "compressed_bytes": 63438,
+      "crc32": 3256584084
+    },
+    {
+      "path": "SN_data/trace_data/DB_Redis_CacheLimit_HomeTimeline_20251104_004905_traces_2025-11-04_01-09-27/all_traces.json",
+      "bytes": 2456540,
+      "compressed_bytes": 107542,
+      "crc32": 1874297704
+    },
+    {
+      "path": "SN_data/trace_data/DB_Redis_CacheLimit_HomeTimeline_20251104_004905_traces_2025-11-04_01-09-27/available_services.json",
+      "bytes": 303,
+      "compressed_bytes": 154,
+      "crc32": 1089568394
+    },
+    {
+      "path": "SN_data/trace_data/DB_Redis_CacheLimit_SocialGraph_20251104_013615_traces_2025-11-04_01-57-06/all_traces.csv",
+      "bytes": 519250,
+      "compressed_bytes": 61494,
+      "crc32": 3709898852
+    },
+    {
+      "path": "SN_data/trace_data/DB_Redis_CacheLimit_SocialGraph_20251104_013615_traces_2025-11-04_01-57-06/all_traces.json",
+      "bytes": 2370885,
+      "compressed_bytes": 104644,
+      "crc32": 2129549871
+    },
+    {
+      "path": "SN_data/trace_data/DB_Redis_CacheLimit_SocialGraph_20251104_013615_traces_2025-11-04_01-57-06/available_services.json",
+      "bytes": 303,
+      "compressed_bytes": 157,
+      "crc32": 1224360886
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_Media_20251104_000111_metrics_2025-11-04_00-21-42/system_disk_io_time.csv",
+      "bytes": 10373,
+      "compressed_bytes": 1031,
+      "crc32": 1997536102
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_Media_20251104_000111_metrics_2025-11-04_00-21-42/system_disk_write_bytes.csv",
+      "bytes": 4691,
+      "compressed_bytes": 957,
+      "crc32": 4153127063
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_Media_20251104_000111_metrics_2025-11-04_00-21-42/metadata.txt",
+      "bytes": 53,
+      "compressed_bytes": 43,
+      "crc32": 766048807
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_Media_20251104_000111_metrics_2025-11-04_00-21-42/socialnet_container_network_receive.csv",
+      "bytes": 298874,
+      "compressed_bytes": 34573,
+      "crc32": 3580247619
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_Media_20251104_000111_metrics_2025-11-04_00-21-42/system_network_receive_bytes.csv",
+      "bytes": 7995,
+      "compressed_bytes": 784,
+      "crc32": 1881796845
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_Media_20251104_000111_metrics_2025-11-04_00-21-42/system_disk_usage_percent.csv",
+      "bytes": 14479,
+      "compressed_bytes": 1108,
+      "crc32": 484432118
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_Media_20251104_000111_metrics_2025-11-04_00-21-42/system_network_errors.csv",
+      "bytes": 1998,
+      "compressed_bytes": 235,
+      "crc32": 821663537
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_Media_20251104_000111_metrics_2025-11-04_00-21-42/socialnet_container_cpu.csv",
+      "bytes": 307081,
+      "compressed_bytes": 34660,
+      "crc32": 464096386
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_Media_20251104_000111_metrics_2025-11-04_00-21-42/socialnet_container_network_transmit.csv",
+      "bytes": 291729,
+      "compressed_bytes": 29678,
+      "crc32": 3607990704
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_Media_20251104_000111_metrics_2025-11-04_00-21-42/system_memory_usage_percent.csv",
+      "bytes": 8746,
+      "compressed_bytes": 1092,
+      "crc32": 1911880376
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_Media_20251104_000111_metrics_2025-11-04_00-21-42/system_load1.csv",
+      "bytes": 10522,
+      "compressed_bytes": 578,
+      "crc32": 3907898893
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_Media_20251104_000111_metrics_2025-11-04_00-21-42/system_cpu_usage.csv",
+      "bytes": 7251,
+      "compressed_bytes": 916,
+      "crc32": 2619549910
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_Media_20251104_000111_metrics_2025-11-04_00-21-42/system_network_transmit_bytes.csv",
+      "bytes": 8264,
+      "compressed_bytes": 1005,
+      "crc32": 4051010164
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_Media_20251104_000111_metrics_2025-11-04_00-21-42/socialnet_container_memory.csv",
+      "bytes": 3257171,
+      "compressed_bytes": 36665,
+      "crc32": 4282793321
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_Media_20251104_000111_metrics_2025-11-04_00-21-42/system_disk_read_bytes.csv",
+      "bytes": 3585,
+      "compressed_bytes": 275,
+      "crc32": 3019464024
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_Media_20251104_000111_metrics_2025-11-04_00-21-42/jaeger_spans_rate.csv",
+      "bytes": 11169,
+      "compressed_bytes": 776,
+      "crc32": 4115362001
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/system_disk_io_time.csv",
+      "bytes": 13257,
+      "compressed_bytes": 1281,
+      "crc32": 2684971900
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/system_disk_write_bytes.csv",
+      "bytes": 5989,
+      "compressed_bytes": 1180,
+      "crc32": 68584945
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/metadata.txt",
+      "bytes": 53,
+      "compressed_bytes": 43,
+      "crc32": 766048807
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/socialnet_container_network_receive.csv",
+      "bytes": 372435,
+      "compressed_bytes": 42178,
+      "crc32": 1952285552
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/system_network_receive_bytes.csv",
+      "bytes": 9883,
+      "compressed_bytes": 908,
+      "crc32": 3310285631
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/system_disk_usage_percent.csv",
+      "bytes": 18446,
+      "compressed_bytes": 1354,
+      "crc32": 2126493789
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/system_network_errors.csv",
+      "bytes": 2548,
+      "compressed_bytes": 285,
+      "crc32": 3535124677
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/socialnet_container_cpu.csv",
+      "bytes": 380735,
+      "compressed_bytes": 41696,
+      "crc32": 3084358497
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/socialnet_container_network_transmit.csv",
+      "bytes": 363870,
+      "compressed_bytes": 36258,
+      "crc32": 3956945380
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/system_memory_usage_percent.csv",
+      "bytes": 11132,
+      "compressed_bytes": 1367,
+      "crc32": 51264853
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/system_load1.csv",
+      "bytes": 13408,
+      "compressed_bytes": 694,
+      "crc32": 2027923308
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/system_cpu_usage.csv",
+      "bytes": 9276,
+      "compressed_bytes": 1174,
+      "crc32": 3367127651
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/system_network_transmit_bytes.csv",
+      "bytes": 10593,
+      "compressed_bytes": 1232,
+      "crc32": 4242840112
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/socialnet_container_memory.csv",
+      "bytes": 4025047,
+      "compressed_bytes": 42824,
+      "crc32": 1657761778
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/system_disk_read_bytes.csv",
+      "bytes": 4575,
+      "compressed_bytes": 334,
+      "crc32": 3633394971
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/jaeger_spans_rate.csv",
+      "bytes": 14271,
+      "compressed_bytes": 977,
+      "crc32": 1306382382
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_UserTimeline_20251103_233717_metrics_2025-11-03_23-57-47/system_disk_io_time.csv",
+      "bytes": 10371,
+      "compressed_bytes": 1026,
+      "crc32": 4051056932
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_UserTimeline_20251103_233717_metrics_2025-11-03_23-57-47/system_disk_write_bytes.csv",
+      "bytes": 4688,
+      "compressed_bytes": 938,
+      "crc32": 2638865540
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_UserTimeline_20251103_233717_metrics_2025-11-03_23-57-47/metadata.txt",
+      "bytes": 53,
+      "compressed_bytes": 43,
+      "crc32": 766048807
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_UserTimeline_20251103_233717_metrics_2025-11-03_23-57-47/socialnet_container_network_receive.csv",
+      "bytes": 298900,
+      "compressed_bytes": 34548,
+      "crc32": 3255307220
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_UserTimeline_20251103_233717_metrics_2025-11-03_23-57-47/system_network_receive_bytes.csv",
+      "bytes": 8037,
+      "compressed_bytes": 765,
+      "crc32": 3439199089
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_UserTimeline_20251103_233717_metrics_2025-11-03_23-57-47/system_disk_usage_percent.csv",
+      "bytes": 14662,
+      "compressed_bytes": 1112,
+      "crc32": 3557319743
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_UserTimeline_20251103_233717_metrics_2025-11-03_23-57-47/system_network_errors.csv",
+      "bytes": 1998,
+      "compressed_bytes": 232,
+      "crc32": 1220341467
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_UserTimeline_20251103_233717_metrics_2025-11-03_23-57-47/socialnet_container_cpu.csv",
+      "bytes": 307031,
+      "compressed_bytes": 34717,
+      "crc32": 889903323
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_UserTimeline_20251103_233717_metrics_2025-11-03_23-57-47/socialnet_container_network_transmit.csv",
+      "bytes": 291682,
+      "compressed_bytes": 29611,
+      "crc32": 107728765
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_UserTimeline_20251103_233717_metrics_2025-11-03_23-57-47/system_memory_usage_percent.csv",
+      "bytes": 8740,
+      "compressed_bytes": 1091,
+      "crc32": 2620614468
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_UserTimeline_20251103_233717_metrics_2025-11-03_23-57-47/system_load1.csv",
+      "bytes": 10521,
+      "compressed_bytes": 557,
+      "crc32": 523555663
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_UserTimeline_20251103_233717_metrics_2025-11-03_23-57-47/system_cpu_usage.csv",
+      "bytes": 7257,
+      "compressed_bytes": 950,
+      "crc32": 1058576034
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_UserTimeline_20251103_233717_metrics_2025-11-03_23-57-47/system_network_transmit_bytes.csv",
+      "bytes": 8396,
+      "compressed_bytes": 992,
+      "crc32": 960250681
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_UserTimeline_20251103_233717_metrics_2025-11-03_23-57-47/socialnet_container_memory.csv",
+      "bytes": 3257780,
+      "compressed_bytes": 36811,
+      "crc32": 2233965480
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_UserTimeline_20251103_233717_metrics_2025-11-03_23-57-47/system_disk_read_bytes.csv",
+      "bytes": 3585,
+      "compressed_bytes": 276,
+      "crc32": 3932567175
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_UserTimeline_20251103_233717_metrics_2025-11-03_23-57-47/jaeger_spans_rate.csv",
+      "bytes": 11169,
+      "compressed_bytes": 787,
+      "crc32": 1007827536
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Network_Loss_20251103_224954_metrics_2025-11-03_23-10-24/system_disk_io_time.csv",
+      "bytes": 10372,
+      "compressed_bytes": 1037,
+      "crc32": 728963005
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Network_Loss_20251103_224954_metrics_2025-11-03_23-10-24/system_disk_write_bytes.csv",
+      "bytes": 4675,
+      "compressed_bytes": 954,
+      "crc32": 3425131091
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Network_Loss_20251103_224954_metrics_2025-11-03_23-10-24/metadata.txt",
+      "bytes": 53,
+      "compressed_bytes": 43,
+      "crc32": 766048807
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Network_Loss_20251103_224954_metrics_2025-11-03_23-10-24/socialnet_container_network_receive.csv",
+      "bytes": 298766,
+      "compressed_bytes": 34648,
+      "crc32": 3751008670
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Network_Loss_20251103_224954_metrics_2025-11-03_23-10-24/system_network_receive_bytes.csv",
+      "bytes": 7958,
+      "compressed_bytes": 782,
+      "crc32": 3170613510
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Network_Loss_20251103_224954_metrics_2025-11-03_23-10-24/system_disk_usage_percent.csv",
+      "bytes": 14473,
+      "compressed_bytes": 1118,
+      "crc32": 3232924759
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Network_Loss_20251103_224954_metrics_2025-11-03_23-10-24/system_network_errors.csv",
+      "bytes": 1998,
+      "compressed_bytes": 237,
+      "crc32": 585338794
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Network_Loss_20251103_224954_metrics_2025-11-03_23-10-24/socialnet_container_cpu.csv",
+      "bytes": 304901,
+      "compressed_bytes": 33910,
+      "crc32": 1942433889
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Network_Loss_20251103_224954_metrics_2025-11-03_23-10-24/socialnet_container_network_transmit.csv",
+      "bytes": 291800,
+      "compressed_bytes": 29723,
+      "crc32": 1267401802
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Network_Loss_20251103_224954_metrics_2025-11-03_23-10-24/system_memory_usage_percent.csv",
+      "bytes": 8740,
+      "compressed_bytes": 1100,
+      "crc32": 713795564
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Network_Loss_20251103_224954_metrics_2025-11-03_23-10-24/system_load1.csv",
+      "bytes": 10518,
+      "compressed_bytes": 562,
+      "crc32": 1319461424
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Network_Loss_20251103_224954_metrics_2025-11-03_23-10-24/system_cpu_usage.csv",
+      "bytes": 7258,
+      "compressed_bytes": 942,
+      "crc32": 3166061154
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Network_Loss_20251103_224954_metrics_2025-11-03_23-10-24/system_network_transmit_bytes.csv",
+      "bytes": 8291,
+      "compressed_bytes": 1015,
+      "crc32": 478663149
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Network_Loss_20251103_224954_metrics_2025-11-03_23-10-24/socialnet_container_memory.csv",
+      "bytes": 3201160,
+      "compressed_bytes": 35915,
+      "crc32": 1058528246
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Network_Loss_20251103_224954_metrics_2025-11-03_23-10-24/system_disk_read_bytes.csv",
+      "bytes": 3867,
+      "compressed_bytes": 427,
+      "crc32": 1112703399
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Network_Loss_20251103_224954_metrics_2025-11-03_23-10-24/jaeger_spans_rate.csv",
+      "bytes": 11169,
+      "compressed_bytes": 787,
+      "crc32": 3022049061
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_UserTimeline_20251104_011238_metrics_2025-11-04_01-33-04/system_disk_io_time.csv",
+      "bytes": 10376,
+      "compressed_bytes": 1062,
+      "crc32": 1377055507
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_UserTimeline_20251104_011238_metrics_2025-11-04_01-33-04/system_disk_write_bytes.csv",
+      "bytes": 4780,
+      "compressed_bytes": 970,
+      "crc32": 730612066
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_UserTimeline_20251104_011238_metrics_2025-11-04_01-33-04/metadata.txt",
+      "bytes": 53,
+      "compressed_bytes": 43,
+      "crc32": 766048807
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_UserTimeline_20251104_011238_metrics_2025-11-04_01-33-04/socialnet_container_network_receive.csv",
+      "bytes": 295749,
+      "compressed_bytes": 34260,
+      "crc32": 3221189514
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_UserTimeline_20251104_011238_metrics_2025-11-04_01-33-04/system_network_receive_bytes.csv",
+      "bytes": 8143,
+      "compressed_bytes": 795,
+      "crc32": 1376810228
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_UserTimeline_20251104_011238_metrics_2025-11-04_01-33-04/system_disk_usage_percent.csv",
+      "bytes": 14661,
+      "compressed_bytes": 1116,
+      "crc32": 3638261841
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_UserTimeline_20251104_011238_metrics_2025-11-04_01-33-04/system_network_errors.csv",
+      "bytes": 1998,
+      "compressed_bytes": 232,
+      "crc32": 3600151785
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_UserTimeline_20251104_011238_metrics_2025-11-04_01-33-04/socialnet_container_cpu.csv",
+      "bytes": 303292,
+      "compressed_bytes": 34290,
+      "crc32": 3096531925
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_UserTimeline_20251104_011238_metrics_2025-11-04_01-33-04/socialnet_container_network_transmit.csv",
+      "bytes": 288517,
+      "compressed_bytes": 29295,
+      "crc32": 948318244
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_UserTimeline_20251104_011238_metrics_2025-11-04_01-33-04/system_memory_usage_percent.csv",
+      "bytes": 8741,
+      "compressed_bytes": 1082,
+      "crc32": 3870700452
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_UserTimeline_20251104_011238_metrics_2025-11-04_01-33-04/system_load1.csv",
+      "bytes": 10528,
+      "compressed_bytes": 567,
+      "crc32": 2943299757
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_UserTimeline_20251104_011238_metrics_2025-11-04_01-33-04/system_cpu_usage.csv",
+      "bytes": 7248,
+      "compressed_bytes": 925,
+      "crc32": 2769031525
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_UserTimeline_20251104_011238_metrics_2025-11-04_01-33-04/system_network_transmit_bytes.csv",
+      "bytes": 8391,
+      "compressed_bytes": 998,
+      "crc32": 1055672418
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_UserTimeline_20251104_011238_metrics_2025-11-04_01-33-04/socialnet_container_memory.csv",
+      "bytes": 3188680,
+      "compressed_bytes": 36427,
+      "crc32": 3288844246
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_UserTimeline_20251104_011238_metrics_2025-11-04_01-33-04/system_disk_read_bytes.csv",
+      "bytes": 3630,
+      "compressed_bytes": 281,
+      "crc32": 2033513450
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_UserTimeline_20251104_011238_metrics_2025-11-04_01-33-04/jaeger_spans_rate.csv",
+      "bytes": 11169,
+      "compressed_bytes": 784,
+      "crc32": 1696153061
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Disk_IO_Stress_20251103_231335_metrics_2025-11-03_23-34-08/system_disk_io_time.csv",
+      "bytes": 10517,
+      "compressed_bytes": 1060,
+      "crc32": 1532990862
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Disk_IO_Stress_20251103_231335_metrics_2025-11-03_23-34-08/system_disk_write_bytes.csv",
+      "bytes": 4764,
+      "compressed_bytes": 964,
+      "crc32": 3789979094
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Disk_IO_Stress_20251103_231335_metrics_2025-11-03_23-34-08/metadata.txt",
+      "bytes": 53,
+      "compressed_bytes": 43,
+      "crc32": 766048807
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Disk_IO_Stress_20251103_231335_metrics_2025-11-03_23-34-08/socialnet_container_network_receive.csv",
+      "bytes": 295156,
+      "compressed_bytes": 34123,
+      "crc32": 4225021724
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Disk_IO_Stress_20251103_231335_metrics_2025-11-03_23-34-08/system_network_receive_bytes.csv",
+      "bytes": 8031,
+      "compressed_bytes": 755,
+      "crc32": 1231933673
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Disk_IO_Stress_20251103_231335_metrics_2025-11-03_23-34-08/system_disk_usage_percent.csv",
+      "bytes": 14660,
+      "compressed_bytes": 1104,
+      "crc32": 1554593412
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Disk_IO_Stress_20251103_231335_metrics_2025-11-03_23-34-08/system_network_errors.csv",
+      "bytes": 2023,
+      "compressed_bytes": 235,
+      "crc32": 614761554
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Disk_IO_Stress_20251103_231335_metrics_2025-11-03_23-34-08/socialnet_container_cpu.csv",
+      "bytes": 303180,
+      "compressed_bytes": 34265,
+      "crc32": 1708943829
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Disk_IO_Stress_20251103_231335_metrics_2025-11-03_23-34-08/socialnet_container_network_transmit.csv",
+      "bytes": 289325,
+      "compressed_bytes": 28899,
+      "crc32": 3240651177
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Disk_IO_Stress_20251103_231335_metrics_2025-11-03_23-34-08/system_memory_usage_percent.csv",
+      "bytes": 8849,
+      "compressed_bytes": 1107,
+      "crc32": 2123079173
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Disk_IO_Stress_20251103_231335_metrics_2025-11-03_23-34-08/system_load1.csv",
+      "bytes": 10652,
+      "compressed_bytes": 559,
+      "crc32": 4272898761
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Disk_IO_Stress_20251103_231335_metrics_2025-11-03_23-34-08/system_cpu_usage.csv",
+      "bytes": 7238,
+      "compressed_bytes": 929,
+      "crc32": 3118001528
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Disk_IO_Stress_20251103_231335_metrics_2025-11-03_23-34-08/system_network_transmit_bytes.csv",
+      "bytes": 8391,
+      "compressed_bytes": 1010,
+      "crc32": 2775119445
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Disk_IO_Stress_20251103_231335_metrics_2025-11-03_23-34-08/socialnet_container_memory.csv",
+      "bytes": 3193354,
+      "compressed_bytes": 36214,
+      "crc32": 2199146796
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Disk_IO_Stress_20251103_231335_metrics_2025-11-03_23-34-08/system_disk_read_bytes.csv",
+      "bytes": 3914,
+      "compressed_bytes": 409,
+      "crc32": 471899528
+    },
+    {
+      "path": "SN_data/metric_data/Perf_Disk_IO_Stress_20251103_231335_metrics_2025-11-03_23-34-08/jaeger_spans_rate.csv",
+      "bytes": 11028,
+      "compressed_bytes": 772,
+      "crc32": 3262074433
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_HomeTimeline_20251104_004905_metrics_2025-11-04_01-09-27/system_disk_io_time.csv",
+      "bytes": 10377,
+      "compressed_bytes": 1054,
+      "crc32": 1628344374
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_HomeTimeline_20251104_004905_metrics_2025-11-04_01-09-27/system_disk_write_bytes.csv",
+      "bytes": 4687,
+      "compressed_bytes": 936,
+      "crc32": 2486897618
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_HomeTimeline_20251104_004905_metrics_2025-11-04_01-09-27/metadata.txt",
+      "bytes": 53,
+      "compressed_bytes": 43,
+      "crc32": 766048807
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_HomeTimeline_20251104_004905_metrics_2025-11-04_01-09-27/socialnet_container_network_receive.csv",
+      "bytes": 298798,
+      "compressed_bytes": 34534,
+      "crc32": 4174142639
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_HomeTimeline_20251104_004905_metrics_2025-11-04_01-09-27/system_network_receive_bytes.csv",
+      "bytes": 8051,
+      "compressed_bytes": 785,
+      "crc32": 4253667437
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_HomeTimeline_20251104_004905_metrics_2025-11-04_01-09-27/system_disk_usage_percent.csv",
+      "bytes": 14478,
+      "compressed_bytes": 1106,
+      "crc32": 3469137862
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_HomeTimeline_20251104_004905_metrics_2025-11-04_01-09-27/system_network_errors.csv",
+      "bytes": 1998,
+      "compressed_bytes": 235,
+      "crc32": 1475081133
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_HomeTimeline_20251104_004905_metrics_2025-11-04_01-09-27/socialnet_container_cpu.csv",
+      "bytes": 307114,
+      "compressed_bytes": 34665,
+      "crc32": 227565084
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_HomeTimeline_20251104_004905_metrics_2025-11-04_01-09-27/socialnet_container_network_transmit.csv",
+      "bytes": 291653,
+      "compressed_bytes": 29632,
+      "crc32": 3624894418
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_HomeTimeline_20251104_004905_metrics_2025-11-04_01-09-27/system_memory_usage_percent.csv",
+      "bytes": 8739,
+      "compressed_bytes": 1089,
+      "crc32": 20218763
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_HomeTimeline_20251104_004905_metrics_2025-11-04_01-09-27/system_load1.csv",
+      "bytes": 10520,
+      "compressed_bytes": 550,
+      "crc32": 2906129155
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_HomeTimeline_20251104_004905_metrics_2025-11-04_01-09-27/system_cpu_usage.csv",
+      "bytes": 7257,
+      "compressed_bytes": 950,
+      "crc32": 1117967543
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_HomeTimeline_20251104_004905_metrics_2025-11-04_01-09-27/system_network_transmit_bytes.csv",
+      "bytes": 8303,
+      "compressed_bytes": 1010,
+      "crc32": 3281353812
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_HomeTimeline_20251104_004905_metrics_2025-11-04_01-09-27/socialnet_container_memory.csv",
+      "bytes": 3229040,
+      "compressed_bytes": 36620,
+      "crc32": 208022908
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_HomeTimeline_20251104_004905_metrics_2025-11-04_01-09-27/system_disk_read_bytes.csv",
+      "bytes": 3883,
+      "compressed_bytes": 433,
+      "crc32": 2564278468
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_HomeTimeline_20251104_004905_metrics_2025-11-04_01-09-27/jaeger_spans_rate.csv",
+      "bytes": 11169,
+      "compressed_bytes": 780,
+      "crc32": 1349598648
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_SocialGraph_20251104_013615_metrics_2025-11-04_01-57-06/system_disk_io_time.csv",
+      "bytes": 10498,
+      "compressed_bytes": 1039,
+      "crc32": 2723439928
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_SocialGraph_20251104_013615_metrics_2025-11-04_01-57-06/system_disk_write_bytes.csv",
+      "bytes": 4768,
+      "compressed_bytes": 961,
+      "crc32": 135037782
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_SocialGraph_20251104_013615_metrics_2025-11-04_01-57-06/metadata.txt",
+      "bytes": 53,
+      "compressed_bytes": 43,
+      "crc32": 766048807
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_SocialGraph_20251104_013615_metrics_2025-11-04_01-57-06/socialnet_container_network_receive.csv",
+      "bytes": 296305,
+      "compressed_bytes": 33841,
+      "crc32": 3856000883
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_SocialGraph_20251104_013615_metrics_2025-11-04_01-57-06/system_network_receive_bytes.csv",
+      "bytes": 8150,
+      "compressed_bytes": 793,
+      "crc32": 2807235482
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_SocialGraph_20251104_013615_metrics_2025-11-04_01-57-06/system_disk_usage_percent.csv",
+      "bytes": 14659,
+      "compressed_bytes": 1111,
+      "crc32": 942347166
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_SocialGraph_20251104_013615_metrics_2025-11-04_01-57-06/system_network_errors.csv",
+      "bytes": 2023,
+      "compressed_bytes": 234,
+      "crc32": 2395102549
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_SocialGraph_20251104_013615_metrics_2025-11-04_01-57-06/socialnet_container_cpu.csv",
+      "bytes": 303294,
+      "compressed_bytes": 34410,
+      "crc32": 2501404933
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_SocialGraph_20251104_013615_metrics_2025-11-04_01-57-06/socialnet_container_network_transmit.csv",
+      "bytes": 289257,
+      "compressed_bytes": 29025,
+      "crc32": 242435310
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_SocialGraph_20251104_013615_metrics_2025-11-04_01-57-06/system_memory_usage_percent.csv",
+      "bytes": 8849,
+      "compressed_bytes": 1105,
+      "crc32": 4257461314
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_SocialGraph_20251104_013615_metrics_2025-11-04_01-57-06/system_load1.csv",
+      "bytes": 10649,
+      "compressed_bytes": 565,
+      "crc32": 631110852
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_SocialGraph_20251104_013615_metrics_2025-11-04_01-57-06/system_cpu_usage.csv",
+      "bytes": 7329,
+      "compressed_bytes": 917,
+      "crc32": 1490053391
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_SocialGraph_20251104_013615_metrics_2025-11-04_01-57-06/system_network_transmit_bytes.csv",
+      "bytes": 8382,
+      "compressed_bytes": 1011,
+      "crc32": 426407067
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_SocialGraph_20251104_013615_metrics_2025-11-04_01-57-06/socialnet_container_memory.csv",
+      "bytes": 3193971,
+      "compressed_bytes": 36320,
+      "crc32": 2173032306
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_SocialGraph_20251104_013615_metrics_2025-11-04_01-57-06/system_disk_read_bytes.csv",
+      "bytes": 3925,
+      "compressed_bytes": 437,
+      "crc32": 4057586519
+    },
+    {
+      "path": "SN_data/metric_data/DB_Redis_CacheLimit_SocialGraph_20251104_013615_metrics_2025-11-04_01-57-06/jaeger_spans_rate.csv",
+      "bytes": 11169,
+      "compressed_bytes": 785,
+      "crc32": 1193430807
+    },
+    {
+      "path": "SN_data/metric_data/Perf_CPU_Contention_20251103_222601_metrics_2025-11-03_22-46-44/system_disk_io_time.csv",
+      "bytes": 10494,
+      "compressed_bytes": 1067,
+      "crc32": 2389123115
+    },
+    {
+      "path": "SN_data/metric_data/Perf_CPU_Contention_20251103_222601_metrics_2025-11-03_22-46-44/system_disk_write_bytes.csv",
+      "bytes": 4740,
+      "compressed_bytes": 960,
+      "crc32": 905508402
+    },
+    {
+      "path": "SN_data/metric_data/Perf_CPU_Contention_20251103_222601_metrics_2025-11-03_22-46-44/metadata.txt",
+      "bytes": 53,
+      "compressed_bytes": 43,
+      "crc32": 766048807
+    },
+    {
+      "path": "SN_data/metric_data/Perf_CPU_Contention_20251103_222601_metrics_2025-11-03_22-46-44/socialnet_container_network_receive.csv",
+      "bytes": 302681,
+      "compressed_bytes": 35069,
+      "crc32": 3779481340
+    },
+    {
+      "path": "SN_data/metric_data/Perf_CPU_Contention_20251103_222601_metrics_2025-11-03_22-46-44/system_network_receive_bytes.csv",
+      "bytes": 8137,
+      "compressed_bytes": 772,
+      "crc32": 3244902876
+    },
+    {
+      "path": "SN_data/metric_data/Perf_CPU_Contention_20251103_222601_metrics_2025-11-03_22-46-44/system_disk_usage_percent.csv",
+      "bytes": 14655,
+      "compressed_bytes": 1103,
+      "crc32": 24919497
+    },
+    {
+      "path": "SN_data/metric_data/Perf_CPU_Contention_20251103_222601_metrics_2025-11-03_22-46-44/system_network_errors.csv",
+      "bytes": 2023,
+      "compressed_bytes": 237,
+      "crc32": 1303300478
+    },
+    {
+      "path": "SN_data/metric_data/Perf_CPU_Contention_20251103_222601_metrics_2025-11-03_22-46-44/socialnet_container_cpu.csv",
+      "bytes": 310989,
+      "compressed_bytes": 35176,
+      "crc32": 2330388028
+    },
+    {
+      "path": "SN_data/metric_data/Perf_CPU_Contention_20251103_222601_metrics_2025-11-03_22-46-44/socialnet_container_network_transmit.csv",
+      "bytes": 295410,
+      "compressed_bytes": 30125,
+      "crc32": 3223438780
+    },
+    {
+      "path": "SN_data/metric_data/Perf_CPU_Contention_20251103_222601_metrics_2025-11-03_22-46-44/system_memory_usage_percent.csv",
+      "bytes": 8843,
+      "compressed_bytes": 1110,
+      "crc32": 1724512099
+    },
+    {
+      "path": "SN_data/metric_data/Perf_CPU_Contention_20251103_222601_metrics_2025-11-03_22-46-44/system_load1.csv",
+      "bytes": 10658,
+      "compressed_bytes": 594,
+      "crc32": 9843715
+    },
+    {
+      "path": "SN_data/metric_data/Perf_CPU_Contention_20251103_222601_metrics_2025-11-03_22-46-44/system_cpu_usage.csv",
+      "bytes": 7299,
+      "compressed_bytes": 920,
+      "crc32": 1921142440
+    },
+    {
+      "path": "SN_data/metric_data/Perf_CPU_Contention_20251103_222601_metrics_2025-11-03_22-46-44/system_network_transmit_bytes.csv",
+      "bytes": 8384,
+      "compressed_bytes": 1010,
+      "crc32": 842599280
+    },
+    {
+      "path": "SN_data/metric_data/Perf_CPU_Contention_20251103_222601_metrics_2025-11-03_22-46-44/socialnet_container_memory.csv",
+      "bytes": 3269404,
+      "compressed_bytes": 36907,
+      "crc32": 4099943299
+    },
+    {
+      "path": "SN_data/metric_data/Perf_CPU_Contention_20251103_222601_metrics_2025-11-03_22-46-44/system_disk_read_bytes.csv",
+      "bytes": 4199,
+      "compressed_bytes": 455,
+      "crc32": 2749273623
+    },
+    {
+      "path": "SN_data/metric_data/Perf_CPU_Contention_20251103_222601_metrics_2025-11-03_22-46-44/jaeger_spans_rate.csv",
+      "bytes": 11310,
+      "compressed_bytes": 790,
+      "crc32": 2375492116
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_SocialGraph_20251104_002506_metrics_2025-11-04_00-45-42/system_disk_io_time.csv",
+      "bytes": 10369,
+      "compressed_bytes": 1050,
+      "crc32": 3548508308
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_SocialGraph_20251104_002506_metrics_2025-11-04_00-45-42/system_disk_write_bytes.csv",
+      "bytes": 4709,
+      "compressed_bytes": 945,
+      "crc32": 4106129541
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_SocialGraph_20251104_002506_metrics_2025-11-04_00-45-42/metadata.txt",
+      "bytes": 53,
+      "compressed_bytes": 43,
+      "crc32": 766048807
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_SocialGraph_20251104_002506_metrics_2025-11-04_00-45-42/socialnet_container_network_receive.csv",
+      "bytes": 299117,
+      "compressed_bytes": 34631,
+      "crc32": 3311044780
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_SocialGraph_20251104_002506_metrics_2025-11-04_00-45-42/system_network_receive_bytes.csv",
+      "bytes": 8096,
+      "compressed_bytes": 791,
+      "crc32": 359060735
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_SocialGraph_20251104_002506_metrics_2025-11-04_00-45-42/system_disk_usage_percent.csv",
+      "bytes": 14477,
+      "compressed_bytes": 1101,
+      "crc32": 436773240
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_SocialGraph_20251104_002506_metrics_2025-11-04_00-45-42/system_network_errors.csv",
+      "bytes": 1998,
+      "compressed_bytes": 233,
+      "crc32": 310589565
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_SocialGraph_20251104_002506_metrics_2025-11-04_00-45-42/socialnet_container_cpu.csv",
+      "bytes": 307092,
+      "compressed_bytes": 34739,
+      "crc32": 2172197441
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_SocialGraph_20251104_002506_metrics_2025-11-04_00-45-42/socialnet_container_network_transmit.csv",
+      "bytes": 291671,
+      "compressed_bytes": 29511,
+      "crc32": 4068351946
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_SocialGraph_20251104_002506_metrics_2025-11-04_00-45-42/system_memory_usage_percent.csv",
+      "bytes": 8744,
+      "compressed_bytes": 1090,
+      "crc32": 8260254
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_SocialGraph_20251104_002506_metrics_2025-11-04_00-45-42/system_load1.csv",
+      "bytes": 10522,
+      "compressed_bytes": 560,
+      "crc32": 1361776511
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_SocialGraph_20251104_002506_metrics_2025-11-04_00-45-42/system_cpu_usage.csv",
+      "bytes": 7240,
+      "compressed_bytes": 910,
+      "crc32": 534691426
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_SocialGraph_20251104_002506_metrics_2025-11-04_00-45-42/system_network_transmit_bytes.csv",
+      "bytes": 8267,
+      "compressed_bytes": 968,
+      "crc32": 835793451
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_SocialGraph_20251104_002506_metrics_2025-11-04_00-45-42/socialnet_container_memory.csv",
+      "bytes": 3257579,
+      "compressed_bytes": 36770,
+      "crc32": 3680271589
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_SocialGraph_20251104_002506_metrics_2025-11-04_00-45-42/system_disk_read_bytes.csv",
+      "bytes": 3600,
+      "compressed_bytes": 292,
+      "crc32": 486868482
+    },
+    {
+      "path": "SN_data/metric_data/Svc_Kill_SocialGraph_20251104_002506_metrics_2025-11-04_00-45-42/jaeger_spans_rate.csv",
+      "bytes": 11169,
+      "compressed_bytes": 778,
+      "crc32": 1003713201
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_TextService_20251104_022416_metrics_2025-11-04_02-45-14/system_disk_io_time.csv",
+      "bytes": 10499,
+      "compressed_bytes": 1082,
+      "crc32": 2557948235
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_TextService_20251104_022416_metrics_2025-11-04_02-45-14/system_disk_write_bytes.csv",
+      "bytes": 4741,
+      "compressed_bytes": 954,
+      "crc32": 462030573
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_TextService_20251104_022416_metrics_2025-11-04_02-45-14/metadata.txt",
+      "bytes": 53,
+      "compressed_bytes": 43,
+      "crc32": 766048807
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_TextService_20251104_022416_metrics_2025-11-04_02-45-14/socialnet_container_network_receive.csv",
+      "bytes": 295274,
+      "compressed_bytes": 33604,
+      "crc32": 594670177
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_TextService_20251104_022416_metrics_2025-11-04_02-45-14/system_network_receive_bytes.csv",
+      "bytes": 8157,
+      "compressed_bytes": 794,
+      "crc32": 2367287236
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_TextService_20251104_022416_metrics_2025-11-04_02-45-14/system_disk_usage_percent.csv",
+      "bytes": 14654,
+      "compressed_bytes": 1098,
+      "crc32": 1519989853
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_TextService_20251104_022416_metrics_2025-11-04_02-45-14/system_network_errors.csv",
+      "bytes": 2023,
+      "compressed_bytes": 235,
+      "crc32": 1920990451
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_TextService_20251104_022416_metrics_2025-11-04_02-45-14/socialnet_container_cpu.csv",
+      "bytes": 303601,
+      "compressed_bytes": 34140,
+      "crc32": 1304216554
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_TextService_20251104_022416_metrics_2025-11-04_02-45-14/socialnet_container_network_transmit.csv",
+      "bytes": 286989,
+      "compressed_bytes": 27901,
+      "crc32": 1898811784
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_TextService_20251104_022416_metrics_2025-11-04_02-45-14/system_memory_usage_percent.csv",
+      "bytes": 8853,
+      "compressed_bytes": 1111,
+      "crc32": 2340258107
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_TextService_20251104_022416_metrics_2025-11-04_02-45-14/system_load1.csv",
+      "bytes": 10652,
+      "compressed_bytes": 569,
+      "crc32": 1097350568
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_TextService_20251104_022416_metrics_2025-11-04_02-45-14/system_cpu_usage.csv",
+      "bytes": 7352,
+      "compressed_bytes": 946,
+      "crc32": 3275966442
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_TextService_20251104_022416_metrics_2025-11-04_02-45-14/system_network_transmit_bytes.csv",
+      "bytes": 8387,
+      "compressed_bytes": 1009,
+      "crc32": 4130173513
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_TextService_20251104_022416_metrics_2025-11-04_02-45-14/socialnet_container_memory.csv",
+      "bytes": 3195737,
+      "compressed_bytes": 35316,
+      "crc32": 326870232
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_TextService_20251104_022416_metrics_2025-11-04_02-45-14/system_disk_read_bytes.csv",
+      "bytes": 3630,
+      "compressed_bytes": 278,
+      "crc32": 2762542430
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_TextService_20251104_022416_metrics_2025-11-04_02-45-14/jaeger_spans_rate.csv",
+      "bytes": 11310,
+      "compressed_bytes": 796,
+      "crc32": 664744569
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/system_disk_io_time.csv",
+      "bytes": 10368,
+      "compressed_bytes": 1057,
+      "crc32": 2188733174
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/system_disk_write_bytes.csv",
+      "bytes": 4683,
+      "compressed_bytes": 936,
+      "crc32": 195688409
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/metadata.txt",
+      "bytes": 53,
+      "compressed_bytes": 43,
+      "crc32": 766048807
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/socialnet_container_network_receive.csv",
+      "bytes": 298817,
+      "compressed_bytes": 34467,
+      "crc32": 89114571
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/system_network_receive_bytes.csv",
+      "bytes": 7979,
+      "compressed_bytes": 769,
+      "crc32": 1365175419
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/system_disk_usage_percent.csv",
+      "bytes": 14477,
+      "compressed_bytes": 1093,
+      "crc32": 2986490255
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/system_network_errors.csv",
+      "bytes": 1998,
+      "compressed_bytes": 234,
+      "crc32": 956487903
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/socialnet_container_cpu.csv",
+      "bytes": 307098,
+      "compressed_bytes": 34640,
+      "crc32": 1179873610
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/socialnet_container_network_transmit.csv",
+      "bytes": 291722,
+      "compressed_bytes": 29636,
+      "crc32": 800900950
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/system_memory_usage_percent.csv",
+      "bytes": 8741,
+      "compressed_bytes": 1101,
+      "crc32": 1216245559
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/system_load1.csv",
+      "bytes": 10521,
+      "compressed_bytes": 560,
+      "crc32": 1665499764
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/system_cpu_usage.csv",
+      "bytes": 7243,
+      "compressed_bytes": 924,
+      "crc32": 1814781914
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/system_network_transmit_bytes.csv",
+      "bytes": 8291,
+      "compressed_bytes": 1010,
+      "crc32": 3592125179
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/socialnet_container_memory.csv",
+      "bytes": 3229047,
+      "compressed_bytes": 36539,
+      "crc32": 1614225264
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/system_disk_read_bytes.csv",
+      "bytes": 3585,
+      "compressed_bytes": 277,
+      "crc32": 2332213613
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/jaeger_spans_rate.csv",
+      "bytes": 11169,
+      "compressed_bytes": 784,
+      "crc32": 1361507788
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_UserService_20251104_020019_metrics_2025-11-04_02-21-10/system_disk_io_time.csv",
+      "bytes": 10497,
+      "compressed_bytes": 1039,
+      "crc32": 4165796947
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_UserService_20251104_020019_metrics_2025-11-04_02-21-10/system_disk_write_bytes.csv",
+      "bytes": 4735,
+      "compressed_bytes": 949,
+      "crc32": 1027005524
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_UserService_20251104_020019_metrics_2025-11-04_02-21-10/metadata.txt",
+      "bytes": 53,
+      "compressed_bytes": 43,
+      "crc32": 766048807
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_UserService_20251104_020019_metrics_2025-11-04_02-21-10/socialnet_container_network_receive.csv",
+      "bytes": 296311,
+      "compressed_bytes": 33819,
+      "crc32": 2121169831
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_UserService_20251104_020019_metrics_2025-11-04_02-21-10/system_network_receive_bytes.csv",
+      "bytes": 8173,
+      "compressed_bytes": 795,
+      "crc32": 3794707762
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_UserService_20251104_020019_metrics_2025-11-04_02-21-10/system_disk_usage_percent.csv",
+      "bytes": 14662,
+      "compressed_bytes": 1103,
+      "crc32": 3220031404
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_UserService_20251104_020019_metrics_2025-11-04_02-21-10/system_network_errors.csv",
+      "bytes": 2023,
+      "compressed_bytes": 235,
+      "crc32": 2370991931
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_UserService_20251104_020019_metrics_2025-11-04_02-21-10/socialnet_container_cpu.csv",
+      "bytes": 301013,
+      "compressed_bytes": 33713,
+      "crc32": 4262201545
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_UserService_20251104_020019_metrics_2025-11-04_02-21-10/socialnet_container_network_transmit.csv",
+      "bytes": 288396,
+      "compressed_bytes": 28428,
+      "crc32": 694568680
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_UserService_20251104_020019_metrics_2025-11-04_02-21-10/system_memory_usage_percent.csv",
+      "bytes": 8847,
+      "compressed_bytes": 1106,
+      "crc32": 3033268009
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_UserService_20251104_020019_metrics_2025-11-04_02-21-10/system_load1.csv",
+      "bytes": 10655,
+      "compressed_bytes": 556,
+      "crc32": 4139854510
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_UserService_20251104_020019_metrics_2025-11-04_02-21-10/system_cpu_usage.csv",
+      "bytes": 7336,
+      "compressed_bytes": 951,
+      "crc32": 3805428135
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_UserService_20251104_020019_metrics_2025-11-04_02-21-10/system_network_transmit_bytes.csv",
+      "bytes": 8370,
+      "compressed_bytes": 1017,
+      "crc32": 1445744619
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_UserService_20251104_020019_metrics_2025-11-04_02-21-10/socialnet_container_memory.csv",
+      "bytes": 3186078,
+      "compressed_bytes": 34739,
+      "crc32": 3470812117
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_UserService_20251104_020019_metrics_2025-11-04_02-21-10/system_disk_read_bytes.csv",
+      "bytes": 3630,
+      "compressed_bytes": 279,
+      "crc32": 2210253962
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_UserService_20251104_020019_metrics_2025-11-04_02-21-10/jaeger_spans_rate.csv",
+      "bytes": 11310,
+      "compressed_bytes": 796,
+      "crc32": 1118077153
+    }
+  ]
+}

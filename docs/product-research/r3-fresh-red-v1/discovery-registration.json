@@ -1,0 +1,16 @@
+{
+  "role": "DISCOVERY_ONLY_NOT_TEST",
+  "metric_cases": {
+    "SN_data": [
+      "Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55",
+      "Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39"
+    ],
+    "TT_data": [
+      "Normal_case_em_20251103T134716Z",
+      "Lv_C_exception_injection_20251103T185917Z_em"
+    ]
+  },
+  "reason": "one normal and first lexicographic abnormal per system",
+  "full_read_max_file_bytes": 20000000,
+  "sample_rows": 200
+}

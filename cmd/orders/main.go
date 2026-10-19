@@ -43,6 +43,7 @@ func main() {
 	defer stop()
 
 	handler := telemetry.InstrumentHandler("orders", applicationHandler)
+	handler = telemetry.InstrumentRED("orders", []string{"/orders/current"}, handler)
 	address := platform.Env("HTTP_ADDR", ":8081")
 	serverErr := platform.Serve(ctx, address, handler, logger)
 
