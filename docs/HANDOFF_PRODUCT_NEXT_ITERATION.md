@@ -1,5 +1,16 @@
 # RCA Workbench — handoff следующей исследовательской итерации R3
 
+> **Продолжать отсюда:** [R3-F](product-research/R3_FRESH_RED_RESULTS.md).
+> AnoMod ZIP скачан и проверен, не качать повторно. SN RED отсутствуют в
+> опубликованном directory inventory, Eadro по коду не решает этот пробел.
+> Новые HTTP counters/histogram уже добавлены в наш Go-контур, отдельные
+> PromQL/единицы — `deploy/acceptance/red-queries.json`. HTTP/race/build прошли;
+> настоящий Prometheus ещё не запускался: Docker daemon выключен.
+> Дальше — ограниченный live capture, регистрация matched сравнения и
+> достаточных train-данных новых полей до fit. Не выдавать наличие измерителя
+> за рост качества M13; не повторять старый RE1 и не подбирать по M14.
+> Продукт rca-workbench и DOCX не изменялись.
+
 > Последнее выполнение: [R3-D/E](product-research/R3_FAMILY_ABLATION_RESULTS.md).
 > 12 fits завершены: расширение метрик latency/error дало ΔMRR +0,1121 на RE1
 > USED_DEVELOPMENT. Это metric-only абляция, не улучшенные результаты M13.

@@ -1,0 +1,785 @@
+{
+  "role": "DISCOVERY_ONLY",
+  "tables": [
+    {
+      "path": "TT_data/metric_data/Lv_C_exception_injection_20251103T185917Z_em/Lv_C_exception_injection_20251103T185917Z_em_metrics_20251103_192141.csv",
+      "bytes": 101438777,
+      "columns": [
+        "metric_name",
+        "timestamp",
+        "datetime",
+        "value",
+        "app",
+        "app_kubernetes_io_component",
+        "app_kubernetes_io_instance",
+        "app_kubernetes_io_managed_by",
+        "app_kubernetes_io_name",
+        "app_kubernetes_io_part_of",
+        "app_kubernetes_io_version",
+        "beta_kubernetes_io_arch",
+        "beta_kubernetes_io_os",
+        "code",
+        "container",
+        "controller_revision_hash",
+        "cpu",
+        "device",
+        "device_error",
+        "fstype",
+        "handler",
+        "helm_sh_chart",
+        "id",
+        "image",
+        "instance",
+        "interface",
+        "job",
+        "k8s_app",
+        "kubernetes_io_arch",
+        "kubernetes_io_cluster_service",
+        "kubernetes_io_hostname",
+        "kubernetes_io_name",
+        "kubernetes_io_os",
+        "kubernetes_name",
+        "kubernetes_namespace",
+        "kubernetes_pod_name",
+        "method",
+        "mode",
+        "mountpoint",
+        "name",
+        "namespace",
+        "node_kubernetes_io_exclude_from_external_load_balancers",
+        "node_role_kubernetes_io_control_plane",
+        "plugin_name",
+        "pod",
+        "pod_template_generation",
+        "state"
+      ],
+      "prefix_rows": 200,
+      "prefix_metric_names": [
+        "node_cpu_seconds_total"
+      ],
+      "service_labels": [],
+      "prefix_timestamps": [
+        "1762196501",
+        "1762197056"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE"
+    },
+    {
+      "path": "TT_data/metric_data/Normal_case_em_20251103T134716Z/Normal_case_em_20251103T134716Z_metrics_20251103_140128.csv",
+      "bytes": 68098655,
+      "columns": [
+        "metric_name",
+        "timestamp",
+        "datetime",
+        "value",
+        "app",
+        "app_kubernetes_io_component",
+        "app_kubernetes_io_instance",
+        "app_kubernetes_io_managed_by",
+        "app_kubernetes_io_name",
+        "app_kubernetes_io_part_of",
+        "app_kubernetes_io_version",
+        "beta_kubernetes_io_arch",
+        "beta_kubernetes_io_os",
+        "code",
+        "container",
+        "controller_revision_hash",
+        "cpu",
+        "device",
+        "device_error",
+        "fstype",
+        "handler",
+        "helm_sh_chart",
+        "id",
+        "image",
+        "instance",
+        "interface",
+        "job",
+        "k8s_app",
+        "kubernetes_io_arch",
+        "kubernetes_io_cluster_service",
+        "kubernetes_io_hostname",
+        "kubernetes_io_name",
+        "kubernetes_io_os",
+        "kubernetes_name",
+        "kubernetes_namespace",
+        "kubernetes_pod_name",
+        "method",
+        "mode",
+        "mountpoint",
+        "name",
+        "namespace",
+        "node_kubernetes_io_exclude_from_external_load_balancers",
+        "node_role_kubernetes_io_control_plane",
+        "plugin_name",
+        "pod",
+        "pod_template_generation",
+        "state"
+      ],
+      "prefix_rows": 200,
+      "prefix_metric_names": [
+        "node_cpu_seconds_total"
+      ],
+      "service_labels": [],
+      "prefix_timestamps": [
+        "1762177723",
+        "1762178368"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE"
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/system_disk_io_time.csv",
+      "bytes": 13257,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "device",
+        "instance",
+        "job"
+      ],
+      "prefix_rows": 101,
+      "prefix_metric_names": [],
+      "service_labels": [],
+      "prefix_timestamps": [
+        "2025-11-04 02:56:57",
+        "2025-11-04 03:21:57"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "1dc15041495f1b895e24d35c330b905af16301f820af09432d2ff770da10a58c"
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/system_disk_write_bytes.csv",
+      "bytes": 5989,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "device"
+      ],
+      "prefix_rows": 101,
+      "prefix_metric_names": [],
+      "service_labels": [],
+      "prefix_timestamps": [
+        "2025-11-04 02:56:59",
+        "2025-11-04 03:21:59"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "1782e010082a53b93e3abd1aa8278a6e5cbb71e65e7e21a5a45e5c3f8430e6eb"
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/socialnet_container_network_receive.csv",
+      "bytes": 372435,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "container_label_com_docker_compose_service"
+      ],
+      "prefix_rows": 200,
+      "prefix_metric_names": [],
+      "service_labels": [
+        "cadvisor",
+        "compose-post-redis"
+      ],
+      "prefix_timestamps": [
+        "2025-11-04 02:56:50",
+        "2025-11-04 03:21:20"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "4b089fef287215a6c37e9f283858a6c5b1cdb20be3404209785db88d0f596c26"
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/system_network_receive_bytes.csv",
+      "bytes": 9883,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "device"
+      ],
+      "prefix_rows": 200,
+      "prefix_metric_names": [],
+      "service_labels": [],
+      "prefix_timestamps": [
+        "2025-11-04 02:56:59",
+        "2025-11-04 03:21:29"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "ca62c8e69035947faad274b43281f94b5fed87ec226b61d05b35ddf83682f92b"
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/system_disk_usage_percent.csv",
+      "bytes": 18446,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "device",
+        "fstype",
+        "instance",
+        "job",
+        "mountpoint"
+      ],
+      "prefix_rows": 102,
+      "prefix_metric_names": [],
+      "service_labels": [],
+      "prefix_timestamps": [
+        "2025-11-04 02:56:46",
+        "2025-11-04 03:22:01"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "17c37e1600079363bec6f96012f593e32e3f4ab13b928b21553a9f32bc7ba1be"
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/system_network_errors.csv",
+      "bytes": 2548,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric"
+      ],
+      "prefix_rows": 101,
+      "prefix_metric_names": [],
+      "service_labels": [],
+      "prefix_timestamps": [
+        "2025-11-04 02:56:56",
+        "2025-11-04 03:21:56"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "f918e3462d59c0ab5933771a29611fe48794d0c7239d10af606b1897af69aab1"
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/socialnet_container_cpu.csv",
+      "bytes": 380735,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "container_label_com_docker_compose_service"
+      ],
+      "prefix_rows": 200,
+      "prefix_metric_names": [],
+      "service_labels": [
+        "cadvisor",
+        "compose-post-redis"
+      ],
+      "prefix_timestamps": [
+        "2025-11-04 02:57:03",
+        "2025-11-04 03:21:48"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "428252b675c4551b8db5d526f51637546c6edcd7b69e33c0297cae4079e6cc3d"
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/socialnet_container_network_transmit.csv",
+      "bytes": 363870,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "container_label_com_docker_compose_service"
+      ],
+      "prefix_rows": 200,
+      "prefix_metric_names": [],
+      "service_labels": [
+        "cadvisor",
+        "compose-post-redis"
+      ],
+      "prefix_timestamps": [
+        "2025-11-04 02:56:50",
+        "2025-11-04 03:21:20"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "aa55101dcec95e08715f935e1c8a8c957a6f11f916eaaf37d1881683a93adfb2"
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/system_memory_usage_percent.csv",
+      "bytes": 11132,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "instance",
+        "job"
+      ],
+      "prefix_rows": 102,
+      "prefix_metric_names": [],
+      "service_labels": [],
+      "prefix_timestamps": [
+        "2025-11-04 02:56:40",
+        "2025-11-04 03:21:55"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "f9a0a56f2fd7edf8a6b7261baf1089eaea899f74bedac1e3644fc334e4c11e48"
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/system_load1.csv",
+      "bytes": 13408,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "__name__",
+        "instance",
+        "job"
+      ],
+      "prefix_rows": 102,
+      "prefix_metric_names": [],
+      "service_labels": [],
+      "prefix_timestamps": [
+        "2025-11-04 02:56:41",
+        "2025-11-04 03:21:56"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "c92c8f27d4c9c23428d9622b0c7068ef8b6ec557b4cb95185e8eb5da1bf23665"
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/system_cpu_usage.csv",
+      "bytes": 9276,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "instance"
+      ],
+      "prefix_rows": 101,
+      "prefix_metric_names": [],
+      "service_labels": [],
+      "prefix_timestamps": [
+        "2025-11-04 02:56:54",
+        "2025-11-04 03:21:54"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "567d7e211e4b2211062b48bb2d236d9998b3723307e7010d6513001e6e22a729"
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/system_network_transmit_bytes.csv",
+      "bytes": 10593,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "device"
+      ],
+      "prefix_rows": 200,
+      "prefix_metric_names": [],
+      "service_labels": [],
+      "prefix_timestamps": [
+        "2025-11-04 02:57:00",
+        "2025-11-04 03:21:30"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "37b963da3c77383fbdae6de43d30c24a1ebb0ac9dad1a2e9892ff62d525b3e16"
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/socialnet_container_memory.csv",
+      "bytes": 4025047,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "__name__",
+        "container_label_com_docker_compose_config_hash",
+        "container_label_com_docker_compose_container_number",
+        "container_label_com_docker_compose_oneoff",
+        "container_label_com_docker_compose_project",
+        "container_label_com_docker_compose_project_config_files",
+        "container_label_com_docker_compose_project_working_dir",
+        "container_label_com_docker_compose_service",
+        "container_label_com_docker_compose_version",
+        "id",
+        "image",
+        "instance",
+        "job",
+        "name",
+        "container_label_maintainer",
+        "container_label_resty_config_options",
+        "container_label_resty_luarocks_version",
+        "container_label_resty_openssl_version",
+        "container_label_resty_pcre_version",
+        "container_label_resty_version",
+        "container_label_org_opencontainers_image_source"
+      ],
+      "prefix_rows": 200,
+      "prefix_metric_names": [],
+      "service_labels": [
+        "url-shorten-memcached",
+        "user-timeline-service"
+      ],
+      "prefix_timestamps": [
+        "2025-11-04 02:56:34",
+        "2025-11-04 03:20:49"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "562e1dfd4dc986d02f4fb039e0fbf5ceb3e6318f0dffd24e57a7e6cb88dadec9"
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/system_disk_read_bytes.csv",
+      "bytes": 4575,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "device"
+      ],
+      "prefix_rows": 101,
+      "prefix_metric_names": [],
+      "service_labels": [],
+      "prefix_timestamps": [
+        "2025-11-04 02:56:58",
+        "2025-11-04 03:21:58"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "c80418e88ad29da66582b4054d49d7f3792eddd4f9167dc1f05deaa0fdab1edc"
+    },
+    {
+      "path": "SN_data/metric_data/Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39/jaeger_spans_rate.csv",
+      "bytes": 14271,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "result"
+      ],
+      "prefix_rows": 200,
+      "prefix_metric_names": [],
+      "service_labels": [],
+      "prefix_timestamps": [
+        "2025-11-04 02:56:53",
+        "2025-11-04 03:21:23"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "0ce1d6111ac24cffd3f5f8ae1d68956f434ea3a55bd3b5c6137bd82c0a3a3dc0"
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/system_disk_io_time.csv",
+      "bytes": 10368,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "device",
+        "instance",
+        "job"
+      ],
+      "prefix_rows": 79,
+      "prefix_metric_names": [],
+      "service_labels": [],
+      "prefix_timestamps": [
+        "2025-11-03 22:03:43",
+        "2025-11-03 22:23:13"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "fdcea9d1df88bfe8bedd236b8a840e84c8874959fd8f6eb9ed172049d1f17a2e"
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/system_disk_write_bytes.csv",
+      "bytes": 4683,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "device"
+      ],
+      "prefix_rows": 79,
+      "prefix_metric_names": [],
+      "service_labels": [],
+      "prefix_timestamps": [
+        "2025-11-03 22:03:44",
+        "2025-11-03 22:23:14"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "d9dc8d07326fff5c2b49988c6c69dcdd62fe28ef790d63ff173ef81a5081dff8"
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/socialnet_container_network_receive.csv",
+      "bytes": 298817,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "container_label_com_docker_compose_service"
+      ],
+      "prefix_rows": 200,
+      "prefix_metric_names": [],
+      "service_labels": [
+        "cadvisor",
+        "compose-post-redis",
+        "compose-post-service"
+      ],
+      "prefix_timestamps": [
+        "2025-11-03 22:03:35",
+        "2025-11-03 22:13:50"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "28e35b53dc431e930a2a615b064f3f88fc9ffba6c04f8818153c9f88b2c11c10"
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/system_network_receive_bytes.csv",
+      "bytes": 7979,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "device"
+      ],
+      "prefix_rows": 158,
+      "prefix_metric_names": [],
+      "service_labels": [],
+      "prefix_timestamps": [
+        "2025-11-03 22:03:45",
+        "2025-11-03 22:23:15"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "fa07aff7a6c721fc4db467a66f4c92c2e6ac91f86c197b7f2bb8c0cfabf416d6"
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/system_disk_usage_percent.csv",
+      "bytes": 14477,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "device",
+        "fstype",
+        "instance",
+        "job",
+        "mountpoint"
+      ],
+      "prefix_rows": 80,
+      "prefix_metric_names": [],
+      "service_labels": [],
+      "prefix_timestamps": [
+        "2025-11-03 22:03:31",
+        "2025-11-03 22:23:16"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "380658284bddb7e588ccfe2075ec4e8c8a728b0737a1ab35a51dc801fa9740c3"
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/system_network_errors.csv",
+      "bytes": 1998,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric"
+      ],
+      "prefix_rows": 79,
+      "prefix_metric_names": [],
+      "service_labels": [],
+      "prefix_timestamps": [
+        "2025-11-03 22:03:42",
+        "2025-11-03 22:23:12"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "30b49e2ecb02a55c534e939d46f3f0238ed077d0b86f0031b849c199d697b33d"
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/socialnet_container_cpu.csv",
+      "bytes": 307098,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "container_label_com_docker_compose_service"
+      ],
+      "prefix_rows": 200,
+      "prefix_metric_names": [],
+      "service_labels": [
+        "cadvisor",
+        "compose-post-redis",
+        "compose-post-service"
+      ],
+      "prefix_timestamps": [
+        "2025-11-03 22:03:34",
+        "2025-11-03 22:13:49"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "6b8e5ae39f142a41c34421cb5ea450c056b704602df29ae2fafb75b206fd0cf7"
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/socialnet_container_network_transmit.csv",
+      "bytes": 291722,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "container_label_com_docker_compose_service"
+      ],
+      "prefix_rows": 200,
+      "prefix_metric_names": [],
+      "service_labels": [
+        "cadvisor",
+        "compose-post-redis",
+        "compose-post-service"
+      ],
+      "prefix_timestamps": [
+        "2025-11-03 22:03:36",
+        "2025-11-03 22:13:51"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "e9067d9d498fc8924c097367295094d1e528da519028c9e078bb3eb4db3bf517"
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/system_memory_usage_percent.csv",
+      "bytes": 8741,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "instance",
+        "job"
+      ],
+      "prefix_rows": 80,
+      "prefix_metric_names": [],
+      "service_labels": [],
+      "prefix_timestamps": [
+        "2025-11-03 22:03:26",
+        "2025-11-03 22:23:11"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "1c191d897a9b525c716a49dc3867bb4814a73515c056a6b80c832026ab9017ea"
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/system_load1.csv",
+      "bytes": 10521,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "__name__",
+        "instance",
+        "job"
+      ],
+      "prefix_rows": 80,
+      "prefix_metric_names": [],
+      "service_labels": [],
+      "prefix_timestamps": [
+        "2025-11-03 22:03:27",
+        "2025-11-03 22:23:12"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "a01db6d2ab032947ebc7eb2c0422d1ec0ee08c3a6b1c407172c56b212eb20f49"
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/system_cpu_usage.csv",
+      "bytes": 7243,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "instance"
+      ],
+      "prefix_rows": 79,
+      "prefix_metric_names": [],
+      "service_labels": [],
+      "prefix_timestamps": [
+        "2025-11-03 22:03:40",
+        "2025-11-03 22:23:10"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "f005991f4745e6fc502b49a6b022d33643c3f4d476fc465dbc974b0782a683ec"
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/system_network_transmit_bytes.csv",
+      "bytes": 8291,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "device"
+      ],
+      "prefix_rows": 158,
+      "prefix_metric_names": [],
+      "service_labels": [],
+      "prefix_timestamps": [
+        "2025-11-03 22:03:46",
+        "2025-11-03 22:23:16"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "cb00d6ad3efc9da0e9f6eea7835e2ce1c615042114ac4783dd1deb743c888536"
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/socialnet_container_memory.csv",
+      "bytes": 3229047,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "__name__",
+        "container_label_com_docker_compose_config_hash",
+        "container_label_com_docker_compose_container_number",
+        "container_label_com_docker_compose_oneoff",
+        "container_label_com_docker_compose_project",
+        "container_label_com_docker_compose_project_config_files",
+        "container_label_com_docker_compose_project_working_dir",
+        "container_label_com_docker_compose_service",
+        "container_label_com_docker_compose_version",
+        "id",
+        "image",
+        "instance",
+        "job",
+        "name",
+        "container_label_maintainer",
+        "container_label_resty_config_options",
+        "container_label_resty_luarocks_version",
+        "container_label_resty_openssl_version",
+        "container_label_resty_pcre_version",
+        "container_label_resty_version",
+        "container_label_org_opencontainers_image_source"
+      ],
+      "prefix_rows": 200,
+      "prefix_metric_names": [],
+      "service_labels": [
+        "post-storage-service",
+        "url-shorten-memcached",
+        "user-timeline-service"
+      ],
+      "prefix_timestamps": [
+        "2025-11-03 22:03:19",
+        "2025-11-03 22:13:04"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "ba0bfad05c5fc217883cd72ae82fd4241e9c81cca890e51a1d8dcc209b6739a9"
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/system_disk_read_bytes.csv",
+      "bytes": 3585,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "device"
+      ],
+      "prefix_rows": 79,
+      "prefix_metric_names": [],
+      "service_labels": [],
+      "prefix_timestamps": [
+        "2025-11-03 22:03:44",
+        "2025-11-03 22:23:14"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "78a4ebc1196daa4acd9d81109ab61c0f304cc964e685499d2b5cd93ed00aef36"
+    },
+    {
+      "path": "SN_data/metric_data/Normal_Baseline_20251103_220228_metrics_2025-11-03_22-22-55/jaeger_spans_rate.csv",
+      "bytes": 11169,
+      "columns": [
+        "timestamp",
+        "value",
+        "metric",
+        "result"
+      ],
+      "prefix_rows": 200,
+      "prefix_metric_names": [],
+      "service_labels": [],
+      "prefix_timestamps": [
+        "2025-11-03 22:03:39",
+        "2025-11-03 22:13:54"
+      ],
+      "scope": "PREFIX_ONLY_NOT_FULL_FILE",
+      "sha256": "c4d45ade7f0508bb892dea42ed90f076bf5995814f0b40a1d5e8f7fd46b1befe"
+    }
+  ]
+}

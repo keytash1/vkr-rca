@@ -1,5 +1,29 @@
 # Журнал R3
 
+## R3-F: свежий источник и независимые HTTP-метрики — 19.10.2026
+
+[Итог](product-research/R3_FRESH_RED_RESULTS.md),
+[протокол](R3_FRESH_RED_PROTOCOL.md). Закрыт ограниченный шаг подготовки,
+не заявлен новый выигрыш нынешнего M13.
+
+Скачан официальный AnoMod ZIP 202 MB, MD5 совпал; 3 GB целиком не извлекались.
+Зарегистрированы четыре discovery-случая, прочитаны 32 CSV prefix. В SN
+inventory нет RED CSV, хотя сборщик содержит соответствующие запросы;
+ресурсные данные не подставлены вместо HTTP. Eadro по коду имеет resource
+metrics и trace-derived latency; второй архив без нужных данных не скачивался.
+Новых ranking fit/inference, LLM-вызовов, изменений веса/62 колонок или DOCX нет.
+
+Вместо дальнейшего поиска добавлена измерительная часть в наши три Go-сервиса:
+отдельные HTTP request counters/status classes и duration histogram,
+Prometheus scrape и `supplemental-http-red-v1` с явными единицами/статистиками.
+HTTP/5xx/4xx/исключение health-debug-scrape/параллельность проверены; race и
+обработчики прошли; `go test ./...` и сборка gateway/orders/payment успешны.
+Это не изменение продукта rca-workbench и не результат сравнения точности.
+
+Docker daemon выключен; настоящий scrape/capture пока не выполнен. Дальше —
+один ограниченный живой пилот и достаточные train-данные для новых полей,
+затем versioned contract/promotion по эффекту. Старые RE1 fits не повторять.
+
 ## R3-D/E: полный формат и абляция метрик — 19.10.2026
 
 **Контрольный опыт завершён, SIGNAL_FOR_FRESH_PILOT.**

@@ -39,6 +39,7 @@ func main() {
 		os.Exit(1)
 	}
 	handler := telemetry.InstrumentHandler("payment", applicationHandler)
+	handler = telemetry.InstrumentRED("payment", []string{"/payments/authorize"}, handler)
 	address := platform.Env("HTTP_ADDR", ":8082")
 	serverErr := platform.Serve(ctx, address, handler, logger)
 

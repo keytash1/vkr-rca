@@ -1,0 +1,26 @@
+{
+  "version": "supplemental-http-red-v1",
+  "role": "RESEARCH_MEASUREMENTS_NOT_FROZEN_MODEL_INPUT",
+  "scope": "Completed business HTTP requests; health, debug and scrapes excluded",
+  "window_seconds": 30,
+  "channels": {
+    "request_rate": {
+      "unit": "requests_per_second",
+      "statistic": "per_second_completed_request_rate",
+      "query": "sum by (service) (rate(rca_http_server_requests_total[30s]))"
+    },
+    "error_ratio": {
+      "unit": "ratio",
+      "statistic": "5xx_response_fraction_of_completed_requests",
+      "query": "sum by (service) (rate(rca_http_server_requests_total{status_class=\"5xx\"}[30s])) / sum by (service) (rate(rca_http_server_requests_total[30s]))"
+    },
+    "latency_p95": {
+      "unit": "seconds",
+      "statistic": "histogram_estimated_p95_of_completed_server_requests",
+      "query": "histogram_quantile(0.95, sum by (service, le) (rate(rca_http_server_request_duration_seconds_bucket[30s])))"
+    }
+  },
+  "missing_policy": "No traffic gives undefined error ratio/latency, not normal zero. Missing, stale or failed source must be reported separately.",
+  "aggregation_policy": "Rate each counter before summing replicas. Aggregate histogram buckets before quantile. Never average replica quantiles.",
+  "compatibility": "Do not insert into the existing four-family profile or 62-column M13 model; collect separately until a versioned challenger is evaluated."
+}
