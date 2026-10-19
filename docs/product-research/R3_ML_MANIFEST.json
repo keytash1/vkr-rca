@@ -1,0 +1,41 @@
+{
+  "scope": "Research-only negative results; product runtime and DOCX excluded",
+  "verdicts": {
+    "temporal": "REJECTED_FOR_PROMOTION",
+    "missingness": "REJECTED_FOR_PROMOTION"
+  },
+  "ranking_fits": 18,
+  "new_llm_calls": 0,
+  "sha256": {
+    "docs/HANDOFF_PRODUCT_NEXT_ITERATION.md": "954de197b171e3448b30f7acfb044bee277c7208419c3fd0f8f711cbc25e918f",
+    "docs/PLAN_PRODUCT_ITERATION_2.md": "b0fe845544c16c3e2b27f888e57d7536f31449fc9496c7ec46087dc6de04902c",
+    "docs/PROGRESS_PRODUCT_R3.md": "edacb7724458a10aae59389add99e1fc03840d8658c157e75dffac212363cdce",
+    "docs/product-architecture/GETTING_STARTED.md": "56e3fe9fef1e12fe786cf914627bda7cdd36df6adb67c19c48e44dffacf43929",
+    "docs/R3_ML_PROTOCOL.md": "397d61b007e09363b9ca6dce25bb90a53521f87794df8ff16474975c00fb1ae6",
+    "docs/R3_DIAGNOSTIC_PROTOCOL.md": "25533e82e0bd3955c3671f6b0803756ce35878162161c0623f3d6e1a7e34f21d",
+    "docs/R3_MISSINGNESS_PROTOCOL.md": "72805f736c9c9f67df1ec8f15f335af6811045c1bdfc597c5d67b1ab9b012dcb",
+    "docs/R3_SCHEMA_ERRATUM.md": "d0f91a9f40094cc3416a679fee9cede92b6253fad8ff8ff110b43896598d7e64",
+    "ml/rca_ml/r3_temporal.py": "a770ba47dca826bf95a1fbaafa356e97be5b88b33187a4454520ef9e2749c6d9",
+    "scripts/r3_ml_screen.py": "e9350f4b9b159b78fd3a832a3ccbe40c660346be3af9e5ce75a9b8c3d4c0a341",
+    "scripts/r3_ml_diagnostics.py": "12a472abb7292795a1cb7a4a7914fec814c41190afd4902b80329dcff4d2843e",
+    "scripts/r3_missingness_screen.py": "ea20638bde791b0ac7f3c44c8f89ab1d0d9de4d1a8cbad648487e922d204d24e",
+    "scripts/test_r3_temporal.py": "d80c6dd82d2f4d72bd6756b74183c211f4ef359bb2b0e5b0ecf1b98dc4c66d05",
+    "scripts/finalize_r3_ml.py": "f48c9291547fd95ca3dc5149e85420303acc88c455e7353f2d5ec78faf6b0873",
+    "docs/product-research/R3_ML_RESULTS.md": "7b22a20f6fdeee868d786b607e2f3b69d6d0f25a7719d25689e6fd0163933af0",
+    "docs/product-research/R3_ML_EVALUATION_LABELS.json": "b2094c7356b18453b30bf967c234c65f0328412836a1863a411e3d0b3aadbcee",
+    "docs/product-research/r3-ml-temporal-v1/audit.json": "f3173f49fc14c3c77e312305cb266f90d411fb97bcf5cf112fcb9c4b01d86b09",
+    "docs/product-research/r3-ml-temporal-v1/registration.json": "6174aeb2ae5a8b5bf677e126aab21b74968a9b3a88c01e2144de5e795ec3f674",
+    "docs/product-research/r3-ml-temporal-v1/results.json": "2f1714c18d527466fb040d8b8dd6634c928e551e3d71574cd74f64d129abd221",
+    "docs/product-research/r3-ml-temporal-v1/predictions.json": "1c326c92df9993fe111e074925c405239728ec9ad64965da42fd7c066934b57c",
+    "docs/product-research/r3-ml-diagnostics-v1/registration.json": "8229cb7895e9ec3ca250f72be52cb9881a4949795ec434bda47ae5d49588a116",
+    "docs/product-research/r3-ml-diagnostics-v1/results.json": "210aaed36600d64f573a344e33ee5460039522c84a361a08a7aa23a6bf773797",
+    "docs/product-research/r3-ml-diagnostics-v1/predictions.json": "91d879cfb10759196985451d58c1f297c05dcd62657200de69c3279ad2ae37fc",
+    "docs/product-research/r3-ml-diagnostics-v1/healthy_low.json": "601c696209067805cbdf10ca1ded4b4f6fdb7ea1cfd51508028c2c9ef4e08c6b",
+    "docs/product-research/r3-ml-diagnostics-v1/healthy_high.json": "23f742acb1cbc2919c8f9bdf7a46aa19b45ed06a16e9da5349042fd7f918f4ee",
+    "docs/product-research/r3-ml-missingness-v1/registration.json": "86c52b2a33071b25f3f3664f5637f4a4db6cd343029e68749595bda44c4a39ea",
+    "docs/product-research/r3-ml-missingness-v1/STOPPED.json": "cd99702c15b37c118595d5132d4521bc7cd34f8b1a8e32515eb69542fb11eb37",
+    "docs/product-research/r3-ml-missingness-v2/registration.json": "163f00e7caa22117c69ece4bb32f8c02f39cecea196a2788e6f4ab3d4ef3ecfb",
+    "docs/product-research/r3-ml-missingness-v2/results.json": "9e672144926b2f2eae807f330442ecc3dd21f25129b09eecc41b2176eb450c07",
+    "docs/product-research/r3-ml-missingness-v2/predictions.json": "2d7a78ca11aaedbd9b9d8481fdc4483e50da2a619bfd506f13bd761a980904e9"
+  }
+}

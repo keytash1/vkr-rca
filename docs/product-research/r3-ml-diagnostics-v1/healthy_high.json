@@ -1,0 +1,1412 @@
+{
+  "baseline": {
+    "version": "m13-healthy-baseline-v1",
+    "fit_role": "M13_HEALTHY_ENGINEERING",
+    "metric": {
+      "compose-post-service": {
+        "cpu": {
+          "intercept": 0.004563,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.0070774245,
+          "samples": 299
+        },
+        "memory": {
+          "intercept": 145715200.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 36380672.0,
+          "samples": 299
+        },
+        "network": {
+          "intercept": 4405.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 2831.75,
+          "samples": 299
+        },
+        "traffic_rate": {
+          "intercept": 1309.75,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 793.125,
+          "samples": 299
+        }
+      },
+      "home-timeline-service": {
+        "cpu": {
+          "intercept": 0.008283,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.0025139305,
+          "samples": 299
+        },
+        "memory": {
+          "intercept": 18403328.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 690176.0,
+          "samples": 299
+        },
+        "network": {
+          "intercept": 43099.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 8390.25,
+          "samples": 299
+        },
+        "traffic_rate": {
+          "intercept": 20729.75,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 4308.25,
+          "samples": 299
+        }
+      },
+      "media-service": {
+        "cpu": {
+          "intercept": 0.000657711,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.0009178115,
+          "samples": 299
+        },
+        "memory": {
+          "intercept": 13553664.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 684032.0,
+          "samples": 299
+        },
+        "network": {
+          "intercept": 587.25,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 298.75,
+          "samples": 299
+        },
+        "traffic_rate": {
+          "intercept": 281.75,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 145.5,
+          "samples": 299
+        }
+      },
+      "nginx-thrift": {
+        "cpu": {
+          "intercept": 0.071613065,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.012818694999999991,
+          "samples": 299
+        },
+        "memory": {
+          "intercept": 283213824.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 2832138.24,
+          "samples": 299
+        },
+        "network": {
+          "intercept": 84313.75,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 5058.625,
+          "samples": 299
+        },
+        "traffic_rate": {
+          "intercept": 30457.75,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1873.375,
+          "samples": 299
+        }
+      },
+      "post-storage-service": {
+        "cpu": {
+          "intercept": 0.022829851,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.003984089,
+          "samples": 299
+        },
+        "memory": {
+          "intercept": 58155008.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 9322496.0,
+          "samples": 299
+        },
+        "network": {
+          "intercept": 90493.75,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 5879.0,
+          "samples": 299
+        },
+        "traffic_rate": {
+          "intercept": 54359.25,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 3853.0,
+          "samples": 299
+        }
+      },
+      "social-graph-service": {
+        "cpu": {
+          "intercept": 0.000854455,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.0010327715,
+          "samples": 299
+        },
+        "memory": {
+          "intercept": 71995392.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 719953.92,
+          "samples": 299
+        },
+        "network": {
+          "intercept": 949.5,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 586.0,
+          "samples": 299
+        },
+        "traffic_rate": {
+          "intercept": 351.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 194.875,
+          "samples": 299
+        }
+      },
+      "text-service": {
+        "cpu": {
+          "intercept": 0.002899502,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.004170182,
+          "samples": 299
+        },
+        "memory": {
+          "intercept": 68513792.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 15253504.0,
+          "samples": 299
+        },
+        "network": {
+          "intercept": 1772.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 969.25,
+          "samples": 299
+        },
+        "traffic_rate": {
+          "intercept": 627.25,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 343.125,
+          "samples": 299
+        }
+      },
+      "unique-id-service": {
+        "cpu": {
+          "intercept": 0.000643216,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.0008968575,
+          "samples": 299
+        },
+        "memory": {
+          "intercept": 13672448.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 684032.0,
+          "samples": 299
+        },
+        "network": {
+          "intercept": 560.5,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 322.5,
+          "samples": 299
+        },
+        "traffic_rate": {
+          "intercept": 263.75,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 164.75,
+          "samples": 299
+        }
+      },
+      "url-shorten-service": {
+        "cpu": {
+          "intercept": 0.001630769,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.002226868,
+          "samples": 299
+        },
+        "memory": {
+          "intercept": 48443392.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 7995392.0,
+          "samples": 299
+        },
+        "network": {
+          "intercept": 1219.75,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 715.375,
+          "samples": 299
+        },
+        "traffic_rate": {
+          "intercept": 399.5,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 204.0,
+          "samples": 299
+        }
+      },
+      "user-mention-service": {
+        "cpu": {
+          "intercept": 0.001027861,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.0013437789999999998,
+          "samples": 299
+        },
+        "memory": {
+          "intercept": 20344832.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 696320.0,
+          "samples": 299
+        },
+        "network": {
+          "intercept": 1587.25,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1029.0,
+          "samples": 299
+        },
+        "traffic_rate": {
+          "intercept": 673.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 425.25,
+          "samples": 299
+        }
+      },
+      "user-service": {
+        "cpu": {
+          "intercept": 0.000672906,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.000944993,
+          "samples": 299
+        },
+        "memory": {
+          "intercept": 30281728.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 696320.0,
+          "samples": 299
+        },
+        "network": {
+          "intercept": 652.25,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 340.1696651674163,
+          "samples": 299
+        },
+        "traffic_rate": {
+          "intercept": 311.5,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 169.5,
+          "samples": 299
+        }
+      },
+      "user-timeline-service": {
+        "cpu": {
+          "intercept": 0.007223,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.0049244715,
+          "samples": 299
+        },
+        "memory": {
+          "intercept": 109793280.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 23986176.0,
+          "samples": 299
+        },
+        "network": {
+          "intercept": 21402.25,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 7463.5,
+          "samples": 299
+        },
+        "traffic_rate": {
+          "intercept": 10306.75,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 3450.25,
+          "samples": 299
+        }
+      }
+    },
+    "trace": {
+      "compose-post-service": {
+        "span_rate": {
+          "intercept": 7.2,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 2.4000000000000004,
+          "samples": 31
+        },
+        "request_rate": {
+          "intercept": 7.2,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 2.4000000000000004,
+          "samples": 31
+        },
+        "error_rate": {
+          "intercept": 0.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1e-09,
+          "samples": 31
+        },
+        "latency_median_us": {
+          "intercept": 1718.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 284.75,
+          "samples": 31
+        },
+        "latency_p90_us": {
+          "intercept": 10727.2,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 879.8000000000011,
+          "samples": 31
+        },
+        "latency_p99_us": {
+          "intercept": 20246.92,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 5659.044999999958,
+          "samples": 31
+        },
+        "exclusive_median_us": {
+          "intercept": 1718.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 284.75,
+          "samples": 31
+        },
+        "downstream_wait_ratio": {
+          "intercept": 0.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1e-09,
+          "samples": 31
+        }
+      },
+      "home-timeline-service": {
+        "span_rate": {
+          "intercept": 13.6,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1.6000000000000005,
+          "samples": 31
+        },
+        "request_rate": {
+          "intercept": 13.6,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1.6000000000000005,
+          "samples": 31
+        },
+        "error_rate": {
+          "intercept": 0.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1e-09,
+          "samples": 31
+        },
+        "latency_median_us": {
+          "intercept": 877.5,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 161.5,
+          "samples": 31
+        },
+        "latency_p90_us": {
+          "intercept": 3849.100000000001,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 363.24999999999955,
+          "samples": 31
+        },
+        "latency_p99_us": {
+          "intercept": 6133.959999999998,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1172.3000000000052,
+          "samples": 31
+        },
+        "exclusive_median_us": {
+          "intercept": 877.5,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 161.5,
+          "samples": 31
+        },
+        "downstream_wait_ratio": {
+          "intercept": 0.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1e-09,
+          "samples": 31
+        }
+      },
+      "media-service": {
+        "span_rate": {
+          "intercept": 0.9,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.30000000000000004,
+          "samples": 31
+        },
+        "request_rate": {
+          "intercept": 0.9,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.30000000000000004,
+          "samples": 31
+        },
+        "error_rate": {
+          "intercept": 0.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1e-09,
+          "samples": 31
+        },
+        "latency_median_us": {
+          "intercept": 60.5,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 11.75,
+          "samples": 31
+        },
+        "latency_p90_us": {
+          "intercept": 105.79999999999998,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 93.59999999999987,
+          "samples": 31
+        },
+        "latency_p99_us": {
+          "intercept": 131.01999999999998,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 423.79999999999995,
+          "samples": 31
+        },
+        "exclusive_median_us": {
+          "intercept": 60.5,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 11.75,
+          "samples": 31
+        },
+        "downstream_wait_ratio": {
+          "intercept": 0.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1e-09,
+          "samples": 31
+        }
+      },
+      "nginx-thrift": {
+        "span_rate": {
+          "intercept": 27.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.27,
+          "samples": 31
+        },
+        "request_rate": {
+          "intercept": 27.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.27,
+          "samples": 31
+        },
+        "error_rate": {
+          "intercept": 0.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1e-09,
+          "samples": 31
+        },
+        "latency_median_us": {
+          "intercept": 11252.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 657.5,
+          "samples": 31
+        },
+        "latency_p90_us": {
+          "intercept": 15359.099999999999,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1479.5500000000002,
+          "samples": 31
+        },
+        "latency_p99_us": {
+          "intercept": 25903.9,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 6059.265000000012,
+          "samples": 31
+        },
+        "exclusive_median_us": {
+          "intercept": 11252.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 657.5,
+          "samples": 31
+        },
+        "downstream_wait_ratio": {
+          "intercept": 0.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1e-09,
+          "samples": 31
+        }
+      },
+      "post-storage-service": {
+        "span_rate": {
+          "intercept": 19.6,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.40000000000000213,
+          "samples": 31
+        },
+        "request_rate": {
+          "intercept": 19.6,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.40000000000000213,
+          "samples": 31
+        },
+        "error_rate": {
+          "intercept": 0.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1e-09,
+          "samples": 31
+        },
+        "latency_median_us": {
+          "intercept": 1447.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 88.5,
+          "samples": 31
+        },
+        "latency_p90_us": {
+          "intercept": 2459.6000000000004,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 269.8000000000004,
+          "samples": 31
+        },
+        "latency_p99_us": {
+          "intercept": 4374.7,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 765.8000000000002,
+          "samples": 31
+        },
+        "exclusive_median_us": {
+          "intercept": 1447.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 88.5,
+          "samples": 31
+        },
+        "downstream_wait_ratio": {
+          "intercept": 0.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1e-09,
+          "samples": 31
+        }
+      },
+      "social-graph-service": {
+        "span_rate": {
+          "intercept": 1.8,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.6000000000000001,
+          "samples": 31
+        },
+        "request_rate": {
+          "intercept": 1.8,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.6000000000000001,
+          "samples": 31
+        },
+        "error_rate": {
+          "intercept": 0.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1e-09,
+          "samples": 31
+        },
+        "latency_median_us": {
+          "intercept": 275.5,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 20.25,
+          "samples": 31
+        },
+        "latency_p90_us": {
+          "intercept": 430.9,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 213.60000000000014,
+          "samples": 31
+        },
+        "latency_p99_us": {
+          "intercept": 595.52,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 362.16999999999985,
+          "samples": 31
+        },
+        "exclusive_median_us": {
+          "intercept": 275.5,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 20.25,
+          "samples": 31
+        },
+        "downstream_wait_ratio": {
+          "intercept": 0.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1e-09,
+          "samples": 31
+        }
+      },
+      "text-service": {
+        "span_rate": {
+          "intercept": 2.7,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.8999999999999999,
+          "samples": 31
+        },
+        "request_rate": {
+          "intercept": 2.7,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.8999999999999999,
+          "samples": 31
+        },
+        "error_rate": {
+          "intercept": 0.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1e-09,
+          "samples": 31
+        },
+        "latency_median_us": {
+          "intercept": 2697.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 571.75,
+          "samples": 31
+        },
+        "latency_p90_us": {
+          "intercept": 6194.8,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1277.2000000000012,
+          "samples": 31
+        },
+        "latency_p99_us": {
+          "intercept": 8721.28,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 2934.450000000001,
+          "samples": 31
+        },
+        "exclusive_median_us": {
+          "intercept": 2697.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 571.75,
+          "samples": 31
+        },
+        "downstream_wait_ratio": {
+          "intercept": 0.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1e-09,
+          "samples": 31
+        }
+      },
+      "unique-id-service": {
+        "span_rate": {
+          "intercept": 0.9,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.30000000000000004,
+          "samples": 31
+        },
+        "request_rate": {
+          "intercept": 0.9,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.30000000000000004,
+          "samples": 31
+        },
+        "error_rate": {
+          "intercept": 0.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1e-09,
+          "samples": 31
+        },
+        "latency_median_us": {
+          "intercept": 113.5,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 20.75,
+          "samples": 31
+        },
+        "latency_p90_us": {
+          "intercept": 195.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 110.50000000000003,
+          "samples": 31
+        },
+        "latency_p99_us": {
+          "intercept": 267.35,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 235.13000000000005,
+          "samples": 31
+        },
+        "exclusive_median_us": {
+          "intercept": 113.5,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 20.75,
+          "samples": 31
+        },
+        "downstream_wait_ratio": {
+          "intercept": 0.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1e-09,
+          "samples": 31
+        }
+      },
+      "url-shorten-service": {
+        "span_rate": {
+          "intercept": 1.8,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.6000000000000001,
+          "samples": 31
+        },
+        "request_rate": {
+          "intercept": 1.8,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.6000000000000001,
+          "samples": 31
+        },
+        "error_rate": {
+          "intercept": 0.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1e-09,
+          "samples": 31
+        },
+        "latency_median_us": {
+          "intercept": 1237.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 201.0,
+          "samples": 31
+        },
+        "latency_p90_us": {
+          "intercept": 2340.8,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 808.7499999999997,
+          "samples": 31
+        },
+        "latency_p99_us": {
+          "intercept": 3006.479999999999,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1309.7950000000003,
+          "samples": 31
+        },
+        "exclusive_median_us": {
+          "intercept": 1237.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 201.0,
+          "samples": 31
+        },
+        "downstream_wait_ratio": {
+          "intercept": 0.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1e-09,
+          "samples": 31
+        }
+      },
+      "user-mention-service": {
+        "span_rate": {
+          "intercept": 1.8,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.6000000000000001,
+          "samples": 31
+        },
+        "request_rate": {
+          "intercept": 1.8,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.6000000000000001,
+          "samples": 31
+        },
+        "error_rate": {
+          "intercept": 0.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1e-09,
+          "samples": 31
+        },
+        "latency_median_us": {
+          "intercept": 516.5,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 203.5,
+          "samples": 31
+        },
+        "latency_p90_us": {
+          "intercept": 1084.2,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 627.5,
+          "samples": 31
+        },
+        "latency_p99_us": {
+          "intercept": 1587.4,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1162.995,
+          "samples": 31
+        },
+        "exclusive_median_us": {
+          "intercept": 516.5,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 203.5,
+          "samples": 31
+        },
+        "downstream_wait_ratio": {
+          "intercept": 0.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1e-09,
+          "samples": 31
+        }
+      },
+      "user-service": {
+        "span_rate": {
+          "intercept": 0.9,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.30000000000000004,
+          "samples": 31
+        },
+        "request_rate": {
+          "intercept": 0.9,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 0.30000000000000004,
+          "samples": 31
+        },
+        "error_rate": {
+          "intercept": 0.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1e-09,
+          "samples": 31
+        },
+        "latency_median_us": {
+          "intercept": 62.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 11.5,
+          "samples": 31
+        },
+        "latency_p90_us": {
+          "intercept": 91.8,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 56.050000000000004,
+          "samples": 31
+        },
+        "latency_p99_us": {
+          "intercept": 106.38,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 114.06500000000001,
+          "samples": 31
+        },
+        "exclusive_median_us": {
+          "intercept": 62.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 11.5,
+          "samples": 31
+        },
+        "downstream_wait_ratio": {
+          "intercept": 0.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1e-09,
+          "samples": 31
+        }
+      },
+      "user-timeline-service": {
+        "span_rate": {
+          "intercept": 8.7,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1.85,
+          "samples": 31
+        },
+        "request_rate": {
+          "intercept": 8.7,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1.85,
+          "samples": 31
+        },
+        "error_rate": {
+          "intercept": 0.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1e-09,
+          "samples": 31
+        },
+        "latency_median_us": {
+          "intercept": 572.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 225.5,
+          "samples": 31
+        },
+        "latency_p90_us": {
+          "intercept": 4465.5,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 490.10000000000014,
+          "samples": 31
+        },
+        "latency_p99_us": {
+          "intercept": 6532.1500000000015,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1581.9549999999904,
+          "samples": 31
+        },
+        "exclusive_median_us": {
+          "intercept": 572.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 225.5,
+          "samples": 31
+        },
+        "downstream_wait_ratio": {
+          "intercept": 0.0,
+          "slope": 0.0,
+          "residual_median": 0.0,
+          "residual_iqr": 1e-09,
+          "samples": 31
+        }
+      }
+    },
+    "expected_edges": [
+      {
+        "source": "compose-post-service",
+        "target": "home-timeline-service",
+        "presence": 0.967741935483871
+      },
+      {
+        "source": "compose-post-service",
+        "target": "media-service",
+        "presence": 0.967741935483871
+      },
+      {
+        "source": "compose-post-service",
+        "target": "post-storage-service",
+        "presence": 0.967741935483871
+      },
+      {
+        "source": "compose-post-service",
+        "target": "text-service",
+        "presence": 0.967741935483871
+      },
+      {
+        "source": "compose-post-service",
+        "target": "unique-id-service",
+        "presence": 0.967741935483871
+      },
+      {
+        "source": "compose-post-service",
+        "target": "user-service",
+        "presence": 0.967741935483871
+      },
+      {
+        "source": "compose-post-service",
+        "target": "user-timeline-service",
+        "presence": 0.967741935483871
+      },
+      {
+        "source": "home-timeline-service",
+        "target": "post-storage-service",
+        "presence": 0.967741935483871
+      },
+      {
+        "source": "home-timeline-service",
+        "target": "social-graph-service",
+        "presence": 0.967741935483871
+      },
+      {
+        "source": "nginx-thrift",
+        "target": "compose-post-service",
+        "presence": 0.967741935483871
+      },
+      {
+        "source": "nginx-thrift",
+        "target": "home-timeline-service",
+        "presence": 0.967741935483871
+      },
+      {
+        "source": "nginx-thrift",
+        "target": "user-timeline-service",
+        "presence": 0.967741935483871
+      },
+      {
+        "source": "text-service",
+        "target": "url-shorten-service",
+        "presence": 0.967741935483871
+      },
+      {
+        "source": "text-service",
+        "target": "user-mention-service",
+        "presence": 0.967741935483871
+      },
+      {
+        "source": "user-timeline-service",
+        "target": "post-storage-service",
+        "presence": 0.967741935483871
+      }
+    ],
+    "windows": 31,
+    "healthy_trace_count": 25894,
+    "healthy_metric_count": 14352
+  },
+  "legacy": {
+    "compose-post-service": {
+      "cpu": {
+        "median": 0.004563,
+        "iqr": 0.0070774245,
+        "samples": 299
+      },
+      "memory": {
+        "median": 145715200.0,
+        "iqr": 36380672.0,
+        "samples": 299
+      },
+      "network": {
+        "median": 4405.0,
+        "iqr": 2831.75,
+        "samples": 299
+      },
+      "traffic_rate": {
+        "median": 1309.75,
+        "iqr": 793.125,
+        "samples": 299
+      }
+    },
+    "home-timeline-service": {
+      "cpu": {
+        "median": 0.008283,
+        "iqr": 0.002513930499999999,
+        "samples": 299
+      },
+      "memory": {
+        "median": 18403328.0,
+        "iqr": 690176.0,
+        "samples": 299
+      },
+      "network": {
+        "median": 43099.0,
+        "iqr": 8390.25,
+        "samples": 299
+      },
+      "traffic_rate": {
+        "median": 20729.75,
+        "iqr": 4308.25,
+        "samples": 299
+      }
+    },
+    "media-service": {
+      "cpu": {
+        "median": 0.000657711,
+        "iqr": 0.0009178114999999999,
+        "samples": 299
+      },
+      "memory": {
+        "median": 13553664.0,
+        "iqr": 684032.0,
+        "samples": 299
+      },
+      "network": {
+        "median": 587.25,
+        "iqr": 298.75,
+        "samples": 299
+      },
+      "traffic_rate": {
+        "median": 281.75,
+        "iqr": 145.5,
+        "samples": 299
+      }
+    },
+    "nginx-thrift": {
+      "cpu": {
+        "median": 0.071613065,
+        "iqr": 0.012818694999999991,
+        "samples": 299
+      },
+      "memory": {
+        "median": 283213824.0,
+        "iqr": 2832138.24,
+        "samples": 299
+      },
+      "network": {
+        "median": 84313.75,
+        "iqr": 5058.625,
+        "samples": 299
+      },
+      "traffic_rate": {
+        "median": 30457.75,
+        "iqr": 1873.375,
+        "samples": 299
+      }
+    },
+    "post-storage-service": {
+      "cpu": {
+        "median": 0.022829851,
+        "iqr": 0.003984089000000003,
+        "samples": 299
+      },
+      "memory": {
+        "median": 58155008.0,
+        "iqr": 9322496.0,
+        "samples": 299
+      },
+      "network": {
+        "median": 90493.75,
+        "iqr": 5879.0,
+        "samples": 299
+      },
+      "traffic_rate": {
+        "median": 54359.25,
+        "iqr": 3853.0,
+        "samples": 299
+      }
+    },
+    "social-graph-service": {
+      "cpu": {
+        "median": 0.000854455,
+        "iqr": 0.0010327715,
+        "samples": 299
+      },
+      "memory": {
+        "median": 71995392.0,
+        "iqr": 719953.92,
+        "samples": 299
+      },
+      "network": {
+        "median": 949.5,
+        "iqr": 586.0,
+        "samples": 299
+      },
+      "traffic_rate": {
+        "median": 351.0,
+        "iqr": 194.875,
+        "samples": 299
+      }
+    },
+    "text-service": {
+      "cpu": {
+        "median": 0.002899502,
+        "iqr": 0.004170182,
+        "samples": 299
+      },
+      "memory": {
+        "median": 68513792.0,
+        "iqr": 15253504.0,
+        "samples": 299
+      },
+      "network": {
+        "median": 1772.0,
+        "iqr": 969.25,
+        "samples": 299
+      },
+      "traffic_rate": {
+        "median": 627.25,
+        "iqr": 343.125,
+        "samples": 299
+      }
+    },
+    "unique-id-service": {
+      "cpu": {
+        "median": 0.000643216,
+        "iqr": 0.0008968575,
+        "samples": 299
+      },
+      "memory": {
+        "median": 13672448.0,
+        "iqr": 684032.0,
+        "samples": 299
+      },
+      "network": {
+        "median": 560.5,
+        "iqr": 322.5,
+        "samples": 299
+      },
+      "traffic_rate": {
+        "median": 263.75,
+        "iqr": 164.75,
+        "samples": 299
+      }
+    },
+    "url-shorten-service": {
+      "cpu": {
+        "median": 0.001630769,
+        "iqr": 0.0022268680000000003,
+        "samples": 299
+      },
+      "memory": {
+        "median": 48443392.0,
+        "iqr": 7995392.0,
+        "samples": 299
+      },
+      "network": {
+        "median": 1219.75,
+        "iqr": 715.375,
+        "samples": 299
+      },
+      "traffic_rate": {
+        "median": 399.5,
+        "iqr": 204.0,
+        "samples": 299
+      }
+    },
+    "user-mention-service": {
+      "cpu": {
+        "median": 0.001027861,
+        "iqr": 0.001343779,
+        "samples": 299
+      },
+      "memory": {
+        "median": 20344832.0,
+        "iqr": 696320.0,
+        "samples": 299
+      },
+      "network": {
+        "median": 1587.25,
+        "iqr": 1029.0,
+        "samples": 299
+      },
+      "traffic_rate": {
+        "median": 673.0,
+        "iqr": 425.25,
+        "samples": 299
+      }
+    },
+    "user-service": {
+      "cpu": {
+        "median": 0.000672906,
+        "iqr": 0.000944993,
+        "samples": 299
+      },
+      "memory": {
+        "median": 30281728.0,
+        "iqr": 696320.0,
+        "samples": 299
+      },
+      "network": {
+        "median": 652.25,
+        "iqr": 340.16966516741627,
+        "samples": 299
+      },
+      "traffic_rate": {
+        "median": 311.5,
+        "iqr": 169.5,
+        "samples": 299
+      }
+    },
+    "user-timeline-service": {
+      "cpu": {
+        "median": 0.007223,
+        "iqr": 0.0049244714999999994,
+        "samples": 299
+      },
+      "memory": {
+        "median": 109793280.0,
+        "iqr": 23986176.0,
+        "samples": 299
+      },
+      "network": {
+        "median": 21402.25,
+        "iqr": 7463.5,
+        "samples": 299
+      },
+      "traffic_rate": {
+        "median": 10306.75,
+        "iqr": 3450.25,
+        "samples": 299
+      }
+    }
+  }
+}

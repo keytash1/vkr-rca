@@ -1,0 +1,6212 @@
+{
+  "original": {
+    "m13-001-b0b5cd7d": [
+      {
+        "service": "text-service",
+        "rank": 1,
+        "score": 0.9855977296829224
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": -0.29600000381469727
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 3,
+        "score": -0.9979128837585449
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 4,
+        "score": -1.0078203678131104
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 5,
+        "score": -1.017473578453064
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 6,
+        "score": -1.0282963514328003
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 7,
+        "score": -1.0344762802124023
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 8,
+        "score": -1.0628602504730225
+      },
+      {
+        "service": "user-service",
+        "rank": 9,
+        "score": -1.1796774864196777
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -1.2006407976150513
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -1.2117997407913208
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 12,
+        "score": -1.226628065109253
+      }
+    ],
+    "m13-003-53c955ff": [
+      {
+        "service": "user-timeline-service",
+        "rank": 1,
+        "score": 0.31828516721725464
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": -0.24286988377571106
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 3,
+        "score": -0.5878412127494812
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 4,
+        "score": -0.644005537033081
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 5,
+        "score": -0.9659210443496704
+      },
+      {
+        "service": "text-service",
+        "rank": 6,
+        "score": -1.0600156784057617
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 7,
+        "score": -1.0670549869537354
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 8,
+        "score": -1.0670549869537354
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 9,
+        "score": -1.1459481716156006
+      },
+      {
+        "service": "media-service",
+        "rank": 10,
+        "score": -1.2123979330062866
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 11,
+        "score": -1.2123979330062866
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2123979330062866
+      }
+    ],
+    "m13-008-6cc9fe9a": [
+      {
+        "service": "user-mention-service",
+        "rank": 1,
+        "score": 0.35893717408180237
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 2,
+        "score": -0.028506780043244362
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 3,
+        "score": -0.32884782552719116
+      },
+      {
+        "service": "text-service",
+        "rank": 4,
+        "score": -0.6467973589897156
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 5,
+        "score": -0.783065140247345
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": -0.9767147898674011
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 7,
+        "score": -1.037033200263977
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 8,
+        "score": -1.1230840682983398
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 9,
+        "score": -1.197904348373413
+      },
+      {
+        "service": "user-service",
+        "rank": 10,
+        "score": -1.2208077907562256
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -1.2529301643371582
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-012-e98ac613": [
+      {
+        "service": "url-shorten-service",
+        "rank": 1,
+        "score": 1.187631368637085
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 2,
+        "score": -0.3499130606651306
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 3,
+        "score": -0.5462046265602112
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 4,
+        "score": -1.0576097965240479
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 5,
+        "score": -1.0670549869537354
+      },
+      {
+        "service": "text-service",
+        "rank": 6,
+        "score": -1.0670549869537354
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 7,
+        "score": -1.0848441123962402
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 8,
+        "score": -1.0991772413253784
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 9,
+        "score": -1.1945059299468994
+      },
+      {
+        "service": "media-service",
+        "rank": 10,
+        "score": -1.2445201873779297
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 11,
+        "score": -1.2445201873779297
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2445201873779297
+      }
+    ],
+    "m13-013-1873394f": [
+      {
+        "service": "text-service",
+        "rank": 1,
+        "score": 0.8729872703552246
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": -0.5074884295463562
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 3,
+        "score": -0.9084171056747437
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 4,
+        "score": -0.9880210757255554
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 5,
+        "score": -1.0023539066314697
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 6,
+        "score": -1.005872130393982
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 7,
+        "score": -1.014614462852478
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 8,
+        "score": -1.1558774709701538
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 9,
+        "score": -1.1821839809417725
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -1.1833018064498901
+      },
+      {
+        "service": "user-service",
+        "rank": 11,
+        "score": -1.1833018064498901
+      },
+      {
+        "service": "media-service",
+        "rank": 12,
+        "score": -1.2265830039978027
+      }
+    ],
+    "m13-015-06a4deda": [
+      {
+        "service": "text-service",
+        "rank": 1,
+        "score": 0.8833192586898804
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.5413418412208557
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 3,
+        "score": -0.7841254472732544
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 4,
+        "score": -1.0071170330047607
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 5,
+        "score": -1.0179595947265625
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 6,
+        "score": -1.0247653722763062
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 7,
+        "score": -1.0247653722763062
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 8,
+        "score": -1.0670549869537354
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 9,
+        "score": -1.1895860433578491
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -1.1944607496261597
+      },
+      {
+        "service": "user-service",
+        "rank": 11,
+        "score": -1.1944607496261597
+      },
+      {
+        "service": "media-service",
+        "rank": 12,
+        "score": -1.20137619972229
+      }
+    ],
+    "m13-038-e9a14c41": [
+      {
+        "service": "user-mention-service",
+        "rank": 1,
+        "score": 0.3860390782356262
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 2,
+        "score": 0.02247023396193981
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 3,
+        "score": -0.372669517993927
+      },
+      {
+        "service": "text-service",
+        "rank": 4,
+        "score": -0.6686634421348572
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 5,
+        "score": -0.8722740411758423
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 6,
+        "score": -0.9255239367485046
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 7,
+        "score": -1.0246649980545044
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 8,
+        "score": -1.115952491760254
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 9,
+        "score": -1.197904348373413
+      },
+      {
+        "service": "user-service",
+        "rank": 10,
+        "score": -1.2208077907562256
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -1.2529301643371582
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-051-8727571e": [
+      {
+        "service": "compose-post-service",
+        "rank": 1,
+        "score": 0.89601069688797
+      },
+      {
+        "service": "text-service",
+        "rank": 2,
+        "score": 0.6689536571502686
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 3,
+        "score": 0.26169469952583313
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 4,
+        "score": 0.25242850184440613
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 5,
+        "score": 0.16001048684120178
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 6,
+        "score": 0.04367770999670029
+      },
+      {
+        "service": "media-service",
+        "rank": 7,
+        "score": 0.01882578805088997
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 8,
+        "score": -0.043795786798000336
+      },
+      {
+        "service": "user-service",
+        "rank": 9,
+        "score": -0.19670678675174713
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 10,
+        "score": -0.7192452549934387
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 11,
+        "score": -0.8484402894973755
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 12,
+        "score": -1.0247653722763062
+      }
+    ],
+    "m13-055-83bbe2a4": [
+      {
+        "service": "user-mention-service",
+        "rank": 1,
+        "score": 1.1257696151733398
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 2,
+        "score": -0.23683781921863556
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 3,
+        "score": -1.050803780555725
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 4,
+        "score": -1.1617650985717773
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 5,
+        "score": -1.169602632522583
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 6,
+        "score": -1.171962022781372
+      },
+      {
+        "service": "text-service",
+        "rank": 7,
+        "score": -1.186745285987854
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 8,
+        "score": -1.1948654651641846
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 9,
+        "score": -1.2003217935562134
+      },
+      {
+        "service": "media-service",
+        "rank": 10,
+        "score": -1.2167909145355225
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 11,
+        "score": -1.226628065109253
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-057-d93acea6": [
+      {
+        "service": "user-timeline-service",
+        "rank": 1,
+        "score": 1.0518275499343872
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": -0.6965596079826355
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 3,
+        "score": -0.8867141008377075
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 4,
+        "score": -0.9165679216384888
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 5,
+        "score": -0.9742656946182251
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": -1.118067979812622
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 7,
+        "score": -1.1702951192855835
+      },
+      {
+        "service": "text-service",
+        "rank": 8,
+        "score": -1.2024173736572266
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 9,
+        "score": -1.2024173736572266
+      },
+      {
+        "service": "media-service",
+        "rank": 10,
+        "score": -1.2208077907562256
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 11,
+        "score": -1.2208077907562256
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-063-68e5615a": [
+      {
+        "service": "url-shorten-service",
+        "rank": 1,
+        "score": 0.5427502393722534
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 2,
+        "score": 0.05630362778902054
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 3,
+        "score": -0.24105258285999298
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": -1.093995451927185
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 5,
+        "score": -1.0966148376464844
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": -1.1229212284088135
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 7,
+        "score": -1.154623031616211
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 8,
+        "score": -1.180761694908142
+      },
+      {
+        "service": "text-service",
+        "rank": 9,
+        "score": -1.197904348373413
+      },
+      {
+        "service": "media-service",
+        "rank": 10,
+        "score": -1.2529301643371582
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 11,
+        "score": -1.2529301643371582
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-064-dac66720": [
+      {
+        "service": "text-service",
+        "rank": 1,
+        "score": 0.635903000831604
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 2,
+        "score": -0.1965748816728592
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 3,
+        "score": -0.9141120910644531
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 4,
+        "score": -0.9282950162887573
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 5,
+        "score": -1.0657122135162354
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 6,
+        "score": -1.1703239679336548
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 7,
+        "score": -1.1874666213989258
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 8,
+        "score": -1.197904348373413
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 9,
+        "score": -1.2003217935562134
+      },
+      {
+        "service": "user-service",
+        "rank": 10,
+        "score": -1.2208077907562256
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -1.2529301643371582
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-069-dc66d4e2": [
+      {
+        "service": "text-service",
+        "rank": 1,
+        "score": 0.8313387036323547
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.2633691430091858
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 3,
+        "score": -0.3566531240940094
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 4,
+        "score": -0.846804141998291
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 5,
+        "score": -0.9039066433906555
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 6,
+        "score": -1.0290768146514893
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 7,
+        "score": -1.0669420957565308
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 8,
+        "score": -1.1657819747924805
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 9,
+        "score": -1.1657819747924805
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -1.241947054862976
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -1.2529301643371582
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-072-006c57dc": [
+      {
+        "service": "compose-post-service",
+        "rank": 1,
+        "score": 1.0433406829833984
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 2,
+        "score": -0.8512734174728394
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 3,
+        "score": -0.9165679216384888
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": -1.0568877458572388
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 5,
+        "score": -1.1443586349487305
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 6,
+        "score": -1.1452710628509521
+      },
+      {
+        "service": "text-service",
+        "rank": 7,
+        "score": -1.1452710628509521
+      },
+      {
+        "service": "media-service",
+        "rank": 8,
+        "score": -1.2002968788146973
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": -1.2002968788146973
+      },
+      {
+        "service": "user-service",
+        "rank": 10,
+        "score": -1.2002968788146973
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 11,
+        "score": -1.2003217935562134
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 12,
+        "score": -1.226628065109253
+      }
+    ],
+    "m13-078-d9c06445": [
+      {
+        "service": "text-service",
+        "rank": 1,
+        "score": 0.8260008692741394
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.3037925660610199
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 3,
+        "score": -0.8844455480575562
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 4,
+        "score": -0.9039066433906555
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 5,
+        "score": -1.033398985862732
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 6,
+        "score": -1.0634256601333618
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 7,
+        "score": -1.0717852115631104
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": -1.1702951192855835
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 9,
+        "score": -1.1958086490631104
+      },
+      {
+        "service": "user-service",
+        "rank": 10,
+        "score": -1.2208077907562256
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 11,
+        "score": -1.2269877195358276
+      },
+      {
+        "service": "media-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-083-f251657f": [
+      {
+        "service": "url-shorten-service",
+        "rank": 1,
+        "score": 0.832202136516571
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 2,
+        "score": -0.09388840943574905
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 3,
+        "score": -0.22452577948570251
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 4,
+        "score": -0.8082517385482788
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 5,
+        "score": -0.9919506907463074
+      },
+      {
+        "service": "text-service",
+        "rank": 6,
+        "score": -1.0247653722763062
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 7,
+        "score": -1.0568877458572388
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 8,
+        "score": -1.067807912826538
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 9,
+        "score": -1.119314193725586
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 10,
+        "score": -1.1879411935806274
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -1.1944607496261597
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2265830039978027
+      }
+    ],
+    "m13-087-449f3e89": [
+      {
+        "service": "url-shorten-service",
+        "rank": 1,
+        "score": 1.1356706619262695
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 2,
+        "score": -0.22452577948570251
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 3,
+        "score": -0.24105258285999298
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 4,
+        "score": -1.0787489414215088
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 5,
+        "score": -1.0966148376464844
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 6,
+        "score": -1.180761694908142
+      },
+      {
+        "service": "text-service",
+        "rank": 7,
+        "score": -1.197904348373413
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 8,
+        "score": -1.2024173736572266
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 9,
+        "score": -1.2024173736572266
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -1.2208077907562256
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -1.2529301643371582
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-097-eea2e5ec": [
+      {
+        "service": "user-mention-service",
+        "rank": 1,
+        "score": 0.5977045297622681
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 2,
+        "score": -0.19612431526184082
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 3,
+        "score": -0.82440185546875
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 4,
+        "score": -0.9125270843505859
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 5,
+        "score": -1.0090934038162231
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 6,
+        "score": -1.1446224451065063
+      },
+      {
+        "service": "text-service",
+        "rank": 7,
+        "score": -1.1617650985717773
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 8,
+        "score": -1.186745285987854
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 9,
+        "score": -1.186745285987854
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 10,
+        "score": -1.1945059299468994
+      },
+      {
+        "service": "user-service",
+        "rank": 11,
+        "score": -1.2002968788146973
+      },
+      {
+        "service": "media-service",
+        "rank": 12,
+        "score": -1.2269877195358276
+      }
+    ],
+    "m13-101-e535cbad": [
+      {
+        "service": "compose-post-service",
+        "rank": 1,
+        "score": 0.858485996723175
+      },
+      {
+        "service": "text-service",
+        "rank": 2,
+        "score": 0.6026055812835693
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 3,
+        "score": 0.23481976985931396
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 4,
+        "score": 0.20091204345226288
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 5,
+        "score": 0.14250904321670532
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 6,
+        "score": 0.10132850706577301
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 7,
+        "score": -0.026035357266664505
+      },
+      {
+        "service": "media-service",
+        "rank": 8,
+        "score": -0.07187284529209137
+      },
+      {
+        "service": "user-service",
+        "rank": 9,
+        "score": -0.2664198577404022
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 10,
+        "score": -0.8023446798324585
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 11,
+        "score": -0.9226219058036804
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 12,
+        "score": -1.0247653722763062
+      }
+    ],
+    "m13-108-96aa0c41": [
+      {
+        "service": "compose-post-service",
+        "rank": 1,
+        "score": 1.0499542951583862
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 2,
+        "score": -0.8115391731262207
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 3,
+        "score": -0.9202887415885925
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": -1.0186814069747925
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 5,
+        "score": -1.023280382156372
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 6,
+        "score": -1.1702951192855835
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 7,
+        "score": -1.1702951192855835
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 8,
+        "score": -1.1821105480194092
+      },
+      {
+        "service": "text-service",
+        "rank": 9,
+        "score": -1.1896623373031616
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 10,
+        "score": -1.226628065109253
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -1.2269877195358276
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ]
+  },
+  "healthy_low": {
+    "m13-001-b0b5cd7d": [
+      {
+        "service": "text-service",
+        "rank": 1,
+        "score": 0.9616968035697937
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.45050248503685
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 3,
+        "score": -0.9840172529220581
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": -0.9979128837585449
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 5,
+        "score": -1.1270675659179688
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 6,
+        "score": -1.148423433303833
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 7,
+        "score": -1.152223825454712
+      },
+      {
+        "service": "user-service",
+        "rank": 8,
+        "score": -1.1833018064498901
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": -1.190443754196167
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 10,
+        "score": -1.2003217935562134
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -1.2117997407913208
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 12,
+        "score": -1.226628065109253
+      }
+    ],
+    "m13-003-53c955ff": [
+      {
+        "service": "user-timeline-service",
+        "rank": 1,
+        "score": 0.035171620547771454
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 2,
+        "score": -0.6230965852737427
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 3,
+        "score": -0.6365443468093872
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 4,
+        "score": -0.7243725061416626
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 5,
+        "score": -1.1477115154266357
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 6,
+        "score": -1.1863539218902588
+      },
+      {
+        "service": "text-service",
+        "rank": 7,
+        "score": -1.202026128768921
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": -1.209065318107605
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 9,
+        "score": -1.209065318107605
+      },
+      {
+        "service": "media-service",
+        "rank": 10,
+        "score": -1.2208077907562256
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 11,
+        "score": -1.2208077907562256
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2208077907562256
+      }
+    ],
+    "m13-008-6cc9fe9a": [
+      {
+        "service": "user-mention-service",
+        "rank": 1,
+        "score": 0.19653485715389252
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 2,
+        "score": -0.14227797091007233
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 3,
+        "score": -0.2699914574623108
+      },
+      {
+        "service": "text-service",
+        "rank": 4,
+        "score": -0.6342992186546326
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 5,
+        "score": -0.7914654612541199
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": -0.9767147898674011
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 7,
+        "score": -1.037033200263977
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 8,
+        "score": -1.1230840682983398
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 9,
+        "score": -1.2366745471954346
+      },
+      {
+        "service": "media-service",
+        "rank": 10,
+        "score": -1.2529301643371582
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 11,
+        "score": -1.2529301643371582
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-012-e98ac613": [
+      {
+        "service": "url-shorten-service",
+        "rank": 1,
+        "score": 1.1164252758026123
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 2,
+        "score": -1.074957251548767
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 3,
+        "score": -1.1592744588851929
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 4,
+        "score": -1.1742918491363525
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 5,
+        "score": -1.185580849647522
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": -1.1864187717437744
+      },
+      {
+        "service": "text-service",
+        "rank": 7,
+        "score": -1.209065318107605
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 8,
+        "score": -1.228432536125183
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 9,
+        "score": -1.2411878108978271
+      },
+      {
+        "service": "media-service",
+        "rank": 10,
+        "score": -1.2529301643371582
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 11,
+        "score": -1.2529301643371582
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-013-1873394f": [
+      {
+        "service": "text-service",
+        "rank": 1,
+        "score": 0.8386329412460327
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": -0.5179418325424194
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 3,
+        "score": -0.9084171056747437
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": -0.9933997988700867
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 5,
+        "score": -1.1162954568862915
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 6,
+        "score": -1.1347429752349854
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 7,
+        "score": -1.1459019184112549
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 8,
+        "score": -1.1510522365570068
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 9,
+        "score": -1.1895860433578491
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -1.2012388706207275
+      },
+      {
+        "service": "user-service",
+        "rank": 11,
+        "score": -1.2012388706207275
+      },
+      {
+        "service": "media-service",
+        "rank": 12,
+        "score": -1.2445201873779297
+      }
+    ],
+    "m13-015-06a4deda": [
+      {
+        "service": "text-service",
+        "rank": 1,
+        "score": 0.6555922031402588
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.48299440741539
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 3,
+        "score": -0.4199216961860657
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 4,
+        "score": -0.8589107394218445
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 5,
+        "score": -1.035685658454895
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 6,
+        "score": -1.1601626873016357
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 7,
+        "score": -1.1806609630584717
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 8,
+        "score": -1.209065318107605
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 9,
+        "score": -1.209065318107605
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -1.2165642976760864
+      },
+      {
+        "service": "user-service",
+        "rank": 11,
+        "score": -1.2208077907562256
+      },
+      {
+        "service": "media-service",
+        "rank": 12,
+        "score": -1.2269877195358276
+      }
+    ],
+    "m13-038-e9a14c41": [
+      {
+        "service": "user-mention-service",
+        "rank": 1,
+        "score": 0.22932913899421692
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 2,
+        "score": -0.09130097180604935
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 3,
+        "score": -0.24974998831748962
+      },
+      {
+        "service": "text-service",
+        "rank": 4,
+        "score": -0.6686634421348572
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 5,
+        "score": -0.8722740411758423
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 6,
+        "score": -0.881125807762146
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 7,
+        "score": -1.0246649980545044
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 8,
+        "score": -1.115952491760254
+      },
+      {
+        "service": "user-service",
+        "rank": 9,
+        "score": -1.2208077907562256
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 10,
+        "score": -1.2366745471954346
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -1.2529301643371582
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-051-8727571e": [
+      {
+        "service": "compose-post-service",
+        "rank": 1,
+        "score": 0.7410394549369812
+      },
+      {
+        "service": "text-service",
+        "rank": 2,
+        "score": 0.1981242299079895
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 3,
+        "score": 0.08851286768913269
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 4,
+        "score": 0.03897498548030853
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 5,
+        "score": -0.004626336507499218
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 6,
+        "score": -0.02490665391087532
+      },
+      {
+        "service": "media-service",
+        "rank": 7,
+        "score": -0.07370324432849884
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 8,
+        "score": -0.22601647675037384
+      },
+      {
+        "service": "user-service",
+        "rank": 9,
+        "score": -0.23829126358032227
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 10,
+        "score": -0.886688232421875
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 11,
+        "score": -1.008193016052246
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 12,
+        "score": -1.1510522365570068
+      }
+    ],
+    "m13-055-83bbe2a4": [
+      {
+        "service": "user-mention-service",
+        "rank": 1,
+        "score": 1.0096584558486938
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 2,
+        "score": -0.23683781921863556
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 3,
+        "score": -1.0231945514678955
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 4,
+        "score": -1.169602632522583
+      },
+      {
+        "service": "text-service",
+        "rank": 5,
+        "score": -1.186745285987854
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 6,
+        "score": -1.1948654651641846
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 7,
+        "score": -1.2003217935562134
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": -1.2005352973937988
+      },
+      {
+        "service": "media-service",
+        "rank": 9,
+        "score": -1.2167909145355225
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 10,
+        "score": -1.226628065109253
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 11,
+        "score": -1.2366745471954346
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-057-d93acea6": [
+      {
+        "service": "user-timeline-service",
+        "rank": 1,
+        "score": 1.0542092323303223
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": -0.7213391661643982
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 3,
+        "score": -0.8456409573554993
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 4,
+        "score": -0.9596881866455078
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 5,
+        "score": -1.025874376296997
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 6,
+        "score": -1.1421273946762085
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 7,
+        "score": -1.209065318107605
+      },
+      {
+        "service": "media-service",
+        "rank": 8,
+        "score": -1.2208077907562256
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": -1.2208077907562256
+      },
+      {
+        "service": "text-service",
+        "rank": 10,
+        "score": -1.2411878108978271
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 11,
+        "score": -1.2411878108978271
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-063-68e5615a": [
+      {
+        "service": "url-shorten-service",
+        "rank": 1,
+        "score": 0.12578396499156952
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 2,
+        "score": -0.18089933693408966
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 3,
+        "score": -0.39760342240333557
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 4,
+        "score": -0.949482798576355
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 5,
+        "score": -1.0216041803359985
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 6,
+        "score": -1.0848441123962402
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 7,
+        "score": -1.180761694908142
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 8,
+        "score": -1.2366745471954346
+      },
+      {
+        "service": "text-service",
+        "rank": 9,
+        "score": -1.2366745471954346
+      },
+      {
+        "service": "media-service",
+        "rank": 10,
+        "score": -1.2529301643371582
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 11,
+        "score": -1.2529301643371582
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-064-dac66720": [
+      {
+        "service": "text-service",
+        "rank": 1,
+        "score": 0.5477489233016968
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 2,
+        "score": -0.1965748816728592
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 3,
+        "score": -0.937769889831543
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 4,
+        "score": -0.9596881866455078
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 5,
+        "score": -1.0226696729660034
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 6,
+        "score": -1.1703239679336548
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 7,
+        "score": -1.1945059299468994
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 8,
+        "score": -1.2003217935562134
+      },
+      {
+        "service": "user-service",
+        "rank": 9,
+        "score": -1.2208077907562256
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 10,
+        "score": -1.2411878108978271
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -1.2529301643371582
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-069-dc66d4e2": [
+      {
+        "service": "text-service",
+        "rank": 1,
+        "score": 0.767075777053833
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.01209111325442791
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 3,
+        "score": -0.3566531240940094
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 4,
+        "score": -0.949482798576355
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 5,
+        "score": -1.01815664768219
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": -1.1521140336990356
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 7,
+        "score": -1.2003217935562134
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": -1.204552412033081
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 9,
+        "score": -1.209065318107605
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -1.2208077907562256
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -1.2529301643371582
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-072-006c57dc": [
+      {
+        "service": "compose-post-service",
+        "rank": 1,
+        "score": 1.0433406829833984
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 2,
+        "score": -0.8968496322631836
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 3,
+        "score": -0.9165679216384888
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": -1.0403153896331787
+      },
+      {
+        "service": "text-service",
+        "rank": 5,
+        "score": -1.1452710628509521
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 6,
+        "score": -1.1840415000915527
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 7,
+        "score": -1.1840415000915527
+      },
+      {
+        "service": "media-service",
+        "rank": 8,
+        "score": -1.2002968788146973
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": -1.2002968788146973
+      },
+      {
+        "service": "user-service",
+        "rank": 10,
+        "score": -1.2002968788146973
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 11,
+        "score": -1.2003217935562134
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 12,
+        "score": -1.226628065109253
+      }
+    ],
+    "m13-078-d9c06445": [
+      {
+        "service": "compose-post-service",
+        "rank": 1,
+        "score": 0.4411642551422119
+      },
+      {
+        "service": "text-service",
+        "rank": 2,
+        "score": 0.24812141060829163
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 3,
+        "score": -0.6204485893249512
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 4,
+        "score": -0.8198089599609375
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 5,
+        "score": -0.9239119291305542
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 6,
+        "score": -1.072169303894043
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 7,
+        "score": -1.1421273946762085
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 8,
+        "score": -1.1681993007659912
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": -1.2208077907562256
+      },
+      {
+        "service": "user-service",
+        "rank": 10,
+        "score": -1.2208077907562256
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 11,
+        "score": -1.230204701423645
+      },
+      {
+        "service": "media-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-083-f251657f": [
+      {
+        "service": "url-shorten-service",
+        "rank": 1,
+        "score": 0.2973706126213074
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 2,
+        "score": -0.1625237762928009
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 3,
+        "score": -0.3238871693611145
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 4,
+        "score": -0.9239119291305542
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 5,
+        "score": -1.042601227760315
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 6,
+        "score": -1.1334425210952759
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 7,
+        "score": -1.180761694908142
+      },
+      {
+        "service": "media-service",
+        "rank": 8,
+        "score": -1.2060245275497437
+      },
+      {
+        "service": "text-service",
+        "rank": 9,
+        "score": -1.209065318107605
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -1.2269877195358276
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 11,
+        "score": -1.2411878108978271
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-087-449f3e89": [
+      {
+        "service": "url-shorten-service",
+        "rank": 1,
+        "score": 1.0216660499572754
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 2,
+        "score": -0.1625237762928009
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 3,
+        "score": -0.5366816520690918
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 4,
+        "score": -1.1334425210952759
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 5,
+        "score": -1.159748911857605
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 6,
+        "score": -1.1702951192855835
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 7,
+        "score": -1.1852748394012451
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 8,
+        "score": -1.2208077907562256
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 9,
+        "score": -1.2411878108978271
+      },
+      {
+        "service": "text-service",
+        "rank": 10,
+        "score": -1.2411878108978271
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -1.2529301643371582
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-097-eea2e5ec": [
+      {
+        "service": "user-mention-service",
+        "rank": 1,
+        "score": 0.5436484217643738
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 2,
+        "score": -0.17650239169597626
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 3,
+        "score": -0.82440185546875
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 4,
+        "score": -0.8669447898864746
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 5,
+        "score": -1.0090934038162231
+      },
+      {
+        "service": "text-service",
+        "rank": 6,
+        "score": -1.1422042846679688
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 7,
+        "score": -1.1446224451065063
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": -1.1877802610397339
+      },
+      {
+        "service": "user-service",
+        "rank": 9,
+        "score": -1.2002968788146973
+      },
+      {
+        "service": "media-service",
+        "rank": 10,
+        "score": -1.2167909145355225
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 11,
+        "score": -1.225515604019165
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 12,
+        "score": -1.226628065109253
+      }
+    ],
+    "m13-101-e535cbad": [
+      {
+        "service": "compose-post-service",
+        "rank": 1,
+        "score": 0.7688465714454651
+      },
+      {
+        "service": "text-service",
+        "rank": 2,
+        "score": 0.1010885015130043
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 3,
+        "score": 0.06827285140752792
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 4,
+        "score": 0.011264475993812084
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 5,
+        "score": -0.00877476017922163
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 6,
+        "score": -0.10589160025119781
+      },
+      {
+        "service": "media-service",
+        "rank": 7,
+        "score": -0.14341631531715393
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 8,
+        "score": -0.243625208735466
+      },
+      {
+        "service": "user-service",
+        "rank": 9,
+        "score": -0.30800431966781616
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 10,
+        "score": -0.8579052090644836
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 11,
+        "score": -0.9954439401626587
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 12,
+        "score": -1.0036799907684326
+      }
+    ],
+    "m13-108-96aa0c41": [
+      {
+        "service": "compose-post-service",
+        "rank": 1,
+        "score": 1.037642240524292
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 2,
+        "score": -0.8655951619148254
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 3,
+        "score": -0.9202887415885925
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 4,
+        "score": -0.9433233141899109
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 5,
+        "score": -1.0059263706207275
+      },
+      {
+        "service": "text-service",
+        "rank": 6,
+        "score": -1.0574983358383179
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 7,
+        "score": -1.0641462802886963
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 8,
+        "score": -1.1821105480194092
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 9,
+        "score": -1.202500820159912
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 10,
+        "score": -1.226628065109253
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -1.2269877195358276
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ]
+  },
+  "healthy_high": {
+    "m13-001-b0b5cd7d": [
+      {
+        "service": "text-service",
+        "rank": 1,
+        "score": 1.0430384874343872
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.04425150901079178
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 3,
+        "score": -0.33896687626838684
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 4,
+        "score": -0.359952449798584
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 5,
+        "score": -0.445835679769516
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 6,
+        "score": -0.5730767250061035
+      },
+      {
+        "service": "media-service",
+        "rank": 7,
+        "score": -0.594062328338623
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 8,
+        "score": -0.6471344232559204
+      },
+      {
+        "service": "user-service",
+        "rank": 9,
+        "score": -0.6799455881118774
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 10,
+        "score": -0.7317808866500854
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 11,
+        "score": -0.9911071062088013
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 12,
+        "score": -1.048976182937622
+      }
+    ],
+    "m13-003-53c955ff": [
+      {
+        "service": "user-timeline-service",
+        "rank": 1,
+        "score": -0.006327046547085047
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": -0.2776479423046112
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 3,
+        "score": -0.5878412127494812
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 4,
+        "score": -0.644005537033081
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 5,
+        "score": -0.9379760026931763
+      },
+      {
+        "service": "text-service",
+        "rank": 6,
+        "score": -1.0600156784057617
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 7,
+        "score": -1.0670549869537354
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 8,
+        "score": -1.0670549869537354
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 9,
+        "score": -1.1581755876541138
+      },
+      {
+        "service": "media-service",
+        "rank": 10,
+        "score": -1.2123979330062866
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 11,
+        "score": -1.2123979330062866
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2123979330062866
+      }
+    ],
+    "m13-008-6cc9fe9a": [
+      {
+        "service": "user-mention-service",
+        "rank": 1,
+        "score": 0.5726000666618347
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 2,
+        "score": 0.3686400055885315
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 3,
+        "score": -0.16122165322303772
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 4,
+        "score": -0.26852983236312866
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 5,
+        "score": -0.3009788393974304
+      },
+      {
+        "service": "text-service",
+        "rank": 6,
+        "score": -0.6228054165840149
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 7,
+        "score": -0.7303742170333862
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 8,
+        "score": -0.7398373484611511
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 9,
+        "score": -1.031172513961792
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -1.1937175989151
+      },
+      {
+        "service": "user-service",
+        "rank": 11,
+        "score": -1.1937175989151
+      },
+      {
+        "service": "media-service",
+        "rank": 12,
+        "score": -1.2258398532867432
+      }
+    ],
+    "m13-012-e98ac613": [
+      {
+        "service": "url-shorten-service",
+        "rank": 1,
+        "score": 1.123578429222107
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 2,
+        "score": -0.21764716506004333
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 3,
+        "score": -1.0313034057617188
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 4,
+        "score": -1.0576097965240479
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 5,
+        "score": -1.0625418424606323
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 6,
+        "score": -1.0670549869537354
+      },
+      {
+        "service": "text-service",
+        "rank": 7,
+        "score": -1.0670549869537354
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 8,
+        "score": -1.0848441123962402
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 9,
+        "score": -1.1945059299468994
+      },
+      {
+        "service": "media-service",
+        "rank": 10,
+        "score": -1.2445201873779297
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 11,
+        "score": -1.2445201873779297
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2445201873779297
+      }
+    ],
+    "m13-013-1873394f": [
+      {
+        "service": "text-service",
+        "rank": 1,
+        "score": 0.6837642788887024
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": -0.15748539566993713
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 3,
+        "score": -0.24414774775505066
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 4,
+        "score": -0.30267468094825745
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 5,
+        "score": -0.4384336471557617
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": -0.5160567164421082
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 7,
+        "score": -0.5926600694656372
+      },
+      {
+        "service": "user-service",
+        "rank": 8,
+        "score": -0.6260380744934082
+      },
+      {
+        "service": "media-service",
+        "rank": 9,
+        "score": -0.6474412083625793
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 10,
+        "score": -0.8854886889457703
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 11,
+        "score": -1.0117255449295044
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 12,
+        "score": -1.0508297681808472
+      }
+    ],
+    "m13-015-06a4deda": [
+      {
+        "service": "text-service",
+        "rank": 1,
+        "score": 0.8896636962890625
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.5378396511077881
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 3,
+        "score": -0.7841254472732544
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 4,
+        "score": -1.0071170330047607
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 5,
+        "score": -1.0179595947265625
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 6,
+        "score": -1.0247653722763062
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 7,
+        "score": -1.0247653722763062
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 8,
+        "score": -1.0670549869537354
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 9,
+        "score": -1.1895860433578491
+      },
+      {
+        "service": "media-service",
+        "rank": 10,
+        "score": -1.1944607496261597
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 11,
+        "score": -1.1944607496261597
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.1944607496261597
+      }
+    ],
+    "m13-038-e9a14c41": [
+      {
+        "service": "user-mention-service",
+        "rank": 1,
+        "score": 0.6537571549415588
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 2,
+        "score": 0.562360405921936
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 3,
+        "score": -0.14846661686897278
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": -0.39291101694107056
+      },
+      {
+        "service": "text-service",
+        "rank": 5,
+        "score": -0.6579564809799194
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": -0.7822937965393066
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 7,
+        "score": -0.813377857208252
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 8,
+        "score": -0.9461458921432495
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 9,
+        "score": -1.1869213581085205
+      },
+      {
+        "service": "user-service",
+        "rank": 10,
+        "score": -1.2208077907562256
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -1.2277233600616455
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-051-8727571e": [
+      {
+        "service": "compose-post-service",
+        "rank": 1,
+        "score": 0.6938979029655457
+      },
+      {
+        "service": "text-service",
+        "rank": 2,
+        "score": 0.6065770387649536
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 3,
+        "score": 0.26169469952583313
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 4,
+        "score": 0.18440015614032745
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 5,
+        "score": 0.11893723160028458
+      },
+      {
+        "service": "media-service",
+        "rank": 6,
+        "score": 0.01882578805088997
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 7,
+        "score": 0.01882578805088997
+      },
+      {
+        "service": "user-service",
+        "rank": 8,
+        "score": -0.0021597943268716335
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 9,
+        "score": -0.06504016369581223
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 10,
+        "score": -0.720446765422821
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 11,
+        "score": -0.7389158010482788
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 12,
+        "score": -1.0247653722763062
+      }
+    ],
+    "m13-055-83bbe2a4": [
+      {
+        "service": "user-mention-service",
+        "rank": 1,
+        "score": 1.1262418031692505
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 2,
+        "score": 0.003441647393628955
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 3,
+        "score": -0.8877688646316528
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 4,
+        "score": -0.9039928317070007
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 5,
+        "score": -1.0413821935653687
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 6,
+        "score": -1.0553168058395386
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 7,
+        "score": -1.068721890449524
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": -1.068721890449524
+      },
+      {
+        "service": "text-service",
+        "rank": 9,
+        "score": -1.0835051536560059
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -1.186455488204956
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -1.2185779809951782
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2185779809951782
+      }
+    ],
+    "m13-057-d93acea6": [
+      {
+        "service": "user-timeline-service",
+        "rank": 1,
+        "score": 1.021634578704834
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": -0.6192395687103271
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 3,
+        "score": -0.9165679216384888
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 4,
+        "score": -0.9742656946182251
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 5,
+        "score": -1.0093348026275635
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 6,
+        "score": -1.0634256601333618
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 7,
+        "score": -1.1702951192855835
+      },
+      {
+        "service": "text-service",
+        "rank": 8,
+        "score": -1.2024173736572266
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 9,
+        "score": -1.2024173736572266
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -1.2208077907562256
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -1.2529301643371582
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-063-68e5615a": [
+      {
+        "service": "url-shorten-service",
+        "rank": 1,
+        "score": 0.20201638340950012
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 2,
+        "score": -0.21077902615070343
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 3,
+        "score": -0.24105258285999298
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 4,
+        "score": -1.0156073570251465
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 5,
+        "score": -1.0897319316864014
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 6,
+        "score": -1.154623031616211
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 7,
+        "score": -1.180761694908142
+      },
+      {
+        "service": "text-service",
+        "rank": 8,
+        "score": -1.197904348373413
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 9,
+        "score": -1.197904348373413
+      },
+      {
+        "service": "media-service",
+        "rank": 10,
+        "score": -1.2529301643371582
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 11,
+        "score": -1.2529301643371582
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-064-dac66720": [
+      {
+        "service": "text-service",
+        "rank": 1,
+        "score": 0.5921229124069214
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 2,
+        "score": -0.18992136418819427
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 3,
+        "score": -0.5423935055732727
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 4,
+        "score": -0.5767487287521362
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 5,
+        "score": -0.8951261639595032
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 6,
+        "score": -0.9041576385498047
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 7,
+        "score": -0.9721802473068237
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 8,
+        "score": -1.0657122135162354
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 9,
+        "score": -1.186745285987854
+      },
+      {
+        "service": "user-service",
+        "rank": 10,
+        "score": -1.1948654651641846
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 11,
+        "score": -1.210493803024292
+      },
+      {
+        "service": "media-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-069-dc66d4e2": [
+      {
+        "service": "compose-post-service",
+        "rank": 1,
+        "score": 0.46360793709754944
+      },
+      {
+        "service": "text-service",
+        "rank": 2,
+        "score": 0.370601624250412
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 3,
+        "score": -0.18987217545509338
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 4,
+        "score": -0.7324345707893372
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 5,
+        "score": -0.7389158010482788
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 6,
+        "score": -0.876848578453064
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 7,
+        "score": -1.0090934038162231
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": -1.0090934038162231
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 9,
+        "score": -1.0179178714752197
+      },
+      {
+        "service": "user-service",
+        "rank": 10,
+        "score": -1.2006407976150513
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 11,
+        "score": -1.2117997407913208
+      },
+      {
+        "service": "media-service",
+        "rank": 12,
+        "score": -1.2265830039978027
+      }
+    ],
+    "m13-072-006c57dc": [
+      {
+        "service": "compose-post-service",
+        "rank": 1,
+        "score": 0.6213482022285461
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 2,
+        "score": -0.4054087698459625
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 3,
+        "score": -0.7389158010482788
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 4,
+        "score": -0.758376955986023
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 5,
+        "score": -0.9320788383483887
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 6,
+        "score": -1.0162353515625
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 7,
+        "score": -1.0202523469924927
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 8,
+        "score": -1.0459047555923462
+      },
+      {
+        "service": "text-service",
+        "rank": 9,
+        "score": -1.0523746013641357
+      },
+      {
+        "service": "media-service",
+        "rank": 10,
+        "score": -1.2265830039978027
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 11,
+        "score": -1.2265830039978027
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2265830039978027
+      }
+    ],
+    "m13-078-d9c06445": [
+      {
+        "service": "text-service",
+        "rank": 1,
+        "score": 0.7584195137023926
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.37637799978256226
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 3,
+        "score": -0.8844455480575562
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 4,
+        "score": -0.8964195251464844
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 5,
+        "score": -0.9039066433906555
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 6,
+        "score": -1.0313034057617188
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 7,
+        "score": -1.033398985862732
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": -1.1702951192855835
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 9,
+        "score": -1.1846497058868408
+      },
+      {
+        "service": "user-service",
+        "rank": 10,
+        "score": -1.2208077907562256
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 11,
+        "score": -1.2381469011306763
+      },
+      {
+        "service": "media-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-083-f251657f": [
+      {
+        "service": "url-shorten-service",
+        "rank": 1,
+        "score": 0.4890573024749756
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 2,
+        "score": 0.20533700287342072
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 3,
+        "score": -0.20428578555583954
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 4,
+        "score": -0.5225416421890259
+      },
+      {
+        "service": "media-service",
+        "rank": 5,
+        "score": -0.7642894983291626
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 6,
+        "score": -0.9771673083305359
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 7,
+        "score": -1.0247653722763062
+      },
+      {
+        "service": "text-service",
+        "rank": 8,
+        "score": -1.0247653722763062
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 9,
+        "score": -1.067807912826538
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 10,
+        "score": -1.119314193725586
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 11,
+        "score": -1.1879411935806274
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2265830039978027
+      }
+    ],
+    "m13-087-449f3e89": [
+      {
+        "service": "url-shorten-service",
+        "rank": 1,
+        "score": 1.1254651546478271
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 2,
+        "score": -0.004454641602933407
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 3,
+        "score": -0.22452577948570251
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 4,
+        "score": -0.7906366586685181
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 5,
+        "score": -1.0897319316864014
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 6,
+        "score": -1.0966148376464844
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 7,
+        "score": -1.180761694908142
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 8,
+        "score": -1.197904348373413
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 9,
+        "score": -1.197904348373413
+      },
+      {
+        "service": "text-service",
+        "rank": 10,
+        "score": -1.2024173736572266
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -1.2529301643371582
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2529301643371582
+      }
+    ],
+    "m13-097-eea2e5ec": [
+      {
+        "service": "user-mention-service",
+        "rank": 1,
+        "score": 0.8627086877822876
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 2,
+        "score": -0.0468737855553627
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 3,
+        "score": -0.8772624731063843
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 4,
+        "score": -0.9039928317070007
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 5,
+        "score": -1.0247653722763062
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 6,
+        "score": -1.0397450923919678
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 7,
+        "score": -1.0523746013641357
+      },
+      {
+        "service": "text-service",
+        "rank": 8,
+        "score": -1.0568877458572388
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 9,
+        "score": -1.0568877458572388
+      },
+      {
+        "service": "media-service",
+        "rank": 10,
+        "score": -1.2265830039978027
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 11,
+        "score": -1.2265830039978027
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2265830039978027
+      }
+    ],
+    "m13-101-e535cbad": [
+      {
+        "service": "compose-post-service",
+        "rank": 1,
+        "score": 0.7257118821144104
+      },
+      {
+        "service": "text-service",
+        "rank": 2,
+        "score": 0.5192433595657349
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 3,
+        "score": 0.16679143905639648
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 4,
+        "score": 0.14250904321670532
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 5,
+        "score": 0.12231409549713135
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 6,
+        "score": 0.11189810186624527
+      },
+      {
+        "service": "media-service",
+        "rank": 7,
+        "score": -0.050887275487184525
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 8,
+        "score": -0.050887275487184525
+      },
+      {
+        "service": "user-service",
+        "rank": 9,
+        "score": -0.07187284529209137
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 10,
+        "score": -0.7849262356758118
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 11,
+        "score": -0.9808505177497864
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 12,
+        "score": -1.0247653722763062
+      }
+    ],
+    "m13-108-96aa0c41": [
+      {
+        "service": "compose-post-service",
+        "rank": 1,
+        "score": 1.0002501010894775
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 2,
+        "score": -0.20168821513652802
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 3,
+        "score": -0.6971536874771118
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 4,
+        "score": -0.8761591911315918
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 5,
+        "score": -0.8781609535217285
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 6,
+        "score": -1.0247653722763062
+      },
+      {
+        "service": "text-service",
+        "rank": 7,
+        "score": -1.0247653722763062
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": -1.0247653722763062
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 9,
+        "score": -1.050803780555725
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -1.1944607496261597
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -1.2265830039978027
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -1.2265830039978027
+      }
+    ]
+  },
+  "traces_empty": {
+    "m13-001-b0b5cd7d": [
+      {
+        "service": "home-timeline-service",
+        "rank": 1,
+        "score": 0.6978334784507751
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.6452847719192505
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 3,
+        "score": 0.5615507364273071
+      },
+      {
+        "service": "text-service",
+        "rank": 4,
+        "score": 0.5130384564399719
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 5,
+        "score": 0.41644152998924255
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 6,
+        "score": 0.3923841714859009
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 7,
+        "score": 0.10410221666097641
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.06660870462656021
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": -0.08786372095346451
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 10,
+        "score": -0.19240351021289825
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.3086186349391937
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.3404325842857361
+      }
+    ],
+    "m13-003-53c955ff": [
+      {
+        "service": "home-timeline-service",
+        "rank": 1,
+        "score": 0.6518504619598389
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.616430401802063
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 3,
+        "score": 0.5944422483444214
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": 0.5918571352958679
+      },
+      {
+        "service": "text-service",
+        "rank": 5,
+        "score": 0.551628589630127
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 6,
+        "score": 0.5361288785934448
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 7,
+        "score": 0.09157855063676834
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 8,
+        "score": 0.09142473340034485
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 9,
+        "score": -0.06559755653142929
+      },
+      {
+        "service": "media-service",
+        "rank": 10,
+        "score": -0.12284985929727554
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 11,
+        "score": -0.26073092222213745
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.3016684651374817
+      }
+    ],
+    "m13-008-6cc9fe9a": [
+      {
+        "service": "home-timeline-service",
+        "rank": 1,
+        "score": 0.6978334784507751
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.6452847719192505
+      },
+      {
+        "service": "text-service",
+        "rank": 3,
+        "score": 0.5890741348266602
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": 0.5817922353744507
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 5,
+        "score": 0.4202194809913635
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 6,
+        "score": 0.29075631499290466
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 7,
+        "score": 0.19504043459892273
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.059042979031801224
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": -0.03688669949769974
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 10,
+        "score": -0.19240351021289825
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.3086186349391937
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.34799832105636597
+      }
+    ],
+    "m13-012-e98ac613": [
+      {
+        "service": "url-shorten-service",
+        "rank": 1,
+        "score": 1.0727617740631104
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 2,
+        "score": 0.6910277009010315
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 3,
+        "score": 0.5886539220809937
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": 0.5615507364273071
+      },
+      {
+        "service": "text-service",
+        "rank": 5,
+        "score": 0.5306429862976074
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 6,
+        "score": 0.516618013381958
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 7,
+        "score": 0.41644152998924255
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 8,
+        "score": 0.20771782100200653
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": -0.07701236009597778
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 10,
+        "score": -0.11238151788711548
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.317396879196167
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.317396879196167
+      }
+    ],
+    "m13-013-1873394f": [
+      {
+        "service": "home-timeline-service",
+        "rank": 1,
+        "score": 0.690615177154541
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 2,
+        "score": 0.640334963798523
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 3,
+        "score": 0.6308104395866394
+      },
+      {
+        "service": "text-service",
+        "rank": 4,
+        "score": 0.5966398119926453
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 5,
+        "score": 0.5727748870849609
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": 0.41387683153152466
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 7,
+        "score": 0.1735265851020813
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.11758570373058319
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": -0.03688669949769974
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 10,
+        "score": -0.13312475383281708
+      },
+      {
+        "service": "user-service",
+        "rank": 11,
+        "score": -0.33073049783706665
+      },
+      {
+        "service": "media-service",
+        "rank": 12,
+        "score": -0.3404325842857361
+      }
+    ],
+    "m13-015-06a4deda": [
+      {
+        "service": "home-timeline-service",
+        "rank": 1,
+        "score": 0.690615177154541
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.6261633038520813
+      },
+      {
+        "service": "text-service",
+        "rank": 3,
+        "score": 0.5794358253479004
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": 0.5615507364273071
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 5,
+        "score": 0.5216270089149475
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": 0.4108096957206726
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 7,
+        "score": 0.20771782100200653
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.12894944846630096
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": -0.07701236009597778
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 10,
+        "score": -0.11238151788711548
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.317396879196167
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.317396879196167
+      }
+    ],
+    "m13-038-e9a14c41": [
+      {
+        "service": "home-timeline-service",
+        "rank": 1,
+        "score": 0.6732180118560791
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.6308104395866394
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 3,
+        "score": 0.5731874108314514
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": 0.5075609087944031
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 5,
+        "score": 0.3786783814430237
+      },
+      {
+        "service": "text-service",
+        "rank": 6,
+        "score": 0.3428989350795746
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 7,
+        "score": 0.22214238345623016
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.07249526679515839
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": -0.044452421367168427
+      },
+      {
+        "service": "media-service",
+        "rank": 10,
+        "score": -0.09721715748310089
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 11,
+        "score": -0.14142650365829468
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.3127497732639313
+      }
+    ],
+    "m13-051-8727571e": [
+      {
+        "service": "home-timeline-service",
+        "rank": 1,
+        "score": 0.7066279649734497
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.6674381494522095
+      },
+      {
+        "service": "text-service",
+        "rank": 3,
+        "score": 0.5816200375556946
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 4,
+        "score": 0.49487417936325073
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 5,
+        "score": 0.45550546050071716
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": 0.42162370681762695
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 7,
+        "score": 0.23481976985931396
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.14240175485610962
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": -0.026035357266664505
+      },
+      {
+        "service": "media-service",
+        "rank": 10,
+        "score": -0.050887275487184525
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 11,
+        "score": -0.0614045150578022
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.2664198577404022
+      }
+    ],
+    "m13-055-83bbe2a4": [
+      {
+        "service": "user-mention-service",
+        "rank": 1,
+        "score": 1.1145765781402588
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.6308104395866394
+      },
+      {
+        "service": "text-service",
+        "rank": 3,
+        "score": 0.5966398119926453
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 4,
+        "score": 0.5799931883811951
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 5,
+        "score": 0.5151265859603882
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 6,
+        "score": 0.4598868787288666
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 7,
+        "score": 0.4160862863063812
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.16155673563480377
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 9,
+        "score": 0.03286364674568176
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": 0.007084314711391926
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.019755080342292786
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.2894555926322937
+      }
+    ],
+    "m13-057-d93acea6": [
+      {
+        "service": "home-timeline-service",
+        "rank": 1,
+        "score": 0.6816979646682739
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.6021062135696411
+      },
+      {
+        "service": "text-service",
+        "rank": 3,
+        "score": 0.5816200375556946
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": 0.45550546050071716
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 5,
+        "score": 0.4352065622806549
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": 0.42162370681762695
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 7,
+        "score": 0.23481976985931396
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.17992646992206573
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": -0.010306930169463158
+      },
+      {
+        "service": "media-service",
+        "rank": 10,
+        "score": -0.050887275487184525
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 11,
+        "score": -0.0614045150578022
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.2664198577404022
+      }
+    ],
+    "m13-063-68e5615a": [
+      {
+        "service": "compose-post-service",
+        "rank": 1,
+        "score": 0.6674381494522095
+      },
+      {
+        "service": "text-service",
+        "rank": 2,
+        "score": 0.6094272136688232
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 3,
+        "score": 0.5911623239517212
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 4,
+        "score": 0.5731874108314514
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 5,
+        "score": 0.45550546050071716
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": 0.4220338463783264
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 7,
+        "score": 0.2870335876941681
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 8,
+        "score": 0.2607536017894745
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": -0.002741208765655756
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 10,
+        "score": -0.02389517053961754
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.03515884280204773
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.25069141387939453
+      }
+    ],
+    "m13-064-dac66720": [
+      {
+        "service": "compose-post-service",
+        "rank": 1,
+        "score": 0.5933010578155518
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 2,
+        "score": 0.5799931883811951
+      },
+      {
+        "service": "text-service",
+        "rank": 3,
+        "score": 0.5381449460983276
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": 0.4873194098472595
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 5,
+        "score": 0.4785214066505432
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": 0.3786783814430237
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 7,
+        "score": 0.14467182755470276
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.07546229660511017
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 9,
+        "score": 0.015595788136124611
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -0.044452421367168427
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.09721715748310089
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.2970212996006012
+      }
+    ],
+    "m13-069-dc66d4e2": [
+      {
+        "service": "compose-post-service",
+        "rank": 1,
+        "score": 0.6135425567626953
+      },
+      {
+        "service": "text-service",
+        "rank": 2,
+        "score": 0.5583863258361816
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 3,
+        "score": 0.5075609087944031
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 4,
+        "score": 0.4598868787288666
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 5,
+        "score": 0.41045960783958435
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 6,
+        "score": 0.3898249566555023
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 7,
+        "score": 0.1706056296825409
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.13100555539131165
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 9,
+        "score": 0.015595788136124611
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -0.044452421367168427
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.0814887285232544
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.3127497732639313
+      }
+    ],
+    "m13-072-006c57dc": [
+      {
+        "service": "compose-post-service",
+        "rank": 1,
+        "score": 1.043987512588501
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 2,
+        "score": 0.6816979646682739
+      },
+      {
+        "service": "text-service",
+        "rank": 3,
+        "score": 0.5982843041419983
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 4,
+        "score": 0.5731874108314514
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 5,
+        "score": 0.4873194098472595
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": 0.3713292181491852
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 7,
+        "score": 0.22214238345623016
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.16155673563480377
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 9,
+        "score": 0.07732944190502167
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": 0.007084314711391926
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.019755080342292786
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.23528766632080078
+      }
+    ],
+    "m13-078-d9c06445": [
+      {
+        "service": "home-timeline-service",
+        "rank": 1,
+        "score": 0.6816979646682739
+      },
+      {
+        "service": "text-service",
+        "rank": 2,
+        "score": 0.5816200375556946
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 3,
+        "score": 0.5607892274856567
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": 0.47574692964553833
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 5,
+        "score": 0.41644152998924255
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 6,
+        "score": 0.268319308757782
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 7,
+        "score": 0.20091204345226288
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 8,
+        "score": 0.18764984607696533
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 9,
+        "score": 0.08893037587404251
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -0.002741208765655756
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.0861034169793129
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.25069141387939453
+      }
+    ],
+    "m13-083-f251657f": [
+      {
+        "service": "home-timeline-service",
+        "rank": 1,
+        "score": 0.6816979646682739
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.639615535736084
+      },
+      {
+        "service": "text-service",
+        "rank": 3,
+        "score": 0.6026055812835693
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": 0.4873194098472595
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 5,
+        "score": 0.4134136736392975
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 6,
+        "score": 0.3754135072231293
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 7,
+        "score": 0.26109975576400757
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 8,
+        "score": 0.23481976985931396
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 9,
+        "score": 0.10132850706577301
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -0.026035357266664505
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.07187284529209137
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.2664198577404022
+      }
+    ],
+    "m13-087-449f3e89": [
+      {
+        "service": "url-shorten-service",
+        "rank": 1,
+        "score": 1.1244776248931885
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 2,
+        "score": 0.6816979646682739
+      },
+      {
+        "service": "text-service",
+        "rank": 3,
+        "score": 0.6228470802307129
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 4,
+        "score": 0.6223476529121399
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 5,
+        "score": 0.5731874108314514
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 6,
+        "score": 0.4873194098472595
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 7,
+        "score": 0.39166060090065
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 8,
+        "score": 0.2607536017894745
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 9,
+        "score": 0.10132850706577301
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -0.010306930169463158
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.07187284529209137
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.2664198577404022
+      }
+    ],
+    "m13-097-eea2e5ec": [
+      {
+        "service": "user-mention-service",
+        "rank": 1,
+        "score": 0.8191105723381042
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.6752761602401733
+      },
+      {
+        "service": "text-service",
+        "rank": 3,
+        "score": 0.630908727645874
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 4,
+        "score": 0.5652033090591431
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 5,
+        "score": 0.5172630548477173
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 6,
+        "score": 0.4381876587867737
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 7,
+        "score": 0.4160862863063812
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.14070770144462585
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 9,
+        "score": 0.025297924876213074
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": 0.007084314711391926
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.08520645648241043
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.23528766632080078
+      }
+    ],
+    "m13-101-e535cbad": [
+      {
+        "service": "home-timeline-service",
+        "rank": 1,
+        "score": 0.6816979646682739
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.6299134492874146
+      },
+      {
+        "service": "text-service",
+        "rank": 3,
+        "score": 0.6026055812835693
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": 0.4873194098472595
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 5,
+        "score": 0.44044798612594604
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": 0.4220338463783264
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 7,
+        "score": 0.23481976985931396
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.20091204345226288
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 9,
+        "score": 0.10132850706577301
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -0.026035357266664505
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.07187284529209137
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.2664198577404022
+      }
+    ],
+    "m13-108-96aa0c41": [
+      {
+        "service": "compose-post-service",
+        "rank": 1,
+        "score": 1.026449203491211
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 2,
+        "score": 0.6599987745285034
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 3,
+        "score": 0.6106253266334534
+      },
+      {
+        "service": "text-service",
+        "rank": 4,
+        "score": 0.5591304898262024
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 5,
+        "score": 0.5075609087944031
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": 0.4160862863063812
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 7,
+        "score": 0.15668193995952606
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.08977849781513214
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": 0.019839344546198845
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 10,
+        "score": -0.004645696375519037
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.08520645648241043
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.2970212996006012
+      }
+    ]
+  },
+  "traces_unavailable": {
+    "m13-001-b0b5cd7d": [
+      {
+        "service": "home-timeline-service",
+        "rank": 1,
+        "score": 0.6978334784507751
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.6452847719192505
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 3,
+        "score": 0.5615507364273071
+      },
+      {
+        "service": "text-service",
+        "rank": 4,
+        "score": 0.5130384564399719
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 5,
+        "score": 0.41644152998924255
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 6,
+        "score": 0.3923841714859009
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 7,
+        "score": 0.10410221666097641
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.06660870462656021
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": -0.08786372095346451
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 10,
+        "score": -0.19240351021289825
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.3086186349391937
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.3404325842857361
+      }
+    ],
+    "m13-003-53c955ff": [
+      {
+        "service": "home-timeline-service",
+        "rank": 1,
+        "score": 0.6518504619598389
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.616430401802063
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 3,
+        "score": 0.5944422483444214
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": 0.5918571352958679
+      },
+      {
+        "service": "text-service",
+        "rank": 5,
+        "score": 0.551628589630127
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 6,
+        "score": 0.5361288785934448
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 7,
+        "score": 0.09157855063676834
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 8,
+        "score": 0.09142473340034485
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 9,
+        "score": -0.06559755653142929
+      },
+      {
+        "service": "media-service",
+        "rank": 10,
+        "score": -0.12284985929727554
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 11,
+        "score": -0.26073092222213745
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.3016684651374817
+      }
+    ],
+    "m13-008-6cc9fe9a": [
+      {
+        "service": "home-timeline-service",
+        "rank": 1,
+        "score": 0.6978334784507751
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.6452847719192505
+      },
+      {
+        "service": "text-service",
+        "rank": 3,
+        "score": 0.5890741348266602
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": 0.5817922353744507
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 5,
+        "score": 0.4202194809913635
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 6,
+        "score": 0.29075631499290466
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 7,
+        "score": 0.19504043459892273
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.059042979031801224
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": -0.03688669949769974
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 10,
+        "score": -0.19240351021289825
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.3086186349391937
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.34799832105636597
+      }
+    ],
+    "m13-012-e98ac613": [
+      {
+        "service": "url-shorten-service",
+        "rank": 1,
+        "score": 1.0727617740631104
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 2,
+        "score": 0.6910277009010315
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 3,
+        "score": 0.5886539220809937
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": 0.5615507364273071
+      },
+      {
+        "service": "text-service",
+        "rank": 5,
+        "score": 0.5306429862976074
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 6,
+        "score": 0.516618013381958
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 7,
+        "score": 0.41644152998924255
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 8,
+        "score": 0.20771782100200653
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": -0.07701236009597778
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 10,
+        "score": -0.11238151788711548
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.317396879196167
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.317396879196167
+      }
+    ],
+    "m13-013-1873394f": [
+      {
+        "service": "home-timeline-service",
+        "rank": 1,
+        "score": 0.690615177154541
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 2,
+        "score": 0.640334963798523
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 3,
+        "score": 0.6308104395866394
+      },
+      {
+        "service": "text-service",
+        "rank": 4,
+        "score": 0.5966398119926453
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 5,
+        "score": 0.5727748870849609
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": 0.41387683153152466
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 7,
+        "score": 0.1735265851020813
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.11758570373058319
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": -0.03688669949769974
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 10,
+        "score": -0.13312475383281708
+      },
+      {
+        "service": "user-service",
+        "rank": 11,
+        "score": -0.33073049783706665
+      },
+      {
+        "service": "media-service",
+        "rank": 12,
+        "score": -0.3404325842857361
+      }
+    ],
+    "m13-015-06a4deda": [
+      {
+        "service": "home-timeline-service",
+        "rank": 1,
+        "score": 0.690615177154541
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.6261633038520813
+      },
+      {
+        "service": "text-service",
+        "rank": 3,
+        "score": 0.5794358253479004
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": 0.5615507364273071
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 5,
+        "score": 0.5216270089149475
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": 0.4108096957206726
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 7,
+        "score": 0.20771782100200653
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.12894944846630096
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": -0.07701236009597778
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 10,
+        "score": -0.11238151788711548
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.317396879196167
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.317396879196167
+      }
+    ],
+    "m13-038-e9a14c41": [
+      {
+        "service": "home-timeline-service",
+        "rank": 1,
+        "score": 0.6732180118560791
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.6308104395866394
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 3,
+        "score": 0.5731874108314514
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": 0.5075609087944031
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 5,
+        "score": 0.3786783814430237
+      },
+      {
+        "service": "text-service",
+        "rank": 6,
+        "score": 0.3428989350795746
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 7,
+        "score": 0.22214238345623016
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.07249526679515839
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": -0.044452421367168427
+      },
+      {
+        "service": "media-service",
+        "rank": 10,
+        "score": -0.09721715748310089
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 11,
+        "score": -0.14142650365829468
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.3127497732639313
+      }
+    ],
+    "m13-051-8727571e": [
+      {
+        "service": "home-timeline-service",
+        "rank": 1,
+        "score": 0.7066279649734497
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.6674381494522095
+      },
+      {
+        "service": "text-service",
+        "rank": 3,
+        "score": 0.5816200375556946
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 4,
+        "score": 0.49487417936325073
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 5,
+        "score": 0.45550546050071716
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": 0.42162370681762695
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 7,
+        "score": 0.23481976985931396
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.14240175485610962
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": -0.026035357266664505
+      },
+      {
+        "service": "media-service",
+        "rank": 10,
+        "score": -0.050887275487184525
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 11,
+        "score": -0.0614045150578022
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.2664198577404022
+      }
+    ],
+    "m13-055-83bbe2a4": [
+      {
+        "service": "user-mention-service",
+        "rank": 1,
+        "score": 1.1145765781402588
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.6308104395866394
+      },
+      {
+        "service": "text-service",
+        "rank": 3,
+        "score": 0.5966398119926453
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 4,
+        "score": 0.5799931883811951
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 5,
+        "score": 0.5151265859603882
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 6,
+        "score": 0.4598868787288666
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 7,
+        "score": 0.4160862863063812
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.16155673563480377
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 9,
+        "score": 0.03286364674568176
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": 0.007084314711391926
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.019755080342292786
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.2894555926322937
+      }
+    ],
+    "m13-057-d93acea6": [
+      {
+        "service": "home-timeline-service",
+        "rank": 1,
+        "score": 0.6816979646682739
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.6021062135696411
+      },
+      {
+        "service": "text-service",
+        "rank": 3,
+        "score": 0.5816200375556946
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": 0.45550546050071716
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 5,
+        "score": 0.4352065622806549
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": 0.42162370681762695
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 7,
+        "score": 0.23481976985931396
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.17992646992206573
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": -0.010306930169463158
+      },
+      {
+        "service": "media-service",
+        "rank": 10,
+        "score": -0.050887275487184525
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 11,
+        "score": -0.0614045150578022
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.2664198577404022
+      }
+    ],
+    "m13-063-68e5615a": [
+      {
+        "service": "compose-post-service",
+        "rank": 1,
+        "score": 0.6674381494522095
+      },
+      {
+        "service": "text-service",
+        "rank": 2,
+        "score": 0.6094272136688232
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 3,
+        "score": 0.5911623239517212
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 4,
+        "score": 0.5731874108314514
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 5,
+        "score": 0.45550546050071716
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": 0.4220338463783264
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 7,
+        "score": 0.2870335876941681
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 8,
+        "score": 0.2607536017894745
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": -0.002741208765655756
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 10,
+        "score": -0.02389517053961754
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.03515884280204773
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.25069141387939453
+      }
+    ],
+    "m13-064-dac66720": [
+      {
+        "service": "compose-post-service",
+        "rank": 1,
+        "score": 0.5933010578155518
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 2,
+        "score": 0.5799931883811951
+      },
+      {
+        "service": "text-service",
+        "rank": 3,
+        "score": 0.5381449460983276
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": 0.4873194098472595
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 5,
+        "score": 0.4785214066505432
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": 0.3786783814430237
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 7,
+        "score": 0.14467182755470276
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.07546229660511017
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 9,
+        "score": 0.015595788136124611
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -0.044452421367168427
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.09721715748310089
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.2970212996006012
+      }
+    ],
+    "m13-069-dc66d4e2": [
+      {
+        "service": "compose-post-service",
+        "rank": 1,
+        "score": 0.6135425567626953
+      },
+      {
+        "service": "text-service",
+        "rank": 2,
+        "score": 0.5583863258361816
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 3,
+        "score": 0.5075609087944031
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 4,
+        "score": 0.4598868787288666
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 5,
+        "score": 0.41045960783958435
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 6,
+        "score": 0.3898249566555023
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 7,
+        "score": 0.1706056296825409
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.13100555539131165
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 9,
+        "score": 0.015595788136124611
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -0.044452421367168427
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.0814887285232544
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.3127497732639313
+      }
+    ],
+    "m13-072-006c57dc": [
+      {
+        "service": "compose-post-service",
+        "rank": 1,
+        "score": 1.043987512588501
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 2,
+        "score": 0.6816979646682739
+      },
+      {
+        "service": "text-service",
+        "rank": 3,
+        "score": 0.5982843041419983
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 4,
+        "score": 0.5731874108314514
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 5,
+        "score": 0.4873194098472595
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": 0.3713292181491852
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 7,
+        "score": 0.22214238345623016
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.16155673563480377
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 9,
+        "score": 0.07732944190502167
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": 0.007084314711391926
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.019755080342292786
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.23528766632080078
+      }
+    ],
+    "m13-078-d9c06445": [
+      {
+        "service": "home-timeline-service",
+        "rank": 1,
+        "score": 0.6816979646682739
+      },
+      {
+        "service": "text-service",
+        "rank": 2,
+        "score": 0.5816200375556946
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 3,
+        "score": 0.5607892274856567
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": 0.47574692964553833
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 5,
+        "score": 0.41644152998924255
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 6,
+        "score": 0.268319308757782
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 7,
+        "score": 0.20091204345226288
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 8,
+        "score": 0.18764984607696533
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 9,
+        "score": 0.08893037587404251
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -0.002741208765655756
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.0861034169793129
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.25069141387939453
+      }
+    ],
+    "m13-083-f251657f": [
+      {
+        "service": "home-timeline-service",
+        "rank": 1,
+        "score": 0.6816979646682739
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.639615535736084
+      },
+      {
+        "service": "text-service",
+        "rank": 3,
+        "score": 0.6026055812835693
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": 0.4873194098472595
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 5,
+        "score": 0.4134136736392975
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 6,
+        "score": 0.3754135072231293
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 7,
+        "score": 0.26109975576400757
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 8,
+        "score": 0.23481976985931396
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 9,
+        "score": 0.10132850706577301
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -0.026035357266664505
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.07187284529209137
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.2664198577404022
+      }
+    ],
+    "m13-087-449f3e89": [
+      {
+        "service": "url-shorten-service",
+        "rank": 1,
+        "score": 1.1244776248931885
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 2,
+        "score": 0.6816979646682739
+      },
+      {
+        "service": "text-service",
+        "rank": 3,
+        "score": 0.6228470802307129
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 4,
+        "score": 0.6223476529121399
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 5,
+        "score": 0.5731874108314514
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 6,
+        "score": 0.4873194098472595
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 7,
+        "score": 0.39166060090065
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 8,
+        "score": 0.2607536017894745
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 9,
+        "score": 0.10132850706577301
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -0.010306930169463158
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.07187284529209137
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.2664198577404022
+      }
+    ],
+    "m13-097-eea2e5ec": [
+      {
+        "service": "user-mention-service",
+        "rank": 1,
+        "score": 0.8191105723381042
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.6752761602401733
+      },
+      {
+        "service": "text-service",
+        "rank": 3,
+        "score": 0.630908727645874
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 4,
+        "score": 0.5652033090591431
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 5,
+        "score": 0.5172630548477173
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 6,
+        "score": 0.4381876587867737
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 7,
+        "score": 0.4160862863063812
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.14070770144462585
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 9,
+        "score": 0.025297924876213074
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": 0.007084314711391926
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.08520645648241043
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.23528766632080078
+      }
+    ],
+    "m13-101-e535cbad": [
+      {
+        "service": "home-timeline-service",
+        "rank": 1,
+        "score": 0.6816979646682739
+      },
+      {
+        "service": "compose-post-service",
+        "rank": 2,
+        "score": 0.6299134492874146
+      },
+      {
+        "service": "text-service",
+        "rank": 3,
+        "score": 0.6026055812835693
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 4,
+        "score": 0.4873194098472595
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 5,
+        "score": 0.44044798612594604
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": 0.4220338463783264
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 7,
+        "score": 0.23481976985931396
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.20091204345226288
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 9,
+        "score": 0.10132850706577301
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 10,
+        "score": -0.026035357266664505
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.07187284529209137
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.2664198577404022
+      }
+    ],
+    "m13-108-96aa0c41": [
+      {
+        "service": "compose-post-service",
+        "rank": 1,
+        "score": 1.026449203491211
+      },
+      {
+        "service": "home-timeline-service",
+        "rank": 2,
+        "score": 0.6599987745285034
+      },
+      {
+        "service": "post-storage-service",
+        "rank": 3,
+        "score": 0.6106253266334534
+      },
+      {
+        "service": "text-service",
+        "rank": 4,
+        "score": 0.5591304898262024
+      },
+      {
+        "service": "user-timeline-service",
+        "rank": 5,
+        "score": 0.5075609087944031
+      },
+      {
+        "service": "nginx-thrift",
+        "rank": 6,
+        "score": 0.4160862863063812
+      },
+      {
+        "service": "user-mention-service",
+        "rank": 7,
+        "score": 0.15668193995952606
+      },
+      {
+        "service": "url-shorten-service",
+        "rank": 8,
+        "score": 0.08977849781513214
+      },
+      {
+        "service": "unique-id-service",
+        "rank": 9,
+        "score": 0.019839344546198845
+      },
+      {
+        "service": "social-graph-service",
+        "rank": 10,
+        "score": -0.004645696375519037
+      },
+      {
+        "service": "media-service",
+        "rank": 11,
+        "score": -0.08520645648241043
+      },
+      {
+        "service": "user-service",
+        "rank": 12,
+        "score": -0.2970212996006012
+      }
+    ]
+  }
+}

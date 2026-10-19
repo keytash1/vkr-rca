@@ -1,0 +1,966 @@
+{
+  "role": "USED_DEVELOPMENT_EVALUATION_ONLY",
+  "system": "DeathStarBench-SocialNetwork",
+  "cases": [
+    {
+      "incident_id": "m13-001-b0b5cd7d",
+      "root_service": "text-service",
+      "fault_family": "network_latency",
+      "workload_regime": "mixed_low",
+      "intensity": "200ms",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-002-8ff59f3a",
+      "root_service": "text-service",
+      "fault_family": "memory",
+      "workload_regime": "mixed_low",
+      "intensity": "128MiB",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-003-53c955ff",
+      "root_service": "user-timeline-service",
+      "fault_family": "network_latency",
+      "workload_regime": "mixed_high",
+      "intensity": "200ms",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-004-fae48c16",
+      "root_service": "url-shorten-service",
+      "fault_family": "network_latency",
+      "workload_regime": "mixed_low",
+      "intensity": "200ms",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-005-3131e5ca",
+      "root_service": "compose-post-service",
+      "fault_family": "service_unavailable",
+      "workload_regime": "mixed_low",
+      "intensity": "paused",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-006-74b5bb20",
+      "root_service": "user-mention-service",
+      "fault_family": "cpu",
+      "workload_regime": "mixed_high",
+      "intensity": "one_worker",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-007-149b4e67",
+      "root_service": "user-timeline-service",
+      "fault_family": "network_latency",
+      "workload_regime": "mixed_low",
+      "intensity": "200ms",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-008-6cc9fe9a",
+      "root_service": "user-mention-service",
+      "fault_family": "service_unavailable",
+      "workload_regime": "mixed_low",
+      "intensity": "paused",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-009-401f1285",
+      "root_service": "user-mention-service",
+      "fault_family": "memory",
+      "workload_regime": "mixed_high",
+      "intensity": "128MiB",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-010-e5ae7621",
+      "root_service": "user-timeline-service",
+      "fault_family": "packet_loss",
+      "workload_regime": "mixed_high",
+      "intensity": "15pct",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-011-c1c8a319",
+      "root_service": "text-service",
+      "fault_family": "cpu",
+      "workload_regime": "mixed_low",
+      "intensity": "one_worker",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-012-e98ac613",
+      "root_service": "url-shorten-service",
+      "fault_family": "cpu",
+      "workload_regime": "mixed_high",
+      "intensity": "one_worker",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-013-1873394f",
+      "root_service": "text-service",
+      "fault_family": "network_latency",
+      "workload_regime": "mixed_low",
+      "intensity": "200ms",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-014-80186eb6",
+      "root_service": "url-shorten-service",
+      "fault_family": "service_unavailable",
+      "workload_regime": "mixed_low",
+      "intensity": "paused",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-015-06a4deda",
+      "root_service": "text-service",
+      "fault_family": "packet_loss",
+      "workload_regime": "mixed_high",
+      "intensity": "15pct",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-016-2c03165a",
+      "root_service": "user-mention-service",
+      "fault_family": "network_latency",
+      "workload_regime": "mixed_low",
+      "intensity": "200ms",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-017-982b15de",
+      "root_service": "post-storage-service",
+      "fault_family": "network_latency",
+      "workload_regime": "mixed_high",
+      "intensity": "200ms",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-018-6abbd628",
+      "root_service": "user-mention-service",
+      "fault_family": "memory",
+      "workload_regime": "mixed_high",
+      "intensity": "128MiB",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-019-a03c4fb9",
+      "root_service": "user-mention-service",
+      "fault_family": "packet_loss",
+      "workload_regime": "mixed_high",
+      "intensity": "15pct",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-020-f4dddac5",
+      "root_service": "user-timeline-service",
+      "fault_family": "service_unavailable",
+      "workload_regime": "mixed_low",
+      "intensity": "paused",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-021-9519148f",
+      "root_service": "url-shorten-service",
+      "fault_family": "memory",
+      "workload_regime": "mixed_low",
+      "intensity": "128MiB",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-022-225f042e",
+      "root_service": "user-mention-service",
+      "fault_family": "cpu",
+      "workload_regime": "mixed_low",
+      "intensity": "one_worker",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-023-3c8c538c",
+      "root_service": "post-storage-service",
+      "fault_family": "cpu",
+      "workload_regime": "mixed_high",
+      "intensity": "one_worker",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-024-2404ca34",
+      "root_service": "text-service",
+      "fault_family": "cpu",
+      "workload_regime": "mixed_high",
+      "intensity": "one_worker",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-025-2409acfd",
+      "root_service": "user-timeline-service",
+      "fault_family": "packet_loss",
+      "workload_regime": "mixed_low",
+      "intensity": "15pct",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-026-397a7baf",
+      "root_service": "post-storage-service",
+      "fault_family": "packet_loss",
+      "workload_regime": "mixed_high",
+      "intensity": "15pct",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-027-ca579c7b",
+      "root_service": "text-service",
+      "fault_family": "service_unavailable",
+      "workload_regime": "mixed_high",
+      "intensity": "paused",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-028-c19d7933",
+      "root_service": "post-storage-service",
+      "fault_family": "cpu",
+      "workload_regime": "mixed_low",
+      "intensity": "one_worker",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-029-8d8300f7",
+      "root_service": "compose-post-service",
+      "fault_family": "cpu",
+      "workload_regime": "mixed_high",
+      "intensity": "one_worker",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-030-945bc19b",
+      "root_service": "post-storage-service",
+      "fault_family": "memory",
+      "workload_regime": "mixed_low",
+      "intensity": "128MiB",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-031-c24e1999",
+      "root_service": "user-mention-service",
+      "fault_family": "network_latency",
+      "workload_regime": "mixed_low",
+      "intensity": "200ms",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-032-4c2e1e2e",
+      "root_service": "text-service",
+      "fault_family": "memory",
+      "workload_regime": "mixed_high",
+      "intensity": "128MiB",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-033-a2731775",
+      "root_service": "post-storage-service",
+      "fault_family": "packet_loss",
+      "workload_regime": "mixed_high",
+      "intensity": "15pct",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-034-eac4cc9d",
+      "root_service": "user-timeline-service",
+      "fault_family": "service_unavailable",
+      "workload_regime": "mixed_high",
+      "intensity": "paused",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-035-32f0c9e3",
+      "root_service": "user-timeline-service",
+      "fault_family": "cpu",
+      "workload_regime": "mixed_high",
+      "intensity": "one_worker",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-036-d186e182",
+      "root_service": "compose-post-service",
+      "fault_family": "service_unavailable",
+      "workload_regime": "mixed_low",
+      "intensity": "paused",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-037-680ac910",
+      "root_service": "user-timeline-service",
+      "fault_family": "memory",
+      "workload_regime": "mixed_high",
+      "intensity": "128MiB",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-038-e9a14c41",
+      "root_service": "user-mention-service",
+      "fault_family": "service_unavailable",
+      "workload_regime": "mixed_low",
+      "intensity": "paused",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-039-4bd84403",
+      "root_service": "url-shorten-service",
+      "fault_family": "packet_loss",
+      "workload_regime": "mixed_low",
+      "intensity": "15pct",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-040-37a30041",
+      "root_service": "user-mention-service",
+      "fault_family": "cpu",
+      "workload_regime": "mixed_high",
+      "intensity": "one_worker",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-041-cb4320f6",
+      "root_service": "post-storage-service",
+      "fault_family": "network_latency",
+      "workload_regime": "mixed_low",
+      "intensity": "200ms",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-042-686ffc2b",
+      "root_service": "compose-post-service",
+      "fault_family": "network_latency",
+      "workload_regime": "mixed_low",
+      "intensity": "200ms",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-043-2a2e04d4",
+      "root_service": "text-service",
+      "fault_family": "cpu",
+      "workload_regime": "mixed_high",
+      "intensity": "one_worker",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-044-342532ed",
+      "root_service": "user-timeline-service",
+      "fault_family": "cpu",
+      "workload_regime": "mixed_high",
+      "intensity": "one_worker",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-045-a37d2fe4",
+      "root_service": "url-shorten-service",
+      "fault_family": "packet_loss",
+      "workload_regime": "mixed_low",
+      "intensity": "15pct",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-046-2ef99cc2",
+      "root_service": "compose-post-service",
+      "fault_family": "network_latency",
+      "workload_regime": "mixed_low",
+      "intensity": "200ms",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-047-7ff886d3",
+      "root_service": "post-storage-service",
+      "fault_family": "service_unavailable",
+      "workload_regime": "mixed_low",
+      "intensity": "paused",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-048-67a651b2",
+      "root_service": "user-timeline-service",
+      "fault_family": "cpu",
+      "workload_regime": "mixed_low",
+      "intensity": "one_worker",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-049-9044d863",
+      "root_service": "post-storage-service",
+      "fault_family": "memory",
+      "workload_regime": "mixed_high",
+      "intensity": "128MiB",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-050-774f4380",
+      "root_service": "user-mention-service",
+      "fault_family": "service_unavailable",
+      "workload_regime": "mixed_high",
+      "intensity": "paused",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-051-8727571e",
+      "root_service": "compose-post-service",
+      "fault_family": "service_unavailable",
+      "workload_regime": "mixed_high",
+      "intensity": "paused",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-052-5385c2af",
+      "root_service": "post-storage-service",
+      "fault_family": "service_unavailable",
+      "workload_regime": "mixed_low",
+      "intensity": "paused",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-053-0dd1da16",
+      "root_service": "user-timeline-service",
+      "fault_family": "cpu",
+      "workload_regime": "mixed_low",
+      "intensity": "one_worker",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-054-2bcddc85",
+      "root_service": "text-service",
+      "fault_family": "memory",
+      "workload_regime": "mixed_low",
+      "intensity": "128MiB",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-055-83bbe2a4",
+      "root_service": "user-mention-service",
+      "fault_family": "memory",
+      "workload_regime": "mixed_low",
+      "intensity": "128MiB",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-056-e6418060",
+      "root_service": "url-shorten-service",
+      "fault_family": "service_unavailable",
+      "workload_regime": "mixed_high",
+      "intensity": "paused",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-057-d93acea6",
+      "root_service": "user-timeline-service",
+      "fault_family": "network_latency",
+      "workload_regime": "mixed_high",
+      "intensity": "200ms",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-058-658c6ea7",
+      "root_service": "compose-post-service",
+      "fault_family": "packet_loss",
+      "workload_regime": "mixed_low",
+      "intensity": "15pct",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-059-d677944b",
+      "root_service": "compose-post-service",
+      "fault_family": "cpu",
+      "workload_regime": "mixed_high",
+      "intensity": "one_worker",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-060-8dca0f8f",
+      "root_service": "user-mention-service",
+      "fault_family": "packet_loss",
+      "workload_regime": "mixed_high",
+      "intensity": "15pct",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-061-2e6ee1df",
+      "root_service": "compose-post-service",
+      "fault_family": "network_latency",
+      "workload_regime": "mixed_high",
+      "intensity": "200ms",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-062-406ecc39",
+      "root_service": "user-mention-service",
+      "fault_family": "cpu",
+      "workload_regime": "mixed_low",
+      "intensity": "one_worker",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-063-68e5615a",
+      "root_service": "url-shorten-service",
+      "fault_family": "memory",
+      "workload_regime": "mixed_high",
+      "intensity": "128MiB",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-064-dac66720",
+      "root_service": "text-service",
+      "fault_family": "packet_loss",
+      "workload_regime": "mixed_low",
+      "intensity": "15pct",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-065-a1d7d42a",
+      "root_service": "url-shorten-service",
+      "fault_family": "cpu",
+      "workload_regime": "mixed_low",
+      "intensity": "one_worker",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-066-707897fe",
+      "root_service": "compose-post-service",
+      "fault_family": "memory",
+      "workload_regime": "mixed_low",
+      "intensity": "128MiB",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-067-36059df6",
+      "root_service": "user-mention-service",
+      "fault_family": "network_latency",
+      "workload_regime": "mixed_high",
+      "intensity": "200ms",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-068-5e561484",
+      "root_service": "url-shorten-service",
+      "fault_family": "cpu",
+      "workload_regime": "mixed_low",
+      "intensity": "one_worker",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-069-dc66d4e2",
+      "root_service": "text-service",
+      "fault_family": "packet_loss",
+      "workload_regime": "mixed_low",
+      "intensity": "15pct",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-070-5098b3f9",
+      "root_service": "url-shorten-service",
+      "fault_family": "network_latency",
+      "workload_regime": "mixed_low",
+      "intensity": "200ms",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-071-2f637e5b",
+      "root_service": "url-shorten-service",
+      "fault_family": "network_latency",
+      "workload_regime": "mixed_high",
+      "intensity": "200ms",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-072-006c57dc",
+      "root_service": "compose-post-service",
+      "fault_family": "cpu",
+      "workload_regime": "mixed_low",
+      "intensity": "one_worker",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-073-141c4165",
+      "root_service": "user-mention-service",
+      "fault_family": "service_unavailable",
+      "workload_regime": "mixed_high",
+      "intensity": "paused",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-074-18893525",
+      "root_service": "text-service",
+      "fault_family": "service_unavailable",
+      "workload_regime": "mixed_low",
+      "intensity": "paused",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-075-7ae449ab",
+      "root_service": "post-storage-service",
+      "fault_family": "memory",
+      "workload_regime": "mixed_high",
+      "intensity": "128MiB",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-076-a4329f21",
+      "root_service": "url-shorten-service",
+      "fault_family": "network_latency",
+      "workload_regime": "mixed_high",
+      "intensity": "200ms",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-077-0e623af0",
+      "root_service": "url-shorten-service",
+      "fault_family": "service_unavailable",
+      "workload_regime": "mixed_high",
+      "intensity": "paused",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-078-d9c06445",
+      "root_service": "text-service",
+      "fault_family": "packet_loss",
+      "workload_regime": "mixed_high",
+      "intensity": "15pct",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-079-e155ddc3",
+      "root_service": "user-timeline-service",
+      "fault_family": "memory",
+      "workload_regime": "mixed_low",
+      "intensity": "128MiB",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-080-2f43db29",
+      "root_service": "post-storage-service",
+      "fault_family": "cpu",
+      "workload_regime": "mixed_high",
+      "intensity": "one_worker",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-081-fd6affe9",
+      "root_service": "user-timeline-service",
+      "fault_family": "packet_loss",
+      "workload_regime": "mixed_high",
+      "intensity": "15pct",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-082-3baeb994",
+      "root_service": "text-service",
+      "fault_family": "service_unavailable",
+      "workload_regime": "mixed_low",
+      "intensity": "paused",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-083-f251657f",
+      "root_service": "url-shorten-service",
+      "fault_family": "memory",
+      "workload_regime": "mixed_high",
+      "intensity": "128MiB",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-084-0723f321",
+      "root_service": "compose-post-service",
+      "fault_family": "memory",
+      "workload_regime": "mixed_high",
+      "intensity": "128MiB",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-085-1b879f04",
+      "root_service": "text-service",
+      "fault_family": "cpu",
+      "workload_regime": "mixed_low",
+      "intensity": "one_worker",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-086-395ef55b",
+      "root_service": "post-storage-service",
+      "fault_family": "packet_loss",
+      "workload_regime": "mixed_low",
+      "intensity": "15pct",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-087-449f3e89",
+      "root_service": "url-shorten-service",
+      "fault_family": "cpu",
+      "workload_regime": "mixed_high",
+      "intensity": "one_worker",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-088-43b7a127",
+      "root_service": "text-service",
+      "fault_family": "network_latency",
+      "workload_regime": "mixed_high",
+      "intensity": "200ms",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-089-5ed62528",
+      "root_service": "user-timeline-service",
+      "fault_family": "service_unavailable",
+      "workload_regime": "mixed_low",
+      "intensity": "paused",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-090-32ba76b1",
+      "root_service": "user-timeline-service",
+      "fault_family": "memory",
+      "workload_regime": "mixed_low",
+      "intensity": "128MiB",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-091-600d44e9",
+      "root_service": "compose-post-service",
+      "fault_family": "network_latency",
+      "workload_regime": "mixed_high",
+      "intensity": "200ms",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-092-74c08141",
+      "root_service": "post-storage-service",
+      "fault_family": "cpu",
+      "workload_regime": "mixed_low",
+      "intensity": "one_worker",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-093-4ebfee2f",
+      "root_service": "user-timeline-service",
+      "fault_family": "network_latency",
+      "workload_regime": "mixed_low",
+      "intensity": "200ms",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-094-a1228084",
+      "root_service": "user-timeline-service",
+      "fault_family": "packet_loss",
+      "workload_regime": "mixed_low",
+      "intensity": "15pct",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-095-ea3a68df",
+      "root_service": "post-storage-service",
+      "fault_family": "network_latency",
+      "workload_regime": "mixed_high",
+      "intensity": "200ms",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-096-65a80958",
+      "root_service": "post-storage-service",
+      "fault_family": "network_latency",
+      "workload_regime": "mixed_low",
+      "intensity": "200ms",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-097-eea2e5ec",
+      "root_service": "user-mention-service",
+      "fault_family": "memory",
+      "workload_regime": "mixed_low",
+      "intensity": "128MiB",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-098-39e403e4",
+      "root_service": "text-service",
+      "fault_family": "memory",
+      "workload_regime": "mixed_high",
+      "intensity": "128MiB",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-099-1c737389",
+      "root_service": "compose-post-service",
+      "fault_family": "packet_loss",
+      "workload_regime": "mixed_high",
+      "intensity": "15pct",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-100-a5bffcd9",
+      "root_service": "compose-post-service",
+      "fault_family": "packet_loss",
+      "workload_regime": "mixed_high",
+      "intensity": "15pct",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-101-e535cbad",
+      "root_service": "compose-post-service",
+      "fault_family": "service_unavailable",
+      "workload_regime": "mixed_high",
+      "intensity": "paused",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-102-bd853846",
+      "root_service": "post-storage-service",
+      "fault_family": "service_unavailable",
+      "workload_regime": "mixed_high",
+      "intensity": "paused",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-103-7a112e60",
+      "root_service": "text-service",
+      "fault_family": "network_latency",
+      "workload_regime": "mixed_high",
+      "intensity": "200ms",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-104-78c28535",
+      "root_service": "user-mention-service",
+      "fault_family": "network_latency",
+      "workload_regime": "mixed_high",
+      "intensity": "200ms",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-105-2a5dc10b",
+      "root_service": "post-storage-service",
+      "fault_family": "memory",
+      "workload_regime": "mixed_low",
+      "intensity": "128MiB",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-106-02420905",
+      "root_service": "compose-post-service",
+      "fault_family": "memory",
+      "workload_regime": "mixed_high",
+      "intensity": "128MiB",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-107-2c79393f",
+      "root_service": "text-service",
+      "fault_family": "service_unavailable",
+      "workload_regime": "mixed_high",
+      "intensity": "paused",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-108-96aa0c41",
+      "root_service": "compose-post-service",
+      "fault_family": "cpu",
+      "workload_regime": "mixed_low",
+      "intensity": "one_worker",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-109-71c0ff3c",
+      "root_service": "user-mention-service",
+      "fault_family": "packet_loss",
+      "workload_regime": "mixed_low",
+      "intensity": "15pct",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-110-fb272019",
+      "root_service": "url-shorten-service",
+      "fault_family": "service_unavailable",
+      "workload_regime": "mixed_low",
+      "intensity": "paused",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-111-9e6b6567",
+      "root_service": "post-storage-service",
+      "fault_family": "packet_loss",
+      "workload_regime": "mixed_low",
+      "intensity": "15pct",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-112-89a930b2",
+      "root_service": "url-shorten-service",
+      "fault_family": "memory",
+      "workload_regime": "mixed_low",
+      "intensity": "128MiB",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-113-663cd28e",
+      "root_service": "url-shorten-service",
+      "fault_family": "packet_loss",
+      "workload_regime": "mixed_high",
+      "intensity": "15pct",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-114-0e4c0f86",
+      "root_service": "compose-post-service",
+      "fault_family": "memory",
+      "workload_regime": "mixed_low",
+      "intensity": "128MiB",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-115-aa2e146f",
+      "root_service": "compose-post-service",
+      "fault_family": "packet_loss",
+      "workload_regime": "mixed_low",
+      "intensity": "15pct",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-116-f99d4205",
+      "root_service": "url-shorten-service",
+      "fault_family": "packet_loss",
+      "workload_regime": "mixed_high",
+      "intensity": "15pct",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-117-67e16a01",
+      "root_service": "user-timeline-service",
+      "fault_family": "service_unavailable",
+      "workload_regime": "mixed_high",
+      "intensity": "paused",
+      "repetition": 1
+    },
+    {
+      "incident_id": "m13-118-85448c80",
+      "root_service": "post-storage-service",
+      "fault_family": "service_unavailable",
+      "workload_regime": "mixed_high",
+      "intensity": "paused",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-119-a534fc6d",
+      "root_service": "user-timeline-service",
+      "fault_family": "memory",
+      "workload_regime": "mixed_high",
+      "intensity": "128MiB",
+      "repetition": 2
+    },
+    {
+      "incident_id": "m13-120-e9379ed2",
+      "root_service": "user-mention-service",
+      "fault_family": "packet_loss",
+      "workload_regime": "mixed_low",
+      "intensity": "15pct",
+      "repetition": 2
+    }
+  ]
+}

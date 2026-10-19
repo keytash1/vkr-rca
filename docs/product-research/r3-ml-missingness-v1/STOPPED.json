@@ -1,0 +1,8 @@
+{
+  "status": "technical_preflight_failure",
+  "reason": "Handoff said 63 columns but sealed schema has 62; literal assertion rejected before any fit or masked inference",
+  "new_ranking_fits": 0,
+  "resume_forbidden": true,
+  "successor": "../r3-ml-missingness-v2",
+  "erratum": "../../R3_SCHEMA_ERRATUM.md"
+}
