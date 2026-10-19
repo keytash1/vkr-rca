@@ -1,12 +1,14 @@
 # RCA Workbench — следующая продуктовая и исследовательская итерация
 
-> R3-F: [свежий источник проверен](product-research/R3_FRESH_RED_RESULTS.md).
-> В AnoMod SN нет опубликованных RED CSV; не заменять их trace-derived
-> значениями. Поиск архивов остановлен. Наш Go-контур получил настоящие
-> HTTP counters/histogram и отдельный scrape; HTTP/race/build проверены.
-> Следующий шаг — живой Prometheus и малый зарегистрированный пилот с
-> независимыми RED. Docker daemon сейчас выключен; capture/fit не выполнены.
-> Это подготовленный измеритель, не улучшенная модель/новый выпуск продукта.
+> **Текущая точка R3-G:** [живой пилот завершён](product-research/R3_LIVE_RED_RESULTS.md).
+> Colima уже была установлена; настоящий Prometheus/Jaeger и все 6 воздействий
+> проверены. RED информативен при потере traces в этом малом проходе, но
+> фиксированный RRF не улучшил Top-1 и не продвигается. Idle/source-outage
+> различаются. Найден trace-domain риск: старые данные все UNKNOWN, признаки
+> downstream wait всегда нулевые. Следующая одна гипотеза — observed dependency
+> wait по parent/child, без обязательных roles. До fit — отдельная регистрация
+> и проверка поддержки; никаких новых корпусов/grid. Go-6 теперь development,
+> M14 по-прежнему не используется для выбора. Продуктовые веса/DOCX сохранены.
 
 > R3-E завершён: [абляция метрик](product-research/R3_FAMILY_ABLATION_RESULTS.md)
 > дала положительный development-сигнал от latency/error. Следующий опыт —

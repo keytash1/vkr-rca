@@ -3,6 +3,11 @@
   "role": "RESEARCH_MEASUREMENTS_NOT_FROZEN_MODEL_INPUT",
   "scope": "Completed business HTTP requests; health, debug and scrapes excluded",
   "window_seconds": 30,
+  "source_presence": {
+    "query": "up{job=\"business-http-red\"}",
+    "service_label": "service",
+    "meaning": "scrape_health_not_business_activity; stale rate values do not establish availability"
+  },
   "channels": {
     "request_rate": {
       "unit": "requests_per_second",

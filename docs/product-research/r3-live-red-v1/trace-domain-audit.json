@@ -1,0 +1,889 @@
+{
+  "role": "USED_DEVELOPMENT_AND_CONTROLLED_PILOT_DIAGNOSTIC_NOT_CAUSAL_PROOF",
+  "healthy_sha256": "70501f1080a681fa6184475eda32d9d51e84692ef5647463178b0f0c0ce3d7e4",
+  "development_index_sha256": "245bc0f3b0ffe05c8942d311112e242c355d674f4f9a9ea61b9e7422ab0d23f7",
+  "feature_cache_sha256": "b82575988f230b1810355bc482d60f12458a431bb70a2b4608e72d8126118ab5",
+  "healthy_span_kinds": {
+    "UNKNOWN": 43784
+  },
+  "development_span_kinds": {
+    "UNKNOWN": 128596
+  },
+  "cases": [
+    {
+      "incident_id": "m13-001-b0b5cd7d",
+      "span_kinds": {
+        "UNKNOWN": 770
+      }
+    },
+    {
+      "incident_id": "m13-002-8ff59f3a",
+      "span_kinds": {
+        "UNKNOWN": 736
+      }
+    },
+    {
+      "incident_id": "m13-003-53c955ff",
+      "span_kinds": {
+        "UNKNOWN": 1247
+      }
+    },
+    {
+      "incident_id": "m13-004-fae48c16",
+      "span_kinds": {
+        "UNKNOWN": 818
+      }
+    },
+    {
+      "incident_id": "m13-005-3131e5ca",
+      "span_kinds": {
+        "UNKNOWN": 775
+      }
+    },
+    {
+      "incident_id": "m13-006-74b5bb20",
+      "span_kinds": {
+        "UNKNOWN": 1211
+      }
+    },
+    {
+      "incident_id": "m13-007-149b4e67",
+      "span_kinds": {
+        "UNKNOWN": 966
+      }
+    },
+    {
+      "incident_id": "m13-008-6cc9fe9a",
+      "span_kinds": {
+        "UNKNOWN": 893
+      }
+    },
+    {
+      "incident_id": "m13-009-401f1285",
+      "span_kinds": {
+        "UNKNOWN": 1219
+      }
+    },
+    {
+      "incident_id": "m13-010-e5ae7621",
+      "span_kinds": {
+        "UNKNOWN": 1249
+      }
+    },
+    {
+      "incident_id": "m13-011-c1c8a319",
+      "span_kinds": {
+        "UNKNOWN": 962
+      }
+    },
+    {
+      "incident_id": "m13-012-e98ac613",
+      "span_kinds": {
+        "UNKNOWN": 1207
+      }
+    },
+    {
+      "incident_id": "m13-013-1873394f",
+      "span_kinds": {
+        "UNKNOWN": 784
+      }
+    },
+    {
+      "incident_id": "m13-014-80186eb6",
+      "span_kinds": {
+        "UNKNOWN": 846
+      }
+    },
+    {
+      "incident_id": "m13-015-06a4deda",
+      "span_kinds": {
+        "UNKNOWN": 1190
+      }
+    },
+    {
+      "incident_id": "m13-016-2c03165a",
+      "span_kinds": {
+        "UNKNOWN": 812
+      }
+    },
+    {
+      "incident_id": "m13-017-982b15de",
+      "span_kinds": {
+        "UNKNOWN": 1187
+      }
+    },
+    {
+      "incident_id": "m13-018-6abbd628",
+      "span_kinds": {
+        "UNKNOWN": 1207
+      }
+    },
+    {
+      "incident_id": "m13-019-a03c4fb9",
+      "span_kinds": {
+        "UNKNOWN": 1249
+      }
+    },
+    {
+      "incident_id": "m13-020-f4dddac5",
+      "span_kinds": {
+        "UNKNOWN": 980
+      }
+    },
+    {
+      "incident_id": "m13-021-9519148f",
+      "span_kinds": {
+        "UNKNOWN": 992
+      }
+    },
+    {
+      "incident_id": "m13-022-225f042e",
+      "span_kinds": {
+        "UNKNOWN": 920
+      }
+    },
+    {
+      "incident_id": "m13-023-3c8c538c",
+      "span_kinds": {
+        "UNKNOWN": 1277
+      }
+    },
+    {
+      "incident_id": "m13-024-2404ca34",
+      "span_kinds": {
+        "UNKNOWN": 1333
+      }
+    },
+    {
+      "incident_id": "m13-025-2409acfd",
+      "span_kinds": {
+        "UNKNOWN": 903
+      }
+    },
+    {
+      "incident_id": "m13-026-397a7baf",
+      "span_kinds": {
+        "UNKNOWN": 987
+      }
+    },
+    {
+      "incident_id": "m13-027-ca579c7b",
+      "span_kinds": {
+        "UNKNOWN": 1233
+      }
+    },
+    {
+      "incident_id": "m13-028-c19d7933",
+      "span_kinds": {
+        "UNKNOWN": 954
+      }
+    },
+    {
+      "incident_id": "m13-029-8d8300f7",
+      "span_kinds": {
+        "UNKNOWN": 1489
+      }
+    },
+    {
+      "incident_id": "m13-030-945bc19b",
+      "span_kinds": {
+        "UNKNOWN": 808
+      }
+    },
+    {
+      "incident_id": "m13-031-c24e1999",
+      "span_kinds": {
+        "UNKNOWN": 840
+      }
+    },
+    {
+      "incident_id": "m13-032-4c2e1e2e",
+      "span_kinds": {
+        "UNKNOWN": 1125
+      }
+    },
+    {
+      "incident_id": "m13-033-a2731775",
+      "span_kinds": {
+        "UNKNOWN": 1299
+      }
+    },
+    {
+      "incident_id": "m13-034-eac4cc9d",
+      "span_kinds": {
+        "UNKNOWN": 1327
+      }
+    },
+    {
+      "incident_id": "m13-035-32f0c9e3",
+      "span_kinds": {
+        "UNKNOWN": 1387
+      }
+    },
+    {
+      "incident_id": "m13-036-d186e182",
+      "span_kinds": {
+        "UNKNOWN": 916
+      }
+    },
+    {
+      "incident_id": "m13-037-680ac910",
+      "span_kinds": {
+        "UNKNOWN": 1219
+      }
+    },
+    {
+      "incident_id": "m13-038-e9a14c41",
+      "span_kinds": {
+        "UNKNOWN": 964
+      }
+    },
+    {
+      "incident_id": "m13-039-4bd84403",
+      "span_kinds": {
+        "UNKNOWN": 856
+      }
+    },
+    {
+      "incident_id": "m13-040-37a30041",
+      "span_kinds": {
+        "UNKNOWN": 1333
+      }
+    },
+    {
+      "incident_id": "m13-041-cb4320f6",
+      "span_kinds": {
+        "UNKNOWN": 818
+      }
+    },
+    {
+      "incident_id": "m13-042-686ffc2b",
+      "span_kinds": {
+        "UNKNOWN": 840
+      }
+    },
+    {
+      "incident_id": "m13-043-2a2e04d4",
+      "span_kinds": {
+        "UNKNOWN": 1227
+      }
+    },
+    {
+      "incident_id": "m13-044-342532ed",
+      "span_kinds": {
+        "UNKNOWN": 1485
+      }
+    },
+    {
+      "incident_id": "m13-045-a37d2fe4",
+      "span_kinds": {
+        "UNKNOWN": 838
+      }
+    },
+    {
+      "incident_id": "m13-046-2ef99cc2",
+      "span_kinds": {
+        "UNKNOWN": 852
+      }
+    },
+    {
+      "incident_id": "m13-047-7ff886d3",
+      "span_kinds": {
+        "UNKNOWN": 828
+      }
+    },
+    {
+      "incident_id": "m13-048-67a651b2",
+      "span_kinds": {
+        "UNKNOWN": 818
+      }
+    },
+    {
+      "incident_id": "m13-049-9044d863",
+      "span_kinds": {
+        "UNKNOWN": 1283
+      }
+    },
+    {
+      "incident_id": "m13-050-774f4380",
+      "span_kinds": {
+        "UNKNOWN": 1185
+      }
+    },
+    {
+      "incident_id": "m13-051-8727571e",
+      "span_kinds": {
+        "UNKNOWN": 1248
+      }
+    },
+    {
+      "incident_id": "m13-052-5385c2af",
+      "span_kinds": {
+        "UNKNOWN": 796
+      }
+    },
+    {
+      "incident_id": "m13-053-0dd1da16",
+      "span_kinds": {
+        "UNKNOWN": 872
+      }
+    },
+    {
+      "incident_id": "m13-054-2bcddc85",
+      "span_kinds": {
+        "UNKNOWN": 812
+      }
+    },
+    {
+      "incident_id": "m13-055-83bbe2a4",
+      "span_kinds": {
+        "UNKNOWN": 890
+      }
+    },
+    {
+      "incident_id": "m13-056-e6418060",
+      "span_kinds": {
+        "UNKNOWN": 1233
+      }
+    },
+    {
+      "incident_id": "m13-057-d93acea6",
+      "span_kinds": {
+        "UNKNOWN": 1319
+      }
+    },
+    {
+      "incident_id": "m13-058-658c6ea7",
+      "span_kinds": {
+        "UNKNOWN": 864
+      }
+    },
+    {
+      "incident_id": "m13-059-d677944b",
+      "span_kinds": {
+        "UNKNOWN": 1235
+      }
+    },
+    {
+      "incident_id": "m13-060-8dca0f8f",
+      "span_kinds": {
+        "UNKNOWN": 1327
+      }
+    },
+    {
+      "incident_id": "m13-061-2e6ee1df",
+      "span_kinds": {
+        "UNKNOWN": 1293
+      }
+    },
+    {
+      "incident_id": "m13-062-406ecc39",
+      "span_kinds": {
+        "UNKNOWN": 970
+      }
+    },
+    {
+      "incident_id": "m13-063-68e5615a",
+      "span_kinds": {
+        "UNKNOWN": 1281
+      }
+    },
+    {
+      "incident_id": "m13-064-dac66720",
+      "span_kinds": {
+        "UNKNOWN": 991
+      }
+    },
+    {
+      "incident_id": "m13-065-a1d7d42a",
+      "span_kinds": {
+        "UNKNOWN": 862
+      }
+    },
+    {
+      "incident_id": "m13-066-707897fe",
+      "span_kinds": {
+        "UNKNOWN": 836
+      }
+    },
+    {
+      "incident_id": "m13-067-36059df6",
+      "span_kinds": {
+        "UNKNOWN": 1281
+      }
+    },
+    {
+      "incident_id": "m13-068-5e561484",
+      "span_kinds": {
+        "UNKNOWN": 1032
+      }
+    },
+    {
+      "incident_id": "m13-069-dc66d4e2",
+      "span_kinds": {
+        "UNKNOWN": 852
+      }
+    },
+    {
+      "incident_id": "m13-070-5098b3f9",
+      "span_kinds": {
+        "UNKNOWN": 990
+      }
+    },
+    {
+      "incident_id": "m13-071-2f637e5b",
+      "span_kinds": {
+        "UNKNOWN": 1179
+      }
+    },
+    {
+      "incident_id": "m13-072-006c57dc",
+      "span_kinds": {
+        "UNKNOWN": 836
+      }
+    },
+    {
+      "incident_id": "m13-073-141c4165",
+      "span_kinds": {
+        "UNKNOWN": 1167
+      }
+    },
+    {
+      "incident_id": "m13-074-18893525",
+      "span_kinds": {
+        "UNKNOWN": 882
+      }
+    },
+    {
+      "incident_id": "m13-075-7ae449ab",
+      "span_kinds": {
+        "UNKNOWN": 1271
+      }
+    },
+    {
+      "incident_id": "m13-076-a4329f21",
+      "span_kinds": {
+        "UNKNOWN": 1205
+      }
+    },
+    {
+      "incident_id": "m13-077-0e623af0",
+      "span_kinds": {
+        "UNKNOWN": 1423
+      }
+    },
+    {
+      "incident_id": "m13-078-d9c06445",
+      "span_kinds": {
+        "UNKNOWN": 1361
+      }
+    },
+    {
+      "incident_id": "m13-079-e155ddc3",
+      "span_kinds": {
+        "UNKNOWN": 966
+      }
+    },
+    {
+      "incident_id": "m13-080-2f43db29",
+      "span_kinds": {
+        "UNKNOWN": 1383
+      }
+    },
+    {
+      "incident_id": "m13-081-fd6affe9",
+      "span_kinds": {
+        "UNKNOWN": 1203
+      }
+    },
+    {
+      "incident_id": "m13-082-3baeb994",
+      "span_kinds": {
+        "UNKNOWN": 846
+      }
+    },
+    {
+      "incident_id": "m13-083-f251657f",
+      "span_kinds": {
+        "UNKNOWN": 1189
+      }
+    },
+    {
+      "incident_id": "m13-084-0723f321",
+      "span_kinds": {
+        "UNKNOWN": 1331
+      }
+    },
+    {
+      "incident_id": "m13-085-1b879f04",
+      "span_kinds": {
+        "UNKNOWN": 836
+      }
+    },
+    {
+      "incident_id": "m13-086-395ef55b",
+      "span_kinds": {
+        "UNKNOWN": 846
+      }
+    },
+    {
+      "incident_id": "m13-087-449f3e89",
+      "span_kinds": {
+        "UNKNOWN": 1277
+      }
+    },
+    {
+      "incident_id": "m13-088-43b7a127",
+      "span_kinds": {
+        "UNKNOWN": 1389
+      }
+    },
+    {
+      "incident_id": "m13-089-5ed62528",
+      "span_kinds": {
+        "UNKNOWN": 780
+      }
+    },
+    {
+      "incident_id": "m13-090-32ba76b1",
+      "span_kinds": {
+        "UNKNOWN": 766
+      }
+    },
+    {
+      "incident_id": "m13-091-600d44e9",
+      "span_kinds": {
+        "UNKNOWN": 1177
+      }
+    },
+    {
+      "incident_id": "m13-092-74c08141",
+      "span_kinds": {
+        "UNKNOWN": 860
+      }
+    },
+    {
+      "incident_id": "m13-093-4ebfee2f",
+      "span_kinds": {
+        "UNKNOWN": 786
+      }
+    },
+    {
+      "incident_id": "m13-094-a1228084",
+      "span_kinds": {
+        "UNKNOWN": 784
+      }
+    },
+    {
+      "incident_id": "m13-095-ea3a68df",
+      "span_kinds": {
+        "UNKNOWN": 1385
+      }
+    },
+    {
+      "incident_id": "m13-096-65a80958",
+      "span_kinds": {
+        "UNKNOWN": 974
+      }
+    },
+    {
+      "incident_id": "m13-097-eea2e5ec",
+      "span_kinds": {
+        "UNKNOWN": 842
+      }
+    },
+    {
+      "incident_id": "m13-098-39e403e4",
+      "span_kinds": {
+        "UNKNOWN": 1205
+      }
+    },
+    {
+      "incident_id": "m13-099-1c737389",
+      "span_kinds": {
+        "UNKNOWN": 1217
+      }
+    },
+    {
+      "incident_id": "m13-100-a5bffcd9",
+      "span_kinds": {
+        "UNKNOWN": 1326
+      }
+    },
+    {
+      "incident_id": "m13-101-e535cbad",
+      "span_kinds": {
+        "UNKNOWN": 1265
+      }
+    },
+    {
+      "incident_id": "m13-102-bd853846",
+      "span_kinds": {
+        "UNKNOWN": 1327
+      }
+    },
+    {
+      "incident_id": "m13-103-7a112e60",
+      "span_kinds": {
+        "UNKNOWN": 1247
+      }
+    },
+    {
+      "incident_id": "m13-104-78c28535",
+      "span_kinds": {
+        "UNKNOWN": 1281
+      }
+    },
+    {
+      "incident_id": "m13-105-2a5dc10b",
+      "span_kinds": {
+        "UNKNOWN": 1018
+      }
+    },
+    {
+      "incident_id": "m13-106-02420905",
+      "span_kinds": {
+        "UNKNOWN": 1309
+      }
+    },
+    {
+      "incident_id": "m13-107-2c79393f",
+      "span_kinds": {
+        "UNKNOWN": 1375
+      }
+    },
+    {
+      "incident_id": "m13-108-96aa0c41",
+      "span_kinds": {
+        "UNKNOWN": 886
+      }
+    },
+    {
+      "incident_id": "m13-109-71c0ff3c",
+      "span_kinds": {
+        "UNKNOWN": 878
+      }
+    },
+    {
+      "incident_id": "m13-110-fb272019",
+      "span_kinds": {
+        "UNKNOWN": 897
+      }
+    },
+    {
+      "incident_id": "m13-111-9e6b6567",
+      "span_kinds": {
+        "UNKNOWN": 780
+      }
+    },
+    {
+      "incident_id": "m13-112-89a930b2",
+      "span_kinds": {
+        "UNKNOWN": 832
+      }
+    },
+    {
+      "incident_id": "m13-113-663cd28e",
+      "span_kinds": {
+        "UNKNOWN": 1211
+      }
+    },
+    {
+      "incident_id": "m13-114-0e4c0f86",
+      "span_kinds": {
+        "UNKNOWN": 864
+      }
+    },
+    {
+      "incident_id": "m13-115-aa2e146f",
+      "span_kinds": {
+        "UNKNOWN": 966
+      }
+    },
+    {
+      "incident_id": "m13-116-f99d4205",
+      "span_kinds": {
+        "UNKNOWN": 1405
+      }
+    },
+    {
+      "incident_id": "m13-117-67e16a01",
+      "span_kinds": {
+        "UNKNOWN": 1229
+      }
+    },
+    {
+      "incident_id": "m13-118-85448c80",
+      "span_kinds": {
+        "UNKNOWN": 1147
+      }
+    },
+    {
+      "incident_id": "m13-119-a534fc6d",
+      "span_kinds": {
+        "UNKNOWN": 1415
+      }
+    },
+    {
+      "incident_id": "m13-120-e9379ed2",
+      "span_kinds": {
+        "UNKNOWN": 944
+      }
+    }
+  ],
+  "cached_feature_support": {
+    "trace_error_rate_shift": {
+      "rows": 1440,
+      "nonzero": 24,
+      "minimum": 0.0,
+      "maximum": 365432098.76543206
+    },
+    "trace_exclusive_median_us_shift": {
+      "rows": 1440,
+      "nonzero": 963,
+      "minimum": 0.0,
+      "maximum": 17016.848684898807
+    },
+    "trace_downstream_wait_ratio_shift": {
+      "rows": 1440,
+      "nonzero": 0,
+      "minimum": 0.0,
+      "maximum": 0.0
+    },
+    "exclusive_duration_support": {
+      "rows": 1440,
+      "nonzero": 963,
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "downstream_wait_support": {
+      "rows": 1440,
+      "nonzero": 0,
+      "minimum": 0.0,
+      "maximum": 0.0
+    }
+  },
+  "live_pilot": {
+    "g-001": {
+      "span_kinds": {
+        "SERVER": 522,
+        "CLIENT": 348
+      },
+      "by_service": {
+        "gateway": {
+          "server_errors": 0,
+          "client_errors": 0
+        },
+        "orders": {
+          "server_errors": 0,
+          "client_errors": 0
+        },
+        "payment": {
+          "server_errors": 0,
+          "client_errors": 0
+        }
+      }
+    },
+    "g-002": {
+      "span_kinds": {
+        "SERVER": 171
+      },
+      "by_service": {
+        "gateway": {
+          "server_errors": 171,
+          "client_errors": 0
+        },
+        "orders": {
+          "server_errors": 0,
+          "client_errors": 0
+        },
+        "payment": {
+          "server_errors": 0,
+          "client_errors": 0
+        }
+      }
+    },
+    "g-003": {
+      "span_kinds": {
+        "SERVER": 519,
+        "CLIENT": 346
+      },
+      "by_service": {
+        "gateway": {
+          "server_errors": 0,
+          "client_errors": 0
+        },
+        "orders": {
+          "server_errors": 0,
+          "client_errors": 0
+        },
+        "payment": {
+          "server_errors": 0,
+          "client_errors": 0
+        }
+      }
+    },
+    "g-004": {
+      "span_kinds": {
+        "SERVER": 344,
+        "CLIENT": 172
+      },
+      "by_service": {
+        "gateway": {
+          "server_errors": 172,
+          "client_errors": 172
+        },
+        "orders": {
+          "server_errors": 172,
+          "client_errors": 0
+        },
+        "payment": {
+          "server_errors": 0,
+          "client_errors": 0
+        }
+      }
+    },
+    "g-005": {
+      "span_kinds": {
+        "SERVER": 516,
+        "CLIENT": 344
+      },
+      "by_service": {
+        "gateway": {
+          "server_errors": 0,
+          "client_errors": 0
+        },
+        "orders": {
+          "server_errors": 0,
+          "client_errors": 0
+        },
+        "payment": {
+          "server_errors": 0,
+          "client_errors": 0
+        }
+      }
+    },
+    "g-006": {
+      "span_kinds": {
+        "SERVER": 516,
+        "CLIENT": 344
+      },
+      "by_service": {
+        "gateway": {
+          "server_errors": 172,
+          "client_errors": 172
+        },
+        "orders": {
+          "server_errors": 172,
+          "client_errors": 172
+        },
+        "payment": {
+          "server_errors": 172,
+          "client_errors": 0
+        }
+      }
+    }
+  },
+  "ranking_fits": 0,
+  "limit": "Raw historical Jaeger payloads are not available here; cannot attribute UNKNOWN to upstream instrumentation versus conversion."
+}

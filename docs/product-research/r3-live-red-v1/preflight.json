@@ -1,0 +1,25 @@
+{
+  "source_states": {
+    "gateway": "available",
+    "orders": "available",
+    "payment": "available"
+  },
+  "counter_count_inf_equal": true,
+  "counts": {
+    "orders": 2358.0,
+    "payment": 2359.0,
+    "gateway": 2361.0
+  },
+  "healthy_start": 1792422647,
+  "healthy_end": 1792422717,
+  "metric_samples": 432,
+  "span_count": 1725,
+  "prometheus_build": {
+    "version": "2.54.1",
+    "revision": "e6cfa720fbe6280153fab13090a483dbd40bece3",
+    "branch": "HEAD",
+    "buildUser": "root@812ffd741951",
+    "buildDate": "20240827-10:59:03",
+    "goVersion": "go1.22.6"
+  }
+}

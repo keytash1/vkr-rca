@@ -8,4 +8,9 @@ scrape_configs:
     static_configs: [{targets: ["workload:9101"]}]
   - job_name: business-http-red
     static_configs:
-      - targets: ["gateway:8080", "orders:8081", "payment:8082"]
+      - targets: ["gateway:8080"]
+        labels: {service: gateway}
+      - targets: ["orders:8081"]
+        labels: {service: orders}
+      - targets: ["payment:8082"]
+        labels: {service: payment}
