@@ -2,7 +2,9 @@
 
 20.10.2026. **Продукт принят и опубликован:**
 [PR #5](https://github.com/keytash1/rca-workbench/pull/5), main `a6845cf`.
-CI contracts/image зелёный. Research mirror публикуется отдельно.
+CI contracts/image зелёный. Research mirror принят в
+[PR #8](https://github.com/keytash1/vkr-rca/pull/8), main `30117c9`:
+полный CI (211 Python tests, UI, runtime image/reference) зелёный.
 Это не новый ранжировщик и не обход отрицательного решения по резерву R3-I.
 Продукт сохраняет прежний core и даёт инженеру дополнительные наблюдения.
 
@@ -64,3 +66,12 @@ lookback; это явно записано в snapshot/UI/LLM-проекции. 
 всех frozen assets совпали. ZIP SHA-256:
 `bdf9c93190d021fb42d3cb3035fca747b6be1881200ff27ffd275f74d188fa9c`.
 Квитанция локально `artifacts/r3-http-observations-delivery-v1/receipt.json`.
+
+Локальная установка на `http://127.0.0.1:18220/` обновлена из product main:
+runtime image `sha256:eedc68ba486d2df37ee9dfe76896e12f44a68886b8bad77e966ce032ad50d74a`,
+healthz=ready, Docker healthy, API1.2.0 содержит HttpObservationsStatus.
+Профильный bind/path/read-only ограничения и порт сохранены. Это stateless
+установка без workspace/LLM; дополнительные capabilities ей не включались.
+Прежний image сохранён тегом `vkr-rca/diagnostic-product:pre-r3j` для отката.
+Учебные Go8 остановлены после проверки, их данные не удалены. Отдельный
+временный native UI на18224 используется только для acceptance, не новый продукт.

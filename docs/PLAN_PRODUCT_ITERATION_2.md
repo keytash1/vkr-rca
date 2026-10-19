@@ -1,5 +1,21 @@
 # RCA Workbench — следующая продуктовая и исследовательская итерация
 
+## Актуальное продолжение 20.10 ~02:00 МСК
+
+R3-J принят и в обоих main: product a6845cf, research30117c9; локальный18220
+обновлён. R3-K raw schema audit завершён, Eadro TT не даёт независимых HTTP
+метрик; новый fit на нём не делать. [Результат K](product-research/R3_RED_CORPUS_SCHEMA_RESULTS.md).
+
+Следующая ограниченная исследовательская возможность — единый metric-only
+transform для уже имеющихся raw RE1 и live Go/Petclinic. **Сначала без fit**
+проверить доступность raw/healthy, scale invariance, временную опору/missingness.
+Старый cache56 использует preceding600s baseline и числовой floor; это не
+доказанная эквивалентность отдельному profile healthy и seconds-based HTTP.
+При gate fail — NO_FIT, не новые downloads/grid. При gate pass — отдельный
+протокол ровно1 fit/1 seed до нового расчёта, development transfer-screen
+без продвижения весов или изменения ВКР. Детали в текущем HANDOFF.
+Ранее отрицательные H/I и критерии не пересматриваются по результату.
+
 ## Текущий ограниченный шаг R3-J — HTTP-факты, не новый ранжировщик
 
 **Исполнение:** функциональность/живое подключение/браузер/поставка приняты;

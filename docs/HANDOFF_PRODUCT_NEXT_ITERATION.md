@@ -1,5 +1,49 @@
 # RCA Workbench — handoff следующей исследовательской итерации R3
 
+## Действующая точка 20.10 ~02:00 МСК
+
+Продукт main **a6845cf**, research main **30117c9**, PR #5/#8 merged и CI green.
+R3-J завершён: HTTP evidence-only в профиле/API/snapshot/компактной UI-группе.
+Рейтинг/веса не меняются. Локальный18220 обновлён, healthy, API1.2.0.
+Rollback image tag `vkr-rca/diagnostic-product:pre-r3j`; профили не переписаны.
+Go8 и Petclinic11 остановлены, captures сохранены. Временный native18224
+остановлен; подлинный screenshot `artifacts/r3-http-observations-v2/http-card.jpg`.
+
+R3-K завершён: raw Eadro TT243 CSV содержат лишь7 resource metrics; HTTP полей
+нет. Архив48,9MB MD5verified, прочитаны толькоheaders, не labels/значения/pickle.
+SN не качать, Eadro не объявлять новым RED training corpus. Результат и протокол
+в docs/product-research/R3_RED_CORPUS_SCHEMA_RESULTS.md и docs/R3_RED_CORPUS_SCHEMA_PROTOCOL.md.
+Текущая ветка codex/red-corpus-schema: опубликовать только runner/protocol,
+compact receipt/results и обновления этих3 плановых файлов. Не публиковать ZIP.
+Если соответствующий PR уже merged — не создавать его повторно.
+
+### Следующий содержательный шаг, если есть время до04:15
+
+Не повторять H/I/J/K/RE1-ablation fits и не запускать ещё поиск корпусов.
+Проверить возможность **одного обучаемого metric-only challenger** на имеющихся
+RE1 (training/development), Go6/Petclinic12 (только development transfer-screen),
+не на M14. Это не продолжение отвергнутой эвристики reserve и не auto-promotion.
+
+Сначала support/semantic gate, без fit: существует ли доступный raw RE1 для
+единых4 семей cpu/memory/error/latency и healthy-интервалов? Готовый cache56
+нельзя просто скормить новому live collector. `m9b_features.channel_features`
+использует baseline в preceding600 s и floor `max(1, abs(median))*1e-6`, тогда
+как live healthy — отдельный профильный интервал, часто старше600 s. Проверить
+масштабную инвариантность (seconds vs milliseconds) на почти постоянном baseline,
+одинаковое missingness/percentile определение и длительности интервалов.
+Не подменять p95 общим latency и workload proxy продуктовым RX.
+
+Если удаётся получить единый корректный transform из raw (без labels в features),
+сначала отдельный protocol до нового fit: 1 seed,1 fit, неизменные24 rounds,
+четыре реальные семьи, остальные slots/masks/aggregates согласованы. Сравнить
+с простым RED и frozen core на тех же сохранённых development случаях; новый
+test/универсальную Accuracy не заявлять. На этом этапе weights приватные,
+runtime продукта не менять. Если semantic gate не проходит — конкретный
+NO_FIT с причиной, не обход/придумывание единиц и не ещё один grid.
+До08:05 закончить поставку/журнал/handoff; DOCX V58 и champion неизменны.
+
+Ниже — сохранённая история, её указания о незавершённых H/I/J уже устарели.
+
 > **Актуальная точка ~01:45 МСК:** product PR #5 MERGED после зелёного CI,
 > main a6845cf (локально чист). Research branch codex/http-observations:
 > runtime mirror + journal/results готовы к commit/PR, не включать чужие
