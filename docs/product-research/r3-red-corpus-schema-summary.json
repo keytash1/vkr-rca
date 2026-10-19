@@ -1,0 +1,28 @@
+{
+  "role": "RAW_SCHEMA_AUDIT_NO_VALUES_OR_LABELS",
+  "source": "https://zenodo.org/records/7615394/files/TT%20Dataset.zip?download=1",
+  "archive_bytes": 48923113,
+  "published_md5_verified": "2d77861e4a025781e598d51866fd6f4e",
+  "archive_sha256": "e199aefeb48f7fa1534c37d77415dba9c84bffcb59167373c35cb88f4f4e9f7c",
+  "csv_files": 243,
+  "header_bytes": 26244,
+  "schemas": [
+    {
+      "columns": [
+        "timestamp",
+        "cpu_usage_system",
+        "cpu_usage_total",
+        "cpu_usage_user",
+        "memory_usage",
+        "memory_working_set",
+        "rx_bytes",
+        "tx_bytes"
+      ],
+      "files": 243
+    }
+  ],
+  "ranking_fits": 0,
+  "ranking_predictions": 0,
+  "labels_opened": false,
+  "protocol_sha256": "ce10bc00ec4b9ddbcf8ab35b6ecddef90054571e50a8c067eab3aa18f8575881"
+}

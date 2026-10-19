@@ -1,5 +1,51 @@
 # Журнал R3
 
+## Текущая точка ~02:00 МСК — R3-J DONE, R3-K завершён
+
+R3-K [завершён](product-research/R3_RED_CORPUS_SCHEMA_RESULTS.md): 243 raw CSV,
+одна схема из7 resource metrics, независимых HTTP полей нет. Прочитано26 244
+bytes заголовков, архив48,9MB MD5 совпал. Labels/значения/pickle не читались,
+fit/prediction0. TT не годится для этой independent RED гипотезы; SN не качаем.
+
+Локальный RCA на18220 обновлён из product main a6845cf: API1.2.0 и новый HTTP
+контракт доступны, Docker healthy. Прежний образ сохранён rollback-тегом;
+профили/ограничения/порт прежние, workspace/LLM не включались.
+Новый HTTP-блок остаётся opt-in интегратора, имеющиеся профили не переписаны.
+
+Следующий шаг ограничен semantic support gate перед возможным learned RED
+challenger: старый cache56 и live profile baseline не гарантированно одна
+процедура (`channel_features`: preceding600 s, числовой floor). Не запускать
+ещё fit вслепую и не скачивать Eadro SN. При пригодности raw — отдельная
+регистрация1 fit, иначе зафиксировать NO_FIT. Веса/отчёт не менять.
+
+Gate [завершён](product-research/R3_LEARNED_RED_SUPPORT_GATE.md): прямой
+cache56→live transfer — NO_FIT. Один и тот же плоский latency signal в seconds
+и milliseconds даёт old external shift500 против500000; отдельный healthy
+старше600 s исчезает из старого extractor. Это не дефект canonical runtime,
+а запрет смешивать external/live transforms по одному имени колонки. Продукт
+не расширялся зависимостью pandas; research demo выполнено своим `.venv`.
+Новых incident predictions/fit0. Следующая версия должна заново определить
+unit/statistic/source kind и извлекать обе стороны изraw одинаково. Сейчас
+слепое переобучение не улучшит корректность. Приёмка/публикация J/K закончены;
+не имитировать продолжение новыми seeds или повторными проверками.
+
+Product main a6845cf (PR #5), research main30117c9 (PR #8), оба merged после
+зелёного CI. Research full CI прошёл все211 Python checks и сборку образа;
+bundle-фикстура исправлена без изменения runtime. Go8 остановлены, raw сохранены.
+Документ V58 и scientific weights не менялись. Выпуск HTTP-фактов завершён.
+
+Следующий ограниченный шаг: [R3-K](R3_RED_CORPUS_SCHEMA_PROTOCOL.md), только
+raw CSV headers Eadro TT. Авторский preprocessing имеет семь resource metrics
+и выводит latency из traces; проверяется, нет ли потерянных independent HTTP
+полей в raw. Один архив<64MiB, никаких значений/labels/pickle/fit/prediction.
+Текущая ветка codex/red-corpus-schema. Не повторять R3-H/I/J или старый RE1 fit.
+
+Архив TT скачан один раз, размер/опубликованная MD5 совпали. До чтения заголовков
+inventory guard остановил runner: 486 CSV paths включали243 macOS resource forks.
+Это не дополнительные telemetry CSV. Исходный runner сохранён; исключён только
+`__MACOSX/._*`, остаётся243 настоящих CSV в прежнем лимите400. Повторной загрузки
+нет, архив заново проверяется по размеру/MD5; значения/labels ещё не читались.
+
 ## R3-J — продукт принят, исследовательская синхронизация в публикации
 
 20.10 ~01:45 МСК. Product PR #5 MERGED после зелёного contracts/image CI;
