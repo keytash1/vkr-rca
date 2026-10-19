@@ -1,0 +1,85 @@
+{
+  "schema_version": "assistant-run-v1",
+  "status": "completed",
+  "stop_reason": "REPORT_VALIDATED",
+  "mode": "C",
+  "report": {
+    "summary": "У svc-001 наблюдаются 6 ошибочных спанов из 6, а медиана времени трёх серверных спанов совпадает с наблюдаемым ожиданием клиентских вызовов: 41149 мкс. Стоит проверить механизм ожидания зависимости; причина ошибок и подтверждённый инженером вывод в данных отсутствуют.",
+    "hypotheses": [
+      {
+        "service": "svc-001",
+        "statement": "Ошибки svc-001 могут быть связаны с ожиданием вызовов svc-002: такая связь наблюдается, но неисправность svc-002 и причинность не установлены.",
+        "supporting_evidence_ids": [
+          "obs-001",
+          "obs-006"
+        ],
+        "contradicting_evidence_ids": [],
+        "unknowns": [
+          "Неизвестно, относятся ли ошибки к вызовам svc-002 и чем они вызваны: ответом зависимости, тайм-аутом, транспортом или обработкой в svc-001.",
+          "Неизвестно, аномально ли ожидание 41149 мкс относительно сопоставимого здорового периода."
+        ],
+        "next_checks": [
+          {
+            "action": "Предложить инженеру сопоставить серверные и клиентские спаны svc-001 с вызовами svc-002, включая статусы, сообщения ошибок и распределение времени.",
+            "expected_observation": "Если гипотеза верна, ошибки svc-001 будут связаны с неуспешными или задержанными вызовами svc-002; локальная ошибка до вызова либо после успешного ответа ослабит гипотезу.",
+            "evidence_ids": [
+              "obs-001",
+              "obs-006",
+              "obs-012"
+            ]
+          }
+        ]
+      }
+    ],
+    "data_gaps": [
+      "Нет исходных спанов, текстов ошибок и статусов ответов; у svc-002 спаны не наблюдались, а sampling и retention неизвестны.",
+      "Не установлены здоровый период и сопоставимость нагрузки для baseline; нет здорового распределения задержек и ошибок.",
+      "Нет конкретных наблюдений, позволяющих выделить альтернативу: локальную ошибку svc-001, транспортную проблему или внутренний сбой svc-002."
+    ],
+    "limitations": [
+      "Прямых противоречий гипотезе не видно: стабильные CPU и память не исключают ожидания зависимости, а отсутствие спанов svc-002 не доказывает отсутствие вызовов.",
+      "Агрегаты и связь вызовов не доказывают причинность; ранг ML задаёт лишь порядок проверки, а score не является вероятностью."
+    ],
+    "action_proposals": []
+  },
+  "fallback": null,
+  "prompt_version": "snapshot-report-v7-action-proposals",
+  "prompt_sha256": "f1d6f962b251ac63af92463d550ed4efad47eec8dfeca794b03e6e057283a811",
+  "context_sha256": "74319f23ac8af0401fb88c1aa8b172cbf19ce184751dea8836ce03a9c6f68de3",
+  "requested_model": "gpt-6.1-sol",
+  "returned_models": [
+    "gpt-6.1-sol"
+  ],
+  "prompt_content_sha256": "66a407f846a58336563cc0a14b01a2258ae5d8d36e2336ca01738bea6b747c4a",
+  "report_schema_sha256": "4824ae06285299ee351998850ee2e3146c1ba6cc192c6625e2ca2923a0e8b8f9",
+  "limits": {
+    "model_calls": 1,
+    "tool_calls": 6,
+    "tool_steps": 3,
+    "input_tokens": 12000,
+    "output_tokens": 3000,
+    "wall_seconds": 60
+  },
+  "events": [
+    {
+      "kind": "model_requested",
+      "attempt": 1,
+      "input_reservation": 11597,
+      "reservation_method": "UTF8_BYTES_PLUS_512_CONSERVATIVE"
+    },
+    {
+      "kind": "model_completed",
+      "attempt": 1
+    }
+  ],
+  "usage": {
+    "model_calls": 1,
+    "known_input_tokens": 2375,
+    "known_output_tokens": 677,
+    "unaccounted_attempts": 0,
+    "input_preflight_reserved": 11597,
+    "accounting_complete": true
+  },
+  "validation": "STRUCTURE_AND_REFERENCE_SCOPE_ONLY_NOT_SEMANTIC_TRUTH",
+  "elapsed_seconds": 17.118700083003205
+}

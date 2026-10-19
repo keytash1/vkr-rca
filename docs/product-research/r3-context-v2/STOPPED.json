@@ -1,0 +1,12 @@
+{
+  "status": "STOPPED_TECHNICAL_INCONCLUSIVE",
+  "reason": "Systematic context-arm input preflight rejection due to missing tokenizer vocabulary; no valid paired comparison",
+  "reserved_tasks": 11,
+  "saved_completed_responses": 6,
+  "saved_preflight_rejections_without_provider_call": 4,
+  "interrupted_task": "r3-05-C0",
+  "interrupted_remote_outcome": "UNKNOWN",
+  "generation_attempts_known_plus_upper_bound_unknown": 7,
+  "retry_started_tasks": false,
+  "remaining_registered_tasks_not_started": 5
+}

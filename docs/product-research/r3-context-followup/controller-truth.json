@@ -1,0 +1,84 @@
+[
+  {
+    "case": "r3f-01",
+    "mechanism": "permission",
+    "hidden_controller_target": "http://127.0.0.1:61863/status/403",
+    "actual_error_fields": [
+      {
+        "event.name": "error",
+        "error.type": "HTTPError",
+        "http.response.status_code": 403
+      },
+      {
+        "event.name": "error",
+        "error.type": "HTTPError",
+        "http.response.status_code": 403
+      },
+      {
+        "event.name": "error",
+        "error.type": "HTTPError",
+        "http.response.status_code": 403
+      }
+    ]
+  },
+  {
+    "case": "r3f-02",
+    "mechanism": "connection",
+    "hidden_controller_target": "http://127.0.0.1:61865/b",
+    "actual_error_fields": [
+      {
+        "event.name": "error",
+        "error.type": "TimeoutError"
+      },
+      {
+        "event.name": "error",
+        "error.type": "TimeoutError"
+      },
+      {
+        "event.name": "error",
+        "error.type": "TimeoutError"
+      }
+    ]
+  },
+  {
+    "case": "r3f-03",
+    "mechanism": "timeout",
+    "hidden_controller_target": "http://127.0.0.1:61863/delay/.20",
+    "actual_error_fields": [
+      {
+        "event.name": "error",
+        "error.type": "TimeoutError"
+      },
+      {
+        "event.name": "error",
+        "error.type": "TimeoutError"
+      },
+      {
+        "event.name": "error",
+        "error.type": "TimeoutError"
+      }
+    ]
+  },
+  {
+    "case": "r3f-04",
+    "mechanism": "unavailable_context",
+    "hidden_controller_target": "http://127.0.0.1:61863/status/403",
+    "actual_error_fields": [
+      {
+        "event.name": "error",
+        "error.type": "HTTPError",
+        "http.response.status_code": 403
+      },
+      {
+        "event.name": "error",
+        "error.type": "HTTPError",
+        "http.response.status_code": 403
+      },
+      {
+        "event.name": "error",
+        "error.type": "HTTPError",
+        "http.response.status_code": 403
+      }
+    ]
+  }
+]

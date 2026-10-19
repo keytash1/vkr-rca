@@ -11,7 +11,9 @@
 Предыдущий NOT_PROMOTED ниже — история первого прохода, не итог этого поручения.
 PR #2 объединён: main `bb910cd`, CI contracts/image успешны. Ниже есть
 исторические состояния до этого результата. Следующий исследовательский
-проход передан в [handoff](HANDOFF_PRODUCT_NEXT_ITERATION.md), не запускался.
+проход передан в [handoff](HANDOFF_PRODUCT_NEXT_ITERATION.md). По последующему
+«делай» выполнен ограниченный R3-A: [журнал](PROGRESS_PRODUCT_R3.md),
+[выводы](product-research/R3_RESULTS.md). ML не переобучалась.
 
 Ограниченный проход P2-00..P2-04 завершён. Ветка продукта
 `codex/research-iteration-2` от принятого `96d0ceb`, commit `a1b84c8`,

@@ -1,0 +1,42 @@
+[
+  {
+    "job": "r3f-04-C0",
+    "reserved_tokens": 4496,
+    "method": "O200K_VERIFIED_LOCAL_ESTIMATE_X1_5_PLUS_512_NOT_PROVIDER_INVOICE"
+  },
+  {
+    "job": "r3f-03-C0",
+    "reserved_tokens": 4502,
+    "method": "O200K_VERIFIED_LOCAL_ESTIMATE_X1_5_PLUS_512_NOT_PROVIDER_INVOICE"
+  },
+  {
+    "job": "r3f-02-C0",
+    "reserved_tokens": 4502,
+    "method": "O200K_VERIFIED_LOCAL_ESTIMATE_X1_5_PLUS_512_NOT_PROVIDER_INVOICE"
+  },
+  {
+    "job": "r3f-02-C1",
+    "reserved_tokens": 4790,
+    "method": "O200K_VERIFIED_LOCAL_ESTIMATE_X1_5_PLUS_512_NOT_PROVIDER_INVOICE"
+  },
+  {
+    "job": "r3f-01-C1",
+    "reserved_tokens": 4784,
+    "method": "O200K_VERIFIED_LOCAL_ESTIMATE_X1_5_PLUS_512_NOT_PROVIDER_INVOICE"
+  },
+  {
+    "job": "r3f-01-C0",
+    "reserved_tokens": 4496,
+    "method": "O200K_VERIFIED_LOCAL_ESTIMATE_X1_5_PLUS_512_NOT_PROVIDER_INVOICE"
+  },
+  {
+    "job": "r3f-04-C1",
+    "reserved_tokens": 4778,
+    "method": "O200K_VERIFIED_LOCAL_ESTIMATE_X1_5_PLUS_512_NOT_PROVIDER_INVOICE"
+  },
+  {
+    "job": "r3f-03-C1",
+    "reserved_tokens": 4790,
+    "method": "O200K_VERIFIED_LOCAL_ESTIMATE_X1_5_PLUS_512_NOT_PROVIDER_INVOICE"
+  }
+]

@@ -1,0 +1,42 @@
+{
+  "old_m14": "USED_TEST_DO_NOT_TRAIN",
+  "old_loki_pilot": "USED_ENGINEERING",
+  "cases": [
+    {
+      "case": "r3f-01",
+      "group": "new-single-session-controlled-development",
+      "role": "USED_DEVELOPMENT",
+      "synthetic_resource_metrics": true,
+      "actual_http_requests": 3,
+      "model": "frozen_m13",
+      "canonical_sha256": "3e2a83a8282828a5980a3eba5f99a9b69faceb74ec01c8bd79a5b00ef66cef71"
+    },
+    {
+      "case": "r3f-02",
+      "group": "new-single-session-controlled-development",
+      "role": "USED_DEVELOPMENT",
+      "synthetic_resource_metrics": true,
+      "actual_http_requests": 3,
+      "model": "frozen_m13",
+      "canonical_sha256": "aee4c31076dd0874cc63c489f81c2427417b7098864ba548c4d23702d4a8c0ea"
+    },
+    {
+      "case": "r3f-03",
+      "group": "new-single-session-controlled-development",
+      "role": "USED_DEVELOPMENT",
+      "synthetic_resource_metrics": true,
+      "actual_http_requests": 3,
+      "model": "frozen_m13",
+      "canonical_sha256": "b3569aa4bebb122872d16eac1a6b1becf2a5f2557e689b7c443104b15189e32f"
+    },
+    {
+      "case": "r3f-04",
+      "group": "new-single-session-controlled-development",
+      "role": "USED_DEVELOPMENT",
+      "synthetic_resource_metrics": true,
+      "actual_http_requests": 3,
+      "model": "frozen_m13",
+      "canonical_sha256": "7a8cca3e5ec0fd856ee5e7b5c1ab6764df34734bbe3be08ec41ebc615d92be8d"
+    }
+  ]
+}

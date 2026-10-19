@@ -1,0 +1,85 @@
+{
+  "schema_version": "assistant-run-v1",
+  "status": "completed",
+  "stop_reason": "REPORT_VALIDATED",
+  "mode": "C",
+  "report": {
+    "summary": "У svc-001 наблюдаются 6 ошибочных спанов из 6, а медианное время серверных спанов разложено как ожидание клиентского вызова; также зафиксированы вызовы svc-002. Это основание проверить зависимое ожидание, но не доказательство причины сбоя svc-002; подтверждённого инженером вывода нет.",
+    "hypotheses": [
+      {
+        "service": "svc-001",
+        "statement": "Ошибки svc-001 могут быть связаны с ожиданием зависимого вызова, предположительно к svc-002, а не с собственной обработкой.",
+        "supporting_evidence_ids": [
+          "obs-001",
+          "obs-006"
+        ],
+        "contradicting_evidence_ids": [],
+        "unknowns": [
+          "Не установлено, относится ли наблюдаемое клиентское ожидание именно к svc-002 и связано ли оно с ошибками.",
+          "Неизвестны типы ошибок и нормальное время выполнения: медиана 516 мкс сама по себе не доказывает замедление."
+        ],
+        "next_checks": [
+          {
+            "action": "Сопоставить исходные ошибочные серверные спаны svc-001 с дочерними клиентскими вызовами, их адресатами, статусами и временной последовательностью.",
+            "expected_observation": "Если гипотеза верна, ошибки svc-001 будут связаны с неуспешными зависимыми вызовами, объясняющими наблюдаемое ожидание; успешные или несвязанные вызовы ослабят гипотезу.",
+            "evidence_ids": [
+              "obs-001",
+              "obs-006",
+              "obs-012"
+            ]
+          }
+        ]
+      }
+    ],
+    "data_gaps": [
+      "Нет исходных спанов, текстов ошибок и серверных спанов svc-002; sampling и retention неизвестны, поэтому отсутствие спанов не означает отсутствие вызовов.",
+      "Неизвестны здоровый период, эталонная нагрузка и источник текущей нагрузки; сопоставимость baseline не установлена.",
+      "Нужны данные для различения альтернатив: локальной ошибки svc-001, ошибки ответа svc-002 или сбоя передачи между ними; прямых свидетельств конкретного механизма нет."
+    ],
+    "limitations": [
+      "Метрики обоих сервисов имеют нулевые остатки относительно модели, но это не исключает ошибки или ожидание зависимости; прямых противоречий сформулированной гипотезе не выявлено.",
+      "Доступны только агрегаты; связь вызовов не доказывает причинность, а ML-ранг задаёт лишь порядок проверки, не вероятность причины."
+    ],
+    "action_proposals": []
+  },
+  "fallback": null,
+  "prompt_version": "snapshot-report-v7-action-proposals",
+  "prompt_sha256": "f1d6f962b251ac63af92463d550ed4efad47eec8dfeca794b03e6e057283a811",
+  "context_sha256": "2963360dd829a5481ea9fb8765f10b7bd91b8605cb1e766b410d64d48ba49ae7",
+  "requested_model": "gpt-6.1-sol",
+  "returned_models": [
+    "gpt-6.1-sol"
+  ],
+  "prompt_content_sha256": "6b607e48f1904f167df06a6a08ac4bce94b8feeecd9ed6253c37c7b7d5dee5ae",
+  "report_schema_sha256": "4824ae06285299ee351998850ee2e3146c1ba6cc192c6625e2ca2923a0e8b8f9",
+  "limits": {
+    "model_calls": 1,
+    "tool_calls": 6,
+    "tool_steps": 3,
+    "input_tokens": 12000,
+    "output_tokens": 3000,
+    "wall_seconds": 60
+  },
+  "events": [
+    {
+      "kind": "model_requested",
+      "attempt": 1,
+      "input_reservation": 4496,
+      "reservation_method": "O200K_VERIFIED_LOCAL_ESTIMATE_X1_5_PLUS_512_NOT_PROVIDER_INVOICE"
+    },
+    {
+      "kind": "model_completed",
+      "attempt": 1
+    }
+  ],
+  "usage": {
+    "model_calls": 1,
+    "known_input_tokens": 2370,
+    "known_output_tokens": 594,
+    "unaccounted_attempts": 0,
+    "input_preflight_reserved": 4496,
+    "accounting_complete": true
+  },
+  "validation": "STRUCTURE_AND_REFERENCE_SCOPE_ONLY_NOT_SEMANTIC_TRUTH",
+  "elapsed_seconds": 15.105913915998826
+}

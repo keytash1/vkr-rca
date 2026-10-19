@@ -1,0 +1,1031 @@
+{
+  "window": {
+    "candidate_services": [
+      "api",
+      "worker"
+    ],
+    "start_unix": 1792403248.6376,
+    "end_unix": 1792403248.772657,
+    "requests_per_second": 1.0,
+    "metrics": [
+      {
+        "timestamp": 1792403248.6376,
+        "service": "api",
+        "family": "cpu",
+        "value": 0.25,
+        "unit": "cores"
+      },
+      {
+        "timestamp": 1792403248.7051284,
+        "service": "api",
+        "family": "cpu",
+        "value": 0.25,
+        "unit": "cores"
+      },
+      {
+        "timestamp": 1792403248.772657,
+        "service": "api",
+        "family": "cpu",
+        "value": 0.25,
+        "unit": "cores"
+      },
+      {
+        "timestamp": 1792403248.6376,
+        "service": "api",
+        "family": "memory",
+        "value": 67108864.0,
+        "unit": "bytes"
+      },
+      {
+        "timestamp": 1792403248.7051284,
+        "service": "api",
+        "family": "memory",
+        "value": 67108864.0,
+        "unit": "bytes"
+      },
+      {
+        "timestamp": 1792403248.772657,
+        "service": "api",
+        "family": "memory",
+        "value": 67108864.0,
+        "unit": "bytes"
+      },
+      {
+        "timestamp": 1792403248.6376,
+        "service": "api",
+        "family": "network",
+        "value": 1024.0,
+        "unit": "bytes_per_second"
+      },
+      {
+        "timestamp": 1792403248.7051284,
+        "service": "api",
+        "family": "network",
+        "value": 1024.0,
+        "unit": "bytes_per_second"
+      },
+      {
+        "timestamp": 1792403248.772657,
+        "service": "api",
+        "family": "network",
+        "value": 1024.0,
+        "unit": "bytes_per_second"
+      },
+      {
+        "timestamp": 1792403248.6376,
+        "service": "api",
+        "family": "traffic_rate",
+        "value": 1024.0,
+        "unit": "bytes_per_second"
+      },
+      {
+        "timestamp": 1792403248.7051284,
+        "service": "api",
+        "family": "traffic_rate",
+        "value": 1024.0,
+        "unit": "bytes_per_second"
+      },
+      {
+        "timestamp": 1792403248.772657,
+        "service": "api",
+        "family": "traffic_rate",
+        "value": 1024.0,
+        "unit": "bytes_per_second"
+      },
+      {
+        "timestamp": 1792403248.6376,
+        "service": "worker",
+        "family": "cpu",
+        "value": 0.25,
+        "unit": "cores"
+      },
+      {
+        "timestamp": 1792403248.7051284,
+        "service": "worker",
+        "family": "cpu",
+        "value": 0.25,
+        "unit": "cores"
+      },
+      {
+        "timestamp": 1792403248.772657,
+        "service": "worker",
+        "family": "cpu",
+        "value": 0.25,
+        "unit": "cores"
+      },
+      {
+        "timestamp": 1792403248.6376,
+        "service": "worker",
+        "family": "memory",
+        "value": 67108864.0,
+        "unit": "bytes"
+      },
+      {
+        "timestamp": 1792403248.7051284,
+        "service": "worker",
+        "family": "memory",
+        "value": 67108864.0,
+        "unit": "bytes"
+      },
+      {
+        "timestamp": 1792403248.772657,
+        "service": "worker",
+        "family": "memory",
+        "value": 67108864.0,
+        "unit": "bytes"
+      },
+      {
+        "timestamp": 1792403248.6376,
+        "service": "worker",
+        "family": "network",
+        "value": 1024.0,
+        "unit": "bytes_per_second"
+      },
+      {
+        "timestamp": 1792403248.7051284,
+        "service": "worker",
+        "family": "network",
+        "value": 1024.0,
+        "unit": "bytes_per_second"
+      },
+      {
+        "timestamp": 1792403248.772657,
+        "service": "worker",
+        "family": "network",
+        "value": 1024.0,
+        "unit": "bytes_per_second"
+      },
+      {
+        "timestamp": 1792403248.6376,
+        "service": "worker",
+        "family": "traffic_rate",
+        "value": 1024.0,
+        "unit": "bytes_per_second"
+      },
+      {
+        "timestamp": 1792403248.7051284,
+        "service": "worker",
+        "family": "traffic_rate",
+        "value": 1024.0,
+        "unit": "bytes_per_second"
+      },
+      {
+        "timestamp": 1792403248.772657,
+        "service": "worker",
+        "family": "traffic_rate",
+        "value": 1024.0,
+        "unit": "bytes_per_second"
+      }
+    ],
+    "traces": [
+      {
+        "service": "api",
+        "trace_id": "00000000000000000000000000000010",
+        "span_id": "0000000000000001",
+        "parent_span_id": "",
+        "peer_service": null,
+        "span_kind": "SERVER",
+        "start_time_us": 1792403248638376,
+        "duration_us": 42443,
+        "error": true,
+        "status_code": "ERROR"
+      },
+      {
+        "service": "api",
+        "trace_id": "00000000000000000000000000000010",
+        "span_id": "0000000000000002",
+        "parent_span_id": "0000000000000001",
+        "peer_service": "worker",
+        "span_kind": "CLIENT",
+        "start_time_us": 1792403248638376,
+        "duration_us": 42443,
+        "error": true,
+        "status_code": "ERROR",
+        "observed_edge": {
+          "source": "api",
+          "target": "worker"
+        }
+      },
+      {
+        "service": "api",
+        "trace_id": "00000000000000000000000000000011",
+        "span_id": "0000000000000001",
+        "parent_span_id": "",
+        "peer_service": null,
+        "span_kind": "SERVER",
+        "start_time_us": 1792403248683450,
+        "duration_us": 43908,
+        "error": true,
+        "status_code": "ERROR"
+      },
+      {
+        "service": "api",
+        "trace_id": "00000000000000000000000000000011",
+        "span_id": "0000000000000002",
+        "parent_span_id": "0000000000000001",
+        "peer_service": "worker",
+        "span_kind": "CLIENT",
+        "start_time_us": 1792403248683450,
+        "duration_us": 43908,
+        "error": true,
+        "status_code": "ERROR",
+        "observed_edge": {
+          "source": "api",
+          "target": "worker"
+        }
+      },
+      {
+        "service": "api",
+        "trace_id": "00000000000000000000000000000012",
+        "span_id": "0000000000000001",
+        "parent_span_id": "",
+        "peer_service": null,
+        "span_kind": "SERVER",
+        "start_time_us": 1792403248730248,
+        "duration_us": 41591,
+        "error": true,
+        "status_code": "ERROR"
+      },
+      {
+        "service": "api",
+        "trace_id": "00000000000000000000000000000012",
+        "span_id": "0000000000000002",
+        "parent_span_id": "0000000000000001",
+        "peer_service": "worker",
+        "span_kind": "CLIENT",
+        "start_time_us": 1792403248730248,
+        "duration_us": 41591,
+        "error": true,
+        "status_code": "ERROR",
+        "observed_edge": {
+          "source": "api",
+          "target": "worker"
+        }
+      }
+    ],
+    "traces_collected": true
+  },
+  "rank": [
+    {
+      "service": "api",
+      "rank": 1,
+      "model_score": 0.32355013489723206
+    },
+    {
+      "service": "worker",
+      "rank": 2,
+      "model_score": 0.16060875356197357
+    }
+  ],
+  "application_requests": [
+    {
+      "status": 503,
+      "start_unix": 1792403248.638376,
+      "duration_seconds": 0.04244370900414651
+    },
+    {
+      "status": 503,
+      "start_unix": 1792403248.6834502,
+      "duration_seconds": 0.043908250001550186
+    },
+    {
+      "status": 503,
+      "start_unix": 1792403248.730248,
+      "duration_seconds": 0.04159191600047052
+    }
+  ],
+  "source_rows": {
+    "api": {
+      "status": "available",
+      "records": [
+        {
+          "source_timestamp_ns": "1792403248680892000",
+          "fields": {
+            "event.name": "error",
+            "error.type": "TimeoutError"
+          },
+          "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61"
+        },
+        {
+          "source_timestamp_ns": "1792403248727456000",
+          "fields": {
+            "event.name": "error",
+            "error.type": "TimeoutError"
+          },
+          "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61"
+        },
+        {
+          "source_timestamp_ns": "1792403248771937000",
+          "fields": {
+            "event.name": "error",
+            "error.type": "TimeoutError"
+          },
+          "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61"
+        }
+      ]
+    },
+    "worker": {
+      "status": "available",
+      "records": []
+    }
+  },
+  "catalog": {
+    "schema_version": "2.0",
+    "catalog_version": "evidence-v3-incident-context",
+    "analysis_id": "r3-06",
+    "profile_id": null,
+    "profile_version": null,
+    "input_sha256": "7ec7631cceb14d43536fe1a6a9fba750125305935cee01a0501ace8634f344e1",
+    "baseline_sha256": "5177870e5db91bc565b97c300f4053c30e7f10ad0211253dcb945d4425617861",
+    "model_version": "m13-freeze-v1",
+    "feature_schema_sha256": "1b67a8fb19b02c3c4a9a34b92701aadecf0cf2ffbb88f9a1d380194919317c75",
+    "start_unix": 1792403248.6376,
+    "end_unix": 1792403248.772657,
+    "services": [
+      "api",
+      "worker"
+    ],
+    "requests_per_second": 1.0,
+    "source_quality": {
+      "traces": "available",
+      "baseline_applicability": {
+        "version": "baseline-applicability-v1",
+        "state": "REVIEW_REQUIRED",
+        "healthy_start_unix": null,
+        "healthy_end_unix": null,
+        "temporal_relation": "UNKNOWN",
+        "reference_rps": null,
+        "current_rps": 1.0,
+        "rps_ratio": null,
+        "reference_source": "unknown",
+        "current_source": "unknown",
+        "load_relation": "UNKNOWN",
+        "reasons": [
+          "HEALTHY_PERIOD_UNKNOWN",
+          "REFERENCE_LOAD_UNKNOWN",
+          "CURRENT_LOAD_SOURCE_UNKNOWN"
+        ],
+        "meaning": "PROVENANCE_CHECK_NOT_MODEL_CONFIDENCE_OR_CAUSAL_PROOF"
+      },
+      "sampling": "UNKNOWN",
+      "retention": "UNKNOWN",
+      "source_annotation_count": 0,
+      "collected_at_unix": null,
+      "incident_context": {
+        "services": {
+          "api": "available",
+          "worker": "available"
+        },
+        "assistant_categories_enabled": true,
+        "raw_fields_disclosure": "LOCAL_ONLY"
+      }
+    },
+    "observations": [
+      {
+        "service": "api",
+        "kind": "metric",
+        "start_unix": 1792403248.6376,
+        "end_unix": 1792403248.772657,
+        "values": {
+          "family": "cpu",
+          "unit": "cores",
+          "samples": 3,
+          "min": 0.25,
+          "median": 0.25,
+          "max": 0.25,
+          "returned_point_coverage": null,
+          "state": "OBSERVED",
+          "baseline_comparison": {
+            "expected_at_observed_load": 0.25,
+            "residual_iqr": 0.0025,
+            "absolute_residual_p90": 0.0,
+            "method": "workload_linear_prediction_and_residual_iqr",
+            "healthy_start_unix": null,
+            "healthy_end_unix": null,
+            "load_comparability": "NOT_ESTABLISHED"
+          },
+          "series": [
+            {
+              "start_unix": 1792403248.6376,
+              "end_unix": 1792403248.6376,
+              "min": 0.25,
+              "max": 0.25,
+              "mean": 0.25,
+              "samples": 1
+            },
+            {
+              "start_unix": 1792403248.7051284,
+              "end_unix": 1792403248.7051284,
+              "min": 0.25,
+              "max": 0.25,
+              "mean": 0.25,
+              "samples": 1
+            },
+            {
+              "start_unix": 1792403248.772657,
+              "end_unix": 1792403248.772657,
+              "min": 0.25,
+              "max": 0.25,
+              "mean": 0.25,
+              "samples": 1
+            }
+          ]
+        },
+        "id": "obs-17c501951db9e587b61b09ebc32c0493",
+        "source_links": []
+      },
+      {
+        "service": "api",
+        "kind": "metric",
+        "start_unix": 1792403248.6376,
+        "end_unix": 1792403248.772657,
+        "values": {
+          "family": "memory",
+          "unit": "bytes",
+          "samples": 3,
+          "min": 67108864.0,
+          "median": 67108864.0,
+          "max": 67108864.0,
+          "returned_point_coverage": null,
+          "state": "OBSERVED",
+          "baseline_comparison": {
+            "expected_at_observed_load": 67108864.0,
+            "residual_iqr": 671088.64,
+            "absolute_residual_p90": 0.0,
+            "method": "workload_linear_prediction_and_residual_iqr",
+            "healthy_start_unix": null,
+            "healthy_end_unix": null,
+            "load_comparability": "NOT_ESTABLISHED"
+          },
+          "series": [
+            {
+              "start_unix": 1792403248.6376,
+              "end_unix": 1792403248.6376,
+              "min": 67108864.0,
+              "max": 67108864.0,
+              "mean": 67108864.0,
+              "samples": 1
+            },
+            {
+              "start_unix": 1792403248.7051284,
+              "end_unix": 1792403248.7051284,
+              "min": 67108864.0,
+              "max": 67108864.0,
+              "mean": 67108864.0,
+              "samples": 1
+            },
+            {
+              "start_unix": 1792403248.772657,
+              "end_unix": 1792403248.772657,
+              "min": 67108864.0,
+              "max": 67108864.0,
+              "mean": 67108864.0,
+              "samples": 1
+            }
+          ]
+        },
+        "id": "obs-014f3d1d9fe6fbc2e8b1de12ec41d16e",
+        "source_links": []
+      },
+      {
+        "service": "api",
+        "kind": "metric",
+        "start_unix": 1792403248.6376,
+        "end_unix": 1792403248.772657,
+        "values": {
+          "family": "network",
+          "unit": "bytes_per_second",
+          "samples": 3,
+          "min": 1024.0,
+          "median": 1024.0,
+          "max": 1024.0,
+          "returned_point_coverage": null,
+          "state": "OBSERVED",
+          "baseline_comparison": {
+            "expected_at_observed_load": 1024.0,
+            "residual_iqr": 10.24,
+            "absolute_residual_p90": 0.0,
+            "method": "workload_linear_prediction_and_residual_iqr",
+            "healthy_start_unix": null,
+            "healthy_end_unix": null,
+            "load_comparability": "NOT_ESTABLISHED"
+          },
+          "series": [
+            {
+              "start_unix": 1792403248.6376,
+              "end_unix": 1792403248.6376,
+              "min": 1024.0,
+              "max": 1024.0,
+              "mean": 1024.0,
+              "samples": 1
+            },
+            {
+              "start_unix": 1792403248.7051284,
+              "end_unix": 1792403248.7051284,
+              "min": 1024.0,
+              "max": 1024.0,
+              "mean": 1024.0,
+              "samples": 1
+            },
+            {
+              "start_unix": 1792403248.772657,
+              "end_unix": 1792403248.772657,
+              "min": 1024.0,
+              "max": 1024.0,
+              "mean": 1024.0,
+              "samples": 1
+            }
+          ]
+        },
+        "id": "obs-172e506ad82bb4363bbf7cc7605bf930",
+        "source_links": []
+      },
+      {
+        "service": "api",
+        "kind": "metric",
+        "start_unix": 1792403248.6376,
+        "end_unix": 1792403248.772657,
+        "values": {
+          "family": "traffic_rate",
+          "unit": "bytes_per_second",
+          "samples": 3,
+          "min": 1024.0,
+          "median": 1024.0,
+          "max": 1024.0,
+          "returned_point_coverage": null,
+          "state": "OBSERVED",
+          "baseline_comparison": {
+            "expected_at_observed_load": 1024.0,
+            "residual_iqr": 10.24,
+            "absolute_residual_p90": 0.0,
+            "method": "workload_linear_prediction_and_residual_iqr",
+            "healthy_start_unix": null,
+            "healthy_end_unix": null,
+            "load_comparability": "NOT_ESTABLISHED"
+          },
+          "series": [
+            {
+              "start_unix": 1792403248.6376,
+              "end_unix": 1792403248.6376,
+              "min": 1024.0,
+              "max": 1024.0,
+              "mean": 1024.0,
+              "samples": 1
+            },
+            {
+              "start_unix": 1792403248.7051284,
+              "end_unix": 1792403248.7051284,
+              "min": 1024.0,
+              "max": 1024.0,
+              "mean": 1024.0,
+              "samples": 1
+            },
+            {
+              "start_unix": 1792403248.772657,
+              "end_unix": 1792403248.772657,
+              "min": 1024.0,
+              "max": 1024.0,
+              "mean": 1024.0,
+              "samples": 1
+            }
+          ]
+        },
+        "id": "obs-fcb28122505a02812d8b2659d8f6e9ab",
+        "source_links": []
+      },
+      {
+        "service": "api",
+        "kind": "traces",
+        "start_unix": 1792403248.6376,
+        "end_unix": 1792403248.772657,
+        "values": {
+          "state": "OBSERVED",
+          "observed_spans": 6,
+          "observed_error_spans": 6,
+          "sampling": "UNKNOWN",
+          "retention": "UNKNOWN",
+          "examples": [
+            {
+              "trace_id": "00000000000000000000000000000011",
+              "span_id": "0000000000000001",
+              "start_time_us": 1792403248683450,
+              "duration_us": 43908,
+              "error": true
+            },
+            {
+              "trace_id": "00000000000000000000000000000011",
+              "span_id": "0000000000000002",
+              "start_time_us": 1792403248683450,
+              "duration_us": 43908,
+              "error": true
+            },
+            {
+              "trace_id": "00000000000000000000000000000010",
+              "span_id": "0000000000000001",
+              "start_time_us": 1792403248638376,
+              "duration_us": 42443,
+              "error": true
+            }
+          ],
+          "timing": {
+            "unit": "microseconds",
+            "selection": "SERVER_SPANS",
+            "timed_spans": 3,
+            "median_us": 42443.0,
+            "p90_us": 43615.0,
+            "max_us": 43908,
+            "observed_client_wait_median_us": 42443.0,
+            "observed_exclusive_median_us": 0.0,
+            "wait_state": "OBSERVED_SERVER_DECOMPOSITION",
+            "unresolved_parent_spans": 0,
+            "meaning": "OBSERVED_WALL_TIME_NOT_CPU_OR_CAUSAL_PROOF_SAMPLING_UNKNOWN"
+          },
+          "example_selection": "error_first_then_longest_duration_not_random"
+        },
+        "id": "obs-a08515bda09a7bd94109f58ebee17640",
+        "source_links": []
+      },
+      {
+        "service": "api",
+        "kind": "dependencies",
+        "start_unix": 1792403248.6376,
+        "end_unix": 1792403248.772657,
+        "values": {
+          "edges": [
+            {
+              "source": "api",
+              "target": "worker",
+              "observed_edges": 3
+            }
+          ],
+          "state": "OBSERVED",
+          "external_edge_observations": 0,
+          "meaning": "OBSERVED_CALLS_NOT_CAUSAL_PROOF"
+        },
+        "id": "obs-cd2dd42ee22f53806fcac67c171764bb",
+        "source_links": []
+      },
+      {
+        "service": "worker",
+        "kind": "metric",
+        "start_unix": 1792403248.6376,
+        "end_unix": 1792403248.772657,
+        "values": {
+          "family": "cpu",
+          "unit": "cores",
+          "samples": 3,
+          "min": 0.25,
+          "median": 0.25,
+          "max": 0.25,
+          "returned_point_coverage": null,
+          "state": "OBSERVED",
+          "baseline_comparison": {
+            "expected_at_observed_load": 0.25,
+            "residual_iqr": 0.0025,
+            "absolute_residual_p90": 0.0,
+            "method": "workload_linear_prediction_and_residual_iqr",
+            "healthy_start_unix": null,
+            "healthy_end_unix": null,
+            "load_comparability": "NOT_ESTABLISHED"
+          },
+          "series": [
+            {
+              "start_unix": 1792403248.6376,
+              "end_unix": 1792403248.6376,
+              "min": 0.25,
+              "max": 0.25,
+              "mean": 0.25,
+              "samples": 1
+            },
+            {
+              "start_unix": 1792403248.7051284,
+              "end_unix": 1792403248.7051284,
+              "min": 0.25,
+              "max": 0.25,
+              "mean": 0.25,
+              "samples": 1
+            },
+            {
+              "start_unix": 1792403248.772657,
+              "end_unix": 1792403248.772657,
+              "min": 0.25,
+              "max": 0.25,
+              "mean": 0.25,
+              "samples": 1
+            }
+          ]
+        },
+        "id": "obs-47b34b5747051d62fbe2d1b05cc9cadc",
+        "source_links": []
+      },
+      {
+        "service": "worker",
+        "kind": "metric",
+        "start_unix": 1792403248.6376,
+        "end_unix": 1792403248.772657,
+        "values": {
+          "family": "memory",
+          "unit": "bytes",
+          "samples": 3,
+          "min": 67108864.0,
+          "median": 67108864.0,
+          "max": 67108864.0,
+          "returned_point_coverage": null,
+          "state": "OBSERVED",
+          "baseline_comparison": {
+            "expected_at_observed_load": 67108864.0,
+            "residual_iqr": 671088.64,
+            "absolute_residual_p90": 0.0,
+            "method": "workload_linear_prediction_and_residual_iqr",
+            "healthy_start_unix": null,
+            "healthy_end_unix": null,
+            "load_comparability": "NOT_ESTABLISHED"
+          },
+          "series": [
+            {
+              "start_unix": 1792403248.6376,
+              "end_unix": 1792403248.6376,
+              "min": 67108864.0,
+              "max": 67108864.0,
+              "mean": 67108864.0,
+              "samples": 1
+            },
+            {
+              "start_unix": 1792403248.7051284,
+              "end_unix": 1792403248.7051284,
+              "min": 67108864.0,
+              "max": 67108864.0,
+              "mean": 67108864.0,
+              "samples": 1
+            },
+            {
+              "start_unix": 1792403248.772657,
+              "end_unix": 1792403248.772657,
+              "min": 67108864.0,
+              "max": 67108864.0,
+              "mean": 67108864.0,
+              "samples": 1
+            }
+          ]
+        },
+        "id": "obs-71d9485fa1d3cf59895f52ba3f287283",
+        "source_links": []
+      },
+      {
+        "service": "worker",
+        "kind": "metric",
+        "start_unix": 1792403248.6376,
+        "end_unix": 1792403248.772657,
+        "values": {
+          "family": "network",
+          "unit": "bytes_per_second",
+          "samples": 3,
+          "min": 1024.0,
+          "median": 1024.0,
+          "max": 1024.0,
+          "returned_point_coverage": null,
+          "state": "OBSERVED",
+          "baseline_comparison": {
+            "expected_at_observed_load": 1024.0,
+            "residual_iqr": 10.24,
+            "absolute_residual_p90": 0.0,
+            "method": "workload_linear_prediction_and_residual_iqr",
+            "healthy_start_unix": null,
+            "healthy_end_unix": null,
+            "load_comparability": "NOT_ESTABLISHED"
+          },
+          "series": [
+            {
+              "start_unix": 1792403248.6376,
+              "end_unix": 1792403248.6376,
+              "min": 1024.0,
+              "max": 1024.0,
+              "mean": 1024.0,
+              "samples": 1
+            },
+            {
+              "start_unix": 1792403248.7051284,
+              "end_unix": 1792403248.7051284,
+              "min": 1024.0,
+              "max": 1024.0,
+              "mean": 1024.0,
+              "samples": 1
+            },
+            {
+              "start_unix": 1792403248.772657,
+              "end_unix": 1792403248.772657,
+              "min": 1024.0,
+              "max": 1024.0,
+              "mean": 1024.0,
+              "samples": 1
+            }
+          ]
+        },
+        "id": "obs-2373625d949737b6428b15ab2324e7ea",
+        "source_links": []
+      },
+      {
+        "service": "worker",
+        "kind": "metric",
+        "start_unix": 1792403248.6376,
+        "end_unix": 1792403248.772657,
+        "values": {
+          "family": "traffic_rate",
+          "unit": "bytes_per_second",
+          "samples": 3,
+          "min": 1024.0,
+          "median": 1024.0,
+          "max": 1024.0,
+          "returned_point_coverage": null,
+          "state": "OBSERVED",
+          "baseline_comparison": {
+            "expected_at_observed_load": 1024.0,
+            "residual_iqr": 10.24,
+            "absolute_residual_p90": 0.0,
+            "method": "workload_linear_prediction_and_residual_iqr",
+            "healthy_start_unix": null,
+            "healthy_end_unix": null,
+            "load_comparability": "NOT_ESTABLISHED"
+          },
+          "series": [
+            {
+              "start_unix": 1792403248.6376,
+              "end_unix": 1792403248.6376,
+              "min": 1024.0,
+              "max": 1024.0,
+              "mean": 1024.0,
+              "samples": 1
+            },
+            {
+              "start_unix": 1792403248.7051284,
+              "end_unix": 1792403248.7051284,
+              "min": 1024.0,
+              "max": 1024.0,
+              "mean": 1024.0,
+              "samples": 1
+            },
+            {
+              "start_unix": 1792403248.772657,
+              "end_unix": 1792403248.772657,
+              "min": 1024.0,
+              "max": 1024.0,
+              "mean": 1024.0,
+              "samples": 1
+            }
+          ]
+        },
+        "id": "obs-0ec535d19a54390910fd1c47aa320131",
+        "source_links": []
+      },
+      {
+        "service": "worker",
+        "kind": "traces",
+        "start_unix": 1792403248.6376,
+        "end_unix": 1792403248.772657,
+        "values": {
+          "state": "NOT_OBSERVED",
+          "observed_spans": 0,
+          "observed_error_spans": 0,
+          "sampling": "UNKNOWN",
+          "retention": "UNKNOWN",
+          "examples": [],
+          "timing": {
+            "unit": "microseconds",
+            "selection": "ALL_KINDS_NO_SERVER_OBSERVED",
+            "timed_spans": 0,
+            "median_us": null,
+            "p90_us": null,
+            "max_us": null,
+            "observed_client_wait_median_us": null,
+            "observed_exclusive_median_us": null,
+            "wait_state": "NO_SERVER_SPANS",
+            "unresolved_parent_spans": 0,
+            "meaning": "OBSERVED_WALL_TIME_NOT_CPU_OR_CAUSAL_PROOF_SAMPLING_UNKNOWN"
+          },
+          "example_selection": "error_first_then_longest_duration_not_random"
+        },
+        "id": "obs-59da9fd931bc1b5c571014716094df11",
+        "source_links": []
+      },
+      {
+        "service": "worker",
+        "kind": "dependencies",
+        "start_unix": 1792403248.6376,
+        "end_unix": 1792403248.772657,
+        "values": {
+          "edges": [
+            {
+              "source": "api",
+              "target": "worker",
+              "observed_edges": 3
+            }
+          ],
+          "state": "NOT_OBSERVED",
+          "external_edge_observations": 0,
+          "meaning": "OBSERVED_CALLS_NOT_CAUSAL_PROOF"
+        },
+        "id": "obs-5f8e1d8eaa701e3b444b7a03fb41b358",
+        "source_links": []
+      },
+      {
+        "service": "api",
+        "kind": "context",
+        "start_unix": 1792403248.6376,
+        "end_unix": 1792403248.772657,
+        "values": {
+          "state": "OBSERVED",
+          "source_status": "available",
+          "source_id": "fresh-application-session",
+          "records": [
+            {
+              "source_timestamp_ns": "1792403248680892000",
+              "fields": {
+                "event.name": "error",
+                "error.type": "TimeoutError"
+              },
+              "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61"
+            },
+            {
+              "source_timestamp_ns": "1792403248727456000",
+              "fields": {
+                "event.name": "error",
+                "error.type": "TimeoutError"
+              },
+              "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61"
+            },
+            {
+              "source_timestamp_ns": "1792403248771937000",
+              "fields": {
+                "event.name": "error",
+                "error.type": "TimeoutError"
+              },
+              "source_line_sha256": "ac5589dceb48177d3e6f5a7ebf082037f9fee7bbf9b05642baace24587908d61"
+            }
+          ],
+          "categories": [
+            "OPERATION_TIMEOUT"
+          ],
+          "record_count": 3,
+          "unsupported_entries": 0,
+          "reason": null,
+          "observed_at_unix": null,
+          "assistant_categories_enabled": true,
+          "coverage": "RETENTION_SAMPLING_AND_DELIVERY_UNKNOWN",
+          "interval_semantics": "START_INCLUSIVE_END_EXCLUSIVE",
+          "meaning": "SOURCE_ASSERTIONS_SUGGEST_CHECKS_NOT_CAUSAL_PROOF"
+        },
+        "source_links": [],
+        "id": "obs-4ee6d838422d13b6a4611e8f6e6d01b9"
+      },
+      {
+        "service": "worker",
+        "kind": "context",
+        "start_unix": 1792403248.6376,
+        "end_unix": 1792403248.772657,
+        "values": {
+          "state": "NOT_OBSERVED",
+          "source_status": "available",
+          "source_id": "fresh-application-session",
+          "records": [],
+          "categories": [],
+          "record_count": 0,
+          "unsupported_entries": 0,
+          "reason": null,
+          "observed_at_unix": null,
+          "assistant_categories_enabled": true,
+          "coverage": "RETENTION_SAMPLING_AND_DELIVERY_UNKNOWN",
+          "interval_semantics": "START_INCLUSIVE_END_EXCLUSIVE",
+          "meaning": "SOURCE_ASSERTIONS_SUGGEST_CHECKS_NOT_CAUSAL_PROOF"
+        },
+        "source_links": [],
+        "id": "obs-90ef50e08d04e3009a4f32e4be4b32f6"
+      }
+    ],
+    "checks": [
+      {
+        "service": "api",
+        "code": "INSPECT_ERROR_TRACES",
+        "evidence_ids": [
+          "obs-a08515bda09a7bd94109f58ebee17640"
+        ],
+        "text": "Открыть примеры ошибочных трасс и сопоставить локальную операцию с зависимостями; выборка не определяет частоту ошибок всего трафика.",
+        "status": "PROPOSED_NOT_EXECUTED"
+      },
+      {
+        "service": "worker",
+        "code": "CHECK_TRACE_AVAILABILITY",
+        "evidence_ids": [
+          "obs-59da9fd931bc1b5c571014716094df11"
+        ],
+        "text": "Проверить источник, инструментирование, sampling и активность: отсутствие спанов не доказывает отсутствие вызовов.",
+        "status": "PROPOSED_NOT_EXECUTED"
+      }
+    ],
+    "limitations": [
+      "DIAGNOSTIC_OBSERVATIONS_NOT_CAUSAL_PROOF",
+      "BASELINE_LOAD_COMPARABILITY_NOT_ESTABLISHED",
+      "SOURCE_LINKS_MAY_EXPIRE_OR_REQUIRE_SEPARATE_AUTH",
+      "CONTEXT_IS_BOUNDED_SOURCE_ASSERTIONS_NOT_PROOF"
+    ]
+  }
+}

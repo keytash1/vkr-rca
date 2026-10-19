@@ -1,0 +1,85 @@
+{
+  "schema_version": "assistant-run-v1",
+  "status": "completed",
+  "stop_reason": "REPORT_VALIDATED",
+  "mode": "C",
+  "report": {
+    "summary": "У svc-001 наблюдаются 6 спанов с ошибками и ожидание клиентских вызовов в серверных спанах; зафиксированы вызовы svc-001 → svc-002, но причина ошибок не установлена. Подтверждённого инженером вывода нет; ML-ранг задаёт лишь порядок проверки, а score не является вероятностью.",
+    "hypotheses": [
+      {
+        "service": "svc-001",
+        "statement": "Ошибки svc-001 могут быть связаны с вызовами svc-002, однако имеющиеся агрегаты не позволяют отличить сбой зависимости от ошибки вызывающего сервиса.",
+        "supporting_evidence_ids": [
+          "obs-001",
+          "obs-006"
+        ],
+        "contradicting_evidence_ids": [],
+        "unknowns": [
+          "Связаны ли спаны с ошибками именно с вызовами svc-002 и где впервые возникает ошибка.",
+          "Является ли наблюдаемое ожидание аномальным: медиана 408 мкс сама по себе не доказывает задержку."
+        ],
+        "next_checks": [
+          {
+            "action": "Предлагается сопоставить серверные и клиентские спаны svc-001 с ответами и журналами svc-002 по идентификаторам запросов, проверив статусы и место первого возникновения ошибки.",
+            "expected_observation": "Ошибка ответа svc-002 до ошибки svc-001 поддержит гипотезу; успешный ответ svc-002 и последующая локальная ошибка svc-001 ослабят её и поддержат локальную альтернативу.",
+            "evidence_ids": [
+              "obs-001",
+              "obs-006",
+              "obs-012"
+            ]
+          }
+        ]
+      }
+    ],
+    "data_gaps": [
+      "Нет исходных спанов, текстов ошибок, статусов ответов и журналов для различения локальной ошибки, ошибки зависимости и распространения ошибки.",
+      "У svc-002 спаны не наблюдались; sampling и retention неизвестны, поэтому отсутствие записей не доказывает отсутствие вызовов или ошибок.",
+      "Неизвестны здоровый период, эталонная нагрузка и источник текущего RPS; нет сопоставимого baseline ошибок и задержек."
+    ],
+    "limitations": [
+      "Наблюдаемые вызовы и разложение времени не доказывают причинность; 6 спанов с ошибками не равны 6 независимым неуспешным запросам.",
+      "CPU, память, сеть и трафик совпадают с модельным ожиданием, но сопоставимость baseline не установлена; эти метрики не опровергают ошибку вызова или ожидание зависимости."
+    ],
+    "action_proposals": []
+  },
+  "fallback": null,
+  "prompt_version": "snapshot-report-v7-action-proposals",
+  "prompt_sha256": "f1d6f962b251ac63af92463d550ed4efad47eec8dfeca794b03e6e057283a811",
+  "context_sha256": "0757e9808a48a516b17b194ac4440719462e18b3e1f28aaf506e32257ed81575",
+  "requested_model": "gpt-6.1-sol",
+  "returned_models": [
+    "gpt-6.1-sol"
+  ],
+  "prompt_content_sha256": "3c5957bee4e06af0edca7059da1ff5d12d3c3ef1f276bae0eaf3bf2e63e0d2d7",
+  "report_schema_sha256": "4824ae06285299ee351998850ee2e3146c1ba6cc192c6625e2ca2923a0e8b8f9",
+  "limits": {
+    "model_calls": 1,
+    "tool_calls": 6,
+    "tool_steps": 3,
+    "input_tokens": 12000,
+    "output_tokens": 3000,
+    "wall_seconds": 60
+  },
+  "events": [
+    {
+      "kind": "model_requested",
+      "attempt": 1,
+      "input_reservation": 11588,
+      "reservation_method": "UTF8_BYTES_PLUS_512_CONSERVATIVE"
+    },
+    {
+      "kind": "model_completed",
+      "attempt": 1
+    }
+  ],
+  "usage": {
+    "model_calls": 1,
+    "known_input_tokens": 2370,
+    "known_output_tokens": 701,
+    "unaccounted_attempts": 0,
+    "input_preflight_reserved": 11588,
+    "accounting_complete": true
+  },
+  "validation": "STRUCTURE_AND_REFERENCE_SCOPE_ONLY_NOT_SEMANTIC_TRUTH",
+  "elapsed_seconds": 16.989546917000553
+}

@@ -1,0 +1,78 @@
+{
+  "old_m14": "USED_TEST_DO_NOT_TRAIN",
+  "old_loki_pilot": "USED_ENGINEERING",
+  "cases": [
+    {
+      "case": "r3-01",
+      "group": "new-single-session-controlled-development",
+      "role": "USED_DEVELOPMENT",
+      "synthetic_resource_metrics": true,
+      "actual_http_requests": 3,
+      "model": "frozen_m13",
+      "canonical_sha256": "c561eae922adccb76d5f07f8d94cd497b133ddc046f1c84c7940dd2d4ff85f9a"
+    },
+    {
+      "case": "r3-02",
+      "group": "new-single-session-controlled-development",
+      "role": "USED_DEVELOPMENT",
+      "synthetic_resource_metrics": true,
+      "actual_http_requests": 3,
+      "model": "frozen_m13",
+      "canonical_sha256": "b1001745c16c90c634449bc7f9325f3429b5b7b1b56e44b5140bcd63dd1ee276"
+    },
+    {
+      "case": "r3-03",
+      "group": "new-single-session-controlled-development",
+      "role": "USED_DEVELOPMENT",
+      "synthetic_resource_metrics": true,
+      "actual_http_requests": 3,
+      "model": "frozen_m13",
+      "canonical_sha256": "a8a0c29980374ea92514d052203e0fbd87f041d849f3276d914fffc29e6f40de"
+    },
+    {
+      "case": "r3-04",
+      "group": "new-single-session-controlled-development",
+      "role": "USED_DEVELOPMENT",
+      "synthetic_resource_metrics": true,
+      "actual_http_requests": 3,
+      "model": "frozen_m13",
+      "canonical_sha256": "24792b274071a1776920c9d6331b68df3c5c056f3560f21124164a9eed132c6f"
+    },
+    {
+      "case": "r3-05",
+      "group": "new-single-session-controlled-development",
+      "role": "USED_DEVELOPMENT",
+      "synthetic_resource_metrics": true,
+      "actual_http_requests": 3,
+      "model": "frozen_m13",
+      "canonical_sha256": "003f05072f2217ba45c6fd49a5fee39a10a6258c624459ad7ddbb8b96d94835a"
+    },
+    {
+      "case": "r3-06",
+      "group": "new-single-session-controlled-development",
+      "role": "USED_DEVELOPMENT",
+      "synthetic_resource_metrics": true,
+      "actual_http_requests": 3,
+      "model": "frozen_m13",
+      "canonical_sha256": "7ec7631cceb14d43536fe1a6a9fba750125305935cee01a0501ace8634f344e1"
+    },
+    {
+      "case": "r3-07",
+      "group": "new-single-session-controlled-development",
+      "role": "USED_DEVELOPMENT",
+      "synthetic_resource_metrics": true,
+      "actual_http_requests": 3,
+      "model": "frozen_m13",
+      "canonical_sha256": "902e2b359d249ae43aac50bdee4dc9a9e0d44975a89b87f45ad4fe4768ab2af5"
+    },
+    {
+      "case": "r3-08",
+      "group": "new-single-session-controlled-development",
+      "role": "USED_DEVELOPMENT",
+      "synthetic_resource_metrics": true,
+      "actual_http_requests": 3,
+      "model": "frozen_m13",
+      "canonical_sha256": "2efdbc3a28d905ca4d292314d093ee7eaefa0325e6878efef68e5d5740bf43c5"
+    }
+  ]
+}

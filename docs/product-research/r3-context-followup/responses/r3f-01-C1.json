@@ -1,0 +1,108 @@
+{
+  "schema_version": "assistant-run-v1",
+  "status": "completed",
+  "stop_reason": "REPORT_VALIDATED",
+  "mode": "C",
+  "report": {
+    "summary": "У svc-001 наблюдаются 6 ошибочных спанов из 6 и категория PERMISSION_RESPONSE; стоит проверить обработку прав доступа и возможное распространение ошибки из зависимости svc-002. Причина инженером не подтверждена; прямых противоречий этим гипотезам в представленных данных нет.",
+    "hypotheses": [
+      {
+        "service": "svc-001",
+        "statement": "Ошибки могут быть связаны с отказом в доступе при обработке запросов svc-001; категория PERMISSION_RESPONSE указывает направление проверки, но не устанавливает механизм или источник отказа.",
+        "supporting_evidence_ids": [
+          "obs-001",
+          "obs-007"
+        ],
+        "contradicting_evidence_ids": [],
+        "unknowns": [
+          "Неизвестны конкретные статусы, сообщения ошибок и операция проверки доступа.",
+          "Не установлено, сформирован ли отказ в svc-001 или передан из зависимости."
+        ],
+        "next_checks": [
+          {
+            "action": "Проверить исходные ошибочные спаны и связанные записи проверки доступа svc-001.",
+            "expected_observation": "Конкретный код отказа и место его возникновения позволят подтвердить либо отвергнуть связь ошибок с проверкой прав.",
+            "evidence_ids": [
+              "obs-001",
+              "obs-007"
+            ]
+          }
+        ]
+      },
+      {
+        "service": "svc-002",
+        "statement": "Ошибка зависимости svc-002 могла передаваться в svc-001: вызовы зависимости наблюдаются, а медианное время серверных спанов svc-001 приходится на клиентское ожидание; это косвенная поддержка, а не доказательство неисправности svc-002.",
+        "supporting_evidence_ids": [
+          "obs-002",
+          "obs-007"
+        ],
+        "contradicting_evidence_ids": [],
+        "unknowns": [
+          "Неизвестны результаты и статусы конкретных вызовов svc-002.",
+          "Не установлено, относится ли измеренное ожидание именно к вызовам svc-002 и связано ли оно с ошибками."
+        ],
+        "next_checks": [
+          {
+            "action": "Сопоставить клиентские вызовы из ошибочных запросов svc-001 с ответами и серверными записями svc-002.",
+            "expected_observation": "Совпадение ошибок зависимости с ошибками вызывающего сервиса поддержит гипотезу; успешные ответы при локальном отказе svc-001 её ослабят.",
+            "evidence_ids": [
+              "obs-002",
+              "obs-007",
+              "obs-014"
+            ]
+          }
+        ]
+      }
+    ],
+    "data_gaps": [
+      "Нет исходных спанов, кодов ответов, сообщений ошибок и связанных журналов, позволяющих локализовать отказ.",
+      "Sampling, retention и полнота доставки неизвестны; отсутствие спанов svc-002 не доказывает отсутствие вызовов или ошибок.",
+      "Неизвестны здоровый период, эталонная нагрузка и источник текущей нагрузки; нет сопоставимого эталона задержек и ошибок."
+    ],
+    "limitations": [
+      "Агрегаты и связи вызовов не доказывают причинность; совпадение ресурсных метрик с модельным baseline не исключает ошибки доступа или зависимости.",
+      "ML-ранг задаёт только порядок проверки, score не является вероятностью; новый рейтинг не формируется."
+    ],
+    "action_proposals": []
+  },
+  "fallback": null,
+  "prompt_version": "snapshot-report-v7-action-proposals",
+  "prompt_sha256": "f1d6f962b251ac63af92463d550ed4efad47eec8dfeca794b03e6e057283a811",
+  "context_sha256": "8db901839199add077be579663746e6a17717f0239e3d68288b77abc38e51994",
+  "requested_model": "gpt-6.1-sol",
+  "returned_models": [
+    "gpt-6.1-sol"
+  ],
+  "prompt_content_sha256": "6ea19f30b9a5201a0fa39e2680aca1b82087d5707b5c592f4b01994b1e212613",
+  "report_schema_sha256": "865a406409ecc058174cccdf383ccf7265b7c735a43bca7de18352e6a60cdaf8",
+  "limits": {
+    "model_calls": 1,
+    "tool_calls": 6,
+    "tool_steps": 3,
+    "input_tokens": 12000,
+    "output_tokens": 3000,
+    "wall_seconds": 60
+  },
+  "events": [
+    {
+      "kind": "model_requested",
+      "attempt": 1,
+      "input_reservation": 4784,
+      "reservation_method": "O200K_VERIFIED_LOCAL_ESTIMATE_X1_5_PLUS_512_NOT_PROVIDER_INVOICE"
+    },
+    {
+      "kind": "model_completed",
+      "attempt": 1
+    }
+  ],
+  "usage": {
+    "model_calls": 1,
+    "known_input_tokens": 2549,
+    "known_output_tokens": 869,
+    "unaccounted_attempts": 0,
+    "input_preflight_reserved": 4784,
+    "accounting_complete": true
+  },
+  "validation": "STRUCTURE_AND_REFERENCE_SCOPE_ONLY_NOT_SEMANTIC_TRUTH",
+  "elapsed_seconds": 23.10303500000009
+}

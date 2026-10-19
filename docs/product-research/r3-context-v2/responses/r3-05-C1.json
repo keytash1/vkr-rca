@@ -1,0 +1,38 @@
+{
+  "schema_version": "assistant-run-v1",
+  "status": "partial",
+  "stop_reason": "ASSISTANT_INPUT_BUDGET",
+  "mode": "C",
+  "report": null,
+  "fallback": {
+    "mode": "B",
+    "available": true,
+    "reason": "ASSISTANT_INPUT_BUDGET"
+  },
+  "prompt_version": "snapshot-report-v7-action-proposals",
+  "prompt_sha256": "f1d6f962b251ac63af92463d550ed4efad47eec8dfeca794b03e6e057283a811",
+  "context_sha256": "6ba91491c806db73064f56c75778eac3989b53cc40bdbd62ed9876871e29fac7",
+  "requested_model": "gpt-6.1-sol",
+  "returned_models": [],
+  "prompt_content_sha256": "060407dfb59d9aaf0c6f4a342c35f74a79d953d0159d533c7187fb083c1c0cd9",
+  "report_schema_sha256": "865a406409ecc058174cccdf383ccf7265b7c735a43bca7de18352e6a60cdaf8",
+  "limits": {
+    "model_calls": 1,
+    "tool_calls": 6,
+    "tool_steps": 3,
+    "input_tokens": 12000,
+    "output_tokens": 3000,
+    "wall_seconds": 60
+  },
+  "events": [],
+  "usage": {
+    "model_calls": 0,
+    "known_input_tokens": 0,
+    "known_output_tokens": 0,
+    "unaccounted_attempts": 0,
+    "input_preflight_reserved": 0,
+    "accounting_complete": true
+  },
+  "validation": "STRUCTURE_AND_REFERENCE_SCOPE_ONLY_NOT_SEMANTIC_TRUTH",
+  "elapsed_seconds": 0.0004448749969014898
+}

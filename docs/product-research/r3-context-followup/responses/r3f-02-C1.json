@@ -1,0 +1,87 @@
+{
+  "schema_version": "assistant-run-v1",
+  "status": "completed",
+  "stop_reason": "REPORT_VALIDATED",
+  "mode": "C",
+  "report": {
+    "summary": "У svc-001 наблюдаются OPERATION_TIMEOUT и ошибочные спаны; время серверных спанов в доступной декомпозиции приходится на ожидание клиентских вызовов. Это основание проверить путь зависимости svc-001 → svc-002, но не подтверждённая инженером причина; ранг ML задаёт лишь порядок проверки, а score не является вероятностью.",
+    "hypotheses": [
+      {
+        "service": "svc-001",
+        "statement": "Тайм-ауты svc-001 могут быть связаны с ожиданием исходящего вызова по пути к svc-002; неисправность самого svc-002 пока не установлена.",
+        "supporting_evidence_ids": [
+          "obs-001",
+          "obs-002",
+          "obs-007"
+        ],
+        "contradicting_evidence_ids": [],
+        "unknowns": [
+          "Не установлено, относится ли наблюдаемое клиентское ожидание именно к вызовам svc-002 и где на этом пути возникает задержка.",
+          "Неизвестны пороги тайм-аутов и условия ошибок; альтернативы — транспортная задержка или настройки клиента — требуют проверки, конкретной поддержки для них нет."
+        ],
+        "next_checks": [
+          {
+            "action": "Сопоставить исходные серверные и клиентские спаны svc-001 с логами тайм-аутов, адресатом вызова и доступными данными svc-002.",
+            "expected_observation": "Если гипотеза верна, ошибочные операции svc-001 будут связаны с ожиданием вызовов svc-002 до срабатывания тайм-аута; другой адресат или иной источник ошибки ослабит гипотезу.",
+            "evidence_ids": [
+              "obs-001",
+              "obs-002",
+              "obs-007",
+              "obs-014"
+            ]
+          }
+        ]
+      }
+    ],
+    "data_gaps": [
+      "Нет исходных спанов и текстов ошибок для восстановления отдельных операций; у svc-002 спаны не наблюдаются, а sampling и retention неизвестны.",
+      "Нет серверных длительностей и ошибок svc-002, параметров тайм-аутов и данных о транспортном этапе вызова.",
+      "Неизвестны здоровый период, эталонная нагрузка и источник текущего RPS, поэтому сопоставимость baseline не установлена."
+    ],
+    "limitations": [
+      "Прямых противоречий сформулированной гипотезе нет: стабильные CPU, память и сеть не исключают ожидание зависимости, а отсутствие спанов svc-002 не доказывает отсутствие вызовов.",
+      "Доступны только агрегаты короткого интервала; связь вызовов и декомпозиция времени не доказывают причинность, подтверждённого инженером вывода нет."
+    ],
+    "action_proposals": []
+  },
+  "fallback": null,
+  "prompt_version": "snapshot-report-v7-action-proposals",
+  "prompt_sha256": "f1d6f962b251ac63af92463d550ed4efad47eec8dfeca794b03e6e057283a811",
+  "context_sha256": "450baceb327ec25391911608a8ca196cab568ac684f3e69523c69243a0b09906",
+  "requested_model": "gpt-6.1-sol",
+  "returned_models": [
+    "gpt-6.1-sol"
+  ],
+  "prompt_content_sha256": "d6142ac97df7450c8bc52aca930e36bd2591d1e5994ee038d0368e024c649e18",
+  "report_schema_sha256": "865a406409ecc058174cccdf383ccf7265b7c735a43bca7de18352e6a60cdaf8",
+  "limits": {
+    "model_calls": 1,
+    "tool_calls": 6,
+    "tool_steps": 3,
+    "input_tokens": 12000,
+    "output_tokens": 3000,
+    "wall_seconds": 60
+  },
+  "events": [
+    {
+      "kind": "model_requested",
+      "attempt": 1,
+      "input_reservation": 4790,
+      "reservation_method": "O200K_VERIFIED_LOCAL_ESTIMATE_X1_5_PLUS_512_NOT_PROVIDER_INVOICE"
+    },
+    {
+      "kind": "model_completed",
+      "attempt": 1
+    }
+  ],
+  "usage": {
+    "model_calls": 1,
+    "known_input_tokens": 2553,
+    "known_output_tokens": 629,
+    "unaccounted_attempts": 0,
+    "input_preflight_reserved": 4790,
+    "accounting_complete": true
+  },
+  "validation": "STRUCTURE_AND_REFERENCE_SCOPE_ONLY_NOT_SEMANTIC_TRUTH",
+  "elapsed_seconds": 16.925532207998913
+}

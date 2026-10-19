@@ -1,0 +1,85 @@
+{
+  "schema_version": "assistant-run-v1",
+  "status": "completed",
+  "stop_reason": "REPORT_VALIDATED",
+  "mode": "C",
+  "report": {
+    "summary": "В svc-001 наблюдаются 6 спанов с ошибками из 6 и ожидание клиентских вызовов в декомпозиции серверных спанов; зарегистрированы вызовы svc-002. Это основание проверить путь зависимости, но причина инцидента и подтверждённый инженером вывод отсутствуют.",
+    "hypotheses": [
+      {
+        "service": "svc-001",
+        "statement": "Ошибки svc-001 могут быть связаны со сбоем исходящих вызовов svc-002, а не с локальной обработкой в svc-001.",
+        "supporting_evidence_ids": [
+          "obs-002",
+          "obs-007"
+        ],
+        "contradicting_evidence_ids": [],
+        "unknowns": [
+          "Неизвестны типы ошибок и принадлежность ошибочных спанов конкретным вызовам svc-002; альтернативой остаётся локальная ошибка svc-001.",
+          "Неизвестен результат обработки в svc-002: отсутствие его спанов при неизвестном sampling не подтверждает отсутствие вызовов или ошибок."
+        ],
+        "next_checks": [
+          {
+            "action": "Сопоставить полные серверные и клиентские спаны svc-001 с ответами и журналами svc-002, проверив источник и порядок возникновения ошибок.",
+            "expected_observation": "При подтверждении ошибки исходящих вызовов svc-002 будут связаны с ошибками серверных запросов svc-001; успешные ответы зависимости при локальном сбое svc-001 ослабят гипотезу.",
+            "evidence_ids": [
+              "obs-002",
+              "obs-007",
+              "obs-014"
+            ]
+          }
+        ]
+      }
+    ],
+    "data_gaps": [
+      "Нет полных трасс, статусов, сообщений ошибок и журналов; sampling, retention и полнота доставки неизвестны.",
+      "Нет описания пользовательского симптома, ожидаемой задержки и масштаба воздействия; наблюдаемое время ожидания само по себе не доказывает деградацию.",
+      "Не установлены здоровый период и сопоставимость нагрузки baseline; по CPU, памяти, сети и трафику доступны лишь три точки на метрику, а покрытие не указано."
+    ],
+    "limitations": [
+      "Агрегаты и связь вызовов не доказывают причинность; нулевые остатки относительно baseline не исключают ошибок или ожидания зависимости.",
+      "Ранг ML задаёт лишь порядок проверки, score не является вероятностью; данных для самостоятельной гипотезы о неисправности svc-002 недостаточно."
+    ],
+    "action_proposals": []
+  },
+  "fallback": null,
+  "prompt_version": "snapshot-report-v7-action-proposals",
+  "prompt_sha256": "f1d6f962b251ac63af92463d550ed4efad47eec8dfeca794b03e6e057283a811",
+  "context_sha256": "bb64fee7d365b54258311ee4f8a958cc463d4461a99ea8036b14665d57a7ea0c",
+  "requested_model": "gpt-6.1-sol",
+  "returned_models": [
+    "gpt-6.1-sol"
+  ],
+  "prompt_content_sha256": "cbae4d54f6a4ae292dcd0134585984f4ae705f5d96f32b618e9c232bfd180fbd",
+  "report_schema_sha256": "865a406409ecc058174cccdf383ccf7265b7c735a43bca7de18352e6a60cdaf8",
+  "limits": {
+    "model_calls": 1,
+    "tool_calls": 6,
+    "tool_steps": 3,
+    "input_tokens": 12000,
+    "output_tokens": 3000,
+    "wall_seconds": 60
+  },
+  "events": [
+    {
+      "kind": "model_requested",
+      "attempt": 1,
+      "input_reservation": 4778,
+      "reservation_method": "O200K_VERIFIED_LOCAL_ESTIMATE_X1_5_PLUS_512_NOT_PROVIDER_INVOICE"
+    },
+    {
+      "kind": "model_completed",
+      "attempt": 1
+    }
+  ],
+  "usage": {
+    "model_calls": 1,
+    "known_input_tokens": 2546,
+    "known_output_tokens": 730,
+    "unaccounted_attempts": 0,
+    "input_preflight_reserved": 4778,
+    "accounting_complete": true
+  },
+  "validation": "STRUCTURE_AND_REFERENCE_SCOPE_ONLY_NOT_SEMANTIC_TRUTH",
+  "elapsed_seconds": 18.124394458995084
+}

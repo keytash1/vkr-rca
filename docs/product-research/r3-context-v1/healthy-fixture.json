@@ -1,0 +1,205 @@
+{
+  "segments": [
+    {
+      "start_unix": 1792402983.952194,
+      "end_unix": 1792403073.9521952,
+      "requests_per_second": 1.0
+    }
+  ],
+  "metrics": [
+    {
+      "timestamp": 1792402983.952194,
+      "service": "api",
+      "family": "cpu",
+      "value": 0.25,
+      "unit": "cores"
+    },
+    {
+      "timestamp": 1792403028.9521947,
+      "service": "api",
+      "family": "cpu",
+      "value": 0.25,
+      "unit": "cores"
+    },
+    {
+      "timestamp": 1792403073.9521952,
+      "service": "api",
+      "family": "cpu",
+      "value": 0.25,
+      "unit": "cores"
+    },
+    {
+      "timestamp": 1792402983.952194,
+      "service": "api",
+      "family": "memory",
+      "value": 67108864.0,
+      "unit": "bytes"
+    },
+    {
+      "timestamp": 1792403028.9521947,
+      "service": "api",
+      "family": "memory",
+      "value": 67108864.0,
+      "unit": "bytes"
+    },
+    {
+      "timestamp": 1792403073.9521952,
+      "service": "api",
+      "family": "memory",
+      "value": 67108864.0,
+      "unit": "bytes"
+    },
+    {
+      "timestamp": 1792402983.952194,
+      "service": "api",
+      "family": "network",
+      "value": 1024.0,
+      "unit": "bytes_per_second"
+    },
+    {
+      "timestamp": 1792403028.9521947,
+      "service": "api",
+      "family": "network",
+      "value": 1024.0,
+      "unit": "bytes_per_second"
+    },
+    {
+      "timestamp": 1792403073.9521952,
+      "service": "api",
+      "family": "network",
+      "value": 1024.0,
+      "unit": "bytes_per_second"
+    },
+    {
+      "timestamp": 1792402983.952194,
+      "service": "api",
+      "family": "traffic_rate",
+      "value": 1024.0,
+      "unit": "bytes_per_second"
+    },
+    {
+      "timestamp": 1792403028.9521947,
+      "service": "api",
+      "family": "traffic_rate",
+      "value": 1024.0,
+      "unit": "bytes_per_second"
+    },
+    {
+      "timestamp": 1792403073.9521952,
+      "service": "api",
+      "family": "traffic_rate",
+      "value": 1024.0,
+      "unit": "bytes_per_second"
+    },
+    {
+      "timestamp": 1792402983.952194,
+      "service": "worker",
+      "family": "cpu",
+      "value": 0.25,
+      "unit": "cores"
+    },
+    {
+      "timestamp": 1792403028.9521947,
+      "service": "worker",
+      "family": "cpu",
+      "value": 0.25,
+      "unit": "cores"
+    },
+    {
+      "timestamp": 1792403073.9521952,
+      "service": "worker",
+      "family": "cpu",
+      "value": 0.25,
+      "unit": "cores"
+    },
+    {
+      "timestamp": 1792402983.952194,
+      "service": "worker",
+      "family": "memory",
+      "value": 67108864.0,
+      "unit": "bytes"
+    },
+    {
+      "timestamp": 1792403028.9521947,
+      "service": "worker",
+      "family": "memory",
+      "value": 67108864.0,
+      "unit": "bytes"
+    },
+    {
+      "timestamp": 1792403073.9521952,
+      "service": "worker",
+      "family": "memory",
+      "value": 67108864.0,
+      "unit": "bytes"
+    },
+    {
+      "timestamp": 1792402983.952194,
+      "service": "worker",
+      "family": "network",
+      "value": 1024.0,
+      "unit": "bytes_per_second"
+    },
+    {
+      "timestamp": 1792403028.9521947,
+      "service": "worker",
+      "family": "network",
+      "value": 1024.0,
+      "unit": "bytes_per_second"
+    },
+    {
+      "timestamp": 1792403073.9521952,
+      "service": "worker",
+      "family": "network",
+      "value": 1024.0,
+      "unit": "bytes_per_second"
+    },
+    {
+      "timestamp": 1792402983.952194,
+      "service": "worker",
+      "family": "traffic_rate",
+      "value": 1024.0,
+      "unit": "bytes_per_second"
+    },
+    {
+      "timestamp": 1792403028.9521947,
+      "service": "worker",
+      "family": "traffic_rate",
+      "value": 1024.0,
+      "unit": "bytes_per_second"
+    },
+    {
+      "timestamp": 1792403073.9521952,
+      "service": "worker",
+      "family": "traffic_rate",
+      "value": 1024.0,
+      "unit": "bytes_per_second"
+    }
+  ],
+  "traces": [
+    {
+      "service": "api",
+      "trace_id": "00000000000000000000000000000064",
+      "span_id": "0000000000000001",
+      "parent_span_id": null,
+      "peer_service": "worker",
+      "span_kind": "SERVER",
+      "start_time_us": 1792402993952194,
+      "duration_us": 2000,
+      "error": false,
+      "status_code": "OK"
+    },
+    {
+      "service": "worker",
+      "trace_id": "00000000000000000000000000000065",
+      "span_id": "0000000000000002",
+      "parent_span_id": null,
+      "peer_service": null,
+      "span_kind": "SERVER",
+      "start_time_us": 1792402993952194,
+      "duration_us": 2000,
+      "error": false,
+      "status_code": "OK"
+    }
+  ]
+}
