@@ -45,3 +45,5 @@ Loki и не эксплуатация у нескольких команд. Дл
 и [CI PR](https://github.com/keytash1/rca-workbench/actions/runs/39180871039)
 успешны. Сборка Docker target assistant, offline composition и private volume
 между независимыми non-root контейнерами прошли. Локальный Docker не запускался.
+После объединения [CI main](https://github.com/keytash1/rca-workbench/actions/runs/39180968017)
+также успешно завершён для точного `2b4349b`.
