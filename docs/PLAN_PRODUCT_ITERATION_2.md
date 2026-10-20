@@ -1,8 +1,15 @@
 # RCA Workbench — следующая продуктовая и исследовательская итерация
 
+> C2 завершён20.10: [новый Go→Petclinic screen](product-research/R3_LEARNED_HTTP_RESULTS.md).
+> Совместимый собственный training-сбор выполнен, один fit не превзошёлRED и
+> не сохранил результат безCPU. KEEP_CHAMPION; условный C3не запускается.
+> Публикуются код и сводные результаты, исходные измерения/метки локальны.
+> Это не повтор прежнего NO_FIT и не изменение продукта/V59. Ниже — история.
+
 > C1 engineering slice20.10 завершён: [результаты](product-research/R3_METRIC_CONTRACT_RESULTS.md).
 > Общий transform работает на Go/Petclinic; training RE1 семантически не принят,
-> поэтому C2=NO_FIT. Runtime/веса/V59 неизменны. Не повторять support gate/captures.
+> поэтому C2наRE1=NO_FIT. Собственный Go опыт описан выше. Runtime/веса/V59
+> неизменны. Не повторять support gate/captures.
 
 > Текущий сводный план20.10: [PLAN_CURRENT.md](PLAN_CURRENT.md).
 > Ниже сохранена история решений; записи «не реализовано» до итогового выпуска

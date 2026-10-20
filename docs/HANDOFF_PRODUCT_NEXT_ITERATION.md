@@ -1,6 +1,15 @@
 # RCA Workbench — handoff следующей исследовательской итерации R3
 
-## Приоритет20.10 — C1 engineering slice завершён, нового fit нет
+> Приоритет после C2: [PLAN_CURRENT.md](PLAN_CURRENT.md) и
+> [результат](product-research/R3_LEARNED_HTTP_RESULTS.md). Собственный Go training
+> и один fit уже выполнены, вариант не принят; C3не нужен. Ни C1, ни сбор12Go,
+> ни fit не повторять по старым инструкциям ниже. Product/V59/champion прежние.
+> Числовые данные/метки/полные receipts локальны вartifacts; опубликован только итог.
+
+## Историческая точка20.10 после C1 до нового Go обучения
+
+PR12 MERGED после отдельного разрешения пользователя, head55e1523,
+merge132e4c5; все3CI успешны. Product mainf920217 и V59 не менялись.
 
 Единый research-only transform `r3_metric_contract.py` реализован и проверен
 на сохранённых Go6/Petclinic12:66строк×28признаков, одна semantic signature,

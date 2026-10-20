@@ -1,0 +1,79 @@
+{
+  "role": "SMALL_CROSS_SYSTEM_DEVELOPMENT_SCREEN_NOT_INDEPENDENT_TEST",
+  "decision": "KEEP_CHAMPION_STOP_THIS_BRANCH",
+  "training_cases": 12,
+  "training_rows": 36,
+  "columns": 28,
+  "fit_attempts": 1,
+  "trees": 24,
+  "max_depth": 2,
+  "transfer_cases": 12,
+  "metrics": {
+    "no_traces": {
+      "learned": {
+        "ac_at_1": 0.5,
+        "ac_at_3": 0.9166666666666666,
+        "mrr": 0.7013888888888888,
+        "candidate_universe_coverage": 1.0,
+        "incidents": 12
+      },
+      "red": {
+        "ac_at_1": 0.6666666666666666,
+        "ac_at_3": 1.0,
+        "mrr": 0.8333333333333334,
+        "candidate_universe_coverage": 1.0,
+        "incidents": 12
+      },
+      "champion": {
+        "ac_at_1": 0.3333333333333333,
+        "ac_at_3": 0.9166666666666666,
+        "mrr": 0.6180555555555555,
+        "candidate_universe_coverage": 1.0,
+        "incidents": 12
+      }
+    },
+    "no_traces_missing_cpu": {
+      "learned": {
+        "ac_at_1": 0.4166666666666667,
+        "ac_at_3": 0.8333333333333334,
+        "mrr": 0.6388888888888888,
+        "candidate_universe_coverage": 1.0,
+        "incidents": 12
+      },
+      "red": {
+        "ac_at_1": 0.6666666666666666,
+        "ac_at_3": 1.0,
+        "mrr": 0.8333333333333334,
+        "candidate_universe_coverage": 1.0,
+        "incidents": 12
+      },
+      "champion": {
+        "ac_at_1": 0.4166666666666667,
+        "ac_at_3": 1.0,
+        "mrr": 0.6666666666666666,
+        "candidate_universe_coverage": 1.0,
+        "incidents": 12
+      }
+    }
+  },
+  "gates": {
+    "red": {
+      "delta_mrr": -0.13194444444444453,
+      "net_case_wins": -4,
+      "top1_not_lower": false,
+      "missing_cpu_not_lower": false
+    },
+    "champion": {
+      "delta_mrr": 0.08333333333333337,
+      "net_case_wins": 1,
+      "top1_not_lower": true,
+      "missing_cpu_not_lower": false
+    }
+  },
+  "promoted": false,
+  "protected_unchanged": true,
+  "protected_files_count": 61,
+  "raw_payload_published": false,
+  "provider_calls": 0,
+  "downloads": 0
+}

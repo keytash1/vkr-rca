@@ -1,0 +1,71 @@
+{
+  "version": "r3-learned-http-v1",
+  "role": "SMALL_CROSS_SYSTEM_DEVELOPMENT_SCREEN_NOT_INDEPENDENT_TEST",
+  "hypothesis": "A single learned metric-only ranker can use resource and independent HTTP observations better than a fixed RED maximum when traces are absent.",
+  "scope": "Latency and HTTP-error incidents only; not CPU, memory or arbitrary fault coverage. Research only, no runtime promotion in this screen.",
+  "training": {
+    "system": "local-three Go",
+    "cases": 12,
+    "services": ["gateway", "orders", "payment"],
+    "latency_ms": [100, 300],
+    "error_rate": [0.5, 1.0],
+    "healthy_seconds": 60,
+    "query_lookback_seconds": 30,
+    "settle_seconds": 35,
+    "incident_seconds": 20,
+    "washout_seconds": 35,
+    "case_order_seed": 20261020,
+    "retries": 0,
+    "all_cases_must_be_valid_before_fit": true,
+    "healthy_must_have_positive_business_traffic_and_zero_5xx": true
+  },
+  "representation": "metric-semantics-v1, 28 columns, identical raw transform for training and retained Petclinic captures; healthy is separate",
+  "model": {
+    "objective": "rank:ndcg",
+    "eval_metric": "ndcg@1",
+    "tree_method": "hist",
+    "max_depth": 2,
+    "eta": 0.08,
+    "min_child_weight": 1,
+    "subsample": 1.0,
+    "colsample_bytree": 1.0,
+    "reg_lambda": 1.0,
+    "lambdarank_pair_method": "topk",
+    "lambdarank_num_pair_per_sample": 5,
+    "seed": 20261020,
+    "nthread": 2,
+    "rounds": 24
+  },
+  "maximum_fits": 1,
+  "no_grid_or_early_stopping_or_refit": true,
+  "evaluation": {
+    "system": "retained Petclinic12",
+    "role": "USED_DEVELOPMENT_TRANSFER_SCREEN",
+    "never_fit_on_these_cases": true,
+    "controls": ["frozen core with traces removed", "max positive median error/latency shift from the same new transform"],
+    "primary_mode": "NO_TRACES",
+    "sensitivity_mode": "NO_TRACES_CPU_CHANNEL_MISSING_FOR_ALL_SERVICES",
+    "primary_metric": "MRR",
+    "development_gate": {
+      "minimum_delta_mrr_vs_each_control": 0.05,
+      "minimum_net_case_wins_vs_each_control": 2,
+      "top1_not_lower_than_either_control": true,
+      "missing_cpu_mrr_not_lower_than_either_control": true,
+      "all_12_transfer_cases_and_all_candidates_must_be_retained": true
+    },
+    "disclosure": "Different modalities: the challenger and RED control use independent HTTP data, frozen core uses original resources without traces. Extra-data gain is not an algorithm-only claim. No confidence percentage or time-saving claim. No new universal accuracy.",
+    "label_join": "Fit labels joined only after all training matrices are saved; transfer labels joined only after all transfer predictions are saved. Predictor takes numeric features only."
+  },
+  "safety": {
+    "maximum_collection_wall_seconds": 1600,
+    "new_downloads": 0,
+    "provider_calls": 0,
+    "product_or_docx_changes": 0,
+    "compose_project": "rca-product-acceptance",
+    "stop_only_this_started_teaching_project_in_finally": true,
+    "never_touch_running_rca_on_18220": true,
+    "training_raw_budget_mb": 100,
+    "failed_oracle_or_source_gate": "NO_FIT, preserve partial capture, do not silently retry"
+  },
+  "next": "If the gate fails, stop this learned-HTTP branch and keep the champion. If it passes, register a small fresh C3 before collecting or promoting anything; no automatic product integration."
+}
