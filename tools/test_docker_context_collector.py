@@ -1,5 +1,6 @@
 import json
 import tempfile
+import sqlite3
 import unittest
 from pathlib import Path
 from docker_context_collector import Collector
@@ -51,8 +52,21 @@ class HistoryTests(unittest.TestCase):
             self.assertEqual(sum(f['event.name']=='oom' for f in fields),1)
             self.assertEqual(sum(f['event.name']=='configuration_change' for f in fields),1)
             self.assertTrue(all('Config.Env' not in f for f in fields))
-            self.assertEqual(collector.capture([event('start',8*10**9,instance='d'*64)],30*10**9),1)
+            collector.capture([event('die',8*10**9,instance='c'*64)],9*10**9)
+            memory[0] *= 2
+            self.assertEqual(collector.capture([event('start',10*10**9,instance='d'*64)],11*10**9),2)
+            self.assertEqual(collector.db.execute('SELECT count(*) FROM state').fetchone()[0],1)
+            self.assertEqual(collector.capture([event('start',12*10**9,instance='e'*64)],40*10**9),1)
             collector.db.close()
+
+    def test_never_adds_outbox_tables_to_an_unrelated_database(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path=Path(tmp)/'other.sqlite'
+            with sqlite3.connect(path) as db:db.execute('CREATE TABLE important(value TEXT)')
+            config={'docker_host':'unix:///unused','project':'teaching','context':CONFIG}
+            with self.assertRaisesRegex(ValueError,'REFUSING_UNRELATED_DATABASE'):Collector(config,path)
+            with sqlite3.connect(path) as db:
+                self.assertEqual(db.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall(),[('important',)])
 
 
 if __name__ == '__main__': unittest.main()
