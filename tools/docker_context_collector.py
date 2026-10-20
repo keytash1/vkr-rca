@@ -43,6 +43,11 @@ class Collector:
         self.config, self.reader = config, reader
         self.services = set(self.source.services.values())
         self.db = sqlite3.connect(database)
+        tables = {row[0] for row in self.db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+        if tables and (tables != {'meta', 'state', 'outbox'} or
+                       not self.db.execute("SELECT 1 FROM meta WHERE key='binding'").fetchone()):
+            self.db.close()
+            raise ValueError('REFUSING_UNRELATED_DATABASE')
         self.db.executescript('''
           CREATE TABLE IF NOT EXISTS meta(key TEXT PRIMARY KEY, value TEXT NOT NULL);
           CREATE TABLE IF NOT EXISTS state(instance TEXT PRIMARY KEY, service TEXT NOT NULL, image TEXT, memory INTEGER, stopped INTEGER NOT NULL);
@@ -103,6 +108,11 @@ class Collector:
                             predecessors = self.db.execute('SELECT image,memory,stopped FROM state WHERE service=?', (service,)).fetchall()
                             if len(predecessors) == 1 and predecessors[0][2] == 1:
                                 previous = predecessors[0][:2]
+                                # Outbox is the immutable history. This table is
+                                # only the current comparison state; retaining
+                                # every retired instance disables the next
+                                # ordinary single-replica replacement forever.
+                                self.db.execute('DELETE FROM state WHERE service=?', (service,))
                         if previous:
                             if image != previous[0]: changes.append('deployment')
                             if memory != previous[1]: changes.append('configuration_change')

@@ -1,6 +1,25 @@
 # Журнал R3
 
+## 20.10 — закрытие текущего поручения
+
+Product main `f920217`, PR7 MERGED: исправлены повторная замена instance и отказ
+от чужой SQLite-базы до DDL;4адресные проверки, contracts/image CI зелёные.
+История outbox не удаляется. Исследовательское зеркало этих2файлов синхронизировано.
+Финальная поставка: bundle79files с workspace+assistant, verify_bundle ok;
+source142files, manifest SHA256
+`feef4dc62d5a01d7dd42a8c0f79b60b7166702f6dc0075b8e7ba0cebb702c0fb`.
+Основной локальный18220 остаётся healthy; operator fix не меняет код образа.
+V59 также закончен: обучение/BARO/runtime-context/листинги,147Pages-страниц;
+см. PROGRESS_REPORT_FINAL. Рабочие веса/62признака и прежние метрики неизменны.
+Новых LLM-вызовов и переобучений не было. Прежние pending ниже — история.
+
 ## 20.10 — исторический runtime-контекст реализован
+
+**Итог поставки:** PR6 MERGED, product main9ed31c9; зеркало/BARO PR10 MERGED,
+research main26e918b. Contracts/image продукта и все3job research зелёные.
+18220 `/healthz` ready, Docker healthy; read-only профиль и ограничения сохранены.
+Product checkout чистый. Следующие строки описывают промежуточный checkpoint,
+а не оставшийся блокер.
 
 По явному поручению пользователя после аудита выполнен один optional срез:
 operator Docker collector → durable SQLite outbox → настоящий Loki → bounded
