@@ -189,6 +189,16 @@ class CaptureContract(unittest.TestCase):
             with self.assertRaises(ValueError):
                 self.decode(raw)
 
+    def test_resource_outage_without_samples_is_not_missing(self):
+        p = decode_capture(dict(start_unix=1000, end_unix=1002, candidate_services=["a"], metrics=[]),
+                           dict(query_step_seconds=2, metrics="unavailable"), self.raw(), ["a"])
+        self.assertTrue(all(r[3:] == ("UNAVAILABLE", None) for r in p.records if r[1] in {"cpu", "memory"}))
+
+    def test_unknown_resource_source_state_is_not_outage(self):
+        with self.assertRaisesRegex(ValueError, "SOURCE_STATE_NOT_DECLARED"):
+            decode_capture(dict(start_unix=1000, end_unix=1002, candidate_services=["a"], metrics=[]),
+                           dict(query_step_seconds=2, metrics="unknown"), self.raw(), ["a"])
+
     def test_duplicate_or_unknown_series_rejected(self):
         raw = self.raw()
         for rows in (raw["up"]*2, [dict(metric=dict(service="unknown"), values=[[1000, 1]])]):

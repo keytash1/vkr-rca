@@ -4,7 +4,7 @@
 
 Единый research-only transform `r3_metric_contract.py` реализован и проверен
 на сохранённых Go6/Petclinic12:66строк×28признаков, одна semantic signature,
-37контрактов пройдены. [Вывод](product-research/R3_METRIC_CONTRACT_RESULTS.md),
+39контрактов пройдены. [Вывод](product-research/R3_METRIC_CONTRACT_RESULTS.md),
 [receipt](product-research/r3-metric-contract-v1/receipt.json). Не повторять эти
 18capture/metadata audit ради активности. Productf920217/V59/веса неизменны.
 C1=LIVE_CONTRACT_READY/TRAINING_SOURCE_NOT_SUPPORTED, C2=NO_FIT: RE1metadata

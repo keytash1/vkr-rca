@@ -6,7 +6,8 @@
 адаптер существующих captures; протокол записан ДО прохода. Go6/Petclinic12:
 18случаев,66кандидатных строк, одна semantic signature,0saturations;
 idle146измерений сохранены отдельным состоянием, healthy gap40–1238с.
-37проверок успешны;61защищённый файл до/после неизменен. Новых source queries,
+39проверок успешны (включая2последующих outage/unknown);61защищённый файл
+до/после неизменен. Новых source queries,
 model fits/predictions/provider calls/downloads/deployments:0.
 Metadata-only3RE1 не даёт совместимых unit/statistic/denominator; p50/p90 неp95.
 Вердикт LIVE_CONTRACT_READY/TRAINING_SOURCE_NOT_SUPPORTED, C2=NO_FIT.

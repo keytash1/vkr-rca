@@ -108,6 +108,8 @@ def decode_capture(window, source, raw, services):
     start, end, step = window["start_unix"], window["end_unix"], source["query_step_seconds"]
     if step != 2 or set(raw) != {"up", "request_rate", "error_ratio", "latency_p95"}:
         raise ValueError("CAPTURE_LAYOUT_CHANGED")
+    if source["metrics"] not in {"available", "unavailable"}:
+        raise ValueError("RESOURCE_SOURCE_STATE_NOT_DECLARED")
     records = []
     for row in window["metrics"]:
         if row["family"] not in {"cpu", "memory"}:
@@ -119,6 +121,15 @@ def decode_capture(window, source, raw, services):
         records.append({k: row[k] for k in ("service", "family", "timestamp")} |
                        dict(state="OBSERVED" if observed else "UNAVAILABLE",
                             value=row["value"] if observed else None))
+    if source["metrics"] == "unavailable":
+        present = {(r["service"], r["family"], r["timestamp"]) for r in records}
+        for service in services:
+            for family in ("cpu", "memory"):
+                for i in range(math.floor((end-start)/step)+1):
+                    stamp = start+i*step
+                    if (service, family, stamp) not in present:
+                        records.append(dict(service=service, family=family, timestamp=stamp,
+                                            state="UNAVAILABLE", value=None))
     channels = {k: matrix(v, services, start, end, step) for k, v in raw.items()}
     if any(v not in (None, 0., 1.) for v in channels["up"].values()):
         raise ValueError("SCRAPE_PRESENCE_INVALID")
