@@ -90,6 +90,11 @@ def build(root: Path, profile_path: Path, output: Path, *, with_workspace=False,
         files[name] = (root / "deploy/product" / name).read_bytes()
     files["verify_bundle.py"] = (root / "deploy/product/verify_bundle.py").read_bytes()
     files["docs/HTTP_OBSERVATIONS.md"] = (root / "docs/HTTP_OBSERVATIONS.md").read_bytes()
+    for name in ("CONTEXT_PROBE.md", "DOCKER_CONTEXT.md"):
+        files[f"docs/{name}"] = (root / "docs" / name).read_bytes()
+    # Explicit optional operator tools; never daemon access in the RCA image.
+    for name in ("loki_context_probe.py", "docker_context_collector.py"):
+        files[f"tools/{name}"] = (root / "tools" / name).read_bytes()
     files[f"deploy/profiles/{profile_id}.json"] = json.dumps(
         profile, ensure_ascii=False, indent=2, sort_keys=True
     ).encode() + b"\n"

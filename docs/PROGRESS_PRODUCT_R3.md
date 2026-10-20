@@ -1,5 +1,65 @@
 # Журнал R3
 
+## 20.10 — исторический runtime-контекст реализован
+
+По явному поручению пользователя после аудита выполнен один optional срез:
+operator Docker collector → durable SQLite outbox → настоящий Loki → bounded
+context adapter. 0–600с context-only lookback; пометка BEFORE_INCIDENT,
+фиксированные runtime-поля, отдельные event/observer timestamps, неизменный ML.
+Пилот различил OOM и обычный SIGKILL при одинаковом137, сохранил11записей после
+восстановления/замены image/instance/лимита. Replay не добавил новых outbox записей.
+Receipt: product-research/runtime-history-v1/receipt.json; runner
+scripts/accept_runtime_history.py. Только собственные два контейнера удалены.
+Новых model fits/provider calls/корпоративных данных нет.
+
+Product PR #6 опубликован, ожидается последний CI перед merge; основной Python
+regression163, operator10, UI19 пройдены. Bundle75files извлечён и проверен;
+clean source142files. Попытка адресного pattern *bundle* не нашла тестов в чистом
+product repo (exit5): заменена фактической сборкой/проверкой, не названа успехом.
+Локальный18220 обновляется тем же read-only profile/портом, откатныйpre-history
+сохранён. Следом одна редакция полного V59: обучение/BARO/листинги/контекст.
+
+## 20.10 — аудит достаточности источников DONE, только исследование
+
+По новому запросу проверены фактические context/HTTP пути продуктового main,
+учебный Docker exporter, официальные Docker/Kubernetes/Google SRE/OTel/cAdvisor/
+PostgreSQL материалы. Вывод и точные URL внесены в начало PLAN_PRODUCT_ITERATION_2.
+В продукте уже есть optional Loki и HTTP RED evidence; это не новые ML inputs.
+Есть enum OOM/restart/deployment/config, но нет готового lifecycle/CI collector.
+Новый важный разрыв: исторические события нужно сохранять заранее; текущий
+context ищет ровно start/end, предшествующее изменение может не войти,
+а Loki timestamp не является проверенным временем события.
+Следующий после отчётной редакции optional срез — реальные lifecycle/change
+факты с историей/атрибуцией, затем при обоснованной пользе расширенные resource
+и dependency observations. Критерии малого пилота/негативных контролей записаны.
+Никакого нового развёртывания, приёмки/обучения, provider-вызовов, изменения
+весов, Docker socket-доступа приложению, новых runtime полей или DOCX здесь нет.
+
+
+## 20.10 — R3-L DONE, сравнение с внешним алгоритмом
+
+**Обновление: DONE.** Один upstream BARO прогон50/50, все12кандидатов.
+AC1/3/5=0,12/0,50/0,62, MRR0,3436; ансамбль сохранённый0,50/0,70/0,78/0,6300.
+По AC1 и MRR парные25cluster CI положительны, поTop3/5 включают0.
+[Выводы/receipt](product-research/R3_EXTERNAL_BASELINE_RESULTS.md).
+Сверены50исходных seals/healthy/sealed predictions;0fit и неизменный DOCX.
+Отчётная адресная правка запланирована, не заявляется уже выполненной.
+
+Ниже сохранена регистрационная запись до запуска, а не новое поручение
+повторять опыт:
+
+Перечитаны адресные места 10 примеров и трёх лекций/беседы преподавателя.
+Отдельного обязательства same-case запуска коммерческих платформ не найдено;
+внешний алгоритм полезен для окончательного сравнения ядра. Найдены реальные
+исторические прогоны TraceRCA (189/240) и BARO (360/360), но не для нынешних50.
+V58 уже честно отделяет обзор Datadog/Dynatrace от отсутствующего их испытания.
+Зафиксированы [аудит](product-research/EXTERNAL_COMPARISON_ASSESSMENT.md) и
+[протокол BARO](R3_EXTERNAL_BASELINE_PROTOCOL.md) до новых predictions.
+Source pinned405c8fd и чист; данные доступны локально, новые downloads не нужны.
+TraceRCA требует потерянных operation names, искусственный fallback не вводится.
+Веса/продукт/V58 пока не изменены. Далее один truth-isolated predict, затем score.
+
+
 ## Текущая точка ~02:00 МСК — R3-J DONE, R3-K завершён
 
 R3-K [завершён](product-research/R3_RED_CORPUS_SCHEMA_RESULTS.md): 243 raw CSV,

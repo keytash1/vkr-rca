@@ -4,7 +4,7 @@ import hashlib
 import json
 
 CATEGORIES = frozenset({"PERMISSION_RESPONSE", "CONNECTION_REFUSED", "OPERATION_TIMEOUT",
-    "DEPLOYMENT_EVENT", "CONFIGURATION_EVENT", "RESTART_EVENT", "OOM_EVENT", "OTHER_ERROR"})
+    "DEPLOYMENT_EVENT", "CONFIGURATION_EVENT", "RESTART_EVENT", "OOM_EVENT", "START_EVENT", "EXIT_EVENT", "HEALTH_EVENT", "OTHER_ERROR"})
 
 
 def category(fields):
@@ -14,7 +14,8 @@ def category(fields):
     if error in {"TimeoutError", "Timeout", "SocketTimeoutException"}: return "OPERATION_TIMEOUT"
     event = fields.get("event.name")
     known = {"deployment":"DEPLOYMENT_EVENT", "configuration_change":"CONFIGURATION_EVENT",
-             "restart":"RESTART_EVENT", "oom":"OOM_EVENT"}.get(event)
+             "restart":"RESTART_EVENT", "oom":"OOM_EVENT", "start":"START_EVENT",
+             "exit":"EXIT_EVENT", "health_change":"HEALTH_EVENT"}.get(event)
     if known: return known
     code = fields.get("http.response.status_code")
     if error or event == "error" or (type(code) is int and code >= 400): return "OTHER_ERROR"
@@ -34,7 +35,12 @@ def assistant_projection(values):
     counts = {k: values.get(k, 0) for k in ("record_count", "unsupported_entries")}
     if any(type(v) is not int or not 0 <= v <= 100 for v in counts.values()):
         raise ValueError("INVALID_CONTEXT_COUNT")
+    lookback = values.get("lookback_seconds", 0)
+    before = values.get("preceding_record_count", 0)
+    if type(lookback) is not int or not 0 <= lookback <= 600 or type(before) is not int or not 0 <= before <= counts["record_count"]:
+        raise ValueError("INVALID_CONTEXT_LOOKBACK")
     return {"state":state, "source_status":status, "categories":sorted(set(categories)), **counts,
+            "lookback_seconds":lookback, "preceding_record_count":before,
             "assistant_categories_enabled": True,
             "coverage":"RETENTION_SAMPLING_AND_DELIVERY_UNKNOWN",
             "interval_semantics":"START_INCLUSIVE_END_EXCLUSIVE",
@@ -55,6 +61,9 @@ def attach_context(catalog, config, rows):
             "categories":sorted({c for record in records if (c := category(record["fields"])) is not None}),
             "record_count":len(records), "unsupported_entries":row.get("unstructured_or_unsupported_entries", 0),
             "reason":row.get("reason"), "observed_at_unix":row.get("observed_at_unix"),
+            "lookback_seconds":config.get("lookback_seconds", 0),
+            "query_start_unix":row.get("query_start_unix", result["start_unix"]),
+            "preceding_record_count":sum(r.get("period") == "BEFORE_INCIDENT" for r in records),
             "assistant_categories_enabled":config.get("assistant_categories", False),
             "coverage":"RETENTION_SAMPLING_AND_DELIVERY_UNKNOWN",
             "interval_semantics":"START_INCLUSIVE_END_EXCLUSIVE",

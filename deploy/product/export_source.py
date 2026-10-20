@@ -63,9 +63,9 @@ def export(root, output):
     files["ml/pyproject.toml"] = root/"deploy/product/runtime-pyproject.toml"
     files["requirements-dev.txt"] = root/"requirements-dev.txt"
     # Operator-only research tools are source material, never runtime modules.
-    for name in ("loki_context_probe.py", "test_loki_context_probe.py"):
+    for name in ("loki_context_probe.py", "test_loki_context_probe.py", "docker_context_collector.py", "test_docker_context_collector.py"):
         files["tools/"+name] = root/"tools"/name
-    for name in ("ITERATION_2.md", "BASELINE_APPLICABILITY.md", "CONTEXT_PROBE.md", "LOKI_ACCEPTANCE.md", "HTTP_OBSERVATIONS.md"):
+    for name in ("ITERATION_2.md", "BASELINE_APPLICABILITY.md", "CONTEXT_PROBE.md", "LOKI_ACCEPTANCE.md", "HTTP_OBSERVATIONS.md", "DOCKER_CONTEXT.md", "RUNTIME_HISTORY_ACCEPTANCE.md"):
         files["docs/"+name] = root/"docs"/name
     files["deploy/runbooks/basic-investigation.json"] = root/"deploy/runbooks/basic-investigation.json"
     files["deploy/profiles/examples/new-system.template.json"] = root/"deploy/profiles/examples/new-system.template.json"

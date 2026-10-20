@@ -344,6 +344,7 @@ function renderIncidentContext(parent, fact) {
   box.append(textElement('summary', `Журналы и события: ${labels[v.source_status] || 'нет сведений'}`));
   if (['unavailable', 'truncated'].includes(v.source_status)) box.open = true;
   box.append(textElement('p', 'Ограниченная выборка источника. Пустой ответ не доказывает отсутствие ошибки; совпадение события с инцидентом не устанавливает причину.', 'detail-note'));
+  if (v.lookback_seconds) box.append(textElement('p', `Также просмотрены ${v.lookback_seconds / 60} мин до инцидента: ${v.preceding_record_count || 0} записей. Интервал расчёта рейтинга не расширен.`, 'detail-note'));
   const checks = {
     PERMISSION_RESPONSE: 'Есть ответ 401/403. Проверьте права и настройки доступа к зависимости.',
     CONNECTION_REFUSED: 'Есть отказ соединения. Проверьте адрес зависимости, слушающий порт и доступность процесса.',
@@ -352,6 +353,9 @@ function renderIncidentContext(parent, fact) {
     CONFIGURATION_EVENT: 'Есть изменение конфигурации. Сверьте изменённые параметры и проверяемый механизм отказа.',
     RESTART_EVENT: 'Есть перезапуск. Проверьте причину остановки и изменение состояния до него.',
     OOM_EVENT: 'Источник сообщает об OOM. Проверьте лимит памяти и события среды исполнения.',
+    EXIT_EVENT: 'Есть завершение контейнера. Код 137 означает SIGKILL, но сам по себе не подтверждает OOM.',
+    START_EVENT: 'Есть запуск контейнера. Сопоставьте экземпляр и время с предшествующим завершением.',
+    HEALTH_EVENT: 'Изменилась проверка здоровья контейнера. Это симптом; проверьте ответ приложения.',
   };
   for (const c of v.categories || []) if (checks[c]) box.append(textElement('p', checks[c]));
   if (v.unsupported_entries) box.append(textElement('p', `Пропущено неподдерживаемых строк: ${v.unsupported_entries}.`));
@@ -363,12 +367,12 @@ function renderIncidentContext(parent, fact) {
   for (const record of v.records || []) {
     const fields = Object.entries(record.fields).map(([key, value]) => `${key}: ${value}`).join(' · ');
     const stamp = new Date(Number(record.source_timestamp_ns) / 1e6).toISOString().replace('T', ' ').replace('Z', ' UTC');
-    records.append(textElement('p', `${stamp} · ${fields}`, 'detail-note'));
+    records.append(textElement('p', `${stamp}${record.period === 'BEFORE_INCIDENT' ? ' · до инцидента' : ''} · ${fields}`, 'detail-note'));
   }
   if (v.record_count) box.append(records);
   const provenance = document.createElement('details');
   provenance.append(textElement('summary', 'Сведения об источнике'));
-  provenance.append(textElement('p', `Источник: ${v.source_id}. Время — отметка записи Loki, часы события не проверены. ID факта: ${fact.id}.`, 'detail-note'));
+  provenance.append(textElement('p', `Источник: ${v.source_id}. Время — отметка Loki; при наличии event.time_unix_ns источник заявляет время события. Синхронизация часов и полнота истории не установлены. ID факта: ${fact.id}.`, 'detail-note'));
   box.append(provenance);
   parent.append(box);
 }

@@ -27,7 +27,7 @@ MAX_LINE_BYTES = 8192
 MAX_RECORDS = 100
 LABEL = re.compile(r"[A-Za-z_][A-Za-z_0-9]{0,127}\Z")
 IDENTIFIER = re.compile(r"[A-Za-z][A-Za-z0-9_.:-]{0,95}\Z")
-EVENTS = {"deployment", "configuration_change", "restart", "oom", "error"}
+EVENTS = {"deployment", "configuration_change", "restart", "oom", "error", "start", "exit", "health_change"}
 
 
 class ContextError(ValueError):
@@ -75,8 +75,12 @@ def _identifier(value):
 class LokiContextSource:
     def __init__(self, config, *, opener=None, clock=time.monotonic, wall_clock=time.time):
         required = {"source_id", "url", "service_label", "services", "labels"}
-        if not isinstance(config, dict) or not required <= set(config) or set(config) - required - {"token_env", "assistant_categories"}:
+        if not isinstance(config, dict) or not required <= set(config) or set(config) - required - {"token_env", "assistant_categories", "lookback_seconds"}:
             raise ContextError("INVALID_SOURCE_CONFIG")
+        lookback = config.get("lookback_seconds", 0)
+        if type(lookback) is not int or not 0 <= lookback <= 600:
+            raise ContextError("INVALID_CONTEXT_LOOKBACK")
+        self.lookback = lookback
         if type(config.get("assistant_categories", False)) is not bool:
             raise ContextError("INVALID_DISCLOSURE_CONFIG")
         source_id, url = config["source_id"], config["url"]
@@ -119,16 +123,19 @@ class LokiContextSource:
         left, right = _stamp(start), _stamp(end)
         if not 0 < right - left <= 3600 * 1_000_000_000 or end > self.wall_clock():
             raise ContextError("INVALID_INTERVAL")
+        query_start = max(1, left - self.lookback * 1_000_000_000)
         if type(limit) is not int or not 1 <= limit <= MAX_RECORDS:
             raise ContextError("INVALID_LIMIT")
         scope = self.labels | {self.label: self.services[service]}
         selector = "{" + ",".join(key + "=" + json.dumps(value, ensure_ascii=False) for key, value in sorted(scope.items())) + "}"
-        query = urlencode({"query": selector, "start": str(left), "end": str(right),
+        query = urlencode({"query": selector, "start": str(query_start), "end": str(right),
                            "limit": limit, "direction": "forward"})
         envelope = {"schema_version": "context-source-v1",
                     "assistant_disclosure": "RAW_FIELDS_LOCAL_ONLY",
                     "source_id": self.source_id, "service": service,
                     "start_unix": start, "end_unix": end,
+                    "query_start_unix": query_start / 1_000_000_000,
+                    "lookback_seconds": self.lookback,
                     "interval_semantics": "START_INCLUSIVE_END_EXCLUSIVE",
                     "coverage": "BACKEND_RETENTION_AND_SAMPLING_UNKNOWN",
                     "status": "unavailable", "records": [],
@@ -158,7 +165,9 @@ class LokiContextSource:
                     if size > MAX_BYTES:
                         raise ContextError("SOURCE_BYTE_LIMIT")
                 data = _json(b"".join(chunks))
-            records, seen, skipped = self._normalize(data, service, scope, left, right, limit)
+            records, seen, skipped = self._normalize(data, service, scope, query_start, right, limit)
+            for record in records:
+                record["period"] = "BEFORE_INCIDENT" if int(record["source_timestamp_ns"]) < left else "INCIDENT"
             return envelope | {"status": "truncated" if seen >= limit else "available",
                                "records": records, "entries_seen": seen,
                                "unstructured_or_unsupported_entries": skipped,
@@ -212,6 +221,23 @@ class LokiContextSource:
                 event = fields.get("event.name")
                 if isinstance(event, str) and event in EVENTS:
                     selected["event.name"] = event
+                    # Fixed optional runtime projection. No arbitrary labels, env,
+                    # commands, image names or Docker inspect payload are exposed.
+                    instance = fields.get("container.id")
+                    if isinstance(instance, str) and re.fullmatch(r"[0-9a-f]{64}", instance):
+                        selected["container.id"] = instance
+                    for key, maximum in (("container.exit_code", 255), ("container.memory_limit_bytes", 2**60)):
+                        value = fields.get(key)
+                        if type(value) is int and 0 <= value <= maximum:
+                            selected[key] = value
+                    if fields.get("event.origin") == "docker.events":
+                        selected["event.origin"] = "docker.events"
+                    for key in ("event.time_unix_ns", "observer.time_unix_ns"):
+                        value = fields.get(key)
+                        if isinstance(value, str) and re.fullmatch(r"[0-9]{1,20}", value):
+                            number = int(value)
+                            if 0 < number <= _stamp(self.wall_clock()) and (key != "event.time_unix_ns" or number == stamp):
+                                selected[key] = value
                 code = fields.get("http.response.status_code")
                 if type(code) is int and 100 <= code <= 599:
                     selected["http.response.status_code"] = code
@@ -226,7 +252,7 @@ class LokiContextSource:
                 identifier = hashlib.sha256(json.dumps([self.source_id, service, stamp, origin_hash, selected], sort_keys=True).encode()).hexdigest()[:32]
                 records.append({"id": "ctx-" + identifier, "service": service,
                                 "source_timestamp_ns": str(stamp),
-                                "timestamp_semantics": "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
+                                "timestamp_semantics": "SOURCE_REPORTED_EVENT_TIME" if "event.time_unix_ns" in selected else "LOKI_ENTRY_TIME_EVENT_CLOCK_NOT_VERIFIED",
                                 "source_line_sha256": origin_hash, "fields": selected})
         return sorted(records, key=lambda r: (int(r["source_timestamp_ns"]), r["id"])), seen, skipped
 
