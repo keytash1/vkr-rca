@@ -1,5 +1,15 @@
 # RCA Workbench — следующая продуктовая и исследовательская итерация
 
+> C1 engineering slice20.10 завершён: [результаты](product-research/R3_METRIC_CONTRACT_RESULTS.md).
+> Общий transform работает на Go/Petclinic; training RE1 семантически не принят,
+> поэтому C2=NO_FIT. Runtime/веса/V59 неизменны. Не повторять support gate/captures.
+
+> Текущий сводный план20.10: [PLAN_CURRENT.md](PLAN_CURRENT.md).
+> Ниже сохранена история решений; записи «не реализовано» до итогового выпуска
+> не отменяют завершённые HTTP/runtime-history возможности. Итоговое research
+> main7688636 (PR11), product mainf920217 (PR7); ночной итог в
+> [NIGHT_RESULTS_2026-10-20.md](NIGHT_RESULTS_2026-10-20.md).
+
 ## Исполнение поручения 20.10: продукт, затем полный отчёт
 
 **Продуктовый срез DONE:** product main `f920217` (PR6/7), research main

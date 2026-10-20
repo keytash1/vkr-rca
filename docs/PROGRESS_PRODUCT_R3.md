@@ -1,5 +1,32 @@
 # Журнал R3
 
+## 20.10 — C1: новый метрический transform без обучения
+
+По новому «продолжай работу» реализованы versioned4семьи/28признаков и офлайн
+адаптер существующих captures; протокол записан ДО прохода. Go6/Petclinic12:
+18случаев,66кандидатных строк, одна semantic signature,0saturations;
+idle146измерений сохранены отдельным состоянием, healthy gap40–1238с.
+39проверок успешны (включая2последующих outage/unknown);61защищённый файл
+до/после неизменен. Новых source queries,
+model fits/predictions/provider calls/downloads/deployments:0.
+Metadata-only3RE1 не даёт совместимых unit/statistic/denominator; p50/p90 неp95.
+Вердикт LIVE_CONTRACT_READY/TRAINING_SOURCE_NOT_SUPPORTED, C2=NO_FIT.
+Результаты/входные hashes: product-research/R3_METRIC_CONTRACT_RESULTS.md.
+Productf920217 и V59 не менялись; новый extractor ещё не рабочий ML-вход.
+Далее точная provenance RE1 или отдельный совместимый training-сбор, не повтор
+старых H/I/J/K и не новый fit на переименованном cache56.
+
+## 20.10 — повторная сверка присланного текста ночной автоматизации
+
+Проверены исходное поручение, актуальные main и PR9: PR9 MERGED02:05МСК,
+merge0264a8c; productmainf920217/researchmain7688636. Устаревшие SHAs в
+расписании не являются основанием повторять уже слитую работу. После завершения
+выпуска ночные пробуждения читали текущие итоги, без новых fit/данных/provider calls.
+NO_FIT прямого cache56→live переноса выполнен; новый единый raw extractor и
+обучаемый challenger НЕ сделаны, остаются C1–C3 в PLAN_CURRENT. HTTP/runtime
+наблюдения выпущены отдельно от модели. V59 остаётся последней полной версией,
+его hash совпал с VERIFICATION.json. Код/веса/DOCX в этой сверке не изменены.
+
 ## 20.10 — закрытие текущего поручения
 
 Product main `f920217`, PR7 MERGED: исправлены повторная замена instance и отказ

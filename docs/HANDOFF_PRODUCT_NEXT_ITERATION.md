@@ -1,5 +1,24 @@
 # RCA Workbench — handoff следующей исследовательской итерации R3
 
+## Приоритет20.10 — C1 engineering slice завершён, нового fit нет
+
+Единый research-only transform `r3_metric_contract.py` реализован и проверен
+на сохранённых Go6/Petclinic12:66строк×28признаков, одна semantic signature,
+39контрактов пройдены. [Вывод](product-research/R3_METRIC_CONTRACT_RESULTS.md),
+[receipt](product-research/r3-metric-contract-v1/receipt.json). Не повторять эти
+18capture/metadata audit ради активности. Productf920217/V59/веса неизменны.
+C1=LIVE_CONTRACT_READY/TRAINING_SOURCE_NOT_SUPPORTED, C2=NO_FIT: RE1metadata
+не подтверждает unit/statistic/error denominator/population; SS/TTp50/p90 неp95.
+Следующее содержательное действие — подтвердить queries/healthy provenance
+RE1 по исходной версии либо отдельно зарегистрировать малый совместимый
+учебный training-сбор. Не давать старому cache новое имя, не использовать50AS
+для подбора, не продвигать исследовательский extractor в runtime без C2/C3.
+Ниже «extractor не сделан» — прежний checkpoint, а не текущая задача.
+
+> Приоритет текущей точки: [PLAN_CURRENT.md](PLAN_CURRENT.md),20.10.
+> Оба main синхронизированы: productf920217/research7688636, PR7/11 MERGED.
+> Нереализованные статусы в нижних исторических разделах не читать как текущие.
+
 ## Точка передачи 20.10 — runtime history DONE, выпуск без нового fit
 
 Главный статус выше прежних аудитов: Docker collector/lookback уже реализованы

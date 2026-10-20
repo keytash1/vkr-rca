@@ -27,7 +27,7 @@ jobs:
       - name: Bounded research input contracts, no corpus or model fitting
         env:
           PYTHONPATH: ml:scripts
-        run: python -m unittest test_r3_dependency_overlap test_r3_red_reserve test_r3_red -q
+        run: python -m unittest test_r3_dependency_overlap test_r3_red_reserve test_r3_red test_r3_metric_contract -q
 
   product-container:
     runs-on: ubuntu-latest
