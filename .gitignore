@@ -10,3 +10,7 @@ __pycache__/
 artifacts/
 external-data/
 demo-data/
+# C2 teaching measurements stay local; publish only protocol and aggregate results.
+docs/product-research/r3-learned-http-v1/*
+!docs/product-research/r3-learned-http-v1/protocol.json
+!docs/product-research/r3-learned-http-v1/summary.json
