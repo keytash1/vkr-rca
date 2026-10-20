@@ -1,0 +1,235 @@
+{
+  "kind": "REAL_DOCKER_LOKI_HISTORY_PILOT",
+  "context": {
+    "schema_version": "context-source-v1",
+    "assistant_disclosure": "RAW_FIELDS_LOCAL_ONLY",
+    "source_id": "runtime-local",
+    "service": "alpha",
+    "start_unix": 1792453740.867595,
+    "end_unix": 1792453740.976693,
+    "query_start_unix": 1792453680.867595,
+    "lookback_seconds": 60,
+    "interval_semantics": "START_INCLUSIVE_END_EXCLUSIVE",
+    "coverage": "BACKEND_RETENTION_AND_SAMPLING_UNKNOWN",
+    "status": "available",
+    "records": [
+      {
+        "id": "ctx-8f4ada00f4e58d28c6c3dddbb2fefb6f",
+        "service": "alpha",
+        "source_timestamp_ns": "1792453731062964926",
+        "timestamp_semantics": "SOURCE_REPORTED_EVENT_TIME",
+        "source_line_sha256": "125ed4cb353cfc7b75d632e3bfbff7b4be7df00b75593e52657ba5734eeda5f2",
+        "fields": {
+          "event.name": "start",
+          "container.id": "b6c88ab2d1387653b50ee05961a6e717a87f60b9d755c1d976490f353fde19bc",
+          "container.memory_limit_bytes": 50331648,
+          "event.origin": "docker.events",
+          "event.time_unix_ns": "1792453731062964926",
+          "observer.time_unix_ns": "1792453732152434000"
+        },
+        "period": "BEFORE_INCIDENT"
+      },
+      {
+        "id": "ctx-b324f5c6062cd4aa52558d4486bdfd26",
+        "service": "alpha",
+        "source_timestamp_ns": "1792453732398090201",
+        "timestamp_semantics": "SOURCE_REPORTED_EVENT_TIME",
+        "source_line_sha256": "2f618974d4800d3c3ded83155159ddcb12fc2064d93625e6d2033ce2840b0621",
+        "fields": {
+          "event.name": "oom",
+          "container.id": "b6c88ab2d1387653b50ee05961a6e717a87f60b9d755c1d976490f353fde19bc",
+          "event.origin": "docker.events",
+          "event.time_unix_ns": "1792453732398090201",
+          "observer.time_unix_ns": "1792453733558402000"
+        },
+        "period": "BEFORE_INCIDENT"
+      },
+      {
+        "id": "ctx-c824e4aa79c0e89584d997e9fb1d5bfd",
+        "service": "alpha",
+        "source_timestamp_ns": "1792453732423663279",
+        "timestamp_semantics": "SOURCE_REPORTED_EVENT_TIME",
+        "source_line_sha256": "286149607be77fe32b106ebe0c2a4a9f416f5aef344318091940358c9ee3920b",
+        "fields": {
+          "event.name": "exit",
+          "container.id": "b6c88ab2d1387653b50ee05961a6e717a87f60b9d755c1d976490f353fde19bc",
+          "container.exit_code": 137,
+          "event.origin": "docker.events",
+          "event.time_unix_ns": "1792453732423663279",
+          "observer.time_unix_ns": "1792453733558402000"
+        },
+        "period": "BEFORE_INCIDENT"
+      },
+      {
+        "id": "ctx-963a8b2b32e62fcbaa4063c0f6d2d353",
+        "service": "alpha",
+        "source_timestamp_ns": "1792453733696972869",
+        "timestamp_semantics": "SOURCE_REPORTED_EVENT_TIME",
+        "source_line_sha256": "169c26a5ce27b0f0d01ade6d93c63c717431528b3749f9c6725987279702f683",
+        "fields": {
+          "event.name": "start",
+          "container.id": "b6c88ab2d1387653b50ee05961a6e717a87f60b9d755c1d976490f353fde19bc",
+          "container.memory_limit_bytes": 50331648,
+          "event.origin": "docker.events",
+          "event.time_unix_ns": "1792453733696972869",
+          "observer.time_unix_ns": "1792453734793937000"
+        },
+        "period": "BEFORE_INCIDENT"
+      },
+      {
+        "id": "ctx-3a7314b2d4a76d0f62ba2ebccd4f851e",
+        "service": "alpha",
+        "source_timestamp_ns": "1792453734919107225",
+        "timestamp_semantics": "SOURCE_REPORTED_EVENT_TIME",
+        "source_line_sha256": "ab6520a7b512fdf83a0c26ec159904bc77c8be62bb86a0a10b21d9786cc4e892",
+        "fields": {
+          "event.name": "exit",
+          "container.id": "b6c88ab2d1387653b50ee05961a6e717a87f60b9d755c1d976490f353fde19bc",
+          "container.exit_code": 137,
+          "event.origin": "docker.events",
+          "event.time_unix_ns": "1792453734919107225",
+          "observer.time_unix_ns": "1792453736040861000"
+        },
+        "period": "BEFORE_INCIDENT"
+      },
+      {
+        "id": "ctx-8ea7aa8da4a7790d36f77c57a3ef4590",
+        "service": "alpha",
+        "source_timestamp_ns": "1792453736206748498",
+        "timestamp_semantics": "SOURCE_REPORTED_EVENT_TIME",
+        "source_line_sha256": "f38db2555ed69ea307e39241c3be2340d685b226b2c10eb5c6b26fa0ccc84352",
+        "fields": {
+          "event.name": "configuration_change",
+          "container.id": "b6c88ab2d1387653b50ee05961a6e717a87f60b9d755c1d976490f353fde19bc",
+          "container.memory_limit_bytes": 67108864,
+          "event.origin": "docker.events",
+          "event.time_unix_ns": "1792453736206748498",
+          "observer.time_unix_ns": "1792453737315114000"
+        },
+        "period": "BEFORE_INCIDENT"
+      },
+      {
+        "id": "ctx-b8c55bdb11dbfef1fbde690ab05cb0f6",
+        "service": "alpha",
+        "source_timestamp_ns": "1792453736206748498",
+        "timestamp_semantics": "SOURCE_REPORTED_EVENT_TIME",
+        "source_line_sha256": "59bb551dd3a94e523dedccd0982d55cd6b365ba2a46afcde1c92b2fb0ec888eb",
+        "fields": {
+          "event.name": "start",
+          "container.id": "b6c88ab2d1387653b50ee05961a6e717a87f60b9d755c1d976490f353fde19bc",
+          "container.memory_limit_bytes": 67108864,
+          "event.origin": "docker.events",
+          "event.time_unix_ns": "1792453736206748498",
+          "observer.time_unix_ns": "1792453737315114000"
+        },
+        "period": "BEFORE_INCIDENT"
+      },
+      {
+        "id": "ctx-2d83482e20d641ae093a28914e118ce7",
+        "service": "alpha",
+        "source_timestamp_ns": "1792453738458163675",
+        "timestamp_semantics": "SOURCE_REPORTED_EVENT_TIME",
+        "source_line_sha256": "26f9f4e1a90d9e17d8cf10cd6b56b6b4fed00ff12ea7eb9e0f7adbd3157c8862",
+        "fields": {
+          "event.name": "exit",
+          "container.id": "b6c88ab2d1387653b50ee05961a6e717a87f60b9d755c1d976490f353fde19bc",
+          "container.exit_code": 137,
+          "event.origin": "docker.events",
+          "event.time_unix_ns": "1792453738458163675",
+          "observer.time_unix_ns": "1792453739565739000"
+        },
+        "period": "BEFORE_INCIDENT"
+      },
+      {
+        "id": "ctx-1807b45bfe9e064c9a6a227bb53a96e1",
+        "service": "alpha",
+        "source_timestamp_ns": "1792453739736403327",
+        "timestamp_semantics": "SOURCE_REPORTED_EVENT_TIME",
+        "source_line_sha256": "cb0b99503c13350c35387f9aa6ac6f2290e7f6a79210377af9e4ad0d93b8d373",
+        "fields": {
+          "event.name": "start",
+          "container.id": "57a99643166d8cd3962acea2f908968d18c22589f44d1f09504d3cd78a865541",
+          "container.memory_limit_bytes": 83886080,
+          "event.origin": "docker.events",
+          "event.time_unix_ns": "1792453739736403327",
+          "observer.time_unix_ns": "1792453740837505000"
+        },
+        "period": "BEFORE_INCIDENT"
+      },
+      {
+        "id": "ctx-1e91cb2abfe440b27f71a598d4af6253",
+        "service": "alpha",
+        "source_timestamp_ns": "1792453739736403327",
+        "timestamp_semantics": "SOURCE_REPORTED_EVENT_TIME",
+        "source_line_sha256": "a6201b9a966919f72a9aa39b36285dcc7e139874d96cc606082586bce5cb062e",
+        "fields": {
+          "event.name": "deployment",
+          "container.id": "57a99643166d8cd3962acea2f908968d18c22589f44d1f09504d3cd78a865541",
+          "container.memory_limit_bytes": 83886080,
+          "event.origin": "docker.events",
+          "event.time_unix_ns": "1792453739736403327",
+          "observer.time_unix_ns": "1792453740837505000"
+        },
+        "period": "BEFORE_INCIDENT"
+      },
+      {
+        "id": "ctx-2e9b921b40f147cfa39daa69f2f5a110",
+        "service": "alpha",
+        "source_timestamp_ns": "1792453739736403327",
+        "timestamp_semantics": "SOURCE_REPORTED_EVENT_TIME",
+        "source_line_sha256": "98898f3322c386a997b066e1fb739f78fe47cda35621b76eb5beb6d048391860",
+        "fields": {
+          "event.name": "configuration_change",
+          "container.id": "57a99643166d8cd3962acea2f908968d18c22589f44d1f09504d3cd78a865541",
+          "container.memory_limit_bytes": 83886080,
+          "event.origin": "docker.events",
+          "event.time_unix_ns": "1792453739736403327",
+          "observer.time_unix_ns": "1792453740837505000"
+        },
+        "period": "BEFORE_INCIDENT"
+      }
+    ],
+    "meaning": "SOURCE_ASSERTIONS_NOT_VERIFIED_CAUSAL_FACTS",
+    "entries_seen": 11,
+    "unstructured_or_unsupported_entries": 0,
+    "observed_at_unix": 1792453741.0298932,
+    "completeness": "NOT_ESTABLISHED"
+  },
+  "control_checks": {
+    "oom_state": {
+      "OOMKilled": true,
+      "exit": 137
+    },
+    "ordinary_kill_state": {
+      "OOMKilled": false,
+      "exit": 137
+    },
+    "persisted_delivered_records": 11,
+    "replay_new_records": 0,
+    "actual_replacement_image_and_memory_change": true,
+    "history_read_after_recovery": true,
+    "source_fields_do_not_include_controller_truth": true,
+    "ml_input_unchanged": true
+  },
+  "assistant_projection": {
+    "state": "OBSERVED",
+    "source_status": "available",
+    "categories": [
+      "CONFIGURATION_EVENT",
+      "DEPLOYMENT_EVENT",
+      "EXIT_EVENT",
+      "OOM_EVENT",
+      "START_EVENT"
+    ],
+    "record_count": 11,
+    "unsupported_entries": 0,
+    "lookback_seconds": 60,
+    "preceding_record_count": 11,
+    "assistant_categories_enabled": true,
+    "coverage": "RETENTION_SAMPLING_AND_DELIVERY_UNKNOWN",
+    "interval_semantics": "START_INCLUSIVE_END_EXCLUSIVE",
+    "meaning": "SOURCE_ASSERTIONS_SUGGEST_CHECKS_NOT_CAUSAL_PROOF"
+  },
+  "provider_calls": 0,
+  "limits": "Engineering pilot, not ranking accuracy, user study or universal runtime support"
+}

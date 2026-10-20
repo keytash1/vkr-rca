@@ -82,6 +82,11 @@ class ProductBundleTests(unittest.TestCase):
             )
             (root / "docs").mkdir()
             shutil.copyfile(ROOT / "docs/HTTP_OBSERVATIONS.md", root / "docs/HTTP_OBSERVATIONS.md")
+            for name in ("CONTEXT_PROBE.md", "DOCKER_CONTEXT.md"):
+                shutil.copyfile(ROOT / "docs" / name, root / "docs" / name)
+            (root / "tools").mkdir()
+            for name in ("loki_context_probe.py", "docker_context_collector.py"):
+                shutil.copyfile(ROOT / "tools" / name, root / "tools" / name)
             for name in ("LICENSE", "NOTICE", "THIRD_PARTY.md", "THIRD_PARTY_NOTICES"):
                 (root / "deploy/product" / name).write_bytes((ROOT / "deploy/product" / name).read_bytes())
             artifact = root / "deploy/profiles/artifacts/portable"
@@ -106,6 +111,8 @@ class ProductBundleTests(unittest.TestCase):
                 self.assertIn("cmd/thesis_demo/assistant_context.py", archive.namelist())
                 self.assertIn("cmd/thesis_demo/http_observations.py", archive.namelist())
                 self.assertIn("docs/HTTP_OBSERVATIONS.md", archive.namelist())
+                self.assertIn("tools/docker_context_collector.py", archive.namelist())
+                self.assertIn("docs/DOCKER_CONTEXT.md", archive.namelist())
                 self.assertFalse(any("evaluation" in name or "external-data" in name for name in archive.namelist()))
                 self.assertFalse(any(name.endswith(("m14_evaluate.py", "m13_experiment.py", "train.py"))
                                      for name in archive.namelist()))

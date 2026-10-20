@@ -23,3 +23,9 @@ test('useful checks, consent distinction and source text stay plain text',()=>{
  const text=JSON.stringify(box);assert.match(text,/слушающий порт/);assert.match(text,/помощнику не передаётся/);
  assert.match(text,/1970-01-01 00:01:41/);assert.equal(box.open,undefined);
 });
+test('preceding runtime records stay separate and SIGKILL is not presented as OOM',()=>{
+ const [box]=render({source_status:'available',record_count:1,lookback_seconds:60,preceding_record_count:1,
+  categories:['EXIT_EVENT'], records:[{period:'BEFORE_INCIDENT',source_timestamp_ns:'101000000000',fields:{'container.exit_code':137}}]});
+ const text=JSON.stringify(box);assert.match(text,/до инцидента/);assert.match(text,/не подтверждает OOM/);
+ assert.match(text,/Интервал расчёта рейтинга не расширен/);assert.equal(box.open,undefined);
+});
